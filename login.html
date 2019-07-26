@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh_cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zui-admin</title>
+    <link href="./css/jump.css" rel="stylesheet">
+    <script src="./lib/jquery/jquery.js"></script>
+    <script src="./js/zui.js"></script>
+    <script src="./js/base.js"></script>
+    <script src="./js/config.js"></script>
+</head>
+<body class="page-login">
+    <div class="login-header"><span class="logo"></span></div>
+    <div class="login-box" id="common_login_box">
+        <h2 class="text-primary">智能管理系统</h2>
+        <div class="input-control has-icon-left">
+            <label class="input-control-icon-left"><i class="icon icon-user"></i></label>
+            <input type="text" class="form-control" id="common_login_val_account" placeholder="帐号"  value="admin">
+        </div>
+        <div class="input-control has-icon-left">
+            <label class="input-control-icon-left"><i class="icon icon-lock"></i></label>
+            <input type="text" class="form-control" id="common_login_val_password" placeholder="密码" value="123456">
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" id="common_login_submit">登录</button>
+    </div>
+
+<script>
+$(function(){
+
+    //变量声明----------------------------------------------------------------
+    var 
+    common_login_box    = $("#common_login_box"),        //登录盒子
+    common_login_submit = $("#common_login_submit");     //登录提交
+
+    //登录盒子----------------------------------------------------------------
+    common_login_submit.click(function(){
+        //变量声明
+        var
+        common_login_val_account  = $("#common_login_val_account").val(),
+        common_login_val_password = $("#common_login_val_password").val();
+
+        //正则验证
+        if ( common_login_val_account !="admin"  ){ mess_warning("无此账号"); return; }
+        if ( common_login_val_password!="123456" ){ mess_warning("密码错误"); return; }
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json", 
+            data    :{common_login_val_account,common_login_val_password},
+            success :function(data){
+                mess_success(data.mess);
+                setTimeout(function(){
+                    window.location.href="index.html";
+                },1500);
+            }
+        });
+    });
+
+});//预加载结尾
+</script>
+</body>
+</html>

@@ -1,0 +1,795 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="personnel_interview">
+
+    <!-- 数据网格 -->
+	<div class="datagrid datagrid-borderless datagrid-striped" id="personnel_interview_datagrid">
+        <div class="tool-group">
+            <form class="tool-inline">
+                <label><span>搜索：</span><input type="text" class="form-control" id="personnel_interview_tool_search"></label>
+                <label>
+                    <span>职位：</span>
+                    <select class="form-control" id="personnel_interview_tool_select1"><!--JS推进--></select>
+                </label>
+                <label>
+                    <span>面试时间：</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control form-time" id="personnel_interview_tool_date1" readonly> 
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control form-time" id="personnel_interview_tool_date2" readonly>
+                    </div>
+                </label>
+                <label>
+                    <span>状态：</span>
+                    <select class="form-control" id="personnel_interview_tool_select2"><!--JS推进--></select>
+                </label>
+                <label><button type="button" class="btn btn-primary" id="personnel_interview_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <label><button type="button" class="btn btn-primary" id="personnel_interview_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
+                <label class="pull-right">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label id="personnel_interview_pass_btn" class="btn btn-primary active"><input type="radio">邀约面试</label>
+                        <label id="personnel_interview_fail_btn" class="btn btn-primary"><input type="radio">人才库</label>
+                    </div>
+                </label>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_interview_add_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_add_user">姓名</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="personnel_interview_add_user" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">性别</label>
+                            <div class="col-sm-8"> &nbsp;
+                                <label class="radio-inline"><input type="radio" name="personnel_interview_add_sexy" value="1" checked="checked">男</label>
+                                <label class="radio-inline"><input type="radio" name="personnel_interview_add_sexy" value="2">女</label>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_add_tels">电话</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="personnel_interview_add_tels" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_add_date">面试时间</label>
+                            <div class="col-sm-8"><input class="form-control form-time" id="personnel_interview_add_date" readonly></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_add_post">应聘职位</label>
+                            <div class="col-sm-8"><select class="form-control" id="personnel_interview_add_post"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_add_copy">抄送</label>
+                            <div class="col-sm-8"><select class="form-control" id="personnel_interview_add_copy"><!-- JS推进 --></select></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="personnel_interview_add_submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_interview_add_box -->
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_interview_edit_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_edit_user">姓名</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="personnel_interview_edit_user" placeholder="请填写正确格式">
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">性别</label>
+                            <div class="col-sm-8"> &nbsp;
+                                <label class="radio-inline"><input type="radio" name="personnel_interview_edit_sexy" value="1" checked="checked">男</label>
+                                <label class="radio-inline"><input type="radio" name="personnel_interview_edit_sexy" value="2">女</label>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_edit_tels">电话</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="personnel_interview_edit_tels" placeholder="请填写正确格式">
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_edit_post">应聘职位</label>
+                            <div class="col-sm-8"><select class="form-control" id="personnel_interview_edit_post"><!-- JS推进 --></select></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="personnel_interview_edit_submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_interview_edit_box -->
+
+    <!-- 储备盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_interview_save_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">储备</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_save_mess">审批意见</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="personnel_interview_save_mess" placeholder="请填写正确格式"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="personnel_interview_save_submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_interview_save_box -->
+
+    <!-- 通过盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_interview_pass_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">通过</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_pass_mess">审批意见</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="personnel_interview_pass_mess" placeholder="请填写正确格式"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="personnel_interview_pass_submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_interview_pass_box -->
+
+    <!-- 淘汰盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_interview_fail_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">淘汰</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_fail_mess">审批意见</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="personnel_interview_fail_mess" placeholder="请填写正确格式"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="personnel_interview_fail_submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_interview_fail_box -->
+
+    <!-- 录用盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_interview_empl_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">录用</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="personnel_interview_empl_mess">审批意见</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="personnel_interview_empl_mess" placeholder="请填写正确格式"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="personnel_interview_empl_submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_interview_empl_box -->
+
+</div>
+<!-- page-wrapper -->
+<script>
+$(function(){
+    
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    personnel_interview                  = $("#personnel_interview"),             //页面ID
+    personnel_interview_datagrid         = $("#personnel_interview_datagrid"),    //数据表格
+    //搜索
+    personnel_interview_tool_search      = $("#personnel_interview_tool_search"), //搜索字段
+    personnel_interview_tool_select1     = $("#personnel_interview_tool_select1"),//下拉选项1
+    personnel_interview_tool_select2     = $("#personnel_interview_tool_select2"),//下拉选项2
+    personnel_interview_tool_date1       = $("#personnel_interview_tool_date1"),  //开始时间
+    personnel_interview_tool_date2       = $("#personnel_interview_tool_date2"),  //结束时间
+    //按钮
+    personnel_interview_search_btn       = $("#personnel_interview_search_btn"),  //搜索按钮
+    personnel_interview_add_btn          = $("#personnel_interview_add_btn"),     //添加按钮
+    personnel_interview_pass_btn         = $("#personnel_interview_pass_btn"),    //邀约面试
+    personnel_interview_fail_btn         = $("#personnel_interview_fail_btn"),    //人才库
+    //添加
+    personnel_interview_add_btn          = $("#personnel_interview_add_btn"),     //添加按钮
+    personnel_interview_add_box          = $("#personnel_interview_add_box"),     //添加按钮
+    personnel_interview_add_submit       = $("#personnel_interview_add_submit"),  //添加提交
+    personnel_interview_add_user         = $("#personnel_interview_add_user"),    //姓名字段
+    //personnel_interview_add_sexy       = "",                                    //性别字段
+    personnel_interview_add_tels         = $("#personnel_interview_add_tels"),    //电话字段
+    personnel_interview_add_date         = $("#personnel_interview_add_date"),    //时间字段
+    personnel_interview_add_post         = $("#personnel_interview_add_post"),    //职位字段
+    personnel_interview_add_copy         = $("#personnel_interview_add_copy"),    //抄送字段
+    //修改
+    personnel_interview_edit_box         = $("#personnel_interview_edit_box"),    //修改按钮
+    personnel_interview_edit_submit      = $("#personnel_interview_edit_submit"), //修改提交
+    personnel_interview_edit_user        = $("#personnel_interview_edit_user"),   //姓名字段
+    //personnel_interview_edit_sexy      = "",                                    //性别字段
+    personnel_interview_edit_tels        = $("#personnel_interview_edit_tels"),   //电话字段
+    personnel_interview_edit_post        = $("#personnel_interview_edit_post"),   //职位字段
+    //储备
+    personnel_interview_save_box         = $("#personnel_interview_save_box"),    //储备按钮
+    personnel_interview_save_submit      = $("#personnel_interview_save_submit"), //储备提交
+    personnel_interview_save_mess        = $("#personnel_interview_save_mess"),   //审批字段 
+    //通过
+    personnel_interview_pass_box         = $("#personnel_interview_pass_box"),    //通过按钮
+    personnel_interview_pass_submit      = $("#personnel_interview_pass_submit"), //通过提交
+    personnel_interview_pass_mess        = $("#personnel_interview_pass_mess"),   //审批字段 
+    //淘汰
+    personnel_interview_fail_box         = $("#personnel_interview_fail_box"),    //淘汰按钮
+    personnel_interview_fail_submit      = $("#personnel_interview_fail_submit"), //淘汰提交
+    personnel_interview_fail_mess        = $("#personnel_interview_fail_mess"),   //审批字段 
+    //录用
+    personnel_interview_empl_box         = $("#personnel_interview_empl_box"),    //录用按钮
+    personnel_interview_empl_submit      = $("#personnel_interview_empl_submit"), //录用提交
+    personnel_interview_empl_mess        = $("#personnel_interview_empl_mess");   //审批字段 
+
+    /*远程接口
+    var personnel_interview_api       = {
+    }*/
+
+    /*本地接口*/
+    var personnel_interview_api       = {
+        datagrid    : API.test_datagrid,                                          //数据表格
+        select_post : LOCAL + "Test/test_select.json",                            //职位下拉
+        select_state: LOCAL + "Test/test_select.json",                            //状态下拉
+        select_copy : LOCAL + "Test/test_select.json",                            //抄送下拉
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    personnel_interview_datagrid.datagrid({
+        height      : "page",
+        sortable    : false,
+        showRowIndex: false,
+        states      : {
+            fixedRightFrom  : 10,
+            pager           : {
+                page        : 1,
+                recPerPage  : 20,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",   label:"ID"  ,    width:100},
+                {name:"blank",label:"姓名",    width:100},
+                {name:"blank",label:"电话",    width:200},
+                {name:"blank",label:"应聘职位",width:100},
+                {name:"blank",label:"性别",    width:100},
+                {name:"blank",label:"面试时间",width:200},
+                {name:"blank",label:"状态",    width:100},
+                {name:"blank",label:"抄送",    width:100},
+                {name:"blank",label:"审批意见",width:0.5,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell,dataGrid){
+                            return `<span title="点击查看" data-toggle="modal" data-title="审批意见" data-custom="${dataValue}">${dataValue}</span>`;
+                        }
+                    }
+                },
+                {name:"operate",label:"操作",width:135,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = "";
+                            if( cell.rowIndex==1 ){                                     //淘汰+储备
+                                temp = `
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_interview_empl_btn">录用</a>
+                                `; 
+                            } else if ( cell.rowIndex==2 ) {                            //复试通过
+                                temp = `
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_interview_edit_btn">修改</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_interview_save_btn">储备</a>
+                                `; 
+                            } else {                                                    //待初试+待复试
+                                temp = `
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_interview_edit_btn">修改</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_interview_save_btn">储备</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_interview_pass_btn">通过</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_interview_fail_btn">淘汰</a>
+                                `; 
+                            }
+                            return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : personnel_interview_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //工具条-职位-----------------------------------------------------------------------------------------------
+    $.ajax({
+        url     : personnel_interview_api.select_post,
+        type    : "get",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+ data[i].id +"'>"+data[i].name+"</option>"
+            }
+            personnel_interview_tool_select1.html(option);          //工具条职位
+            personnel_interview_add_post.html(option);              //添加职位
+            personnel_interview_edit_post.html(option);             //修改职位
+        }
+    });
+    //工具条-状态-----------------------------------------------------------------------------------------------
+    $.ajax({
+        url     : personnel_interview_api.select_state,
+        type    : "get",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+ data[i].id +"'>"+data[i].name+"</option>"
+            }
+            personnel_interview_tool_select2.html(option);
+        }
+    });
+    //添加抄送-----------------------------------------------------------------------------------------------
+    $.ajax({
+        url     : personnel_interview_api.select_copy,
+        type    : "get",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+ data[i].id +"'>"+data[i].name+"</option>"
+            }
+            personnel_interview_add_copy.html(option);              //工具条职位
+        }
+    });
+
+    //右侧切换-----------------------------------------------------------------------------------------------
+    personnel_interview_pass_btn.click(function(){
+
+        $.ajax({
+            url     : personnel_interview_api.select_post,
+            type    : "get",
+            dataType: "json",
+            data    : {
+                type : "pass",
+            },
+            success : function(data){
+
+                //关键词
+                var type = [];
+
+                //下拉
+                var option = "<option>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+ data[i].id +"'>"+data[i].name+"(pass)</option>";
+                    type.push( data[i].id );                        //关键词
+                }
+                personnel_interview_tool_select2.html(option);
+
+                //按钮
+                personnel_interview_add_btn.show();
+
+                //表格
+                type = "?type=" + type;
+                um_render(personnel_interview_datagrid,personnel_interview_api.datagrid+type);
+
+            }
+        });
+
+    });
+    personnel_interview_fail_btn.click(function(){
+
+        $.ajax({
+            url     : personnel_interview_api.select_post,
+            type    : "get",
+            dataType: "json",
+            data    : {
+                type : "fail",
+            },
+            success : function(data){
+
+                //关键词
+                var type = [];
+
+                //下拉
+                var option = "<option>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+ data[i].id +"'>"+data[i].name+"(fail)</option>";
+                    type.push( data[i].id );                        //关键词
+                }
+                personnel_interview_tool_select2.html(option);
+
+                //按钮
+                personnel_interview_add_btn.hide();
+
+                //表格
+                type = "?type=" + type;
+                um_render(personnel_interview_datagrid,personnel_interview_api.datagrid+type);
+
+            }
+        });
+
+    });
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    personnel_interview_search_btn.click(function(){
+
+        //字段整理
+        var keyword  
+        = "?search=" + personnel_interview_tool_search.val() 
+        + "&date1="  + personnel_interview_tool_date1.val()
+        + "&date2="  + personnel_interview_tool_date2.val()
+        + "&select1="+ personnel_interview_tool_select1.val()
+        + "&select2="+ personnel_interview_tool_select2.val();
+
+        //GET提交
+        um_render(personnel_interview_datagrid,personnel_interview_api.datagrid+keyword);
+
+    });
+
+    //添加按钮------------------------------------------------------------------------
+    personnel_interview_add_btn.click(function(){
+        personnel_interview_add_box.modal("show");
+    });
+    //添加提交
+    personnel_interview_add_submit.click(function(){
+
+        //性别字段
+        var personnel_interview_add_sexy = $("[name='personnel_interview_add_sexy']:checked");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                user : personnel_interview_add_user.val(),
+                sexy : personnel_interview_add_sexy.val(),
+                tels : personnel_interview_add_tels.val(),
+                date : personnel_interview_add_date.val(),
+                post : personnel_interview_add_post.val(),
+                copy : personnel_interview_add_copy.val(),
+            },
+            success : function(data){
+                if( data.code>0){
+                    mess_success(data.mess);
+                    um_reset(personnel_interview_datagrid,personnel_interview_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+  
+    //操作声明-----------------------------------------------------------------------------------------------
+    var
+    personnel_interview_edit_btn = ".personnel_interview_edit_btn", //修改
+    personnel_interview_save_btn = ".personnel_interview_save_btn", //储备
+    personnel_interview_pass_btn = ".personnel_interview_pass_btn", //通过
+    personnel_interview_fail_btn = ".personnel_interview_fail_btn", //淘汰
+    personnel_interview_empl_btn = ".personnel_interview_empl_btn"; //录用
+
+    //修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_interview_edit_btn,function(){ 
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    personnel_interview_edit_submit.attr("rowIndex",data_id);                   //数据ID传值
+                    personnel_interview_edit_box.find("input[type='text']").val(data_id);       //数据填充
+                    personnel_interview_edit_box.modal("show");                                 //盒子显示
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+    //修改提交
+    personnel_interview_edit_submit.click(function(){
+
+        //变量声明
+        var data_id  = cell_value($(this).attr("rowIndex"),1);                                  //数据ID 
+        var personnel_interview_edit_sexy = $("[name='personnel_interview_edit_sexy']:checked");//性别字段
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id   : data_id,
+                user : personnel_interview_edit_user.val(),
+                sexy : personnel_interview_edit_sexy.val(),
+                tels : personnel_interview_edit_tels.val(),
+                post : personnel_interview_edit_post.val(),
+            },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(personnel_interview_datagrid,personnel_interview_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+
+    //储备按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_interview_save_btn,function(){ 
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    personnel_interview_save_submit.attr("rowIndex",data_id);                   //数据ID传值
+                    personnel_interview_save_box.modal("show");                                 //盒子显示
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+    //储备提交
+    personnel_interview_save_submit.click(function(){
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id   : data_id,
+                mess : personnel_interview_save_mess.val()
+            },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(personnel_interview_datagrid,personnel_interview_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+
+    //通过按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_interview_pass_btn,function(){ 
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    personnel_interview_pass_submit.attr("rowIndex",data_id);                   //数据ID传值
+                    personnel_interview_pass_box.modal("show");                                 //盒子显示
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+    //通过提交
+    personnel_interview_pass_submit.click(function(){
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id   : data_id,
+                mess : personnel_interview_pass_mess.val()
+            },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(personnel_interview_datagrid,personnel_interview_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+
+    //淘汰按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_interview_fail_btn,function(){ 
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    personnel_interview_fail_submit.attr("rowIndex",data_id);                   //数据ID传值
+                    personnel_interview_fail_box.modal("show");                                 //盒子显示
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+    //淘汰提交
+    personnel_interview_fail_submit.click(function(){
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id   : data_id,
+                mess : personnel_interview_fail_mess.val()
+            },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(personnel_interview_datagrid,personnel_interview_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+
+    //录用按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_interview_empl_btn,function(){ 
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    personnel_interview_empl_submit.attr("rowIndex",data_id);                   //数据ID传值
+                    personnel_interview_empl_box.modal("show");                                 //盒子显示
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+    //录用提交
+    personnel_interview_empl_submit.click(function(){
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id   : data_id,
+                mess : personnel_interview_empl_mess.val()
+            },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(personnel_interview_datagrid,personnel_interview_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+
+});//预加载结尾
+</script>
+<script src="./js/callback.js"></script>

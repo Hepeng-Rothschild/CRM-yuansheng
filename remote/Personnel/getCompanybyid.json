@@ -1,0 +1,11 @@
+{
+    "result"  : "success",
+    "data"    : [
+        {"deparmenid": 1,"deparmenname":"网络部","staffname":"刘德华","positionname":"专员","tel":"18332367556"},
+        {"deparmenid": 2,"deparmenname":"网络部","staffname":"张学友","positionname":"专员","tel":"18332367556"},
+        {"deparmenid": 3,"deparmenname":"网络部","staffname":"郑中基","positionname":"专员","tel":"18332367556"},
+        {"deparmenid": 4,"deparmenname":"网络部","staffname":"张家辉","positionname":"专员","tel":"18332367556"}
+    ],
+    "message" : "",
+    "pager"   : {"page":1,"recTotal":20,"recPerPage":20}
+}

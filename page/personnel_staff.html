@@ -1,0 +1,1685 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="personnel_staff">
+
+    <!-- 数据网格 -->
+	<div class="datagrid datagrid-borderless datagrid-striped" id="personnel_staff_datagrid">
+        <div class="tool-group">
+            <div class="tool-inline">
+                <label><span>搜索：</span><input type="text" class="form-control" id="personnel_staff_tool_search"></label>
+                <label>
+                    <span>职位：</span>
+                    <select class="form-control" id="personnel_staff_tool_select1"><!--JS推进--></select>
+                </label>
+                <label>
+                    <span>分公司：</span>
+                    <select class="form-control" id="personnel_staff_tool_select2"><!--JS推进--></select>
+                </label>
+                <label>
+                    <span>状态：</span>
+                    <select class="form-control" id="personnel_staff_tool_select3"><!--JS推进--></select>
+                </label>
+                <label><button class="btn btn-primary" id="personnel_staff_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <label><button class="btn btn-primary" id="personnel_staff_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
+                <label class="pull-right">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label id="personnel_staff_pass_btn" class="btn btn-primary active"><input type="radio">在职员工</label>
+                        <label id="personnel_staff_fail_btn" class="btn btn-primary"><input type="radio">离职员工</label>
+                    </div>
+                </label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_staff_add_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="container">
+                        <!-- 基本信息 -->
+                        <blockquote>基本信息 <span class="small text-red">(以下均为必填项)</span></blockquote>
+                        <ul class="form-checker-board">
+                            <li class="col-sm-3"><label><span>姓名      </span><input  id="personnel_staff_add_user" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3">
+                                <label>
+                                    <span>性别</span>
+                                    <select id="personnel_staff_add_sexy" class="form-control">
+                                        <option value="1">男</option>
+                                        <option value="2">女</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="col-sm-3"><label><span>手机      </span><input  id="personnel_staff_add_tels" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>民族      </span><input  id="personnel_staff_add_nati" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>出生日期  </span><input  id="personnel_staff_add_birt" class="form-control form-date" type="text" readonly></label></li>
+                            <li class="col-sm-3">
+                                <label>
+                                    <span>婚姻状况</span>
+                                    <select id="personnel_staff_add_marr" class="form-control">
+                                        <option value="1">未婚</option>
+                                        <option value="2">已婚</option>
+                                        <option value="3">已育</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="col-sm-3"><label><span>紧急联系人</span><input  id="personnel_staff_add_cont_user" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>联系人电话</span><input  id="personnel_staff_add_cont_tels" class="form-control" type="text"></label></li>
+                            <li class="col-sm-12">
+                                <label>
+                                    <span>现居地址</span>
+                                    <div>
+                                        <div class="input-group">
+                                            <select id="personnel_staff_add_addr1" class="form-control"><!-- JS推进 --></select><span class="input-group-addon fix-border fix-padding"></span>
+                                            <select id="personnel_staff_add_addr2" class="form-control"><!-- JS推进 --></select><span class="input-group-addon fix-border fix-padding"></span>
+                                            <select id="personnel_staff_add_addr3" class="form-control"><!-- JS推进 --></select><span class="input-group-addon fix-border fix-padding"></span>
+                                            <input  id="personnel_staff_add_addr4" class="form-control" type="text" > 
+                                        </div>
+                                    </div>
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div><hr>
+                        <!-- 入职情况 -->
+                        <blockquote>入职情况 <span class="small text-red">(以下均为必填项)</span></blockquote>
+                        <ul class="form-checker-board">
+                            <li class="col-sm-3"><label><span>分公司    </span><select id="personnel_staff_add_comp" class="form-control"></select></li></label>
+                            <li class="col-sm-3"><label><span>部门      </span><select id="personnel_staff_add_depa" class="form-control"></select></li></label>
+                            <li class="col-sm-3"><label><span>职位      </span><select id="personnel_staff_add_post" class="form-control"></select></li></label>
+                            <li class="col-sm-3"><label><span>入职日期  </span><input  id="personnel_staff_add_pass" class="form-control form-date" type="text" readonly></li></label>
+                            <li class="col-sm-3"><label><span>试用期工资</span><input  id="personnel_staff_add_wag1" class="form-control" type="text"></li></label>
+                            <li class="col-sm-3"><label><span>转正工资  </span><input  id="personnel_staff_add_wag2" class="form-control" type="text"></li></label>
+                        </ul>
+                        <div class="clearfix"></div><hr>
+                        <!-- 资料上传 -->
+                        <blockquote>资料上传 <span class="small text-red">(证件照/身份证正面/身份证反面 为必填项)</span></blockquote>
+                        <ul class="uploader-square-box">
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>证件照</strong>
+                            </li>
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>身份证正面</strong>
+                            </li>
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>身份证反面</strong>
+                            </li>
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>毕业证件</strong>
+                            </li>
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>荣誉证书</strong>
+                            </li>
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>离职证明</strong>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div><hr>
+                        <!-- 最高学历 -->
+                        <blockquote>最高学历 <span class="small text-red">(以下均为必填项)</span></blockquote>
+                        <table class="table table-condensed table-fixed">
+                            <thead>
+                                <tr>
+                                    <th>学校名称</th>
+                                    <th>起止时间</th>
+                                    <th>专业</th>
+                                    <th>学历/学年制</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td><input id="personnel_staff_add_edu_school" class="form-control" type="text"></td>
+                                <td>
+                                    <div class="input-group">
+                                        <input id="personnel_staff_add_edu_date1" class="form-control form-date" type="text" readonly><span class="input-group-addon fix-border fix-padding"></span>
+                                        <input id="personnel_staff_add_edu_date2" class="form-control form-date" type="text" readonly>
+                                    </div>
+                                </td>
+                                <td><input id="personnel_staff_add_edu_major" class="form-control" type="text"></td>
+                                <td>
+                                    <div class="input-group">
+                                        <select id="personnel_staff_add_edu_level" class="form-control">
+                                            <option value="1">初中</option>
+                                            <option value="2">高中</option>
+                                            <option value="3">中专</option>
+                                            <option value="4">大专</option>
+                                            <option value="5">本科</option>
+                                            <option value="6">研究生</option>
+                                            <option value="7">博士生</option>
+                                        </select>
+                                        <span class="input-group-addon fix-border fix-padding"></span>
+                                        <select id="personnel_staff_add_edu_years" class="form-control">
+                                            <option value="1">全日制</option>
+                                            <option value="2">非全日制</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- 工作经历 -->
+                        <blockquote>工作经历</blockquote>
+                        <table class="table table-condensed table-fixed">
+                            <thead>
+                                <tr>
+                                    <th>公司名称</th>
+                                    <th>起止时间</th>
+                                    <th>职位</th>
+                                    <th>离职原因</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td><input id="personnel_staff_add_work1_comp" class="form-control" type="text"></td>
+                                <td>
+                                    <div class="input-group">
+                                        <input id="personnel_staff_add_work1_date1" class="form-control form-date" type="text" readonly><span class="input-group-addon fix-border fix-padding"></span>
+                                        <input id="personnel_staff_add_work1_date2" class="form-control form-date" type="text" readonly>
+                                    </div>
+                                </td>
+                                <td><input id="personnel_staff_add_work1_post" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_add_work1_reason" class="form-control" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="personnel_staff_add_work2_comp" class="form-control" type="text"></td>
+                                <td>
+                                    <div class="input-group">
+                                        <input id="personnel_staff_add_work2_date1" class="form-control form-date" type="text" readonly><span class="input-group-addon fix-border fix-padding"></span>
+                                        <input id="personnel_staff_add_work2_date2" class="form-control form-date" type="text" readonly>
+                                    </div>
+                                </td>
+                                <td><input id="personnel_staff_add_work2_post" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_add_work2_reason" class="form-control" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="personnel_staff_add_work3_comp" class="form-control" type="text"></td>
+                                <td>
+                                    <div class="input-group">
+                                        <input id="personnel_staff_add_work3_date1" class="form-control form-date" type="text" readonly><span class="input-group-addon fix-border fix-padding"></span>
+                                        <input id="personnel_staff_add_work3_date2" class="form-control form-date" type="text" readonly>
+                                    </div>
+                                </td>
+                                <td><input id="personnel_staff_add_work3_post" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_add_work3_reason" class="form-control" type="text"></td>
+                            </tr>
+                        </table>
+                        <!-- 家庭状况 -->
+                        <blockquote>家庭状况</blockquote>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>关系</th>
+                                    <th>工作</th>
+                                    <th>手机</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td><input id="personnel_staff_add_home1_user" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_add_home1_rela" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_add_home1_work" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_add_home1_tels" class="form-control" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="personnel_staff_add_home2_user" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_add_home2_rela" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_add_home2_work" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_add_home2_tels" class="form-control" type="text"></td>
+                            </tr>
+                        </table>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="personnel_staff_add_submit">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_staff_add_box -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_staff_show_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll"><!-- JS添加 --></div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_staff_show_box -->
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_staff_edit_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="container">
+                        <!-- 基本信息 -->
+                        <blockquote>基本信息 <span class="small text-red">(以下均为必填项)</span></blockquote>
+                        <ul class="form-checker-board">
+                            <li class="col-sm-3"><label><span>姓名      </span><input  id="personnel_staff_edit_user" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3">
+                                <label>
+                                    <span>性别</span>
+                                    <select id="personnel_staff_edit_sexy" class="form-control">
+                                        <option value="1">男</option>
+                                        <option value="2">女</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="col-sm-3"><label><span>手机      </span><input  id="personnel_staff_edit_tels" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>民族      </span><input  id="personnel_staff_edit_nati" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>出生日期  </span><input  id="personnel_staff_edit_birt" class="form-control form-date" type="text" readonly></label></li>
+                            <li class="col-sm-3">
+                                <label>
+                                    <span>婚姻状况</span>
+                                    <select id="personnel_staff_edit_marr" class="form-control">
+                                        <option value="1">未婚</option>
+                                        <option value="2">已婚</option>
+                                        <option value="3">已育</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="col-sm-3"><label><span>紧急联系人</span><input  id="personnel_staff_edit_cont_user" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>联系人电话</span><input  id="personnel_staff_edit_cont_tels" class="form-control" type="text"></label></li>
+                            <li class="col-sm-12">
+                                <label>
+                                    <span>现居地址</span>
+                                    <div>
+                                        <div class="input-group">
+                                            <select id="personnel_staff_edit_addr1" class="form-control"><!-- JS推进 --></select><span class="input-group-addon fix-border fix-padding"></span>
+                                            <select id="personnel_staff_edit_addr2" class="form-control"><!-- JS推进 --></select><span class="input-group-addon fix-border fix-padding"></span>
+                                            <select id="personnel_staff_edit_addr3" class="form-control"><!-- JS推进 --></select><span class="input-group-addon fix-border fix-padding"></span>
+                                            <input  id="personnel_staff_edit_addr4" class="form-control" type="text" > 
+                                        </div>
+                                    </div>
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div><hr>
+                        <!-- 入职情况 -->
+                        <blockquote>入职情况 <span class="small text-red">(以下均为必填项)</span></blockquote>
+                        <ul class="form-checker-board">
+                            <li class="col-sm-3"><label><span>分公司    </span><select id="personnel_staff_edit_comp" class="form-control"></select></li></label>
+                            <li class="col-sm-3"><label><span>部门      </span><select id="personnel_staff_edit_depa" class="form-control"></select></li></label>
+                            <li class="col-sm-3"><label><span>职位      </span><select id="personnel_staff_edit_post" class="form-control"></select></li></label>
+                            <li class="col-sm-3"><label><span>入职日期  </span><input  id="personnel_staff_edit_pass" class="form-control form-date" type="text" readonly></li></label>
+                            <li class="col-sm-3"><label><span>试用期工资</span><input  id="personnel_staff_edit_wag1" class="form-control" type="text"></li></label>
+                            <li class="col-sm-3"><label><span>转正工资  </span><input  id="personnel_staff_edit_wag2" class="form-control" type="text"></li></label>
+                        </ul>
+                        <div class="clearfix"></div><hr>
+                        <!-- 资料上传 -->
+                        <blockquote>资料上传 <span class="small text-red">(证件照/身份证正面/身份证反面 为必填项)</span></blockquote>
+                        <ul class="uploader-square-box">
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>证件照</strong>
+                            </li>
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>身份证正面</strong>
+                            </li>
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>身份证反面</strong>
+                            </li>
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>毕业证件</strong>
+                            </li>
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>荣誉证书</strong>
+                            </li>
+                            <li class="col-sm-2">
+                                <div class="uploader">
+                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>离职证明</strong>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div><hr>
+                        <!-- 最高学历 -->
+                        <blockquote>最高学历 <span class="small text-red">(以下均为必填项)</span></blockquote>
+                        <table class="table table-condensed table-fixed">
+                            <thead>
+                                <tr>
+                                    <th>学校名称</th>
+                                    <th>起止时间</th>
+                                    <th>专业</th>
+                                    <th>学历/学年制</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td><input id="personnel_staff_edit_edu_school" class="form-control" type="text"></td>
+                                <td>
+                                    <div class="input-group">
+                                        <input id="personnel_staff_edit_edu_date1" class="form-control form-date" type="text" readonly><span class="input-group-addon fix-border fix-padding"></span>
+                                        <input id="personnel_staff_edit_edu_date2" class="form-control form-date" type="text" readonly>
+                                    </div>
+                                </td>
+                                <td><input id="personnel_staff_edit_edu_major" class="form-control" type="text"></td>
+                                <td>
+                                    <div class="input-group">
+                                        <select id="personnel_staff_edit_edu_level" class="form-control">
+                                            <option value="1">初中</option>
+                                            <option value="2">高中</option>
+                                            <option value="3">中专</option>
+                                            <option value="4">大专</option>
+                                            <option value="5">本科</option>
+                                            <option value="6">研究生</option>
+                                            <option value="7">博士生</option>
+                                        </select>
+                                        <span class="input-group-addon fix-border fix-padding"></span>
+                                        <select id="personnel_staff_edit_edu_years" class="form-control">
+                                            <option value="1">全日制</option>
+                                            <option value="2">非全日制</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- 工作经历 -->
+                        <blockquote>工作经历</blockquote>
+                        <table class="table table-condensed table-fixed">
+                            <thead>
+                                <tr>
+                                    <th>公司名称</th>
+                                    <th>起止时间</th>
+                                    <th>职位</th>
+                                    <th>离职原因</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td><input id="personnel_staff_edit_work1_comp" class="form-control" type="text"></td>
+                                <td>
+                                    <div class="input-group">
+                                        <input id="personnel_staff_edit_work1_date1" class="form-control form-date" type="text" readonly><span class="input-group-addon fix-border fix-padding"></span>
+                                        <input id="personnel_staff_edit_work1_date2" class="form-control form-date" type="text" readonly>
+                                    </div>
+                                </td>
+                                <td><input id="personnel_staff_edit_work1_post" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_edit_work1_reason" class="form-control" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="personnel_staff_edit_work2_comp" class="form-control" type="text"></td>
+                                <td>
+                                    <div class="input-group">
+                                        <input id="personnel_staff_edit_work2_date1" class="form-control form-date" type="text" readonly><span class="input-group-addon fix-border fix-padding"></span>
+                                        <input id="personnel_staff_edit_work2_date2" class="form-control form-date" type="text" readonly>
+                                    </div>
+                                </td>
+                                <td><input id="personnel_staff_edit_work2_post" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_edit_work2_reason" class="form-control" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="personnel_staff_edit_work3_comp" class="form-control" type="text"></td>
+                                <td>
+                                    <div class="input-group">
+                                        <input id="personnel_staff_edit_work3_date1" class="form-control form-date" type="text" readonly><span class="input-group-addon fix-border fix-padding"></span>
+                                        <input id="personnel_staff_edit_work3_date2" class="form-control form-date" type="text" readonly>
+                                    </div>
+                                </td>
+                                <td><input id="personnel_staff_edit_work3_post" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_edit_work3_reason" class="form-control" type="text"></td>
+                            </tr>
+                        </table>
+                        <!-- 家庭状况 -->
+                        <blockquote>家庭状况</blockquote>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>关系</th>
+                                    <th>工作</th>
+                                    <th>手机</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td><input id="personnel_staff_edit_home1_user" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_edit_home1_rela" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_edit_home1_work" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_edit_home1_tels" class="form-control" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="personnel_staff_edit_home2_user" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_edit_home2_rela" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_edit_home2_work" class="form-control" type="text"></td>
+                                <td><input id="personnel_staff_edit_home2_tels" class="form-control" type="text"></td>
+                            </tr>
+                        </table>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="personnel_staff_edit_submit">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_staff_edit_box -->
+
+    <!-- 重置盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_staff_reset_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">重置密码</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center with-padding">此次操作将密码重置为：<span class="text-red">000000</span></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="personnel_staff_reset_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_staff_reset_box -->
+
+
+</div>
+<!-- page-wrapper -->
+<script>
+$(function(){
+    
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    personnel_staff                     = $("#personnel_staff"),                    //页面ID
+    personnel_staff_datagrid            = $("#personnel_staff_datagrid"),           //数据表格
+    
+    //搜索
+    personnel_staff_tool_search         = $("#personnel_staff_tool_search"),        //搜索字段
+    personnel_staff_tool_select1        = $("#personnel_staff_tool_select1"),       //下拉选择1
+    personnel_staff_tool_select2        = $("#personnel_staff_tool_select2"),       //下拉选择2
+    personnel_staff_tool_select3        = $("#personnel_staff_tool_select3"),       //下拉选择2
+    personnel_staff_search_btn          = $("#personnel_staff_search_btn"),         //搜索按钮
+    personnel_staff_pass_btn            = $("#personnel_staff_pass_btn"),           //在职员工
+    personnel_staff_fail_btn            = $("#personnel_staff_fail_btn"),           //离职员工
+    
+    //添加
+    personnel_staff_add_btn             = $("#personnel_staff_add_btn"),            //添加按钮
+    personnel_staff_add_box             = $("#personnel_staff_add_box"),            //添加盒子
+    personnel_staff_add_submit          = $("#personnel_staff_add_submit"),         //添加提交
+
+    personnel_staff_add_user            = $("#personnel_staff_add_user"),           //姓名字段
+    personnel_staff_add_sexy            = $("#personnel_staff_add_sexy"),           //性别字段
+    personnel_staff_add_tels            = $("#personnel_staff_add_tels"),           //手机字段
+    personnel_staff_add_nati            = $("#personnel_staff_add_nati"),           //民族字段
+    personnel_staff_add_birt            = $("#personnel_staff_add_birt"),           //生日字段
+    personnel_staff_add_marr            = $("#personnel_staff_add_marr"),           //婚姻字段
+    personnel_staff_add_cont_user       = $("#personnel_staff_add_cont_user"),      //联系人姓名
+    personnel_staff_add_cont_tels       = $("#personnel_staff_add_cont_tels"),      //联系人手机
+    personnel_staff_add_addr1           = $("#personnel_staff_add_addr1"),          //现居地址1
+    personnel_staff_add_addr2           = $("#personnel_staff_add_addr2"),          //现居地址2
+    personnel_staff_add_addr3           = $("#personnel_staff_add_addr3"),          //现居地址3
+    personnel_staff_add_addr4           = $("#personnel_staff_add_addr4"),          //现居地址4
+
+    personnel_staff_add_comp            = $("#personnel_staff_add_comp"),           //分公司
+    personnel_staff_add_depa            = $("#personnel_staff_add_depa"),           //部门
+    personnel_staff_add_post            = $("#personnel_staff_add_post"),           //职位
+    personnel_staff_add_pass            = $("#personnel_staff_add_pass"),           //入职日期
+    personnel_staff_add_wag1            = $("#personnel_staff_add_wag1"),           //试用期工资
+    personnel_staff_add_wag2            = $("#personnel_staff_add_wag2"),           //转正工资
+
+    personnel_staff_add_edu_school      = $("#personnel_staff_edit_edu_school"),    //学校名称
+    personnel_staff_add_edu_date1       = $("#personnel_staff_add_edu_date1"),      //开始时间
+    personnel_staff_add_edu_date2       = $("#personnel_staff_add_edu_date2"),      //结束时间
+    personnel_staff_add_edu_major       = $("#personnel_staff_add_edu_major"),      //专业
+    personnel_staff_add_edu_level       = $("#personnel_staff_add_edu_level"),      //学历
+    personnel_staff_add_edu_years       = $("#personnel_staff_add_edu_years"),      //学年制
+
+    personnel_staff_add_work1_comp      = $("#personnel_staff_add_work1_comp"),     //工作公司
+    personnel_staff_add_work1_date1     = $("#personnel_staff_add_work1_date1"),    //开始时间
+    personnel_staff_add_work1_date2     = $("#personnel_staff_add_work1_date2"),    //结束时间
+    personnel_staff_add_work1_post      = $("#personnel_staff_add_work1_post"),     //工作职位
+    personnel_staff_add_work1_reason    = $("#personnel_staff_add_work1_reason"),   //离职原因
+
+    personnel_staff_add_work2_comp      = $("#personnel_staff_add_work2_comp"),      //工作公司
+    personnel_staff_add_work2_date1     = $("#personnel_staff_add_work2_date1"),    //开始时间
+    personnel_staff_add_work2_date2     = $("#personnel_staff_add_work2_date2"),    //结束时间
+    personnel_staff_add_work2_post      = $("#personnel_staff_add_work2_post"),     //工作职位
+    personnel_staff_add_work2_reason    = $("#personnel_staff_add_work2_reason"),   //离职原因
+
+    personnel_staff_add_work3_comp      = $("#personnel_staff_add_work3_comp"),     //工作公司
+    personnel_staff_add_work3_date1     = $("#personnel_staff_add_work3_date1"),    //开始时间
+    personnel_staff_add_work3_date2     = $("#personnel_staff_add_work3_date2"),    //结束时间
+    personnel_staff_add_work3_post      = $("#personnel_staff_add_work3_post"),     //工作职位
+    personnel_staff_add_work3_reason    = $("#personnel_staff_add_work3_reason"),   //离职原因
+
+    personnel_staff_add_home1_user      = $("#personnel_staff_add_home1_user"),     //家人姓名
+    personnel_staff_add_home1_rela      = $("#personnel_staff_add_home1_rela"),     //家人关系
+    personnel_staff_add_home1_work      = $("#personnel_staff_add_home1_work"),     //家人工作
+    personnel_staff_add_home1_tels      = $("#personnel_staff_add_home1_tels"),     //家人电话
+
+    personnel_staff_add_home2_user      = $("#personnel_staff_add_home2_user"),     //家人姓名
+    personnel_staff_add_home2_rela      = $("#personnel_staff_add_home2_rela"),     //家人关系
+    personnel_staff_add_home2_work      = $("#personnel_staff_add_home2_work"),     //家人工作
+    personnel_staff_add_home2_tels      = $("#personnel_staff_add_home2_tels"),     //家人电话
+
+    //修改
+    personnel_staff_edit_btn            = $("#personnel_staff_edit_btn"),           //修改按钮
+    personnel_staff_edit_box            = $("#personnel_staff_edit_box"),           //修改盒子
+    personnel_staff_edit_submit         = $("#personnel_staff_edit_submit"),        //修改提交
+
+    personnel_staff_edit_user           = $("#personnel_staff_edit_user"),          //姓名字段
+    personnel_staff_edit_sexy           = $("#personnel_staff_edit_sexy"),          //性别字段
+    personnel_staff_edit_tels           = $("#personnel_staff_edit_tels"),          //手机字段
+    personnel_staff_edit_nati           = $("#personnel_staff_edit_nati"),          //民族字段
+    personnel_staff_edit_birt           = $("#personnel_staff_edit_birt"),          //生日字段
+    personnel_staff_edit_marr           = $("#personnel_staff_edit_marr"),          //婚姻字段
+    personnel_staff_edit_cont_user      = $("#personnel_staff_edit_cont_user"),     //联系人姓名
+    personnel_staff_edit_cont_tels      = $("#personnel_staff_edit_cont_tels"),     //联系人手机
+    personnel_staff_edit_addr1          = $("#personnel_staff_edit_addr1"),         //现居地址1
+    personnel_staff_edit_addr2          = $("#personnel_staff_edit_addr2"),         //现居地址2
+    personnel_staff_edit_addr3          = $("#personnel_staff_edit_addr3"),         //现居地址3
+    personnel_staff_edit_addr4          = $("#personnel_staff_edit_addr4"),         //现居地址4
+
+    personnel_staff_edit_comp           = $("#personnel_staff_edit_comp"),          //分公司
+    personnel_staff_edit_depa           = $("#personnel_staff_edit_depa"),          //部门
+    personnel_staff_edit_post           = $("#personnel_staff_edit_post"),          //职位
+    personnel_staff_edit_pass           = $("#personnel_staff_edit_pass"),          //入职日期
+    personnel_staff_edit_wag1           = $("#personnel_staff_edit_wag1"),          //试用期工资
+    personnel_staff_edit_wag2           = $("#personnel_staff_edit_wag2"),          //转正工资
+
+    personnel_staff_edit_edu_school     = $("#personnel_staff_edit_edu_school"),    //学校名称
+    personnel_staff_edit_edu_date1      = $("#personnel_staff_edit_edu_date1"),     //开始时间
+    personnel_staff_edit_edu_date2      = $("#personnel_staff_edit_edu_date2"),     //结束时间
+    personnel_staff_edit_edu_major      = $("#personnel_staff_edit_edu_major"),     //专业
+    personnel_staff_edit_edu_level      = $("#personnel_staff_edit_edu_level"),     //学历
+    personnel_staff_edit_edu_years      = $("#personnel_staff_edit_edu_years"),     //学年制
+
+    personnel_staff_edit_work1_comp     = $("#personnel_staff_edit_work1_comp"),    //工作公司
+    personnel_staff_edit_work1_date1    = $("#personnel_staff_edit_work1_date1"),   //开始时间
+    personnel_staff_edit_work1_date2    = $("#personnel_staff_edit_work1_date2"),   //结束时间
+    personnel_staff_edit_work1_post     = $("#personnel_staff_edit_work1_post"),    //工作职位
+    personnel_staff_edit_work1_reason   = $("#personnel_staff_edit_work1_reason"),  //离职原因
+
+    personnel_staff_edit_work2_comp     = $("#personnel_staff_edit_work2_comp"),    //工作公司
+    personnel_staff_edit_work2_date1    = $("#personnel_staff_edit_work2_date1"),   //开始时间
+    personnel_staff_edit_work2_date2    = $("#personnel_staff_edit_work2_date2"),   //结束时间
+    personnel_staff_edit_work2_post     = $("#personnel_staff_edit_work2_post"),    //工作职位
+    personnel_staff_edit_work2_reason   = $("#personnel_staff_edit_work2_reason"),  //离职原因
+
+    personnel_staff_edit_work3_comp     = $("#personnel_staff_edit_work3_comp"),    //工作公司
+    personnel_staff_edit_work3_date1    = $("#personnel_staff_edit_work3_date1"),   //开始时间
+    personnel_staff_edit_work3_date2    = $("#personnel_staff_edit_work3_date2"),   //结束时间
+    personnel_staff_edit_work3_post     = $("#personnel_staff_edit_work3_post"),    //工作职位
+    personnel_staff_edit_work3_reason   = $("#personnel_staff_edit_work3_reason"),  //离职原因
+
+    personnel_staff_edit_home1_user     = $("#personnel_staff_edit_home1_user"),    //家人姓名
+    personnel_staff_edit_home1_rela     = $("#personnel_staff_edit_home1_rela"),    //家人关系
+    personnel_staff_edit_home1_work     = $("#personnel_staff_edit_home1_work"),    //家人工作
+    personnel_staff_edit_home1_tels     = $("#personnel_staff_edit_home1_tels"),    //家人电话
+
+    personnel_staff_edit_home2_user     = $("#personnel_staff_edit_home2_user"),    //家人姓名
+    personnel_staff_edit_home2_rela     = $("#personnel_staff_edit_home2_rela"),    //家人关系
+    personnel_staff_edit_home2_work     = $("#personnel_staff_edit_home2_work"),    //家人工作
+    personnel_staff_edit_home2_tels     = $("#personnel_staff_edit_home2_tels"),    //家人电话
+
+    //查看
+    personnel_staff_show_box            = $("#personnel_staff_show_box"),           //查看盒子
+
+    //重置密码
+    personnel_staff_reset_box           = $("#personnel_staff_reset_box"),          //重置盒子
+    personnel_staff_reset_submit        = $("#personnel_staff_reset_submit");       //重置提交
+    
+
+    /*远程接口
+    var personnel_staff_api       = {
+        chosen    : ROUTE + "Company/getAllCompany",                            //下拉选择
+        datagrid  : ROUTE + "Company/getCompanybyid",                           //数据表格(id)
+        structure : ROUTE + "Company/getdeparmentid",                           //组织架构(id)
+    }*/
+
+    //本地接口
+    var personnel_staff_api       = {
+        datagrid  : API.test_datagrid,                                          //数据表格
+        select    : LOCAL + "Test/test_select.json",                            //下拉选择
+        uploader  : LOCAL + "Test/test_upload.json"                             //上传路径
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    personnel_staff_datagrid.datagrid({
+        height      : "page",
+        sortable    : false,
+        showRowIndex: false,
+        states      : {
+            fixedRightFrom  : 9,
+            pager           : {
+                page        : 1,
+                recPerPage  : 20,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",     label:"ID"  ,  width:100},
+                {name:"blank",  label:"分公司",width:0.5},
+                {name:"blank",  label:"部门",  width:0.5},
+                {name:"blank",  label:"职位",  width:0.5},
+                {name:"blank",  label:"姓名",  width:100},
+                {name:"blank",  label:"用户名",width:100},
+                {name:"blank",  label:"性别",  width:200},
+                {name:"blank",  label:"状态",  width:100},
+                {name:"operate",label:"操作",  width:180,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = "";
+                            if ( cell.rowIndex==1 ) {                                   //离职员工
+                                temp = `
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_show_btn">查看</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_able_btn">启用</a>
+                                `; 
+                            } else if ( cell.rowIndex==2 ) {                            //在职员工
+                                temp = `
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_show_btn">查看</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_leave_btn">离职</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_reset_btn">重置密码</a>
+                                `; 
+                            } else {                                                    //在职员工
+                                temp = `
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_show_btn">查看</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_turn_btn">转正</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_leave_btn">离职</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_reset_btn">重置密码</a>
+                                `; 
+                            }
+                            return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : personnel_staff_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+    
+    //工具条下拉-----------------------------------------------------------------------------------------
+    //职位
+    $.ajax({
+        url     : personnel_staff_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_staff_tool_select1.html(option);
+            personnel_staff_add_post.html(option);                      //添加
+            personnel_staff_edit_post.html(option);                     //修改
+        }
+    });
+    //分公司
+    $.ajax({
+        url     : personnel_staff_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_staff_tool_select2.html(option);
+            personnel_staff_add_comp.html(option);                      //添加
+            personnel_staff_edit_comp.html(option);                     //修改
+        }
+    });
+    //状态
+    $.ajax({
+        url     : personnel_staff_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_staff_tool_select3.html(option);
+        }
+    });
+
+    //添加修改---------------------------------------------------------------------------------------
+    //现居地址(省)
+    $.ajax({
+        url     : personnel_staff_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>省</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_staff_add_addr1.html(option);                     //添加
+            personnel_staff_edit_addr1.html(option);                    //修改
+        }
+    });
+    //现居地址(市)
+    $.ajax({
+        url     : personnel_staff_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>市</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_staff_add_addr2.html(option);                     //添加
+            personnel_staff_edit_addr2.html(option);                    //修改
+        }
+    });
+    //现居地址(区)
+    $.ajax({
+        url     : personnel_staff_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>区</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_staff_add_addr3.html(option);                     //添加
+            personnel_staff_edit_addr3.html(option);                    //修改
+        }
+    });
+    //部门
+    $.ajax({
+        url     : personnel_staff_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_staff_add_depa.html(option);                      //添加
+            personnel_staff_edit_depa.html(option);                     //修改
+        }
+    });
+
+    //添加下拉联动-----------------------------------------------------------------------------------------
+    //省市区
+    personnel_staff_add_addr1.change(function(){
+
+        var addr1 = $(this).val();
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"市]</option>"
+                }
+                personnel_staff_add_addr2.html(option);
+            }
+        });
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"区]</option>"
+                }
+                personnel_staff_add_addr3.html(option);
+            }
+        });
+
+    });
+    //市区
+    personnel_staff_add_addr2.change(function(){
+
+        var addr1 = $(this).val();
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"区]</option>"
+                }
+                personnel_staff_add_addr3.html(option);
+            }
+        });
+
+    });
+
+    //分公司-部门-职位
+    personnel_staff_add_comp.change(function(){
+
+        var addr1 = $(this).val();
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"部]门</option>"
+                }
+                personnel_staff_add_depa.html(option);
+            }
+        });
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"职]位</option>"
+                }
+                personnel_staff_add_post.html(option);
+            }
+        });
+
+    });
+    //部门-职位
+    personnel_staff_add_depa.change(function(){
+
+        var addr1 = $(this).val();
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"职]位</option>"
+                }
+                personnel_staff_add_post.html(option);
+            }
+        });
+
+    });
+
+    //修改下拉联动-----------------------------------------------------------------------------------------
+    //省市区
+    personnel_staff_edit_addr1.change(function(){
+
+        var addr1 = $(this).val();
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"市]</option>"
+                }
+                personnel_staff_edit_addr2.html(option);
+            }
+        });
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"区]</option>"
+                }
+                personnel_staff_edit_addr3.html(option);
+            }
+        });
+
+    });
+    //市区
+    personnel_staff_edit_addr2.change(function(){
+
+        var addr1 = $(this).val();
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"区]</option>"
+                }
+                personnel_staff_edit_addr3.html(option);
+            }
+        });
+
+    });
+
+    //分公司-部门-职位
+    personnel_staff_edit_comp.change(function(){
+
+        var addr1 = $(this).val();
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"部]门</option>"
+                }
+                personnel_staff_edit_depa.html(option);
+            }
+        });
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"职]位</option>"
+                }
+                personnel_staff_edit_post.html(option);
+            }
+        });
+
+    });
+    //部门-职位
+    personnel_staff_edit_depa.change(function(){
+
+        var addr1 = $(this).val();
+
+        $.ajax({
+            url     : personnel_staff_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"职]位</option>"
+                }
+                personnel_staff_edit_post.html(option);
+            }
+        });
+
+    });
+
+
+    //右侧切换-----------------------------------------------------------------------------------------------
+    personnel_staff_pass_btn.click(function(){
+        personnel_staff_add_btn.show();
+        um_render(personnel_staff_datagrid,personnel_staff_api.datagrid+"?search=1");
+    });
+    personnel_staff_fail_btn.click(function(){
+        personnel_staff_add_btn.hide();
+        um_render(personnel_staff_datagrid,personnel_staff_api.datagrid+"?search=1");
+    });
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    personnel_staff_search_btn.click(function(){
+
+        //字段整理
+        var keyword  
+        = "?search=" + personnel_staff_tool_search.val() 
+        + "&select1="+ personnel_staff_tool_select1.val()
+        + "&select2="+ personnel_staff_tool_select2.val()
+        + "&select3="+ personnel_staff_tool_select3.val();
+
+        //GET提交
+        um_render(personnel_staff_datagrid,personnel_staff_api.datagrid+keyword);
+
+    });
+
+    //添加按钮-----------------------------------------------------------------------------------------------
+    personnel_staff_add_btn.click(function(){
+        personnel_staff_add_box.modal("show");
+    });
+    //添加提交
+    personnel_staff_add_submit.click(function(){
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                //基本信息
+                user        : personnel_staff_add_user.val(),
+                sexy        : personnel_staff_add_sexy.val(),
+                tels        : personnel_staff_add_tels.val(),
+                nati        : personnel_staff_add_nati.val(),
+                birt        : personnel_staff_add_birt.val(),
+                marr        : personnel_staff_add_marr.val(),
+                cont_user   : personnel_staff_add_cont_user.val(),
+                cont_tels   : personnel_staff_add_cont_tels.val(),
+                addr1       : personnel_staff_add_addr1.val(),
+                addr2       : personnel_staff_add_addr2.val(),
+                addr3       : personnel_staff_add_addr3.val(),
+                addr4       : personnel_staff_add_addr4.val(),
+                //入职情况
+                comp        : personnel_staff_add_comp.val(),
+                depa        : personnel_staff_add_depa.val(),
+                post        : personnel_staff_add_post.val(),
+                pass        : personnel_staff_add_pass.val(),
+                wag1        : personnel_staff_add_wag1.val(),
+                wag2        : personnel_staff_add_wag2.val(),
+                //资料上传
+
+                //最高学历
+                school      : personnel_staff_add_edu_school.val(),
+                date1       : personnel_staff_add_edu_date1.val(),
+                date2       : personnel_staff_add_edu_date2.val(),
+                major       : personnel_staff_add_edu_major.val(),
+                level       : personnel_staff_add_edu_level.val(),
+                years       : personnel_staff_add_edu_years.val(),
+                //工作经历
+                work1_comp  : personnel_staff_add_work1_comp.val(),
+                work1_date1 : personnel_staff_add_work1_date1.val(),
+                work1_date2 : personnel_staff_add_work1_date2.val(),
+                work1_post  : personnel_staff_add_work1_post.val(),
+                work1_reason: personnel_staff_add_work1_reason.val(),
+
+                work2_comp  : personnel_staff_add_work2_comp.val(),
+                work2_date1 : personnel_staff_add_work2_date1.val(),
+                work2_date2 : personnel_staff_add_work2_date2.val(),
+                work2_post  : personnel_staff_add_work2_post.val(),
+                work2_reason: personnel_staff_add_work2_reason.val(),
+
+                work3_comp  : personnel_staff_add_work3_comp.val(),
+                work3_date1 : personnel_staff_add_work3_date1.val(),
+                work3_date2 : personnel_staff_add_work3_date2.val(),
+                work3_post  : personnel_staff_add_work3_post.val(),
+                work3_reason: personnel_staff_add_work3_reason.val(),
+                //家庭状况
+                home1_user  : personnel_staff_add_home1_user.val(),
+                home1_rela  : personnel_staff_add_home1_rela.val(),
+                home1_work  : personnel_staff_add_home1_work.val(),
+                home1_tels  : personnel_staff_add_home1_tels.val(),
+
+                home2_user  : personnel_staff_add_home2_user.val(),
+                home2_rela  : personnel_staff_add_home2_rela.val(),
+                home2_work  : personnel_staff_add_home2_work.val(),
+                home2_tels  : personnel_staff_add_home2_tels.val(),
+            },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+    });
+
+    //操作声明-----------------------------------------------------------------------------------------------
+    var
+    personnel_staff_show_btn  = ".personnel_staff_show_btn",             //查看
+    personnel_staff_able_btn  = ".personnel_staff_able_btn",             //启用
+    personnel_staff_turn_btn  = ".personnel_staff_turn_btn",             //转正
+    personnel_staff_leave_btn = ".personnel_staff_leave_btn",            //离职
+    personnel_staff_reset_btn = ".personnel_staff_reset_btn";            //重置密码
+ 
+    //查看按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_staff_show_btn,function(){ 
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+
+                    //查看模板
+                    var temp = `
+                        <div class="container">
+                            <!-- 角色权限 -->
+                            <blockquote>角色权限</blockquote>
+                            <table class="table table-bordered">
+                                <tr><td>登陆IP：127.0.0.1</td></tr>
+                                <tr><td>数据角色：石家庄分公司，上海分公司</td></tr>
+                            </table>
+                            <!-- 基本信息 -->
+                            <blockquote>基本信息</blockquote>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>姓名：刘德华</td>
+                                    <td>性别：男</td>
+                                    <td>手机：183****7556</td>
+                                    <td>民族：汉族</td>
+                                </tr>
+                                <tr>
+                                    <td>出生日期：1964-01-01</td>
+                                    <td>婚姻状况：未婚</td>
+                                    <td>紧急联系人：张学友</td>
+                                    <td>联系人电话：183****7556</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">现居地址：广东省 深圳市 宝安区 幸福大街160号</td>
+                                </tr>
+                            </table>
+                            <!-- 入职情况 -->
+                            <blockquote>入职情况</blockquote>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>分公司：${data.mess}</td>
+                                    <td>部门：${data.mess}</td>
+                                    <td>职位：${data.mess}</td>
+                                    <td>入职日期：${data.mess}</td>
+                                </tr>
+                                <tr>
+                                    <td>试用期工资：${data.mess}</td>
+                                    <td colspan="3">转正工资：${data.mess}</td>
+                                </tr>
+                            </table>
+                            <!-- 资料上传 -->
+                            <blockquote>资料上传</blockquote>
+                            <ul class="show-square-box">
+                                <li class="col-sm-2">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="证件照"     href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
+                                        <img src="./remote/Upload/test_upload.jpg">
+                                    </a>
+                                </li>
+                                <li class="col-sm-2">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="身份证正面" href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
+                                        <img src="./remote/Upload/test_upload.jpg">
+                                    </a>
+                                </li>
+                                <li class="col-sm-2">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="身份证反面" href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
+                                        <img src="./remote/Upload/test_upload.jpg">
+                                    </a>
+                                </li>
+                                <li class="col-sm-2">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="毕业证件"   href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
+                                        <img src="./remote/Upload/test_upload.jpg">
+                                    </a>
+                                </li>
+                                <li class="col-sm-2">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="荣誉证书"   href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
+                                        <img src="./remote/Upload/test_upload.jpg">
+                                    </a>
+                                </li>
+                                <li class="col-sm-2">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="离职证明"   href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
+                                        <img src="./remote/Upload/test_upload.jpg">
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div><hr>
+                            <!-- 最高学历 -->
+                            <blockquote>最高学历</blockquote>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>学校名称</th>
+                                        <th>起止时间</th>
+                                        <th>专业</th>
+                                        <th>学历/学年制</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>香港政法大学</td>
+                                    <td>2012-09-01 至 2016-07-01</td>
+                                    <td>广告学</td>
+                                    <td>本科/四年</td>
+                                </tr>
+                            </table>    
+                            <!-- 工作经历 -->
+                            <blockquote>工作经历</blockquote>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>公司名称</th>
+                                        <th>起止时间</th>
+                                        <th>职位</th>
+                                        <th>离职原因</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>利华律师事务所</td>
+                                    <td>2012-09-01 至 2016-07-01</td>
+                                    <td>推广专员</td>
+                                    <td>暂无</td>
+                                </tr>
+                                <tr>
+                                    <td>利华律师事务所</td>
+                                    <td>2012-09-01 至 2016-07-01</td>
+                                    <td>推广专员</td>
+                                    <td>暂无</td>
+                                </tr>
+                                <tr>
+                                    <td>利华律师事务所</td>
+                                    <td>2012-09-01 至 2016-07-01</td>
+                                    <td>推广专员</td>
+                                    <td>暂无</td>
+                                </tr>
+                            </table>
+                            <!-- 家庭状况 -->
+                            <blockquote>家庭状况</blockquote>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>姓名</th>
+                                        <th>关系</th>
+                                        <th>工作</th>
+                                        <th>手机</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>张学友</td>
+                                    <td>朋友</td>
+                                    <td>歌手</td>
+                                    <td>183****7556</td>
+                                </tr>
+                                <tr>
+                                    <td>李连杰</td>
+                                    <td>朋友</td>
+                                    <td>演员</td>
+                                    <td>183****7556</td>
+                                </tr>
+                            </table>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" id="personnel_staff_edit_btn" rowIndex=${data_id}>修改</button>
+                            </div>
+                        </div>
+                    `;
+                    personnel_staff_show_box.find(".modal-body").html(temp);                //模板填充
+                    personnel_staff_show_box.modal("show");                                 //盒子显示
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+    
+    //修改按钮-----------------------------------------------------------------------------------------------
+    var personnel_staff_edit_btn = "#personnel_staff_edit_btn";                             //修改
+    $(document).on("click",personnel_staff_edit_btn,function(){
+
+        //查看盒子关闭
+        personnel_staff_show_box.modal("hide");
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+
+                    //数据赋值
+                    personnel_staff_edit_user.val(  data.mess ),
+                    personnel_staff_edit_sexy.val(  1         ),
+                    personnel_staff_edit_tels.val(  data.mess ),
+                    personnel_staff_edit_nati.val(  data.mess ),
+                    personnel_staff_edit_birt.val(  data.mess ),
+                    personnel_staff_edit_marr.val(  1         ),
+                    personnel_staff_edit_cont_user.val( data.mess ),
+                    personnel_staff_edit_cont_tels.val( data.mess ),
+                    personnel_staff_edit_addr1.val( 1         ),
+                    personnel_staff_edit_addr2.val( 1         ),
+                    personnel_staff_edit_addr3.val( 1         ),
+                    personnel_staff_edit_addr4.val( data.mess ),
+                    //入职情况
+                    personnel_staff_edit_comp.val(  1         ),
+                    personnel_staff_edit_depa.val(  1         ),
+                    personnel_staff_edit_post.val(  1         ),
+                    personnel_staff_edit_pass.val(  data.mess ),
+                    personnel_staff_edit_wag1.val(  data.mess ),
+                    personnel_staff_edit_wag2.val(  data.mess ),
+                    //资料上传
+
+                    //最高学历
+                    personnel_staff_add_edu_school.val( data.mess ),
+                    personnel_staff_edit_edu_date1.val( data.mess ),
+                    personnel_staff_edit_edu_date2.val( data.mess ),
+                    personnel_staff_edit_edu_major.val( data.mess ),
+                    personnel_staff_edit_edu_level.val( 1         ),
+                    personnel_staff_edit_edu_years.val( 1         ),
+                    //工作经历
+                    personnel_staff_edit_work1_comp.val(   data.mess ),
+                    personnel_staff_edit_work1_date1.val(  data.mess ),
+                    personnel_staff_edit_work1_date2.val(  data.mess ),
+                    personnel_staff_edit_work1_post.val(   data.mess ),
+                    personnel_staff_edit_work1_reason.val( data.mess ),
+
+                    personnel_staff_edit_work2_comp.val(   data.mess ),
+                    personnel_staff_edit_work2_date1.val(  data.mess ),
+                    personnel_staff_edit_work2_date2.val(  data.mess ),
+                    personnel_staff_edit_work2_post.val(   data.mess ),
+                    personnel_staff_edit_work2_reason.val( data.mess ),
+
+                    personnel_staff_edit_work3_comp.val(   data.mess ),
+                    personnel_staff_edit_work3_date1.val(  data.mess ),
+                    personnel_staff_edit_work3_date2.val(  data.mess ),
+                    personnel_staff_edit_work3_post.val(   data.mess ),
+                    personnel_staff_edit_work3_reason.val( data.mess ),
+                    //家庭状况
+                    personnel_staff_edit_home1_user.val( data.mess ),
+                    personnel_staff_edit_home1_rela.val( data.mess ),
+                    personnel_staff_edit_home1_work.val( data.mess ),
+                    personnel_staff_edit_home1_tels.val( data.mess ),
+
+                    personnel_staff_edit_home2_user.val( data.mess ),
+                    personnel_staff_edit_home2_rela.val( data.mess ),
+                    personnel_staff_edit_home2_work.val( data.mess ),
+                    personnel_staff_edit_home2_tels.val( data.mess ),
+
+                    //其他操作
+                    personnel_staff_edit_submit.attr("dataId",data_id);                     //数据ID传值
+                    personnel_staff_edit_box.modal("show");                                 //盒子显示
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+    //修改提交
+    personnel_staff_edit_submit.click(function(){
+
+        //数据ID
+        var data_id  = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id          : data_id,
+                //基本信息
+                user        : personnel_staff_edit_user.val(),
+                sexy        : personnel_staff_edit_sexy.val(),
+                tels        : personnel_staff_edit_tels.val(),
+                nati        : personnel_staff_edit_nati.val(),
+                birt        : personnel_staff_edit_birt.val(),
+                marr        : personnel_staff_edit_marr.val(),
+                cont_user   : personnel_staff_edit_cont_user.val(),
+                cont_tels   : personnel_staff_edit_cont_tels.val(),
+                addr1       : personnel_staff_edit_addr1.val(),
+                addr2       : personnel_staff_edit_addr2.val(),
+                addr3       : personnel_staff_edit_addr3.val(),
+                addr4       : personnel_staff_edit_addr4.val(),
+                //入职情况
+                comp        : personnel_staff_edit_comp.val(),
+                depa        : personnel_staff_edit_depa.val(),
+                post        : personnel_staff_edit_post.val(),
+                pass        : personnel_staff_edit_pass.val(),
+                wag1        : personnel_staff_edit_wag1.val(),
+                wag2        : personnel_staff_edit_wag2.val(),
+                //资料上传
+
+                //最高学历
+                school      : personnel_staff_edit_edu_school.val(),
+                date1       : personnel_staff_edit_edu_date1.val(),
+                date2       : personnel_staff_edit_edu_date2.val(),
+                major       : personnel_staff_edit_edu_major.val(),
+                level       : personnel_staff_edit_edu_level.val(),
+                years       : personnel_staff_edit_edu_years.val(),
+                //工作经历
+                work1_comp  : personnel_staff_edit_work1_comp.val(),
+                work1_date1 : personnel_staff_edit_work1_date1.val(),
+                work1_date2 : personnel_staff_edit_work1_date2.val(),
+                work1_post  : personnel_staff_edit_work1_post.val(),
+                work1_reason: personnel_staff_edit_work1_reason.val(),
+
+                work2_comp  : personnel_staff_edit_work2_comp.val(),
+                work2_date1 : personnel_staff_edit_work2_date1.val(),
+                work2_date2 : personnel_staff_edit_work2_date2.val(),
+                work2_post  : personnel_staff_edit_work2_post.val(),
+                work2_reason: personnel_staff_edit_work2_reason.val(),
+
+                work3_comp  : personnel_staff_edit_work3_comp.val(),
+                work3_date1 : personnel_staff_edit_work3_date1.val(),
+                work3_date2 : personnel_staff_edit_work3_date2.val(),
+                work3_post  : personnel_staff_edit_work3_post.val(),
+                work3_reason: personnel_staff_edit_work3_reason.val(),
+                //家庭状况
+                home1_user  : personnel_staff_edit_home1_user.val(),
+                home1_rela  : personnel_staff_edit_home1_rela.val(),
+                home1_work  : personnel_staff_edit_home1_work.val(),
+                home1_tels  : personnel_staff_edit_home1_tels.val(),
+
+                home2_user  : personnel_staff_edit_home2_user.val(),
+                home2_rela  : personnel_staff_edit_home2_rela.val(),
+                home2_work  : personnel_staff_edit_home2_work.val(),
+                home2_tels  : personnel_staff_edit_home2_tels.val(),
+             },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+
+    //启用按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_staff_able_btn,function(){
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_render(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+        
+    });
+
+    //转正按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_staff_turn_btn,function(){
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_render(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+        
+    });
+
+    //离职按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_staff_leave_btn,function(){
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_render(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+        
+    });
+
+    //重置密码-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_staff_reset_btn,function(){
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //其他操作
+        personnel_staff_reset_submit.attr("dataId",data_id);                //数据ID传值
+        personnel_staff_reset_box.modal("show");                            //盒子显示
+    });
+    //重置提交
+    personnel_staff_reset_submit.click(function(){
+
+        //数据ID
+        var data_id  = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+ 
+    //上传组件-----------------------------------------------------------------------------------------------
+    personnel_staff.find(".uploader").uploader({
+
+        //数据配置
+        url                 : personnel_staff_api.uploader,                 //上传路径
+        fileList            : "grid",                                       //列表配置
+        previewImageIcon    : true ,                                        //图片预览
+       
+        //远程处理
+        deleteActionOnDone  : function(file,doRemoveFile){                  //远程删除
+            doRemoveFile();
+            $.ajax({
+                url     : "./remote/Test/test_upload_operation.php",
+                type    : "post",
+                data    : { filename : "" },
+                success : function(data){ console.log(data); }
+            });
+        },                                  
+        responseHandler     : function(responseObject,file){                //远程响应
+            console.log(responseObject.response);
+            //if(responseObject.response.indexOf("error")){ return "上传失败" + responseObject.response; }
+        }
+
+    });
+
+});//预加载结尾
+</script>
+<script src="./js/callback.js"></script>

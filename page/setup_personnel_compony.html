@@ -1,0 +1,249 @@
+<!-- 页面外套 -->
+<div class="page-wrapper">
+
+    <!-- 数据网格 -->
+	<div class="datagrid datagrid-borderless datagrid-striped">
+        <div class="tool-group">
+            <div class="input-control search-box has-icon-left has-icon-right pull-left">
+                <input id="search"  type="search" class="form-control">
+                <label for="search" class="input-control-icon-left"><i class="icon icon-search"></i></label>
+                <a class="input-control-icon-right search-clear-btn"><i class="icon icon-remove"></i></a>
+            </div>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#add_box">
+                <i class="icon icon-plus"></i> 添加
+            </button>
+        </div>
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+</div>
+<!-- page-wrapper -->
+
+<!-- 数据添加 -->
+<div class="modal modal-for-page fade" aria-hidden="false" id="add_box">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">添加</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group require">
+                        <label class="col-sm-2 required" for="add_company">公司名称</label>
+                        <div class="col-sm-8"><input type="text" class="form-control" id="add_company" placeholder="2-10个字"></div>
+                    </div>
+                    <div class="form-group require">
+                        <label class="col-sm-2 required" for="add_manager">管理人</label>
+                        <div class="col-sm-8"><input type="text" class="form-control" id="add_manager" placeholder="2-10个字"></div>
+                    </div>
+                    <div class="form-group require">
+                        <label class="col-sm-2 required" for="add_city">地区</label>
+                        <div class="col-sm-8"><input type="text" class="form-control" id="add_city"    placeholder="2-10个字"></div>
+                    </div>
+                    <div class="form-group require">
+                        <label class="col-sm-2 required" for="add_ip">IP</label>
+                        <div class="col-sm-8"><input type="text" class="form-control" id="add_ip"      placeholder="请填写正确格式"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- add_box -->
+
+<!-- 数据修改 -->
+<div class="modal modal-for-page fade" aria-hidden="false" id="edit_box">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">修改</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <input type="hidden" id="edit_id">
+                    <div class="form-group require">
+                        <label class="col-sm-2 required" for="edit_company">公司名称</label>
+                        <div class="col-sm-8"><input type="text" class="form-control" id="edit_company" placeholder="2-10个字"></div>
+                    </div>
+                    <div class="form-group require">
+                        <label class="col-sm-2 required" for="edit_manager">管理人</label>
+                        <div class="col-sm-8"><input type="text" class="form-control" id="edit_manager" placeholder="2-10个字"></div>
+                    </div>
+                    <div class="form-group require">
+                        <label class="col-sm-2 required" for="edit_city">地区</label>
+                        <div class="col-sm-8"><input type="text" class="form-control" id="edit_city"    placeholder="2-10个字"></div>
+                    </div>
+                    <div class="form-group require">
+                        <label class="col-sm-2 required" for="edit_ip">IP</label>
+                        <div class="col-sm-8"><input type="text" class="form-control" id="edit_ip"      placeholder="请填写正确格式"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- edit_box -->
+
+<!-- 数据删除 -->
+<div class="modal modal-for-page fade" aria-hidden="false" id="del_box">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">删除</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="del_id">
+                <p class="text-danger"><i class="icon icon-remove-sign"></i> 确定删除此条数据吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-danger">删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- del_box -->
+
+<script>
+$(function(){
+
+    //数据网格
+    $(".datagrid").datagrid({
+        height      : "page",
+        sortable    : false,
+        showRowIndex: false,
+        states      : {
+            pager : {
+                page        : 1,
+                recPerPage  : 20,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"blank",label:"ID",        width:0.1},
+                {name:"blank",label:"分公司名称",width:0.2},
+                {name:"blank",label:"企业管理人",width:0.2},
+                {name:"blank",label:"地区"      ,width:0.2},
+                {name:"blank",label:"公司网络IP",width:0.2},
+                {name:"blank",label:"操作"      ,width:0.1,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = `
+                                <a class="btn-edit" rowIndex="${cell.rowIndex}">修改</a>
+                                <a class="btn-del"  rowIndex="${cell.rowIndex}">删除</a>
+                            `;
+                           return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : API.test_datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //数据添加
+    $("#add_box button[type='submit']").click(function(){
+
+        //变量声明
+        var
+        add_company = $("#add_company").val(),
+        add_manager = $("#add_manager").val(),
+        add_city    = $("#add_city").val(),
+        add_ip      = $("#add_ip").val();
+
+        //正则验证
+        if (!reg_2_10.test(add_company)){ mess_warning("公司名称格式错误"  ); return; }
+        if (!reg_2_10.test(add_manager)){ mess_warning("企业管理人格式错误"); return; }
+        if (!reg_2_10.test(add_city))   { mess_warning("地区称格式错误"    ); return; }
+        if (!reg_ip.test(add_ip))       { mess_warning("IP格式错误"        ); return; }
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            data    : {add_company,add_manager,add_city,add_ip},
+            success : function(data){ modal_reset(data,"success"); }
+        });
+
+    });
+
+    //数据修改
+    $(document).on("click",".btn-edit",function(){
+        var rowIndex = $(this).attr("rowIndex");
+        $("#edit_id"     ).val(cell_value(rowIndex,1));
+        $("#edit_company").val(cell_value(rowIndex,2));
+        $("#edit_manager").val(cell_value(rowIndex,3));
+        $("#edit_city"   ).val(cell_value(rowIndex,4));
+        $("#edit_ip"     ).val(cell_value(rowIndex,5));
+        $("#edit_box").modal("show");
+    });
+    $("#edit_box button[type='submit']").click(function(){
+
+        //变量声明
+        var
+        edit_id      = $("#edit_id").val(),
+        edit_company = $("#edit_company").val(),
+        edit_manager = $("#edit_manager").val(),
+        edit_city    = $("#edit_city").val(),
+        edit_ip      = $("#edit_ip").val();
+
+        //正则验证
+        if (!reg_2_10.test(edit_company)){ mess_warning("公司名称格式错误"  ); return; }
+        if (!reg_2_10.test(edit_manager)){ mess_warning("企业管理人格式错误"); return; }
+        if (!reg_2_10.test(edit_city))   { mess_warning("地区称格式错误"    ); return; }
+        if (!reg_ip.test(edit_ip))       { mess_warning("IP格式错误"        ); return; }
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            data    : {edit_id,edit_company,edit_manager,edit_city,edit_ip},
+            success : function(data){ modal_reset(data,"success"); }
+        });
+
+    });
+
+    //数据删除
+    $(document).on("click",".btn-del",function(){
+        var rowIndex = $(this).attr("rowIndex");
+        $("#del_id").val(cell_value(rowIndex,1));
+        $("#del_box").modal("show");
+    });
+    $("#del_box button[type='submit']").click(function(){
+
+        //变量声明
+        var del_id = $("#del_id").val();
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            data    : {del_id},
+            success : function(data){ modal_reset(data,"success"); }
+        });
+
+    });
+
+});
+</script>
+<script src="./js/callback.js"></script>

@@ -1,0 +1,55 @@
+/*样式引入*/
+@import url(zui.min.css);
+@import url(blue.css);
+@import url(base.css);
+@import url(../fonts/iconfont.css);
+/*滚动面板：标题域*/
+.modal-scroll blockquote{
+    background-color: #F4F8FA;
+    border-color: #BCE8F1;
+    margin-top:20px;
+    padding: 20px;
+}
+.modal-scroll{
+    overflow-y:scroll!important;
+    padding-bottom: 100px;
+}
+/*上传：上传方形盒子*/
+.uploader-square-box .uploader+strong{
+    display: block;
+    line-height:30px;
+    font-weight: normal;
+    color: #999;
+    text-align: center;
+}
+.uploader-square-box .uploader{
+   width: 120px;
+   height:120px;
+   cursor: pointer;
+   background: #f4f4f4;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.uploader-square-box .uploader .file{
+    margin: 0;
+}
+.uploader-square-box .uploader .file-list{
+    width: 120px;
+    height:120px;
+    margin: 0;
+}
+/*上传：查看方形盒子*/
+.show-square-box a{
+    display: block;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    float: left;
+    border: 1px solid #ddd;
+    margin:0 10px 10px 10px;
+}
+.show-square-box a img{
+    display: block;
+    width: 120px;
+    min-height: 120px;
+}

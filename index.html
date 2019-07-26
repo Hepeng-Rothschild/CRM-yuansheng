@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh_cn">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zui-admin</title>
+
+<!-- 基础资源 -->
+<script src="./lib/jquery/jquery.js"></script>
+<script src="./js/zui.js"></script>
+<!-- 插件资源 -->
+<link  href="./lib/tabs/zui.tabs.min.css" rel="stylesheet">
+<script src="./lib/tabs/zui.tabs.min.js"></script>
+<link  href="./lib/datagrid/zui.datagrid.min.css" rel="stylesheet">
+<script src="./lib/datagrid/zui.datagrid.js"></script>
+<link  href="./lib/chosen/chosen.min.css" rel="stylesheet">
+<script src="./lib/chosen/chosen.min.js"></script>
+<link href="./lib/treemap/zui.treemap.css" rel="stylesheet">
+<script src="./lib/treemap/zui.treemap.js"></script>
+<link  href="./lib/uploader/zui.uploader.css" rel="stylesheet">
+<script src="./lib/uploader/zui.uploader.js"></script>
+<link  href="./lib/dashboard/zui.dashboard.min.css" rel="stylesheet">
+<script src="./lib/dashboard/zui.dashboard.min.js"></script>
+<link  href="./lib/board/zui.board.min.css" rel="stylesheet">
+<script src="./lib/board/zui.board.min.js"></script>
+<link  href="./lib/colorpicker/zui.colorpicker.min.css" rel="stylesheet">
+<script src="./lib/colorpicker/zui.colorpicker.min.js"></script>
+<link  href="./lib/imgcutter/zui.imgcutter.min.css" rel="stylesheet">
+<script src="./lib/imgcutter/zui.imgcutter.min.js"></script>
+<link  href="./lib/datatable/zui.datatable.min.css" rel="stylesheet">
+<script src="./lib/datatable/zui.datatable.min.js"></script>
+<link  href="./lib/calendar/zui.calendar.css" rel="stylesheet">
+<script src="./lib/calendar/zui.calendar.js"></script>
+<script src="./lib/selectable/zui.selectable.min.js"></script>
+<script src="./lib/kindeditor/kindeditor.min.js"></script>
+<script src="./lib/chart/zui.chart.min.js"></script>
+<script src="./lib/colorset.js/zui.colorset.min.js"></script>
+
+<link rel="stylesheet" href="./lib/datetimepicker/datetimepicker.min.css">
+<script src="./lib/datetimepicker/datetimepicker.min.js"></script>
+<!-- 自定义资源 -->
+
+<link href="./css/page.css" rel="stylesheet">
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+<script src="./js/base.js"></script>
+
+</head>
+<body>
+
+<!-- 主要盒子 -->
+<div class="wrapper">
+    
+    <!-- 顶部盒子 -->
+    <header class="main-header">
+        <nav class="navbar navbar-fixed-top bg-primary">
+            <div class="navbar-header">
+                <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="icon icon-th-large"></i></a>
+                <a class="sidebar-toggle" data-toggle="push-menu"><i class="icon icon-bars"></i></a>
+                <a class="navbar-brand" href="#">
+                    <span class="logo"></span>
+                    <span class="logo-mini"></span> 
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li><a data-toggle="push-menu"><i class="icon icon-bars"></i></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a>
+                                <span>
+                                    <i class="icon icon-bell-alt"></i>
+                                    <span class="label label-danger label-pill up">5</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span>
+                                    <i class="icon icon-envelope-alt"></i>
+                                    <span class="label label-success label-pill up">2</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown"><i class="icon icon-user"></i> admin <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a id="common_logout_btn">注销</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- main-header -->
+
+    <!-- 左部盒子 -->
+    <aside class="main-sidebar scrollbar-hover">
+        <section class="sidebar">
+            <ul class="tree tree-menu" id="common_tree"></ul>
+            <input type="hidden" id="common_positionid" value="1">
+        </section>
+    </aside>
+    <!-- main-sidebar -->
+
+	<!-- 内容盒子 -->
+    <div class="content-wrapper scrollbar-hover">
+        <div class="tabs" id="common_tabs"></div>
+    </div>
+    <!-- content -->
+
+</div>
+<!-- wrapper -->
+
+<!-- 用户注销 -->
+<div class="modal modal-for-page fade" aria-hidden="false" id="common_logout_box">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">注销</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="del_id">
+                <p class="text-warning"><i class="icon icon-warning-sign"></i> 是否注销？</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button class="btn btn-warning" id="common_logout_submit">注销</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- common_logout_box -->
+
+<script>
+$(function(){
+
+    //变量声明----------------------------------------------------------------
+    var 
+    common_positionid   = $("#common_positionid"),                  //权限ID
+    common_tree         = $("#common_tree"),                        //左侧导航
+    common_tabs         = $("#common_tabs"),                        //切换面板
+    common_logout_btn   = $("#common_logout_btn"),                  //注销按钮
+    common_logout_box   = $("#common_logout_box"),                  //注销盒子
+    common_logout_submit= $("#common_logout_submit");               //注销提交
+    
+    //导航加载----------------------------------------------------------------
+    $.ajax({
+        url     : window.API.common_tree,
+        type    : "post",
+        data    : {
+            positionid : common_positionid.val()
+        },
+        success : function(data){
+            var data = um_json(data);                               //JSON解析
+            common_tree.tree({
+                data        : data,
+                itemCreator : function($li,item){
+                    $li.append(
+                        $("<a>",{href:item.url}).html(
+                            "<i class='icon icon-"+item.icon+"' icon='"+item.icon+"' off='"+item.off+"'></i><span>"+item.title+"</span>"
+                        )
+                    );
+                },
+            });
+
+        }
+    });
+
+    //导航点击
+    common_tree.on("click","a",function(){
+        //变量声明
+        var
+        a  = $(this),
+        li = a.parent("li"),
+        ul = a.next("ul");
+        //子级导航
+        li.siblings("li").removeClass("open in");
+        li.siblings().find("ul").slideUp(200);
+        if( ul.is(":visible") ){
+            ul.slideUp(200);
+            li.removeClass("open in");
+        } else {
+            ul.slideDown(200);
+            li.addClass("open in");
+        }
+        //导航选中
+        common_tree.find("a").removeClass("active");
+        if( a.attr("href") ){ a.addClass("active"); }
+        //折叠影响
+        if( $("body").hasClass("sidebar-collapse") ){ $(".sidebar-toggle").trigger("click");}
+        //禁用默认
+        return;
+    });
+
+    //切换面板-初始----------------------------------------------------------------
+    common_tabs.tabs({
+        contextMenu     : true,
+        showMessage     : true,
+        tabs            : [{
+            id          : "welcome",
+            type        : "ajax",
+            url         : API.common_view,
+            title       : "欢迎",
+            icon        : "icon-home",
+            forbidClose : true,
+        }]
+    });
+
+    //切换面板-新建
+    $(document).on("click","ul.tree-menu a,.page-card-group li a,#tabs_open a",function(e){
+        e.preventDefault();
+        var title = $(this).text(),
+            icon  = $(this).find("i").attr("icon"),
+            off   = $(this).find("i").attr("off"),
+            href  = $(this).attr("href"),
+            url   = "./page/"+ href + ".html";
+        if( off  == "" || off=="false" ){ off=false; }
+        if( icon == undefined ){ icon = ""; }
+        if( icon != "" ){ icon="icon-"+icon; }else{ icon="icon-window"; }
+        if( href ){
+            common_tabs.data("zui.tabs").open({
+                type        : "ajax",
+                id          : href,
+                title       : title,
+                url         : url,
+                icon        : icon,
+                forbidClose : false,
+            });
+        }
+    });
+
+    //用户注销----------------------------------------------------------------
+    common_logout_btn.click(function(){
+        common_logout_box.modal("show");
+    });
+    common_logout_submit.click(function(){
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { state:"logout" },
+            success : function(data){
+                mess_success(data.mess);
+                setTimeout(function(){
+                    window.location.href="login.html";
+                },1500);
+            }
+        });
+    });
+
+});//预加载结尾
+</script>
+</body>
+</html>

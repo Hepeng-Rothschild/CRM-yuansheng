@@ -1,0 +1,161 @@
+<!-- 页面外套 -->
+<div class="container page-container page-thin">
+<style>
+	.icon-long-arrow-down{
+		color: #ddd;
+		font-size: 5em;
+	}
+	.panel{
+		margin: 1em auto;
+	}
+	.list-group{
+		margin: 0;
+	}
+	.page-thin{
+		max-width:800px;
+	}
+</style>
+
+    <ul class="nav nav-justified nav-primary nav-tabs">
+        <li class="active"><a data-tab="" href="#a1">基础设置</a></li>
+        <li><a data-tab="" href="#a2">流程设计</a></li>
+        <li><a data-tab="" href="#a3">高级设置</a></li>
+    </ul>
+    <div class="tab-content">
+    	<!-- 内容一 -->
+        <div id="a1" class="tab-pane active">
+			
+            <div class="form-horizontal">
+                <div class="form-group require">
+                    <label class="col-sm-2 required" for="add_company">审批名称</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" id="add_company" placeholder="2-10个字"></div>
+                </div>
+                <div class="form-group require">
+                    <label class="col-sm-2 required" for="add_manager">可见范围</label>
+                    <div class="col-sm-8">
+                    	<input type="text" class="form-control" id="add_manager" placeholder="2-10个字">
+                    	<div class="help-block">可进行修改，修改到部门或者个人</div>
+                	</div>
+                </div>
+                <div class="form-group require">
+                    <label class="col-sm-2 required" for="add_city">发起人</label>
+                    <div class="col-sm-8">
+                    	<input type="text" class="form-control" id="add_city"    placeholder="2-10个字">
+						<div class="help-block">谁可以发起这个审批，可选择多个部门，也可选择多个人</div>
+                    </div>
+                </div>
+                <div class="form-group require">
+                    <label class="col-sm-2 required" for="add_city">导出数据</label>
+                    <div class="col-sm-8">
+                    	<input type="text" class="form-control" id="add_city"    placeholder="2-10个字">
+						<div class="help-block">谁可以管理这个审批并且导出数据</div>
+                    </div>
+                </div>                
+                <div class="form-group require">
+                    <label class="col-sm-2 required" for="add_city">模版图标</label>
+                    <div class="col-sm-8">
+                    	<input type="text" class="form-control" id="add_city"    placeholder="2-10个字">
+						<div class="help-block">谁可以管理这个审批并且导出数据</div>
+                    </div>
+                </div>
+                <div class="form-group require">
+                    <label class="col-sm-2 required" for="add_ip">审批说明</label>
+                    <div class="col-sm-8"><textarea class="form-control"></textarea></div>
+                </div>
+            </div>
+
+            <div class="text-center"><button class="btn">下一步</button></div>
+
+        </div>
+        <!-- 内容二 -->
+        <div id="a2" class="tab-pane">
+
+			<div class="panel" data-id="pan2" id="panel2" style="width:300px">
+                <div class="panel-heading">发起人</div>
+                <div class="list-group">
+                	<a class="list-group-item">刘德华</a>
+                	<a class="list-group-item">张学友</a>
+                	<a class="list-group-item">李连杰</a>
+					<a class="list-group-item text-center" id="person_init_btn">
+						<i class="icon icon-plus text-primary"></i>
+					</a>
+                </div>
+            </div>
+			<div class="text-center"><i class="icon icon-long-arrow-down"></i></div>
+
+			<div class="panel" data-id="pan2" id="panel2" style="width:300px">
+                <div class="panel-heading">审批人</div>
+                <div class="list-group">
+					<a class="list-group-item text-center" id="person_init_btn">
+						<i class="icon icon-plus text-primary"></i>
+					</a>
+                </div>
+            </div>
+			<div class="text-center"><i class="icon icon-long-arrow-down"></i></div>
+
+			<div class="panel" data-id="pan2" id="panel2" style="width:300px">
+                <div class="panel-heading">抄送人</div>
+                <div class="list-group">
+					<a class="list-group-item text-center" id="person_init_btn">
+						<i class="icon icon-plus text-primary"></i>
+					</a>
+                </div>
+            </div>
+
+            <div class="text-center"><button class="btn">下一步</button></div>
+
+        </div>
+        <!-- 内容三 -->
+        <div id="a3" class="tab-pane">
+        	
+
+        	<div class="text-center"><button class="btn btn-primary">提交</button></div>
+
+        </div>
+    </div>
+
+
+</div>
+<!-- page-wrapper -->
+
+
+<div class="modal modal-for-page fade" aria-hidden="false" id="person_init_box">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">发起人添加</h4>
+            </div>
+            <div class="modal-body">
+
+				<div class="form-horizontal">
+				    <div class="form-group require">
+				        <label class="col-sm-2 required" for="add_manager">发起人</label>
+				        <div class="col-sm-8">
+				        	<input type="text" class="form-control" id="add_manager" placeholder="2-10个字">
+				        	<div class="help-block">谁可以发起这个审批，可选择多个部门，也可选择多个人</div>
+				    	</div>
+				    </div>
+				</div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(function(){
+
+	$("#person_init_btn").click(function(){
+		$("#person_init_box").modal("show");
+	});
+
+
+
+
+});
+</script>
