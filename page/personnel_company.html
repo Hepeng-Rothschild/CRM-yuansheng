@@ -46,8 +46,9 @@ $(function(){
     personnel_company_structure_btn = $("#personnel_company_structure_btn"),//架构按钮
     personnel_company_structure_box = $("#personnel_company_structure_box"),//架构面板
     personnel_company_structure_dom = $("#personnel_company_structure_dom"),//架构组件
-    personnel_company_datagrid      = $("#personnel_company_datagrid");     //数据表格
-    
+    personnel_company_datagrid      = $("#personnel_company_datagrid"),     //数据表格
+    personnel_company_datagrid_obj  = "";                                   //表格对象
+
     /*远程接口
     var personnel_company_api       = {
         chosen    : ROUTE + "Company/getAllCompany",                        //下拉选择
@@ -116,11 +117,10 @@ $(function(){
                     }
                 }
             });
+            //变量声明
+            personnel_company_datagrid_obj = personnel_company_datagrid.data("zui.datagrid");       //表格对象
         }
-    });
-
-    //变量声明------------------------------------------------------------------------
-    var personnel_company_datagrid_obj = personnel_company_datagrid.data("zui.datagrid");           //表格对象
+    }); 
 
     //下拉选择-改动-------------------------------------------------------------------
     personnel_company_chosen.on("change",function(e,obj){
@@ -142,9 +142,9 @@ $(function(){
             dataType: "json",
             data    : { id  : personnel_company_structure_btn.attr("company-id") },
             success : function(data){
-                var data = um_json(data);                                                       //JSON解析
-                personnel_company_structure_dom.treemap("render",data);                         //架构渲染
-                personnel_company_structure_box.modal("show");                                  //面板显示
+                var data = um_json(data);                                                           //JSON解析
+                personnel_company_structure_dom.treemap("render",data);                             //架构渲染
+                personnel_company_structure_box.modal("show");                                      //面板显示
             }
         });
     });
