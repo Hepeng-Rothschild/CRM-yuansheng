@@ -22,8 +22,8 @@
                 <label><button class="btn btn-primary" id="personnel_staff_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
                 <label class="pull-right">
                     <div class="btn-group" data-toggle="buttons">
-                        <label id="personnel_staff_pass_btn" class="btn btn-primary active"><input type="radio">在职员工</label>
-                        <label id="personnel_staff_fail_btn" class="btn btn-primary"><input type="radio">离职员工</label>
+                        <label id="personnel_staff_che1_btn" class="btn btn-primary active"><input type="radio">在职员工</label>
+                        <label id="personnel_staff_che2_btn" class="btn btn-primary"><input type="radio">离职员工</label>
                     </div>
                 </label>
                 <div class="clearfix"></div>
@@ -547,8 +547,8 @@ $(function(){
     personnel_staff_tool_select2        = $("#personnel_staff_tool_select2"),       //下拉选择2
     personnel_staff_tool_select3        = $("#personnel_staff_tool_select3"),       //下拉选择2
     personnel_staff_search_btn          = $("#personnel_staff_search_btn"),         //搜索按钮
-    personnel_staff_pass_btn            = $("#personnel_staff_pass_btn"),           //在职员工
-    personnel_staff_fail_btn            = $("#personnel_staff_fail_btn"),           //离职员工
+    personnel_staff_che1_btn            = $("#personnel_staff_che1_btn"),           //在职员工
+    personnel_staff_che2_btn            = $("#personnel_staff_che2_btn"),           //离职员工
     
     //添加
     personnel_staff_add_btn             = $("#personnel_staff_add_btn"),            //添加按钮
@@ -752,7 +752,16 @@ $(function(){
             }
         }
     });
-    
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    personnel_staff_datagrid_obj    = personnel_staff_datagrid.data("zui.datagrid"),   //表格对象
+    personnel_staff_show_btn        = ".personnel_staff_show_btn",                     //查看
+    personnel_staff_able_btn        = ".personnel_staff_able_btn",                     //启用
+    personnel_staff_turn_btn        = ".personnel_staff_turn_btn",                     //转正
+    personnel_staff_leave_btn       = ".personnel_staff_leave_btn",                    //离职
+    personnel_staff_reset_btn       = ".personnel_staff_reset_btn";                    //重置密码
+ 
     //工具条下拉-----------------------------------------------------------------------------------------
     //职位
     $.ajax({
@@ -1087,13 +1096,13 @@ $(function(){
 
 
     //右侧切换-----------------------------------------------------------------------------------------------
-    personnel_staff_pass_btn.click(function(){
+    personnel_staff_che1_btn.click(function(){
         personnel_staff_add_btn.show();
-        um_render(personnel_staff_datagrid,personnel_staff_api.datagrid+"?search=1");
+        um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid+"?search=1");
     });
-    personnel_staff_fail_btn.click(function(){
+    personnel_staff_che2_btn.click(function(){
         personnel_staff_add_btn.hide();
-        um_render(personnel_staff_datagrid,personnel_staff_api.datagrid+"?search=1");
+        um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid+"?search=1");
     });
 
     //搜索按钮-----------------------------------------------------------------------------------------------
@@ -1107,7 +1116,7 @@ $(function(){
         + "&select3="+ personnel_staff_tool_select3.val();
 
         //GET提交
-        um_render(personnel_staff_datagrid,personnel_staff_api.datagrid+keyword);
+        um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid+keyword);
 
     });
 
@@ -1183,21 +1192,13 @@ $(function(){
             success : function(data){
                 if( data.code>0 ){
                     mess_success(data.mess);
-                    um_reset(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                    um_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
                     mess_warning(data.mess);
                 }
             }
         });
     });
-
-    //操作声明-----------------------------------------------------------------------------------------------
-    var
-    personnel_staff_show_btn  = ".personnel_staff_show_btn",             //查看
-    personnel_staff_able_btn  = ".personnel_staff_able_btn",             //启用
-    personnel_staff_turn_btn  = ".personnel_staff_turn_btn",             //转正
-    personnel_staff_leave_btn = ".personnel_staff_leave_btn",            //离职
-    personnel_staff_reset_btn = ".personnel_staff_reset_btn";            //重置密码
  
     //查看按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",personnel_staff_show_btn,function(){ 
@@ -1540,7 +1541,7 @@ $(function(){
             success : function(data){
                 if( data.code>0 ){
                     mess_success(data.mess);
-                    um_reset(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                    um_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
                     mess_warning(data.mess);
                 }
@@ -1564,7 +1565,7 @@ $(function(){
             success : function(data){
                 if( data.code>0 ){
                     mess_success(data.mess);
-                    um_render(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                    um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
                     mess_warning(data.mess);
                 }
@@ -1588,7 +1589,7 @@ $(function(){
             success : function(data){
                 if( data.code>0 ){
                     mess_success(data.mess);
-                    um_render(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                    um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
                     mess_warning(data.mess);
                 }
@@ -1612,7 +1613,7 @@ $(function(){
             success : function(data){
                 if( data.code>0 ){
                     mess_success(data.mess);
-                    um_render(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                    um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
                     mess_warning(data.mess);
                 }
@@ -1646,7 +1647,7 @@ $(function(){
             success : function(data){
                 if( data.code>0 ){
                     mess_success(data.mess);
-                    um_reset(personnel_staff_datagrid,personnel_staff_api.datagrid);
+                    um_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
                     mess_warning(data.mess);
                 }

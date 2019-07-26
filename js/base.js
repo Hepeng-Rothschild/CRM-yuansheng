@@ -210,11 +210,11 @@ function um_json(data){
     return data;
 }
 
-/* um_reset()     重置操作
- * @param datagrid dom元素
- * @param datagrid_url url路径
+/* um_reset() 重置操作
+ * @param datagrid_obj object
+ * @param datagrid_url string
  */
-function um_reset(datagrid,datagrid_url){
+function um_reset(datagrid_obj,datagrid_url){
 
     //延时调用
     setTimeout(function(){
@@ -229,19 +229,19 @@ function um_reset(datagrid,datagrid_url){
         }
 
         //表格刷新
-        if( datagrid!=undefined && datagrid_url!=undefined){
-            um_render(datagrid,datagrid_url);
+        if( datagrid_obj!=undefined && datagrid_url!=undefined){
+            um_render(datagrid_obj,datagrid_url);
         }
 
     },1500);
 
 }
 
-/*um_render()   数据表格刷新
- * datagrid     dom 数据表格
- * datagrid_url url 数据表格路径
+/*um_render() 数据表格刷新
+ * @param datagrid_obj object
+ * @param datagrid_url string
  */
-function um_render(datagrid,datagrid_url){
-    datagrid.data("zui.datagrid").setDataSource(datagrid_url);
-    datagrid.data("zui.datagrid").render();
+function um_render(datagrid_obj,datagrid_url){
+    datagrid_obj.setDataSource(datagrid_url);
+    datagrid_obj.render();
 }

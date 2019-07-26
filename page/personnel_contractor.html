@@ -289,6 +289,13 @@ $(function(){
             }
         }
     });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    personnel_contractor_datagrid_obj   = personnel_contractor_datagrid.data("zui.datagrid"),   //表格对象
+    personnel_contractor_show_btn       = ".personnel_contractor_show_btn",                     //查看
+    personnel_contractor_edit_btn       = ".personnel_contractor_edit_btn",                     //修改
+    personnel_contractor_dele_btn       = ".personnel_contractor_dele_btn";                     //删除
     
     //下拉选项-----------------------------------------------------------------------------------------------
     //分公司
@@ -347,7 +354,7 @@ $(function(){
         + "&select2="+ personnel_contractor_tool_select2.val();
 
         //GET提交
-        um_render(personnel_contractor_datagrid,personnel_contractor_api.datagrid+keyword);
+        um_render(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid+keyword);
 
     });
 
@@ -376,19 +383,13 @@ $(function(){
             success : function(data){
                 if( data.code>0 ){
                     mess_success(data.mess);
-                    um_reset(personnel_contractor_datagrid,personnel_contractor_api.datagrid);
+                    um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {
                     mess_warning(data.mess);
                 }
             }
         });
     });
-
-    //操作声明-----------------------------------------------------------------------------------------------
-    var
-    personnel_contractor_show_btn  = ".personnel_contractor_show_btn",             //查看
-    personnel_contractor_edit_btn  = ".personnel_contractor_edit_btn",             //修改
-    personnel_contractor_dele_btn  = ".personnel_contractor_dele_btn";             //删除
  
     //查看按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",personnel_contractor_show_btn,function(){ 
@@ -521,7 +522,7 @@ $(function(){
             success : function(data){
                 if( data.code>0 ){
                     mess_success(data.mess);
-                    um_reset(personnel_contractor_datagrid,personnel_contractor_api.datagrid);
+                    um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {
                     mess_warning(data.mess);
                 }
@@ -556,7 +557,7 @@ $(function(){
             success : function(data){
                 if( data.code>0 ){
                     mess_success(data.mess);
-                    um_reset(personnel_contractor_datagrid,personnel_contractor_api.datagrid);
+                    um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {
                     mess_warning(data.mess);
                 }

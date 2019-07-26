@@ -1,0 +1,359 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="setup_personnel_company">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-borderless datagrid-striped" id="setup_personnel_company_datagrid">
+        <div class="tool-group">
+            <div class="tool-inline">
+                <label><span>搜索：  </span><input type="text" class="form-control" id="setup_personnel_company_tool_search"></label>
+                <label><button class="btn btn-primary" id="setup_personnel_company_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <label><button class="btn btn-primary" id="setup_personnel_company_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
+            </div>
+        </div>
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_personnel_company_add_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="container form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_company_add_comp">公司名称</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_company_add_comp" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_company_add_user">管理人</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_company_add_user" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_company_add_addr">地区</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_company_add_addr" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_company_add_ip">IP</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_company_add_ip" placeholder="请填写正确格式"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="setup_personnel_company_add_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_personnel_company_add_box -->
+ 
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_personnel_company_edit_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="container form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_company_edit_comp">公司名称</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_company_edit_comp" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_company_edit_user">管理人</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_company_edit_user" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_company_edit_addr">地区</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_company_edit_addr" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_company_edit_ip">IP</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_company_edit_ip" placeholder="请填写正确格式"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="setup_personnel_company_edit_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_personnel_company_edit_box -->
+
+    <!-- 删除盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_personnel_company_dele_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否删除？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="setup_personnel_company_dele_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_personnel_company_dele_box -->
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function(){
+   
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    setup_personnel_company             = $("#setup_personnel_company"),            //页面ID
+    setup_personnel_company_datagrid    = $("#setup_personnel_company_datagrid"),   //数据表格
+
+    //搜索
+    setup_personnel_company_tool_search = $("#setup_personnel_company_tool_search"),//搜索字段
+    setup_personnel_company_search_btn  = $("#setup_personnel_company_search_btn"), //搜索按钮
+
+    //添加
+    setup_personnel_company_add_btn     = $("#setup_personnel_company_add_btn"),    //添加按钮
+    setup_personnel_company_add_box     = $("#setup_personnel_company_add_box"),    //添加盒子
+    setup_personnel_company_add_submit  = $("#setup_personnel_company_add_submit"), //添加提交
+
+    setup_personnel_company_add_comp    = $("#setup_personnel_company_add_comp"),   //公司名称
+    setup_personnel_company_add_user    = $("#setup_personnel_company_add_user"),   //管理人
+    setup_personnel_company_add_addr    = $("#setup_personnel_company_add_addr"),   //地区
+    setup_personnel_company_add_ip      = $("#setup_personnel_company_add_ip"),     //ID
+
+    //修改
+    setup_personnel_company_edit_box    = $("#setup_personnel_company_edit_box"),   //修改盒子
+    setup_personnel_company_edit_submit = $("#setup_personnel_company_edit_submit"),//修改提交
+
+    setup_personnel_company_edit_comp   = $("#setup_personnel_company_edit_comp"),  //公司名称
+    setup_personnel_company_edit_user   = $("#setup_personnel_company_edit_user"),  //管理人
+    setup_personnel_company_edit_addr   = $("#setup_personnel_company_edit_addr"),  //地区
+    setup_personnel_company_edit_ip     = $("#setup_personnel_company_edit_ip"),    //ID
+
+
+    //删除
+    setup_personnel_company_dele_box    = $("#setup_personnel_company_dele_box"),   //删除盒子
+    setup_personnel_company_dele_submit = $("#setup_personnel_company_dele_submit");//删除提交
+
+
+    /*远程接口
+    var setup_personnel_company_api       = {
+        chosen    : ROUTE + "Company/getAllCompany",                                        //下拉选择
+        datagrid  : ROUTE + "Company/getCompanybyid",                                       //数据表格(id)
+        structure : ROUTE + "Company/getdeparmentid",                                       //组织架构(id)
+    }*/
+
+    //本地接口
+    var setup_personnel_company_api       = {
+        datagrid  : API.test_datagrid,                                                      //数据表格
+        select    : LOCAL + "Test/test_select.json",                                        //下拉选择
+        uploader  : LOCAL + "Test/test_upload.json"                                         //上传路径
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    setup_personnel_company_datagrid.datagrid({
+        height      : "page",
+        sortable    : false,
+        showRowIndex: false,
+        states      : {
+            fixedLeftUntil  : 1,
+            fixedRightFrom  : 6,
+            pager           : {
+                page        : 1,
+                recPerPage  : 20,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"blank",label:"ID",        width:0.1},
+                {name:"blank",label:"分公司名称",width:0.2},
+                {name:"blank",label:"企业管理人",width:0.2},
+                {name:"blank",label:"地区"      ,width:0.2},
+                {name:"blank",label:"公司网络IP",width:0.2},
+                {name:"blank",label:"操作"      ,width:0.1,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = `
+                                <a class="setup_personnel_company_edit_btn" rowIndex="${cell.rowIndex}">修改</a>
+                                <a class="setup_personnel_company_dele_btn" rowIndex="${cell.rowIndex}">删除</a>
+                            `;
+                           return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : API.test_datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    setup_personnel_company_datagrid_obj   = setup_personnel_company_datagrid.data("zui.datagrid"),   //表格对象
+    setup_personnel_company_edit_btn       = ".setup_personnel_company_edit_btn",                     //修改
+    setup_personnel_company_dele_btn       = ".setup_personnel_company_dele_btn";                     //删除
+
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    setup_personnel_company_search_btn.click(function(){
+
+        //字段整理
+        var keyword = "?search=" + setup_personnel_company_tool_search.val();
+
+        //GET提交
+        um_render(setup_personnel_company_datagrid_obj,setup_personnel_company_api.datagrid+keyword);
+
+    });
+
+    //添加按钮-----------------------------------------------------------------------------------------------
+    setup_personnel_company_add_btn.click(function(){
+        setup_personnel_company_add_box.modal("show");
+    });
+    //添加提交
+    setup_personnel_company_add_submit.click(function(){
+
+        /*正则验证
+        if (!reg_2_10.test(setup_personnel_company_add_comp.val())){ mess_warning("公司名称格式错误"  ); return; }
+        if (!reg_2_10.test(setup_personnel_company_add_user.val())){ mess_warning("企业管理人格式错误"); return; }
+        if (!reg_2_10.test(setup_personnel_company_add_addr.val())){ mess_warning("地区称格式错误"    ); return; }
+        if (!reg_ip.test(setup_personnel_company_add_ip.val()))    { mess_warning("IP格式错误"        ); return; }*/
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                comp    : setup_personnel_company_add_comp.val(),
+                user    : setup_personnel_company_add_user.val(),
+                addr    : setup_personnel_company_add_addr.val(),
+                ip      : setup_personnel_company_add_ip.val(),
+            },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(setup_personnel_company_datagrid_obj,setup_personnel_company_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+    });
+
+    //修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",setup_personnel_company_edit_btn,function(){
+  
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    //数据赋值
+                    setup_personnel_company_edit_comp.val( data.mess ),
+                    setup_personnel_company_edit_user.val( data.mess ),
+                    setup_personnel_company_edit_addr.val( data.mess ),
+                    setup_personnel_company_edit_ip.val(   data.mess ),
+
+                    //其他操作
+                    setup_personnel_company_edit_submit.attr("dataId",data_id);                     //数据ID传值
+                    setup_personnel_company_edit_box.modal("show");                                 //盒子显示
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+    //修改提交
+    setup_personnel_company_edit_submit.click(function(){
+
+        //数据ID
+        var data_id  = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id      : data_id,
+                comp    : setup_personnel_company_add_comp.val(),
+                user    : setup_personnel_company_add_user.val(),
+                addr    : setup_personnel_company_add_addr.val(),
+                ip      : setup_personnel_company_add_ip.val(),
+             },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(setup_personnel_company_datagrid_obj,setup_personnel_company_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+
+    //删除按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",setup_personnel_company_dele_btn,function(){
+
+        //数据ID
+        var data_id = cell_value($(this).attr("rowIndex"),1);
+
+        //其他操作
+        setup_personnel_company_dele_submit.attr("dataId",data_id);                                //ID传值
+        setup_personnel_company_dele_box.modal("show");                                            //面板显示
+
+    });
+    //删除提交
+    setup_personnel_company_dele_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(setup_personnel_company_datagrid_obj,setup_personnel_company_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+
+});//预加载结尾
+</script>
+<script src="./js/callback.js"></script>

@@ -73,7 +73,7 @@
             {   
                 "title"     :"人事设置",
                 "children"  :[
-                    { "title":"分公司管理","icon":"","url":"setup_personnel_compony"},
+                    { "title":"分公司管理","icon":"","url":"setup_personnel_company"},
                     { "title":"职务管理"  ,"icon":"","url":"blank"},
                     { "title":"承包商类别","icon":"","url":"blank"}
                 ]

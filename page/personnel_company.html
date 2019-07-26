@@ -119,15 +119,18 @@ $(function(){
         }
     });
 
+    //变量声明------------------------------------------------------------------------
+    var personnel_company_datagrid_obj = personnel_company_datagrid.data("zui.datagrid");           //表格对象
+
     //下拉选择-改动-------------------------------------------------------------------
     personnel_company_chosen.on("change",function(e,obj){
 
         //变量声明
-        var data_id = obj.selected;                                                             //数据ID
+        var data_id = obj.selected;                                                                 //数据ID
 
         //改动影响
-        personnel_company_structure_btn.attr("company-id",data_id);                             //架构传值
-        um_render(personnel_company_datagrid,personnel_company_api.datagrid + "?id="+data_id);  //表格渲染
+        personnel_company_structure_btn.attr("company-id",data_id);                                 //架构传值
+        um_render(personnel_company_datagrid_obj,personnel_company_api.datagrid + "?id="+data_id);  //表格渲染
         
     });
 
