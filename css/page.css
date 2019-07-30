@@ -3,6 +3,23 @@
 @import url(blue.css);
 @import url(base.css);
 @import url(../fonts/iconfont.css);
+/*数据表头：合并单元格*/
+.th-line-height{
+    line-height: 50px;
+}
+.th-table{
+    width: 100%;
+    margin-left: -1px;
+    line-height: 20px;
+}
+.th-table tr:nth-child(2) td{
+    border-top:1px solid #ddd;
+    border-left: 1px solid #ddd;
+    padding: 5px 0;
+}
+.th-table tr:nth-child(2) td:nth-child(1){
+    border-left: 0;
+}
 /*滚动面板：标题域*/
 .modal-scroll blockquote{
     background-color: #F4F8FA;

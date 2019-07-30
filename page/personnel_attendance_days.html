@@ -1,0 +1,396 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="personnel_attendance_days">
+
+    <!-- 数据网格 datagrid-borderless datagrid-striped -->
+	<div class="datagrid" id="personnel_attendance_days_datagrid">
+        <div class="tool-group">
+            <div class="tool-inline">
+                <label><span>搜索：</span><input type="text" class="form-control" id="personnel_attendance_days_tool_search"></label>
+                <label>
+                    <span>在职状态：</span>
+                    <select class="form-control" id="personnel_attendance_days_tool_select1"><!--JS推进--></select>
+                </label>
+                <label>
+                    <span>部门员工：</span>
+                    <select class="form-control" id="personnel_attendance_days_tool_select2"><!--JS推进--></select>
+                </label>
+                <label>
+                    <span>时间：</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control form-time" id="personnel_interview_tool_date1" readonly> 
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control form-time" id="personnel_interview_tool_date2" readonly>
+                    </div>
+                </label>
+                <label><button class="btn btn-primary" id="personnel_attendance_days_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <label class="pull-right">
+                    <button class="btn btn-primary" id="personnel_attendance_days_add_btn">   <i class="icon icon-external-link"></i> 导出</button>
+                </label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 重置盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_attendance_days_reset_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">重置密码</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center with-padding">此次操作将密码重置为：<span class="text-red">000000</span></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="personnel_attendance_days_reset_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_attendance_days_reset_box -->
+ 
+</div>
+<!-- page-wrapper -->
+<script>
+$(function(){
+    
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    personnel_attendance_days                     = $("#personnel_attendance_days"),                    //页面ID
+    personnel_attendance_days_datagrid            = $("#personnel_attendance_days_datagrid"),           //数据表格
+    
+    //搜索
+    personnel_attendance_days_tool_search         = $("#personnel_attendance_days_tool_search"),        //搜索字段
+    personnel_attendance_days_tool_select1        = $("#personnel_attendance_days_tool_select1"),       //下拉选择1
+    personnel_attendance_days_tool_select2        = $("#personnel_attendance_days_tool_select2"),       //下拉选择2
+    personnel_attendance_days_search_btn          = $("#personnel_attendance_days_search_btn"),         //搜索按钮
+  
+    //重置密码
+    personnel_attendance_days_reset_box           = $("#personnel_attendance_days_reset_box"),          //重置盒子
+    personnel_attendance_days_reset_submit        = $("#personnel_attendance_days_reset_submit");       //重置提交
+
+    /*远程接口
+    var personnel_attendance_days_api       = {
+        chosen    : ROUTE + "Company/getAllCompany",                            //下拉选择
+        datagrid  : ROUTE + "Company/getCompanybyid",                           //数据表格(id)
+        structure : ROUTE + "Company/getdeparmentid",                           //组织架构(id)
+    }*/
+
+    //本地接口
+    var personnel_attendance_days_api       = {
+        datagrid  : LOCAL + "Personnel/Attendance/days.json",                   //数据表格
+        select    : LOCAL + "Test/test_select.json",                            //下拉选择
+        uploader  : LOCAL + "Test/test_upload.json"                             //上传路径
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    personnel_attendance_days_datagrid.datagrid({
+        height      : "page",
+        sortable    : false,
+        showRowIndex: false,
+        headerHeight: 60,
+        states      : {
+            fixedLeftUntil  : 3,
+            //fixedRightFrom: 9,
+            pager           : {
+                page        : 1,
+                recPerPage  : 20,
+            }
+        },
+        configs : {
+            R0   : {className:"text-center th-line-height"},
+            R0C8 : {colspan:2},
+            R0C10: {colspan:2},
+            R0C12: {colspan:2},
+            R0C14: {colspan:2},
+            R0C29: {colspan:10},
+            R0C39: {colspan:3},
+        },
+        dataSource : {
+            cols   : [
+                {width:50, name:"id",     label:"ID"    },
+                {width:80, name:"user",   label:"姓名"  },
+                {width:80, name:"account",label:"用户名"},
+                {width:80, name:"depart", label:"部门"  },
+                {width:80, name:"post",   label:"职位"  },
+                {width:140,name:"date",   label:"日期"  },
+                {width:160,name:"shift",  label:"班次"  },
+                {width:80, name:"work1_time",label:"<table class='th-table'><tr><td colspan='2'>上班1</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>",html:true},
+                {width:190,name:"work1_resu",label:"待合并",html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var prefix = dataValue.match(/(\S*)_/)[1];  //前缀
+                            var value  = dataValue.match(/_(\S*)/)[1];  //取值
+                            var temp   = "";
+                            switch( prefix ){
+                                //需要操作
+                                case  "9" : temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "10": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "11": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "12": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "13": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "14": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "15": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "16": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "17": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                //无需操作
+                                default : temp=value; break;
+                            }
+                            return temp;
+                        }
+                    }
+                },
+                {width:80, name:"rest1_time",label:"<table class='th-table'><tr><td colspan='2'>下班1</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>",html:true},
+                {width:190,name:"rest1_resu",label:"待合并",html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var prefix = dataValue.match(/(\S*)_/)[1];  //前缀
+                            var value  = dataValue.match(/_(\S*)/)[1];  //取值
+                            var temp   = "";
+                            switch( prefix ){
+                                //需要操作
+                                case  "9" : temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "10": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "11": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "12": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "13": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "14": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "15": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "16": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "17": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                //无需操作
+                                default : temp=value; break;
+                            }
+                            return temp;
+                        }
+                    }
+                },
+                {width:80, name:"work2_time",label:"<table class='th-table'><tr><td colspan='2'>上班2</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>",html:true},
+                {width:190,name:"work2_resu",label:"待合并",html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var prefix = dataValue.match(/(\S*)_/)[1];  //前缀
+                            var value  = dataValue.match(/_(\S*)/)[1];  //取值
+                            var temp   = "";
+                            switch( prefix ){
+                                //需要操作
+                                case  "9" : temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "10": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "11": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "12": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "13": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "14": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "15": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "16": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "17": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                //无需操作
+                                default : temp=value; break;
+                            }
+                            return temp;
+                        }
+                    }
+                },
+                {width:80, name:"rest2_time",label:"<table class='th-table'><tr><td colspan='2'>下班2</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>",html:true},
+                {width:190,name:"rest2_resu",label:"待合并",html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var prefix = dataValue.match(/(\S*)_/)[1];  //前缀
+                            var value  = dataValue.match(/_(\S*)/)[1];  //取值
+                            var temp   = "";
+                            switch( prefix ){
+                                //需要操作
+                                case  "9" : temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "10": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "11": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "12": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "13": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "14": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "15": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "16": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                case  "17": temp="<a rowIndex='${cell.rowIndex}' class=''>"+value+"</a>";break;
+                                //无需操作
+                                default   : temp=value; break;
+                            }
+                            return temp;
+                        }
+                    }
+                },
+                {width:120,name:"item",label:"关联的审批单",html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell,dataGrid){
+                            return `<a title="点击查看" data-toggle="modal" data-title="审批单" data-custom="${dataValue}">${dataValue}</a>`;
+                        }
+                    }
+                },
+                {width:80, name:"work_day", label:"出勤天数"},
+                {width:80, name:"rest_day", label:"休息天数"},
+                {width:110,name:"work_min", label:"工作时长(分钟)"},
+                {width:80, name:"late",     label:"迟到次数"},
+                {width:110,name:"late_min", label:"迟到时长(分钟)"},
+                {width:100,name:"leave",    label:"早退次数"},
+                {width:110,name:"leave_min",label:"早退时长(分钟)"},
+                {width:100,name:"absent",   label:"旷工天数"},
+                {width:110,name:"out_min",  label:"外出时长(分钟)"},
+                {width:100,name:"out_day",  label:"出差天数"},
+                {width:100,name:"work_lack",label:"上班缺卡次数"},
+                {width:100,name:"rest_lack",label:"下班缺卡次数"},
+                {width:70,name:"asl1",html:true,       //ask_for_leave
+                    label : `
+                        <table class='th-table'><tr><td colspan='10'>请假(小时)</td></tr>
+                            <tr>
+                                <td style="width:62px">年假</td>
+                                <td style="width:70px">事假</td>
+                                <td style="width:70px">病假</td>
+                                <td style="width:70px">调休</td>
+                                <td style="width:70px">产假</td>
+                                <td style="width:70px">陪产假</td>
+                                <td style="width:70px">婚假</td>
+                                <td style="width:70px">丧假</td>
+                                <td style="width:70px">哺乳假</td>
+                                <td>其他</td>
+                            </tr>
+                        </table>
+                    `
+                },
+                {width:70,name:"asl2",label:"待合并"},
+                {width:70,name:"asl3",label:"待合并"},
+                {width:70,name:"asl4",label:"待合并"},
+                {width:70,name:"asl5",label:"待合并"},
+                {width:70,name:"asl6",label:"待合并"},
+                {width:70,name:"asl7",label:"待合并"},
+                {width:70,name:"asl8",label:"待合并"},
+                {width:70,name:"asl9",label:"待合并"},
+                {width:70,name:"as10",label:"待合并"},
+                {width:70,name:"add1",html:true,                //overtime
+                    label : `
+                        <table class='th-table'><tr><td colspan='10'>加班时长-按加班规则计算(小时)</td></tr>
+                            <tr>
+                                <td style="width:62px">1</td>
+                                <td style="width:70px">2</td>
+                                <td>3</td>
+                            </tr>
+                        </table>
+                    `
+                },
+                {width:70,name:"add2",label:"待合并"},
+                {width:70,name:"add3",label:"待合并"},
+            ],
+            remote : function(){
+                return {
+                    url     : personnel_attendance_days_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    personnel_attendance_days_datagrid_obj    = personnel_attendance_days_datagrid.data("zui.datagrid"),   //表格对象
+    personnel_attendance_days_show_btn        = ".personnel_attendance_days_show_btn",                     //查看
+    personnel_attendance_days_able_btn        = ".personnel_attendance_days_able_btn",                     //启用
+    personnel_attendance_days_turn_btn        = ".personnel_attendance_days_turn_btn",                     //转正
+    personnel_attendance_days_leave_btn       = ".personnel_attendance_days_leave_btn",                    //离职
+    personnel_attendance_days_reset_btn       = ".personnel_attendance_days_reset_btn";                    //重置密码
+ 
+    //工具条下拉-----------------------------------------------------------------------------------------
+    //职位
+    $.ajax({
+        url     : personnel_attendance_days_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_attendance_days_tool_select1.html(option);
+        }
+    });
+    //分公司
+    $.ajax({
+        url     : personnel_attendance_days_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_attendance_days_tool_select2.html(option);
+        }
+    });
+    //状态
+    $.ajax({
+        url     : personnel_attendance_days_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_attendance_days_tool_select3.html(option);
+        }
+    });
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    personnel_attendance_days_search_btn.click(function(){
+
+        //字段整理
+        var keyword  
+        = "?search=" + personnel_attendance_days_tool_search.val() 
+        + "&select1="+ personnel_attendance_days_tool_select1.val()
+        + "&select2="+ personnel_attendance_days_tool_select2.val();
+
+        //GET提交
+        um_render(personnel_attendance_days_datagrid_obj,personnel_attendance_days_api.datagrid+keyword);
+
+    });
+
+    //重置密码-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_attendance_days_reset_btn,function(){
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //其他操作
+        personnel_attendance_days_reset_submit.attr("dataId",data_id);                //数据ID传值
+        personnel_attendance_days_reset_box.modal("show");                            //盒子显示
+    });
+    //重置提交
+    personnel_attendance_days_reset_submit.click(function(){
+
+        //数据ID
+        var data_id  = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    mess_success(data.mess);
+                    um_reset(personnel_attendance_days_datagrid_obj,personnel_attendance_days_api.datagrid);
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+ 
+});//预加载结尾
+</script>
+<script src="./js/callback.js"></script>
