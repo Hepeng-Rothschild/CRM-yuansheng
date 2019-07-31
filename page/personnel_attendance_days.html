@@ -17,9 +17,9 @@
                 <label>
                     <span>时间：</span>
                     <div class="input-group">
-                        <input type="text" class="form-control form-time" id="personnel_interview_tool_date1" readonly> 
+                        <input type="text" class="form-control form-date" id="personnel_interview_tool_date1" readonly> 
                         <span class="input-group-addon fix-border fix-padding"></span>
-                        <input type="text" class="form-control form-time" id="personnel_interview_tool_date2" readonly>
+                        <input type="text" class="form-control form-date" id="personnel_interview_tool_date2" readonly>
                     </div>
                 </label>
                 <label><button class="btn btn-primary" id="personnel_attendance_days_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
@@ -113,15 +113,15 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {width:50, name:"id",     label:"ID"    },
-                {width:80, name:"user",   label:"姓名"  },
-                {width:80, name:"account",label:"用户名"},
-                {width:80, name:"depart", label:"部门"  },
-                {width:80, name:"post",   label:"职位"  },
-                {width:140,name:"date",   label:"日期"  },
-                {width:160,name:"shift",  label:"班次"  },
-                {width:80, name:"work1_time",label:"<table class='th-table'><tr><td colspan='2'>上班1</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>",html:true},
-                {width:190,name:"work1_resu",label:"待合并",html:true,
+                {html:true,width:50, name:"id",     label:"ID"    },
+                {html:true,width:80, name:"user",   label:"姓名"  },
+                {html:true,width:80, name:"account",label:"用户名"},
+                {html:true,width:80, name:"depart", label:"部门"  },
+                {html:true,width:80, name:"post",   label:"职位"  },
+                {html:true,width:140,name:"date",   label:"日期"  },
+                {html:true,width:160,name:"shift",  label:"班次"  },
+                {html:true,width:80, name:"work1_time",label:"<table class='th-table'><tr><td colspan='2'>上班1</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>"},
+                {html:true,width:190,name:"work1_resu",label:"待合并",
                     valueOperator : {
                         getter : function(dataValue,cell){
                             var prefix = dataValue.match(/(\S*)_/)[1];  //前缀
@@ -145,8 +145,8 @@ $(function(){
                         }
                     }
                 },
-                {width:80, name:"rest1_time",label:"<table class='th-table'><tr><td colspan='2'>下班1</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>",html:true},
-                {width:190,name:"rest1_resu",label:"待合并",html:true,
+                {html:true,width:80, name:"rest1_time",label:"<table class='th-table'><tr><td colspan='2'>下班1</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>"},
+                {html:true,width:190,name:"rest1_resu",label:"待合并",
                     valueOperator : {
                         getter : function(dataValue,cell){
                             var prefix = dataValue.match(/(\S*)_/)[1];  //前缀
@@ -170,8 +170,8 @@ $(function(){
                         }
                     }
                 },
-                {width:80, name:"work2_time",label:"<table class='th-table'><tr><td colspan='2'>上班2</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>",html:true},
-                {width:190,name:"work2_resu",label:"待合并",html:true,
+                {html:true,width:80, name:"work2_time",label:"<table class='th-table'><tr><td colspan='2'>上班2</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>"},
+                {html:true,width:190,name:"work2_resu",label:"待合并",
                     valueOperator : {
                         getter : function(dataValue,cell){
                             var prefix = dataValue.match(/(\S*)_/)[1];  //前缀
@@ -195,8 +195,8 @@ $(function(){
                         }
                     }
                 },
-                {width:80, name:"rest2_time",label:"<table class='th-table'><tr><td colspan='2'>下班2</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>",html:true},
-                {width:190,name:"rest2_resu",label:"待合并",html:true,
+                {html:true,width:80, name:"rest2_time",label:"<table class='th-table'><tr><td colspan='2'>下班2</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>"},
+                {html:true,width:190,name:"rest2_resu",label:"待合并",
                     valueOperator : {
                         getter : function(dataValue,cell){
                             var prefix = dataValue.match(/(\S*)_/)[1];  //前缀
@@ -220,26 +220,34 @@ $(function(){
                         }
                     }
                 },
-                {width:120,name:"item",label:"关联的审批单",html:true,
+                {html:true,width:120,name:"item",label:"关联的审批单",
                     valueOperator : {
                         getter : function(dataValue,cell,dataGrid){
-                            return `<a title="点击查看" data-toggle="modal" data-title="审批单" data-custom="${dataValue}">${dataValue}</a>`;
+                            return `<a title="点击查看" data-toggle="modal" data-title="流水号：${dataValue.numb}" data-custom="
+                            <table class='table table-bordered table-striped'>
+                                <tr><td>申请人  </td><td>${dataValue.user}   </td></tr>
+                                <tr><td>用户名  </td><td>${dataValue.account}</td></tr>
+                                <tr><td>部门    </td><td>${dataValue.depart} </td></tr>
+                                <tr><td>补卡原因</td><td>${dataValue.reason} </td></tr>
+                                <tr><td>补卡时间</td><td>${dataValue.date}   </td></tr>
+                            </table>
+                            ">${dataValue.numb}</a>`;
                         }
                     }
                 },
-                {width:80, name:"work_day", label:"出勤天数"},
-                {width:80, name:"rest_day", label:"休息天数"},
-                {width:110,name:"work_min", label:"工作时长(分钟)"},
-                {width:80, name:"late",     label:"迟到次数"},
-                {width:110,name:"late_min", label:"迟到时长(分钟)"},
-                {width:100,name:"leave",    label:"早退次数"},
-                {width:110,name:"leave_min",label:"早退时长(分钟)"},
-                {width:100,name:"absent",   label:"旷工天数"},
-                {width:110,name:"out_min",  label:"外出时长(分钟)"},
-                {width:100,name:"out_day",  label:"出差天数"},
-                {width:100,name:"work_lack",label:"上班缺卡次数"},
-                {width:100,name:"rest_lack",label:"下班缺卡次数"},
-                {width:70,name:"asl1",html:true,       //ask_for_leave
+                {html:true,width:80, name:"work_day", label:"出勤天数"      },
+                {html:true,width:80, name:"rest_day", label:"休息天数"      },
+                {html:true,width:110,name:"work_min", label:"工作时长(分钟)"},
+                {html:true,width:80, name:"late",     label:"迟到次数"      },
+                {html:true,width:110,name:"late_min", label:"迟到时长(分钟)"},
+                {html:true,width:100,name:"leave",    label:"早退次数"      },
+                {html:true,width:110,name:"leave_min",label:"早退时长(分钟)"},
+                {html:true,width:100,name:"absent",   label:"旷工天数"      },
+                {html:true,width:110,name:"out_min",  label:"外出时长(分钟)"},
+                {html:true,width:100,name:"out_day",  label:"出差天数"      },
+                {html:true,width:100,name:"work_lack",label:"上班缺卡次数"  },
+                {html:true,width:100,name:"rest_lack",label:"下班缺卡次数"  },
+                {html:true,width:70, name:"asl1",     //ask_for_leave
                     label : `
                         <table class='th-table'><tr><td colspan='10'>请假(小时)</td></tr>
                             <tr>
@@ -257,28 +265,28 @@ $(function(){
                         </table>
                     `
                 },
-                {width:70,name:"asl2",label:"待合并"},
-                {width:70,name:"asl3",label:"待合并"},
-                {width:70,name:"asl4",label:"待合并"},
-                {width:70,name:"asl5",label:"待合并"},
-                {width:70,name:"asl6",label:"待合并"},
-                {width:70,name:"asl7",label:"待合并"},
-                {width:70,name:"asl8",label:"待合并"},
-                {width:70,name:"asl9",label:"待合并"},
-                {width:70,name:"as10",label:"待合并"},
-                {width:70,name:"add1",html:true,                //overtime
+                {html:true,width:70,name:"asl2",label:"待合并"},
+                {html:true,width:70,name:"asl3",label:"待合并"},
+                {html:true,width:70,name:"asl4",label:"待合并"},
+                {html:true,width:70,name:"asl5",label:"待合并"},
+                {html:true,width:70,name:"asl6",label:"待合并"},
+                {html:true,width:70,name:"asl7",label:"待合并"},
+                {html:true,width:70,name:"asl8",label:"待合并"},
+                {html:true,width:70,name:"asl9",label:"待合并"},
+                {html:true,width:70,name:"as10",label:"待合并"},
+                {html:true,width:80,name:"add1",
                     label : `
                         <table class='th-table'><tr><td colspan='10'>加班时长-按加班规则计算(小时)</td></tr>
                             <tr>
-                                <td style="width:62px">1</td>
-                                <td style="width:70px">2</td>
-                                <td>3</td>
+                                <td style="width:72px">工作日加班</td>
+                                <td style="width:80px">休息日加班</td>
+                                <td>节假日加班</td>
                             </tr>
                         </table>
                     `
                 },
-                {width:70,name:"add2",label:"待合并"},
-                {width:70,name:"add3",label:"待合并"},
+                {html:true,width:80,name:"add2",label:"待合并"},
+                {html:true,width:80,name:"add3",label:"待合并"},
             ],
             remote : function(){
                 return {
@@ -287,6 +295,18 @@ $(function(){
                     dataType: "json",
                 }
             }
+        },
+        valueOperator : {
+            string : {
+                getter : function(dataValue,cell,dataGrid){
+                    var resu = "";
+                    ( dataValue=="0" ) ? resu="<span style='color:lightgrey'>"+dataValue+"</span>" : resu = dataValue;
+                    return resu;
+                }
+
+            }
+
+
         }
     });
 
@@ -326,20 +346,6 @@ $(function(){
                 option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
             }
             personnel_attendance_days_tool_select2.html(option);
-        }
-    });
-    //状态
-    $.ajax({
-        url     : personnel_attendance_days_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            var option = "<option>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-            }
-            personnel_attendance_days_tool_select3.html(option);
         }
     });
 
