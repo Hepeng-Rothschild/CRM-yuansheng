@@ -2,7 +2,7 @@
 <div class="page-wrapper" id="personnel_attendance_days">
     
     <!-- 数据网格 -->
-    <div class="datagrid" id="personnel_attendance_days_datagrid">
+    <div class="datagrid datagrid-striped" id="personnel_attendance_days_datagrid">
         <div class="tool-group">
             <div class="tool-inline">
                 <label><span>搜索：</span><input type="text" class="form-control" id="personnel_attendance_days_tool_search"></label>
@@ -11,7 +11,7 @@
                     <select class="form-control" id="personnel_attendance_days_tool_select1"><!--JS推进--></select>
                 </label>
                 <label>
-                    <span>部门员工：</span>
+                    <span>部门选择：</span>
                     <select class="form-control" id="personnel_attendance_days_tool_select2"><!--JS推进--></select>
                 </label>
                 <label>
@@ -126,13 +126,13 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {html:true,width:1,  name:"id",        label:"ID"    },
-                {html:true,width:80, name:"user",      label:"姓名"  },
-                {html:true,width:80, name:"account",   label:"用户名"},
-                {html:true,width:80, name:"depart",    label:"部门"  },
-                {html:true,width:80, name:"post",      label:"职位"  },
-                {html:true,width:140,name:"date",      label:"日期"  },
-                {html:true,width:160,name:"shift",     label:"班次"  },
+                {html:true,width:1,  name:"id",        label:"ID"  },
+                {html:true,width:80, name:"user",      label:"姓名"},
+                {html:true,width:80, name:"numb",      label:"工号"},
+                {html:true,width:80, name:"depart",    label:"部门"},
+                {html:true,width:80, name:"post",      label:"职位"},
+                {html:true,width:140,name:"date",      label:"日期"},
+                {html:true,width:160,name:"shift",     label:"班次"},
                 {html:true,width:80, name:"work1_time",label:"<table class='th-table'><tr><td colspan='2'>上班1</td></tr><tr><td style='width:72px'>打卡时间</td><td>打卡结果</td></tr></table>"},
                 {html:true,width:190,name:"work1_resu",label:"待合并",
                     valueOperator : {
@@ -176,15 +176,15 @@ $(function(){
                 {html:true,width:120,name:"item",label:"关联的审批单",
                     valueOperator : {
                         getter : function(dataValue,cell,dataGrid){
-                            return `<a title="点击查看" data-toggle="modal" data-title="流水号：${dataValue.numb}" data-custom="
+                            return `<a title="点击查看" data-toggle="modal" data-title="流水号：${dataValue.order}" data-custom="
                             <table class='table table-bordered table-striped'>
                                 <tr><td>申请人  </td><td>${dataValue.user}   </td></tr>
-                                <tr><td>用户名  </td><td>${dataValue.account}</td></tr>
+                                <tr><td>工号    </td><td>${dataValue.numb}   </td></tr>
                                 <tr><td>部门    </td><td>${dataValue.depart} </td></tr>
                                 <tr><td>补卡原因</td><td>${dataValue.reason} </td></tr>
                                 <tr><td>补卡时间</td><td>${dataValue.date}   </td></tr>
                             </table>
-                            ">${dataValue.numb}</a>`;
+                            ">${dataValue.order}</a>`;
                         }
                     }
                 },
@@ -193,8 +193,8 @@ $(function(){
                 {html:true,width:110,name:"work_min", label:"工作时长(分钟)"},
                 {html:true,width:80, name:"late",     label:"迟到次数"      },
                 {html:true,width:110,name:"late_min", label:"迟到时长(分钟)"},
-                {html:true,width:100,name:"leave",    label:"早退次数"      },
-                {html:true,width:110,name:"leave_min",label:"早退时长(分钟)"},
+                {html:true,width:100,name:"early",    label:"早退次数"      },
+                {html:true,width:110,name:"early_min",label:"早退时长(分钟)"},
                 {html:true,width:100,name:"absent",   label:"旷工天数"      },
                 {html:true,width:110,name:"out_min",  label:"外出时长(分钟)"},
                 {html:true,width:100,name:"out_day",  label:"出差天数"      },
@@ -329,14 +329,6 @@ $(function(){
 
     //导出按钮-----------------------------------------------------------------------------------------------
     personnel_attendance_days_export_btn.click(function(){
-
-        //字段整理
-        var keyword  
-        = "?search=" + personnel_attendance_days_tool_search.val() 
-        + "&select1="+ personnel_attendance_days_tool_select1.val()
-        + "&select2="+ personnel_attendance_days_tool_select2.val()
-        + "&date1="  + personnel_attendance_days_tool_date1.val()
-        + "&date2="  + personnel_attendance_days_tool_date2.val();
 
         //远程提交
         $.ajax({

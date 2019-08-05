@@ -2,7 +2,7 @@
 <div class="page-wrapper" id="personnel_staff">
 
     <!-- 数据网格 -->
-	<div class="datagrid datagrid-borderless datagrid-striped" id="personnel_staff_datagrid">
+	<div class="datagrid datagrid-striped" id="personnel_staff_datagrid">
         <div class="tool-group">
             <div class="tool-inline">
                 <label><span>搜索：</span><input type="text" class="form-control" id="personnel_staff_tool_search"></label>
@@ -700,7 +700,7 @@ $(function(){
 
     //本地接口
     var personnel_staff_api       = {
-        datagrid  : API.test_datagrid,                                          //数据表格
+        datagrid  : LOCAL + "Personnel/staff.json",                             //数据表格
         select    : LOCAL + "Test/test_select.json",                            //下拉选择
         uploader  : LOCAL + "Test/test_upload.php"                              //上传路径
     }
@@ -710,6 +710,7 @@ $(function(){
         height      : "page",
         sortable    : false,
         showRowIndex: false,
+        configs     : { R0:{className:"text-center"} },
         states      : {
             fixedRightFrom  : 9,
             pager           : {
@@ -719,14 +720,14 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {name:"id",     label:"ID"  ,  width:100},
-                {name:"blank",  label:"分公司",width:0.5},
-                {name:"blank",  label:"部门",  width:0.5},
-                {name:"blank",  label:"职位",  width:0.5},
-                {name:"blank",  label:"姓名",  width:100},
-                {name:"blank",  label:"用户名",width:100},
-                {name:"blank",  label:"性别",  width:200},
-                {name:"blank",  label:"状态",  width:100},
+                {name:"id",     label:"ID"  ,  width:50 },
+                {name:"comp",   label:"分公司",width:100},
+                {name:"depart", label:"部门",  width:80 },
+                {name:"post",   label:"职位",  width:80 },
+                {name:"user",   label:"姓名",  width:80 },
+                {name:"numb",   label:"工号",  width:80 },
+                {name:"sexy",   label:"性别",  width:50 },
+                {name:"state",  label:"状态",  width:.1 },
                 {name:"operate",label:"操作",  width:180,
                     html:true,
                     valueOperator : {

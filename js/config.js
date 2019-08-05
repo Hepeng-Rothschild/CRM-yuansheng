@@ -10,9 +10,18 @@
     window.API = {
         //全局接口
         common_tree     : LOCAL+"Common/common_tree.json",          //左侧导航 ROUTE+"User/GetUserPageInfo"
-        common_view     : "./page/personnel_staff.html",            //欢迎页面 personnel_attendance_days welcome
+        common_view     : "./page/welcome.html",                    //欢迎页面 personnel_attendance_days welcome
 
         //测试接口
         test_datagrid   : LOCAL+"Test/test_datagrid.json",          //数据表格
         test_response   : LOCAL+"Test/test_response.json",          //数据响应
     }
+
+    /*
+    数据表格 宽度标准
+    id      50
+    sexy    50
+    default 80
+    tels    100
+    full    .1
+    */ 

@@ -1,6 +1,13 @@
 $(function(){
 
     //时间格式化-----------------------------------------------------------------------------------------------
+    //年月
+    var option_month = {
+        autoclose: 1,
+        startView: 3,
+        minView  : 3,
+        format   : "yyyy-mm"
+    }
     //年月日
     var option_date = {
         autoclose: 1,
@@ -17,8 +24,10 @@ $(function(){
     }
  
     //时间组件
-    $(".form-date").datetimepicker(option_date);
-    $(".form-time").datetimepicker(option_time);
+    $(".form-month").datetimepicker(option_month);
+    $(".form-date" ).datetimepicker(option_date);
+    $(".form-time" ).datetimepicker(option_time);
+
     
     //模态框显示-----------------------------------------------------------------------------------------------
     $(".modal").on("shown.zui.modal",function(){

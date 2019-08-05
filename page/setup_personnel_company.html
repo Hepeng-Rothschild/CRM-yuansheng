@@ -2,7 +2,7 @@
 <div class="page-wrapper" id="setup_personnel_company">
 
     <!-- 数据网格 -->
-    <div class="datagrid datagrid-borderless datagrid-striped" id="setup_personnel_company_datagrid">
+    <div class="datagrid datagrid-striped" id="setup_personnel_company_datagrid">
         <div class="tool-group">
             <div class="tool-inline">
                 <label><span>搜索：  </span><input type="text" class="form-control" id="setup_personnel_company_tool_search"></label>
@@ -143,7 +143,6 @@ $(function(){
     setup_personnel_company_edit_addr   = $("#setup_personnel_company_edit_addr"),  //地区
     setup_personnel_company_edit_ip     = $("#setup_personnel_company_edit_ip"),    //ID
 
-
     //删除
     setup_personnel_company_dele_box    = $("#setup_personnel_company_dele_box"),   //删除盒子
     setup_personnel_company_dele_submit = $("#setup_personnel_company_dele_submit");//删除提交
@@ -158,7 +157,7 @@ $(function(){
 
     //本地接口
     var setup_personnel_company_api       = {
-        datagrid  : API.test_datagrid,                                                      //数据表格
+        datagrid  : LOCAL + "Setup/Personnel/company.json",                                 //数据表格
         select    : LOCAL + "Test/test_select.json",                                        //下拉选择
     }
 
@@ -167,6 +166,7 @@ $(function(){
         height      : "page",
         sortable    : false,
         showRowIndex: false,
+        configs     : { R0:{className:"text-center"} },
         states      : {
             fixedLeftUntil  : 1,
             fixedRightFrom  : 6,
@@ -177,12 +177,12 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {name:"blank",label:"ID",        width:0.1},
-                {name:"blank",label:"分公司名称",width:0.2},
-                {name:"blank",label:"企业管理人",width:0.2},
-                {name:"blank",label:"地区"      ,width:0.2},
-                {name:"blank",label:"公司网络IP",width:0.2},
-                {name:"blank",label:"操作"      ,width:0.1,
+                {name:"id",     label:"ID",        width:50 },
+                {name:"comp",   label:"分公司名称",width:100},
+                {name:"manager",label:"企业管理人",width:100},
+                {name:"city",   label:"地区"      ,width:100},
+                {name:"ip",     label:"公司网络IP",width:.1 },
+                {name:"operate",label:"操作"      ,width:180,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
@@ -197,7 +197,7 @@ $(function(){
             ],
             remote : function(){
                 return {
-                    url     : API.test_datagrid,
+                    url     : setup_personnel_company_api.datagrid,
                     type    : "POST",
                     dataType: "json",
                 }

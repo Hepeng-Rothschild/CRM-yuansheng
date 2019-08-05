@@ -2,7 +2,7 @@
 <div class="page-wrapper" id="personnel_interview">
 
     <!-- 数据网格 -->
-	<div class="datagrid datagrid-borderless datagrid-striped" id="personnel_interview_datagrid">
+	<div class="datagrid datagrid-striped" id="personnel_interview_datagrid">
         <div class="tool-group">
             <form class="tool-inline">
                 <label><span>搜索：</span><input type="text" class="form-control" id="personnel_interview_tool_search"></label>
@@ -290,7 +290,7 @@ $(function(){
 
     /*本地接口*/
     var personnel_interview_api       = {
-        datagrid    : API.test_datagrid,                                          //数据表格
+        datagrid    : LOCAL + "Personnel/interview.json",                         //数据表格
         select_post : LOCAL + "Test/test_select.json",                            //职位下拉
         select_state: LOCAL + "Test/test_select.json",                            //状态下拉
         select_copy : LOCAL + "Test/test_select.json",                            //抄送下拉
@@ -301,6 +301,7 @@ $(function(){
         height      : "page",
         sortable    : false,
         showRowIndex: false,
+        configs     : { R0:{className:"text-center"} },
         states      : {
             fixedRightFrom  : 10,
             pager           : {
@@ -310,15 +311,15 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {name:"id",   label:"ID"  ,    width:100},
-                {name:"blank",label:"姓名",    width:100},
-                {name:"blank",label:"电话",    width:200},
-                {name:"blank",label:"应聘职位",width:100},
-                {name:"blank",label:"性别",    width:100},
-                {name:"blank",label:"面试时间",width:200},
-                {name:"blank",label:"状态",    width:100},
-                {name:"blank",label:"抄送",    width:100},
-                {name:"blank",label:"审批意见",width:0.5,
+                {name:"id",    label:"ID"  ,    width:50 },
+                {name:"user",  label:"姓名",    width:80 },
+                {name:"tels",  label:"电话",    width:100},
+                {name:"post",  label:"应聘职位",width:80 },
+                {name:"sexy",  label:"性别",    width:50 },
+                {name:"time",  label:"面试时间",width:120},
+                {name:"state", label:"状态",    width:100},
+                {name:"record",label:"抄送",    width:100},
+                {name:"sugg",  label:"审批意见",width:.1,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell,dataGrid){

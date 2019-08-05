@@ -1,0 +1,249 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="personnel_attendance_month">
+    
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="personnel_attendance_month_datagrid">
+        <div class="tool-group">
+            <div class="tool-inline">
+                <label><span>搜索：</span><input type="text" class="form-control" id="personnel_attendance_month_tool_search"></label>
+                <label>
+                    <span>在职状态：</span>
+                    <select class="form-control" id="personnel_attendance_month_tool_select1"><!--JS推进--></select>
+                </label>
+                <label>
+                    <span>部门选择：</span>
+                    <select class="form-control" id="personnel_attendance_month_tool_select2"><!--JS推进--></select>
+                </label>
+                <label>
+                    <span>时间：</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control form-month" id="personnel_attendance_month_tool_date1" readonly> 
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control form-month" id="personnel_attendance_month_tool_date2" readonly>
+                    </div>
+                </label>
+                <label><button class="btn btn-primary" id="personnel_attendance_month_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <label class="pull-right"><button class="btn btn-primary" id="personnel_attendance_month_export_btn"><i class="icon icon-external-link"></i> 导出</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="datagrid-container no-border-left"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 考勤统计 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_attendance_month_statistic_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">考勤统计</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        <table class='table table-bordered table-striped'><!-- JS推进 --></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_attendance_month_statistic_box -->
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function(){
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    personnel_attendance_month                    = $("#personnel_attendance_month"),                     //页面ID
+    personnel_attendance_month_datagrid           = $("#personnel_attendance_month_datagrid"),            //数据表格
+    //搜索
+    personnel_attendance_month_tool_search        = $("#personnel_attendance_month_tool_search"),         //搜索字段
+    personnel_attendance_month_tool_select1       = $("#personnel_attendance_month_tool_select1"),        //下拉选择1
+    personnel_attendance_month_tool_select2       = $("#personnel_attendance_month_tool_select2"),        //下拉选择2
+    personnel_attendance_month_tool_date1         = $("#personnel_attendance_month_tool_date1"),          //开始时间
+    personnel_attendance_month_tool_date2         = $("#personnel_attendance_month_tool_date2"),          //结束时间   
+    personnel_attendance_month_search_btn         = $("#personnel_attendance_month_search_btn"),          //搜索按钮
+    personnel_attendance_month_export_btn         = $("#personnel_attendance_month_export_btn");          //导出按钮
+
+    /*远程接口
+    var personnel_attendance_month_api       = {
+        chosen    : ROUTE + "Company/getAllCompany",                                                      //下拉选择
+        datagrid  : ROUTE + "Company/getCompanybyid",                                                     //数据表格(id)
+    }*/
+
+    //本地接口
+    var personnel_attendance_month_api       = {
+        datagrid  : LOCAL + "Personnel/Attendance/month.json",                                           //数据表格
+        select    : LOCAL + "Test/test_select.json",                                                    //下拉选择
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    personnel_attendance_month_datagrid.datagrid({
+        height      : "page",
+        sortable    : false,
+        showRowIndex: false,
+        configs     : { R0:{className:"text-center"} },
+        states      : {
+            fixedLeftUntil  : 3,
+            pager           : {
+                page        : 1,
+                recPerPage  : 20,
+            }
+        },
+        dataSource : {
+            cols   : [                
+                {html:true,width:1, name:"id",        label:"ID"      },
+                {html:true,width:80,name:"user",      label:"姓名"    },
+                {html:true,width:80,name:"depart",    label:"部门"    },
+                {html:true,width:80,name:"number",    label:"工号"    },
+                {html:true,width:80,name:"post",      label:"职位"    },
+                {html:true,width:90,name:"attend_day",label:"应出勤天数"},
+                {html:true,width:70,name:"work_day",  label:"出勤天数"},
+                {html:true,width:70,name:"rest_day",  label:"休息天数"},
+                {html:true,width:70,name:"late",      label:"迟到次数"},
+                {html:true,width:70,name:"late_min",  label:"迟到时长"},
+                {html:true,width:70,name:"early",     label:"早退次数"},
+                {html:true,width:70,name:"early_min", label:"早退时长"},
+                {html:true,width:70,name:"absent",    label:"旷工次数"},
+                {html:true,width:70,name:"absent_min",label:"旷工时长"},
+                {html:true,width:70,name:"out_min",   label:"外出时长"},
+                {html:true,width:70,name:"out_day",   label:"出差天数"},
+                {html:true,width:70,name:"leave_min", label:"请假时长"},
+                {html:true,width:70,name:"add_min",   label:"加班时长"},
+                {html:true,width:.9,name:"statistic", label:"考勤统计",
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var resu = "<tr><th>日期</th><th>状态</th></tr>";
+                            for(var i= 0;i<dataValue.length;i++){ 
+                                resu += "<tr><td style='width:80px'>"+Object.keys(dataValue[i])+"</td><td>"+Object.values(dataValue[i])+"</td></tr>"; 
+                            }
+                            resu += "";
+                            $("#personnel_attendance_month_statistic_box table").html(resu);
+                            return '<a data-toggle="modal" title="点击查看" data-target="#personnel_attendance_month_statistic_box">查看</a>';
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : personnel_attendance_month_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        },
+        valueOperator : {
+            string : {
+                getter : function(dataValue,cell,dataGrid){
+                    var resu = "";
+                    ( dataValue=="0" ) ? resu="<span style='color:lightgrey'>"+dataValue+"</span>" : resu = dataValue;
+                    return resu;
+                }
+            }
+        }
+    });//datagrid()
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    personnel_attendance_month_datagrid_obj    = personnel_attendance_month_datagrid.data("zui.datagrid"),//表格对象
+    personnel_attendance_month_result_edit_btn = ".personnel_attendance_month_result_edit_btn";           //修改按钮
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //在职状态
+    $.ajax({
+        url     : personnel_attendance_month_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_attendance_month_tool_select1.html(option);
+        }
+    });
+
+    //部门选择
+    $.ajax({
+        url     : personnel_attendance_month_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_attendance_month_tool_select2.html(option);
+        }
+    });
+
+    //修改类型
+    $.ajax({
+        url     : personnel_attendance_month_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_attendance_month_result_edit_type.html(option);
+        }
+    });
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    personnel_attendance_month_search_btn.click(function(){
+
+        //字段整理
+        var keyword  
+        = "?search=" + personnel_attendance_month_tool_search.val() 
+        + "&select1="+ personnel_attendance_month_tool_select1.val()
+        + "&select2="+ personnel_attendance_month_tool_select2.val()
+        + "&date1="  + personnel_attendance_month_tool_date1.val()
+        + "&date2="  + personnel_attendance_month_tool_date2.val();
+
+        //GET提交
+        um_render(personnel_attendance_month_datagrid_obj,personnel_attendance_month_api.datagrid+keyword);
+
+    });
+
+    //导出按钮-----------------------------------------------------------------------------------------------
+    personnel_attendance_month_export_btn.click(function(){
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                search  : personnel_attendance_month_tool_search.val(),
+                select1 : personnel_attendance_month_tool_select1.val(),
+                select2 : personnel_attendance_month_tool_select2.val(),
+                date1   : personnel_attendance_month_tool_date1.val(),
+                date2   : personnel_attendance_month_tool_date2.val(),
+            },
+            beforesend : function(){
+                mess_success("导出中…");
+            },
+            success : function(data){
+                if( data.code>0 ){
+                    window.open("./remote/Upload/test_export.pdf");//data.url
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+   
+
+});//预加载结尾
+</script>
+<script src="./js/callback.js"></script>

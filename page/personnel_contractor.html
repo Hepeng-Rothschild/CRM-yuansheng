@@ -2,7 +2,7 @@
 <div class="page-wrapper" id="personnel_contractor">
 
     <!-- 数据网格 -->
-    <div class="datagrid datagrid-borderless datagrid-striped" id="personnel_contractor_datagrid">
+    <div class="datagrid datagrid-striped" id="personnel_contractor_datagrid">
         <div class="tool-group">
             <div class="tool-inline">
                 <label><span>搜索：  </span><input type="text" class="form-control" id="personnel_contractor_tool_search"></label>
@@ -31,7 +31,7 @@
                         <blockquote>个人资料 <span class="small text-red">(以下均为必填项)</span></blockquote>
                         <ul class="form-checker-board">
                             <li class="col-sm-3"><label><span>姓名</span><input id="personnel_contractor_add_user" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>账号</span><input id="personnel_contractor_add_acco" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>工号</span><input id="personnel_contractor_add_acco" class="form-control" type="text"></label></li>
                             <li class="col-sm-3"><label><span>电话</span><input id="personnel_contractor_add_tels" class="form-control" type="text"></label></li>
                             <li class="col-sm-3"><label><span>地址</span><input id="personnel_contractor_add_addr" class="form-control" type="text"></label></li>
                             <li class="col-sm-3"><label><span>承包商类型</span><select id="personnel_contractor_add_type"  class="form-control"><!-- JS推进 --></select></label></li>
@@ -104,7 +104,7 @@
                         <blockquote>个人资料 <span class="small text-red">(以下均为必填项)</span></blockquote>
                         <ul class="form-checker-board">
                             <li class="col-sm-3"><label><span>姓名</span><input id="personnel_contractor_edit_user" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>账号</span><input id="personnel_contractor_edit_acco" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>工号</span><input id="personnel_contractor_edit_acco" class="form-control" type="text"></label></li>
                             <li class="col-sm-3"><label><span>电话</span><input id="personnel_contractor_edit_tels" class="form-control" type="text"></label></li>
                             <li class="col-sm-3"><label><span>地址</span><input id="personnel_contractor_edit_addr" class="form-control" type="text"></label></li>
                             <li class="col-sm-3"><label><span>承包商类型</span><select id="personnel_contractor_edit_type"  class="form-control"><!-- JS推进 --></select></label></li>
@@ -192,7 +192,7 @@ $(function(){
     personnel_contractor_add_submit         = $("#personnel_contractor_add_submit"),        //添加提交
 
     personnel_contractor_add_user           = $("#personnel_contractor_add_user"),          //姓名字段
-    personnel_contractor_add_acco           = $("#personnel_contractor_add_acco"),          //账号字段
+    personnel_contractor_add_acco           = $("#personnel_contractor_add_acco"),          //工号字段
     personnel_contractor_add_tels           = $("#personnel_contractor_add_tels"),          //手机字段
     personnel_contractor_add_addr           = $("#personnel_contractor_add_addr"),          //地址字段
     personnel_contractor_add_type           = $("#personnel_contractor_add_type"),          //承包商类型
@@ -207,7 +207,7 @@ $(function(){
     personnel_contractor_edit_submit        = $("#personnel_contractor_edit_submit"),       //修改提交
 
     personnel_contractor_edit_user          = $("#personnel_contractor_edit_user"),         //姓名字段
-    personnel_contractor_edit_acco          = $("#personnel_contractor_edit_acco"),         //账号字段
+    personnel_contractor_edit_acco          = $("#personnel_contractor_edit_acco"),         //工号字段
     personnel_contractor_edit_tels          = $("#personnel_contractor_edit_tels"),         //手机字段
     personnel_contractor_edit_addr          = $("#personnel_contractor_edit_addr"),         //地址字段
     personnel_contractor_edit_type          = $("#personnel_contractor_edit_type"),         //承包商类型
@@ -233,7 +233,7 @@ $(function(){
 
     //本地接口
     var personnel_contractor_api       = {
-        datagrid  : API.test_datagrid,                                                      //数据表格
+        datagrid  : LOCAL + "Personnel/contractor.json",                                    //数据表格
         select    : LOCAL + "Test/test_select.json",                                        //下拉选择
         uploader  : LOCAL + "Test/test_upload.php"                                          //上传路径
     }
@@ -243,6 +243,7 @@ $(function(){
         height      : "page",
         sortable    : false,
         showRowIndex: false,
+        configs     : { R0:{className:"text-center"} },        
         states      : {
             fixedLeftUntil  : 1,
             fixedRightFrom  : 14,
@@ -253,20 +254,20 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {name:"id",     label:"ID",                width:100},
-                {name:"blank",  label:"姓名",              width:150},
-                {name:"blank",  label:"账号",              width:150},
-                {name:"blank",  label:"电话",              width:150},
-                {name:"blank",  label:"地址",              width:150},
-                {name:"blank",  label:"承包商类型",        width:150},
-                {name:"blank",  label:"账户信息",          width:150},
-                {name:"blank",  label:"工作状态",          width:150},
-                {name:"blank",  label:"在建施工合同总金额",width:150},
-                {name:"blank",  label:"施工合同总金额",    width:150},
-                {name:"blank",  label:"巡检奖赏次数/金额", width:150},
-                {name:"blank",  label:"巡检处罚次数/金额", width:150},
-                {name:"blank",  label:"保期维修率",        width:150},
-                {name:"operate",label:"操作",              width:180,
+                {name:"id",    label:"ID",                width:50 },
+                {name:"user",  label:"姓名",              width:80 },
+                {name:"numb",  label:"工号",              width:80 },
+                {name:"tels",  label:"电话",              width:100},
+                {name:"addr",  label:"地址",              width:150},
+                {name:"type",  label:"承包商类型",        width:120},
+                {name:"mess",  label:"账户信息",          width:100},
+                {name:"state", label:"工作状态",          width:100},
+                {name:"money1",label:"在建施工合同总金额",width:150},
+                {name:"money2",label:"施工合同总金额",    width:150},
+                {name:"money3",label:"巡检奖赏次数/金额", width:150},
+                {name:"money4",label:"巡检处罚次数/金额", width:150},
+                {name:"period",label:"保期维修率",        width:120},
+                {name:"operate",label:"操作",             width:180,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
@@ -414,7 +415,7 @@ $(function(){
                             <table class="table table-bordered">
                                 <tr>
                                     <td>姓名：刘德华</td>
-                                    <td>账号：LDH</td>
+                                    <td>工号：10015</td>
                                     <td>手机：183****7556</td>
                                     <td>地址：石家庄市裕华区体育大街富金大厦A座601</td>
                                 </tr>

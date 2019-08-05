@@ -2,7 +2,7 @@
 <div class="page-wrapper" id="personnel_company">
 
     <!-- 数据网格 -->
-	<div class="datagrid datagrid-borderless datagrid-striped" id="personnel_company_datagrid">
+	<div class="datagrid datagrid-striped" id="personnel_company_datagrid">
         <div class="tool-group">
             <div class="pull-left">
                 <select class="form-control" id="personnel_company_chosen"><!-- JS推进 --></select>
@@ -93,6 +93,7 @@ $(function(){
                 height      : "page",
                 sortable    : false,
                 showRowIndex: false,
+                configs     : { R0:{className:"text-center"} },
                 states      : {
                     pager : {
                         page        : 1,
@@ -101,11 +102,12 @@ $(function(){
                 },
                 dataSource : {
                     cols   : [
-                        {name:"deparmenid"  ,label:"ID"  ,width:0.1},
-                        {name:"deparmenname",label:"部门",width:0.2},
-                        {name:"staffname"   ,label:"人员",width:0.2},
-                        {name:"positionname",label:"职务",width:0.2},
-                        {name:"tel"         ,label:"电话",width:0.2},
+                        {name:"deparmenid"  ,label:"ID"  ,width:50},
+                        {name:"deparmenname",label:"部门",width:80},
+                        {name:"staffname"   ,label:"人员",width:80},
+                        {name:"positionname",label:"职务",width:80},
+                        {name:"tel"         ,label:"电话",width:100},
+                        {name:""            ,label:"",width:.1},
                     ],
                     remote : function(){
                         return {
