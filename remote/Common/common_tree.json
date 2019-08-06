@@ -30,15 +30,15 @@
                     { "title":"每月统计","icon":"","url":"personnel_attendance_month"},
                     { "title":"打卡时间","icon":"","url":"personnel_attendance_punch_time"},
                     { "title":"打卡记录","icon":"","url":"personnel_attendance_punch_record"},
-                    { "title":"假期余额","icon":"","url":"blank"},
-                    { "title":"加班记录","icon":"","url":"blank"}
+                    { "title":"假期余额","icon":"","url":"personnel_attendance_vacation"},
+                    { "title":"加班记录","icon":"","url":"personnel_attendance_overtime"}
                 ]
             },
             { 
                 "title"     :"员工培训",
                 "children"  :[
-                    { "title":"员工考试","icon":"","url":"blank"},
-                    { "title":"成绩查询","icon":"","url":"blank"}
+                    { "title":"员工考试","icon":"","url":"personnel_train_exam"},
+                    { "title":"成绩查询","icon":"","url":"personnel_train_result"}
                 ]
             }
         ]

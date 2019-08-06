@@ -1,0 +1,11 @@
+{
+    "result"  : "success",
+    "data"    : [
+        {"id": 1,"blank":"成绩查询"},
+        {"id": 2,"blank":"成绩查询"},
+        {"id": 3,"blank":"成绩查询"},
+        {"id": 4,"blank":"成绩查询"}
+    ],
+    "message" : "",
+    "pager"   : {"page":1,"recTotal":20,"recPerPage":20}
+}

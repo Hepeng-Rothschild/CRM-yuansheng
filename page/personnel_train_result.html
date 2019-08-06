@@ -1,0 +1,177 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="personnel_train_result">
+    
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="personnel_train_result_datagrid">
+        <div class="tool-group">
+            <div class="tool-inline">
+                <label><span>搜索：</span><input type="text" class="form-control" id="personnel_train_result_tool_search"></label>
+                <label>
+                    <span>在职状态：</span>
+                    <select class="form-control" id="personnel_train_result_tool_select1"><!--JS推进--></select>
+                </label>
+                <label>
+                    <span>部门选择：</span>
+                    <select class="form-control" id="personnel_train_result_tool_select2"><!--JS推进--></select>
+                </label>
+                <label>
+                    <span>时间：</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control form-date" id="personnel_train_result_tool_date1" readonly> 
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control form-date" id="personnel_train_result_tool_date2" readonly>
+                    </div>
+                </label>
+                <label><button class="btn btn-primary" id="personnel_train_result_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <label class="pull-right"><button class="btn btn-primary" id="personnel_train_result_export_btn"><i class="icon icon-external-link"></i> 导出</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="datagrid-container no-border-left"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function(){
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    personnel_train_result                    = $("#personnel_train_result"),                     //页面ID
+    personnel_train_result_datagrid           = $("#personnel_train_result_datagrid"),            //数据表格
+    //搜索
+    personnel_train_result_tool_search        = $("#personnel_train_result_tool_search"),         //搜索字段
+    personnel_train_result_tool_select1       = $("#personnel_train_result_tool_select1"),        //下拉选择1
+    personnel_train_result_tool_select2       = $("#personnel_train_result_tool_select2"),        //下拉选择2
+    personnel_train_result_tool_date1         = $("#personnel_train_result_tool_date1"),          //开始时间
+    personnel_train_result_tool_date2         = $("#personnel_train_result_tool_date2"),          //结束时间   
+    personnel_train_result_search_btn         = $("#personnel_train_result_search_btn"),          //搜索按钮
+    personnel_train_result_export_btn         = $("#personnel_train_result_export_btn");          //导出按钮
+
+    /*远程接口
+    var personnel_train_result_api       = {
+        chosen    : ROUTE + "Company/getAllCompany",                                                      //下拉选择
+        datagrid  : ROUTE + "Company/getCompanybyid",                                                     //数据表格(id)
+    }*/
+
+    //本地接口
+    var personnel_train_result_api       = {
+        datagrid  : LOCAL + "Personnel/Train/result.json",                                              //数据表格
+        select    : LOCAL + "Test/test_select.json",                                                    //下拉选择
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    personnel_train_result_datagrid.datagrid({
+        height      : "page",
+        sortable    : false,
+        showRowIndex: false,
+        configs     : { R0:{className:"text-center"} },
+        states      : {
+            fixedLeftUntil  : 3,
+            pager           : {
+                page        : 1,
+                recPerPage  : 20,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {width:1,  name:"id",         label:"ID"      },
+                {width:80, name:"blank",      label:"字段"    },
+            ],
+            remote : function(){
+                return {
+                    url     : personnel_train_result_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });//datagrid()
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    personnel_train_result_datagrid_obj    = personnel_train_result_datagrid.data("zui.datagrid"),//表格对象
+    personnel_train_result_result_edit_btn = ".personnel_train_result_result_edit_btn";           //修改按钮
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //在职状态
+    $.ajax({
+        url     : personnel_train_result_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_train_result_tool_select1.html(option);
+        }
+    });
+
+    //部门选择
+    $.ajax({
+        url     : personnel_train_result_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            personnel_train_result_tool_select2.html(option);
+        }
+    });
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    personnel_train_result_search_btn.click(function(){
+
+        //字段整理
+        var keyword  
+        = "?search=" + personnel_train_result_tool_search.val() 
+        + "&select1="+ personnel_train_result_tool_select1.val()
+        + "&select2="+ personnel_train_result_tool_select2.val()
+        + "&date1="  + personnel_train_result_tool_date1.val()
+        + "&date2="  + personnel_train_result_tool_date2.val();
+
+        //GET提交
+        um_render(personnel_train_result_datagrid_obj,personnel_train_result_api.datagrid+keyword);
+
+    });
+
+    //导出按钮-----------------------------------------------------------------------------------------------
+    personnel_train_result_export_btn.click(function(){
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                search  : personnel_train_result_tool_search.val(),
+                select1 : personnel_train_result_tool_select1.val(),
+                select2 : personnel_train_result_tool_select2.val(),
+                date1   : personnel_train_result_tool_date1.val(),
+                date2   : personnel_train_result_tool_date2.val(),
+            },
+            beforesend : function(){
+                mess_success("导出中…");
+            },
+            success : function(data){
+                if( data.code>0 ){
+                    window.open("./remote/Upload/test_export.pdf");//data.url
+                } else {
+                    mess_warning(data.mess);
+                }
+            }
+        });
+
+    });
+
+});//预加载结尾
+</script>
+<script src="./js/callback.js"></script>
