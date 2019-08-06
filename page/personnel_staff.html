@@ -1419,97 +1419,105 @@ $(function(){
                 if( data.code>0 ){
 
                     //数据赋值
-                    personnel_staff_edit_user.val(  data.mess ),
-                    personnel_staff_edit_sexy.val(  1         ),
-                    personnel_staff_edit_tels.val(  data.mess ),
-                    personnel_staff_edit_nati.val(  data.mess ),
-                    personnel_staff_edit_birt.val(  data.mess ),
-                    personnel_staff_edit_marr.val(  1         ),
-                    personnel_staff_edit_cont_user.val( data.mess ),
-                    personnel_staff_edit_cont_tels.val( data.mess ),
-                    personnel_staff_edit_addr1.val( 1         ),
-                    personnel_staff_edit_addr2.val( 1         ),
-                    personnel_staff_edit_addr3.val( 1         ),
-                    personnel_staff_edit_addr4.val( data.mess ),
+                    personnel_staff_edit_user.val(  data.mess       );
+                    personnel_staff_edit_sexy.val(  1               );
+                    personnel_staff_edit_tels.val(  data.mess       );
+                    personnel_staff_edit_nati.val(  data.mess       );
+                    personnel_staff_edit_birt.val(  data.mess       );
+                    personnel_staff_edit_marr.val(  1               );
+                    personnel_staff_edit_cont_user.val( data.mess   );
+                    personnel_staff_edit_cont_tels.val( data.mess   );
+                    personnel_staff_edit_addr1.val( 1               );
+                    personnel_staff_edit_addr2.val( 1               );
+                    personnel_staff_edit_addr3.val( 1               );
+                    personnel_staff_edit_addr4.val( data.mess       );
                     //入职情况
-                    personnel_staff_edit_comp.val(  1         ),
-                    personnel_staff_edit_depa.val(  1         ),
-                    personnel_staff_edit_post.val(  1         ),
-                    personnel_staff_edit_pass.val(  data.mess ),
-                    personnel_staff_edit_wag1.val(  data.mess ),
-                    personnel_staff_edit_wag2.val(  data.mess ),
+                    personnel_staff_edit_comp.val(  1               );
+                    personnel_staff_edit_depa.val(  1               );
+                    personnel_staff_edit_post.val(  1               );
+                    personnel_staff_edit_pass.val(  data.mess       );
+                    personnel_staff_edit_wag1.val(  data.mess       );
+                    personnel_staff_edit_wag2.val(  data.mess       );
                     //资料上传
                     personnel_staff_edit_uploader1.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader1",
                             [{id:1,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
-                    ),
+                    );
                     personnel_staff_edit_uploader2.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader2",
                             [{id:2,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
-                    ),
+                    );
                     personnel_staff_edit_uploader3.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader3",
                             [{id:3,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
-                    ),
+                    );
                     personnel_staff_edit_uploader4.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader4",
                             [{id:4,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
-                    ),
+                    );
                     personnel_staff_edit_uploader5.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader5",
                             [{id:5,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
-                    ),
+                    );
                     personnel_staff_edit_uploader6.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader6",
                             [{id:6,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
-                    ),
+                    );
+                    //资料上传对属性的影响
+                    personnel_staff_edit_uploader1.attr("path","./remote/Upload/test_upload.jpg");
+                    personnel_staff_edit_uploader2.attr("path","./remote/Upload/test_upload.jpg");
+                    personnel_staff_edit_uploader3.attr("path","./remote/Upload/test_upload.jpg");
+                    personnel_staff_edit_uploader4.attr("path","./remote/Upload/test_upload.jpg");
+                    personnel_staff_edit_uploader5.attr("path","./remote/Upload/test_upload.jpg");
+                    personnel_staff_edit_uploader6.attr("path","./remote/Upload/test_upload.jpg");
+
                     //最高学历
-                    personnel_staff_add_edu_school.val( data.mess ),
-                    personnel_staff_edit_edu_date1.val( data.mess ),
-                    personnel_staff_edit_edu_date2.val( data.mess ),
-                    personnel_staff_edit_edu_major.val( data.mess ),
-                    personnel_staff_edit_edu_level.val( 1         ),
-                    personnel_staff_edit_edu_years.val( 1         ),
+                    personnel_staff_add_edu_school.val( data.mess    );
+                    personnel_staff_edit_edu_date1.val( data.mess    );
+                    personnel_staff_edit_edu_date2.val( data.mess    );
+                    personnel_staff_edit_edu_major.val( data.mess    );
+                    personnel_staff_edit_edu_level.val( 1            );
+                    personnel_staff_edit_edu_years.val( 1            );
                     //工作经历
-                    personnel_staff_edit_work1_comp.val(   data.mess ),
-                    personnel_staff_edit_work1_date1.val(  data.mess ),
-                    personnel_staff_edit_work1_date2.val(  data.mess ),
-                    personnel_staff_edit_work1_post.val(   data.mess ),
-                    personnel_staff_edit_work1_reason.val( data.mess ),
+                    personnel_staff_edit_work1_comp.val(   data.mess );
+                    personnel_staff_edit_work1_date1.val(  data.mess );
+                    personnel_staff_edit_work1_date2.val(  data.mess );
+                    personnel_staff_edit_work1_post.val(   data.mess );
+                    personnel_staff_edit_work1_reason.val( data.mess );
 
-                    personnel_staff_edit_work2_comp.val(   data.mess ),
-                    personnel_staff_edit_work2_date1.val(  data.mess ),
-                    personnel_staff_edit_work2_date2.val(  data.mess ),
-                    personnel_staff_edit_work2_post.val(   data.mess ),
-                    personnel_staff_edit_work2_reason.val( data.mess ),
+                    personnel_staff_edit_work2_comp.val(   data.mess );
+                    personnel_staff_edit_work2_date1.val(  data.mess );
+                    personnel_staff_edit_work2_date2.val(  data.mess );
+                    personnel_staff_edit_work2_post.val(   data.mess );
+                    personnel_staff_edit_work2_reason.val( data.mess );
 
-                    personnel_staff_edit_work3_comp.val(   data.mess ),
-                    personnel_staff_edit_work3_date1.val(  data.mess ),
-                    personnel_staff_edit_work3_date2.val(  data.mess ),
-                    personnel_staff_edit_work3_post.val(   data.mess ),
-                    personnel_staff_edit_work3_reason.val( data.mess ),
+                    personnel_staff_edit_work3_comp.val(   data.mess );
+                    personnel_staff_edit_work3_date1.val(  data.mess );
+                    personnel_staff_edit_work3_date2.val(  data.mess );
+                    personnel_staff_edit_work3_post.val(   data.mess );
+                    personnel_staff_edit_work3_reason.val( data.mess );
                     //家庭状况
-                    personnel_staff_edit_home1_user.val( data.mess ),
-                    personnel_staff_edit_home1_rela.val( data.mess ),
-                    personnel_staff_edit_home1_work.val( data.mess ),
-                    personnel_staff_edit_home1_tels.val( data.mess ),
+                    personnel_staff_edit_home1_user.val( data.mess   );
+                    personnel_staff_edit_home1_rela.val( data.mess   );
+                    personnel_staff_edit_home1_work.val( data.mess   );
+                    personnel_staff_edit_home1_tels.val( data.mess   );
 
-                    personnel_staff_edit_home2_user.val( data.mess ),
-                    personnel_staff_edit_home2_rela.val( data.mess ),
-                    personnel_staff_edit_home2_work.val( data.mess ),
-                    personnel_staff_edit_home2_tels.val( data.mess ),
+                    personnel_staff_edit_home2_user.val( data.mess   );
+                    personnel_staff_edit_home2_rela.val( data.mess   );
+                    personnel_staff_edit_home2_work.val( data.mess   );
+                    personnel_staff_edit_home2_tels.val( data.mess   );
 
                     //其他操作
                     personnel_staff_edit_submit.attr("dataId",data_id);                     //数据ID传值

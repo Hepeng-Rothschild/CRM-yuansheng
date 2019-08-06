@@ -65,7 +65,7 @@
                             </li>
                         </ul>
                         <div class="clearfix"></div>
-                        <div class="uploader upload-free" id="personnel_contractor_add_uploaders">
+                        <div class="uploader upload-free" id="personnel_contractor_add_uploaders" path="">
                             <div class="uploader-message text-center"><div class="content"></div></div>
                             <div class="uploader-files file-list"></div>
                             <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
@@ -143,7 +143,7 @@
                             </li>
                         </ul>
                         <div class="clearfix"></div>
-                        <div class="uploader upload-free" id="personnel_contractor_edit_uploaders">
+                        <div class="uploader upload-free" id="personnel_contractor_edit_uploaders" path="">
                             <div class="uploader-message text-center"><div class="content"></div></div>
                             <div class="uploader-files file-list"></div>
                             <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
@@ -523,7 +523,11 @@ $(function(){
                         upload_free(personnel_contractor_api.uploader,"personnel_contractor_edit_uploaders",
                             [{id:3,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
-                    ),                    
+                    ),
+                    //资料上传对属性的影响
+                    personnel_contractor_edit_uploader1.attr("path","./remote/Upload/test_upload.jpg");
+                    personnel_contractor_edit_uploader2.attr("path","./remote/Upload/test_upload.jpg");
+                    personnel_contractor_edit_uploaders.attr("path","./remote/Upload/test_upload.jpg");
                     //其他操作
                     personnel_contractor_edit_submit.attr("dataId",data_id);                     //数据ID传值
                     personnel_contractor_edit_box.modal("show");                                 //盒子显示
@@ -560,7 +564,7 @@ $(function(){
                 pic1      : personnel_contractor_edit_uploader1.attr("path") || "",
                 pic2      : personnel_contractor_edit_uploader2.attr("path") || "",
                 pics      : personnel_contractor_edit_uploaders.attr("path").substr(1).split(",") || "",
-             },
+            },
             success : function(data){
                 if( data.code>0 ){
                     mess_success(data.mess);

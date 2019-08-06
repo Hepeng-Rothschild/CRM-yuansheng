@@ -275,6 +275,7 @@ function upload_fixed(upapi,upid,staticFiles){
         staticFiles         : staticFiles || [],                        //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
             doRemoveFile();                                             //本地删除
+            $("#"+upid).attr("path","");
         },
         uploadedMessage     : function(result){                         //上传结果
             return "上传成功";
@@ -311,6 +312,7 @@ function upload_free(upapi,upid,staticFiles){
         staticFiles         : staticFiles || [],                        //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
             doRemoveFile();                                             //本地删除
+            $("#"+upid).attr("path","");
         }
     }  
 }
