@@ -28,24 +28,6 @@
     </div>
     <!-- datagrid -->
 
-    <!-- 打卡时间 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_attendance_punch_time_statistic_box">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">打卡时间</h4>
-                </div>
-                <div class="modal-body modal-scroll">
-                    <div class="container">
-                        <table class='table table-bordered table-striped'><!-- JS推进 --></table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- personnel_attendance_punch_time_statistic_box -->
-
 </div>
 <!-- page-wrapper -->
 
@@ -96,19 +78,38 @@ $(function(){
                 {html:true,width:80,name:"depart",    label:"部门"    },
                 {html:true,width:80,name:"number",    label:"工号"    },
                 {html:true,width:80,name:"post",      label:"职位"    },
-                {html:true,width:.9,name:"statistic", label:"打卡时间",
-                    valueOperator : {
-                        getter : function(dataValue,cell){
-                            var resu = "<tr><th>日期</th><th>打卡时间</th></tr>";
-                            for(var i= 0;i<dataValue.length;i++){ 
-                                resu += "<tr><td style='width:80px'>"+Object.keys(dataValue[i])+"</td><td>"+Object.values(dataValue[i])+"</td></tr>"; 
-                            }
-                            resu += "";
-                            $("#personnel_attendance_punch_time_statistic_box table").html(resu);
-                            return '<a data-toggle="modal" title="点击查看" data-target="#personnel_attendance_punch_time_statistic_box">查看</a>';
-                        }
-                    }
-                }
+                //打卡时间
+                {html:true,width:180,name:"statistic",label:"01",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[0] +"'>"+dataValue[0] +"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"02",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[1] +"'>"+dataValue[1] +"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"03",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[2] +"'>"+dataValue[2] +"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"04",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[3] +"'>"+dataValue[3] +"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"05",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[4] +"'>"+dataValue[4] +"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"06",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[5] +"'>"+dataValue[5] +"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"07",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[6] +"'>"+dataValue[6] +"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"08",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[7] +"'>"+dataValue[7] +"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"09",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[8] +"'>"+dataValue[8] +"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"10",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[9] +"'>"+dataValue[9] +"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"11",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[10]+"'>"+dataValue[10]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"12",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[11]+"'>"+dataValue[11]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"13",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[12]+"'>"+dataValue[12]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"14",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[13]+"'>"+dataValue[13]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"15",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[14]+"'>"+dataValue[14]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"16",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[15]+"'>"+dataValue[15]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"17",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[16]+"'>"+dataValue[16]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"18",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[17]+"'>"+dataValue[17]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"19",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[18]+"'>"+dataValue[18]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"20",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[19]+"'>"+dataValue[19]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"21",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[20]+"'>"+dataValue[20]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"22",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[21]+"'>"+dataValue[21]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"23",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[22]+"'>"+dataValue[22]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"24",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[23]+"'>"+dataValue[23]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"25",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[24]+"'>"+dataValue[24]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"26",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[25]+"'>"+dataValue[25]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"27",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[26]+"'>"+dataValue[26]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"28",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[27]+"'>"+dataValue[27]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"29",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[28]+"'>"+dataValue[28]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"30",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[29]+"'>"+dataValue[29]+"</span>";}}},
+                {html:true,width:180,name:"statistic",label:"31",valueOperator:{getter:function(dataValue){ return "<span title='"+dataValue[30]+"'>"+dataValue[30]+"</span>";}}},
             ],
             remote : function(){
                 return {
@@ -162,21 +163,6 @@ $(function(){
                 option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
             }
             personnel_attendance_punch_time_tool_select2.html(option);
-        }
-    });
-
-    //修改类型
-    $.ajax({
-        url     : personnel_attendance_punch_time_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            var option = "<option>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-            }
-            personnel_attendance_punch_time_result_edit_type.html(option);
         }
     });
 

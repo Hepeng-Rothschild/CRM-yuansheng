@@ -10,7 +10,7 @@
     window.API = {
         //全局接口
         common_tree     : LOCAL+"Common/common_tree.json",          //左侧导航 ROUTE+"User/GetUserPageInfo"
-        common_view     : "./page/welcome.html",                    //欢迎页面 personnel_attendance_days welcome
+        common_view     : "./page/welcome.html",                    //欢迎页面 
 
         //测试接口
         test_datagrid   : LOCAL+"Test/test_datagrid.json",          //数据表格

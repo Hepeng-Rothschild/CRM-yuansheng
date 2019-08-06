@@ -32,24 +32,6 @@
     </div>
     <!-- datagrid -->
 
-    <!-- 考勤统计 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_attendance_month_statistic_box">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">考勤统计</h4>
-                </div>
-                <div class="modal-body modal-scroll">
-                    <div class="container">
-                        <table class='table table-bordered table-striped'><!-- JS推进 --></table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- personnel_attendance_month_statistic_box -->
-
 </div>
 <!-- page-wrapper -->
 
@@ -114,19 +96,38 @@ $(function(){
                 {html:true,width:70,name:"out_day",   label:"出差天数"},
                 {html:true,width:70,name:"leave_min", label:"请假时长"},
                 {html:true,width:70,name:"add_min",   label:"加班时长"},
-                {html:true,width:.9,name:"statistic", label:"考勤统计",
-                    valueOperator : {
-                        getter : function(dataValue,cell){
-                            var resu = "<tr><th>日期</th><th>状态</th></tr>";
-                            for(var i= 0;i<dataValue.length;i++){ 
-                                resu += "<tr><td style='width:80px'>"+Object.keys(dataValue[i])+"</td><td>"+Object.values(dataValue[i])+"</td></tr>"; 
-                            }
-                            resu += "";
-                            $("#personnel_attendance_month_statistic_box table").html(resu);
-                            return '<a data-toggle="modal" title="点击查看" data-target="#personnel_attendance_month_statistic_box">查看</a>';
-                        }
-                    }
-                }
+                //考勤统计
+                {width:185,name:"statistic",label:"01",valueOperator:{getter:function(dataValue){ return dataValue[0];  }}},
+                {width:185,name:"statistic",label:"02",valueOperator:{getter:function(dataValue){ return dataValue[1];  }}},
+                {width:185,name:"statistic",label:"03",valueOperator:{getter:function(dataValue){ return dataValue[2];  }}},
+                {width:185,name:"statistic",label:"04",valueOperator:{getter:function(dataValue){ return dataValue[3];  }}},
+                {width:185,name:"statistic",label:"05",valueOperator:{getter:function(dataValue){ return dataValue[4];  }}},
+                {width:185,name:"statistic",label:"06",valueOperator:{getter:function(dataValue){ return dataValue[5];  }}},
+                {width:185,name:"statistic",label:"07",valueOperator:{getter:function(dataValue){ return dataValue[6];  }}},
+                {width:185,name:"statistic",label:"08",valueOperator:{getter:function(dataValue){ return dataValue[7];  }}},
+                {width:185,name:"statistic",label:"09",valueOperator:{getter:function(dataValue){ return dataValue[8];  }}},
+                {width:185,name:"statistic",label:"10",valueOperator:{getter:function(dataValue){ return dataValue[9];  }}},
+                {width:185,name:"statistic",label:"11",valueOperator:{getter:function(dataValue){ return dataValue[10]; }}},
+                {width:185,name:"statistic",label:"12",valueOperator:{getter:function(dataValue){ return dataValue[11]; }}},
+                {width:185,name:"statistic",label:"13",valueOperator:{getter:function(dataValue){ return dataValue[12]; }}},
+                {width:185,name:"statistic",label:"14",valueOperator:{getter:function(dataValue){ return dataValue[13]; }}},
+                {width:185,name:"statistic",label:"15",valueOperator:{getter:function(dataValue){ return dataValue[14]; }}},
+                {width:185,name:"statistic",label:"16",valueOperator:{getter:function(dataValue){ return dataValue[15]; }}},
+                {width:185,name:"statistic",label:"17",valueOperator:{getter:function(dataValue){ return dataValue[16]; }}},
+                {width:185,name:"statistic",label:"18",valueOperator:{getter:function(dataValue){ return dataValue[17]; }}},
+                {width:185,name:"statistic",label:"19",valueOperator:{getter:function(dataValue){ return dataValue[18]; }}},
+                {width:185,name:"statistic",label:"20",valueOperator:{getter:function(dataValue){ return dataValue[19]; }}},
+                {width:185,name:"statistic",label:"21",valueOperator:{getter:function(dataValue){ return dataValue[20]; }}},
+                {width:185,name:"statistic",label:"22",valueOperator:{getter:function(dataValue){ return dataValue[21]; }}},
+                {width:185,name:"statistic",label:"23",valueOperator:{getter:function(dataValue){ return dataValue[22]; }}},
+                {width:185,name:"statistic",label:"24",valueOperator:{getter:function(dataValue){ return dataValue[23]; }}},
+                {width:185,name:"statistic",label:"25",valueOperator:{getter:function(dataValue){ return dataValue[24]; }}},
+                {width:185,name:"statistic",label:"26",valueOperator:{getter:function(dataValue){ return dataValue[25]; }}},
+                {width:185,name:"statistic",label:"27",valueOperator:{getter:function(dataValue){ return dataValue[26]; }}},
+                {width:185,name:"statistic",label:"28",valueOperator:{getter:function(dataValue){ return dataValue[27]; }}},
+                {width:185,name:"statistic",label:"29",valueOperator:{getter:function(dataValue){ return dataValue[28]; }}},
+                {width:185,name:"statistic",label:"30",valueOperator:{getter:function(dataValue){ return dataValue[29]; }}},
+                {width:185,name:"statistic",label:"31",valueOperator:{getter:function(dataValue){ return dataValue[30]; }}},
             ],
             remote : function(){
                 return {
@@ -180,21 +181,6 @@ $(function(){
                 option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
             }
             personnel_attendance_month_tool_select2.html(option);
-        }
-    });
-
-    //修改类型
-    $.ajax({
-        url     : personnel_attendance_month_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            var option = "<option>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-            }
-            personnel_attendance_month_result_edit_type.html(option);
         }
     });
 

@@ -303,7 +303,7 @@ $(function(){
         showRowIndex: false,
         configs     : { R0:{className:"text-center"} },
         states      : {
-            fixedRightFrom  : 10,
+            fixedLeftUntil  : 2,
             pager           : {
                 page        : 1,
                 recPerPage  : 20,
@@ -317,9 +317,9 @@ $(function(){
                 {name:"post",  label:"应聘职位",width:80 },
                 {name:"sexy",  label:"性别",    width:50 },
                 {name:"time",  label:"面试时间",width:120},
-                {name:"state", label:"状态",    width:100},
-                {name:"record",label:"抄送",    width:100},
-                {name:"sugg",  label:"审批意见",width:.1,
+                {name:"state", label:"状态",    width:85 },
+                {name:"record",label:"抄送",    width:80 },
+                {name:"sugg",  label:"审批意见",width:120,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell,dataGrid){
@@ -327,7 +327,7 @@ $(function(){
                         }
                     }
                 },
-                {name:"operate",label:"操作",width:135,
+                {name:"operate",label:"操作",width:140,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
@@ -352,7 +352,7 @@ $(function(){
                             return temp;
                         }
                     }
-                }
+                },
             ],
             remote : function(){
                 return {

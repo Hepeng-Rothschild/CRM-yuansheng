@@ -147,7 +147,6 @@ $(function(){
     setup_personnel_company_dele_box    = $("#setup_personnel_company_dele_box"),   //删除盒子
     setup_personnel_company_dele_submit = $("#setup_personnel_company_dele_submit");//删除提交
 
-
     /*远程接口
     var setup_personnel_company_api       = {
         chosen    : ROUTE + "Company/getAllCompany",                                        //下拉选择
@@ -168,8 +167,6 @@ $(function(){
         showRowIndex: false,
         configs     : { R0:{className:"text-center"} },
         states      : {
-            fixedLeftUntil  : 1,
-            fixedRightFrom  : 6,
             pager           : {
                 page        : 1,
                 recPerPage  : 20,
@@ -181,8 +178,8 @@ $(function(){
                 {name:"comp",   label:"分公司名称",width:100},
                 {name:"manager",label:"企业管理人",width:100},
                 {name:"city",   label:"地区"      ,width:100},
-                {name:"ip",     label:"公司网络IP",width:.1 },
-                {name:"operate",label:"操作"      ,width:180,
+                {name:"ip",     label:"公司网络IP",width:100},
+                {name:"operate",label:"操作"      ,width:100,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
