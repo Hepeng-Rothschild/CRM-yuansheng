@@ -246,13 +246,13 @@ function um_render(datagrid_obj,datagrid_url){
     datagrid_obj.render();
 }
 
-/* upload_option()  上传参数
+/* upload_fixed()  固定上传
  * @param   upapi   上传路径接口
  * @param   upid    上传组件ID
  * @param   array   静态文件
  * @return  object  参数对象
  */
-function upload_option(upapi,upid,staticFiles){
+function upload_fixed(upapi,upid,staticFiles){
     return {
         url                 : upapi,                                    //上传路径
         fileList            : "grid",                                   //列表配置
@@ -278,6 +278,39 @@ function upload_option(upapi,upid,staticFiles){
         },
         uploadedMessage     : function(result){                         //上传结果
             return "上传成功";
+        }
+    }  
+}
+
+/* upload_free()    自由上传
+ * @param   upapi   上传路径接口
+ * @param   upid    上传组件ID
+ * @param   array   静态文件
+ * @return  object  参数对象
+ */
+var upload_free_path = "";
+function upload_free(upapi,upid,staticFiles){
+    return {
+        url                 : upapi,                                    //上传路径
+        fileList            : "grid",                                   //列表配置
+        previewImageIcon    : true ,                                    //图片预览
+        autoUpload          : true,                                     //自动上传
+        filters             : {                                         //文件过滤
+            mime_types         : [{title:"图片",extensions:"jpg,png"}], //类型限定
+            max_file_size      : "1mb",                                 //大小限定
+            prevent_duplicates : true                                   //重传禁止
+        },
+        multipart_params    : function(file,params){                    //参数提交
+            return { upid:upid };
+        },            
+        responseHandler     : function(res,file){                       //远程响应
+            var data = um_json(res.response);
+            upload_free_path = upload_free_path+","+data.path;
+            $("#"+data.upid).attr("path",upload_free_path);
+        },
+        staticFiles         : staticFiles || [],                        //静态文件
+        deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
+            doRemoveFile();                                             //本地删除
         }
     }  
 }

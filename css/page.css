@@ -74,3 +74,8 @@
     width: 120px;
     min-height: 120px;
 }
+/*上传：自由上传*/
+.upload-free{
+    width: 96.5%;
+    margin: 5px auto;
+}

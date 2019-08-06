@@ -28,7 +28,7 @@ if (isset($_REQUEST["name"])) {
 	$fileName = uniqid("file_");
 }
 
-$filePath = $path . DIRECTORY_SEPARATOR . date('Ymd_His',time()).'.jpg';//$fileName
+$filePath = $path . DIRECTORY_SEPARATOR . date('Ymd_His',time())."_".mt_rand(999,9999).'.jpg';	//$fileName
 
 // Chunking might be enabled
 $chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;

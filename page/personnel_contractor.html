@@ -50,21 +50,26 @@
                         <blockquote>证件信息</blockquote>
                         <ul class="uploader-square-box">
                             <li class="col-sm-2">
-                                <div class="uploader">
-                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                <div class="uploader" id="personnel_contractor_add_uploader1">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>身份证正面</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader">
-                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                <div class="uploader" id="personnel_contractor_add_uploader2">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>身份证反面</strong>
                             </li>
                         </ul>
-                        <div class="clearfix"></div><hr>
+                        <div class="clearfix"></div>
+                        <div class="uploader upload-free" id="personnel_contractor_add_uploaders">
+                            <div class="uploader-message text-center"><div class="content"></div></div>
+                            <div class="uploader-files file-list"></div>
+                            <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
+                        </div>
                         <div class="text-center">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                             <button type="button" class="btn btn-primary" id="personnel_contractor_add_submit">保存</button>
@@ -123,21 +128,26 @@
                         <blockquote>证件信息</blockquote>
                         <ul class="uploader-square-box">
                             <li class="col-sm-2">
-                                <div class="uploader">
-                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                <div class="uploader" id="personnel_contractor_edit_uploader1">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>身份证正面</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader">
-                                    <div class="uploader-message text-center"><div class="content"></div><button class="close">×</button></div>
+                                <div class="uploader" id="personnel_contractor_edit_uploader2">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>身份证反面</strong>
                             </li>
                         </ul>
-                        <div class="clearfix"></div><hr>
+                        <div class="clearfix"></div>
+                        <div class="uploader upload-free" id="personnel_contractor_edit_uploaders">
+                            <div class="uploader-message text-center"><div class="content"></div></div>
+                            <div class="uploader-files file-list"></div>
+                            <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
+                        </div>
                         <div class="text-center">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                             <button type="button" class="btn btn-primary" id="personnel_contractor_edit_submit">保存</button>
@@ -201,6 +211,9 @@ $(function(){
     personnel_contractor_add_card_bank      = $("#personnel_contractor_add_card_bank"),     //开户行
     personnel_contractor_add_card_user      = $("#personnel_contractor_add_card_user"),     //开户人
 
+    personnel_contractor_add_uploader1      = $("#personnel_contractor_add_uploader1"),
+    personnel_contractor_add_uploader2      = $("#personnel_contractor_add_uploader2"),
+    personnel_contractor_add_uploaders      = $("#personnel_contractor_add_uploaders"),
     //修改
     personnel_contractor_edit_btn           = $("#personnel_contractor_edit_btn"),          //修改按钮
     personnel_contractor_edit_box           = $("#personnel_contractor_edit_box"),          //修改盒子
@@ -216,14 +229,17 @@ $(function(){
     personnel_contractor_edit_card_bank     = $("#personnel_contractor_edit_card_bank"),    //开户行
     personnel_contractor_edit_card_user     = $("#personnel_contractor_edit_card_user"),    //开户人
 
+    personnel_contractor_edit_uploader1     = $("#personnel_contractor_edit_uploader1"),
+    personnel_contractor_edit_uploader2     = $("#personnel_contractor_edit_uploader2"),
+    personnel_contractor_edit_uploaders     = $("#personnel_contractor_edit_uploaders"),
+
     //查看
     personnel_contractor_show_box           = $("#personnel_contractor_show_box"),          //查看盒子
 
     //删除
     personnel_contractor_dele_box           = $("#personnel_contractor_dele_box"),          //删除盒子
     personnel_contractor_dele_submit        = $("#personnel_contractor_dele_submit");       //删除提交
-
-
+ 
     /*远程接口
     var personnel_contractor_api       = {
         chosen    : ROUTE + "Company/getAllCompany",                                        //下拉选择
@@ -378,6 +394,9 @@ $(function(){
                 card_bank : personnel_contractor_add_card_bank.val(),
                 card_user : personnel_contractor_add_card_user.val(),
                 //资料上传
+                pic1      : personnel_contractor_add_uploader1.attr("path") || "",
+                pic2      : personnel_contractor_add_uploader2.attr("path") || "",
+                pics      : personnel_contractor_add_uploaders.attr("path").substr(1).split(",") || "",
             },
             success : function(data){
                 if( data.code>0 ){
@@ -490,7 +509,21 @@ $(function(){
                     personnel_contractor_edit_card_bank.val( data.mess );
                     personnel_contractor_edit_card_user.val( data.mess );
                     //资料上传
-                    
+                    personnel_contractor_edit_uploader1.uploader(
+                        upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader1",
+                            [{id:1,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                        )
+                    ),
+                    personnel_contractor_edit_uploader2.uploader(
+                        upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader2",
+                            [{id:2,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                        )
+                    ),
+                    personnel_contractor_edit_uploaders.uploader(
+                        upload_free(personnel_contractor_api.uploader,"personnel_contractor_edit_uploaders",
+                            [{id:3,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                        )
+                    ),                    
                     //其他操作
                     personnel_contractor_edit_submit.attr("dataId",data_id);                     //数据ID传值
                     personnel_contractor_edit_box.modal("show");                                 //盒子显示
@@ -514,9 +547,19 @@ $(function(){
             dataType: "json",
             data    : { 
                 id          : data_id,
-                //基本信息 
+                user      : personnel_contractor_edit_user.val(),
+                acco      : personnel_contractor_edit_acco.val(),
+                tels      : personnel_contractor_edit_tels.val(),
+                addr      : personnel_contractor_edit_addr.val(),
+                type      : personnel_contractor_edit_type.val(),
+                state     : personnel_contractor_edit_state.val(),
+                card_numb : personnel_contractor_edit_card_numb.val(),
+                card_bank : personnel_contractor_edit_card_bank.val(),
+                card_user : personnel_contractor_edit_card_user.val(),
                 //资料上传
-
+                pic1      : personnel_contractor_edit_uploader1.attr("path") || "",
+                pic2      : personnel_contractor_edit_uploader2.attr("path") || "",
+                pics      : personnel_contractor_edit_uploaders.attr("path").substr(1).split(",") || "",
              },
             success : function(data){
                 if( data.code>0 ){
@@ -566,29 +609,9 @@ $(function(){
     });
 
     //上传组件-----------------------------------------------------------------------------------------------
-    personnel_contractor.find(".uploader").uploader({
-
-        //数据配置
-        url                 : personnel_contractor_api.uploader,            //上传路径
-        fileList            : "grid",                                       //列表配置
-        previewImageIcon    : true ,                                        //图片预览
-       
-        //远程处理
-        deleteActionOnDone  : function(file,doRemoveFile){                  //远程删除
-            doRemoveFile();
-            $.ajax({
-                url     : "./remote/Test/test_upload_operation.php",
-                type    : "post",
-                data    : { filename : "" },
-                success : function(data){ console.log(data); }
-            });
-        },                                  
-        responseHandler     : function(responseObject,file){                //远程响应
-            console.log(responseObject.response);
-            //if(responseObject.response.indexOf("error")){ return "上传失败" + responseObject.response; }
-        }
-        
-    });
+    personnel_contractor_add_uploader1.uploader(upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_add_uploader1"));
+    personnel_contractor_add_uploader2.uploader(upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_add_uploader2"));
+    personnel_contractor_add_uploaders.uploader(upload_free(personnel_contractor_api.uploader,"personnel_contractor_add_uploaders"));
 
 });//预加载结尾
 </script>
