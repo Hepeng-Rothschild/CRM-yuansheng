@@ -1,100 +1,35 @@
 <?php
-//确保文件未缓存(例如在iOS设备上发生的情况)
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-header("Cache-Control: no-store, no-cache, must-revalidate");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
-
-ini_set('date.timezone','Asia/Shanghai');
-
-//执行时间
-@set_time_limit(5 * 60);
-
 //参数配置
-$path 	= "../Upload/";	//保存路径
-$clear 	= true; 		//旧文件清理
-$tage 	= 5 * 3600; 	//临时文件期限
+ini_set("date.timezone","Asia/Shanghai"); 										//时区设置
+$path = "../Upload/"; 															//保存路径
+
+//参数接收
+$upid   = isset($_REQUEST["upid"]  ) ? $_REQUEST["upid"] : "upid"; 				//上传ID
+$chunk  = isset($_REQUEST["chunk"] ) ? intval($_REQUEST["chunk"] ) : 0; 		//分块处理
+$chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 0; 		//分块处理
 
 //路径创建
 if( !file_exists($path) ){ @mkdir($path); }
 
-//文件名获取
-if (isset($_REQUEST["name"])) {
-	$fileName = $_REQUEST["name"];
-} elseif (!empty($_FILES)) {
-	$fileName = $_FILES["file"]["name"];
-} else {
-	$fileName = uniqid("file_");
-}
+//名称处理
+$file_name = date("Ymd_His",time())."_".mt_rand(999,9999).".jpg"; 				//文件名称
+$file_path = $path.DIRECTORY_SEPARATOR.$file_name;								//文件路径+名称
 
-$filePath = $path . DIRECTORY_SEPARATOR . date('Ymd_His',time())."_".mt_rand(999,9999).'.jpg';	//$fileName
+//文件生成
+$in  = @fopen( $_FILES["file"]["tmp_name"],"rb" ); 								//临时文件(只读)
+$out = @fopen( "{$file_path}.part"        ,$chunks ? "ab":"wb" ); 				//分块文件(只写|w清空,a末尾)
+while( $part=fread($in,4096) ){ fwrite($out,$part); } 							//分块写入($in=>$out)
 
-// Chunking might be enabled
-$chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
-$chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 0;
-
-
-// Remove old temp files	
-if ($clear) {
-	if (!is_dir($path) || !$dir = opendir($path)) {
-		die('{"jsonrpc" : "2.0", "error" : {"code": 100, "message": "Failed to open temp directory."}, "id" : "id"}');
-	}
-
-	while (($file = readdir($dir)) !== false) {
-		$tmpfilePath = $path . DIRECTORY_SEPARATOR . $file;
-
-		// If temp file is current file proceed to the next
-		if ($tmpfilePath == "{$filePath}.part") {
-			continue;
-		}
-
-		// Remove temp file if it is older than the max age and is not the current file
-		if (preg_match('/\.part$/', $file) && (filemtime($tmpfilePath) < time() - $tage)) {
-			@unlink($tmpfilePath);
-		}
-	}
-	closedir($dir);
-}	
-
-
-// Open temp file
-if (!$out = @fopen("{$filePath}.part", $chunks ? "ab" : "wb")) {
-	die('{"jsonrpc" : "2.0", "error" : {"code": 102, "message": "Failed to open output stream."}, "id" : "id"}');
-}
-
-if (!empty($_FILES)) {
-	if ($_FILES["file"]["error"] || !is_uploaded_file($_FILES["file"]["tmp_name"])) {
-		die('{"jsonrpc" : "2.0", "error" : {"code": 103, "message": "Failed to move uploaded file."}, "id" : "id"}');
-	}
-
-	// Read binary input stream and append it to temp file
-	if (!$in = @fopen($_FILES["file"]["tmp_name"], "rb")) {
-		die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
-	}
-} else {	
-	if (!$in = @fopen("php://input", "rb")) {
-		die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
-	}
-}
-
-while ($buff = fread($in, 4096)) {
-	fwrite($out, $buff);
-}
-
+//文件关闭
+@fclose($in );
 @fclose($out);
-@fclose($in);
 
-// Check if file has been uploaded
-if (!$chunks || $chunk == $chunks - 1) {
-	// Strip the temp .part suffix off 
-	rename("{$filePath}.part", $filePath);
-}
+//后缀移除(临时文件)
+if( !$chunks || $chunk==$chunks-1 ){ rename("{$file_path}.part",$file_path); } 	//重新命名
 
-
-$result = array(
-	"result" => "ok",
-	"upid" 	 => $_REQUEST["upid"],
-	"path" 	 => $filePath
-);
-echo json_encode( $result );
+//结果返回
+echo json_encode(array( 														//返回格式
+	"result" => "ok", 															//结果状态
+	"upid" 	 => $upid,															//上传ID
+	"file" 	 => $file_path 														//文件路径+名称
+));
