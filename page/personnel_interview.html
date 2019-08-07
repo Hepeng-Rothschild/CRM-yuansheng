@@ -13,9 +13,9 @@
                 <label>
                     <span>面试时间：</span>
                     <div class="input-group">
-                        <input type="text" class="form-control form-time" id="personnel_interview_tool_date1" readonly> 
+                        <input type="text" class="form-control" id="personnel_interview_tool_date1" readonly> 
                         <span class="input-group-addon fix-border fix-padding"></span>
-                        <input type="text" class="form-control form-time" id="personnel_interview_tool_date2" readonly>
+                        <input type="text" class="form-control" id="personnel_interview_tool_date2" readonly>
                     </div>
                 </label>
                 <label>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="personnel_interview_add_date">面试时间</label>
-                            <div class="col-sm-8"><input class="form-control form-time" id="personnel_interview_add_date" readonly></div>
+                            <div class="col-sm-8"><input class="form-control" id="personnel_interview_add_date" readonly></div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="personnel_interview_add_post">应聘职位</label>
@@ -373,7 +373,13 @@ $(function(){
     personnel_interview_fail_btn    = ".personnel_interview_fail_btn",                  //淘汰
     personnel_interview_empl_btn    = ".personnel_interview_empl_btn";                  //录用
 
-    //工具条-职位-----------------------------------------------------------------------------------------------
+    //时间组件-----------------------------------------------------------------------------------------------
+    personnel_interview_tool_date1.datetimepicker(option_date);
+    personnel_interview_tool_date2.datetimepicker(option_date);
+    personnel_interview_add_date.datetimepicker(option_time);
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //职位
     $.ajax({
         url     : personnel_interview_api.select_post,
         type    : "get",
@@ -389,7 +395,7 @@ $(function(){
             personnel_interview_edit_post.html(option);             //修改职位
         }
     });
-    //工具条-状态-----------------------------------------------------------------------------------------------
+    //状态
     $.ajax({
         url     : personnel_interview_api.select_state,
         type    : "get",
@@ -403,7 +409,7 @@ $(function(){
             personnel_interview_tool_select2.html(option);
         }
     });
-    //添加抄送-----------------------------------------------------------------------------------------------
+    //添加抄送
     $.ajax({
         url     : personnel_interview_api.select_copy,
         type    : "get",

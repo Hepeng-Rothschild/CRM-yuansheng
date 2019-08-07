@@ -1,3 +1,4 @@
+//底层代码----------------------------------------------------------------------------------
 //PushMenu()
 +function ($) {
     'use strict';
@@ -37,7 +38,6 @@
     };
   
     // PushMenu Class Definition
-    // =========================
     var PushMenu = function (options) {
       this.options = options;
       this.init();
@@ -130,7 +130,6 @@
     };
   
     // PushMenu Plugin Definition
-    // ==========================
     function Plugin(option) {
       return this.each(function () {
         var $this = $(this);
@@ -151,14 +150,12 @@
     $.fn.pushMenu.Constructor = PushMenu;
   
     // No Conflict Mode
-    // ================
     $.fn.pushMenu.noConflict = function () {
       $.fn.pushMenu = old;
       return this;
     };
   
     // Data API
-    // ========
     $(document).on('click', Selector.button, function (e) {
       e.preventDefault();
       Plugin.call($(this), 'toggle');
@@ -168,17 +165,7 @@
     });
 }(jQuery);
 
-if(false){
-    //禁止右键
-    //document.oncontextmenu = function(){ return false; }
-    //禁止选中
-    if (typeof(document.onselectstart) != 'undefined') {
-        document.onselectstart = function(){ return false; }
-    } else {
-        document.write('<style type="text/css">body { -moz-user-select: none; }</style>');
-    }
-}
-
+//配置声明----------------------------------------------------------------------------------
 //正则规则
 var reg_ip   = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
 var reg_2_10 = /^.{2,10}$/;
@@ -207,6 +194,7 @@ var option_time = {
     format   : "yyyy-mm-dd hh:ii"
 }
 
+//函数声明----------------------------------------------------------------------------------
 //数据网格-取值(修改删除用)
 function cell_value(rowIndex,colIndex){
     return $(".datagrid").data("zui.datagrid").getCell(rowIndex,colIndex).value;

@@ -17,9 +17,9 @@
                 <label>
                     <span>时间：</span>
                     <div class="input-group">
-                        <input type="text" class="form-control form-date" id="personnel_attendance_punch_record_tool_date1" readonly> 
+                        <input type="text" class="form-control" id="personnel_attendance_punch_record_tool_date1" readonly> 
                         <span class="input-group-addon fix-border fix-padding"></span>
-                        <input type="text" class="form-control form-date" id="personnel_attendance_punch_record_tool_date2" readonly>
+                        <input type="text" class="form-control" id="personnel_attendance_punch_record_tool_date2" readonly>
                     </div>
                 </label>
                 <label><button class="btn btn-primary" id="personnel_attendance_punch_record_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
@@ -132,6 +132,10 @@ $(function(){
     personnel_attendance_punch_record_datagrid_obj    = personnel_attendance_punch_record_datagrid.data("zui.datagrid"),//表格对象
     personnel_attendance_punch_record_result_edit_btn = ".personnel_attendance_punch_record_result_edit_btn";           //修改按钮
 
+    //时间组件-----------------------------------------------------------------------------------------------
+    personnel_attendance_punch_record_tool_date1.datetimepicker(option_date);
+    personnel_attendance_punch_record_tool_date2.datetimepicker(option_date);
+    
     //下拉选项-----------------------------------------------------------------------------------------------
     //在职状态
     $.ajax({

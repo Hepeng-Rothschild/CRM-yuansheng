@@ -16,7 +16,7 @@
                 </label>
                 <label>
                     <span>时间：</span>
-                    <input type="text" class="form-control form-month" id="personnel_attendance_punch_time_tool_date1" readonly>
+                    <input type="text" class="form-control" id="personnel_attendance_punch_time_tool_date1" readonly>
                 </label>
                 <label><button class="btn btn-primary" id="personnel_attendance_punch_time_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <label class="pull-right"><button class="btn btn-primary" id="personnel_attendance_punch_time_export_btn"><i class="icon icon-external-link"></i> 导出</button></label>
@@ -42,7 +42,7 @@ $(function(){
     personnel_attendance_punch_time_tool_search        = $("#personnel_attendance_punch_time_tool_search"),         //搜索字段
     personnel_attendance_punch_time_tool_select1       = $("#personnel_attendance_punch_time_tool_select1"),        //下拉选择1
     personnel_attendance_punch_time_tool_select2       = $("#personnel_attendance_punch_time_tool_select2"),        //下拉选择2
-    personnel_attendance_punch_time_tool_date1         = $("#personnel_attendance_punch_time_tool_date1"),          //开始时间  
+    personnel_attendance_punch_time_tool_date1         = $("#personnel_attendance_punch_time_tool_date1"),          //时间选择  
     personnel_attendance_punch_time_search_btn         = $("#personnel_attendance_punch_time_search_btn"),          //搜索按钮
     personnel_attendance_punch_time_export_btn         = $("#personnel_attendance_punch_time_export_btn");          //导出按钮
 
@@ -134,6 +134,9 @@ $(function(){
     var 
     personnel_attendance_punch_time_datagrid_obj    = personnel_attendance_punch_time_datagrid.data("zui.datagrid"),//表格对象
     personnel_attendance_punch_time_result_edit_btn = ".personnel_attendance_punch_time_result_edit_btn";           //修改按钮
+    
+    //时间组件-----------------------------------------------------------------------------------------------
+    personnel_attendance_punch_time_tool_date1.datetimepicker(option_month);
 
     //下拉选项-----------------------------------------------------------------------------------------------
     //在职状态
