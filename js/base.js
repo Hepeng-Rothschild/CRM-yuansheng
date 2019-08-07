@@ -184,6 +184,29 @@ var reg_ip   = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-
 var reg_2_10 = /^.{2,10}$/;
 var reg_tel  = /^[1][0-9]{10}$/;
 
+//时间格式化配置
+//年月
+var option_month = {
+    autoclose: 1,
+    startView: 3,
+    minView  : 3,
+    format   : "yyyy-mm"
+}
+//年月日
+var option_date = {
+    autoclose: 1,
+    startView: 2,
+    minView  : 2,
+    format   : "yyyy-mm-dd"
+}
+//年月日时
+var option_time = {
+    autoclose: 1,
+    startView: 2,
+    minView  : 1,
+    format   : "yyyy-mm-dd hh:ii"
+}
+
 //数据网格-取值(修改删除用)
 function cell_value(rowIndex,colIndex){
     return $(".datagrid").data("zui.datagrid").getCell(rowIndex,colIndex).value;
