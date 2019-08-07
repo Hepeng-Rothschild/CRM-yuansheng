@@ -108,7 +108,7 @@ html,body{
 .main-sidebar{
     width:220px;
     height:100%;
-    background:#263238;
+    /*background:#263238;*/
     color:rgba(163,175,183,.9);
     position:fixed;
     top:50px;left:0;

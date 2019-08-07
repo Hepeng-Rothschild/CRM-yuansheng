@@ -1,6 +1,5 @@
 /*样式引入*/
 @import url(zui.min.css);
-@import url(blue.css);
 @import url(base.css);
 @import url(../fonts/iconfont.css);
 /*数据表格：无ID时去除左描边*/

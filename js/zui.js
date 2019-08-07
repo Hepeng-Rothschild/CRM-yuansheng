@@ -3252,7 +3252,7 @@
 
         if(this.isShown && this.options.backdrop) {
             var doAnimate = $.support.transition && animate
-
+            $(".modal-backdrop").remove();//遮罩移除
             this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
                 .appendTo(this.$body)
 
