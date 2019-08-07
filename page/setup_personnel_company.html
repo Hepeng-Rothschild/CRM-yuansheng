@@ -228,10 +228,10 @@ $(function(){
     setup_personnel_company_add_submit.click(function(){
 
         /*正则验证
-        if (!reg_2_10.test(setup_personnel_company_add_comp.val())){ mess_warning("公司名称格式错误"  ); return; }
-        if (!reg_2_10.test(setup_personnel_company_add_user.val())){ mess_warning("企业管理人格式错误"); return; }
-        if (!reg_2_10.test(setup_personnel_company_add_addr.val())){ mess_warning("地区称格式错误"    ); return; }
-        if (!reg_ip.test(setup_personnel_company_add_ip.val()))    { mess_warning("IP格式错误"        ); return; }*/
+        if (!reg_2_10.test(setup_personnel_company_add_comp.val())){ um_tip("公司名称格式错误","1500"   ,"text-danger"); return; }
+        if (!reg_2_10.test(setup_personnel_company_add_user.val())){ um_tip("企业管理人格式错误","1500" ,"text-danger"); return; }
+        if (!reg_2_10.test(setup_personnel_company_add_addr.val())){ um_tip("地区称格式错误","1500"     ,"text-danger"); return; }
+        if (!reg_ip.test(setup_personnel_company_add_ip.val()))    { um_tip("IP格式错误","1500"         ,"text-danger"); return; }*/
 
         //远程提交
         $.ajax({
@@ -246,10 +246,10 @@ $(function(){
             },
             success : function(data){
                 if( data.code>0 ){
-                    mess_success(data.mess);
+                    um_tip(data.mess);
                     um_reset(setup_personnel_company_datagrid_obj,setup_personnel_company_api.datagrid);
                 } else {
-                    mess_warning(data.mess);
+                    um_tip(data.mess,"1500","text-danger");
                 }
             }
         });
@@ -279,7 +279,7 @@ $(function(){
                     setup_personnel_company_edit_submit.attr("dataId",data_id);                     //数据ID传值
                     setup_personnel_company_edit_box.modal("show");                                 //盒子显示
                 } else {
-                    mess_warning(data.mess);
+                    um_tip(data.mess,"1500","text-danger");
                 }
             }
         });
@@ -305,10 +305,10 @@ $(function(){
              },
             success : function(data){
                 if( data.code>0 ){
-                    mess_success(data.mess);
+                    um_tip(data.mess);
                     um_reset(setup_personnel_company_datagrid_obj,setup_personnel_company_api.datagrid);
                 } else {
-                    mess_warning(data.mess);
+                    um_tip(data.mess,"1500","text-danger");
                 }
             }
         });
@@ -340,10 +340,10 @@ $(function(){
             data    : { id:data_id },
             success : function(data){
                 if( data.code>0 ){
-                    mess_success(data.mess);
+                    um_tip(data.mess);
                     um_reset(setup_personnel_company_datagrid_obj,setup_personnel_company_api.datagrid);
                 } else {
-                    mess_warning(data.mess);
+                    um_tip(data.mess,"1500","text-danger");
                 }
             }
         });

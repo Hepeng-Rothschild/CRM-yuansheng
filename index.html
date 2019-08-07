@@ -245,7 +245,7 @@ $(function(){
             dataType: "json",
             data    : { state:"logout" },
             success : function(data){
-                mess_success(data.mess);
+                um_tip(data.mess);
                 setTimeout(function(){
                     window.location.href="login.html";
                 },1500);

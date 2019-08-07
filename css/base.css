@@ -367,6 +367,27 @@ html,body{
     flex:1;  
     overflow:hidden; 
 }
+/*信息提示*/
+.um-tip-mask{
+    position: fixed;
+    top: 0;left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background:rgba(0,0,0,.3);
+}
+.um-tip{
+    text-align: center;
+    display: inline-block;
+    padding: 10px;
+    background: #fff;
+    min-width: 120px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin:-26px 0 0 -115px;
+    border-radius: 3px;
+}
 /*欢迎文本*/
 .welcome-text{
     line-height:500px;

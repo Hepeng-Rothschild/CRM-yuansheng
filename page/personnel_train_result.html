@@ -159,13 +159,13 @@ $(function(){
                 date2   : personnel_train_result_tool_date2.val(),
             },
             beforesend : function(){
-                mess_success("导出中…");
+                um_tip("导出中…");
             },
             success : function(data){
                 if( data.code>0 ){
                     window.open("./remote/Upload/test_export.pdf");//data.url
                 } else {
-                    mess_warning(data.mess);
+                    um_tip(data.mess,"1500","text-danger");
                 }
             }
         });

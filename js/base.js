@@ -183,16 +183,6 @@ if(false){
 var reg_ip   = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
 var reg_2_10 = /^.{2,10}$/;
 var reg_tel  = /^[1][0-9]{10}$/;
- 
-//信息提示-警告
-function mess_warning(text){
-    new $.zui.Messager(text,{type:"warning",time:1000,close:false}).show();
-}
-
-//信息提示-成功
-function mess_success(text){
-    new $.zui.Messager(text,{type:"success",time:1500,close:false}).show();
-}
 
 //数据网格-取值(修改删除用)
 function cell_value(rowIndex,colIndex){
@@ -208,6 +198,24 @@ function um_json(data){
         data = JSON.parse(data);
     }
     return data;
+}
+
+/* um_tip() 信息提示
+ * @param text  提示文本 string 
+ * @param time  持续时间 string (default:1500|0为不消失)
+ * @param cls   提示字色 string (default:"text-success")
+ */
+function um_tip(text,time,cls){
+    $(".um-tip-mask").remove();
+    var time = time || 1500;
+    var cls  = cls  || "text-success";
+    var html = '<div class="um-tip-mask"><div class="um-tip '+ cls +'">'+text+'</div></div>';
+    $("body").append(html);
+    if(time!=0){
+        setTimeout(function(){
+            $(".um-tip-mask").fadeOut(500);
+        },time);
+    }
 }
 
 /* um_reset() 重置操作
@@ -246,7 +254,7 @@ function um_render(datagrid_obj,datagrid_url){
     datagrid_obj.render();
 }
 
-/* upload_fixed()  固定上传
+/* upload_fixed()   固定上传
  * @param   upapi   上传路径接口
  * @param   upid    上传组件ID
  * @param   array   静态文件

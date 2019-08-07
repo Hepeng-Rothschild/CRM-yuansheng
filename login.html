@@ -42,8 +42,8 @@ $(function(){
         common_login_val_password = $("#common_login_val_password").val();
 
         //正则验证
-        if ( common_login_val_account !="admin"  ){ mess_warning("无此账号"); return; }
-        if ( common_login_val_password!="123456" ){ mess_warning("密码错误"); return; }
+        if ( common_login_val_account !="admin"  ){ um_tip("无此账号","1500","text-danger"); return; }
+        if ( common_login_val_password!="123456" ){ um_tip("密码错误","1500","text-danger"); return; }
 
         //远程提交
         $.ajax({
@@ -52,7 +52,7 @@ $(function(){
             dataType: "json", 
             data    :{common_login_val_account,common_login_val_password},
             success :function(data){
-                mess_success(data.mess);
+                um_tip(data.mess);
                 setTimeout(function(){
                     window.location.href="index.html";
                 },1500);
