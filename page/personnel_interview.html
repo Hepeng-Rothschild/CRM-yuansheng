@@ -11,6 +11,14 @@
                     <select class="form-control" id="personnel_interview_tool_select1"><!--JS推进--></select>
                 </label>
                 <label>
+                    <span>分公司：</span>
+                    <select class="form-control" id="personnel_interview_tool_select2"><!--JS推进--></select>
+                </label>                   
+                <label>
+                    <span>状态：</span>
+                    <select class="form-control" id="personnel_interview_tool_select3"><!--JS推进--></select>
+                </label>
+                <label>
                     <span>面试时间：</span>
                     <div class="input-group">
                         <input type="text" class="form-control" id="personnel_interview_tool_date1" readonly> 
@@ -18,19 +26,15 @@
                         <input type="text" class="form-control" id="personnel_interview_tool_date2" readonly>
                     </div>
                 </label>
-                <label>
-                    <span>状态：</span>
-                    <select class="form-control" id="personnel_interview_tool_select2"><!--JS推进--></select>
-                </label>
                 <label><button type="button" class="btn btn-primary" id="personnel_interview_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
-                <label><button type="button" class="btn btn-primary" id="personnel_interview_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
-                <label class="pull-right">
+                <div class="clearfix"></div>
+                <label>
                     <div class="btn-group" data-toggle="buttons">
                         <label id="personnel_interview_che1_btn" class="btn btn-primary active"><input type="radio">邀约面试</label>
                         <label id="personnel_interview_che2_btn" class="btn btn-primary"><input type="radio">人才库</label>
                     </div>
                 </label>
-                <div class="clearfix"></div>
+                <label><button type="button" class="btn btn-primary" id="personnel_interview_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
             </form>
         </div>
         <div class="datagrid-container"></div>
@@ -54,9 +58,11 @@
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required">性别</label>
-                            <div class="col-sm-8"> &nbsp;
-                                <label class="radio-inline"><input type="radio" name="personnel_interview_add_sexy" value="1" checked="checked">男</label>
-                                <label class="radio-inline"><input type="radio" name="personnel_interview_add_sexy" value="2">女</label>
+                            <div class="col-sm-8">
+                                <div class="btn-group" data-toggle="buttons" id="personnel_interview_add_sexy">
+                                    <label class="btn active"><input type="radio" name="personnel_interview_add_sexy" value="1">先生</label>
+                                    <label class="btn">       <input type="radio" name="personnel_interview_add_sexy" value="2">女士</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group require">
@@ -104,9 +110,11 @@
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required">性别</label>
-                            <div class="col-sm-8"> &nbsp;
-                                <label class="radio-inline"><input type="radio" name="personnel_interview_edit_sexy" value="1" checked="checked">男</label>
-                                <label class="radio-inline"><input type="radio" name="personnel_interview_edit_sexy" value="2">女</label>
+                            <div class="col-sm-8">
+                                <div class="btn-group" data-toggle="buttons" id="personnel_interview_edit_sexy">
+                                    <label class="btn"><input type="radio" name="personnel_interview_edit_sexy" value="1">先生</label>
+                                    <label class="btn"><input type="radio" name="personnel_interview_edit_sexy" value="2">女士</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group require">
@@ -243,6 +251,7 @@ $(function(){
     personnel_interview_tool_search      = $("#personnel_interview_tool_search"), //搜索字段
     personnel_interview_tool_select1     = $("#personnel_interview_tool_select1"),//下拉选项1
     personnel_interview_tool_select2     = $("#personnel_interview_tool_select2"),//下拉选项2
+    personnel_interview_tool_select3     = $("#personnel_interview_tool_select3"),//下拉选项3  
     personnel_interview_tool_date1       = $("#personnel_interview_tool_date1"),  //开始时间
     personnel_interview_tool_date2       = $("#personnel_interview_tool_date2"),  //结束时间
     //按钮
@@ -395,7 +404,7 @@ $(function(){
             personnel_interview_edit_post.html(option);             //修改职位
         }
     });
-    //状态
+    //分公司
     $.ajax({
         url     : personnel_interview_api.select_state,
         type    : "get",
@@ -409,6 +418,20 @@ $(function(){
             personnel_interview_tool_select2.html(option);
         }
     });
+    //状态
+    $.ajax({
+        url     : personnel_interview_api.select_state,
+        type    : "get",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+ data[i].id +"'>"+data[i].name+"</option>"
+            }
+            personnel_interview_tool_select3.html(option);
+        }
+    });    
     //添加抄送
     $.ajax({
         url     : personnel_interview_api.select_copy,
@@ -445,7 +468,7 @@ $(function(){
                     option += "<option value='"+ data[i].id +"'>"+data[i].name+"(pass)</option>";
                     type.push( data[i].id );                        //关键词
                 }
-                personnel_interview_tool_select2.html(option);
+                personnel_interview_tool_select3.html(option);
 
                 //按钮
                 personnel_interview_add_btn.show();
@@ -478,7 +501,7 @@ $(function(){
                     option += "<option value='"+ data[i].id +"'>"+data[i].name+"(fail)</option>";
                     type.push( data[i].id );                        //关键词
                 }
-                personnel_interview_tool_select2.html(option);
+                personnel_interview_tool_select3.html(option);
 
                 //按钮
                 personnel_interview_add_btn.hide();
@@ -501,7 +524,8 @@ $(function(){
         + "&date1="  + personnel_interview_tool_date1.val()
         + "&date2="  + personnel_interview_tool_date2.val()
         + "&select1="+ personnel_interview_tool_select1.val()
-        + "&select2="+ personnel_interview_tool_select2.val();
+        + "&select2="+ personnel_interview_tool_select2.val()
+        + "&select3="+ personnel_interview_tool_select3.val();
 
         //GET提交
         um_render(personnel_interview_datagrid_obj,personnel_interview_api.datagrid+keyword);
@@ -516,8 +540,7 @@ $(function(){
     personnel_interview_add_submit.click(function(){
 
         //性别字段
-        var personnel_interview_add_sexy = $("[name='personnel_interview_add_sexy']:checked");
-
+        var personnel_interview_add_sexy = $("#personnel_interview_add_sexy .active input");
         //远程提交
         $.ajax({
             url     : API.test_response,
@@ -557,8 +580,12 @@ $(function(){
             data    : { id:data_id },
             success : function(data){
                 if( data.code>0 ){
+                    personnel_interview_edit_user.val( data.mess );
+                    personnel_interview_edit_tels.val( data.mess );
+                    var sex_num =1; ( data.mess==1 ) ? sex_num=1 : sex_num=2;
+                    $("#personnel_interview_edit_sexy label:nth-child("+ sex_num +")").addClass("active");
+                    personnel_interview_edit_post.val( data.mess );
                     personnel_interview_edit_submit.attr("rowIndex",data_id);                   //数据ID传值
-                    personnel_interview_edit_box.find("input[type='text']").val(data_id);       //数据填充
                     personnel_interview_edit_box.modal("show");                                 //盒子显示
                 } else {
                     um_tip(data.mess,"1500","text-danger");
@@ -572,7 +599,7 @@ $(function(){
 
         //变量声明
         var data_id  = cell_value($(this).attr("rowIndex"),1);                                  //数据ID 
-        var personnel_interview_edit_sexy = $("[name='personnel_interview_edit_sexy']:checked");//性别字段
+        var personnel_interview_edit_sexy = $("#personnel_interview_edit_sexy .active input");
 
         //远程提交
         $.ajax({

@@ -19,8 +19,8 @@
                     <input type="text" class="form-control" id="personnel_attendance_punch_time_tool_date1" readonly>
                 </label>
                 <label><button class="btn btn-primary" id="personnel_attendance_punch_time_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
-                <label class="pull-right"><button class="btn btn-primary" id="personnel_attendance_punch_time_export_btn"><i class="icon icon-external-link"></i> 导出</button></label>
                 <div class="clearfix"></div>
+                <label><button class="btn btn-primary" id="personnel_attendance_punch_time_export_btn"><i class="icon icon-external-link"></i> 导出</button></label>
             </div>
         </div>
         <div class="datagrid-container no-border-left"></div>
@@ -46,16 +46,19 @@ $(function(){
     personnel_attendance_punch_time_search_btn         = $("#personnel_attendance_punch_time_search_btn"),          //搜索按钮
     personnel_attendance_punch_time_export_btn         = $("#personnel_attendance_punch_time_export_btn");          //导出按钮
 
+    //当前时间获取(影响date1和datagrid)
+    var now_time = new Date().Format("yyyy-MM");
+    
     /*远程接口
     var personnel_attendance_punch_time_api       = {
-        chosen    : ROUTE + "Company/getAllCompany",                                                      //下拉选择
-        datagrid  : ROUTE + "Company/getCompanybyid",                                                     //数据表格(id)
+        chosen    : ROUTE + "Company/getAllCompany",                                                                //下拉选择
+        datagrid  : ROUTE + "Company/getCompanybyid",                                                               //数据表格(id)
     }*/
 
     //本地接口
     var personnel_attendance_punch_time_api       = {
-        datagrid  : LOCAL + "Personnel/Attendance/punch_time.json",                                           //数据表格
-        select    : LOCAL + "Test/test_select.json",                                                    //下拉选择
+        datagrid  : LOCAL + "Personnel/Attendance/punch_time.json",                                                 //数据表格
+        select    : LOCAL + "Test/test_select.json",                                                                //下拉选择
     }
 
     //数据表格-----------------------------------------------------------------------------------------------
@@ -116,6 +119,7 @@ $(function(){
                     url     : personnel_attendance_punch_time_api.datagrid,
                     type    : "POST",
                     dataType: "json",
+                    data    : {  date1 : now_time }
                 }
             }
         },
@@ -137,6 +141,7 @@ $(function(){
     
     //时间组件-----------------------------------------------------------------------------------------------
     personnel_attendance_punch_time_tool_date1.datetimepicker(option_month);
+    personnel_attendance_punch_time_tool_date1.val( now_time );
 
     //下拉选项-----------------------------------------------------------------------------------------------
     //在职状态

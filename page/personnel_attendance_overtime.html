@@ -23,8 +23,8 @@
                     </div>
                 </label>
                 <label><button class="btn btn-primary" id="personnel_attendance_overtime_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
-                <label class="pull-right"><button class="btn btn-primary" id="personnel_attendance_overtime_export_btn"><i class="icon icon-external-link"></i> 导出</button></label>
                 <div class="clearfix"></div>
+                <label><button class="btn btn-primary" id="personnel_attendance_overtime_export_btn"><i class="icon icon-external-link"></i> 导出</button></label>
             </div>
         </div>
         <div class="datagrid-container no-border-left"></div>
@@ -79,6 +79,7 @@ $(function(){
         dataSource : {
             cols   : [
                 {width:1,  name:"id",         label:"ID"      },
+                {width:80, name:"blank",      label:"字段"    },
                 {width:80, name:"blank",      label:"字段"    },
             ],
             remote : function(){
