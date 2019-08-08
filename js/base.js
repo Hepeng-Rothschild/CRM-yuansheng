@@ -168,6 +168,11 @@
 //框架补丁----------------------------------------------------------------------------------
 $(function(){
 
+    //模拟label触发input的focus
+    $(document).on("click",".im-label>span",function(){
+        $(this).parent(".im-label").find("input").eq(0).focus();
+    });
+
     //遮罩隐藏
     $(".modal-backdrop").click(function(){
         var mask = $(this);

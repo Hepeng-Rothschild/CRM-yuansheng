@@ -453,20 +453,24 @@ html,body{
     margin-bottom: -7px;
     overflow: hidden;
 }
-.tool-inline label{
+.tool-inline  label,
+.tool-inline .im-label{
     display: block;
     float: left;
     padding-right:10px;
 }
-.tool-inline label span{
+.tool-inline  label>span,
+.tool-inline .im-label>span{
     line-height: 33px;
     padding:0 5px;
     float: left;
     font-weight: normal;
     cursor: pointer;
 }
-.tool-inline label input,
-.tool-inline label select{
+.tool-inline  label input,
+.tool-inline  label select,
+.tool-inline .im-label input,
+.tool-inline .im-label select{
     width: 120px!important;
     float: left;
 }
