@@ -475,8 +475,11 @@ html,body{
     float: left;
 }
 /*其他样式*/
-[data-toggle="modal"]{
+[data-toggle="modal"],
+.tree span{
     cursor: pointer;
 }
 select{ min-width: 100px!important; }
 .input-min-box input{ width: 120px; }
+
+

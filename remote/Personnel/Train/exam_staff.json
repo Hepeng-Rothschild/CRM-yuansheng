@@ -1,0 +1,21 @@
+[
+    {
+        "title"     : "商务部",
+        "type"      : "level1",
+        "icon"      : "check-empty",
+        "children"  : [
+            { "title":"刘德华","numb":"10010","type":"level2","icon":"check-empty" },
+            { "title":"张学友","numb":"10011","type":"level2","icon":"check-empty" },
+            { "title":"郑中基","numb":"10012","type":"level2","icon":"check-empty" }
+        ]
+    },
+    {
+        "title"     : "网络部",
+        "type"      : "level1",
+        "icon"      : "check-empty",
+        "children"  : [
+            { "title":"马化腾","numb":"10013","type":"level2","icon":"check-empty" },
+            { "title":"雷军"  ,"numb":"10014","type":"level2","icon":"check-empty" }
+        ]
+    }
+]

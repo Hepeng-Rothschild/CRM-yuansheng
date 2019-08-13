@@ -7,30 +7,36 @@
             <div class="tool-inline">
                 <label><span>搜索：</span><input type="text" class="form-control" id="personnel_train_result_tool_search"></label>
                 <label>
-                    <span>在职状态：</span>
+                    <span>考试类型：</span>
                     <select class="form-control" id="personnel_train_result_tool_select1"><!--JS推进--></select>
                 </label>
                 <label>
-                    <span>部门选择：</span>
+                    <span>状态：</span>
                     <select class="form-control" id="personnel_train_result_tool_select2"><!--JS推进--></select>
                 </label>
-                <div class="im-label">
-                    <span>时间：</span>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="personnel_train_result_tool_date1" readonly> 
-                        <span class="input-group-addon fix-border fix-padding"></span>
-                        <input type="text" class="form-control" id="personnel_train_result_tool_date2" readonly>
-                    </div>
-                </div>
                 <label><button class="btn btn-primary" id="personnel_train_result_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
-                <div class="clearfix"></div>
-                <label><button class="btn btn-primary" id="personnel_train_result_export_btn"><i class="icon icon-external-link"></i> 导出</button></label>
             </div>
         </div>
         <div class="datagrid-container no-border-left"></div>
         <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
     </div>
     <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_train_result_show_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container"> <!-- JS推进 --></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_train_result_show_box -->
 
 </div>
 <!-- page-wrapper -->
@@ -49,18 +55,24 @@ $(function(){
     personnel_train_result_tool_date1         = $("#personnel_train_result_tool_date1"),          //开始时间
     personnel_train_result_tool_date2         = $("#personnel_train_result_tool_date2"),          //结束时间   
     personnel_train_result_search_btn         = $("#personnel_train_result_search_btn"),          //搜索按钮
-    personnel_train_result_export_btn         = $("#personnel_train_result_export_btn");          //导出按钮
+    personnel_train_result_export_btn         = $("#personnel_train_result_export_btn"),          //导出按钮
+    //查看
+    personnel_train_result_show_box           = $("#personnel_train_result_show_box"),            //查看盒子
 
+
+
+    a;
     /*远程接口
     var personnel_train_result_api       = {
-        chosen    : ROUTE + "Company/getAllCompany",                                                      //下拉选择
-        datagrid  : ROUTE + "Company/getCompanybyid",                                                     //数据表格(id)
+        chosen    : ROUTE + "Company/getAllCompany",                                              //下拉选择
+        datagrid  : ROUTE + "Company/getCompanybyid",                                             //数据表格(id)
     }*/
 
     //本地接口
     var personnel_train_result_api       = {
-        datagrid  : LOCAL + "Personnel/Train/result.json",                                              //数据表格
-        select    : LOCAL + "Test/test_select.json",                                                    //下拉选择
+        datagrid  : LOCAL + "Personnel/Train/result.json",                                        //数据表格
+        show      : LOCAL + "Personnel/Train/result_show.json",                                   //数据表格        
+        select    : LOCAL + "Test/test_select.json",                                              //下拉选择
     }
 
     //数据表格-----------------------------------------------------------------------------------------------
@@ -83,14 +95,18 @@ $(function(){
                 {width:80, name:"depart",     label:"部门"    },
                 {width:80, name:"post",       label:"职位"    },
                 {width:120,name:"type",       label:"考试类型"},
-                {width:120,name:"subject",    label:"考试题目"},
+                {width:250,name:"subject",    label:"考试题目"},
+                {width:250,name:"examtime",   label:"考试时间"},                
                 {width:80, name:"duration",   label:"考试时长"},
                 {width:80, name:"result",     label:"考试成绩"},
                 {width:80, name:"state",      label:"状态"    },
                 {width:80, name:"operate",    label:"操作",html:true,
                     valueOperator : {
                         getter : function(dataValue,cell,dataGrid){
-                            return `<a>查看</a> <a>归档</a>`;
+                            return `
+                            <a rowIndex="${cell.rowIndex}" class="personnel_train_result_show_btn">查看</a>
+                            <a rowIndex="${cell.rowIndex}" class="personnel_train_result_file_btn">归档</a>
+                            `;
                         }
                     }
                 },
@@ -104,18 +120,15 @@ $(function(){
             }
         }
     });//datagrid()
-
+    
     //变量声明-----------------------------------------------------------------------------------------------
     var 
     personnel_train_result_datagrid_obj    = personnel_train_result_datagrid.data("zui.datagrid"),//表格对象
-    personnel_train_result_result_edit_btn = ".personnel_train_result_result_edit_btn";           //修改按钮
+    personnel_train_result_show_btn        = ".personnel_train_result_show_btn",                  //查看按钮
+    personnel_train_result_file_btn        = ".personnel_train_result_file_btn";                  //归档按钮
 
-    //时间组件-----------------------------------------------------------------------------------------------
-    personnel_train_result_tool_date1.datetimepicker(option_date);
-    personnel_train_result_tool_date2.datetimepicker(option_date);
-    
     //下拉选项-----------------------------------------------------------------------------------------------
-    //在职状态
+    //考试类型
     $.ajax({
         url     : personnel_train_result_api.select,
         type    : "post",
@@ -130,7 +143,7 @@ $(function(){
         }
     });
 
-    //部门选择
+    //状态
     $.ajax({
         url     : personnel_train_result_api.select,
         type    : "post",
@@ -152,43 +165,122 @@ $(function(){
         var keyword  
         = "?search=" + personnel_train_result_tool_search.val() 
         + "&select1="+ personnel_train_result_tool_select1.val()
-        + "&select2="+ personnel_train_result_tool_select2.val()
-        + "&date1="  + personnel_train_result_tool_date1.val()
-        + "&date2="  + personnel_train_result_tool_date2.val();
+        + "&select2="+ personnel_train_result_tool_select2.val();
 
         //GET提交
         um_render(personnel_train_result_datagrid_obj,personnel_train_result_api.datagrid+keyword);
 
     });
 
-    //导出按钮-----------------------------------------------------------------------------------------------
-    personnel_train_result_export_btn.click(function(){
+    //查看按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_train_result_show_btn,function(){
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
 
         //远程提交
         $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : {
-                search  : personnel_train_result_tool_search.val(),
-                select1 : personnel_train_result_tool_select1.val(),
-                select2 : personnel_train_result_tool_select2.val(),
-                date1   : personnel_train_result_tool_date1.val(),
-                date2   : personnel_train_result_tool_date2.val(),
-            },
-            beforesend : function(){
-                um_tip("导出中…");
-            },
+            url  : personnel_train_result_api.show,
+            type : "post",
+            data : { id:data_id },
             success : function(data){
+
                 if( data.code>0 ){
-                    window.open("./remote/Upload/test_export.pdf");//data.url
+
+                    //模板生成
+                    var temp = `
+                        <blockquote>试卷信息</blockquote>
+                        <table class="table table-bordered">
+                            <tr><td style="width:70px;">姓名</td><td>${data.user}</td></tr>
+                            <tr><td>部门    </td><td>${data.depart}</td></tr>
+                            <tr><td>职位    </td><td>${data.post}</td></tr>
+                            <tr><td>分数    </td><td>${data.score}</td></tr>
+                            <tr><td>考试时间</td><td>${data.examtime}</td></tr>
+                            <tr><td>考试时长</td><td>${data.duration}</td></tr>
+                        <table>
+                        <blockquote>试卷详情</blockquote>
+                        <table class="table table-bordered" id="personnel_train_result_show_table2">
+                            <thead>
+                                <tr>
+                                    <th style="width:45px;">序号</th>
+                                    <th>试题</th>
+                                    <th style="width:70px;">正确答案</th>
+                                    <th style="width:70px;">您的答案</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    `;
+                     personnel_train_result_show_box.find(".container").html(temp);
+
+                    //表格生成
+                    var tr = "";
+                    for( var i=0;i<data.list.length;i++ ){
+                        tr+= `
+                            <tr>
+                                <td>${data.list[i].numb}</td>
+                                <td>
+                                    <dl>
+                                        <dt>${data.list[i].tit}</dt>
+                                        <dd>A.${data.list[i].a}</dd>
+                                        <dd>B.${data.list[i].b}</dd>
+                                        <dd>C.${data.list[i].c}</dd>
+                                        <dd>D.${data.list[i].d}</dd>
+                                    </dl>
+                                </td>
+                                <td>${data.list[i].key1}</td>
+                                <td></td>
+                            </tr>
+                        `;
+                    }
+                    personnel_train_result_show_box.find("#personnel_train_result_show_table2 tbody").html(tr);
+
+                    //答案处理
+                    var key2 = "";
+                    for( var j=0;j<data.list.length;j++ ){
+                        if( data.list[j].key1==data.list[j].key2  ){ key2='<span class="text-success">'+ data.list[j].key2 +'</span>'; }
+                        if( data.list[j].key1!==data.list[j].key2 ){ key2='<span class="text-danger">' + data.list[j].key2 +'</span>'; }
+                        personnel_train_result_show_box.find("#personnel_train_result_show_table2 tbody tr").eq(j).find("td:last-child").html(key2);
+                    }
+
+                    //面板显示
+                    personnel_train_result_show_box.modal("show");
+
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.mess,"1000","text-danger");
                 }
+                
             }
         });
 
     });
+
+    //归档按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_train_result_file_btn,function(){
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url  : personnel_train_result_api.show,
+            type : "post",
+            data : { id:data_id },
+            success : function(data){
+                
+                if( data.code>0 ){
+                    um_tip(data.mess);
+                    um_reset(personnel_train_result_datagrid_obj,personnel_train_result_api.datagrid);
+                } else {
+                    um_tip(data.mess,"1500","text-danger");
+                }
+                
+            }
+        });
+
+    });
+    
 
 });//预加载结尾
 </script>

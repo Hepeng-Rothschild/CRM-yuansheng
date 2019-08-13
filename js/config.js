@@ -10,7 +10,7 @@
     window.API = {
         //全局接口
         common_tree     : LOCAL+"Common/common_tree.json",          //左侧导航 ROUTE+"User/GetUserPageInfo"
-        common_view     : "./page/welcome.html",                    //欢迎页面 personnel_staff
+        common_view     : "./page/personnel_train_result.html",                    //欢迎页面 personnel_staff
 
         //测试接口
         test_datagrid   : LOCAL+"Test/test_datagrid.json",          //数据表格
@@ -24,4 +24,5 @@
     default 80
     tels    100
     full    .1
+    operate 180
     */ 
