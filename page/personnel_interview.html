@@ -5,7 +5,16 @@
 	<div class="datagrid datagrid-striped" id="personnel_interview_datagrid">
         <div class="tool-group">
             <form class="tool-inline">
-                <label><span>搜索：</span><input type="text" class="form-control" id="personnel_interview_tool_search" placeholder="请输入姓名/电话"></label>
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" id="personnel_interview_tool_keys">
+                            <option>姓名</option>
+                            <option>电话</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="personnel_interview_tool_search">
+                    </div>
+                </div>
                 <label>
                     <span>职位：</span>
                     <select class="form-control" id="personnel_interview_tool_select1"><!--JS推进--></select>
@@ -248,6 +257,7 @@ $(function(){
     personnel_interview                  = $("#personnel_interview"),             //页面ID
     personnel_interview_datagrid         = $("#personnel_interview_datagrid"),    //数据表格
     //搜索
+    personnel_interview_tool_keys        = $("#personnel_interview_tool_keys"),   //搜索类别
     personnel_interview_tool_search      = $("#personnel_interview_tool_search"), //搜索字段
     personnel_interview_tool_select1     = $("#personnel_interview_tool_select1"),//下拉选项1
     personnel_interview_tool_select2     = $("#personnel_interview_tool_select2"),//下拉选项2
@@ -293,16 +303,18 @@ $(function(){
     personnel_interview_empl_submit      = $("#personnel_interview_empl_submit"), //录用提交
     personnel_interview_empl_mess        = $("#personnel_interview_empl_mess");   //审批字段 
 
-    /*远程接口
-    var personnel_interview_api          = {
-    }*/
-
-    /*本地接口*/
+    /*接口对象*/
     var personnel_interview_api       = {
+
+        //本地接口
         datagrid    : LOCAL + "Personnel/interview.json",                         //数据表格
         select_post : LOCAL + "Test/test_select.json",                            //职位下拉
         select_state: LOCAL + "Test/test_select.json",                            //状态下拉
         select_copy : LOCAL + "Test/test_select.json",                            //抄送下拉
+
+        //线上接口
+        select_post : ROUTE + "Position/getPostions",                             //职位下拉
+
     }
 
     //数据表格-----------------------------------------------------------------------------------------------
@@ -393,7 +405,9 @@ $(function(){
         url     : personnel_interview_api.select_post,
         type    : "get",
         dataType: "json",
-        data    : {},
+        data    : { 
+            id : COMMON.company_id                                  //公司ID 
+        },
         success : function(data){
             var option = "<option>全部</option>";
             for(var i=0;i<data.length;i++){
@@ -519,8 +533,9 @@ $(function(){
     personnel_interview_search_btn.click(function(){
 
         //字段整理
-        var keyword  
-        = "?search=" + personnel_interview_tool_search.val() 
+        var keyword
+        = "?keys="   + personnel_interview_tool_keys.val()
+        + "&search=" + personnel_interview_tool_search.val()
         + "&date1="  + personnel_interview_tool_date1.val()
         + "&date2="  + personnel_interview_tool_date2.val()
         + "&select1="+ personnel_interview_tool_select1.val()

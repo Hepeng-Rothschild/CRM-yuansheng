@@ -101,7 +101,6 @@
     <aside class="main-sidebar scrollbar-hover bg-default">
         <section class="sidebar">
             <ul class="tree tree-menu" id="common_tree"></ul>
-            <input type="hidden" id="common_positionid" value="1">
         </section>
     </aside>
     <!-- main-sidebar -->
@@ -136,8 +135,16 @@
 </div>
 <!-- common_logout_box -->
 
+    <input type="hidden" id="common_positionid" value="1">
+    <input type="hidden" id="common_companyid"  value="3">
+
 <script>
 $(function(){
+
+    //公共数据----------------------------------------------------------------
+    window.COMMON = {
+        company_id : $("#common_companyid").val(),
+    }
 
     //变量声明----------------------------------------------------------------
     var 

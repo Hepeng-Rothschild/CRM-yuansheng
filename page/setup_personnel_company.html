@@ -5,9 +5,6 @@
     <div class="datagrid datagrid-striped" id="setup_personnel_company_datagrid">
         <div class="tool-group">
             <div class="tool-inline">
-                <label><span>搜索：  </span><input type="text" class="form-control" id="setup_personnel_company_tool_search"></label>
-                <label><button class="btn btn-primary" id="setup_personnel_company_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
-                <div class="clearfix"></div>
                 <label><button class="btn btn-primary" id="setup_personnel_company_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
             </div>
         </div>
@@ -120,11 +117,6 @@ $(function(){
     var 
     setup_personnel_company             = $("#setup_personnel_company"),            //页面ID
     setup_personnel_company_datagrid    = $("#setup_personnel_company_datagrid"),   //数据表格
-
-    //搜索
-    setup_personnel_company_tool_search = $("#setup_personnel_company_tool_search"),//搜索字段
-    setup_personnel_company_search_btn  = $("#setup_personnel_company_search_btn"), //搜索按钮
-
     //添加
     setup_personnel_company_add_btn     = $("#setup_personnel_company_add_btn"),    //添加按钮
     setup_personnel_company_add_box     = $("#setup_personnel_company_add_box"),    //添加盒子
@@ -208,18 +200,6 @@ $(function(){
     setup_personnel_company_datagrid_obj   = setup_personnel_company_datagrid.data("zui.datagrid"),   //表格对象
     setup_personnel_company_edit_btn       = ".setup_personnel_company_edit_btn",                     //修改
     setup_personnel_company_dele_btn       = ".setup_personnel_company_dele_btn";                     //删除
-
-
-    //搜索按钮-----------------------------------------------------------------------------------------------
-    setup_personnel_company_search_btn.click(function(){
-
-        //字段整理
-        var keyword = "?search=" + setup_personnel_company_tool_search.val();
-
-        //GET提交
-        um_render(setup_personnel_company_datagrid_obj,setup_personnel_company_api.datagrid+keyword);
-
-    });
 
     //添加按钮-----------------------------------------------------------------------------------------------
     setup_personnel_company_add_btn.click(function(){

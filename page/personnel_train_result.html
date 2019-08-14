@@ -5,7 +5,17 @@
     <div class="datagrid datagrid-striped" id="personnel_train_result_datagrid">
         <div class="tool-group">
             <div class="tool-inline">
-                <label><span>搜索：</span><input type="text" class="form-control" id="personnel_train_result_tool_search" placeholder="请输入姓名/工号/部门"></label>
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" id="personnel_train_result_tool_keys">
+                            <option>姓名</option>
+                            <option>工号</option>
+                            <option>部门</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="personnel_train_result_tool_search">
+                    </div>
+                </div>
                 <label>
                     <span>考试类型：</span>
                     <select class="form-control" id="personnel_train_result_tool_select1"><!--JS推进--></select>
@@ -49,6 +59,7 @@ $(function(){
     personnel_train_result                    = $("#personnel_train_result"),                     //页面ID
     personnel_train_result_datagrid           = $("#personnel_train_result_datagrid"),            //数据表格
     //搜索
+    personnel_train_result_tool_keys          = $("#personnel_train_result_tool_keys"),           //搜索类别
     personnel_train_result_tool_search        = $("#personnel_train_result_tool_search"),         //搜索字段
     personnel_train_result_tool_select1       = $("#personnel_train_result_tool_select1"),        //下拉选择1
     personnel_train_result_tool_select2       = $("#personnel_train_result_tool_select2"),        //下拉选择2
@@ -57,11 +68,8 @@ $(function(){
     personnel_train_result_search_btn         = $("#personnel_train_result_search_btn"),          //搜索按钮
     personnel_train_result_export_btn         = $("#personnel_train_result_export_btn"),          //导出按钮
     //查看
-    personnel_train_result_show_box           = $("#personnel_train_result_show_box"),            //查看盒子
+    personnel_train_result_show_box           = $("#personnel_train_result_show_box");            //查看盒子
 
-
-
-    a;
     /*远程接口
     var personnel_train_result_api       = {
         chosen    : ROUTE + "Company/getAllCompany",                                              //下拉选择
@@ -162,8 +170,9 @@ $(function(){
     personnel_train_result_search_btn.click(function(){
 
         //字段整理
-        var keyword  
-        = "?search=" + personnel_train_result_tool_search.val() 
+        var keyword
+        = "?keys=" + personnel_train_result_tool_keys.val()
+        + "&search=" + personnel_train_result_tool_search.val()
         + "&select1="+ personnel_train_result_tool_select1.val()
         + "&select2="+ personnel_train_result_tool_select2.val();
 
@@ -280,7 +289,6 @@ $(function(){
         });
 
     });
-    
 
 });//预加载结尾
 </script>

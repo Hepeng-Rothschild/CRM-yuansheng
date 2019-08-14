@@ -5,7 +5,17 @@
     <div class="datagrid datagrid-striped" id="personnel_contractor_datagrid">
         <div class="tool-group">
             <div class="tool-inline">
-                <label><span>搜索：  </span><input type="text" class="form-control" id="personnel_contractor_tool_search" placeholder="请输入姓名/工号/电话"></label>
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" id="personnel_contractor_tool_keys">
+                            <option>姓名</option>
+                            <option>工号</option>
+                            <option>电话</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="personnel_contractor_tool_search">
+                    </div>
+                </div>
                 <label><span>分公司：</span><select class="form-control" id="personnel_contractor_tool_select1"><!--JS推进--></select></label>
                 <label><span>状态：  </span><select class="form-control" id="personnel_contractor_tool_select2"><!--JS推进--></select></label>
                 <label><button class="btn btn-primary" id="personnel_contractor_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
@@ -192,6 +202,7 @@ $(function(){
     personnel_contractor_datagrid           = $("#personnel_contractor_datagrid"),          //数据表格
 
     //搜索
+    personnel_contractor_tool_keys          = $("#personnel_contractor_tool_keys"),         //搜索类别
     personnel_contractor_tool_search        = $("#personnel_contractor_tool_search"),       //搜索字段
     personnel_contractor_tool_select1       = $("#personnel_contractor_tool_select1"),      //下拉选择1
     personnel_contractor_tool_select2       = $("#personnel_contractor_tool_select2"),      //下拉选择2
@@ -364,8 +375,9 @@ $(function(){
     personnel_contractor_search_btn.click(function(){
 
         //字段整理
-        var keyword  
-        = "?search=" + personnel_contractor_tool_search.val() 
+        var keyword
+        = "?keys="   + personnel_contractor_tool_keys.val()
+        + "&search=" + personnel_contractor_tool_search.val()
         + "&select1="+ personnel_contractor_tool_select1.val()
         + "&select2="+ personnel_contractor_tool_select2.val();
 
