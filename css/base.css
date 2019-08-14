@@ -474,6 +474,10 @@ html,body{
     width: 120px!important;
     float: left;
 }
+/*第一个input(搜索)*/
+.tool-inline label:first-child input[type="text"][placeholder]{
+    width: 150px!important;
+}
 /*其他样式*/
 [data-toggle="modal"],
 .tree span{
