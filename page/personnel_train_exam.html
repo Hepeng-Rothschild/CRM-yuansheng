@@ -190,19 +190,17 @@ $(function(){
     personnel_train_exam_dele_box           = $("#personnel_train_exam_dele_box"),            //删除盒子 
     personnel_train_exam_dele_submit        = $("#personnel_train_exam_dele_submit");         //删除提交
 
-    /*远程接口
+    //接口对象
     var personnel_train_exam_api       = {
-        chosen    : ROUTE + "Company/getAllCompany",                                          //下拉选择
-        datagrid  : ROUTE + "Company/getCompanybyid",                                         //数据表格(id)
-    }*/
 
-    //本地接口
-    var personnel_train_exam_api       = {
+        //本地接口
         datagrid  : LOCAL + "Personnel/Train/exam.json",                                      //数据表格
         tree      : LOCAL + "Personnel/Train/exam_staff.json",                                //考试人员
         select    : LOCAL + "Test/test_select.json",                                          //下拉选择
-
         edit      : LOCAL + "Personnel/Train/exam_edit.json",                                 //修改数据
+
+        //远程接口
+
     }
 
     //数据表格-----------------------------------------------------------------------------------------------

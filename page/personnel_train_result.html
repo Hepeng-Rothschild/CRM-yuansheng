@@ -70,17 +70,16 @@ $(function(){
     //查看
     personnel_train_result_show_box           = $("#personnel_train_result_show_box");            //查看盒子
 
-    /*远程接口
+    //接口对象
     var personnel_train_result_api       = {
-        chosen    : ROUTE + "Company/getAllCompany",                                              //下拉选择
-        datagrid  : ROUTE + "Company/getCompanybyid",                                             //数据表格(id)
-    }*/
 
-    //本地接口
-    var personnel_train_result_api       = {
+        //本地接口
         datagrid  : LOCAL + "Personnel/Train/result.json",                                        //数据表格
         show      : LOCAL + "Personnel/Train/result_show.json",                                   //数据表格        
         select    : LOCAL + "Test/test_select.json",                                              //下拉选择
+
+        //远程接口
+
     }
 
     //数据表格-----------------------------------------------------------------------------------------------

@@ -693,27 +693,22 @@ $(function(){
     personnel_staff_edit_uploader4      = $("#personnel_staff_edit_uploader4"),
     personnel_staff_edit_uploader5      = $("#personnel_staff_edit_uploader5"),
     personnel_staff_edit_uploader6      = $("#personnel_staff_edit_uploader6"),
-
     //查看
     personnel_staff_show_box            = $("#personnel_staff_show_box"),           //查看盒子
-
     //重置密码
     personnel_staff_reset_box           = $("#personnel_staff_reset_box"),          //重置盒子
     personnel_staff_reset_submit        = $("#personnel_staff_reset_submit");       //重置提交
-    
 
-    /*远程接口
+    //接口对象
     var personnel_staff_api       = {
-        chosen    : ROUTE + "Company/getAllCompany",                            //下拉选择
-        datagrid  : ROUTE + "Company/getCompanybyid",                           //数据表格(id)
-        structure : ROUTE + "Company/getdeparmentid",                           //组织架构(id)
-    }*/
 
-    //本地接口
-    var personnel_staff_api       = {
+        //本地接口
         datagrid  : LOCAL + "Personnel/staff.json",                             //数据表格
         select    : LOCAL + "Test/test_select.json",                            //下拉选择
         uploader  : LOCAL + "Test/test_upload.php"                              //上传路径
+
+        //远程接口
+
     }
 
     //数据表格-----------------------------------------------------------------------------------------------
@@ -1140,7 +1135,6 @@ $(function(){
         });
 
     });
-
 
     //右侧切换-----------------------------------------------------------------------------------------------
     personnel_staff_che1_btn.click(function(){

@@ -61,16 +61,15 @@ $(function(){
     personnel_attendance_month_search_btn         = $("#personnel_attendance_month_search_btn"),          //搜索按钮
     personnel_attendance_month_export_btn         = $("#personnel_attendance_month_export_btn");          //导出按钮
 
-    /*远程接口
+    //接口对象
     var personnel_attendance_month_api       = {
-        chosen    : ROUTE + "Company/getAllCompany",                                                      //下拉选择
-        datagrid  : ROUTE + "Company/getCompanybyid",                                                     //数据表格(id)
-    }*/
 
-    //本地接口
-    var personnel_attendance_month_api       = {
+        //本地接口
         datagrid  : LOCAL + "Personnel/Attendance/month.json",                                           //数据表格
-        select    : LOCAL + "Test/test_select.json",                                                    //下拉选择
+        select    : LOCAL + "Test/test_select.json",                                                     //下拉选择
+
+        //远程接口
+
     }
 
     //数据表格-----------------------------------------------------------------------------------------------

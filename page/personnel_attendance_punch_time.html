@@ -58,17 +58,16 @@ $(function(){
 
     //当前时间获取(影响date1和datagrid)
     var now_time = new Date().Format("yyyy-MM");
-    
-    /*远程接口
-    var personnel_attendance_punch_time_api       = {
-        chosen    : ROUTE + "Company/getAllCompany",                                                                //下拉选择
-        datagrid  : ROUTE + "Company/getCompanybyid",                                                               //数据表格(id)
-    }*/
 
-    //本地接口
+    //接口对象
     var personnel_attendance_punch_time_api       = {
+
+        //本地接口
         datagrid  : LOCAL + "Personnel/Attendance/punch_time.json",                                                 //数据表格
         select    : LOCAL + "Test/test_select.json",                                                                //下拉选择
+
+        //远程接口
+
     }
 
     //数据表格-----------------------------------------------------------------------------------------------
