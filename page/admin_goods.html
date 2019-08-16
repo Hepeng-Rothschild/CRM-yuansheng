@@ -1,0 +1,609 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="admin_goods">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="admin_goods_datagrid">
+        <div class="tool-group">
+            <div class="tool-inline">
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" id="admin_goods_tool_keys">
+                            <option>物品名称</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="admin_goods_tool_search">
+                    </div>
+                </div>
+                <label><span>物品类型：</span><select class="form-control" id="admin_goods_tool_select1"><!--JS推进--></select></label>
+                <label><button class="btn btn-primary" id="admin_goods_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+                <label><button class="btn btn-primary" id="admin_goods_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
+            </div>
+        </div>
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_goods_add_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_goods_add_user">物品名称</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_goods_add_user" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_goods_add_post">物品类型</label>
+                            <div class="col-sm-8"><select class="form-control" id="admin_goods_add_post"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_goods_add_tels">数量</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_goods_add_tels" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_goods_add_tels">单位</label>
+                            <div class="col-sm-8"><select class="form-control" id="admin_goods_add_post"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_goods_add_tels">单价</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_goods_add_tels" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_goods_add_tels">总价</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_goods_add_tels" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_goods_add_tels">采购地址</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_goods_add_tels" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="admin_goods_add_submit">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_goods_add_box -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_goods_show_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body"><!-- JS添加 --></div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_goods_show_box -->
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_goods_edit_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container">
+                        <!-- 个人资料 -->
+                        <blockquote>个人资料 <span class="small text-red">(以下均为必填项)</span></blockquote>
+                        <ul class="form-checker-board">
+                            <li class="col-sm-3"><label><span>姓名</span><input id="admin_goods_edit_user" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>工号</span><input id="admin_goods_edit_acco" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>电话</span><input id="admin_goods_edit_tels" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>地址</span><input id="admin_goods_edit_addr" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>承包商类型</span><select id="admin_goods_edit_type"  class="form-control"><!-- JS推进 --></select></label></li>
+                            <li class="col-sm-3"><label><span>工作状态  </span><select id="admin_goods_edit_state" class="form-control"><!-- JS推进 --></select></label></li>
+                        </ul>
+                        <div class="clearfix"></div><hr>
+                        <!-- 账户信息 -->
+                        <blockquote>账户信息 <span class="small text-red">(以下均为必填项)</span></blockquote>
+                        <ul class="form-checker-board">
+                            <li class="col-sm-3"><label><span>银行卡号</span><input id="admin_goods_edit_card_numb" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>开户行  </span><input id="admin_goods_edit_card_bank" class="form-control" type="text"></label></li>
+                            <li class="col-sm-3"><label><span>开户人  </span><input id="admin_goods_edit_card_user" class="form-control" type="text"></label></li>
+                        </ul>
+                        <div class="clearfix"></div><hr>
+                        <!-- 证件信息 -->
+                        <blockquote>证件信息</blockquote>
+                        <ul class="uploader-square-box">
+                            <li class="col-sm-2">
+                                <div class="uploader" id="admin_goods_edit_uploader1">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>身份证正面</strong>
+                            </li>
+                            <li class="col-sm-2">
+                                <div class="uploader" id="admin_goods_edit_uploader2">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                </div>
+                                <strong>身份证反面</strong>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                        <div class="uploader upload-free" id="admin_goods_edit_uploaders" path="">
+                            <div class="uploader-message text-center"><div class="content"></div></div>
+                            <div class="uploader-files file-list"></div>
+                            <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="admin_goods_edit_submit">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_goods_edit_box -->
+
+    <!-- 删除盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_goods_dele_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否删除？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="admin_goods_dele_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_goods_dele_box -->
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function(){
+   
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    admin_goods                    = $("#admin_goods"),                   //页面ID
+    admin_goods_datagrid           = $("#admin_goods_datagrid"),          //数据表格
+
+    //搜索
+    admin_goods_tool_keys          = $("#admin_goods_tool_keys"),         //搜索类别
+    admin_goods_tool_search        = $("#admin_goods_tool_search"),       //搜索字段
+    admin_goods_tool_select1       = $("#admin_goods_tool_select1"),      //下拉选择1
+    admin_goods_tool_select2       = $("#admin_goods_tool_select2"),      //下拉选择2
+    admin_goods_search_btn         = $("#admin_goods_search_btn"),        //搜索按钮
+
+    //添加
+    admin_goods_add_btn            = $("#admin_goods_add_btn"),           //添加按钮
+    admin_goods_add_box            = $("#admin_goods_add_box"),           //添加盒子
+    admin_goods_add_submit         = $("#admin_goods_add_submit"),        //添加提交
+
+    admin_goods_add_user           = $("#admin_goods_add_user"),          //姓名字段
+    admin_goods_add_acco           = $("#admin_goods_add_acco"),          //工号字段
+    admin_goods_add_tels           = $("#admin_goods_add_tels"),          //手机字段
+    admin_goods_add_addr           = $("#admin_goods_add_addr"),          //地址字段
+    admin_goods_add_type           = $("#admin_goods_add_type"),          //承包商类型
+    admin_goods_add_state          = $("#admin_goods_add_state"),         //工作状态
+    admin_goods_add_card_numb      = $("#admin_goods_add_card_numb"),     //银行卡号
+    admin_goods_add_card_bank      = $("#admin_goods_add_card_bank"),     //开户行
+    admin_goods_add_card_user      = $("#admin_goods_add_card_user"),     //开户人
+
+    admin_goods_add_uploader1      = $("#admin_goods_add_uploader1"),
+    admin_goods_add_uploader2      = $("#admin_goods_add_uploader2"),
+    admin_goods_add_uploaders      = $("#admin_goods_add_uploaders"),
+    //修改
+    admin_goods_edit_btn           = $("#admin_goods_edit_btn"),          //修改按钮
+    admin_goods_edit_box           = $("#admin_goods_edit_box"),          //修改盒子
+    admin_goods_edit_submit        = $("#admin_goods_edit_submit"),       //修改提交
+
+    admin_goods_edit_user          = $("#admin_goods_edit_user"),         //姓名字段
+    admin_goods_edit_acco          = $("#admin_goods_edit_acco"),         //工号字段
+    admin_goods_edit_tels          = $("#admin_goods_edit_tels"),         //手机字段
+    admin_goods_edit_addr          = $("#admin_goods_edit_addr"),         //地址字段
+    admin_goods_edit_type          = $("#admin_goods_edit_type"),         //承包商类型
+    admin_goods_edit_state         = $("#admin_goods_edit_state"),        //工作状态
+    admin_goods_edit_card_numb     = $("#admin_goods_edit_card_numb"),    //银行卡号
+    admin_goods_edit_card_bank     = $("#admin_goods_edit_card_bank"),    //开户行
+    admin_goods_edit_card_user     = $("#admin_goods_edit_card_user"),    //开户人
+
+    admin_goods_edit_uploader1     = $("#admin_goods_edit_uploader1"),
+    admin_goods_edit_uploader2     = $("#admin_goods_edit_uploader2"),
+    admin_goods_edit_uploaders     = $("#admin_goods_edit_uploaders"),
+
+    //查看
+    admin_goods_show_box           = $("#admin_goods_show_box"),          //查看盒子
+
+    //删除
+    admin_goods_dele_box           = $("#admin_goods_dele_box"),          //删除盒子
+    admin_goods_dele_submit        = $("#admin_goods_dele_submit");       //删除提交
+
+    //接口对象
+    var admin_goods_api       = {
+
+        //本地接口
+        datagrid  : LOCAL + "Admin/goods.json",                           //数据表格
+        select    : LOCAL + "Test/test_select.json",                      //下拉选择
+        uploader  : LOCAL + "Test/test_upload.php"                        //上传路径
+
+        //远程接口
+
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    admin_goods_datagrid.datagrid({
+        height      : "page",
+        sortable    : false,
+        showRowIndex: false,
+        configs     : { R0:{className:"text-center"} },        
+        states      : {
+            fixedLeftUntil  : 3,
+            pager           : {
+                page        : 1,
+                recPerPage  : 20,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",    label:"ID",      width:50 },
+                {name:"name",  label:"物品名称",width:100},
+                {name:"type",  label:"物品类型",width:100},
+                {name:"stock", label:"现有库存",width:100},
+                {name:"unit",  label:"单位",    width:100},
+                {name:"price", label:"单价",    width:100},
+                {name:"total", label:"总价",    width:100},
+                {name:"operate",label:"操作",   width:150,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = `
+                                <a rowIndex="${cell.rowIndex}" class="admin_goods_show_btn">查看</a>
+                                <a rowIndex="${cell.rowIndex}" class="admin_goods_edit_btn">修改</a>
+                                <a rowIndex="${cell.rowIndex}" class="admin_goods_dele_btn">删除</a>
+                            `;
+                            return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : admin_goods_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    admin_goods_datagrid_obj   = admin_goods_datagrid.data("zui.datagrid"),   //表格对象
+    admin_goods_show_btn       = ".admin_goods_show_btn",                     //查看
+    admin_goods_edit_btn       = ".admin_goods_edit_btn",                     //修改
+    admin_goods_dele_btn       = ".admin_goods_dele_btn";                     //删除
+    
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //分公司
+    $.ajax({
+        url     : admin_goods_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option value='0'>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_goods_tool_select1.html(option);             //工具条
+        }
+    });
+    //状态
+    $.ajax({
+        url     : admin_goods_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option value='0'>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_goods_tool_select2.html(option);             //工具条
+            admin_goods_add_state.html(option);                //添加
+            admin_goods_edit_state.html(option);               //修改
+        }
+    });
+    //承包商类型
+    $.ajax({
+        url     : admin_goods_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option value='0'>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_goods_add_type.html(option);                 //添加
+            admin_goods_edit_type.html(option);                //修改
+        }
+    });
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    admin_goods_search_btn.click(function(){
+
+        //字段整理
+        var keyword
+        = "?keys="   + admin_goods_tool_keys.val()
+        + "&search=" + admin_goods_tool_search.val()
+        + "&select1="+ admin_goods_tool_select1.val()
+        + "&select2="+ admin_goods_tool_select2.val();
+
+        //GET提交
+        um_render(admin_goods_datagrid_obj,admin_goods_api.datagrid+keyword);
+
+    });
+
+    //添加按钮-----------------------------------------------------------------------------------------------
+    admin_goods_add_btn.click(function(){
+        admin_goods_add_box.modal("show");
+    });
+    //添加提交
+    admin_goods_add_submit.click(function(){
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                user      : admin_goods_add_user.val(),
+                acco      : admin_goods_add_acco.val(),
+                tels      : admin_goods_add_tels.val(),
+                addr      : admin_goods_add_addr.val(),
+                type      : admin_goods_add_type.val(),
+                state     : admin_goods_add_state.val(),
+                card_numb : admin_goods_add_card_numb.val(),
+                card_bank : admin_goods_add_card_bank.val(),
+                card_user : admin_goods_add_card_user.val(),
+                //资料上传
+                pic1      : admin_goods_add_uploader1.attr("path") || "",
+                pic2      : admin_goods_add_uploader2.attr("path") || "",
+                pics      : admin_goods_add_uploaders.attr("path").substr(1).split(",") || "",
+            },
+            success : function(data){
+                if( data.code>0 ){
+                    um_tip(data.mess);
+                    um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
+                } else {
+                    um_tip(data.mess,"1500","text-danger");
+                }
+            }
+        });
+    });
+ 
+    //查看按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_goods_show_btn,function(){ 
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+
+                    //查看模板
+                    var temp = `
+                        <div class="container">
+                            <!-- 个人资料 -->
+                            <blockquote>个人资料</blockquote>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>姓名：刘德华</td>
+                                    <td>工号：10015</td>
+                                    <td>手机：183****7556</td>
+                                    <td>地址：石家庄市裕华区体育大街富金大厦A座601</td>
+                                </tr>
+                                <tr>
+                                    <td>承包商类型：未知</td>
+                                    <td colspan="3">工作状态：未知</td>
+                                </tr>
+                            </table>
+                            <!-- 账户信息 -->
+                            <blockquote>账户信息</blockquote>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>银行卡号：6217 2545 2457 2575 689</td>
+                                    <td>开户行：建设银行体育大街支行</td>
+                                    <td colspan="2">开户人：刘德华</td>
+                                </tr>
+                            </table>
+                            <!-- 证件信息 -->
+                            <blockquote>证件信息</blockquote>
+                            <ul class="show-square-box">
+                                <li class="col-sm-2">
+                                    <a data-toggle="lightbox" data-group="contractor" data-caption="身份证正面" href="./remote/Upload/test_upload.jpg" data-lightbox-group="contractor">
+                                        <img src="./remote/Upload/test_upload.jpg">
+                                    </a>
+                                </li>
+                                <li class="col-sm-2">
+                                    <a data-toggle="lightbox" data-group="contractor" data-caption="身份证反面" href="./remote/Upload/test_upload.jpg" data-lightbox-group="contractor">
+                                        <img src="./remote/Upload/test_upload.jpg">
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div><hr>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                    `;
+                    admin_goods_show_box.find(".modal-body").html(temp);                //模板填充
+                    admin_goods_show_box.modal("show");                                 //盒子显示
+                } else {
+                    um_tip(data.mess,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_goods_edit_btn,function(){
+
+        //查看盒子关闭
+        admin_goods_show_box.modal("hide");
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+
+                    //数据赋值
+                    admin_goods_edit_user.val(      data.mess );
+                    admin_goods_edit_acco.val(      data.mess );
+                    admin_goods_edit_tels.val(      data.mess );
+                    admin_goods_edit_addr.val(      data.mess );
+                    admin_goods_edit_type.val(      1         );
+                    admin_goods_edit_state.val(     1         );
+                    admin_goods_edit_card_numb.val( data.mess );
+                    admin_goods_edit_card_bank.val( data.mess );
+                    admin_goods_edit_card_user.val( data.mess );
+                    //资料上传
+                    admin_goods_edit_uploader1.uploader(
+                        upload_fixed(admin_goods_api.uploader,"admin_goods_edit_uploader1",
+                            [{id:1,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                        )
+                    ),
+                    admin_goods_edit_uploader2.uploader(
+                        upload_fixed(admin_goods_api.uploader,"admin_goods_edit_uploader2",
+                            [{id:2,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                        )
+                    ),
+                    admin_goods_edit_uploaders.uploader(
+                        upload_free(admin_goods_api.uploader,"admin_goods_edit_uploaders",
+                            [{id:3,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                        )
+                    ),
+                    //资料上传对属性的影响
+                    admin_goods_edit_uploader1.attr("path","./remote/Upload/test_upload.jpg");
+                    admin_goods_edit_uploader2.attr("path","./remote/Upload/test_upload.jpg");
+                    admin_goods_edit_uploaders.attr("path","./remote/Upload/test_upload.jpg");
+                    //其他操作
+                    admin_goods_edit_submit.attr("dataId",data_id);                     //数据ID传值
+                    admin_goods_edit_box.modal("show");                                 //盒子显示
+                } else {
+                    um_tip(data.mess,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    //修改提交
+    admin_goods_edit_submit.click(function(){
+
+        //数据ID
+        var data_id  = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id          : data_id,
+                user      : admin_goods_edit_user.val(),
+                acco      : admin_goods_edit_acco.val(),
+                tels      : admin_goods_edit_tels.val(),
+                addr      : admin_goods_edit_addr.val(),
+                type      : admin_goods_edit_type.val(),
+                state     : admin_goods_edit_state.val(),
+                card_numb : admin_goods_edit_card_numb.val(),
+                card_bank : admin_goods_edit_card_bank.val(),
+                card_user : admin_goods_edit_card_user.val(),
+                //资料上传
+                pic1      : admin_goods_edit_uploader1.attr("path") || "",
+                pic2      : admin_goods_edit_uploader2.attr("path") || "",
+                pics      : admin_goods_edit_uploaders.attr("path").substr(1).split(",") || "",
+            },
+            success : function(data){
+                if( data.code>0 ){
+                    um_tip(data.mess);
+                    um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
+                } else {
+                    um_tip(data.mess,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //删除按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_goods_dele_btn,function(){
+
+        //数据ID
+        var data_id = cell_value($(this).attr("rowIndex"),1);
+
+        //其他操作
+        admin_goods_dele_submit.attr("dataId",data_id);                                //ID传值
+        admin_goods_dele_box.modal("show");                                            //面板显示
+
+    });
+    //删除提交
+    admin_goods_dele_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.code>0 ){
+                    um_tip(data.mess);
+                    um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
+                } else {
+                    um_tip(data.mess,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //上传组件-----------------------------------------------------------------------------------------------
+    admin_goods_add_uploader1.uploader(upload_fixed(admin_goods_api.uploader,"admin_goods_add_uploader1"));
+    admin_goods_add_uploader2.uploader(upload_fixed(admin_goods_api.uploader,"admin_goods_add_uploader2"));
+    admin_goods_add_uploaders.uploader(upload_free(admin_goods_api.uploader,"admin_goods_add_uploaders"));
+
+});//预加载结尾
+</script>

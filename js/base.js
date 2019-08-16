@@ -235,6 +235,7 @@ Date.prototype.Format = function (fmt){
 
 //数据网格-取值(修改删除用)
 function cell_value(rowIndex,colIndex){
+  //return datagrid_obj.getCell(rowIndex,colIndex).value;
     return $(".datagrid").data("zui.datagrid").getCell(rowIndex,colIndex).value;
 }
 

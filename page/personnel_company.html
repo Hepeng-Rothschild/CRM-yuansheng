@@ -58,7 +58,10 @@ $(function(){
         structure : LOCAL + "Personnel/getStructure.json",                  //组织架构()
 
         //远程接口
-
+        select    : ROUTE + "Company/getAllCompany",                      //下拉选择
+        datagrid  : ROUTE + "Company/getCompanybyid",                       //数据表格
+        structure : ROUTE + "Company/getdeparmentid",                       //组织架构表
+        second    : ROUTE + "Company/getSCompanybyid",                      //获取二级部门
     }
 
     //下拉选择------------------------------------------------------------------------
@@ -68,6 +71,7 @@ $(function(){
         dataType: "json",
         success : function(data){
             //变量声明
+            var data = data.data;
             var personnel_company_first_id = data[0].id;                    //初始ID
 
             //下拉选择-选项填充
@@ -135,6 +139,7 @@ $(function(){
             dataType: "json",
             data    : { id  : personnel_company_structure_btn.attr("company-id") },
             success : function(data){
+                var data = data.data;
                 var data = um_json(data);                                                           //JSON解析
                 personnel_company_structure_dom.treemap("render",data);                             //架构渲染
                 personnel_company_structure_box.modal("show");                                      //面板显示

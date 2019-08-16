@@ -8,9 +8,9 @@
                 <div class="im-label">
                     <div class="input-group">
                         <select class="form-control" id="personnel_contractor_tool_keys">
-                            <option>姓名</option>
-                            <option>工号</option>
-                            <option>电话</option>
+                            <option value="1">姓名</option>
+                            <option value="2">工号</option>
+                            <option value="3">电话</option>
                         </select>
                         <span class="input-group-addon fix-border fix-padding"></span>
                         <input type="text" class="form-control" id="personnel_contractor_tool_search">
@@ -330,7 +330,7 @@ $(function(){
         dataType: "json",
         data    : {},
         success : function(data){
-            var option = "<option>全部</option>";
+            var option = "<option value='0'>全部</option>";
             for(var i=0;i<data.length;i++){
                 option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
             }
@@ -344,7 +344,7 @@ $(function(){
         dataType: "json",
         data    : {},
         success : function(data){
-            var option = "<option>全部</option>";
+            var option = "<option value='0'>全部</option>";
             for(var i=0;i<data.length;i++){
                 option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
             }
@@ -360,7 +360,7 @@ $(function(){
         dataType: "json",
         data    : {},
         success : function(data){
-            var option = "<option>全部</option>";
+            var option = "<option value='0'>全部</option>";
             for(var i=0;i<data.length;i++){
                 option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
             }

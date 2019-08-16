@@ -135,20 +135,23 @@
 </div>
 <!-- common_logout_box -->
 
-    <input type="hidden" id="common_positionid" value="1">
-    <input type="hidden" id="common_companyid"  value="3">
+<!-- 隐藏文本域 -->
+<input type="hidden" id="common_positionid" value="1" title="权限ID">
+<input type="hidden" id="common_companyid"  value="3" title="分公司ID">
+<input type="hidden" id="common_userid"     value="1" title="用户ID">
 
 <script>
 $(function(){
 
     //公共数据----------------------------------------------------------------
     window.COMMON = {
+        position_id: $("#common_positionid").val(),
         company_id : $("#common_companyid").val(),
+        user_id    : $("#common_userid").val(),
     }
 
     //变量声明----------------------------------------------------------------
     var 
-    common_positionid   = $("#common_positionid"),                  //权限ID
     common_tree         = $("#common_tree"),                        //左侧导航
     common_tabs         = $("#common_tabs"),                        //切换面板
     common_logout_btn   = $("#common_logout_btn"),                  //注销按钮
@@ -160,7 +163,7 @@ $(function(){
         url     : window.API.common_tree,
         type    : "post",
         data    : {
-            positionid : common_positionid.val()
+            positionid : COMMON.position_id,
         },
         success : function(data){
             var data = um_json(data);                               //JSON解析
