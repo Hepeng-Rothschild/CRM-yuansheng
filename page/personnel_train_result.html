@@ -69,18 +69,27 @@ $(function(){
     //查看
     personnel_train_result_show_box           = $("#personnel_train_result_show_box");            //查看盒子
 
-    //接口对象
-    var personnel_train_result_api       = {
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
         //本地接口
-        datagrid  : LOCAL + "Personnel/Train/result.json",                                        //数据表格
-        show      : LOCAL + "Personnel/Train/result_show.json",                                   //数据表格        
-        select    : LOCAL + "Test/test_select.json",                                              //下拉选择
+        var personnel_train_result_api = {
+            datagrid  : LOCAL + "Personnel/Train/result.json",                                    //数据表格
+            show      : LOCAL + "Personnel/Train/result_show.json",                               //数据表格
+            select    : LOCAL + "Test/test_select.json",                                          //下拉选择
+        }
+
+    } else if ( window.STATE == "route" ){
 
         //远程接口
+        var personnel_train_result_api = {
+            datagrid  : LOCAL + "Personnel/Train/result.json",                                    //数据表格
+            show      : LOCAL + "Personnel/Train/result_show.json",                               //数据表格
+            select    : LOCAL + "Test/test_select.json",                                          //下拉选择
+        }
 
     }
-
+ 
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_train_result_datagrid.datagrid({
         height      : "page",

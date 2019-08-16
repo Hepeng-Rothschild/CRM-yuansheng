@@ -118,19 +118,29 @@ $(function(){
     personnel_attendance_vacation_edit_tab2          = $("#personnel_attendance_vacation_edit_tab2"),           //修改记录
     personnel_attendance_vacation_edit_submit        = $("#personnel_attendance_vacation_edit_submit");         //修改提交
 
-    //接口对象
-    var personnel_attendance_vacation_api       = {
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
         //本地接口
-        datagrid  : LOCAL + "Personnel/Attendance/vacation.json",                                               //数据表格
-        edit_type : LOCAL + "Personnel/Attendance/vacation_edit_type.json",                                     //修改类型
-        edit_tabs : LOCAL + "Personnel/Attendance/vacation_edit_tabs.json",                                     //修改表格
-        select    : LOCAL + "Test/test_select.json",                                                            //下拉选择
+        var personnel_attendance_vacation_api = {
+            datagrid  : LOCAL + "Personnel/Attendance/vacation.json",           //数据表格
+            edit_type : LOCAL + "Personnel/Attendance/vacation_edit_type.json", //修改类型
+            edit_tabs : LOCAL + "Personnel/Attendance/vacation_edit_tabs.json", //修改表格
+            select    : LOCAL + "Test/test_select.json",                        //下拉选择
+        }
+
+    } else if ( window.STATE == "route" ){
 
         //远程接口
+        var personnel_attendance_vacation_api = {
+            datagrid  : LOCAL + "Personnel/Attendance/vacation.json",           //数据表格
+            edit_type : LOCAL + "Personnel/Attendance/vacation_edit_type.json", //修改类型
+            edit_tabs : LOCAL + "Personnel/Attendance/vacation_edit_tabs.json", //修改表格
+            select    : LOCAL + "Test/test_select.json",                        //下拉选择
+        }
 
     }
-
+ 
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_attendance_vacation_datagrid.datagrid({
         height      : "page",

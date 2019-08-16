@@ -699,18 +699,27 @@ $(function(){
     personnel_staff_reset_box           = $("#personnel_staff_reset_box"),          //重置盒子
     personnel_staff_reset_submit        = $("#personnel_staff_reset_submit");       //重置提交
 
-    //接口对象
-    var personnel_staff_api       = {
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
         //本地接口
-        datagrid  : LOCAL + "Personnel/staff.json",                             //数据表格
-        select    : LOCAL + "Test/test_select.json",                            //下拉选择
-        uploader  : LOCAL + "Test/test_upload.php"                              //上传路径
+        var personnel_staff_api = {
+            datagrid  : LOCAL + "Personnel/staff.json",                             //数据表格
+            select    : LOCAL + "Test/test_select.json",                            //下拉选择
+            uploader  : LOCAL + "Test/test_upload.php"                              //上传路径
+        }
+
+    } else if ( window.STATE == "route" ){
 
         //远程接口
+        var personnel_staff_api = {
+            datagrid  : LOCAL + "Personnel/staff.json",                             //数据表格
+            select    : LOCAL + "Test/test_select.json",                            //下拉选择
+            uploader  : LOCAL + "Test/test_upload.php"                              //上传路径
+        }
 
     }
-
+    
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_staff_datagrid.datagrid({
         height      : "page",

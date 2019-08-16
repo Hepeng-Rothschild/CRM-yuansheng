@@ -190,19 +190,29 @@ $(function(){
     personnel_train_exam_dele_box           = $("#personnel_train_exam_dele_box"),            //删除盒子 
     personnel_train_exam_dele_submit        = $("#personnel_train_exam_dele_submit");         //删除提交
 
-    //接口对象
-    var personnel_train_exam_api       = {
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
         //本地接口
-        datagrid  : LOCAL + "Personnel/Train/exam.json",                                      //数据表格
-        tree      : LOCAL + "Personnel/Train/exam_staff.json",                                //考试人员
-        select    : LOCAL + "Test/test_select.json",                                          //下拉选择
-        edit      : LOCAL + "Personnel/Train/exam_edit.json",                                 //修改数据
+        var personnel_train_exam_api = {
+            datagrid  : LOCAL + "Personnel/Train/exam.json",                                      //数据表格
+            tree      : LOCAL + "Personnel/Train/exam_staff.json",                                //考试人员
+            select    : LOCAL + "Test/test_select.json",                                          //下拉选择
+            edit      : LOCAL + "Personnel/Train/exam_edit.json",                                 //修改数据
+        }
+
+    } else if ( window.STATE == "route" ){
 
         //远程接口
+        var personnel_train_exam_api = {
+            datagrid  : LOCAL + "Personnel/Train/exam.json",                                      //数据表格
+            tree      : LOCAL + "Personnel/Train/exam_staff.json",                                //考试人员
+            select    : LOCAL + "Test/test_select.json",                                          //下拉选择
+            edit      : LOCAL + "Personnel/Train/exam_edit.json",                                 //修改数据
+        }
 
     }
-
+    
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_train_exam_datagrid.datagrid({
         height      : "page",

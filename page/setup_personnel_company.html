@@ -140,14 +140,22 @@ $(function(){
     setup_personnel_company_dele_box    = $("#setup_personnel_company_dele_box"),   //删除盒子
     setup_personnel_company_dele_submit = $("#setup_personnel_company_dele_submit");//删除提交
 
-    //接口对象
-    var setup_personnel_company_api       = {
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
         //本地接口
-        datagrid  : LOCAL + "Setup/Personnel/company.json",                                 //数据表格
-        select    : LOCAL + "Test/test_select.json",                                        //下拉选择
+        var setup_personnel_company_api = {
+            datagrid  : LOCAL + "Setup/Personnel/company.json",                     //数据表格
+            select    : LOCAL + "Test/test_select.json",                            //下拉选择
+        }
+
+    } else if ( window.STATE == "route" ){
 
         //远程接口
+        var setup_personnel_company_api = {
+            datagrid  : LOCAL + "Setup/Personnel/company.json",                     //数据表格
+            select    : LOCAL + "Test/test_select.json",                            //下拉选择
+        }
 
     }
 

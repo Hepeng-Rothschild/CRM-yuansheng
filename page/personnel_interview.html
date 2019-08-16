@@ -216,26 +216,38 @@ $(function(){
     personnel_interview_state_submit     = $("#personnel_interview_state_submit"),//状态提交
     personnel_interview_state_mess       = $("#personnel_interview_state_mess");  //状态字段 
 
-    //接口对象
-    var personnel_interview_api          = {
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
         //本地接口
-        datagrid        : LOCAL + "Personnel/interview.json",                     //数据表格
-        select_post     : LOCAL + "Test/test_select.json",                        //职位下拉
-        select_state    : LOCAL + "Test/test_select.json",                        //状态下拉
-        select_copy     : LOCAL + "Test/test_select.json",                        //抄送下拉
+        var personnel_interview_api = {
+            select_post     : LOCAL + "Position/getPostions.json",              //职位下拉
+            select_comp     : LOCAL + "Company/getCompanyByPositionid.json",    //分公司下拉
+            select_state1   : LOCAL + "Interview/GetState.json",                //状态下拉(邀约面试)
+            select_state2   : LOCAL + "Interview/GetState.json",                //状态下拉(人才库)
+            select_copy     : LOCAL + "Interview/GetCSR.json",                  //抄送人下拉
+            modal_add       : LOCAL + "Interview/AddInterview.json",            //添加提交
+            modal_edit_read : LOCAL + "Interview/UpdateIvDisplay.json",         //修改读取
+            modal_edit      : LOCAL + "Interview/UpdateInterview.json",         //修改提交
+            modal_state     : LOCAL + "Interview/UpdateInterviewState.json",    //状态提交
+            datagrid        : LOCAL + "Interview/GetInterview.json",            //数据表格
+        }
+
+    } else if ( window.STATE == "route" ){
 
         //远程接口
-        select_post     : ROUTE + "Position/getPostions",                         //职位下拉
-        select_comp     : ROUTE + "Company/getCompanyByPositionid",               //分公司下拉
-        select_state1   : ROUTE + "Interview/GetState",                           //状态下拉(邀约面试)
-        select_state2   : ROUTE + "Interview/GetState",                           //状态下拉(人才库)
-        select_copy     : ROUTE + "Interview/GetCSR",                             //抄送人下拉
-        modal_add       : ROUTE + "Interview/AddInterview",                       //添加提交
-        modal_edit_read : ROUTE + "Interview/UpdateIvDisplay",                    //修改读取
-        modal_edit      : ROUTE + "Interview/UpdateInterview",                    //修改提交
-        modal_state     : ROUTE + "Interview/UpdateInterviewState",               //状态提交
-        datagrid        : ROUTE + "Interview/GetInterview",                       //数据表格
+        var personnel_interview_api = {
+            select_post     : ROUTE + "Position/getPostions",                   //职位下拉
+            select_comp     : ROUTE + "Company/getCompanyByPositionid",         //分公司下拉
+            select_state1   : ROUTE + "Interview/GetState",                     //状态下拉(邀约面试)
+            select_state2   : ROUTE + "Interview/GetState",                     //状态下拉(人才库)
+            select_copy     : ROUTE + "Interview/GetCSR",                       //抄送人下拉
+            modal_add       : ROUTE + "Interview/AddInterview",                 //添加提交
+            modal_edit_read : ROUTE + "Interview/UpdateIvDisplay",              //修改读取
+            modal_edit      : ROUTE + "Interview/UpdateInterview",              //修改提交
+            modal_state     : ROUTE + "Interview/UpdateInterviewState",         //状态提交
+            datagrid        : ROUTE + "Interview/GetInterview",                 //数据表格
+        }
 
     }
 

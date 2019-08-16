@@ -111,14 +111,22 @@ $(function(){
     personnel_attendance_days_result_edit_time   = $("#personnel_attendance_days_result_edit_time"),    //修改时间
     personnel_attendance_days_result_edit_submit = $("#personnel_attendance_days_result_edit_submit");  //修改提交
 
-    //接口对象
-    var personnel_attendance_days_api       = {
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
         //本地接口
-        datagrid  : LOCAL + "Personnel/Attendance/days.json",                                           //数据表格
-        select    : LOCAL + "Test/test_select.json",                                                    //下拉选择
+        var personnel_attendance_days_api = {
+            datagrid  : LOCAL + "Personnel/Attendance/days.json",                                           //数据表格
+            select    : LOCAL + "Test/test_select.json",                                                    //下拉选择
+        }
+
+    } else if ( window.STATE == "route" ){
 
         //远程接口
+        var personnel_attendance_days_api = {
+            datagrid  : LOCAL + "Personnel/Attendance/days.json",                                           //数据表格
+            select    : LOCAL + "Test/test_select.json",                                                    //下拉选择
+        }
 
     }
 

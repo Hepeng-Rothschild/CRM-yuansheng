@@ -3,9 +3,10 @@
     $.zui.store.enable=false;
 
     //接口路径
+    window.STATE = "local";                                         //当前状态
     window.LOCAL = "./remote/";                                     //本地路径
     window.ROUTE = "http://192.168.1.26/";                          //远程路径
-
+    
     //组件接口
     window.API = {
         //全局接口

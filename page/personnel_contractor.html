@@ -252,18 +252,27 @@ $(function(){
     personnel_contractor_dele_box           = $("#personnel_contractor_dele_box"),          //删除盒子
     personnel_contractor_dele_submit        = $("#personnel_contractor_dele_submit");       //删除提交
 
-    //接口对象
-    var personnel_contractor_api       = {
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
         //本地接口
-        datagrid  : LOCAL + "Personnel/contractor.json",                                    //数据表格
-        select    : LOCAL + "Test/test_select.json",                                        //下拉选择
-        uploader  : LOCAL + "Test/test_upload.php"                                          //上传路径
+        var personnel_contractor_api = {
+            datagrid  : LOCAL + "Personnel/contractor.json",                                    //数据表格
+            select    : LOCAL + "Test/test_select.json",                                        //下拉选择
+            uploader  : LOCAL + "Test/test_upload.php"                                          //上传路径
+        }
+
+    } else if ( window.STATE == "route" ){
 
         //远程接口
+        var personnel_contractor_api = {
+            datagrid  : LOCAL + "Personnel/contractor.json",                                    //数据表格
+            select    : LOCAL + "Test/test_select.json",                                        //下拉选择
+            uploader  : LOCAL + "Test/test_upload.php"                                          //上传路径
+        }
 
     }
-
+ 
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_contractor_datagrid.datagrid({
         height      : "page",

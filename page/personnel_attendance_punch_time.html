@@ -59,14 +59,22 @@ $(function(){
     //当前时间获取(影响date1和datagrid)
     var now_time = new Date().Format("yyyy-MM");
 
-    //接口对象
-    var personnel_attendance_punch_time_api       = {
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
         //本地接口
-        datagrid  : LOCAL + "Personnel/Attendance/punch_time.json",                                                 //数据表格
-        select    : LOCAL + "Test/test_select.json",                                                                //下拉选择
+        var personnel_attendance_punch_time_api = {
+            datagrid  : LOCAL + "Personnel/Attendance/punch_time.json",         //数据表格
+            select    : LOCAL + "Test/test_select.json",                        //下拉选择
+        }
+
+    } else if ( window.STATE == "route" ){
 
         //远程接口
+        var personnel_attendance_punch_time_api = {
+            datagrid  : LOCAL + "Personnel/Attendance/punch_time.json",         //数据表格
+            select    : LOCAL + "Test/test_select.json",                        //下拉选择
+        }
 
     }
 

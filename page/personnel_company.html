@@ -41,27 +41,35 @@ $(function(){
     
     //变量声明------------------------------------------------------------------------
     var
-    personnel_company               = $("#personnel_company"),              //页面ID
-    personnel_company_tool_select1  = $("#personnel_company_tool_select1"), //下拉选择
-    personnel_company_structure_btn = $("#personnel_company_structure_btn"),//架构按钮
-    personnel_company_structure_box = $("#personnel_company_structure_box"),//架构面板
-    personnel_company_structure_dom = $("#personnel_company_structure_dom"),//架构组件
-    personnel_company_datagrid      = $("#personnel_company_datagrid"),     //数据表格
-    personnel_company_datagrid_obj  = "";                                   //表格对象
+    personnel_company               = $("#personnel_company"),                  //页面ID
+    personnel_company_tool_select1  = $("#personnel_company_tool_select1"),     //下拉选择
+    personnel_company_structure_btn = $("#personnel_company_structure_btn"),    //架构按钮
+    personnel_company_structure_box = $("#personnel_company_structure_box"),    //架构面板
+    personnel_company_structure_dom = $("#personnel_company_structure_dom"),    //架构组件
+    personnel_company_datagrid      = $("#personnel_company_datagrid"),         //数据表格
+    personnel_company_datagrid_obj  = "";                                       //表格对象
 
-    //接口对象
-    var personnel_company_api       = {
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
         //本地接口
-        select    : LOCAL + "Personnel/getAllCompany.json",                 //下拉选择
-        datagrid  : LOCAL + "Personnel/getCompanybyid.json",                //数据表格()
-        structure : LOCAL + "Personnel/getStructure.json",                  //组织架构()
+        var personnel_company_api = {
+            select    : LOCAL + "Company/getAllCompany.json",                   //下拉选择
+            datagrid  : LOCAL + "Company/getCompanybyid.json",                  //数据表格
+            structure : LOCAL + "Company/getdeparmentid.json",                  //组织架构表
+            second    : LOCAL + "Company/getSCompanybyid.json",                 //获取二级部门
+        }
+
+    } else if ( window.STATE == "route" ){
 
         //远程接口
-        select    : ROUTE + "Company/getAllCompany",                      //下拉选择
-        datagrid  : ROUTE + "Company/getCompanybyid",                       //数据表格
-        structure : ROUTE + "Company/getdeparmentid",                       //组织架构表
-        second    : ROUTE + "Company/getSCompanybyid",                      //获取二级部门
+        var personnel_company_api = {
+            select    : ROUTE + "Company/getAllCompany",                        //下拉选择
+            datagrid  : ROUTE + "Company/getCompanybyid",                       //数据表格
+            structure : ROUTE + "Company/getdeparmentid",                       //组织架构表
+            second    : ROUTE + "Company/getSCompanybyid",                      //获取二级部门
+        }
+
     }
 
     //下拉选择------------------------------------------------------------------------

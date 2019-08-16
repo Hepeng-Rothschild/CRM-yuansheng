@@ -234,18 +234,25 @@ $(function(){
     admin_goods_dele_box           = $("#admin_goods_dele_box"),          //删除盒子
     admin_goods_dele_submit        = $("#admin_goods_dele_submit");       //删除提交
 
-    //接口对象
-    var admin_goods_api       = {
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
         //本地接口
-        datagrid  : LOCAL + "Admin/goods.json",                           //数据表格
-        select    : LOCAL + "Test/test_select.json",                      //下拉选择
-        uploader  : LOCAL + "Test/test_upload.php"                        //上传路径
+        var admin_goods_api = {
+            datagrid  : LOCAL + "Admin/goods.json",                           //数据表格
+            select    : LOCAL + "Test/test_select.json",                      //下拉选择
+        }
+
+    } else if ( window.STATE == "route" ){
 
         //远程接口
+        var admin_goods_api = {
+            datagrid  : LOCAL + "Admin/goods.json",                           //数据表格
+            select    : LOCAL + "Test/test_select.json",                      //下拉选择
+        }
 
     }
-
+    
     //数据表格-----------------------------------------------------------------------------------------------
     admin_goods_datagrid.datagrid({
         height      : "page",
