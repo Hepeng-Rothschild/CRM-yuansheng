@@ -395,10 +395,10 @@ $(function(){
             },
             success : function(data){
                 if( data.code>0 ){
-                    um_tip(data.mess);
+                    um_tip(data.message);
                     um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
@@ -468,7 +468,7 @@ $(function(){
                     admin_goods_show_box.find(".modal-body").html(temp);                //模板填充
                     admin_goods_show_box.modal("show");                                 //盒子显示
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
@@ -494,15 +494,15 @@ $(function(){
                 if( data.code>0 ){
 
                     //数据赋值
-                    admin_goods_edit_user.val(      data.mess );
-                    admin_goods_edit_acco.val(      data.mess );
-                    admin_goods_edit_tels.val(      data.mess );
-                    admin_goods_edit_addr.val(      data.mess );
+                    admin_goods_edit_user.val(      data.message );
+                    admin_goods_edit_acco.val(      data.message );
+                    admin_goods_edit_tels.val(      data.message );
+                    admin_goods_edit_addr.val(      data.message );
                     admin_goods_edit_type.val(      1         );
                     admin_goods_edit_state.val(     1         );
-                    admin_goods_edit_card_numb.val( data.mess );
-                    admin_goods_edit_card_bank.val( data.mess );
-                    admin_goods_edit_card_user.val( data.mess );
+                    admin_goods_edit_card_numb.val( data.message );
+                    admin_goods_edit_card_bank.val( data.message );
+                    admin_goods_edit_card_user.val( data.message );
                     //资料上传
                     admin_goods_edit_uploader1.uploader(
                         upload_fixed(admin_goods_api.uploader,"admin_goods_edit_uploader1",
@@ -527,7 +527,7 @@ $(function(){
                     admin_goods_edit_submit.attr("dataId",data_id);                     //数据ID传值
                     admin_goods_edit_box.modal("show");                                 //盒子显示
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
@@ -562,10 +562,10 @@ $(function(){
             },
             success : function(data){
                 if( data.code>0 ){
-                    um_tip(data.mess);
+                    um_tip(data.message);
                     um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
@@ -597,10 +597,10 @@ $(function(){
             data    : { id:data_id },
             success : function(data){
                 if( data.code>0 ){
-                    um_tip(data.mess);
+                    um_tip(data.message);
                     um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });

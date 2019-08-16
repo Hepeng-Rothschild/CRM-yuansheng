@@ -420,10 +420,10 @@ $(function(){
             },
             success : function(data){
                 if( data.code>0 ){
-                    um_tip(data.mess);
+                    um_tip(data.message);
                     um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
@@ -493,7 +493,7 @@ $(function(){
                     personnel_contractor_show_box.find(".modal-body").html(temp);                //模板填充
                     personnel_contractor_show_box.modal("show");                                 //盒子显示
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
@@ -519,15 +519,15 @@ $(function(){
                 if( data.code>0 ){
 
                     //数据赋值
-                    personnel_contractor_edit_user.val(      data.mess );
-                    personnel_contractor_edit_acco.val(      data.mess );
-                    personnel_contractor_edit_tels.val(      data.mess );
-                    personnel_contractor_edit_addr.val(      data.mess );
+                    personnel_contractor_edit_user.val(      data.message );
+                    personnel_contractor_edit_acco.val(      data.message );
+                    personnel_contractor_edit_tels.val(      data.message );
+                    personnel_contractor_edit_addr.val(      data.message );
                     personnel_contractor_edit_type.val(      1         );
                     personnel_contractor_edit_state.val(     1         );
-                    personnel_contractor_edit_card_numb.val( data.mess );
-                    personnel_contractor_edit_card_bank.val( data.mess );
-                    personnel_contractor_edit_card_user.val( data.mess );
+                    personnel_contractor_edit_card_numb.val( data.message );
+                    personnel_contractor_edit_card_bank.val( data.message );
+                    personnel_contractor_edit_card_user.val( data.message );
                     //资料上传
                     personnel_contractor_edit_uploader1.uploader(
                         upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader1",
@@ -552,7 +552,7 @@ $(function(){
                     personnel_contractor_edit_submit.attr("dataId",data_id);                     //数据ID传值
                     personnel_contractor_edit_box.modal("show");                                 //盒子显示
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
@@ -587,10 +587,10 @@ $(function(){
             },
             success : function(data){
                 if( data.code>0 ){
-                    um_tip(data.mess);
+                    um_tip(data.message);
                     um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
@@ -622,10 +622,10 @@ $(function(){
             data    : { id:data_id },
             success : function(data){
                 if( data.code>0 ){
-                    um_tip(data.mess);
+                    um_tip(data.message);
                     um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });

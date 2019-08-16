@@ -1,0 +1,11 @@
+{
+	"success": true,
+	"msg": "获取职位成功",
+	"status": 1,
+	"data": [
+		{"id":1,"name":"人事专员","deparmentid":1},
+		{"id":2,"name":"行政专员","deparmentid":1},
+		{"id":3,"name":"商务专员","deparmentid":1}
+	],
+	"pager": ""
+}

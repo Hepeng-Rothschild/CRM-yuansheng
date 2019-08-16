@@ -1,0 +1,12 @@
+{
+	"result" : true,
+	"message": "获取成功",
+	"status" : 1,
+	"data"   : [
+		{"id":1,"statename":"待面试"  }, 
+		{"id":2,"statename":"初试通过"}, 
+		{"id":3,"statename":"复试通过"}, 
+		{"id":4,"statename":"储备"    }, 
+		{"id":5,"statename":"淘汰"    }
+	]
+}

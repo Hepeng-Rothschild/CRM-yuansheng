@@ -545,10 +545,10 @@ $(function(){
             },
             success : function(data){
                 if( data.status>0){
-                    um_tip(data.msg);
+                    um_tip(data.message);
                     um_reset(personnel_interview_datagrid_obj,personnel_interview_api.datagrid);
                 } else {
-                    um_tip(data.msg,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
@@ -585,7 +585,7 @@ $(function(){
                     personnel_interview_edit_box.modal("show");                                 //盒子显示
 
                 } else {
-                    um_tip(data.msg,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
@@ -612,10 +612,10 @@ $(function(){
             },
             success : function(data){
                 if( data.status>0 ){
-                    um_tip(data.msg);
+                    um_tip(data.message);
                     um_reset(personnel_interview_datagrid_obj,personnel_interview_api.datagrid);
                 } else {
-                    um_tip(data.msg,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
@@ -656,10 +656,10 @@ $(function(){
             },
             success : function(data){
                 if( data.status>0 ){
-                    um_tip(data.msg);
+                    um_tip(data.message);
                     um_reset(personnel_interview_datagrid_obj,personnel_interview_api.datagrid);
                 } else {
-                    um_tip(data.msg,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });

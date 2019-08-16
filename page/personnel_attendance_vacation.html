@@ -294,7 +294,7 @@ $(function(){
                     personnel_attendance_vacation_edit_box.modal("show");                               //面板显示
 
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
 
             }
@@ -322,10 +322,10 @@ $(function(){
             success : function(data){
 
                 if( data.code>0 ){
-                    um_tip(data.mess);
+                    um_tip(data.message);
                     um_reset(personnel_attendance_vacation_datagrid_obj,personnel_attendance_vacation_api.datagrid);
                 } else {
-                    um_tip(data.mess,"1500","text-danger");
+                    um_tip(data.message,"1500","text-danger");
                 }
 
             }
