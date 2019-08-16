@@ -418,7 +418,7 @@ $(function(){
         }
     });
 
-    //状态(邀约面试)
+    //邀约面试-状态
     $.ajax({
         url     : personnel_interview_api.select_state1,
         type    : "get",
@@ -437,6 +437,8 @@ $(function(){
 
         }
     });
+    //邀约面试-搜索
+    personnel_interview_search_btn.attr("bs",1);
 
     //右侧切换-----------------------------------------------------------------------------------------------
     //邀约面试
@@ -459,6 +461,9 @@ $(function(){
                     option += "<option value='"+ data[i].id +"'>"+data[i].statename+"</option>"
                 }
                 personnel_interview_tool_select3.html(option);
+
+                //搜索按钮
+                personnel_interview_search_btn.attr("bs",1);
 
                 //添加按钮
                 personnel_interview_add_btn.show();
@@ -491,6 +496,9 @@ $(function(){
                 }
                 personnel_interview_tool_select3.html(option);
 
+                //搜索按钮
+                personnel_interview_search_btn.attr("bs",2);
+
                 //添加按钮
                 personnel_interview_add_btn.hide();
 
@@ -513,7 +521,8 @@ $(function(){
         + "&endtime="   + personnel_interview_tool_date2.val()
         + "&positionid="+ personnel_interview_tool_select1.val()
         + "&companyid=" + personnel_interview_tool_select2.val()
-        + "&isstate="   + personnel_interview_tool_select3.val();
+        + "&isstate="   + personnel_interview_tool_select3.val()
+        + "&bs="        + personnel_interview_search_btn.attr("bs");
 
         //GET提交
         um_render(personnel_interview_datagrid_obj,personnel_interview_api.datagrid+keyword);

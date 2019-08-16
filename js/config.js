@@ -3,7 +3,7 @@
     $.zui.store.enable=false;
 
     //接口路径
-    window.STATE = "local";                                         //当前状态
+    window.STATE = "route";                                         //当前状态
     window.LOCAL = "./remote/";                                     //本地路径
     window.ROUTE = "http://192.168.1.26/";                          //远程路径
     
@@ -26,4 +26,4 @@
     tels    100
     full    .1
     operate 180
-    */ 
+    */
