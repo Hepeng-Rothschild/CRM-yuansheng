@@ -728,7 +728,7 @@ $(function(){
         showRowIndex: true,
         configs     : {
             R0:{className:"text-center"},
-            C1:{className:"borderless"}
+            C1:{className:"cell-hidden"}
         },
         states      : {
             fixedLeftUntil  : 3,
@@ -739,14 +739,14 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {name:"id",            label:"ID"  ,  width:50 },
+                {name:"id",            label:"ID"  ,  width:9 },
                 {name:"name",          label:"姓名",  width:80 },
                 {name:"username",      label:"工号",  width:80 },
                 {name:"companyname",   label:"分公司",width:100},
                 {name:"departmentname",label:"部门",  width:80 },
                 {name:"positionname",  label:"职位",  width:80 },
                 {name:"sex",           label:"性别",  width:50 },
-                {name:"isstate",       label:"状态",  width:80 },
+                {name:"isstatename",   label:"状态",  width:80 },
                 {name:"operate",label:"操作",  width:180,
                     html:true,
                     valueOperator : {

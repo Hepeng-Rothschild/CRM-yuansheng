@@ -488,8 +488,8 @@ html,body{
 }
 select{ min-width: 100px!important; }
 .input-min-box input{ width: 120px; }
-
-.borderless{
+/*单元格隐藏*/
+.cell-hidden{
     border:none;
-    opacity: 0;
+    opacity: 0.5;
 }

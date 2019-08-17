@@ -221,7 +221,7 @@ $(function(){
         showRowIndex: true,
         configs     : {
             R0:{className:"text-center"},
-            C1:{className:"borderless"}
+            C1:{className:"cell-hidden"}
         },
         states      : {
             fixedLeftUntil  : 3,
@@ -232,7 +232,7 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {width:1,  name:"id",      label:"ID"      },
+                {width:9,  name:"id",      label:"ID"      },
                 {width:250,name:"subject", label:"考试题目"},
                 {width:120,name:"type",    label:"考试类型"},
                 {width:120,name:"publish", label:"发布时间"},
