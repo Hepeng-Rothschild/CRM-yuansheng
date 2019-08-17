@@ -253,20 +253,24 @@ $(function(){
 
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_interview_datagrid.datagrid({
-        height      : "page",
+        height      : um_height(personnel_interview_datagrid),
         sortable    : false,
-        showRowIndex: false,
-        configs     : { R0:{className:"text-center"} },
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"borderless"}
+        },
         states      : {
             fixedLeftUntil  : 2,
             pager           : {
                 page        : 1,
-                recPerPage  : 15,
+                recPerPage  : window.REC_PER_PAGE,
             }
         },
         dataSource : {
             cols   : [
-                {name:"id",          label:"ID"  ,    width:50 },
+                {name:"id",          label:"ID"  ,    width:1  },
                 {name:"name",        label:"姓名",    width:80 },
                 {name:"tel" ,        label:"电话",    width:100},
                 {name:"positionname",label:"应聘职位",width:80 },
@@ -327,10 +331,9 @@ $(function(){
             ],
             remote : function(){
                 return {
-                    url     : personnel_interview_api.datagrid,
-                    type    : "POST",
-                    dataType: "json",
-                    data    : { bs : 1 }                                                //邀约面试
+                    url     : personnel_interview_api.datagrid+"?bs=1",
+                    type    : "GET",
+                    dataType: "json"
                 }
             }
         }
@@ -581,7 +584,6 @@ $(function(){
 
                     //数据赋值
                     var data = data.data[0];
-                    console.log(data);
                     personnel_interview_edit_user.val( data.name );
                     personnel_interview_edit_tels.val( data.tel );
                     var sex_num =1; ( data.sex=="男" ) ? sex_num=1 : sex_num=2;
@@ -641,7 +643,7 @@ $(function(){
 
         //其他操作
         personnel_interview_state_submit.attr("rowIndex",data_id);                  //数据ID赋值
-        personnel_interview_state_submit.attr("state",state);                       //操作代号赋值        
+        personnel_interview_state_submit.attr("state",state);                       //操作代号赋值
         personnel_interview_state_box.find(".modal-title").text( text );            //操作名称赋值
         personnel_interview_state_box.modal("show");                                //盒子显示
 

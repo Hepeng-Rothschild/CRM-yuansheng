@@ -132,15 +132,19 @@ $(function(){
 
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_attendance_days_datagrid.datagrid({
-        height      : "page",
+        height      : um_height(personnel_attendance_days_datagrid),
         sortable    : false,
-        showRowIndex: false,
-        headerHeight: 60,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"borderless"}
+        },
         states      : {
             fixedLeftUntil  : 3,
             pager           : {
                 page        : 1,
-                recPerPage  : 20,
+                recPerPage  : window.REC_PER_PAGE,
             }
         },
         configs : {
@@ -348,7 +352,7 @@ $(function(){
 
         //字段整理
         var keyword
-        = "?keys="   + personnel_attendance_days_tool_keys.val()
+        = "?sid="    + personnel_attendance_days_tool_keys.val()
         + "&search=" + personnel_attendance_days_tool_search.val()
         + "&select1="+ personnel_attendance_days_tool_select1.val()
         + "&select2="+ personnel_attendance_days_tool_select2.val()

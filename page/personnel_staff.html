@@ -704,7 +704,7 @@ $(function(){
 
         //本地接口
         var personnel_staff_api = {
-            datagrid  : LOCAL + "Personnel/staff.json",                             //数据表格
+            datagrid  : LOCAL + "User/SearchStaff.json",                            //数据表格
             select    : LOCAL + "Test/test_select.json",                            //下拉选择
             uploader  : LOCAL + "Test/test_upload.php"                              //上传路径
         }
@@ -713,36 +713,40 @@ $(function(){
 
         //远程接口
         var personnel_staff_api = {
-            datagrid  : LOCAL + "Personnel/staff.json",                             //数据表格
+            datagrid  : ROUTE + "User/SearchStaff",                                 //数据表格
             select    : LOCAL + "Test/test_select.json",                            //下拉选择
-            uploader  : LOCAL + "Test/test_upload.php"                              //上传路径
+            uploader  : ROUTE + "Test/test_upload.php"                              //上传路径
         }
 
     }
     
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_staff_datagrid.datagrid({
-        height      : "page",
+        height      : um_height(personnel_staff_datagrid),
         sortable    : false,
-        showRowIndex: false,
-        configs     : { R0:{className:"text-center"} },
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"borderless"}
+        },
         states      : {
             fixedLeftUntil  : 3,
             pager           : {
                 page        : 1,
-                recPerPage  : 20,
+                recPerPage  : window.REC_PER_PAGE,
             }
         },
         dataSource : {
             cols   : [
-                {name:"id",     label:"ID"  ,  width:50 },
-                {name:"user",   label:"姓名",  width:80 },
-                {name:"numb",   label:"工号",  width:80 },
-                {name:"comp",   label:"分公司",width:100},
-                {name:"depart", label:"部门",  width:80 },
-                {name:"post",   label:"职位",  width:80 },
-                {name:"sexy",   label:"性别",  width:50 },
-                {name:"state",  label:"状态",  width:80 },
+                {name:"id",            label:"ID"  ,  width:50 },
+                {name:"name",          label:"姓名",  width:80 },
+                {name:"username",      label:"工号",  width:80 },
+                {name:"companyname",   label:"分公司",width:100},
+                {name:"departmentname",label:"部门",  width:80 },
+                {name:"positionname",  label:"职位",  width:80 },
+                {name:"sex",           label:"性别",  width:50 },
+                {name:"isstate",       label:"状态",  width:80 },
                 {name:"operate",label:"操作",  width:180,
                     html:true,
                     valueOperator : {
@@ -774,7 +778,7 @@ $(function(){
             ],
             remote : function(){
                 return {
-                    url     : personnel_staff_api.datagrid,
+                    url     : personnel_staff_api.datagrid+"?bs=1",
                     type    : "POST",
                     dataType: "json",
                 }
@@ -1160,11 +1164,11 @@ $(function(){
 
         //字段整理
         var keyword
-        = "?keys"    + personnel_staff_tool_keys.val()
-        + "&search=" + personnel_staff_tool_search.val()
-        + "&select1="+ personnel_staff_tool_select1.val()
-        + "&select2="+ personnel_staff_tool_select2.val()
-        + "&select3="+ personnel_staff_tool_select3.val();
+        = "?sid="       + personnel_staff_tool_keys.val()
+        + "&search="    + personnel_staff_tool_search.val()
+        + "&companyid=" + personnel_staff_tool_select1.val()
+        + "&positionid="+ personnel_staff_tool_select2.val()
+        + "&isstate="   + personnel_staff_tool_select3.val();
 
         //GET提交
         um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid+keyword);

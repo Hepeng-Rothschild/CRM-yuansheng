@@ -94,14 +94,18 @@ $(function(){
 
             //数据表格
             personnel_company_datagrid.datagrid({
-                height      : "page",
+                height      : um_height(personnel_company_datagrid),
                 sortable    : false,
-                showRowIndex: false,
-                configs     : { R0:{className:"text-center"} },
+                cache       : false,
+                showRowIndex: true,
+                configs     : {
+                    R0:{className:"text-center"},
+                    C1:{className:"borderless"}
+                },
                 states      : {
-                    pager : {
+                    pager           : {
                         page        : 1,
-                        recPerPage  : 20,
+                        recPerPage  : window.REC_PER_PAGE,
                     }
                 },
                 dataSource : {

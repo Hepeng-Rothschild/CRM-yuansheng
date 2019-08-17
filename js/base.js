@@ -268,6 +268,16 @@ function um_tip(text,time,cls){
     }
 }
 
+
+/*um_height() 数据表格高度
+ * @param  datagrid object
+ * @return height   number
+ */
+function um_height(datagrid){
+    var height = window.innerHeight - datagrid.find(".datagrid-container").offset().top - 53;
+    return height;
+}
+
 /* um_reset() 重置操作
  * @param datagrid_obj object
  * @param datagrid_url string

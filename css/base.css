@@ -440,7 +440,7 @@ html,body{
 }
 /*数据表格*/
 .datagrid .pager{
-    margin:10px 0;
+    margin:10px 0 0;
 }
 /*工具条*/
 .tool-group{
@@ -489,4 +489,7 @@ html,body{
 select{ min-width: 100px!important; }
 .input-min-box input{ width: 120px; }
 
-
+.borderless{
+    border:none;
+    opacity: 0;
+}

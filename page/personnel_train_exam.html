@@ -215,15 +215,19 @@ $(function(){
     
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_train_exam_datagrid.datagrid({
-        height      : "page",
+        height      : um_height(personnel_train_exam_datagrid),
         sortable    : false,
-        showRowIndex: false,
-        configs     : { R0:{className:"text-center"} },
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"borderless"}
+        },
         states      : {
             fixedLeftUntil  : 3,
             pager           : {
                 page        : 1,
-                recPerPage  : 20,
+                recPerPage  : window.REC_PER_PAGE,
             }
         },
         dataSource : {
@@ -296,7 +300,7 @@ $(function(){
 
         //字段整理
         var keyword
-        = "?keys=" + personnel_train_exam_tool_keys.val()
+        = "?sid=" + personnel_train_exam_tool_keys.val()
         + "&search=" + personnel_train_exam_tool_search.val()
         + "&select1="+ personnel_train_exam_tool_select1.val()
         + "&date1="  + personnel_train_exam_tool_date1.val()
