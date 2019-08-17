@@ -1200,7 +1200,10 @@ $(function(){
                 hyzk             : personnel_staff_add_marr.val(),
                 p1               : personnel_staff_add_cont_user.val(),
                 tel1             : personnel_staff_add_cont_tels.val(),
-                address          : personnel_staff_add_addr1.val() + personnel_staff_add_addr2.val() + personnel_staff_add_addr3.val() + personnel_staff_add_addr4.val(),
+                addr1            : personnel_staff_add_addr1.val(),
+                addr2            : personnel_staff_add_addr2.val(),
+                addr3            : personnel_staff_add_addr3.val(),
+                addr4            : personnel_staff_add_addr4.val(),
                 //入职情况
                 companyId        : personnel_staff_add_comp.val(),
                 departmentId     : personnel_staff_add_depa.val(),
@@ -1224,29 +1227,32 @@ $(function(){
                 years            : personnel_staff_add_edu_years.val(),
                 //工作经历
                 company1name     : personnel_staff_add_work1_comp.val(),
-                company1time     : personnel_staff_add_work1_date1.val() +" 至 "+ personnel_staff_add_work1_date2.val(),
+                company1time1    : personnel_staff_add_work1_date1.val(),
+                company1time2    : personnel_staff_add_work1_date2.val(),
                 company1position : personnel_staff_add_work1_post.val(),
                 reasons1         : personnel_staff_add_work1_reason.val(),
 
                 company2name     : personnel_staff_add_work2_comp.val(),
-                company2time     : personnel_staff_add_work2_date1.val() +" 至 "+ personnel_staff_add_work2_date2.val(),
+                company2time1    : personnel_staff_add_work2_date1.val(),
+                company1time2    : personnel_staff_add_work2_date2.val(),
                 company2position : personnel_staff_add_work2_post.val(),
                 reasons2         : personnel_staff_add_work2_reason.val(),
 
                 company3name     : personnel_staff_add_work3_comp.val(),
-                company3time     : personnel_staff_add_work3_date1.val() +" 至 "+ personnel_staff_add_work3_date2.val(),
+                company3time1    : personnel_staff_add_work3_date1.val(),
+                company1time2    : personnel_staff_add_work3_date2.val(),
                 company3position : personnel_staff_add_work3_post.val(),
                 reasons3         : personnel_staff_add_work3_reason.val(),
                 //家庭状况
                 familyName1      : personnel_staff_add_home1_user.val(),
-                fTel1            : personnel_staff_add_home1_rela.val(),
+                relation1        : personnel_staff_add_home1_rela.val(),
                 fjob1            : personnel_staff_add_home1_work.val(),
-                relation1        : personnel_staff_add_home1_tels.val(),
+                fTel1            : personnel_staff_add_home1_tels.val(),
 
                 familyName2      : personnel_staff_add_home2_user.val(),
-                fTel2            : personnel_staff_add_home2_rela.val(),
+                relation2        : personnel_staff_add_home2_rela.val(),
                 fjob2            : personnel_staff_add_home2_work.val(),
-                relation2        : personnel_staff_add_home2_tels.val(),
+                fTel2            : personnel_staff_add_home2_tels.val(),
             },
             success : function(data){
                 if( data.status>0 ){
@@ -1275,78 +1281,79 @@ $(function(){
                 if( data.status>0 ){
 
                     //查看模板
+                    var data = data.data;
                     var temp = `
                         <div class="container">
                             <!-- 角色权限 -->
                             <blockquote>角色权限</blockquote>
                             <table class="table table-bordered">
-                                <tr><td>登陆IP：127.0.0.1</td></tr>
-                                <tr><td>数据角色：石家庄分公司，上海分公司</td></tr>
+                                <tr><td>登陆IP：  ${data.ip}  </td></tr>
+                                <tr><td>数据角色：${data.role}</td></tr>
                             </table>
                             <!-- 基本信息 -->
                             <blockquote>基本信息</blockquote>
                             <table class="table table-bordered">
                                 <tr>
-                                    <td>姓名：刘德华</td>
-                                    <td>性别：男</td>
-                                    <td>手机：183****7556</td>
-                                    <td>民族：汉族</td>
+                                    <td>姓名：${data.name}  </td>
+                                    <td>性别：${data.sex}   </td>
+                                    <td>手机：${data.tel}   </td>
+                                    <td>民族：${data.mingzu}</td>
                                 </tr>
                                 <tr>
-                                    <td>出生日期：1964-01-01</td>
-                                    <td>婚姻状况：未婚</td>
-                                    <td>紧急联系人：张学友</td>
-                                    <td>联系人电话：183****7556</td>
+                                    <td>出生日期：  ${data.birthDate} </td>
+                                    <td>婚姻状况：  ${data.hyzk}      </td>
+                                    <td>紧急联系人：${data.p1}        </td>
+                                    <td>联系人电话：${data.tel1}      </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4">现居地址：广东省 深圳市 宝安区 幸福大街160号</td>
+                                    <td colspan="4">现居地址：${data.address}</td>
                                 </tr>
                             </table>
                             <!-- 入职情况 -->
                             <blockquote>入职情况</blockquote>
                             <table class="table table-bordered">
                                 <tr>
-                                    <td>分公司：${data.message}</td>
-                                    <td>部门：${data.message}</td>
-                                    <td>职位：${data.message}</td>
-                                    <td>入职日期：${data.message}</td>
+                                    <td>分公司：   ${data.companyId}</td>
+                                    <td>部门：     ${data.departmentId}</td>
+                                    <td>职位：     ${data.positionld}</td>
+                                    <td>入职日期： ${data.date}</td>
                                 </tr>
                                 <tr>
-                                    <td>试用期工资：${data.message}</td>
-                                    <td colspan="3">转正工资：${data.message}</td>
+                                    <td>试用期工资：           ${data.probationpay}</td>
+                                    <td colspan="3">转正工资： ${data.revisedwages}</td>
                                 </tr>
                             </table>
                             <!-- 资料上传 -->
                             <blockquote>资料上传</blockquote>
                             <ul class="show-square-box">
                                 <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="证件照"     href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
-                                        <img src="./remote/Upload/test_upload.jpg">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="证件照"     href="${data.pic}" data-lightbox-group="staff">
+                                        <img src="${data.pic}">
                                     </a>
                                 </li>
                                 <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="身份证正面" href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
-                                        <img src="./remote/Upload/test_upload.jpg">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="身份证正面" href="${data.cartZ}" data-lightbox-group="staff">
+                                        <img src="${data.cartZ}">
                                     </a>
                                 </li>
                                 <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="身份证反面" href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
-                                        <img src="./remote/Upload/test_upload.jpg">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="身份证反面" href="${data.cartF}" data-lightbox-group="staff">
+                                        <img src="${data.cartF}">
                                     </a>
                                 </li>
                                 <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="毕业证件"   href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
-                                        <img src="./remote/Upload/test_upload.jpg">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="毕业证件"   href="${data.certificate}" data-lightbox-group="staff">
+                                        <img src="${data.certificate}">
                                     </a>
                                 </li>
                                 <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="荣誉证书"   href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
-                                        <img src="./remote/Upload/test_upload.jpg">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="荣誉证书"   href="${data.certificateofHonor}" data-lightbox-group="staff">
+                                        <img src="${data.certificateofHonor}">
                                     </a>
                                 </li>
                                 <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="离职证明"   href="./remote/Upload/test_upload.jpg" data-lightbox-group="staff">
-                                        <img src="./remote/Upload/test_upload.jpg">
+                                    <a data-toggle="lightbox" data-group="staff" data-caption="离职证明"   href="${data.certificateofparation}" data-lightbox-group="staff">
+                                        <img src="${data.certificateofparation}">
                                     </a>
                                 </li>
                             </ul>
@@ -1363,10 +1370,10 @@ $(function(){
                                     </tr>
                                 </thead>
                                 <tr>
-                                    <td>香港政法大学</td>
-                                    <td>2012-09-01 至 2016-07-01</td>
-                                    <td>广告学</td>
-                                    <td>本科/四年</td>
+                                    <td>${data.schoolName}                      </td>
+                                    <td>${data.inSchool} 至 ${data.outSchool}   </td>
+                                    <td>${data.profession}                      </td>
+                                    <td>${data.xueli} / ${data.years}           </td>
                                 </tr>
                             </table>    
                             <!-- 工作经历 -->
@@ -1381,22 +1388,22 @@ $(function(){
                                     </tr>
                                 </thead>
                                 <tr>
-                                    <td>利华律师事务所</td>
-                                    <td>2012-09-01 至 2016-07-01</td>
-                                    <td>推广专员</td>
-                                    <td>暂无</td>
+                                    <td>${data.company1name}    </td>
+                                    <td>${data.company1time}    </td>
+                                    <td>${data.company1position}</td>
+                                    <td>${data.reasons1}        </td>
                                 </tr>
                                 <tr>
-                                    <td>利华律师事务所</td>
-                                    <td>2012-09-01 至 2016-07-01</td>
-                                    <td>推广专员</td>
-                                    <td>暂无</td>
+                                    <td>${data.company2name}    </td>
+                                    <td>${data.company2time}    </td>
+                                    <td>${data.company2position}</td>
+                                    <td>${data.reasons2}        </td>
                                 </tr>
                                 <tr>
-                                    <td>利华律师事务所</td>
-                                    <td>2012-09-01 至 2016-07-01</td>
-                                    <td>推广专员</td>
-                                    <td>暂无</td>
+                                    <td>${data.company3name}    </td>
+                                    <td>${data.company3time}    </td>
+                                    <td>${data.company3position}</td>
+                                    <td>${data.reasons3}        </td>
                                 </tr>
                             </table>
                             <!-- 家庭状况 -->
@@ -1411,16 +1418,16 @@ $(function(){
                                     </tr>
                                 </thead>
                                 <tr>
-                                    <td>张学友</td>
-                                    <td>朋友</td>
-                                    <td>歌手</td>
-                                    <td>183****7556</td>
+                                    <td>${data.familyName1} </td>
+                                    <td>${data.relation1}   </td>
+                                    <td>${data.fjob1}       </td>
+                                    <td>${data.fTel1}       </td>
                                 </tr>
                                 <tr>
-                                    <td>李连杰</td>
-                                    <td>朋友</td>
-                                    <td>演员</td>
-                                    <td>183****7556</td>
+                                    <td>${data.familyName2} </td>
+                                    <td>${data.relation2}   </td>
+                                    <td>${data.fjob2}       </td>
+                                    <td>${data.fTel2}       </td>
                                 </tr>
                             </table>
                             <div class="text-center">
@@ -1459,105 +1466,106 @@ $(function(){
                 if( data.status>0 ){
 
                     //数据赋值
-                    personnel_staff_edit_user.val(  data.message       );
-                    personnel_staff_edit_sexy.val(  1               );
-                    personnel_staff_edit_tels.val(  data.message       );
-                    personnel_staff_edit_nati.val(  data.message       );
-                    personnel_staff_edit_birt.val(  data.message       );
-                    personnel_staff_edit_marr.val(  1               );
-                    personnel_staff_edit_cont_user.val( data.message   );
-                    personnel_staff_edit_cont_tels.val( data.message   );
-                    personnel_staff_edit_addr1.val( 1               );
-                    personnel_staff_edit_addr2.val( 1               );
-                    personnel_staff_edit_addr3.val( 1               );
-                    personnel_staff_edit_addr4.val( data.message       );
+                    var data = data;
+                    personnel_staff_edit_user.val(      data.name           );
+                    personnel_staff_edit_sexy.val(      data.sex            );
+                    personnel_staff_edit_tels.val(      data.tel            );
+                    personnel_staff_edit_nati.val(      data.mingzu         );
+                    personnel_staff_edit_birt.val(      data.birthDate      );
+                    personnel_staff_edit_marr.val(      data.hyzk           );
+                    personnel_staff_edit_cont_user.val( data.p1             );
+                    personnel_staff_edit_cont_tels.val( data.tel1           );
+                    personnel_staff_edit_addr1.val(     data.addr1          );
+                    personnel_staff_edit_addr2.val(     data.addr2          );
+                    personnel_staff_edit_addr3.val(     data.addr3          );
+                    personnel_staff_edit_addr4.val(     data.addr4          );
                     //入职情况
-                    personnel_staff_edit_comp.val(  1               );
-                    personnel_staff_edit_depa.val(  1               );
-                    personnel_staff_edit_post.val(  1               );
-                    personnel_staff_edit_pass.val(  data.message       );
-                    personnel_staff_edit_wag1.val(  data.message       );
-                    personnel_staff_edit_wag2.val(  data.message       );
+                    personnel_staff_edit_comp.val(      data.companyId      );
+                    personnel_staff_edit_depa.val(      data.departmentId   );
+                    personnel_staff_edit_post.val(      data.positionld     );
+                    personnel_staff_edit_pass.val(      data.date           );
+                    personnel_staff_edit_wag1.val(      data.Probationpay   );
+                    personnel_staff_edit_wag2.val(      data.Revisedwages   );
                     //资料上传
                     personnel_staff_edit_uploader1.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader1",
-                            [{id:1,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                            [{id:1,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.pic}]
                         )
                     );
                     personnel_staff_edit_uploader2.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader2",
-                            [{id:2,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                            [{id:2,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.cartZ}]
                         )
                     );
                     personnel_staff_edit_uploader3.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader3",
-                            [{id:3,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                            [{id:3,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.cartF}]
                         )
                     );
                     personnel_staff_edit_uploader4.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader4",
-                            [{id:4,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                            [{id:4,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.certificate}]
                         )
                     );
                     personnel_staff_edit_uploader5.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader5",
-                            [{id:5,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                            [{id:5,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.certificateofHonor}]
                         )
                     );
                     personnel_staff_edit_uploader6.uploader(
                         upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader6",
-                            [{id:6,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
+                            [{id:6,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.certificateofparation}]
                         )
                     );
                     //资料上传对属性的影响
-                    personnel_staff_edit_uploader1.attr("path","./remote/Upload/test_upload.jpg");
-                    personnel_staff_edit_uploader2.attr("path","./remote/Upload/test_upload.jpg");
-                    personnel_staff_edit_uploader3.attr("path","./remote/Upload/test_upload.jpg");
-                    personnel_staff_edit_uploader4.attr("path","./remote/Upload/test_upload.jpg");
-                    personnel_staff_edit_uploader5.attr("path","./remote/Upload/test_upload.jpg");
-                    personnel_staff_edit_uploader6.attr("path","./remote/Upload/test_upload.jpg");
+                    personnel_staff_edit_uploader1.attr( "path",data.pic );
+                    personnel_staff_edit_uploader2.attr( "path",data.cartZ );
+                    personnel_staff_edit_uploader3.attr( "path",data.cartF );
+                    personnel_staff_edit_uploader4.attr( "path",data.certificate );
+                    personnel_staff_edit_uploader5.attr( "path",data.certificateofHonor );
+                    personnel_staff_edit_uploader6.attr( "path",data.certificateofparation );
 
                     //最高学历
-                    personnel_staff_add_edu_school.val( data.message    );
-                    personnel_staff_edit_edu_date1.val( data.message    );
-                    personnel_staff_edit_edu_date2.val( data.message    );
-                    personnel_staff_edit_edu_major.val( data.message    );
-                    personnel_staff_edit_edu_level.val( 1            );
-                    personnel_staff_edit_edu_years.val( 1            );
+                    personnel_staff_edit_edu_school.val(   data.schoolName          );
+                    personnel_staff_edit_edu_date1.val(    data.inSchool            );
+                    personnel_staff_edit_edu_date2.val(    data.outSchool           );
+                    personnel_staff_edit_edu_major.val(    data.xueli               );
+                    personnel_staff_edit_edu_level.val(    data.profession          );
+                    personnel_staff_edit_edu_years.val(    data.years               );
                     //工作经历
-                    personnel_staff_edit_work1_comp.val(   data.message );
-                    personnel_staff_edit_work1_date1.val(  data.message );
-                    personnel_staff_edit_work1_date2.val(  data.message );
-                    personnel_staff_edit_work1_post.val(   data.message );
-                    personnel_staff_edit_work1_reason.val( data.message );
+                    personnel_staff_edit_work1_comp.val(   data.company1name        );
+                    personnel_staff_edit_work1_date1.val(  data.company1time1       );
+                    personnel_staff_edit_work1_date2.val(  data.company1time2       );
+                    personnel_staff_edit_work1_post.val(   data.company1position    );
+                    personnel_staff_edit_work1_reason.val( data.reasons1            );
 
-                    personnel_staff_edit_work2_comp.val(   data.message );
-                    personnel_staff_edit_work2_date1.val(  data.message );
-                    personnel_staff_edit_work2_date2.val(  data.message );
-                    personnel_staff_edit_work2_post.val(   data.message );
-                    personnel_staff_edit_work2_reason.val( data.message );
+                    personnel_staff_edit_work2_comp.val(   data.company2name        );
+                    personnel_staff_edit_work2_date1.val(  data.company2time1       );
+                    personnel_staff_edit_work2_date2.val(  data.company2time2       );
+                    personnel_staff_edit_work2_post.val(   data.company2position    );
+                    personnel_staff_edit_work2_reason.val( data.reasons2            );
 
-                    personnel_staff_edit_work3_comp.val(   data.message );
-                    personnel_staff_edit_work3_date1.val(  data.message );
-                    personnel_staff_edit_work3_date2.val(  data.message );
-                    personnel_staff_edit_work3_post.val(   data.message );
-                    personnel_staff_edit_work3_reason.val( data.message );
+                    personnel_staff_edit_work3_comp.val(   data.company3name        );
+                    personnel_staff_edit_work3_date1.val(  data.company3time1       );
+                    personnel_staff_edit_work3_date2.val(  data.company3time2       );
+                    personnel_staff_edit_work3_post.val(   data.company3position    );
+                    personnel_staff_edit_work3_reason.val( data.reasons3            );
                     //家庭状况
-                    personnel_staff_edit_home1_user.val( data.message   );
-                    personnel_staff_edit_home1_rela.val( data.message   );
-                    personnel_staff_edit_home1_work.val( data.message   );
-                    personnel_staff_edit_home1_tels.val( data.message   );
+                    personnel_staff_edit_home1_user.val(   data.familyName1         );
+                    personnel_staff_edit_home1_rela.val(   data.relation1           );
+                    personnel_staff_edit_home1_work.val(   data.fjob1               );
+                    personnel_staff_edit_home1_tels.val(   data.fTel1               );
 
-                    personnel_staff_edit_home2_user.val( data.message   );
-                    personnel_staff_edit_home2_rela.val( data.message   );
-                    personnel_staff_edit_home2_work.val( data.message   );
-                    personnel_staff_edit_home2_tels.val( data.message   );
+                    personnel_staff_edit_home2_user.val(   data.familyName2         );
+                    personnel_staff_edit_home2_rela.val(   data.relation2           );
+                    personnel_staff_edit_home2_work.val(   data.fjob2               );
+                    personnel_staff_edit_home2_tels.val(   data.fTel2               );
 
                     //其他操作
                     personnel_staff_edit_submit.attr("dataId",data_id);                     //数据ID传值
@@ -1591,7 +1599,10 @@ $(function(){
                 hyzk             : personnel_staff_edit_marr.val(),
                 p1               : personnel_staff_edit_cont_user.val(),
                 tel1             : personnel_staff_edit_cont_tels.val(),
-                address          : personnel_staff_edit_addr1.val() + personnel_staff_edit_addr2.val() + personnel_staff_edit_addr3.val() + personnel_staff_edit_addr4.val(),
+                addr1            : personnel_staff_edit_addr1.val(),
+                addr2            : personnel_staff_edit_addr2.val(),
+                addr3            : personnel_staff_edit_addr3.val(),
+                addr4            : personnel_staff_edit_addr4.val(),
                 //入职情况
                 companyId        : personnel_staff_edit_comp.val(),
                 departmentId     : personnel_staff_edit_depa.val(),
@@ -1615,17 +1626,20 @@ $(function(){
                 years            : personnel_staff_edit_edu_years.val(),
                 //工作经历
                 company1name     : personnel_staff_edit_work1_comp.val(),
-                company1time     : personnel_staff_edit_work1_date1.val() +" 至 "+ personnel_staff_edit_work1_date2.val(),
+                company1time1    : personnel_staff_edit_work1_date1.val()
+                company1time2    : personnel_staff_edit_work1_date2.val(),
                 company1position : personnel_staff_edit_work1_post.val(),
                 reasons1         : personnel_staff_edit_work1_reason.val(),
 
                 company2name     : personnel_staff_edit_work2_comp.val(),
-                company2time     : personnel_staff_edit_work2_date1.val() +" 至 "+ personnel_staff_edit_work2_date2.val(),
+                company2time1    : personnel_staff_edit_work2_date1.val()
+                company2time2    : personnel_staff_edit_work2_date2.val(),
                 company2position : personnel_staff_edit_work2_post.val(),
                 reasons2         : personnel_staff_edit_work2_reason.val(),
 
                 company3name     : personnel_staff_edit_work3_comp.val(),
-                company3time     : personnel_staff_edit_work3_date1.val() +" 至 "+ personnel_staff_edit_work3_date2.val(),
+                company3time1    : personnel_staff_edit_work3_date1.val()
+                company3time2    : personnel_staff_edit_work3_date2.val(),
                 company3position : personnel_staff_edit_work3_post.val(),
                 reasons3         : personnel_staff_edit_work3_reason.val(),
                 //家庭状况
