@@ -137,10 +137,9 @@ $(function(){
             ],
             remote : function(){
                 return {
-                    url     : personnel_attendance_punch_time_api.datagrid,
+                    url     : personnel_attendance_punch_time_api.datagrid+"?date1="+now_time,
                     type    : "POST",
                     dataType: "json",
-                    data    : {  date1 : now_time }
                 }
             }
         },

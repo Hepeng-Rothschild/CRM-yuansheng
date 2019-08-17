@@ -118,10 +118,9 @@ $(function(){
                     ],
                     remote : function(){
                         return {
-                            url     : personnel_company_api.datagrid,
+                            url     : personnel_company_api.datagrid+"?id="+personnel_company_first_id,
                             type    : "POST",
                             dataType: "json",
-                            data    : { id : personnel_company_first_id }
                         }
                     }
                 }
