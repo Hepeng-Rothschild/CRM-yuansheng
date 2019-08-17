@@ -384,7 +384,7 @@ $(function(){
                 um_tip("导出中…");
             },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     window.open("./remote/Upload/test_export.pdf");//data.url
                 } else {
                     um_tip(data.message,"1500","text-danger");
@@ -456,7 +456,7 @@ $(function(){
                 select2 : select2,                                          //修改时间
             },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(personnel_attendance_days_datagrid_obj,personnel_attendance_days_api.datagrid);
                 } else {

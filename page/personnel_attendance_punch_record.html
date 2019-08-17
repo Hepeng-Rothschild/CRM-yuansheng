@@ -225,7 +225,7 @@ $(function(){
                 um_tip("导出中…");
             },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     window.open("./remote/Upload/test_export.pdf");//data.url
                 } else {
                     um_tip(data.message,"1500","text-danger");

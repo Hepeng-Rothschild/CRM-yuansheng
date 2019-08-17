@@ -236,7 +236,7 @@ $(function(){
                 ip      : setup_personnel_company_add_ip.val(),
             },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(setup_personnel_company_datagrid_obj,setup_personnel_company_api.datagrid);
                 } else {
@@ -259,7 +259,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     //数据赋值
                     setup_personnel_company_edit_comp.val( data.message ),
                     setup_personnel_company_edit_user.val( data.message ),
@@ -295,7 +295,7 @@ $(function(){
                 ip      : setup_personnel_company_add_ip.val(),
              },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(setup_personnel_company_datagrid_obj,setup_personnel_company_api.datagrid);
                 } else {
@@ -330,7 +330,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(setup_personnel_company_datagrid_obj,setup_personnel_company_api.datagrid);
                 } else {

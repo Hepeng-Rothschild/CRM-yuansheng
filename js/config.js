@@ -7,7 +7,7 @@
     window.LOCAL = "./remote/";                                     //本地路径
     window.ROUTE = "http://192.168.1.26/";                          //远程路径
     window.REC_PER_PAGE = 20;                                       //每页几条
-    
+
     //组件接口
     window.API = {
         //全局接口

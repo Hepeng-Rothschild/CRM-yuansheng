@@ -263,7 +263,7 @@ $(function(){
             data : { id : data_id },
             success : function(data){
 
-                if( data.code>0 ){
+                if( data.status>0 ){
                     //调休时长
                     var personnel_attendance_vacation_edit_tab1_temp = "";
                     for( var i=0;i<data.tab1.length;i++ ){
@@ -325,7 +325,7 @@ $(function(){
             },
             success : function(data){
 
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(personnel_attendance_vacation_datagrid_obj,personnel_attendance_vacation_api.datagrid);
                 } else {

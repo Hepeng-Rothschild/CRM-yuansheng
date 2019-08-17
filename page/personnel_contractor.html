@@ -423,7 +423,7 @@ $(function(){
                 pics      : personnel_contractor_add_uploaders.attr("path").substr(1).split(",") || "",
             },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {
@@ -446,7 +446,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
 
                     //查看模板
                     var temp = `
@@ -520,7 +520,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
 
                     //数据赋值
                     personnel_contractor_edit_user.val(      data.message );
@@ -590,7 +590,7 @@ $(function(){
                 pics      : personnel_contractor_edit_uploaders.attr("path").substr(1).split(",") || "",
             },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {
@@ -625,7 +625,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {

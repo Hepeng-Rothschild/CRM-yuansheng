@@ -205,7 +205,7 @@ $(function(){
             data : { id:data_id },
             success : function(data){
 
-                if( data.code>0 ){
+                if( data.status>0 ){
 
                     //模板生成
                     var temp = `
@@ -289,7 +289,7 @@ $(function(){
             data : { id:data_id },
             success : function(data){
                 
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(personnel_train_result_datagrid_obj,personnel_train_result_api.datagrid);
                 } else {

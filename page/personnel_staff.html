@@ -585,7 +585,7 @@ $(function(){
     personnel_staff_add_wag1            = $("#personnel_staff_add_wag1"),           //试用期工资
     personnel_staff_add_wag2            = $("#personnel_staff_add_wag2"),           //转正工资
 
-    personnel_staff_add_edu_school      = $("#personnel_staff_edit_edu_school"),    //学校名称
+    personnel_staff_add_edu_school      = $("#personnel_staff_add_edu_school"),     //学校名称
     personnel_staff_add_edu_date1       = $("#personnel_staff_add_edu_date1"),      //开始时间
     personnel_staff_add_edu_date2       = $("#personnel_staff_add_edu_date2"),      //结束时间
     personnel_staff_add_edu_major       = $("#personnel_staff_add_edu_major"),      //专业
@@ -713,9 +713,14 @@ $(function(){
 
         //远程接口
         var personnel_staff_api = {
-            datagrid  : ROUTE + "User/SearchStaff",                                 //数据表格
-            select    : LOCAL + "Test/test_select.json",                            //下拉选择
-            uploader  : ROUTE + "Test/test_upload.php"                              //上传路径
+            select          : LOCAL + "Test/test_select.json",                      //下拉选择
+            uploader        : LOCAL + "Test/test_upload.php",                       //上传路径
+
+            modal_add       : ROUTE + "User/addStaff",                              //添加提交
+            modal_edit_read : ROUTE + "User/UpdateDetail",                          //修改读取
+            modal_edit      : ROUTE + "User/updateStaff",                           //修改提交
+            modal_show      : ROUTE + "User/staffDetail",                           //查看盒子
+            datagrid        : ROUTE + "User/SearchStaff",                           //数据表格
         }
 
     }
@@ -1182,75 +1187,69 @@ $(function(){
     //添加提交
     personnel_staff_add_submit.click(function(){
         $.ajax({
-            url     : API.test_response,
+            url     : personnel_staff_api.modal_add,
             type    : "post",
             dataType: "json",
             data    : {
                 //基本信息
-                user        : personnel_staff_add_user.val(),
-                sexy        : personnel_staff_add_sexy.val(),
-                tels        : personnel_staff_add_tels.val(),
-                nati        : personnel_staff_add_nati.val(),
-                birt        : personnel_staff_add_birt.val(),
-                marr        : personnel_staff_add_marr.val(),
-                cont_user   : personnel_staff_add_cont_user.val(),
-                cont_tels   : personnel_staff_add_cont_tels.val(),
-                addr1       : personnel_staff_add_addr1.val(),
-                addr2       : personnel_staff_add_addr2.val(),
-                addr3       : personnel_staff_add_addr3.val(),
-                addr4       : personnel_staff_add_addr4.val(),
+                name             : personnel_staff_add_user.val(),
+                sex              : personnel_staff_add_sexy.val(),
+                tel              : personnel_staff_add_tels.val(),
+                mingzu           : personnel_staff_add_nati.val(),
+                birthDate        : personnel_staff_add_birt.val(),
+                hyzk             : personnel_staff_add_marr.val(),
+                p1               : personnel_staff_add_cont_user.val(),
+                tel1             : personnel_staff_add_cont_tels.val(),
+                address          : personnel_staff_add_addr1.val() + personnel_staff_add_addr2.val() + personnel_staff_add_addr3.val() + personnel_staff_add_addr4.val(),
                 //入职情况
-                comp        : personnel_staff_add_comp.val(),
-                depa        : personnel_staff_add_depa.val(),
-                post        : personnel_staff_add_post.val(),
-                pass        : personnel_staff_add_pass.val(),
-                wag1        : personnel_staff_add_wag1.val(),
-                wag2        : personnel_staff_add_wag2.val(),
+                companyId        : personnel_staff_add_comp.val(),
+                departmentId     : personnel_staff_add_depa.val(),
+                positionld       : personnel_staff_add_post.val(),
+                date             : personnel_staff_add_pass.val(),
+                Probationpay     : personnel_staff_add_wag1.val(),
+                Revisedwages     : personnel_staff_add_wag2.val(),
                 //资料上传
-                pic1        : personnel_staff_add_uploader1.attr("path") || "",
-                pic2        : personnel_staff_add_uploader2.attr("path") || "",
-                pic3        : personnel_staff_add_uploader3.attr("path") || "",
-                pic4        : personnel_staff_add_uploader4.attr("path") || "",
-                pic5        : personnel_staff_add_uploader5.attr("path") || "",
-                pic6        : personnel_staff_add_uploader6.attr("path") || "",
+                pic                   : personnel_staff_add_uploader1.attr("path") || "",
+                cartZ                 : personnel_staff_add_uploader2.attr("path") || "",
+                cartF                 : personnel_staff_add_uploader3.attr("path") || "",
+                certificate           : personnel_staff_add_uploader4.attr("path") || "",
+                certificateofHonor    : personnel_staff_add_uploader5.attr("path") || "",
+                certificateofparation : personnel_staff_add_uploader6.attr("path") || "",
                 //最高学历
-                school      : personnel_staff_add_edu_school.val(),
-                date1       : personnel_staff_add_edu_date1.val(),
-                date2       : personnel_staff_add_edu_date2.val(),
-                major       : personnel_staff_add_edu_major.val(),
-                level       : personnel_staff_add_edu_level.val(),
-                years       : personnel_staff_add_edu_years.val(),
+                schoolName       : personnel_staff_add_edu_school.val(),
+                inSchool         : personnel_staff_add_edu_date1.val(),
+                outSchool        : personnel_staff_add_edu_date2.val(),
+                xueli            : personnel_staff_add_edu_major.val(),
+                profession       : personnel_staff_add_edu_level.val(),
+                years            : personnel_staff_add_edu_years.val(),
                 //工作经历
-                work1_comp  : personnel_staff_add_work1_comp.val(),
-                work1_date1 : personnel_staff_add_work1_date1.val(),
-                work1_date2 : personnel_staff_add_work1_date2.val(),
-                work1_post  : personnel_staff_add_work1_post.val(),
-                work1_reason: personnel_staff_add_work1_reason.val(),
+                company1name     : personnel_staff_add_work1_comp.val(),
+                company1time     : personnel_staff_add_work1_date1.val() +" 至 "+ personnel_staff_add_work1_date2.val(),
+                company1position : personnel_staff_add_work1_post.val(),
+                reasons1         : personnel_staff_add_work1_reason.val(),
 
-                work2_comp  : personnel_staff_add_work2_comp.val(),
-                work2_date1 : personnel_staff_add_work2_date1.val(),
-                work2_date2 : personnel_staff_add_work2_date2.val(),
-                work2_post  : personnel_staff_add_work2_post.val(),
-                work2_reason: personnel_staff_add_work2_reason.val(),
+                company2name     : personnel_staff_add_work2_comp.val(),
+                company2time     : personnel_staff_add_work2_date1.val() +" 至 "+ personnel_staff_add_work2_date2.val(),
+                company2position : personnel_staff_add_work2_post.val(),
+                reasons2         : personnel_staff_add_work2_reason.val(),
 
-                work3_comp  : personnel_staff_add_work3_comp.val(),
-                work3_date1 : personnel_staff_add_work3_date1.val(),
-                work3_date2 : personnel_staff_add_work3_date2.val(),
-                work3_post  : personnel_staff_add_work3_post.val(),
-                work3_reason: personnel_staff_add_work3_reason.val(),
+                company3name     : personnel_staff_add_work3_comp.val(),
+                company3time     : personnel_staff_add_work3_date1.val() +" 至 "+ personnel_staff_add_work3_date2.val(),
+                company3position : personnel_staff_add_work3_post.val(),
+                reasons3         : personnel_staff_add_work3_reason.val(),
                 //家庭状况
-                home1_user  : personnel_staff_add_home1_user.val(),
-                home1_rela  : personnel_staff_add_home1_rela.val(),
-                home1_work  : personnel_staff_add_home1_work.val(),
-                home1_tels  : personnel_staff_add_home1_tels.val(),
+                familyName1      : personnel_staff_add_home1_user.val(),
+                fTel1            : personnel_staff_add_home1_rela.val(),
+                fjob1            : personnel_staff_add_home1_work.val(),
+                relation1        : personnel_staff_add_home1_tels.val(),
 
-                home2_user  : personnel_staff_add_home2_user.val(),
-                home2_rela  : personnel_staff_add_home2_rela.val(),
-                home2_work  : personnel_staff_add_home2_work.val(),
-                home2_tels  : personnel_staff_add_home2_tels.val(),
+                familyName2      : personnel_staff_add_home2_user.val(),
+                fTel2            : personnel_staff_add_home2_rela.val(),
+                fjob2            : personnel_staff_add_home2_work.val(),
+                relation2        : personnel_staff_add_home2_tels.val(),
             },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
@@ -1268,12 +1267,12 @@ $(function(){
 
         //远程提交
         $.ajax({
-            url     : API.test_response,
+            url     : personnel_staff_api.modal_show,
             type    : "post",
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
 
                     //查看模板
                     var temp = `
@@ -1452,12 +1451,12 @@ $(function(){
 
         //远程提交
         $.ajax({
-            url     : API.test_response,
+            url     : personnel_staff_api.modal_edit_read,
             type    : "post",
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
 
                     //数据赋值
                     personnel_staff_edit_user.val(  data.message       );
@@ -1578,76 +1577,70 @@ $(function(){
 
         //远程提交
         $.ajax({
-            url     : API.test_response,
+            url     : personnel_staff_api.modal_edit,
             type    : "post",
             dataType: "json",
             data    : { 
-                id          : data_id,
+                id               : data_id,
                 //基本信息
-                user        : personnel_staff_edit_user.val(),
-                sexy        : personnel_staff_edit_sexy.val(),
-                tels        : personnel_staff_edit_tels.val(),
-                nati        : personnel_staff_edit_nati.val(),
-                birt        : personnel_staff_edit_birt.val(),
-                marr        : personnel_staff_edit_marr.val(),
-                cont_user   : personnel_staff_edit_cont_user.val(),
-                cont_tels   : personnel_staff_edit_cont_tels.val(),
-                addr1       : personnel_staff_edit_addr1.val(),
-                addr2       : personnel_staff_edit_addr2.val(),
-                addr3       : personnel_staff_edit_addr3.val(),
-                addr4       : personnel_staff_edit_addr4.val(),
+                name             : personnel_staff_edit_user.val(),
+                sex              : personnel_staff_edit_sexy.val(),
+                tel              : personnel_staff_edit_tels.val(),
+                mingzu           : personnel_staff_edit_nati.val(),
+                birthDate        : personnel_staff_edit_birt.val(),
+                hyzk             : personnel_staff_edit_marr.val(),
+                p1               : personnel_staff_edit_cont_user.val(),
+                tel1             : personnel_staff_edit_cont_tels.val(),
+                address          : personnel_staff_edit_addr1.val() + personnel_staff_edit_addr2.val() + personnel_staff_edit_addr3.val() + personnel_staff_edit_addr4.val(),
                 //入职情况
-                comp        : personnel_staff_edit_comp.val(),
-                depa        : personnel_staff_edit_depa.val(),
-                post        : personnel_staff_edit_post.val(),
-                pass        : personnel_staff_edit_pass.val(),
-                wag1        : personnel_staff_edit_wag1.val(),
-                wag2        : personnel_staff_edit_wag2.val(),
+                companyId        : personnel_staff_edit_comp.val(),
+                departmentId     : personnel_staff_edit_depa.val(),
+                positionld       : personnel_staff_edit_post.val(),
+                date             : personnel_staff_edit_pass.val(),
+                Probationpay     : personnel_staff_edit_wag1.val(),
+                Revisedwages     : personnel_staff_edit_wag2.val(),
                 //资料上传
-                pic1        : personnel_staff_edit_uploader1.attr("path") || "",
-                pic2        : personnel_staff_edit_uploader2.attr("path") || "",
-                pic3        : personnel_staff_edit_uploader3.attr("path") || "",
-                pic4        : personnel_staff_edit_uploader4.attr("path") || "",
-                pic5        : personnel_staff_edit_uploader5.attr("path") || "",
-                pic6        : personnel_staff_edit_uploader6.attr("path") || "",
+                pic                   : personnel_staff_edit_uploader1.attr("path") || "",
+                cartZ                 : personnel_staff_edit_uploader2.attr("path") || "",
+                cartF                 : personnel_staff_edit_uploader3.attr("path") || "",
+                certificate           : personnel_staff_edit_uploader4.attr("path") || "",
+                certificateofHonor    : personnel_staff_edit_uploader5.attr("path") || "",
+                certificateofparation : personnel_staff_edit_uploader6.attr("path") || "",
                 //最高学历
-                school      : personnel_staff_edit_edu_school.val(),
-                date1       : personnel_staff_edit_edu_date1.val(),
-                date2       : personnel_staff_edit_edu_date2.val(),
-                major       : personnel_staff_edit_edu_major.val(),
-                level       : personnel_staff_edit_edu_level.val(),
-                years       : personnel_staff_edit_edu_years.val(),
+                schoolName       : personnel_staff_edit_edu_school.val(),
+                inSchool         : personnel_staff_edit_edu_date1.val(),
+                outSchool        : personnel_staff_edit_edu_date2.val(),
+                xueli            : personnel_staff_edit_edu_major.val(),
+                profession       : personnel_staff_edit_edu_level.val(),
+                years            : personnel_staff_edit_edu_years.val(),
                 //工作经历
-                work1_comp  : personnel_staff_edit_work1_comp.val(),
-                work1_date1 : personnel_staff_edit_work1_date1.val(),
-                work1_date2 : personnel_staff_edit_work1_date2.val(),
-                work1_post  : personnel_staff_edit_work1_post.val(),
-                work1_reason: personnel_staff_edit_work1_reason.val(),
+                company1name     : personnel_staff_edit_work1_comp.val(),
+                company1time     : personnel_staff_edit_work1_date1.val() +" 至 "+ personnel_staff_edit_work1_date2.val(),
+                company1position : personnel_staff_edit_work1_post.val(),
+                reasons1         : personnel_staff_edit_work1_reason.val(),
 
-                work2_comp  : personnel_staff_edit_work2_comp.val(),
-                work2_date1 : personnel_staff_edit_work2_date1.val(),
-                work2_date2 : personnel_staff_edit_work2_date2.val(),
-                work2_post  : personnel_staff_edit_work2_post.val(),
-                work2_reason: personnel_staff_edit_work2_reason.val(),
+                company2name     : personnel_staff_edit_work2_comp.val(),
+                company2time     : personnel_staff_edit_work2_date1.val() +" 至 "+ personnel_staff_edit_work2_date2.val(),
+                company2position : personnel_staff_edit_work2_post.val(),
+                reasons2         : personnel_staff_edit_work2_reason.val(),
 
-                work3_comp  : personnel_staff_edit_work3_comp.val(),
-                work3_date1 : personnel_staff_edit_work3_date1.val(),
-                work3_date2 : personnel_staff_edit_work3_date2.val(),
-                work3_post  : personnel_staff_edit_work3_post.val(),
-                work3_reason: personnel_staff_edit_work3_reason.val(),
+                company3name     : personnel_staff_edit_work3_comp.val(),
+                company3time     : personnel_staff_edit_work3_date1.val() +" 至 "+ personnel_staff_edit_work3_date2.val(),
+                company3position : personnel_staff_edit_work3_post.val(),
+                reasons3         : personnel_staff_edit_work3_reason.val(),
                 //家庭状况
-                home1_user  : personnel_staff_edit_home1_user.val(),
-                home1_rela  : personnel_staff_edit_home1_rela.val(),
-                home1_work  : personnel_staff_edit_home1_work.val(),
-                home1_tels  : personnel_staff_edit_home1_tels.val(),
+                familyName1      : personnel_staff_edit_home1_user.val(),
+                fTel1            : personnel_staff_edit_home1_rela.val(),
+                fjob1            : personnel_staff_edit_home1_work.val(),
+                relation1        : personnel_staff_edit_home1_tels.val(),
 
-                home2_user  : personnel_staff_edit_home2_user.val(),
-                home2_rela  : personnel_staff_edit_home2_rela.val(),
-                home2_work  : personnel_staff_edit_home2_work.val(),
-                home2_tels  : personnel_staff_edit_home2_tels.val(),
+                familyName2      : personnel_staff_edit_home2_user.val(),
+                fTel2            : personnel_staff_edit_home2_rela.val(),
+                fjob2            : personnel_staff_edit_home2_work.val(),
+                relation2        : personnel_staff_edit_home2_tels.val(),
              },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
@@ -1671,7 +1664,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
@@ -1695,7 +1688,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
@@ -1719,7 +1712,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
@@ -1753,7 +1746,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
@@ -1771,6 +1764,73 @@ $(function(){
     personnel_staff_add_uploader4.uploader(upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader4"));
     personnel_staff_add_uploader5.uploader(upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader5"));
     personnel_staff_add_uploader6.uploader(upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader6"));
+
+    //添加测试-----------------------------------------------------------------------------------------------
+    setTimeout(function(){
+        
+        personnel_staff_add_user.val("刘德华");
+        personnel_staff_add_sexy.val(1);
+        personnel_staff_add_tels.val("18332367556");
+        personnel_staff_add_nati.val("汉族");
+        personnel_staff_add_birt.val("1963-06-10");
+        personnel_staff_add_marr.val(1);
+        personnel_staff_add_cont_user.val("张学友");
+        personnel_staff_add_cont_tels.val("17715814754");
+        personnel_staff_add_addr1 .val(1);
+        personnel_staff_add_addr2.val(1);
+        personnel_staff_add_addr3.val(1);
+        personnel_staff_add_addr4.val("211中山路197号");
+
+        personnel_staff_add_comp.val(3);
+        personnel_staff_add_depa.val(1);
+        personnel_staff_add_post.val(1);
+        personnel_staff_add_pass.val("2019-06-10");
+        personnel_staff_add_wag1.val("7000");
+        personnel_staff_add_wag2.val("8000");
+
+        personnel_staff_add_edu_school.val("香港政法大学");
+        personnel_staff_add_edu_date1.val("2019-06-10");
+        personnel_staff_add_edu_date2.val("2019-06-10");
+        personnel_staff_add_edu_major.val("法律系");
+        personnel_staff_add_edu_level.val(1);
+        personnel_staff_add_edu_years.val(1);
+
+        personnel_staff_add_work1_comp.val("TVB1");
+        personnel_staff_add_work1_date1.val("2019-06-10");
+        personnel_staff_add_work1_date2.val("2019-06-10");
+        personnel_staff_add_work1_post.val("无线五虎1");
+        personnel_staff_add_work1_reason.val("档期重叠1");
+
+        personnel_staff_add_work2_comp.val("TVB2");
+        personnel_staff_add_work2_date1.val("2019-06-10");
+        personnel_staff_add_work2_date2.val("2019-06-10");
+        personnel_staff_add_work2_post.val("无线五虎2");
+        personnel_staff_add_work2_reason.val("档期重叠2");
+
+        personnel_staff_add_work3_comp.val("TVB3");
+        personnel_staff_add_work3_date1.val("2019-06-10");
+        personnel_staff_add_work3_date2.val("2019-06-10");
+        personnel_staff_add_work3_post.val("无线五虎3");
+        personnel_staff_add_work3_reason.val("档期重叠3");
+
+        personnel_staff_add_home1_user.val("郭富城");
+        personnel_staff_add_home1_rela.val("朋友");
+        personnel_staff_add_home1_work.val("演员");
+        personnel_staff_add_home1_tels.val("17715814754");
+
+        personnel_staff_add_home2_user.val("张学友");
+        personnel_staff_add_home2_rela.val("朋友");
+        personnel_staff_add_home2_work.val("演员");
+        personnel_staff_add_home2_tels.val("17715814754");    
+
+        // personnel_staff_add_uploader1.
+        // personnel_staff_add_uploader2.
+        // personnel_staff_add_uploader3.
+        // personnel_staff_add_uploader4.
+        // personnel_staff_add_uploader5.
+        // personnel_staff_add_uploader6.
+        
+    },1000);
 
 });//预加载结尾
 </script>

@@ -382,5 +382,5 @@ function upload_free(upapi,upid,staticFiles){
             doRemoveFile();                                             //本地删除
             $("#"+upid).attr("path","");
         }
-    }  
+    }
 }

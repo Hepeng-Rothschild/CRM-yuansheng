@@ -394,7 +394,7 @@ $(function(){
                 pics      : admin_goods_add_uploaders.attr("path").substr(1).split(",") || "",
             },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
                 } else {
@@ -417,7 +417,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
 
                     //查看模板
                     var temp = `
@@ -491,7 +491,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
 
                     //数据赋值
                     admin_goods_edit_user.val(      data.message );
@@ -561,7 +561,7 @@ $(function(){
                 pics      : admin_goods_edit_uploaders.attr("path").substr(1).split(",") || "",
             },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
                 } else {
@@ -596,7 +596,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
-                if( data.code>0 ){
+                if( data.status>0 ){
                     um_tip(data.message);
                     um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
                 } else {
