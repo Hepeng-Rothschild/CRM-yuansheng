@@ -2,10 +2,6 @@
 @import url(zui.min.css);
 @import url(base.css);
 @import url(../fonts/iconfont.css);
-/*数据表格：无ID时去除左描边*/
-.datagrid-container.no-border-left{
-    border-left:none;
-}
 /*数据表头：合并单元格*/
 .th-line-height{
     line-height: 50px;
