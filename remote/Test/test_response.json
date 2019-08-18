@@ -1,4 +1,4 @@
 {
-	"code" : 1,
-	"mess" : "提交成功"
+	"status"  : 1,
+	"message" : "提交成功"
 }

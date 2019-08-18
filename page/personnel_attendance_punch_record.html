@@ -84,7 +84,7 @@ $(function(){
 
         //本地接口
         var personnel_attendance_punch_record_api = {
-            datagrid  : LOCAL + "Personnel/Attendance/punch_record.json",                           //数据表格
+            datagrid  : LOCAL + "Test/Personnel/Attendance/punch_record.json",                           //数据表格
             select    : LOCAL + "Test/test_select.json",                                            //下拉选择
         }
 
@@ -226,7 +226,7 @@ $(function(){
             },
             success : function(data){
                 if( data.status>0 ){
-                    window.open("./remote/Upload/test_export.pdf");//data.url
+                    window.open(API.test_export);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }

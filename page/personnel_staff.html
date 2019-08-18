@@ -704,9 +704,14 @@ $(function(){
 
         //本地接口
         var personnel_staff_api = {
-            datagrid  : LOCAL + "User/SearchStaff.json",                            //数据表格
-            select    : LOCAL + "Test/test_select.json",                            //下拉选择
-            uploader  : LOCAL + "Test/test_upload.php"                              //上传路径
+            select          : LOCAL + "Test/test_select.json",                      //下拉选择
+            uploader        : LOCAL + "Test/test_upload.php.json",                  //上传路径
+
+            modal_add       : LOCAL + "User/addStaff.json",                         //添加提交
+            modal_edit_read : LOCAL + "User/UpdateDetail.json",                     //修改读取
+            modal_edit      : LOCAL + "User/updateStaff.json",                      //修改提交
+            modal_show      : LOCAL + "User/staffDetail.json",                      //查看盒子
+            datagrid        : LOCAL + "User/SearchStaff.json",                      //数据表格
         }
 
     } else if ( window.STATE == "route" ){
@@ -1626,19 +1631,19 @@ $(function(){
                 years            : personnel_staff_edit_edu_years.val(),
                 //工作经历
                 company1name     : personnel_staff_edit_work1_comp.val(),
-                company1time1    : personnel_staff_edit_work1_date1.val()
+                company1time1    : personnel_staff_edit_work1_date1.val(),
                 company1time2    : personnel_staff_edit_work1_date2.val(),
                 company1position : personnel_staff_edit_work1_post.val(),
                 reasons1         : personnel_staff_edit_work1_reason.val(),
 
                 company2name     : personnel_staff_edit_work2_comp.val(),
-                company2time1    : personnel_staff_edit_work2_date1.val()
+                company2time1    : personnel_staff_edit_work2_date1.val(),
                 company2time2    : personnel_staff_edit_work2_date2.val(),
                 company2position : personnel_staff_edit_work2_post.val(),
                 reasons2         : personnel_staff_edit_work2_reason.val(),
 
                 company3name     : personnel_staff_edit_work3_comp.val(),
-                company3time1    : personnel_staff_edit_work3_date1.val()
+                company3time1    : personnel_staff_edit_work3_date1.val(),
                 company3time2    : personnel_staff_edit_work3_date2.val(),
                 company3position : personnel_staff_edit_work3_post.val(),
                 reasons3         : personnel_staff_edit_work3_reason.val(),
