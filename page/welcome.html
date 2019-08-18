@@ -5,53 +5,50 @@
 
 	<!-- 提示面板 -->
 	<div class="alert alert-primary alert-block" id="tabs_open">
-		<h2 class="text-primary">已做页面</h2>
+		<h2>
+			<span class="text-primary">蓝色为已做(在做)页面</span>
+			<span class="text-danger">红色为未做页面</span>
+		</h2>
 		<hr>
-		<ul data-ride="tree" class="tree-static tree tree-lines">
-		    <li  class="open">
-		        <a>程序开发</a>
-		        <ul>
-		            <li class="open"><a>智能办公</a>
-		                <ul>
-		                    <li><a href="office_apply">我的申请</a></li>
-		                </ul>
-		            </li>
-		            <li class="open"><a>人事管理</a>
-		                <ul>
-		                    <li><a href="personnel_company">组织架构</a></li>
-		                    <li><a href="personnel_interview">面试管理</a></li>
-		                    <li><a href="personnel_staff">员工管理</a></li>
-		                    <li><a href="personnel_contractor">承包商</a></li>
-				            <li class="open"><a>考勤管理</a>
-				                <ul>
-				                    <li><a href="personnel_attendance_days">每日统计</a></li>
-				                    <li><a href="personnel_attendance_month">每月统计</a></li>
-				                    <li><a href="personnel_attendance_punch_time">打卡时间</a></li>
-				                    <li><a href="personnel_attendance_punch_record">打卡记录</a></li>
-				                    <li><a href="personnel_attendance_vacation">假期余额</a></li>
-				                    <li><a href="personnel_attendance_overtime">加班记录</a></li>
-				                </ul>
-				            </li>
-				            <li class="open"><a>员工培训</a>
-				                <ul>
-				                    <li><a href="personnel_train_exam" class="text-danger">员工考试(未完成)</a></li>
-				                    <li><a href="personnel_train_result">成绩查询</a></li>
-				                </ul>
-				            </li>				            
-		                </ul>
-		            </li>
-					<li class="open"><a>系统设置</a>
-		                <ul>
-		                    <li class="open"><a href="setup_base">基本设置</a></li>
-		                    </li>
-		                </ul>
-		            </li>
-		        </ul>
-		    </li>
-		</ul>
-		<script>$(".tree-static").tree();</script>
-
+		<ul data-ride="tree" class="tree-static tree tree-lines"></ul>
 	</div>
 	<!-- alert -->
 
 </div>
+
+<script>
+$(function () {
+
+	//页面状态
+	$.ajax({
+		url     : window.API.common_tree,
+		type    : "post",
+		success : function(data){
+			var data = um_json(data);                               //JSON解析
+			$(".tree-static").tree({
+				data        : data,
+				itemCreator : function($li,item){
+					if( !item.url ){
+						$li.addClass("open");
+					}
+					if( item.url!= "blank" ){
+						$li.append(
+								$("<a>",{href:item.url}).html(
+										"<span>"+item.title+"</span>"
+								)
+						);
+					} else {
+						$li.append(
+								$("<a>",{href:item.url}).html(
+										"<span class='text-danger'>"+item.title+"</span>"
+								)
+						);
+					}
+				},
+			});
+
+		}
+	});
+
+});//预加载结尾
+</script>
