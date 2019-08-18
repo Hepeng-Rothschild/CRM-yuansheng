@@ -1,0 +1,23 @@
+{
+	"result": true,
+	"message": "获取成功",
+	"status": 1,
+	"data": [{
+		"id": 0,
+		"sid": 0,
+		"name": "刘德华",
+		"tel": "18332367556",
+		"copyname": "张学友",
+		"meettime": "2019-08-15 15:58",
+		"positionname": "人事专员",
+		"positionid": 1,
+		"state": 2,
+		"statename": null,
+		"examine": "",
+		"sex": "男",
+		"startime": "2019-08-15 15:58",
+		"endtime": "2019-08-15 15:58",
+		"companyid": 3,
+		"addtime":"2019-08-15 15:58"
+	}]
+}

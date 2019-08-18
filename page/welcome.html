@@ -6,8 +6,8 @@
 	<!-- 提示面板 -->
 	<div class="alert alert-primary alert-block" id="tabs_open">
 		<h2 class="text-primary">页面状态</h2>  
-		<span class="label label-outline label-muted">   父级导航 		</span>
-		<span class="label label-outline label-primary"> 已做/在做页面	</span>
+		<span class="label label-outline label-muted">   父级导航 		</span> &nbsp;
+		<span class="label label-outline label-primary"> 已做/在做页面	</span> &nbsp;
 		<span class="label label-outline label-danger">  未做页面		</span><hr>
 		<ul class="tree tree-static tree-lines"></ul>
 	</div>
@@ -23,7 +23,7 @@ $(function () {
 		url     : window.API.common_tree,
 		type    : "post",
 		success : function(data){
-			var data = um_json(data);                               //JSON解析
+			var data = um_json(data);
 			$(".tree-static").tree({
 				data        : data,
 				itemCreator : function($li,item){

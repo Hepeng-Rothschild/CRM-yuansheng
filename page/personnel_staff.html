@@ -520,6 +520,26 @@
     </div>
     <!-- personnel_staff_edit_box -->
 
+    <!-- 状态盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_staff_state_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title"><!-- JS推进 --></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center with-padding">确认修改这条数据的状态吗？</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="personnel_staff_state_submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- personnel_staff_state_box -->
+
     <!-- 重置盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_staff_reset_box">
         <div class="modal-dialog">
@@ -695,6 +715,10 @@ $(function(){
     personnel_staff_edit_uploader6      = $("#personnel_staff_edit_uploader6"),
     //查看
     personnel_staff_show_box            = $("#personnel_staff_show_box"),           //查看盒子
+    //状态
+    personnel_staff_state_box        = $("#personnel_staff_state_box"),     //状态盒子
+    personnel_staff_state_submit     = $("#personnel_staff_state_submit"),  //状态提交
+    personnel_staff_state_mess       = $("#personnel_staff_state_mess"),     //状态字段 
     //重置密码
     personnel_staff_reset_box           = $("#personnel_staff_reset_box"),          //重置盒子
     personnel_staff_reset_submit        = $("#personnel_staff_reset_submit");       //重置提交
@@ -765,19 +789,19 @@ $(function(){
                             if ( cell.rowIndex==1 ) {                                   //离职员工
                                 temp = `
                                     <a rowIndex="${cell.rowIndex}" class="personnel_staff_show_btn">查看</a>
-                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_able_btn">启用</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_state_btn" state="1">启用</a>
                                 `; 
                             } else if ( cell.rowIndex==2 ) {                            //在职员工
                                 temp = `
                                     <a rowIndex="${cell.rowIndex}" class="personnel_staff_show_btn">查看</a>
-                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_leave_btn">离职</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_state_btn" state="1">离职</a>
                                     <a rowIndex="${cell.rowIndex}" class="personnel_staff_reset_btn">重置密码</a>
                                 `; 
                             } else {                                                    //在职员工
                                 temp = `
                                     <a rowIndex="${cell.rowIndex}" class="personnel_staff_show_btn">查看</a>
-                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_turn_btn">转正</a>
-                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_leave_btn">离职</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_state_btn" state="1">转正</a>
+                                    <a rowIndex="${cell.rowIndex}" class="personnel_staff_state_btn" state="1">离职</a>
                                     <a rowIndex="${cell.rowIndex}" class="personnel_staff_reset_btn">重置密码</a>
                                 `; 
                             }
@@ -800,10 +824,8 @@ $(function(){
     var
     personnel_staff_datagrid_obj    = personnel_staff_datagrid.data("zui.datagrid"),   //表格对象
     personnel_staff_show_btn        = ".personnel_staff_show_btn",                     //查看
-    personnel_staff_able_btn        = ".personnel_staff_able_btn",                     //启用
-    personnel_staff_turn_btn        = ".personnel_staff_turn_btn",                     //转正
-    personnel_staff_leave_btn       = ".personnel_staff_leave_btn",                    //离职
-    personnel_staff_reset_btn       = ".personnel_staff_reset_btn";                    //重置密码
+    personnel_staff_reset_btn       = ".personnel_staff_reset_btn",                    //重置密码
+    personnel_staff_state_btn       = ".personnel_staff_state_btn";                    //状态按钮
  
     //时间组件-----------------------------------------------------------------------------------------------
     personnel_staff_add_birt.datetimepicker(option_date);
@@ -1670,76 +1692,47 @@ $(function(){
 
     });
 
-    //启用按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",personnel_staff_able_btn,function(){
+    //状态按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",personnel_staff_state_btn,function(){ 
 
-        //数据ID
-        var data_id  = cell_value($(this).attr("rowIndex"),1);
+        //变量声明
+        var data_id = cell_value($(this).attr("rowIndex"),1);                       //数据ID
+        var text    = $(this).text();                                               //操作名称
+        var state   = $(this).attr("state");                                        //操作代号
 
-        //远程提交
-        $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : { id:data_id },
-            success : function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-        
+        //其他操作
+        personnel_staff_state_submit.attr("rowIndex",data_id);                      //数据ID赋值
+        personnel_staff_state_submit.attr("state",state);                           //操作代号赋值
+        personnel_staff_state_box.find(".modal-title").text( text );                //操作名称赋值
+        personnel_staff_state_box.modal("show");                                    //盒子显示
+
     });
-
-    //转正按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",personnel_staff_turn_btn,function(){
+    //状态提交
+    personnel_staff_state_submit.click(function(){
 
         //数据ID
-        var data_id  = cell_value($(this).attr("rowIndex"),1);
-
+        var data_id = $(this).attr("rowIndex");                                     //数据ID
+        var state   = $(this).attr("state");                                        //操作代号
+        
         //远程提交
         $.ajax({
             url     : API.test_response,
             type    : "post",
             dataType: "json",
-            data    : { id:data_id },
+            data    : { 
+                id      : data_id,
+                isstate : state
+            },
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
+                    um_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
             }
         });
-        
-    });
 
-    //离职按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",personnel_staff_leave_btn,function(){
-
-        //数据ID
-        var data_id  = cell_value($(this).attr("rowIndex"),1);
-
-        //远程提交
-        $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : { id:data_id },
-            success : function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-        
     });
 
     //重置密码-----------------------------------------------------------------------------------------------

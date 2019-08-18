@@ -12,7 +12,7 @@
     window.API = {
         //全局接口
         common_tree     : LOCAL+"Test/common_tree.json",            //左侧导航 ROUTE+"User/GetUserPageInfo"
-        common_view     : "./page/welcome.html",                    //欢迎页面 welcome personnel_train_exam admin_message_donation
+        common_view     : "./page/welcome.html",                    //欢迎页面 welcome personnel_train_exam admin_message_donation personnel_staff
 
         //测试接口
         test_datagrid   : LOCAL+"Test/test_datagrid.json",          //数据表格
