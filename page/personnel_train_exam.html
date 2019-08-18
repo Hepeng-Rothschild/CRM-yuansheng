@@ -64,7 +64,7 @@
                         <div class="clearfix"></div><hr>
                         <!-- 考试人员 -->
                         <blockquote>考试人员 <span class="small text-red">(以下均为必填项)</span></blockquote>
-                        <ul class="tree tree-lines tree-chevrons personnel_train_exam_tree" id="personnel_train_exam_add_tree"></ul>
+                        <ul class="tree tree-lines tree-chevrons" id="personnel_train_exam_add_tree"></ul>
                         <div class="clearfix"></div><hr>
                         <!-- 试题设置 -->
                         <blockquote>试题设置 <span class="small text-red">(提示：总分为100分，每题分数=100/题数)</span></blockquote>
@@ -118,7 +118,7 @@
                         <div class="clearfix"></div><hr>
                         <!-- 考试人员 -->
                         <blockquote>考试人员 <span class="small text-red">(以下均为必填项)</span></blockquote>
-                        <ul class="tree tree-lines tree-chevrons personnel_train_exam_tree" id="personnel_train_exam_edit_tree"></ul>
+                        <ul class="tree tree-lines tree-chevrons" id="personnel_train_exam_edit_tree"></ul>
                         <div class="clearfix"></div><hr>
                         <!-- 试题设置 -->
                         <blockquote>试题设置 <span class="small text-red">(提示：总分为100分，每题分数=100/题数)</span></blockquote>
@@ -212,7 +212,6 @@ $(function(){
 
     //新增&修改共用
     var
-    personnel_train_exam_tree       = $(".personnel_train_exam_tree"),      //考试人员
     personnel_train_exam_list       = $(".personnel_train_exam_list"),      //试题设置
     personnel_train_exam_list_btn   = $(".personnel_train_exam_list_btn");  //试题添加
 
@@ -596,9 +595,7 @@ $(function(){
 
     });
 
-
-
-//试题添加+删除+赋值(添加+修改)----------------------------------------------------------------------------
+    //试题添加+删除+赋值(添加+修改)----------------------------------------------------------------------------
     //试题添加
     function personnel_train_exam_list_append(selector){
 
