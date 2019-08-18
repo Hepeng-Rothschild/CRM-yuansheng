@@ -193,7 +193,7 @@
         "children"  : [
             {   
                 "title"     :"基本设置",
-                "url"       :"setup_personnel_company"
+                "url"       :"setup_base"
             },        
             {   
                 "title"     :"人事设置",
