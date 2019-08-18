@@ -1,0 +1,469 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="admin_message_donation">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="admin_message_donation_datagrid">
+        <div class="tool-group">
+            <div class="tool-inline">
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" id="admin_message_donation_tool_keys">
+                            <option value="1">乐捐标题</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="admin_message_donation_tool_search">
+                    </div>
+                </div>
+                <label><span>乐捐类型：</span><select class="form-control" id="admin_message_donation_tool_select1"><!--JS推进--></select></label>
+                <div class="im-label">
+                    <span>时间：</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="admin_message_donation_tool_date1" readonly> 
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="admin_message_donation_tool_date2" readonly>
+                    </div>
+                </div>
+                <label><button class="btn btn-primary" id="admin_message_donation_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+                <label><button class="btn btn-primary" id="admin_message_donation_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
+            </div>
+        </div>
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_donation_add_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_add_tit">乐捐标题</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_message_donation_add_tit" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_add_numb">乐捐文号</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_message_donation_add_numb" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_add_user">员工姓名</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_message_donation_add_user" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_add_type">乐捐类型</label>
+                            <div class="col-sm-8"><select class="form-control" id="admin_message_donation_add_type"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_add_price">乐捐金额</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_message_donation_add_price" placeholder="请填写正确格式"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_add_auth">权限分配</label>
+                            <div class="col-sm-8">
+                                <span class="text-danger">未知</span>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_add_read">强制阅读</label>
+                            <div class="col-sm-8">
+                                <div class="btn-group" data-toggle="buttons" id="admin_message_donation_add_read">
+                                    <label class="btn active"><input type="radio" value="1">是</label>
+                                    <label class="btn"><input type="radio" value="2">否</label>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_add_down">下载附件</label>
+                            <div class="col-sm-8">
+                                <div class="btn-group" data-toggle="buttons" id="admin_message_donation_add_down">
+                                    <label class="btn active"><input type="radio" value="1">是</label>
+                                    <label class="btn"><input type="radio" value="2">否</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_add_text">详细内容</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="admin_message_donation_add_text"></textarea>
+                            </div>
+                        </div>                        
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="admin_message_donation_add_submit">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_message_donation_add_box -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_donation_show_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body"><!-- JS添加 --></div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_message_donation_show_box -->
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_donation_edit_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container">
+                      
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_message_donation_edit_box -->
+
+    <!-- 删除盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_donation_dele_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否删除？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="admin_message_donation_dele_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_message_donation_dele_box -->
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function(){
+   
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    admin_message_donation                    = $("#admin_message_donation"),                   //页面ID
+    admin_message_donation_datagrid           = $("#admin_message_donation_datagrid"),          //数据表格
+    //搜索
+    admin_message_donation_tool_keys          = $("#admin_message_donation_tool_keys"),         //搜索类别
+    admin_message_donation_tool_search        = $("#admin_message_donation_tool_search"),       //搜索字段
+    admin_message_donation_tool_select1       = $("#admin_message_donation_tool_select1"),      //下拉选择1
+    admin_message_donation_tool_date1         = $("#admin_message_donation_tool_date1"),        //开始时间
+    admin_message_donation_tool_date2         = $("#admin_message_donation_tool_date2"),        //结束时间
+    admin_message_donation_search_btn         = $("#admin_message_donation_search_btn"),        //搜索按钮
+    //添加
+    admin_message_donation_add_btn            = $("#admin_message_donation_add_btn"),           //添加按钮
+    admin_message_donation_add_box            = $("#admin_message_donation_add_box"),           //添加盒子
+    admin_message_donation_add_submit         = $("#admin_message_donation_add_submit"),        //添加提交
+    admin_message_donation_add_tit            = $("#admin_message_donation_add_tit"),           //乐捐标题
+    admin_message_donation_add_numb           = $("#admin_message_donation_add_numb"),          //乐捐文号
+    admin_message_donation_add_user           = $("#admin_message_donation_add_user"),          //员工姓名
+    admin_message_donation_add_type           = $("#admin_message_donation_add_type"),          //乐捐类型
+    admin_message_donation_add_price          = $("#admin_message_donation_add_price"),         //乐捐金额
+    admin_message_donation_add_auth           = $("#admin_message_donation_add_auth"),          //权限分配
+    admin_message_donation_add_read           = $("#admin_message_donation_add_read"),          //强制阅读
+    admin_message_donation_add_down           = $("#admin_message_donation_add_down"),          //下载附件
+    admin_message_donation_add_text           = $("#admin_message_donation_add_text"),          //详细内容
+    //修改
+    admin_message_donation_edit_btn           = $("#admin_message_donation_edit_btn"),          //修改按钮
+    admin_message_donation_edit_box           = $("#admin_message_donation_edit_box"),          //修改盒子
+    admin_message_donation_edit_submit        = $("#admin_message_donation_edit_submit"),       //修改提交
+    //查看
+    admin_message_donation_show_box           = $("#admin_message_donation_show_box"),          //查看盒子
+    //删除
+    admin_message_donation_dele_box           = $("#admin_message_donation_dele_box"),          //删除盒子
+    admin_message_donation_dele_submit        = $("#admin_message_donation_dele_submit");       //删除提交
+
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var admin_message_donation_api = {
+            datagrid  : API.test_datagrid,                                    //数据表格
+            select    : LOCAL + "Test/test_select.json",                      //下拉选择
+        }
+
+    } else if ( window.STATE == "route" ){
+
+        //远程接口
+        var admin_message_donation_api = {
+            datagrid  : LOCAL + "Test/Admin/goods.json",                      //数据表格
+            select    : LOCAL + "Test/test_select.json",                      //下拉选择
+        }
+
+    }
+    
+    //数据表格-----------------------------------------------------------------------------------------------
+    admin_message_donation_datagrid.datagrid({
+        height      : um_height(admin_message_donation_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            fixedLeftUntil  : 3,
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",                 width:49 },
+                {name:"text8",   label:"乐捐标题",           width:200},
+                {name:"text6",   label:"乐捐文号",           width:100},
+                {name:"name",    label:"员工姓名",           width:80 },
+                {name:"text2",   label:"乐捐类型",           width:80 },
+                {name:"text3",   label:"乐捐状态",           width:80 },
+                {name:"datetime",label:"时间",               width:150},
+                {name:"text4",   label:"已读人数/可读总人数",width:150},
+                {name:"operate", label:"操作",               width:150,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = `
+                                <a rowIndex="${cell.rowIndex}" class="admin_message_donation_show_btn">查看</a>
+                                <a rowIndex="${cell.rowIndex}" class="admin_message_donation_edit_btn">修改</a>
+                                <a rowIndex="${cell.rowIndex}" class="admin_message_donation_dele_btn">删除</a>
+                                <a rowIndex="${cell.rowIndex}" class="admin_message_donation_dele_btn">下载</a>
+                            `;
+                            return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : admin_message_donation_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    admin_message_donation_datagrid_obj   = admin_message_donation_datagrid.data("zui.datagrid"),   //表格对象
+    admin_message_donation_show_btn       = ".admin_message_donation_show_btn",                     //查看
+    admin_message_donation_edit_btn       = ".admin_message_donation_edit_btn",                     //修改
+    admin_message_donation_dele_btn       = ".admin_message_donation_dele_btn";                     //删除
+
+    //时间组件-----------------------------------------------------------------------------------------------
+    admin_message_donation_tool_date1.datetimepicker(option_date);
+    admin_message_donation_tool_date2.datetimepicker(option_date);
+    
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //乐捐类型
+    $.ajax({
+        url     : admin_message_donation_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var option = "<option value='0'>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_message_donation_tool_select1.html(option);               //工具条
+            admin_message_donation_add_type.html(option);                   //添加
+        }
+    });
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    admin_message_donation_search_btn.click(function(){
+
+        //字段整理
+        var keyword
+        = "?sid="    + admin_message_donation_tool_keys.val()
+        + "&search=" + admin_message_donation_tool_search.val()
+        + "&select1="+ admin_message_donation_tool_select1.val()
+        + "&date1="  + admin_message_donation_tool_date1.val()
+        + "&date2="  + admin_message_donation_tool_date2.val();
+
+        //GET提交
+        um_render(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid+keyword);
+
+    });
+
+    //添加按钮-----------------------------------------------------------------------------------------------
+    admin_message_donation_add_btn.click(function(){
+        admin_message_donation_add_box.modal("show");
+    });
+    //添加提交
+    admin_message_donation_add_submit.click(function(){
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                tit     : admin_message_donation_add_tit.val(),
+                numb    : admin_message_donation_add_numb.val(),
+                user    : admin_message_donation_add_user.val(),
+                type    : admin_message_donation_add_type.val(),
+                price   : admin_message_donation_add_price.val(),
+                auth    : admin_message_donation_add_auth.val(),
+                read    : admin_message_donation_add_read.val(),
+                down    : admin_message_donation_add_down.val(),
+                text    : admin_message_donation_add_text.val(),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    um_reset(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+ 
+    //查看按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_message_donation_show_btn,function(){ 
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //查看模板
+                    var temp = `
+                        <div class="container">模板查看</div>
+                    `;
+                    admin_message_donation_show_box.find(".modal-body").html(temp);                //模板填充
+                    admin_message_donation_show_box.modal("show");                                 //盒子显示
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_message_donation_edit_btn,function(){
+
+        //查看盒子关闭
+        admin_message_donation_show_box.modal("hide");
+
+        //数据ID
+        var data_id  = cell_value($(this).attr("rowIndex"),1);
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //数据赋值
+                    admin_message_donation_edit_user.val(      data.message );
+
+                    //其他操作
+                    admin_message_donation_edit_submit.attr("dataId",data_id);                     //数据ID传值
+                    admin_message_donation_edit_box.modal("show");                                 //盒子显示
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    //修改提交
+    admin_message_donation_edit_submit.click(function(){
+
+        //数据ID
+        var data_id  = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id          : data_id,
+                user      : admin_message_donation_edit_user.val(),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    um_reset(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //删除按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_message_donation_dele_btn,function(){
+
+        //数据ID
+        var data_id = cell_value($(this).attr("rowIndex"),1);
+
+        //其他操作
+        admin_message_donation_dele_submit.attr("dataId",data_id);                                //ID传值
+        admin_message_donation_dele_box.modal("show");                                            //面板显示
+
+    });
+    //删除提交
+    admin_message_donation_dele_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    um_reset(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+});//预加载结尾
+</script>

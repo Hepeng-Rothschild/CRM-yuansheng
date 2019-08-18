@@ -4,7 +4,7 @@
 	"status": 1,
 	"pager": {
 		"page": 1,
-		"recTotal": 20,
+		"recTotal": 22,
 		"pageSize": 20
 	},
 	"data": [
@@ -27,6 +27,8 @@
 		{"id":17,"sid": 0,"name":"刘德华","tel":"18332367556","copyname":"张学友","meettime":"2019-08-15 16:37","positionname":"人事专员","positionid":1,"state":2,"statename":"初试通过","examine":"初试通过","sex":"男","startime":"2019-08-15 15:58","endtime":"2019-08-15 15:58","companyid":3,"addtime":"2019-08-16 14:31"},
 		{"id":18,"sid": 0,"name":"刘德华","tel":"18332367556","copyname":"张学友","meettime":"2019-08-15 16:37","positionname":"人事专员","positionid":1,"state":2,"statename":"初试通过","examine":"初试通过","sex":"男","startime":"2019-08-15 15:58","endtime":"2019-08-15 15:58","companyid":3,"addtime":"2019-08-16 14:31"},
 		{"id":19,"sid": 0,"name":"刘德华","tel":"18332367556","copyname":"张学友","meettime":"2019-08-15 16:37","positionname":"人事专员","positionid":1,"state":2,"statename":"初试通过","examine":"初试通过","sex":"男","startime":"2019-08-15 15:58","endtime":"2019-08-15 15:58","companyid":3,"addtime":"2019-08-16 14:31"},
-		{"id":20,"sid": 0,"name":"刘德华","tel":"18332367556","copyname":"张学友","meettime":"2019-08-15 16:37","positionname":"人事专员","positionid":1,"state":2,"statename":"初试通过","examine":"初试通过","sex":"男","startime":"2019-08-15 15:58","endtime":"2019-08-15 15:58","companyid":3,"addtime":"2019-08-16 14:31"}
+		{"id":20,"sid": 0,"name":"刘德华","tel":"18332367556","copyname":"张学友","meettime":"2019-08-15 16:37","positionname":"人事专员","positionid":1,"state":2,"statename":"初试通过","examine":"初试通过","sex":"男","startime":"2019-08-15 15:58","endtime":"2019-08-15 15:58","companyid":3,"addtime":"2019-08-16 14:31"},
+		{"id":21,"sid": 0,"name":"刘德华","tel":"18332367556","copyname":"张学友","meettime":"2019-08-15 16:37","positionname":"人事专员","positionid":1,"state":2,"statename":"初试通过","examine":"初试通过","sex":"男","startime":"2019-08-15 15:58","endtime":"2019-08-15 15:58","companyid":3,"addtime":"2019-08-16 14:31"},
+		{"id":22,"sid": 0,"name":"刘德华","tel":"18332367556","copyname":"张学友","meettime":"2019-08-15 16:37","positionname":"人事专员","positionid":1,"state":2,"statename":"初试通过","examine":"初试通过","sex":"男","startime":"2019-08-15 15:58","endtime":"2019-08-15 15:58","companyid":3,"addtime":"2019-08-16 14:31"}
 	]
 }

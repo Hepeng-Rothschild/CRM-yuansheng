@@ -255,20 +255,24 @@ $(function(){
     
     //数据表格-----------------------------------------------------------------------------------------------
     admin_goods_datagrid.datagrid({
-        height      : "page",
+        height      : um_height(admin_goods_datagrid),
         sortable    : false,
-        showRowIndex: false,
-        configs     : { R0:{className:"text-center"} },        
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
         states      : {
             fixedLeftUntil  : 3,
             pager           : {
                 page        : 1,
-                recPerPage  : 20,
+                recPerPage  : window.REC_PER_PAGE,
             }
         },
         dataSource : {
             cols   : [
-                {name:"id",    label:"ID",      width:50 },
+                {name:"id",    label:"ID",      width:49 },
                 {name:"name",  label:"物品名称",width:100},
                 {name:"type",  label:"物品类型",width:100},
                 {name:"stock", label:"现有库存",width:100},

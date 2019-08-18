@@ -5,12 +5,11 @@
 
 	<!-- 提示面板 -->
 	<div class="alert alert-primary alert-block" id="tabs_open">
-		<h2>
-			<span class="text-primary">蓝色为已做(在做)页面</span>
-			<span class="text-danger">红色为未做页面</span>
-		</h2>
-		<hr>
-		<ul data-ride="tree" class="tree-static tree tree-lines"></ul>
+		<h2 class="text-primary">页面状态</h2>  
+		<span class="label label-outline label-muted">   父级导航 		</span>
+		<span class="label label-outline label-primary"> 已做/在做页面	</span>
+		<span class="label label-outline label-danger">  未做页面		</span><hr>
+		<ul class="tree tree-static tree-lines"></ul>
 	</div>
 	<!-- alert -->
 
@@ -30,19 +29,11 @@ $(function () {
 				itemCreator : function($li,item){
 					if( !item.url ){
 						$li.addClass("open");
-					}
-					if( item.url!= "blank" ){
-						$li.append(
-								$("<a>",{href:item.url}).html(
-										"<span>"+item.title+"</span>"
-								)
-						);
-					} else {
-						$li.append(
-								$("<a>",{href:item.url}).html(
-										"<span class='text-danger'>"+item.title+"</span>"
-								)
-						);
+						$li.append( $("<a>",{href:item.url}).html("<span class='text-muted'>"+item.title+"</span>") );
+					} else if( item.url && item.url!="blank" ){
+						$li.append( $("<a>",{href:item.url}).html("<span class='text-primary'>"+item.title+"</span>") );
+					} else if ( item.url && item.url=="blank" ) {
+						$li.append( $("<a>",{href:item.url}).html("<span class='text-danger'>"+item.title+"</span>") );
 					}
 				},
 			});
