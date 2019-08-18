@@ -64,12 +64,22 @@
                         <div class="clearfix"></div><hr>
                         <!-- 考试人员 -->
                         <blockquote>考试人员 <span class="small text-red">(以下均为必填项)</span></blockquote>
-                        <ul class="tree tree-lines tree-chevrons" id="personnel_train_exam_add_tree"></ul>
+                        <ul class="tree tree-lines tree-chevrons personnel_train_exam_tree" id="personnel_train_exam_add_tree"></ul>
                         <div class="clearfix"></div><hr>
                         <!-- 试题设置 -->
                         <blockquote>试题设置 <span class="small text-red">(提示：总分为100分，每题分数=100/题数)</span></blockquote>
-                        <table class="table table-bordered table-striped" id="personnel_train_exam_add_list"><tr><th style="width:30px;">#</th><th>试题</th></tr></table>
-                        <button type="button" class="btn btn-default" id="personnel_train_exam_add_list_btn">添加试题</button>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width:45px;">序号</th>
+                                    <th>试题</th>
+                                    <th style="width:70px;">正确答案</th>
+                                    <th style="width:70px;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="personnel_train_exam_list" id="personnel_train_exam_add_list"><!-- JS推进 --></tbody>
+                        </table>
+                        <button type="button" class="btn btn-default personnel_train_exam_list_btn" id="personnel_train_exam_add_list_btn">添加试题</button>
                         <div class="clearfix"></div><hr>
                         <div class="text-center">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -108,12 +118,22 @@
                         <div class="clearfix"></div><hr>
                         <!-- 考试人员 -->
                         <blockquote>考试人员 <span class="small text-red">(以下均为必填项)</span></blockquote>
-                        <ul class="tree tree-lines tree-chevrons" id="personnel_train_exam_edit_tree"></ul>
+                        <ul class="tree tree-lines tree-chevrons personnel_train_exam_tree" id="personnel_train_exam_edit_tree"></ul>
                         <div class="clearfix"></div><hr>
                         <!-- 试题设置 -->
                         <blockquote>试题设置 <span class="small text-red">(提示：总分为100分，每题分数=100/题数)</span></blockquote>
-                        <table class="table table-bordered table-striped" id="personnel_train_exam_edit_list"></table>
-                        <button type="button" class="btn btn-default" id="personnel_train_exam_edit_list_btn">添加试题</button>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width:45px;">序号</th>
+                                    <th>试题</th>
+                                    <th style="width:70px;">正确答案</th>
+                                    <th style="width:70px;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="personnel_train_exam_list" id="personnel_train_exam_edit_list"><!-- JS推进 --></tbody>
+                        </table>
+                        <button type="button" class="btn btn-default personnel_train_exam_list_btn" id="personnel_train_exam_edit_list_btn">添加试题</button>
                         <div class="clearfix"></div><hr>
                         <div class="text-center">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -189,6 +209,12 @@ $(function(){
     //删除
     personnel_train_exam_dele_box           = $("#personnel_train_exam_dele_box"),            //删除盒子 
     personnel_train_exam_dele_submit        = $("#personnel_train_exam_dele_submit");         //删除提交
+
+    //新增&修改共用
+    var
+    personnel_train_exam_tree       = $(".personnel_train_exam_tree"),      //考试人员
+    personnel_train_exam_list       = $(".personnel_train_exam_list"),      //试题设置
+    personnel_train_exam_list_btn   = $(".personnel_train_exam_list_btn");  //试题添加
 
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
@@ -295,6 +321,94 @@ $(function(){
         }
     });
 
+    //可选择节点树(添加+修改)--------------------------------------------------------------------------------
+    um_tree_check( personnel_train_exam_add_tree  ); //添加    
+    um_tree_check( personnel_train_exam_edit_tree ); //修改
+
+    //试题列表(添加+修改)------------------------------------------------------------------------------------
+
+    //数目限定
+    var personnel_train_exam_limit = 5;
+
+    //点击添加
+    personnel_train_exam_list_btn.click(function(){
+
+        //试题模板
+        var personnel_train_exam_add_list_temp = `
+            <tr>
+                <td></td>
+                <td>
+                    <dl>
+                        <dt><label class="input-group"><span class="input-group-addon">标题</span><input type="text" class="form-control"></label></dt>
+                        <dd><label class="input-group"><span class="input-group-addon"> A  </span><input type="text" class="form-control"></label></dd>
+                        <dd><label class="input-group"><span class="input-group-addon"> B  </span><input type="text" class="form-control"></label></dd>
+                        <dd><label class="input-group"><span class="input-group-addon"> C  </span><input type="text" class="form-control"></label></dd>
+                        <dd><label class="input-group"><span class="input-group-addon"> D  </span><input type="text" class="form-control"></label></dd>
+                    </dl>
+                </td>
+                <td>
+                    <select class="form-control">
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                        <option value="3">C</option>
+                        <option value="4">D</option>
+                    </select>
+                    <input type="hidden" name="split">
+                </td>
+                <td><a>删除</a></td>
+            </tr>
+        `;
+
+        //操作判断
+        var id = $(this).attr("id"); 
+        if( id=="personnel_train_exam_add_list_btn" ){
+
+            //添加
+            personnel_train_exam_add_list.append(personnel_train_exam_add_list_temp);       //试题添加
+            var tr = personnel_train_exam_add_list.find("tr");                              //行号推进
+            for(var i=0;i<tr.length;i++){
+                personnel_train_exam_add_list.find("tr").eq(i).find("td:first-child").text( i+1 );
+            }
+
+
+        } else if ( id=="personnel_train_exam_edit_list_btn" ){
+
+            //修改
+            personnel_train_exam_edit_list.append(personnel_train_exam_add_list_temp);      //试题添加
+            var tr = personnel_train_exam_edit_list.find("tr");                              //行号推进
+            for(var i=0;i<tr.length;i++){
+                personnel_train_exam_edit_list.find("tr").eq(i).find("td:first-child").text( i+1 );
+            }
+
+        }
+
+        //数目限定
+        console.log(i,personnel_train_exam_limit);
+        if( i>=personnel_train_exam_limit ){
+            um_tip("试题数目已达上限","1000","text-danger");
+            personnel_train_exam_list_btn.hide();
+        }
+
+    });
+    //试题设置-点击删除
+    personnel_train_exam_list.on("click","a",function(){
+
+        //试题删除
+        $(this).parent().parent().remove();
+
+        //行号推进
+        var tr = $(this).find("tr");
+        for(var i=0;i<tr.length;i++){
+            $(this).find("tr").eq(i).find("td:first-child").text( i+1 );
+        }
+
+        //限定解除
+        if( i<=personnel_train_exam_limit ){
+            personnel_train_exam_list_btn.show();
+        }
+
+    });
+
     //搜索按钮-----------------------------------------------------------------------------------------------
     personnel_train_exam_search_btn.click(function(){
 
@@ -312,9 +426,9 @@ $(function(){
     });
 
     //添加按钮-----------------------------------------------------------------------------------------------
-    var exam_flag = 0;                                                                      //试题设置
     personnel_train_exam_add_btn.click(function(){
- 
+    
+        //远程提交
         $.ajax({ 
             url     : personnel_train_exam_api.tree,
             type    : "post",
@@ -327,6 +441,7 @@ $(function(){
                     data        : data,
                     itemWrapper : true,
                     itemCreator : function($li,item){
+                        $li.addClass("open");
                         $li.append($("<span>",{type:item.type,numb:item.numb}).html(
                         "<i class='icon icon-"+item.icon+"'></i> "+item.title
                         ));
@@ -334,113 +449,32 @@ $(function(){
                 });
             }
         });
-        personnel_train_exam_add_list.html(""); exam_flag = 0;                              //试题设置复位
+
+        //试题设置复位
+        personnel_train_exam_limit = 5;
+        personnel_train_exam_add_list.html("");
+
+        //面板显示
         personnel_train_exam_add_box.modal("show");
-
-    });
-    //考试人员-节点点击
-    personnel_train_exam_add_tree.on("click","span",function(){
-
-        //变量声明
-        var empt = "icon-check-empty";
-        var chec = "icon-checked";
-        var span = $(this);
-        var icon = span.find(".icon");
-        var type = icon.parent().attr("type");
-        var son  = icon.parent().next("ul").find(".icon");
-        var dad  = span.parent().parent().siblings("span").find(".icon");
-        var bro  = span.parent().parent().find("span");
-
-        //选中影响(父级对子级)
-        if( icon.hasClass(empt) ){
-            icon.removeClass(empt).addClass(chec);
-            if( type=="level1" ){ son.removeClass(empt).addClass(chec); }
-        } else {
-            icon.removeClass(chec).addClass(empt);
-            if( type=="level1" ){ son.removeClass(chec).addClass(empt); }
-        } 
-
-        //选中影响(子级对父级)
-        var brod = bro.find(".icon-checked").parent();
-        if( type=="level2" ){
-            if( brod.length==bro.length ){
-                dad.removeClass(empt).addClass(chec);
-            } else {
-                dad.removeClass(chec).addClass(empt);
-            }
-        }
-       
-        //结果导出
-        var che = personnel_train_exam_add_tree.find("ul .icon-checked");
-        var arr = [];
-        for( var i=0;i<che.length;i++ ){ arr.push( $(che[i]).parent().attr("numb") ) }
-        personnel_train_exam_add_tree.attr("result",arr);
-
-    });
-    //试题设置-点击添加
-    personnel_train_exam_add_list_btn.click(function(){
-
-        //ID计数
-        exam_flag++;
-
-        //试题模板
-        var exam_temp = `
-            <tr>
-                <td class="numb"></td>
-                <td>
-                    <div class="col-sm-9"><label class="input-group"><span class="input-group-addon">标题</span><input type="text" class="form-control" name="exam_t${exam_flag}"></label></div>
-                    <div class="col-sm-3"><label class="input-group"><span class="input-group-addon">正解</span><select class="form-control" name="exam_k${exam_flag}">
-                        <option value="1">A</option>
-                        <option value="2">B</option>
-                        <option value="3">C</option>
-                        <option value="4">D</option>
-                        </select></label></div>
-                    <div class="col-sm-3"><label class="input-group"><span class="input-group-addon"> A  </span><input type="text" class="form-control" name="exam_a${exam_flag}"></label></div>
-                    <div class="col-sm-3"><label class="input-group"><span class="input-group-addon"> B  </span><input type="text" class="form-control" name="exam_b${exam_flag}"></label></div>
-                    <div class="col-sm-3"><label class="input-group"><span class="input-group-addon"> C  </span><input type="text" class="form-control" name="exam_c${exam_flag}"></label></div>
-                    <div class="col-sm-3"><label class="input-group"><span class="input-group-addon"> D  </span><input type="text" class="form-control" name="exam_d${exam_flag}"></label></div>
-                    <input type="hidden" name="split">
-                </td>
-                <td><a>删除</a></td>
-            </tr>
-        `;
-
-        //试题添加
-        personnel_train_exam_add_list.append(exam_temp);
-
-        //行号推进
-        var tr = personnel_train_exam_add_list.find("tr");
-        for(var i=0;i<tr.length;i++){
-            personnel_train_exam_add_list.find("tr").eq(i).find(".numb").text( i+1 );
-        }
-
-        //数目限定
-        if( i>=50 ){
-            um_tip("试题数目已达上限","1000","text-danger");
-            personnel_train_exam_add_list_btn.hide();
-        }
-
-    });
-    //试题设置-点击删除
-    personnel_train_exam_add_list.on("click","a",function(){
-
-        //试题删除
-        $(this).parent().parent().remove();
-
-        //行号推进
-        var tr = personnel_train_exam_add_list.find("tr");
-        for(var i=0;i<tr.length;i++){
-            personnel_train_exam_add_list.find("tr").eq(i).find(".numb").text( i+1 );
-        }
-
-        //限定解除
-        if( i<=50 ){
-            personnel_train_exam_add_list_btn.show();
-        }
 
     });
     //添加提交
     personnel_train_exam_add_submit.click(function(){
+
+        //试题列表name赋值
+        personnel_train_exam_add_list.find("tr").each(function(i){
+            var numb  = personnel_train_exam_add_list.find("tr").eq(i).find("td:first-child").text();   //试题序号
+            var cell2 = personnel_train_exam_add_list.find("tr").eq(i).find("td:nth-child(2)");         //试题列
+            var cell3 = personnel_train_exam_add_list.find("tr").eq(i).find("td:nth-child(3)");         //正确答案
+            cell2.find("dt input").attr("name","tit"+numb);
+            cell2.find("dd:nth-child(2) input").attr("name","opa"+numb);
+            cell2.find("dd:nth-child(3) input").attr("name","opb"+numb);
+            cell2.find("dd:nth-child(4) input").attr("name","opc"+numb);
+            cell2.find("dd:nth-child(5) input").attr("name","opd"+numb);
+            cell3.find("select").attr("name","key"+numb);
+        });
+
+        //远程提交
         $.ajax({
             url     : API.test_response,
             type    : "post",
@@ -452,7 +486,7 @@ $(function(){
                 date1 : personnel_train_exam_add_date1.val(),
                 date2 : personnel_train_exam_add_date2.val(),
                 tree  : personnel_train_exam_add_tree.attr("result"),
-                list  : personnel_train_exam_add_box.find("form").serialize()
+                list  : decodeURIComponent(personnel_train_exam_add_box.find("form").serialize(),true),//如list为空则返回错误
             },
             success : function(data){
                 if( data.status>0 ){
@@ -463,10 +497,14 @@ $(function(){
                 }
             }
         });
+
     });
 
     //修改按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",personnel_train_exam_edit_btn,function(){
+
+        //试题设置复位
+        personnel_train_exam_limit = 5;
 
         //数据ID
         var data_id  = cell_value($(this).attr("rowIndex"),1);
@@ -486,49 +524,59 @@ $(function(){
                     personnel_train_exam_edit_score.val( data.score );
                     personnel_train_exam_edit_date1.val( data.date1 );
                     personnel_train_exam_edit_date2.val( data.date2 );
+
                     //考试人员
-                    personnel_train_exam_edit_tree.tree({
-                        animate     : false,
-                        initialState: "normal",
-                        data        : data.tree,
-                        itemWrapper : true,
-                        itemCreator : function($li,item){
-                            $li.append($("<span>",{type:item.type,numb:item.numb}).html(
-                            "<i class='icon icon-"+item.icon+"'></i> "+item.title
-                            ));
-                        }
-                    });
-                    //试题设置
+                    um_tree_read( personnel_train_exam_edit_tree,data.tree );
+
                     //列表推进
-                    var edit_temp = "";
-                    for( var i=0;i<data.list.length;i++ ){ 
-                        edit_temp += `
+                    var personnel_train_exam_edit_list_temp   = "";
+                    var personnel_train_exam_edit_list_length = data.list.length;
+                    for( var i=0;i<personnel_train_exam_edit_list_length;i++ ){ 
+                        personnel_train_exam_edit_list_temp += `
                         <tr>
-                            <td class="numb"></td>
+                            <td>${i+1}</td>
                             <td>
-                                <div class="col-sm-9"><label class="input-group"><span class="input-group-addon">标题</span><input type="text" class="form-control" name="exam_t${exam_flag}" value="${Object.values(data.list[i])[0]}"></label></div>
-                                <div class="col-sm-3"><label class="input-group"><span class="input-group-addon">正解</span><select class="form-control" name="exam_k${exam_flag}"></select></label></div>
-                                <div class="col-sm-3"><label class="input-group"><span class="input-group-addon"> A  </span><input type="text" class="form-control" name="exam_a${exam_flag}" value="${Object.values(data.list[i])[2]}"></label></div>
-                                <div class="col-sm-3"><label class="input-group"><span class="input-group-addon"> B  </span><input type="text" class="form-control" name="exam_b${exam_flag}" value="${Object.values(data.list[i])[3]}"></label></div>
-                                <div class="col-sm-3"><label class="input-group"><span class="input-group-addon"> C  </span><input type="text" class="form-control" name="exam_c${exam_flag}" value="${Object.values(data.list[i])[4]}"></label></div>
-                                <div class="col-sm-3"><label class="input-group"><span class="input-group-addon"> D  </span><input type="text" class="form-control" name="exam_d${exam_flag}" value="${Object.values(data.list[i])[5]}"></label></div>
+                                <dl>
+                                    <dt><label class="input-group"><span class="input-group-addon">标题</span><input type="text" class="form-control" value="${Object.values(data.list[i])[1]}"></label></dt>
+                                    <dd><label class="input-group"><span class="input-group-addon"> A  </span><input type="text" class="form-control" value="${Object.values(data.list[i])[2]}"></label></dd>
+                                    <dd><label class="input-group"><span class="input-group-addon"> B  </span><input type="text" class="form-control" value="${Object.values(data.list[i])[3]}"></label></dd>
+                                    <dd><label class="input-group"><span class="input-group-addon"> C  </span><input type="text" class="form-control" value="${Object.values(data.list[i])[4]}"></label></dd>
+                                    <dd><label class="input-group"><span class="input-group-addon"> D  </span><input type="text" class="form-control" value="${Object.values(data.list[i])[5]}"></label></dd>
+                                </dl>
+                            </td>
+                            <td>
+                                <select class="form-control">
+                                    <option value="1">A</option>
+                                    <option value="2">B</option>
+                                    <option value="3">C</option>
+                                    <option value="4">D</option>
+                                </select>
                                 <input type="hidden" name="split">
                             </td>
                             <td><a>删除</a></td>
                         </tr>
-                        `;
+                         `;
                     }
-                    personnel_train_exam_edit_list.html(edit_temp);
+                    personnel_train_exam_edit_list.html(personnel_train_exam_edit_list_temp);
+
                     //option推进
                     var option = "";
                     for( var i=0;i<data.list.length;i++ ){
-                        var selected = Object.values(data.list[i])[1];
+                        var selected = Object.values(data.list[i])[6];
                         if( selected==1 ){ option = `<option value="1" selected>A</option><option value="2">B</option><option value="3">C</option><option value="4">D</option>`; }
                         if( selected==2 ){ option = `<option value="1">A</option><option value="2" selected>B</option><option value="3">C</option><option value="4">D</option>`; }
                         if( selected==3 ){ option = `<option value="1">A</option><option value="2">B</option><option value="3" selected>C</option><option value="4">D</option>`; }
                         if( selected==4 ){ option = `<option value="1">A</option><option value="2">B</option><option value="3">C</option><option value="4" selected>D</option>`; }
                         personnel_train_exam_edit_list.find("tr").eq(i).find("select").html(option);
                     }
+
+                    //添加按钮
+                    if( personnel_train_exam_edit_list_length <= personnel_train_exam_limit ){
+                        personnel_train_exam_edit_list_btn.show();
+                    } else {
+                        personnel_train_exam_edit_list_btn.hide();
+                    }
+
                     //面板显示
                     personnel_train_exam_edit_box.modal("show");
 

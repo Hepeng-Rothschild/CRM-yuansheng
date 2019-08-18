@@ -384,3 +384,75 @@ function upload_free(upapi,upid,staticFiles){
         }
     }
 }
+
+/* um_tree_check() 可选择节点树
+ * @param  object selector (id/class)
+ */
+function um_tree_check(selector){
+    selector.on("click","span",function(){
+
+        //变量声明
+        var empt = "icon-check-empty";
+        var chec = "icon-checked";
+        var span = $(this);
+        var icon = span.find(".icon");
+        var type = icon.parent().attr("type");
+        var son  = icon.parent().next("ul").find(".icon");
+        var dad  = span.parent().parent().siblings("span").find(".icon");
+        var bro  = span.parent().parent().find("span");
+
+        //选中影响(父级对子级)
+        if( icon.hasClass(empt) ){
+            icon.removeClass(empt).addClass(chec);
+            if( type=="level1" ){ son.removeClass(empt).addClass(chec); }
+        } else {
+            icon.removeClass(chec).addClass(empt);
+            if( type=="level1" ){ son.removeClass(chec).addClass(empt); }
+        } 
+
+        //选中影响(子级对父级)
+        var brod = bro.find(".icon-checked").parent();
+        if( type=="level2" ){
+            if( brod.length==bro.length ){
+                dad.removeClass(empt).addClass(chec);
+            } else {
+                dad.removeClass(chec).addClass(empt);
+            }
+        }
+       
+        //结果导出
+        var che = selector.find("ul .icon-checked");
+        var arr = [];
+        for( var i=0;i<che.length;i++ ){ arr.push( $(che[i]).parent().attr("numb") ) }
+        selector.attr("result",arr);
+    
+    });
+}
+
+/* um_tree_check_read()  可选择节点树读取(修改用)
+ * @param  object selector (id/class)
+ * @param  json   data
+ */
+function um_tree_read(selector,data){
+
+    //节点读取
+    selector.tree({
+        animate     : false,
+        initialState: "normal",
+        data        : data || [],
+        itemWrapper : true,
+        itemCreator : function($li,item){
+            $li.addClass("open");
+            $li.append($("<span>",{type:item.type,numb:item.numb}).html(
+            "<i class='icon icon-"+item.icon+"'></i> "+item.title
+            ));
+        }
+    });
+       
+    //结果导出
+    var che = selector.find("ul .icon-checked");
+    var arr = [];
+    for( var i=0;i<che.length;i++ ){ arr.push( $(che[i]).parent().attr("numb") ) }
+    selector.attr("result",arr);
+
+}
