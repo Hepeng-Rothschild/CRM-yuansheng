@@ -133,6 +133,7 @@ $(function(){
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_attendance_days_datagrid.datagrid({
         height      : um_height(personnel_attendance_days_datagrid),
+        headerHeight: 60,
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -153,12 +154,12 @@ $(function(){
             R0C10: {colspan:2 },
             R0C12: {colspan:2 },
             R0C14: {colspan:2 },
-            R0C29: {colspan:10},
-            R0C39: {colspan:3 },
+            R0C30: {colspan:10},
+            R0C40: {colspan:3 },
         },
         dataSource : {
             cols   : [
-                {html:true,width:49,  name:"id",        label:"ID"  },
+                {html:true,width:49, name:"id",        label:"ID"  },
                 {html:true,width:80, name:"user",      label:"姓名"},
                 {html:true,width:80, name:"numb",      label:"工号"},
                 {html:true,width:80, name:"depart",    label:"部门"},
@@ -210,28 +211,29 @@ $(function(){
                         getter : function(dataValue,cell,dataGrid){
                             return `<a title="点击查看" data-toggle="modal" data-title="流水号：${dataValue.order}" data-custom="
                             <table class='table table-bordered table-striped'>
-                                <tr><td>申请人  </td><td>${dataValue.user}   </td></tr>
-                                <tr><td>工号    </td><td>${dataValue.numb}   </td></tr>
-                                <tr><td>部门    </td><td>${dataValue.depart} </td></tr>
-                                <tr><td>补卡原因</td><td>${dataValue.reason} </td></tr>
-                                <tr><td>补卡时间</td><td>${dataValue.date}   </td></tr>
+                                <tr><td>申请人</td><td>${dataValue.user}  </td></tr>
+                                <tr><td>工号  </td><td>${dataValue.numb}  </td></tr>
+                                <tr><td>部门  </td><td>${dataValue.depart}</td></tr>
+                                <tr><td>原因  </td><td>${dataValue.reason}</td></tr>
+                                <tr><td>时间  </td><td>${dataValue.date}  </td></tr>
                             </table>
                             ">${dataValue.order}</a>`;
                         }
                     }
                 },
-                {html:true,width:80, name:"work_day", label:"出勤天数"      },
-                {html:true,width:80, name:"rest_day", label:"休息天数"      },
-                {html:true,width:110,name:"work_min", label:"工作时长(分钟)"},
-                {html:true,width:80, name:"late",     label:"迟到次数"      },
-                {html:true,width:110,name:"late_min", label:"迟到时长(分钟)"},
-                {html:true,width:100,name:"early",    label:"早退次数"      },
-                {html:true,width:110,name:"early_min",label:"早退时长(分钟)"},
-                {html:true,width:100,name:"absent",   label:"旷工天数"      },
-                {html:true,width:110,name:"out_min",  label:"外出时长(分钟)"},
-                {html:true,width:100,name:"out_day",  label:"出差天数"      },
-                {html:true,width:100,name:"work_lack",label:"上班缺卡次数"  },
-                {html:true,width:100,name:"rest_lack",label:"下班缺卡次数"  },
+                {html:true,width:80, name:"work_day",   label:"出勤天数"      },
+                {html:true,width:80, name:"rest_day",   label:"休息天数"      },
+                {html:true,width:110,name:"work_min",   label:"工作时长(分钟)"},
+                {html:true,width:80, name:"late",       label:"迟到次数"      },
+                {html:true,width:110,name:"late_min",   label:"迟到时长(分钟)"},
+                {html:true,width:110,name:"late_absent",label:"旷工迟到天数"  },                
+                {html:true,width:100,name:"early",     label:"早退次数"       },
+                {html:true,width:110,name:"early_min", label:"早退时长(分钟)" },
+                {html:true,width:100,name:"absent",    label:"旷工天数"       },
+                {html:true,width:110,name:"out_min",   label:"外出时长(分钟)" },
+                {html:true,width:100,name:"out_day",   label:"出差天数"       },
+                {html:true,width:100,name:"work_lack", label:"上班缺卡次数"   },
+                {html:true,width:100,name:"rest_lack", label:"下班缺卡次数"   },
                 {html:true,width:70, name:"asl1",//ask_for_leave
                     label : `
                         <table class='th-table'><tr><td colspan='10'>请假(小时)</td></tr>

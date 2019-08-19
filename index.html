@@ -172,7 +172,7 @@ $(function(){
                 itemCreator : function($li,item){
                     $li.append(
                         $("<a>",{href:item.url}).html(
-                            "<i class='icon icon-"+item.icon+"' icon='"+item.icon+"' off='"+item.off+"'></i><span>"+item.title+"</span>"
+                            "<i class='icon icon-"+item.icon+"' icon='"+item.icon+"' off='"+item.off+"'></i><span text='"+ item.title +"'>"+item.title+"</span>"
                         )
                     );
                 },

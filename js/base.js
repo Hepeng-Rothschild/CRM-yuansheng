@@ -208,11 +208,11 @@ var option_date = {
     format   : "yyyy-mm-dd"
 }
 //年月日时
-var option_time = {
+var option_hour = {
     autoclose: 1,
     startView: 2,
     minView  : 1,
-    format   : "yyyy-mm-dd hh:ii"
+    format   : "yyyy-mm-dd hh:00"
 }
 
 //函数声明----------------------------------------------------------------------------------
@@ -231,6 +231,20 @@ Date.prototype.Format = function (fmt){
     for (var k in o)
     if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
+}
+
+/**
+ * 使用循环的方式判断一个元素是否存在于一个数组中
+ * @param {Object} arr 数组
+ * @param {Object} value 元素值
+ */
+function isInArray(arr,value){
+    for(var i = 0; i < arr.length; i++){
+        if(value === arr[i]){
+            return true;
+        }
+    }
+    return false;
 }
 
 //数据网格-取值(修改删除用)
@@ -267,7 +281,6 @@ function um_tip(text,time,cls){
         },time);
     }
 }
-
 
 /*um_height() 数据表格高度
  * @param  datagrid object

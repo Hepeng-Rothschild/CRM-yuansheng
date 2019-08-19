@@ -270,7 +270,7 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {name:"id",          label:"ID"  ,    width:49  },
+                {name:"id",          label:"ID"  ,    width:49 },
                 {name:"name",        label:"姓名",    width:80 },
                 {name:"tel" ,        label:"电话",    width:100},
                 {name:"positionname",label:"应聘职位",width:80 },
@@ -278,7 +278,7 @@ $(function(){
                 {name:"meettime",    label:"面试时间",width:120},
                 {name:"statename",   label:"状态",    width:85 },
                 {name:"copyname",    label:"抄送",    width:80 },
-                {name:"examine" ,    label:"审批意见",width:120,
+                {name:"examine" ,    label:"审批意见",width:240,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell,dataGrid){
@@ -348,7 +348,7 @@ $(function(){
     //时间组件-----------------------------------------------------------------------------------------------
     personnel_interview_tool_date1.datetimepicker(option_date);
     personnel_interview_tool_date2.datetimepicker(option_date);
-    personnel_interview_add_date.datetimepicker(option_time);
+    personnel_interview_add_date.datetimepicker(option_hour);
 
     //下拉选项-----------------------------------------------------------------------------------------------
     //职位(工具条)

@@ -2,6 +2,19 @@
     "status"  : 1,
     "tab1"  : [
         {
+            "editname" : "-6小时",
+            "edittext" : "因上周六加班,故调休",
+            "edituser" : "李连杰",            
+            "edittime" : "2019-10-20"
+        },{
+            "editname" : "+6小时",
+            "edittext" : "因上周六加班,故调休",
+            "edituser" : "张学友",            
+            "edittime" : "2019-10-20"
+        }
+    ],    
+    "tab2"  : [
+        {
             "datetime" : "2019-08-20 09:00 至 2019-08-20 18:00",
             "duration" : "4小时",
             "failtime" : "2019-10-20"
@@ -13,19 +26,6 @@
             "datetime" : "2019-08-20 09:00 至 2019-08-20 18:00",
             "duration" : "6小时",
             "failtime" : "2019-10-20"
-        }
-    ],    
-    "tab2"  : [
-        {
-            "editname" : "-6小时",
-            "edittext" : "因上周六加班,故调休",
-            "edituser" : "李连杰",            
-            "edittime" : "2019-10-20"
-        },{
-            "editname" : "+6小时",
-            "edittext" : "因上周六加班,故调休",
-            "edituser" : "张学友",            
-            "edittime" : "2019-10-20"
         }
     ]
 }

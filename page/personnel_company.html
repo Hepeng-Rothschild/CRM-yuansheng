@@ -1,19 +1,21 @@
 <!-- 页面外套 -->
 <div class="page-wrapper" id="personnel_company">
 
-    <!-- 数据网格 -->
-	<div class="datagrid datagrid-striped" id="personnel_company_datagrid">
-        <div class="tool-group">
-            <div class="tool-inline">
-                <label><select class="form-control" id="personnel_company_tool_select1"><!-- JS推进 --></select></label>
-                <div class="clearfix"></div>
-                <label><button class="btn btn-primary" company-id="" id="personnel_company_structure_btn"><i class="icon icon-sitemap"></i> 组织架构表</button></label>
-            </div>
+    <!-- 工具条组 -->
+    <div class="tool-group">
+        <div class="tool-inline">
+            <label><select class="form-control" id="personnel_company_tool_select1" style="width:360px!important;"><!-- JS推进 --></select></label>
+            <div class="clearfix"></div>
+            <label><button class="btn btn-primary" company-id="" id="personnel_company_structure_btn"><i class="icon icon-sitemap"></i> 组织架构表</button></label>
         </div>
-        <div class="datagrid-container"></div>
-        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
     </div>
-    <!-- datagrid -->
+    <!-- tool-group -->
+
+    <!-- 高亮区域 -->
+    <div class="hl-default" style="padding:30px 35px;">
+        <div class="tree-folders tree-lines" id="personnel_company_tree"></div>
+    </div>
+    <!-- hl-default -->
 
     <!-- 组织架构表 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="personnel_company_structure_box">
@@ -46,8 +48,8 @@ $(function(){
     personnel_company_structure_btn = $("#personnel_company_structure_btn"),    //架构按钮
     personnel_company_structure_box = $("#personnel_company_structure_box"),    //架构面板
     personnel_company_structure_dom = $("#personnel_company_structure_dom"),    //架构组件
-    personnel_company_datagrid      = $("#personnel_company_datagrid"),         //数据表格
-    personnel_company_datagrid_obj  = "";                                       //表格对象
+    personnel_company_tree          = $("#personnel_company_tree");             //数据节点树
+
 
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
@@ -55,7 +57,7 @@ $(function(){
         //本地接口
         var personnel_company_api = {
             select    : LOCAL + "Company/getAllCompany.json",                   //下拉选择
-            datagrid  : LOCAL + "Company/getCompanybyid.json",                  //数据表格
+            tree      : LOCAL + "Company/getCompanybyid.json",                  //数据表格
             structure : LOCAL + "Company/getdeparmentid.json",                  //组织架构表
             second    : LOCAL + "Company/getSCompanybyid.json",                 //获取二级部门
         }
@@ -65,7 +67,7 @@ $(function(){
         //远程接口
         var personnel_company_api = {
             select    : ROUTE + "Company/getAllCompany",                        //下拉选择
-            datagrid  : ROUTE + "Company/getCompanybyid",                       //数据表格
+            tree      : ROUTE + "Company/getCompanybyid",                       //数据表格
             structure : ROUTE + "Company/getdeparmentid",                       //组织架构表
             second    : ROUTE + "Company/getSCompanybyid",                      //获取二级部门
         }
@@ -79,7 +81,7 @@ $(function(){
         dataType: "json",
         success : function(data){
             //变量声明
-            var data = data.data;
+            // var data = data.data;
             var personnel_company_first_id = data[0].id;                    //初始ID
 
             //下拉选择-选项填充
@@ -92,41 +94,9 @@ $(function(){
             //架构组件-ID影响
             personnel_company_structure_btn.attr("company-id",personnel_company_first_id);
 
-            //数据表格
-            personnel_company_datagrid.datagrid({
-                height      : um_height(personnel_company_datagrid),
-                sortable    : false,
-                cache       : false,
-                showRowIndex: true,
-                configs     : {
-                    R0:{className:"text-center"},
-                    C1:{className:"cell-hidden"}
-                },
-                states      : {
-                    pager           : {
-                        page        : 1,
-                        recPerPage  : window.REC_PER_PAGE,
-                    }
-                },
-                dataSource : {
-                    cols   : [
-                        {name:"deparmenid"  ,label:"ID" ,width:49},
-                        {name:"deparmenname",label:"部门",width:80},
-                        {name:"staffname"   ,label:"人员",width:80},
-                        {name:"positionname",label:"职务",width:80},
-                        {name:"tel"         ,label:"电话",width:100}
-                    ],
-                    remote : function(){
-                        return {
-                            url     : personnel_company_api.datagrid+"?id="+personnel_company_first_id,
-                            type    : "POST",
-                            dataType: "json",
-                        }
-                    }
-                }
-            });
-            //变量声明
-            personnel_company_datagrid_obj = personnel_company_datagrid.data("zui.datagrid");       //表格对象
+            //节点树
+            personnel_company_tree_create( personnel_company_first_id );
+           
         }
     }); 
 
@@ -136,10 +106,12 @@ $(function(){
         //变量声明
         var data_id = personnel_company_tool_select1.val();                                         //数据ID
 
-        //改动影响
-        personnel_company_structure_btn.attr("company-id",data_id);                                 //架构传值
-        um_render(personnel_company_datagrid_obj,personnel_company_api.datagrid + "?id="+data_id);  //表格渲染
-        
+        //组织架构表刷新
+        personnel_company_structure_btn.attr("company-id",data_id);
+
+        //节点树刷新
+        personnel_company_tree_create( data_id );
+      
     });
 
     //架构组件------------------------------------------------------------------------
@@ -150,12 +122,37 @@ $(function(){
             dataType: "json",
             data    : { id  : personnel_company_structure_btn.attr("company-id") },
             success : function(data){
-                var data = data.data;
+                // var data = data.data;
                 var data = um_json(data);                                                           //JSON解析
                 personnel_company_structure_dom.treemap("render",data);                             //架构渲染
                 personnel_company_structure_box.modal("show");                                      //面板显示
             }
         });
+    });
+
+    //节点树-生成
+    function personnel_company_tree_create(id){
+        $.ajax({
+            url     : personnel_company_api.tree,
+            type    : "post",
+            data    : { id  : id },
+            success : function(data){
+                var data = um_json(data);
+                personnel_company_tree.tree({
+                    data        : data,
+                    itemCreator : function($li,item){
+                        $li.addClass("open");
+                        $li.append( $("<span>").html(item.title) );
+                    },
+                });
+            }
+        });
+    }
+
+    //节点树-点击选中
+    personnel_company_tree.on("click","span",function(){
+        personnel_company_tree.find("span").removeClass("text-primary");
+        $(this).addClass("text-primary");
     });
 
 });//预加载结尾

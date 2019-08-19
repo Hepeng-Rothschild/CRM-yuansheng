@@ -58,7 +58,7 @@
                         </ul>
                         <div class="clearfix"></div><hr>
                         <!-- 证件信息 -->
-                        <blockquote>证件信息</blockquote>
+                        <blockquote>证件信息 <span class="small text-red">(图片大小不超过1M)</span></blockquote>
                         <ul class="uploader-square-box">
                             <li class="col-sm-2">
                                 <div class="uploader" id="personnel_contractor_add_uploader1">
@@ -136,7 +136,7 @@
                         </ul>
                         <div class="clearfix"></div><hr>
                         <!-- 证件信息 -->
-                        <blockquote>证件信息</blockquote>
+                        <blockquote>证件信息 <span class="small text-red">(图片大小不超过1M)</span></blockquote>
                         <ul class="uploader-square-box">
                             <li class="col-sm-2">
                                 <div class="uploader" id="personnel_contractor_edit_uploader1">
@@ -299,20 +299,23 @@ $(function(){
                 {name:"addr",  label:"地址",              width:180},
                 {name:"type",  label:"承包商类型",        width:120},
                 {name:"state", label:"工作状态",          width:100},
+                {name:"constr",label:"在施工地数",        width:100},
                 {name:"money1",label:"在建施工合同总金额",width:150},
                 {name:"money2",label:"施工合同总金额",    width:150},
                 {name:"money3",label:"巡检奖赏次数/金额", width:150},
                 {name:"money4",label:"巡检处罚次数/金额", width:150},
                 {name:"period",label:"保期维修率",        width:120},
-                {name:"operate",label:"操作",             width:150,
+                {name:"result",label:"操作",              width:150,  //未竣工项目数(未竣工项目数为0显示删除|不为0隐藏删除)
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
                             var temp = `
                                 <a rowIndex="${cell.rowIndex}" class="personnel_contractor_show_btn">查看</a>
                                 <a rowIndex="${cell.rowIndex}" class="personnel_contractor_edit_btn">修改</a>
-                                <a rowIndex="${cell.rowIndex}" class="personnel_contractor_dele_btn">删除</a>
                             `;
+                            if( dataValue=="0" ){
+                                temp += `<a rowIndex="${cell.rowIndex}" class="personnel_contractor_dele_btn">删除</a>`;
+                            }
                             return temp;
                         }
                     }

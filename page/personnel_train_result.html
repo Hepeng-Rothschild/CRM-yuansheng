@@ -109,8 +109,9 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {width:49,  name:"id",         label:"ID"      },
+                {width:49,  name:"id",        label:"ID"      },
                 {width:80, name:"user",       label:"姓名"    },
+                {width:80, name:"numb",       label:"工号"    },
                 {width:80, name:"depart",     label:"部门"    },
                 {width:80, name:"post",       label:"职位"    },
                 {width:120,name:"type",       label:"考试类型"},
@@ -122,10 +123,7 @@ $(function(){
                 {width:80, name:"operate",    label:"操作",html:true,
                     valueOperator : {
                         getter : function(dataValue,cell,dataGrid){
-                            return `
-                            <a rowIndex="${cell.rowIndex}" class="personnel_train_result_show_btn">查看</a>
-                            <a rowIndex="${cell.rowIndex}" class="personnel_train_result_file_btn">归档</a>
-                            `;
+                            return `<a rowIndex="${cell.rowIndex}" class="personnel_train_result_show_btn">查看</a>`;
                         }
                     }
                 },
@@ -143,8 +141,7 @@ $(function(){
     //变量声明-----------------------------------------------------------------------------------------------
     var 
     personnel_train_result_datagrid_obj    = personnel_train_result_datagrid.data("zui.datagrid"),//表格对象
-    personnel_train_result_show_btn        = ".personnel_train_result_show_btn",                  //查看按钮
-    personnel_train_result_file_btn        = ".personnel_train_result_file_btn";                  //归档按钮
+    personnel_train_result_show_btn        = ".personnel_train_result_show_btn";                  //查看按钮
 
     //下拉选项-----------------------------------------------------------------------------------------------
     //考试类型
@@ -206,7 +203,7 @@ $(function(){
             success : function(data){
 
                 if( data.status>0 ){
-
+                    console.log(data.list);
                     //模板生成
                     var temp = `
                         <blockquote>试卷信息</blockquote>
@@ -239,17 +236,17 @@ $(function(){
                     for( var i=0;i<data.list.length;i++ ){
                         tr+= `
                             <tr>
-                                <td>${data.list[i].numb}</td>
+                                <td>${Object.values(data.list[i])[0]}</td>
                                 <td>
                                     <dl>
-                                        <dt>${data.list[i].tit}</dt>
-                                        <dd>A.${data.list[i].a}</dd>
-                                        <dd>B.${data.list[i].b}</dd>
-                                        <dd>C.${data.list[i].c}</dd>
-                                        <dd>D.${data.list[i].d}</dd>
+                                        <dt>${Object.values(data.list[i])[1]}</dt>
+                                        <dd>A.${Object.values(data.list[i])[2]}</dd>
+                                        <dd>B.${Object.values(data.list[i])[3]}</dd>
+                                        <dd>C.${Object.values(data.list[i])[4]}</dd>
+                                        <dd>D.${Object.values(data.list[i])[5]}</dd>
                                     </dl>
                                 </td>
-                                <td>${data.list[i].key1}</td>
+                                <td>${Object.values(data.list[i])[6]}</td>
                                 <td></td>
                             </tr>
                         `;
@@ -257,11 +254,11 @@ $(function(){
                     personnel_train_result_show_box.find("#personnel_train_result_show_table2 tbody").html(tr);
 
                     //答案处理
-                    var key2 = "";
+                    var your_answer = "";
                     for( var j=0;j<data.list.length;j++ ){
-                        if( data.list[j].key1==data.list[j].key2  ){ key2='<span class="text-success">'+ data.list[j].key2 +'</span>'; }
-                        if( data.list[j].key1!==data.list[j].key2 ){ key2='<span class="text-danger">' + data.list[j].key2 +'</span>'; }
-                        personnel_train_result_show_box.find("#personnel_train_result_show_table2 tbody tr").eq(j).find("td:last-child").html(key2);
+                        if( Object.values(data.list[j])[6] ==Object.values(data.list[j])[7] ){ your_answer='<span class="text-success">'+ Object.values(data.list[j])[7] +'</span>'; }
+                        if( Object.values(data.list[j])[6]!==Object.values(data.list[j])[7] ){ your_answer='<span class="text-danger">' + Object.values(data.list[j])[7] +'</span>'; }
+                        personnel_train_result_show_box.find("#personnel_train_result_show_table2 tbody tr").eq(j).find("td:last-child").html(your_answer);
                     }
 
                     //面板显示
@@ -269,31 +266,6 @@ $(function(){
 
                 } else {
                     um_tip(data.message,"1000","text-danger");
-                }
-                
-            }
-        });
-
-    });
-
-    //归档按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",personnel_train_result_file_btn,function(){
-
-        //数据ID
-        var data_id  = cell_value($(this).attr("rowIndex"),1);
-
-        //远程提交
-        $.ajax({
-            url  : personnel_train_result_api.show,
-            type : "post",
-            data : { id:data_id },
-            success : function(data){
-                
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    um_reset(personnel_train_result_datagrid_obj,personnel_train_result_api.datagrid);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
                 }
                 
             }
