@@ -17,14 +17,12 @@
                         <input type="text" class="form-control" id="personnel_attendance_punch_time_tool_search">
                     </div>
                 </div>
+                <label id="personnel_attendance_punch_time_tool_select_group"><!--JS推进--></label>
                 <label>
                     <span>在职状态：</span>
-                    <select class="form-control" id="personnel_attendance_punch_time_tool_select1"><!--JS推进--></select>
-                </label>
-                <label>
-                    <span>部门选择：</span>
                     <select class="form-control" id="personnel_attendance_punch_time_tool_select2"><!--JS推进--></select>
                 </label>
+
                 <div class="im-label">
                     <span>时间：</span>
                     <input type="text" class="form-control" id="personnel_attendance_punch_time_tool_date1" readonly>
@@ -57,7 +55,7 @@ $(function(){
     //搜索
     personnel_attendance_punch_time_tool_keys          = $("#personnel_attendance_punch_time_tool_keys"),           //搜索类别
     personnel_attendance_punch_time_tool_search        = $("#personnel_attendance_punch_time_tool_search"),         //搜索字段
-    personnel_attendance_punch_time_tool_select1       = $("#personnel_attendance_punch_time_tool_select1"),        //下拉选择1
+    personnel_attendance_punch_time_tool_select_group  = $("#personnel_attendance_punch_time_tool_select_group"),   //下拉选择1
     personnel_attendance_punch_time_tool_select2       = $("#personnel_attendance_punch_time_tool_select2"),        //下拉选择2
     personnel_attendance_punch_time_tool_date1         = $("#personnel_attendance_punch_time_tool_date1"),          //时间选择  
     personnel_attendance_punch_time_search_btn         = $("#personnel_attendance_punch_time_search_btn"),          //搜索按钮
@@ -171,6 +169,9 @@ $(function(){
     personnel_attendance_punch_time_tool_date1.val( now_time );
 
     //下拉选项-----------------------------------------------------------------------------------------------
+    //部门选择
+    common_tool_select_group("#personnel_attendance_punch_time_tool_select_group","2");                //搜索
+
     //在职状态
     $.ajax({
         url     : personnel_attendance_punch_time_api.select,
@@ -178,26 +179,14 @@ $(function(){
         dataType: "json",
         data    : {},
         success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "<option value='0'>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                personnel_attendance_punch_time_tool_select2.html(option);
             }
-            personnel_attendance_punch_time_tool_select1.html(option);
-        }
-    });
-
-    //部门选择
-    $.ajax({
-        url     : personnel_attendance_punch_time_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-            }
-            personnel_attendance_punch_time_tool_select2.html(option);
         }
     });
 
@@ -208,7 +197,7 @@ $(function(){
         var keyword
         = "?sid="    + personnel_attendance_punch_time_tool_keys.val()
         + "&search=" + personnel_attendance_punch_time_tool_search.val()
-        + "&select1="+ personnel_attendance_punch_time_tool_select1.val()
+        + "&select1="+ personnel_attendance_punch_time_tool_select_group.find(".common_select_depart").val()
         + "&select2="+ personnel_attendance_punch_time_tool_select2.val()
         + "&date1="  + personnel_attendance_punch_time_tool_date1.val();
 
@@ -228,7 +217,7 @@ $(function(){
             data    : {
                 keys    : personnel_attendance_punch_time_tool_keys.val(),
                 search  : personnel_attendance_punch_time_tool_search.val(),
-                select1 : personnel_attendance_punch_time_tool_select1.val(),
+                select1 : personnel_attendance_punch_time_tool_select_group.find(".common_select_depart").val(),
                 select2 : personnel_attendance_punch_time_tool_select2.val(),
                 date1   : personnel_attendance_punch_time_tool_date1.val(),
             },
@@ -245,7 +234,6 @@ $(function(){
         });
 
     });
-   
 
 });//预加载结尾
 </script>

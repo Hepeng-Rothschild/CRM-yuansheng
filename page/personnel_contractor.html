@@ -18,7 +18,7 @@
                         <input type="text" class="form-control" id="personnel_contractor_tool_search">
                     </div>
                 </div>
-                <label><span>分公司：</span><select class="form-control" id="personnel_contractor_tool_select1"><!--JS推进--></select></label>
+                <label id="personnel_contractor_tool_select_group"><!--JS推进--></label>
                 <label><span>状态：  </span><select class="form-control" id="personnel_contractor_tool_select2"><!--JS推进--></select></label>
                 <label><button class="btn btn-primary" id="personnel_contractor_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
@@ -211,7 +211,7 @@ $(function(){
     //搜索
     personnel_contractor_tool_keys          = $("#personnel_contractor_tool_keys"),         //搜索类别
     personnel_contractor_tool_search        = $("#personnel_contractor_tool_search"),       //搜索字段
-    personnel_contractor_tool_select1       = $("#personnel_contractor_tool_select1"),      //下拉选择1
+    personnel_contractor_tool_select_group  = $("#personnel_contractor_tool_select_group"), //下拉框组
     personnel_contractor_tool_select2       = $("#personnel_contractor_tool_select2"),      //下拉选择2
     personnel_contractor_search_btn         = $("#personnel_contractor_search_btn"),        //搜索按钮
 
@@ -344,22 +344,11 @@ $(function(){
     personnel_contractor_show_btn       = ".personnel_contractor_show_btn",                     //查看
     personnel_contractor_edit_btn       = ".personnel_contractor_edit_btn",                     //修改
     personnel_contractor_dele_btn       = ".personnel_contractor_dele_btn";                     //删除
-    
+
+    //下拉组件-----------------------------------------------------------------------------------------------
+    common_tool_select_group("#personnel_contractor_tool_select_group","1");                    //搜索
+
     //下拉选项-----------------------------------------------------------------------------------------------
-    //分公司
-    $.ajax({
-        url     : personnel_contractor_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-            }
-            personnel_contractor_tool_select1.html(option);             //工具条
-        }
-    });
     //状态
     $.ajax({
         url     : personnel_contractor_api.select,
@@ -367,13 +356,16 @@ $(function(){
         dataType: "json",
         data    : {},
         success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-            }
-            personnel_contractor_tool_select2.html(option);             //工具条
-            personnel_contractor_add_state.html(option);                //添加
-            personnel_contractor_edit_state.html(option);               //修改
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "<option value='0'>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                personnel_contractor_tool_select2.html(option);             //工具条
+                personnel_contractor_add_state.html(option);                //添加
+                personnel_contractor_edit_state.html(option);               //修改
+            }            
         }
     });
     //承包商类型
@@ -383,12 +375,15 @@ $(function(){
         dataType: "json",
         data    : {},
         success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "<option value='0'>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                personnel_contractor_add_type.html(option);                 //添加
+                personnel_contractor_edit_type.html(option);                //修改
             }
-            personnel_contractor_add_type.html(option);                 //添加
-            personnel_contractor_edit_type.html(option);                //修改
         }
     });
 
@@ -399,7 +394,7 @@ $(function(){
         var keyword
         = "?sid="    + personnel_contractor_tool_keys.val()
         + "&search=" + personnel_contractor_tool_search.val()
-        + "&select1="+ personnel_contractor_tool_select1.val()
+        + "&select1="+ personnel_contractor_tool_select_group.find(".common_select_company").val()
         + "&select2="+ personnel_contractor_tool_select2.val();
 
         //GET提交

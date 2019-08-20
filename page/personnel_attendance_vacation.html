@@ -17,10 +17,7 @@
                         <input type="text" class="form-control" id="personnel_attendance_vacation_tool_search">
                     </div>
                 </div>
-                <label>
-                    <span>部门选择：</span>
-                    <select class="form-control" id="personnel_attendance_vacation_tool_select1"><!--JS推进--></select>
-                </label>
+                <label id="personnel_attendance_vacation_tool_select_group"><!--JS推进--></label>
                 <label><button class="btn btn-primary" id="personnel_attendance_vacation_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
             </div>
         </div>
@@ -111,7 +108,7 @@ $(function(){
     //搜索
     personnel_attendance_vacation_tool_keys          = $("#personnel_attendance_vacation_tool_keys"),           //搜索类别
     personnel_attendance_vacation_tool_search        = $("#personnel_attendance_vacation_tool_search"),         //搜索字段
-    personnel_attendance_vacation_tool_select1       = $("#personnel_attendance_vacation_tool_select1"),        //下拉选择1
+    personnel_attendance_vacation_tool_select_group  = $("#personnel_attendance_vacation_tool_select_group"),   //下拉框组
     personnel_attendance_vacation_search_btn         = $("#personnel_attendance_vacation_search_btn"),          //搜索按钮
     //修改
     personnel_attendance_vacation_edit_box           = $("#personnel_attendance_vacation_edit_box"),            //修改盒子
@@ -213,19 +210,8 @@ $(function(){
  
     //下拉选项-----------------------------------------------------------------------------------------------
     //部门选择
-    $.ajax({
-        url     : personnel_attendance_vacation_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-            }
-            personnel_attendance_vacation_tool_select1.html(option);
-        }
-    });
+    common_tool_select_group("#personnel_attendance_vacation_tool_select_group","2");                           //搜索
+
     //修改类型
     $.ajax({
         url     : personnel_attendance_vacation_api.edit_type,
@@ -233,11 +219,14 @@ $(function(){
         dataType: "json",
         data    : {},
         success : function(data){
-            var option = "";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                personnel_attendance_vacation_edit_type.html(option);
             }
-            personnel_attendance_vacation_edit_type.html(option);
         }
     });
 
@@ -248,7 +237,7 @@ $(function(){
         var keyword
         = "?sid="    + personnel_attendance_vacation_tool_keys.val()
         + "&search=" + personnel_attendance_vacation_tool_search.val()
-        + "&select1="+ personnel_attendance_vacation_tool_select1.val();
+        + "&select1="+ personnel_attendance_vacation_tool_select_group.find(".common_select_depart").val();
 
         //GET提交
         um_render(personnel_attendance_vacation_datagrid_obj,personnel_attendance_vacation_api.datagrid+keyword);

@@ -18,17 +18,10 @@
                         <input type="text" class="form-control" id="personnel_staff_tool_search">
                     </div>
                 </div>
-                <label>
-                    <span>职位：</span>
-                    <select class="form-control" id="personnel_staff_tool_select1"><!--JS推进--></select>
-                </label>
-                <label>
-                    <span>分公司：</span>
-                    <select class="form-control" id="personnel_staff_tool_select2"><!--JS推进--></select>
-                </label>
+                <div id="personnel_staff_tool_select_group"><!--JS推进--></div>
                 <label>
                     <span>状态：</span>
-                    <select class="form-control" id="personnel_staff_tool_select3"><!--JS推进--></select>
+                    <select class="form-control" id="personnel_staff_tool_select4"><!--JS推进--></select>
                 </label>
                 <label><button class="btn btn-primary" id="personnel_staff_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
@@ -107,12 +100,16 @@
                         <!-- 入职情况 -->
                         <blockquote>入职情况 <span class="small text-red">(以下均为必填项)</span></blockquote>
                         <ul class="form-checker-board">
-                            <li class="col-sm-3"><label><span>分公司    </span><select id="personnel_staff_add_comp" class="form-control"></select></li></label>
+                            <!-- <li class="col-sm-3"><label><span>分公司    </span><select id="personnel_staff_add_comp" class="form-control"></select></li></label>
                             <li class="col-sm-3"><label><span>部门      </span><select id="personnel_staff_add_depa" class="form-control"></select></li></label>
-                            <li class="col-sm-3"><label><span>职位      </span><select id="personnel_staff_add_post" class="form-control"></select></li></label>
-                            <li class="col-sm-3"><label><span>入职日期  </span><input  id="personnel_staff_add_pass" class="form-control" type="text" readonly></li></label>
-                            <li class="col-sm-3"><label><span>试用期工资</span><input  id="personnel_staff_add_wag1" class="form-control" type="text"></li></label>
-                            <li class="col-sm-3"><label><span>转正工资  </span><input  id="personnel_staff_add_wag2" class="form-control" type="text"></li></label>
+                            <li class="col-sm-3"><label><span>职位      </span><select id="personnel_staff_add_post" class="form-control"></select></li></label> -->
+
+                            <li class="flex-box" id="personnel_staff_add_select_group"></li>
+                            <li class="flex-box" >
+                                <label><span>入职日期  </span><input  id="personnel_staff_add_pass" class="form-control" type="text" readonly></label>
+                                <label><span>试用期工资</span><input  id="personnel_staff_add_wag1" class="form-control" type="text"></label>
+                                <label><span>转正工资  </span><input  id="personnel_staff_add_wag2" class="form-control" type="text"></label>
+                            </li>
                         </ul>
                         <div class="clearfix"></div><hr>
                         <!-- 资料上传 -->
@@ -580,9 +577,8 @@ $(function(){
     //搜索
     personnel_staff_tool_keys           = $("#personnel_staff_tool_keys"),          //搜索类别
     personnel_staff_tool_search         = $("#personnel_staff_tool_search"),        //搜索字段
-    personnel_staff_tool_select1        = $("#personnel_staff_tool_select1"),       //下拉选择1
-    personnel_staff_tool_select2        = $("#personnel_staff_tool_select2"),       //下拉选择2
-    personnel_staff_tool_select3        = $("#personnel_staff_tool_select3"),       //下拉选择2
+    personnel_staff_tool_select_group   = $("#personnel_staff_tool_select_group"),  //下拉框组
+    personnel_staff_tool_select4        = $("#personnel_staff_tool_select4"),       //下拉选择4
     personnel_staff_search_btn          = $("#personnel_staff_search_btn"),         //搜索按钮
     personnel_staff_che1_btn            = $("#personnel_staff_che1_btn"),           //在职员工
     personnel_staff_che2_btn            = $("#personnel_staff_che2_btn"),           //离职员工
@@ -760,7 +756,7 @@ $(function(){
         }
 
     }
-    
+
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_staff_datagrid.datagrid({
         height      : um_height(personnel_staff_datagrid),
@@ -833,7 +829,11 @@ $(function(){
     personnel_staff_show_btn        = ".personnel_staff_show_btn",                     //查看
     personnel_staff_reset_btn       = ".personnel_staff_reset_btn",                    //重置密码
     personnel_staff_state_btn       = ".personnel_staff_state_btn";                    //状态按钮
- 
+
+    //下拉组件-----------------------------------------------------------------------------------------------
+    common_tool_select_group("#personnel_staff_tool_select_group","123");               //搜索
+    common_tool_select_group("#personnel_staff_add_select_group","123");                //添加
+
     //时间组件-----------------------------------------------------------------------------------------------
     personnel_staff_add_birt.datetimepicker(option_date);
     personnel_staff_add_pass.datetimepicker(option_date);
@@ -857,38 +857,6 @@ $(function(){
     personnel_staff_edit_work3_date2.datetimepicker(option_date);
     
     //下拉选项-----------------------------------------------------------------------------------------------
-    //职位
-    $.ajax({
-        url     : personnel_staff_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-            }
-            personnel_staff_tool_select1.html(option);
-            personnel_staff_add_post.html(option);                      //添加
-            personnel_staff_edit_post.html(option);                     //修改
-        }
-    });
-    //分公司
-    $.ajax({
-        url     : personnel_staff_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-            }
-            personnel_staff_tool_select2.html(option);
-            personnel_staff_add_comp.html(option);                      //添加
-            personnel_staff_edit_comp.html(option);                     //修改
-        }
-    });
     //状态
     $.ajax({
         url     : personnel_staff_api.select,
@@ -896,11 +864,14 @@ $(function(){
         dataType: "json",
         data    : {},
         success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "<option value='0'>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                personnel_staff_tool_select4.html(option);
             }
-            personnel_staff_tool_select3.html(option);
         }
     });
 
@@ -948,21 +919,6 @@ $(function(){
             }
             personnel_staff_add_addr3.html(option);                     //添加
             personnel_staff_edit_addr3.html(option);                    //修改
-        }
-    });
-    //部门
-    $.ajax({
-        url     : personnel_staff_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-            }
-            personnel_staff_add_depa.html(option);                      //添加
-            personnel_staff_edit_depa.html(option);                     //修改
         }
     });
 
@@ -1021,62 +977,7 @@ $(function(){
         });
 
     });
-
-    //分公司-部门-职位
-    personnel_staff_add_comp.change(function(){
-
-        var addr1 = $(this).val();
-
-        $.ajax({
-            url     : personnel_staff_api.select,
-            type    : "post",
-            dataType: "json",
-            data    : {},
-            success : function(data){
-                var option = "";
-                for(var i=0;i<data.length;i++){
-                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"部]门</option>"
-                }
-                personnel_staff_add_depa.html(option);
-            }
-        });
-
-        $.ajax({
-            url     : personnel_staff_api.select,
-            type    : "post",
-            dataType: "json",
-            data    : {},
-            success : function(data){
-                var option = "";
-                for(var i=0;i<data.length;i++){
-                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"职]位</option>"
-                }
-                personnel_staff_add_post.html(option);
-            }
-        });
-
-    });
-    //部门-职位
-    personnel_staff_add_depa.change(function(){
-
-        var addr1 = $(this).val();
-
-        $.ajax({
-            url     : personnel_staff_api.select,
-            type    : "post",
-            dataType: "json",
-            data    : {},
-            success : function(data){
-                var option = "";
-                for(var i=0;i<data.length;i++){
-                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"职]位</option>"
-                }
-                personnel_staff_add_post.html(option);
-            }
-        });
-
-    });
-
+    
     //修改下拉联动-----------------------------------------------------------------------------------------
     //省市区
     personnel_staff_edit_addr1.change(function(){
@@ -1133,61 +1034,6 @@ $(function(){
 
     });
 
-    //分公司-部门-职位
-    personnel_staff_edit_comp.change(function(){
-
-        var addr1 = $(this).val();
-
-        $.ajax({
-            url     : personnel_staff_api.select,
-            type    : "post",
-            dataType: "json",
-            data    : {},
-            success : function(data){
-                var option = "";
-                for(var i=0;i<data.length;i++){
-                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"部]门</option>"
-                }
-                personnel_staff_edit_depa.html(option);
-            }
-        });
-
-        $.ajax({
-            url     : personnel_staff_api.select,
-            type    : "post",
-            dataType: "json",
-            data    : {},
-            success : function(data){
-                var option = "";
-                for(var i=0;i<data.length;i++){
-                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"职]位</option>"
-                }
-                personnel_staff_edit_post.html(option);
-            }
-        });
-
-    });
-    //部门-职位
-    personnel_staff_edit_depa.change(function(){
-
-        var addr1 = $(this).val();
-
-        $.ajax({
-            url     : personnel_staff_api.select,
-            type    : "post",
-            dataType: "json",
-            data    : {},
-            success : function(data){
-                var option = "";
-                for(var i=0;i<data.length;i++){
-                    option += "<option value='"+data[i].id+"'>"+data[i].name+"["+addr1+"职]位</option>"
-                }
-                personnel_staff_edit_post.html(option);
-            }
-        });
-
-    });
-
     //右侧切换-----------------------------------------------------------------------------------------------
     personnel_staff_che1_btn.click(function(){
         personnel_staff_add_btn.show();
@@ -1203,11 +1049,12 @@ $(function(){
 
         //字段整理
         var keyword
-        = "?sid="       + personnel_staff_tool_keys.val()
-        + "&search="    + personnel_staff_tool_search.val()
-        + "&companyid=" + personnel_staff_tool_select1.val()
-        + "&positionid="+ personnel_staff_tool_select2.val()
-        + "&isstate="   + personnel_staff_tool_select3.val();
+        = "?sid="           + personnel_staff_tool_keys.val()
+        + "&search="        + personnel_staff_tool_search.val()
+        + "&companyid="     + personnel_staff_tool_select_group.find(".common_select_company").val()
+        + "&departmentid="  + personnel_staff_tool_select_group.find(".common_select_depart").val()
+        + "&positionid="    + personnel_staff_tool_select_group.find(".common_select_post").val()
+        + "&isstate="       + personnel_staff_tool_select4.val();
 
         //GET提交
         um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid+keyword);

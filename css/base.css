@@ -314,6 +314,7 @@ html,body{
     flex:1;  
     overflow:hidden; 
 } 
+.flex-son *,
 .flex-one{
     -moz-box-flex: 1;
     -webkit-flex: 1;
@@ -447,9 +448,6 @@ html,body{
     padding:10px 0 0;
     overflow: hidden;
 }
-.tool-group div button{
-    margin-left:5px;
-}
 .tool-group  label,
 .tool-group .im-label{
     display: block;
@@ -480,10 +478,15 @@ html,body{
 }
 .tool-group .tool-deal{
     background: #f1f1f1;
-    padding:5px 0 0;
+    padding:5px 0 0 5px;
     border:1px solid #ddd;
     border-bottom:0;
-    /*margin-bottom: 5px;*/
+}
+.tool-group div button{
+    margin-left:5px;
+}
+.tool-group div button:first-child{
+    margin-left:0;
 }
 /*其他样式*/
 [data-toggle="modal"],
