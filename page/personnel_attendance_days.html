@@ -3,8 +3,10 @@
     
     <!-- 数据网格 -->
     <div class="datagrid datagrid-striped" id="personnel_attendance_days_datagrid">
+
+        <!-- 工具条组 -->
         <div class="tool-group">
-            <div class="tool-inline">
+            <div class="tool-search">
                 <div class="im-label">
                     <div class="input-group">
                         <select class="form-control" id="personnel_attendance_days_tool_keys">
@@ -16,37 +18,24 @@
                     </div>
                 </div>
                 <label>
-                    <span>搜索：</span>
-                    <div class="input-group">
-                        <select class="form-control">
-                            <option value="1">姓名</option>
-                            <option></option>
-                        </select>
-                        <span class="input-group-addon fix-border fix-padding"></span>
-                        <input type="text" class="form-control" id="">
-                    </div>
-                </label>
-                <label>
-                    <span>在职状态：</span>
+                    <span>部门选择：</span>
                     <select class="form-control" id="personnel_attendance_days_tool_select1"><!--JS推进--></select>
                 </label>
                 <label>
-                    <span>部门选择：</span>
+                    <span>在职状态：</span>
                     <select class="form-control" id="personnel_attendance_days_tool_select2"><!--JS推进--></select>
                 </label>
-                <div class="im-label">
-                    <span>时间：</span>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="personnel_attendance_days_tool_date1" readonly> 
-                        <span class="input-group-addon fix-border fix-padding"></span>
-                        <input type="text" class="form-control" id="personnel_attendance_days_tool_date2" readonly>
-                    </div>
-                </div>
+                <div class="im-label" id="personnel_attendance_days_tool_date"><!--JS推进--></div>
                 <label><button class="btn btn-primary" id="personnel_attendance_days_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
+            </div>
+            <div class="tool-deal">
                 <label><button class="btn btn-primary" id="personnel_attendance_days_export_btn"><i class="icon icon-external-link"></i> 导出</button></label>
+                <div class="clearfix"></div>
             </div>
         </div>
+        <!-- tool-group -->
+
         <div class="datagrid-container"></div>
         <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
     </div>
@@ -101,8 +90,7 @@ $(function(){
     personnel_attendance_days_tool_search        = $("#personnel_attendance_days_tool_search"),         //搜索字段
     personnel_attendance_days_tool_select1       = $("#personnel_attendance_days_tool_select1"),        //下拉选择1
     personnel_attendance_days_tool_select2       = $("#personnel_attendance_days_tool_select2"),        //下拉选择2
-    personnel_attendance_days_tool_date1         = $("#personnel_attendance_days_tool_date1"),          //开始时间
-    personnel_attendance_days_tool_date2         = $("#personnel_attendance_days_tool_date2"),          //结束时间   
+    personnel_attendance_days_tool_date          = $("#personnel_attendance_days_tool_date"),           //起止时间
     personnel_attendance_days_search_btn         = $("#personnel_attendance_days_search_btn"),          //搜索按钮
     personnel_attendance_days_export_btn         = $("#personnel_attendance_days_export_btn"),          //导出按钮
     //修改
@@ -300,11 +288,12 @@ $(function(){
     personnel_attendance_days_result_edit_btn = ".personnel_attendance_days_result_edit_btn";           //修改按钮
 
     //时间组件-----------------------------------------------------------------------------------------------
-    personnel_attendance_days_tool_date1.datetimepicker(option_date);
-    personnel_attendance_days_tool_date2.datetimepicker(option_date);
+    common_tool_search_date( personnel_attendance_days_tool_date );
+    personnel_attendance_days_tool_date.find(".start").datetimepicker(option_date);
+    personnel_attendance_days_tool_date.find(".end").datetimepicker(option_date);
     
     //下拉选项-----------------------------------------------------------------------------------------------
-    //在职状态
+    //部门员工
     $.ajax({
         url     : personnel_attendance_days_api.select,
         type    : "post",
@@ -318,8 +307,7 @@ $(function(){
             personnel_attendance_days_tool_select1.html(option);
         }
     });
-
-    //部门员工
+    //在职状态
     $.ajax({
         url     : personnel_attendance_days_api.select,
         type    : "post",
@@ -358,8 +346,8 @@ $(function(){
         + "&search=" + personnel_attendance_days_tool_search.val()
         + "&select1="+ personnel_attendance_days_tool_select1.val()
         + "&select2="+ personnel_attendance_days_tool_select2.val()
-        + "&date1="  + personnel_attendance_days_tool_date1.val()
-        + "&date2="  + personnel_attendance_days_tool_date2.val();
+        + "&date1="  + personnel_attendance_days_tool_date.find(".start").val()
+        + "&date2="  + personnel_attendance_days_tool_date.find(".end").val();
 
         //GET提交
         um_render(personnel_attendance_days_datagrid_obj,personnel_attendance_days_api.datagrid+keyword);
@@ -379,8 +367,8 @@ $(function(){
                 search  : personnel_attendance_days_tool_search.val(),
                 select1 : personnel_attendance_days_tool_select1.val(),
                 select2 : personnel_attendance_days_tool_select2.val(),
-                date1   : personnel_attendance_days_tool_date1.val(),
-                date2   : personnel_attendance_days_tool_date2.val(),
+                date1   : personnel_attendance_days_tool_date.find(".start").val(),
+                date2   : personnel_attendance_days_tool_date.find(".end").val(),
             },
             beforesend : function(){
                 um_tip("导出中…");

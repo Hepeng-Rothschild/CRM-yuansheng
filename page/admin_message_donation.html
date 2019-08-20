@@ -3,8 +3,10 @@
 
     <!-- 数据网格 -->
     <div class="datagrid datagrid-striped" id="admin_message_donation_datagrid">
+
+        <!-- 工具条组 -->
         <div class="tool-group">
-            <div class="tool-inline">
+            <div class="tool-search">
                 <div class="im-label">
                     <div class="input-group">
                         <select class="form-control" id="admin_message_donation_tool_keys">
@@ -15,19 +17,17 @@
                     </div>
                 </div>
                 <label><span>乐捐类型：</span><select class="form-control" id="admin_message_donation_tool_select1"><!--JS推进--></select></label>
-                <div class="im-label">
-                    <span>时间：</span>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="admin_message_donation_tool_date1" readonly> 
-                        <span class="input-group-addon fix-border fix-padding"></span>
-                        <input type="text" class="form-control" id="admin_message_donation_tool_date2" readonly>
-                    </div>
-                </div>
+                <div class="im-label" id="admin_message_donation_tool_date"><!-- JS推进 --></div>
                 <label><button class="btn btn-primary" id="admin_message_donation_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
+            </div>
+            <div class="tool-deal">
                 <label><button class="btn btn-primary" id="admin_message_donation_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
+                <div class="clearfix"></div>
             </div>
         </div>
+        <!-- tool-group -->
+
         <div class="datagrid-container"></div>
         <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
     </div>
@@ -170,8 +170,7 @@ $(function(){
     admin_message_donation_tool_keys          = $("#admin_message_donation_tool_keys"),         //搜索类别
     admin_message_donation_tool_search        = $("#admin_message_donation_tool_search"),       //搜索字段
     admin_message_donation_tool_select1       = $("#admin_message_donation_tool_select1"),      //下拉选择1
-    admin_message_donation_tool_date1         = $("#admin_message_donation_tool_date1"),        //开始时间
-    admin_message_donation_tool_date2         = $("#admin_message_donation_tool_date2"),        //结束时间
+    admin_message_donation_tool_date          = $("#admin_message_donation_tool_date"),         //起止时间
     admin_message_donation_search_btn         = $("#admin_message_donation_search_btn"),        //搜索按钮
     //添加
     admin_message_donation_add_btn            = $("#admin_message_donation_add_btn"),           //添加按钮
@@ -214,7 +213,7 @@ $(function(){
         }
 
     }
-    
+
     //数据表格-----------------------------------------------------------------------------------------------
     admin_message_donation_datagrid.datagrid({
         height      : um_height(admin_message_donation_datagrid),
@@ -275,8 +274,9 @@ $(function(){
     admin_message_donation_dele_btn       = ".admin_message_donation_dele_btn";                     //删除
 
     //时间组件-----------------------------------------------------------------------------------------------
-    admin_message_donation_tool_date1.datetimepicker(option_date);
-    admin_message_donation_tool_date2.datetimepicker(option_date);
+    common_tool_search_date( admin_message_donation_tool_date );
+    admin_message_donation_tool_date.find(".start").datetimepicker(option_date);
+    admin_message_donation_tool_date.find(".end").datetimepicker(option_date);
     
     //下拉选项-----------------------------------------------------------------------------------------------
     //乐捐类型
@@ -303,8 +303,8 @@ $(function(){
         = "?sid="    + admin_message_donation_tool_keys.val()
         + "&search=" + admin_message_donation_tool_search.val()
         + "&select1="+ admin_message_donation_tool_select1.val()
-        + "&date1="  + admin_message_donation_tool_date1.val()
-        + "&date2="  + admin_message_donation_tool_date2.val();
+        + "&date1="  + admin_message_donation_tool_date.find(".start").val()
+        + "&date2="  + admin_message_donation_tool_date.find(".end").val();
 
         //GET提交
         um_render(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid+keyword);

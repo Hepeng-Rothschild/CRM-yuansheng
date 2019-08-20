@@ -469,3 +469,16 @@ function um_tree_read(selector,data){
     selector.attr("result",arr);
 
 }
+
+//
+function common_tool_search_date(selector){
+  var common_tool_search_date_temp = `
+      <span>时间：</span>
+      <div class="input-group">
+          <input type="text" class="form-control start" readonly> 
+          <span class="input-group-addon fix-border fix-padding"></span>
+          <input type="text" class="form-control end"   readonly>
+      </div>
+  `;
+  selector.html(common_tool_search_date_temp);
+}

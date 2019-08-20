@@ -3,8 +3,10 @@
     
     <!-- 数据网格 -->
     <div class="datagrid datagrid-striped" id="personnel_attendance_month_datagrid">
+
+        <!-- 工具条组 -->
         <div class="tool-group">
-            <div class="tool-inline">
+            <div class="tool-search">
                 <div class="im-label">
                     <div class="input-group">
                         <select class="form-control" id="personnel_attendance_month_tool_keys">
@@ -16,12 +18,12 @@
                     </div>
                 </div>
                 <label>
-                    <span>在职状态：</span>
-                    <select class="form-control" id="personnel_attendance_month_tool_select1"><!--JS推进--></select>
-                </label>
-                <label>
                     <span>部门选择：</span>
                     <select class="form-control" id="personnel_attendance_month_tool_select2"><!--JS推进--></select>
+                </label>                
+                <label>
+                    <span>在职状态：</span>
+                    <select class="form-control" id="personnel_attendance_month_tool_select1"><!--JS推进--></select>
                 </label>
                 <label>
                     <span>时间：</span>
@@ -29,9 +31,14 @@
                 </label>
                 <label><button class="btn btn-primary" id="personnel_attendance_month_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
+            </div>
+            <div class="tool-deal">
                 <label><button class="btn btn-primary" id="personnel_attendance_month_export_btn"><i class="icon icon-external-link"></i> 导出</button></label>
+                <div class="clearfix"></div>
             </div>
         </div>
+        <!-- tool-group -->
+
         <div class="datagrid-container"></div>
         <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
     </div>
