@@ -132,26 +132,26 @@ $(function(){
         },
         dataSource : {
             cols   : [                
-                {html:true,width:49,name:"id",         label:"ID"  },
-                {html:true,width:80,name:"user",       label:"姓名"},
-                {html:true,width:80,name:"number",     label:"工号"},
-                {html:true,width:80,name:"depart",     label:"部门"},
-                {html:true,width:80,name:"post",       label:"职位"},
-                {html:true,width:90,name:"attend_day", label:"应出勤天数"},
-                {html:true,width:70,name:"work_day",   label:"出勤天数"},
-                {html:true,width:70,name:"rest_day",   label:"休息天数"},
-                {html:true,width:70,name:"work_hour",  label:"工作时长"},
+                {html:true,width:49, name:"id",         label:"ID"  },
+                {html:true,width:80, name:"user",       label:"姓名"},
+                {html:true,width:80, name:"number",     label:"工号"},
+                {html:true,width:80, name:"depart",     label:"部门"},
+                {html:true,width:80, name:"post",       label:"职位"},
+                {html:true,width:90, name:"attend_day", label:"应出勤天数"},
+                {html:true,width:70, name:"work_day",   label:"出勤天数"},
+                {html:true,width:70, name:"rest_day",   label:"休息天数"},
+                {html:true,width:110,name:"work_hour",  label:"工作时长(分钟)"},
 
-                {html:true,width:70,name:"late_fre",   label:"迟到次数"},     //10
-                {html:true,width:70,name:"late_hour",  label:"迟到时长"},
-                {html:true,width:70,name:"early_fre",  label:"早退次数"},
-                {html:true,width:70,name:"early_hour", label:"早退时长"},
-                {html:true,width:70,name:"absent_day", label:"旷工天数"},
-                {html:true,width:99,name:"absent_late",label:"旷工迟到天数"}, //15
-                {html:true,width:99,name:"work1_fre",  label:"上班缺卡次数"},
-                {html:true,width:99,name:"work2_fre",  label:"下班缺卡次数"},
-                {html:true,width:70,name:"out_hour",   label:"外出时长"},
-                {html:true,width:70,name:"out_day",    label:"出差天数"},
+                {html:true,width:70, name:"late_fre",   label:"迟到次数"},     //10
+                {html:true,width:110,name:"late_hour",  label:"迟到时长(分钟)"},
+                {html:true,width:70, name:"early_fre",  label:"早退次数"},
+                {html:true,width:110,name:"early_hour", label:"早退时长(分钟)"},
+                {html:true,width:70, name:"absent_day", label:"旷工天数"},
+                {html:true,width:100,name:"absent_late",label:"旷工迟到天数"}, //15
+                {html:true,width:100,name:"work1_fre",  label:"上班缺卡次数"},
+                {html:true,width:100,name:"work2_fre",  label:"下班缺卡次数"},
+                {html:true,width:110,name:"out_hour",   label:"外出时长(分钟)"},
+                {html:true,width:70, name:"out_day",    label:"出差天数"},
 
                 {html:true,width:70, name:"asl1",//ask_for_leave
                     label : `
