@@ -67,9 +67,9 @@ $(function(){
     personnel_attendance_punch_record                    = $("#personnel_attendance_punch_record"),                     //页面ID
     personnel_attendance_punch_record_datagrid           = $("#personnel_attendance_punch_record_datagrid"),            //数据表格
     //搜索
-    personnel_attendance_punch_record_tool_keys          = $("#personnel_attendance_punch_record_tool_keys"),
-    personnel_attendance_punch_record_tool_select_group  = $("#personnel_attendance_punch_record_tool_select_group"),   //搜索字段
-    personnel_attendance_punch_record_tool_select1       = $("#personnel_attendance_punch_record_tool_select1"),        //下拉选择1
+    personnel_attendance_punch_record_tool_keys          = $("#personnel_attendance_punch_record_tool_keys"),           //搜索类别
+    personnel_attendance_punch_record_tool_search        = $("#personnel_attendance_punch_record_tool_search"),         //搜索字段
+    personnel_attendance_punch_record_tool_select_group  = $("#personnel_attendance_punch_record_tool_select_group"),   //下拉框组
     personnel_attendance_punch_record_tool_select3       = $("#personnel_attendance_punch_record_tool_select3"),        //下拉选择2
     personnel_attendance_punch_record_tool_date          = $("#personnel_attendance_punch_record_tool_date"),           //起止时间
     personnel_attendance_punch_record_search_btn         = $("#personnel_attendance_punch_record_search_btn"),          //搜索按钮
@@ -165,11 +165,14 @@ $(function(){
         dataType: "json",
         data    : {},
         success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "<option value='0'>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                personnel_attendance_punch_record_tool_select3.html(option);
             }
-            personnel_attendance_punch_record_tool_select3.html(option);
         }
     });
 
@@ -179,7 +182,7 @@ $(function(){
         //字段整理
         var keyword
         = "?sid="    + personnel_attendance_punch_record_tool_keys.val()
-        + "?search=" + personnel_attendance_punch_record_tool_search.val()
+        + "&search=" + personnel_attendance_punch_record_tool_search.val()
         + "&select1="+ personnel_attendance_punch_record_tool_select_group.find(".common_select_company").val()        
         + "&select2="+ personnel_attendance_punch_record_tool_select_group.find(".common_select_depart").val()
         + "&select3="+ personnel_attendance_punch_record_tool_select3.val()
