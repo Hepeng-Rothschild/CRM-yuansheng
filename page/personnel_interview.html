@@ -29,14 +29,7 @@
                     <span>状态：</span>
                     <select class="form-control" id="personnel_interview_tool_select3"><!--JS推进--></select>
                 </label>
-                <div class="im-label">
-                    <span>面试时间：</span>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="personnel_interview_tool_date1" readonly> 
-                        <span class="input-group-addon fix-border fix-padding"></span>
-                        <input type="text" class="form-control" id="personnel_interview_tool_date2" readonly>
-                    </div>
-                </div>
+                <div class="im-label" id="personnel_interview_tool_date"><!--JS推进--></div>
                 <label><button type="button" class="btn btn-primary" id="personnel_interview_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
             </div>
@@ -194,8 +187,7 @@ $(function(){
     personnel_interview_tool_select1     = $("#personnel_interview_tool_select1"),//下拉选项1
     personnel_interview_tool_select2     = $("#personnel_interview_tool_select2"),//下拉选项2
     personnel_interview_tool_select3     = $("#personnel_interview_tool_select3"),//下拉选项3  
-    personnel_interview_tool_date1       = $("#personnel_interview_tool_date1"),  //开始时间
-    personnel_interview_tool_date2       = $("#personnel_interview_tool_date2"),  //结束时间
+    personnel_interview_tool_date        = $("#personnel_interview_tool_date"),   //起止时间
     //按钮
     personnel_interview_search_btn       = $("#personnel_interview_search_btn"),  //搜索按钮
     personnel_interview_add_btn          = $("#personnel_interview_add_btn"),     //添加按钮
@@ -353,8 +345,9 @@ $(function(){
     personnel_interview_state_btn   = ".personnel_interview_state_btn";                 //状态
 
     //时间组件-----------------------------------------------------------------------------------------------
-    personnel_interview_tool_date1.datetimepicker(option_date);
-    personnel_interview_tool_date2.datetimepicker(option_date);
+    common_tool_search_date( personnel_interview_tool_date );
+    common_tool_search_date.find(".start").datetimepicker(option_date);
+    common_tool_search_date.find(".end").datetimepicker(option_date);
     personnel_interview_add_date.datetimepicker(option_hour);
 
     //下拉选项-----------------------------------------------------------------------------------------------
@@ -527,8 +520,8 @@ $(function(){
         var keyword
         = "?sid="       + personnel_interview_tool_keys.val()
         + "&search="    + personnel_interview_tool_search.val()
-        + "&starttime=" + personnel_interview_tool_date1.val()
-        + "&endtime="   + personnel_interview_tool_date2.val()
+        + "&starttime=" + common_tool_search_date.find(".start").val()
+        + "&endtime="   + common_tool_search_date.find(".end").val()
         + "&positionid="+ personnel_interview_tool_select1.val()
         + "&companyid=" + personnel_interview_tool_select2.val()
         + "&isstate="   + personnel_interview_tool_select3.val()
