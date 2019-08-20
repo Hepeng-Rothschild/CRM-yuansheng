@@ -20,7 +20,7 @@
                 <label id="personnel_attendance_days_tool_select_group"><!--JS推进--></label>
                 <label>
                     <span>在职状态：</span>
-                    <select class="form-control" id="personnel_attendance_days_tool_select2"><!--JS推进--></select>
+                    <select class="form-control" id="personnel_attendance_days_tool_select3"><!--JS推进--></select>
                 </label>
                 <div class="im-label" id="personnel_attendance_days_tool_date"><!--JS推进--></div>
                 <label><button class="btn btn-primary" id="personnel_attendance_days_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
@@ -86,7 +86,7 @@ $(function(){
     personnel_attendance_days_tool_keys          = $("#personnel_attendance_days_tool_keys"),           //搜索类别
     personnel_attendance_days_tool_search        = $("#personnel_attendance_days_tool_search"),         //搜索字段
     personnel_attendance_days_tool_select_group  = $("#personnel_attendance_days_tool_select_group"),   //下拉框组
-    personnel_attendance_days_tool_select2       = $("#personnel_attendance_days_tool_select2"),        //下拉选择2
+    personnel_attendance_days_tool_select3       = $("#personnel_attendance_days_tool_select3"),        //下拉选择2
     personnel_attendance_days_tool_date          = $("#personnel_attendance_days_tool_date"),           //起止时间
     personnel_attendance_days_search_btn         = $("#personnel_attendance_days_search_btn"),          //搜索按钮
     personnel_attendance_days_export_btn         = $("#personnel_attendance_days_export_btn"),          //导出按钮
@@ -290,8 +290,8 @@ $(function(){
     personnel_attendance_days_tool_date.find(".end").datetimepicker(option_date);
     
     //下拉选项-----------------------------------------------------------------------------------------------
-    //部门选择
-    common_tool_select_group("#personnel_attendance_days_tool_select_group","2");                       //搜索
+    //分公司+部门
+    common_tool_select_group("#personnel_attendance_days_tool_select_group","12");                       //搜索
 
     //在职状态
     $.ajax({
@@ -306,7 +306,7 @@ $(function(){
                 for(var i=0;i<data.length;i++){
                     option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
-                personnel_attendance_days_tool_select2.html(option);
+                personnel_attendance_days_tool_select3.html(option);
             }
         }
     });
@@ -333,8 +333,9 @@ $(function(){
         var keyword
         = "?sid="    + personnel_attendance_days_tool_keys.val()
         + "&search=" + personnel_attendance_days_tool_search.val()
-        + "&select1="+ personnel_attendance_days_tool_select_group.find(".common_select_depart").val()
-        + "&select2="+ personnel_attendance_days_tool_select2.val()
+        + "&select1="+ personnel_attendance_days_tool_select_group.find(".common_select_company").val()
+        + "&select2="+ personnel_attendance_days_tool_select_group.find(".common_select_depart").val()
+        + "&select3="+ personnel_attendance_days_tool_select3.val()
         + "&date1="  + personnel_attendance_days_tool_date.find(".start").val()
         + "&date2="  + personnel_attendance_days_tool_date.find(".end").val();
 
@@ -354,8 +355,9 @@ $(function(){
             data    : {
                 keys    : personnel_attendance_days_tool_keys.val(),
                 search  : personnel_attendance_days_tool_search.val(),
-                select1 : personnel_attendance_days_tool_select_group.find(".common_select_depart").val(),
-                select2 : personnel_attendance_days_tool_select2.val(),
+                select1 : personnel_attendance_days_tool_select_group.find(".common_select_company").val(),
+                select2 : personnel_attendance_days_tool_select_group.find(".common_select_depart").val(),
+                select3 : personnel_attendance_days_tool_select3.val(),
                 date1   : personnel_attendance_days_tool_date.find(".start").val(),
                 date2   : personnel_attendance_days_tool_date.find(".end").val(),
             },
@@ -420,7 +422,7 @@ $(function(){
 
         //数据取值
         var select1 = personnel_attendance_days_result_edit_type.val();
-        var select2 = personnel_attendance_days_result_edit_time.val();
+        var select3 = personnel_attendance_days_result_edit_time.val();
 
         //远程提交
         $.ajax({
@@ -432,7 +434,7 @@ $(function(){
                 column  : column,                                           //处理栏目
                 action  : action,                                           //具体操作
                 select1 : select1,                                          //修改类型
-                select2 : select2,                                          //修改时间
+                select3 : select3,                                          //修改时间
             },
             success : function(data){
                 if( data.status>0 ){

@@ -209,8 +209,8 @@ $(function(){
     personnel_attendance_vacation_unli_btn      = ".personnel_attendance_vacation_unli_btn";                    //不限余额
  
     //下拉选项-----------------------------------------------------------------------------------------------
-    //部门选择
-    common_tool_select_group("#personnel_attendance_vacation_tool_select_group","2");                           //搜索
+    //分公司+部门
+    common_tool_select_group("#personnel_attendance_vacation_tool_select_group","12");                           //搜索
 
     //修改类型
     $.ajax({
@@ -237,7 +237,8 @@ $(function(){
         var keyword
         = "?sid="    + personnel_attendance_vacation_tool_keys.val()
         + "&search=" + personnel_attendance_vacation_tool_search.val()
-        + "&select1="+ personnel_attendance_vacation_tool_select_group.find(".common_select_depart").val();
+        + "&select1="+ personnel_attendance_vacation_tool_select_group.find(".common_select_company").val()
+        + "&select2="+ personnel_attendance_vacation_tool_select_group.find(".common_select_depart").val();
 
         //GET提交
         um_render(personnel_attendance_vacation_datagrid_obj,personnel_attendance_vacation_api.datagrid+keyword);
