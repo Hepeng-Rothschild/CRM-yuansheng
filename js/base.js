@@ -487,7 +487,7 @@ function common_tool_search_date(selector){
 
 /* common_tool_select_group() 下拉框组(权限-公司-部门-职位)
  * @param string selector (id/class)
- * @param string type     1 2 3 12 23 13 123
+ * @param string type
  */
 function common_tool_select_group(selector,type){
 
@@ -498,13 +498,9 @@ function common_tool_select_group(selector,type){
     var temp_post    = '<label><span>  职位：</span><select class="form-control common_select_post"   ></select></label>';
 
     //类型区分
-    if( type=="1"   ){ temp_result = temp_company;                      }
-    if( type=="2"   ){ temp_result = temp_depart;                       }
-    if( type=="3"   ){ temp_result = temp_post;                         }
-    if( type=="12"  ){ temp_result = temp_company+temp_depart;          }
-    if( type=="23"  ){ temp_result = temp_depart +temp_post;            }
-    if( type=="13"  ){ temp_result = temp_company+temp_post;            }
-    if( type=="123" ){ temp_result = temp_company+temp_depart+temp_post;}
+    if( type=="1"   ){ temp_result = temp_company;                      } else
+    if( type=="12"  ){ temp_result = temp_company+temp_depart;          } else
+    if( type=="123" ){ temp_result = temp_company+temp_depart+temp_post;} else { console.log("无此组合"); }
 
     //节点推进
     $(selector).html(temp_result);
@@ -514,102 +510,62 @@ function common_tool_select_group(selector,type){
         url     : API.common_company,
         type    : "post",
         dataType: "json",
-        data    : { 
-            position_id : COMMON.position_id    //权限ID
-        },
         success : function(data){
             if( data.status>0 ){
+
+                //处理(分公司)
                 var data = data.data;
-                var option = '<option value="0">全部</option>';
+                var option = '';
                 for( var i=0;i<data.length;i++ ){
-                    option += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+                    option += '<option value="'+ data[i].deparmenid +'">'+ data[i].deparmenname +'</option>';
                 }
                 $(selector).find(".common_select_company").html(option);
-            }
-        }
-    });
 
-    //远程获取(部门)
-    $.ajax({
-        url     : API.common_depart,
-        type    : "post",
-        dataType: "json",
-        data    : { 
-            position_id : COMMON.position_id    //权限ID
-        },
-        success : function(data){
-            if( data.status>0 ){
-                var data = data.data;
-                var option = '<option value="0">全部</option>';
-                for( var i=0;i<data.length;i++ ){
-                    option += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
-                }
-                $(selector).find(".common_select_depart").html(option);
-            }
-        }
-    });
+                //远程获取(部门)
+                $.ajax({
+                    url     : API.common_depart,
+                    type    : "post",
+                    dataType: "json",
+                    data    : { id : data[0].deparmenid },      //公司ID
+                    success : function(data){
+                        if( data.status>0 ){
 
-    //远程获取(职位)
-    $.ajax({
-        url     : API.common_post,
-        type    : "post",
-        dataType: "json",
-        data    : { 
-            position_id : COMMON.position_id    //权限ID
-        },
-        success : function(data){
-            if( data.status>0 ){
-                var data = data.data;
-                var option = '<option value="0">全部</option>';
-                for( var i=0;i<data.length;i++ ){
-                    option += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
-                }
-                $(selector).find(".common_select_post").html(option);
+                            //处理(部门)
+                            var data = data.data;
+                            var option = '<option value="0">全部</option>';
+                            for( var i=0;i<data.length;i++ ){
+                                option += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+                            }
+                            $(selector).find(".common_select_depart").html(option);
+
+
+                        }
+                    }
+                });//ajax
+
             }
         }
-    });
+    });//ajax
 
     //远程获取(分公司->部门)---------------------------------------------------------
     $(document).on("change",selector+" .common_select_company",function(){
 
-        var comoany_id = $(this).val();    //分公司选择值
-       
         //远程获取(部门)
         $.ajax({
             url     : API.common_depart,
             type    : "post",
             dataType: "json",
-            data    : { 
-                comoany_id : comoany_id    //权限ID
-            },
+            data    : { id : $(this).val() },                   //公司ID
+            
             success : function(data){
                 if( data.status>0 ){
                     var data = data.data;
                     var option = '<option value="0">全部</option>';
                     for( var i=0;i<data.length;i++ ){
-                        option += '<option value="'+ data[i].id +'">'+ data[i].name + comoany_id +'</option>';
+                        option += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
                     }
                     $(selector).find(".common_select_depart").html(option);
-                }
-            }
-        });
-
-        //远程获取(职位)
-        $.ajax({
-            url     : API.common_post,
-            type    : "post",
-            dataType: "json",
-            data    : { 
-                comoany_id : comoany_id    //权限ID
-            },
-            success : function(data){
-                if( data.status>0 ){
-                    var data = data.data;
-                    var option = '<option value="0">全部</option>';
-                    for( var i=0;i<data.length;i++ ){
-                        option += '<option value="'+ data[i].id +'">'+ data[i].name + comoany_id +'</option>';
-                    }
-                    $(selector).find(".common_select_post").html(option);
+                    $(selector).find(".common_select_post").html("");
                 }
             }
         });
@@ -619,24 +575,24 @@ function common_tool_select_group(selector,type){
     //远程获取(部门->职位)---------------------------------------------------------
     $(document).on("change",selector+" .common_select_depart",function(){
 
-        var depart_id = $(this).val();    //部门选择值
-       
         //远程获取(职位)
         $.ajax({
             url     : API.common_post,
             type    : "post",
             dataType: "json",
-            data    : { 
-                depart_id : depart_id    //权限ID
-            },
+            data    : { id : $(this).val() },                   //部门ID
             success : function(data){
                 if( data.status>0 ){
                     var data = data.data;
-                    var option = '<option value="0">全部</option>';
-                    for( var i=0;i<data.length;i++ ){
-                        option += '<option value="'+ data[i].id +'">'+ data[i].name + depart_id +'</option>';
+                    if( data.length!=0 ){
+                        var option = '<option value="0">全部</option>';
+                        for( var i=0;i<data.length;i++ ){
+                            option += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+                        }
+                        $(selector).find(".common_select_post").html(option);
+                    } else {
+                        $(selector).find(".common_select_post").html("");
                     }
-                    $(selector).find(".common_select_post").html(option);
                 }
             }
         });
