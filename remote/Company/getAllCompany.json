@@ -1,4 +1,1 @@
-[
-    {"id":1,"name":"上海帝森装饰装饰工程有限公司石家庄分公司-裕华区办事处"},
-    {"id":2,"name":"武汉分公司"}
-]
+{"result":"success","message":"获取成功","status":1,"pager":{"page":1,"recTotal":2,"recPerPage":20},"data":[{"name":"成都分公司","id":4},{"name":"总公司","id":3}]}

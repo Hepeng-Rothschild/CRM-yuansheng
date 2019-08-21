@@ -511,7 +511,7 @@ function common_tool_select_group(selector,type){
 
     //远程获取(分公司)
     $.ajax({
-        url     : API.test_company,
+        url     : API.common_company,
         type    : "post",
         dataType: "json",
         data    : { 
@@ -531,7 +531,7 @@ function common_tool_select_group(selector,type){
 
     //远程获取(部门)
     $.ajax({
-        url     : API.test_depart,
+        url     : API.common_depart,
         type    : "post",
         dataType: "json",
         data    : { 
@@ -551,7 +551,7 @@ function common_tool_select_group(selector,type){
 
     //远程获取(职位)
     $.ajax({
-        url     : API.test_post,
+        url     : API.common_post,
         type    : "post",
         dataType: "json",
         data    : { 
@@ -576,7 +576,7 @@ function common_tool_select_group(selector,type){
        
         //远程获取(部门)
         $.ajax({
-            url     : API.test_depart,
+            url     : API.common_depart,
             type    : "post",
             dataType: "json",
             data    : { 
@@ -596,7 +596,7 @@ function common_tool_select_group(selector,type){
 
         //远程获取(职位)
         $.ajax({
-            url     : API.test_post,
+            url     : API.common_post,
             type    : "post",
             dataType: "json",
             data    : { 
@@ -623,7 +623,7 @@ function common_tool_select_group(selector,type){
        
         //远程获取(职位)
         $.ajax({
-            url     : API.test_post,
+            url     : API.common_post,
             type    : "post",
             dataType: "json",
             data    : { 
