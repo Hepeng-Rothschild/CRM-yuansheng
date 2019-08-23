@@ -609,7 +609,7 @@ function common_tool_select_group(selector,type){
  * is_check     bool    是否可选
  */
 function common_staff_tree(selector,company_id,is_open,is_check){
-
+    
     //节点树生成
     $.ajax({ 
         url     : API.common_staff,
@@ -617,8 +617,8 @@ function common_staff_tree(selector,company_id,is_open,is_check){
         dataType: "json",
         data    : { id : company_id },
         success : function(data){
+            var data = um_json(data);
             if( data.status>0 ){
-                var data = um_json(data.data);
                 selector.tree({
                     //参数配置
                     animate     : false,
@@ -626,14 +626,26 @@ function common_staff_tree(selector,company_id,is_open,is_check){
                     data        : data,
                     itemWrapper : true,
                     itemCreator : function($li,item){
+
+                        //是否展开
                         if( is_open==true ){
                             $li.addClass("open");
                         }
+
+                        //是否可选
                         if( is_check==true ){
-                            $li.append($("<span>").html(`<i class="che icon icon-${item.icon}" numb="${item.username}"></i>${item.text}`));
+
+                            //是否有工号(员工=>用户)
+                            if( item.userid!="" ){
+                                $li.append( $("<span>").html(`<i class="icon icon-${item.icon}" numb="${item.userid}" type="${item.type}"></i>${item.text}`) );
+                            } else {
+                                $li.append( $("<p class='text-muted'>").html(`${item.text}`) );
+                            }
+
                         } else {
                             $li.append($("<span>").html(item.text));
                         }
+
                     }
                 });
             }
@@ -657,10 +669,10 @@ function common_staff_tree(selector,company_id,is_open,is_check){
             //选中影响(父级对子级)
             if( icon.hasClass(empt) ){
                 icon.removeClass(empt).addClass(chec);
-                if( numb=="" ){ son.removeClass(empt).addClass(chec); }
+                if( type=="0" ){ son.removeClass(empt).addClass(chec); }
             } else {
                 icon.removeClass(chec).addClass(empt);
-                if( numb=="" ){ son.removeClass(chec).addClass(empt); }
+                if( type=="0" ){ son.removeClass(chec).addClass(empt); }
             }
 
             //选中影响(子级对父级)
@@ -672,7 +684,11 @@ function common_staff_tree(selector,company_id,is_open,is_check){
                     che_son.parents("ul").siblings("span").children(".icon").removeClass(empt).addClass(chec);
                     che_son.parents("ul").find(".icon-check-empty").parent("span").parents("ul").siblings("span").children(".icon").removeClass(chec).addClass(empt);
                 } else {
-                    che_son.parents("ul").siblings("span").children(".icon").removeClass(chec).addClass(empt);
+                    if( type=="0" ){
+                        che_son.removeClass(chec).addClass(empt); 
+                    } else {
+                        che_son.parents("ul").siblings("span").children(".icon").removeClass(chec).addClass(empt);
+                    }
                 }
             });
 
@@ -681,10 +697,12 @@ function common_staff_tree(selector,company_id,is_open,is_check){
             var result = "";
             for( var i=0;i<che.length;i++ ){ 
                 var che_numb = $(che[i]).attr("numb");
-                if( che_numb!="" && che_numb!=undefined ){ result+=che_numb+","; }
+                var che_type = $(che[i]).attr("type");                
+                if( che_type!="0" && che_numb!=undefined ){ result+=che_numb+","; }
             }
             var result = result.substr(0,result.length-1);
             selector.attr("result",result);
+            console.log(result);
             
         });
 
