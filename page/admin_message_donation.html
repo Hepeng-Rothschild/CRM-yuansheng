@@ -17,6 +17,7 @@
                     </div>
                 </div>
                 <label><span>乐捐类型：</span><select class="form-control" id="admin_message_donation_tool_select1"><!--JS推进--></select></label>
+                <label><span>乐捐状态：</span><select class="form-control" id="admin_message_donation_tool_select2"><!--JS推进--></select></label>
                 <div class="im-label" id="admin_message_donation_tool_date"><!-- JS推进 --></div>
                 <label><button class="btn btn-primary" id="admin_message_donation_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
@@ -66,7 +67,10 @@
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="admin_message_donation_add_auth">权限分配</label>
                             <div class="col-sm-8">
-                                <span class="text-danger">未知</span>
+                                
+                                    <ul class="tree tree-lines tree-chevrons" id="admin_message_donation_add_tree"></ul>
+
+
                             </div>
                         </div>
                         <div class="form-group require">
@@ -214,6 +218,10 @@ $(function(){
 
     }
 
+    //节点树
+    common_staff_tree($("#admin_message_donation_add_tree"));
+
+
     //数据表格-----------------------------------------------------------------------------------------------
     admin_message_donation_datagrid.datagrid({
         height      : um_height(admin_message_donation_datagrid),
@@ -233,15 +241,15 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {name:"id",      label:"ID",                 width:49 },
-                {name:"text8",   label:"乐捐标题",           width:200},
-                {name:"text6",   label:"乐捐文号",           width:100},
-                {name:"name",    label:"员工姓名",           width:80 },
-                {name:"text2",   label:"乐捐类型",           width:80 },
-                {name:"text3",   label:"乐捐状态",           width:80 },
-                {name:"datetime",label:"时间",               width:150},
-                {name:"text4",   label:"已读人数/可读总人数",width:150},
-                {name:"operate", label:"操作",               width:150,
+                {name:"id",      label:"ID",             width:49 },
+                {name:"text8",   label:"乐捐标题",       width:200},
+                {name:"text6",   label:"乐捐文号",       width:100},
+                {name:"name",    label:"员工姓名",       width:80 },
+                {name:"text2",   label:"乐捐类型",       width:80 },
+                {name:"text3",   label:"乐捐状态",       width:80 },
+                {name:"datetime",label:"时间",           width:150},
+                {name:"text4",   label:"已读人数/总人数",width:150},
+                {name:"tes",     label:"操作",           width:150,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
@@ -249,7 +257,6 @@ $(function(){
                                 <a rowIndex="${cell.rowIndex}" class="admin_message_donation_show_btn">查看</a>
                                 <a rowIndex="${cell.rowIndex}" class="admin_message_donation_edit_btn">修改</a>
                                 <a rowIndex="${cell.rowIndex}" class="admin_message_donation_dele_btn">删除</a>
-                                <a rowIndex="${cell.rowIndex}" class="admin_message_donation_dele_btn">下载</a>
                             `;
                             return temp;
                         }

@@ -1,1 +1,62 @@
-{"result":true,"message":"获取部门成功","status":1,"data":"{\r\n  \"success\": \"true\",\r\n  \"msg\": \"获取部门成功\",\r\n  \"status\": 1,\r\n  \"text\": \"总经办\",\r\n  \"children\": [\r\n    {\r\n      \"text\": \"网络部\",\r\n      \"children\": [\r\n        {\r\n          \"text\": \"syb\",\r\n          \"type\": \"leve2\",\r\n          \"icon\": \"check-empty\"\r\n        },\r\n        {\r\n          \"text\": \"DD\",\r\n          \"type\": \"leve2\",\r\n          \"icon\": \"check-empty\"\r\n        },\r\n        {\r\n          \"text\": \"SHE\",\r\n          \"type\": \"leve2\",\r\n          \"icon\": \"check-empty\"\r\n        },\r\n        {\r\n          \"text\": \"刘德华\",\r\n          \"type\": \"leve2\",\r\n          \"icon\": \"check-empty\"\r\n        },\r\n        {\r\n          \"text\": \"刘德华\",\r\n          \"type\": \"leve2\",\r\n          \"icon\": \"check-empty\"\r\n        }\r\n      ],\r\n      \"type\": \"leve1\",\r\n      \"icon\": \"check-empty\"\r\n    },\r\n    {\r\n      \"text\": \"主案部\",\r\n      \"children\": [\r\n        {\r\n          \"text\": \"主案1部\",\r\n          \"children\": [],\r\n          \"type\": \"leve2\",\r\n          \"icon\": \"check-empty\"\r\n        }\r\n      ],\r\n      \"type\": \"leve1\",\r\n      \"icon\": \"check-empty\"\r\n    },\r\n    {\r\n      \"text\": \"工程部\",\r\n      \"children\": [\r\n        {\r\n          \"text\": \"工程1部\",\r\n          \"children\": [\r\n            {\r\n              \"text\": \"1\",\r\n              \"type\": \"leve2\",\r\n              \"icon\": \"check-empty\"\r\n            }\r\n          ],\r\n          \"type\": \"leve2\",\r\n          \"icon\": \"check-empty\"\r\n        },\r\n        {\r\n          \"text\": \"工程2部\",\r\n          \"children\": [\r\n            {\r\n              \"text\": \"刘德华\",\r\n              \"type\": \"leve2\",\r\n              \"icon\": \"check-empty\"\r\n            }\r\n          ],\r\n          \"type\": \"leve2\",\r\n          \"icon\": \"check-empty\"\r\n        }\r\n      ],\r\n      \"type\": \"leve1\",\r\n      \"icon\": \"check-empty\"\r\n    }\r\n  ],\r\n  \"type\": \"leve0\",\r\n  \"icon\": \"check-empty\"\r\n}"}
+{
+	"result": true,
+	"message": "获取部门成功",
+	"status": 1,
+	"data": {  
+		"text" 		: "总经办",
+		"icon" 		: "check-empty",
+		"username": "",
+		"children"  : [
+			{
+				"text": "网络部",
+				"icon": "check-empty",
+				"username": "",
+				"children": [
+					{ "text":"刘德华","icon":"check-empty","username":"10010" },
+					{ "text":"张学友","icon":"check-empty","username":"10011" },
+					{ "text":"郑中基","icon":"check-empty","username":"10012" },
+					{ "text":"李连杰","icon":"check-empty","username":"10013" },
+					{ "text":"甄子丹","icon":"check-empty","username":"10014" }
+				]			
+			},{
+				"text": "主案部",
+				"icon": "check-empty",
+				"username": "",
+				"children": [{
+					"text": "主案1部",
+					"icon": "check-empty",
+					"username": "",
+					"children": [
+						{ "text":"吴青峰","icon":"check-empty","username":"10015" },
+						{ "text":"陈嘉桦","icon":"check-empty","username":"10016" },
+						{ "text":"林宥嘉","icon":"check-empty","username":"10017" }
+					]
+				}]
+			},{
+				"text": "工程部",
+				"icon": "check-empty",
+				"username": "",
+				"children": [{
+					"text": "工程1部",
+					"icon": "check-empty",
+					"username": "",
+					"children": [
+						{ "text":"孟美岐","icon":"check-empty","username":"10018" },
+						{ "text":"吴宣仪","icon":"check-empty","username":"10019" },
+						{ "text":"杨超越","icon":"check-empty","username":"10020" }
+					]
+				},{
+					"text": "工程2部",
+					"icon": "check-empty",
+					"username": "",
+					"children": [
+						{ "text":"言承旭","icon":"check-empty","username":"10021" },
+						{ "text":"周渝民","icon":"check-empty","username":"10022" },
+						{ "text":"吴建豪","icon":"check-empty","username":"10023" },
+						{ "text":"朱孝天","icon":"check-empty","username":"10024" }
+					]
+				}]
+			}
+		]
+	}
+}

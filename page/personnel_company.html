@@ -16,7 +16,7 @@
 
     <!-- 高亮区域 -->
     <div class="hl-default" style="padding:30px 35px;border:1px solid #ddd;">
-        <div class="tree-folders tree-lines" id="personnel_company_tree"></div>
+        <ul class="tree-folders tree-lines" id="personnel_company_tree"></ul>
     </div>
     <!-- hl-default -->
 
@@ -96,7 +96,9 @@ $(function(){
             personnel_company_structure_btn.attr("company-id",personnel_company_first_id);
 
             //节点树-创建
-            $.ajax({
+            common_staff_tree(personnel_company_tree,personnel_company_first_id,true,true);
+
+            /*$.ajax({
                 url     : personnel_company_api.tree,
                 type    : "post",
                 data    : { id : personnel_company_first_id },
@@ -113,7 +115,7 @@ $(function(){
                         });
                     }
                 }
-            });
+            });*/
            
         }
     }); 
@@ -161,10 +163,10 @@ $(function(){
     });
 
     //节点树-点击选中
-    personnel_company_tree.on("click","span",function(){
-        personnel_company_tree.find("span").removeClass("text-primary");
-        $(this).addClass("text-primary");
-    });
+    // personnel_company_tree.on("click","span",function(){
+    //     personnel_company_tree.find("span").removeClass("text-primary");
+    //     $(this).addClass("text-primary");
+    // });
 
 });//预加载结尾
 </script>

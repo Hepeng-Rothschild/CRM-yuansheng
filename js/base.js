@@ -396,7 +396,7 @@ function upload_free(upapi,upid,staticFiles){
             $("#"+upid).attr("path","");
         }
     }
-}
+} 
 
 /* um_tree_check() 可选择节点树
  * @param  object selector (id/class)
@@ -598,5 +598,96 @@ function common_tool_select_group(selector,type){
         });
 
     });
+
+}
+
+
+/* common_staff_tree() 公共员工节点树
+ * selector     object  DOM对象
+ * company_id   string  公司ID
+ * is_open      bool    是否展开
+ * is_check     bool    是否可选
+ */
+function common_staff_tree(selector,company_id,is_open,is_check){
+
+    //节点树生成
+    $.ajax({ 
+        url     : API.common_staff,
+        type    : "post",
+        dataType: "json",
+        data    : { id : company_id },
+        success : function(data){
+            if( data.status>0 ){
+                var data = um_json(data.data);
+                selector.tree({
+                    //参数配置
+                    animate     : false,
+                    initialState: "normal",
+                    data        : data,
+                    itemWrapper : true,
+                    itemCreator : function($li,item){
+                        if( is_open==true ){
+                            $li.addClass("open");
+                        }
+                        if( is_check==true ){
+                            $li.append($("<span>").html(`<i class="che icon icon-${item.icon}" numb="${item.username}"></i>${item.text}`));
+                        } else {
+                            $li.append($("<span>").html(item.text));
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+    //节点树可选
+    if( is_check==true ){
+        selector.on("click","span",function(){
+
+            //变量声明
+            var empt = "icon-check-empty";
+            var chec = "icon-checked";
+            var midd = "icon-midd";
+            var span = $(this);
+            var icon = span.find(".icon");            
+            var numb = icon.attr("numb");
+            var type = icon.attr("type");
+            var son  = icon.parent().next("ul").find(".icon");
+
+            //选中影响(父级对子级)
+            if( icon.hasClass(empt) ){
+                icon.removeClass(empt).addClass(chec);
+                if( numb=="" ){ son.removeClass(empt).addClass(chec); }
+            } else {
+                icon.removeClass(chec).addClass(empt);
+                if( numb=="" ){ son.removeClass(chec).addClass(empt); }
+            }
+
+            //选中影响(子级对父级)
+            var all_dad = selector.parent().find("ul");
+            all_dad.each(function(i){
+                var che_son = all_dad.eq(i).children("li").children("span").children(".icon-checked");
+                var has_empty = all_dad.eq(i).find(".icon-check-empty");
+                if( has_empty.length==0 ){
+                    che_son.parents("ul").siblings("span").children(".icon").removeClass(empt).addClass(chec);
+                    che_son.parents("ul").find(".icon-check-empty").parent("span").parents("ul").siblings("span").children(".icon").removeClass(chec).addClass(empt);
+                } else {
+                    che_son.parents("ul").siblings("span").children(".icon").removeClass(chec).addClass(empt);
+                }
+            });
+
+            //结果导出
+            var che = selector.find(".icon-checked");
+            var result = "";
+            for( var i=0;i<che.length;i++ ){ 
+                var che_numb = $(che[i]).attr("numb");
+                if( che_numb!="" && che_numb!=undefined ){ result+=che_numb+","; }
+            }
+            var result = result.substr(0,result.length-1);
+            selector.attr("result",result);
+            
+        });
+
+    }
 
 }
