@@ -6,25 +6,64 @@
 	"date1" : "2018-08-20 09:00",
 	"date2" : "2018-08-20 12:00",
 	"tree"  : [
-	    {
-	        "title"     : "商务部",
-	        "type"      : "level1",
-	        "icon"      : "checked",
-	        "children"  : [
-	            { "title":"刘德华","numb":"10010","type":"level2","icon":"checked" },
-	            { "title":"张学友","numb":"10011","type":"level2","icon":"checked" },
-	            { "title":"郑中基","numb":"10012","type":"level2","icon":"checked" }
-	        ]
-	    },
-	    {
-	        "title"     : "网络部",
-	        "type"      : "level1",
-	        "icon"      : "check-empty",
-	        "children"  : [
-	            { "title":"马化腾","numb":"10013","type":"level2","icon":"check-empty" },
-	            { "title":"雷军"  ,"numb":"10014","type":"level2","icon":"check-empty" }
-	        ]
-	    }
+		{  
+			"text" 		: "总经办",
+			"icon" 		: "check-empty",
+			"type"   	: "0",
+			"children"  : [
+				{
+					"text": "网络部",
+					"icon": "checked",
+					"type"  : "0",
+					"children": [
+						{ "text":"刘德华","icon":"checked","userid":"10010","type":"1" },
+						{ "text":"张学友","icon":"checked","userid":"10011","type":"1" },
+						{ "text":"郑中基","icon":"checked","userid":"10012","type":"1" },
+						{ "text":"李连杰","icon":"checked","userid":"10013","type":"1" },
+						{ "text":"甄子丹","icon":"checked","userid":"","type":"1" }
+					]			
+				},{
+					"text": "主案部",
+					"icon": "check-empty",
+					"type"  : "0",
+					"children": [{
+						"text": "主案1部",
+						"icon": "check-empty",
+						"type"  : "0",
+						"children": [
+							{ "text":"吴青峰","icon":"check-empty","userid":"10015","type":"1" },
+							{ "text":"陈嘉桦","icon":"check-empty","userid":"10016","type":"1" },
+							{ "text":"林宥嘉","icon":"check-empty","userid":"10017","type":"1" }
+						]
+					}]
+				},{
+					"text": "工程部",
+					"icon": "check-empty",
+					"type"  : "0",
+					"children": [{
+						"text": "工程1部",
+						"icon": "check-empty",
+						"type"  : "0",
+						"children": [
+							{ "text":"孟美岐","icon":"check-empty","userid":"10018","type":"1" },
+							{ "text":"吴宣仪","icon":"check-empty","userid":"10019","type":"1" },
+							{ "text":"杨超越","icon":"check-empty","userid":"10020","type":"1" }
+						]
+					},{
+						"text"	: "工程2部",
+						"icon"	: "check-empty",
+						"type"  : "0",
+						"children": [
+							{ "text":"言承旭","icon":"check-empty","userid":"10021","type":"1" },
+							{ "text":"周渝民","icon":"check-empty","userid":"10022","type":"1" },
+							{ "text":"吴建豪","icon":"check-empty","userid":"10023","type":"1" },
+							{ "text":"朱孝天","icon":"check-empty","userid":"10024","type":"1" }
+						]
+					}]
+				}
+			]
+		}
+
 	],
 	"list"  : [
 		{

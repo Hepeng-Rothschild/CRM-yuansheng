@@ -549,8 +549,9 @@ function common_select_linkage(selector,type){
  * @param company_id   string  公司ID
  * @param is_open      bool    是否展开
  * @param is_check     bool    是否可选
+ * @param edit_data    json    修改用数据
  */
-function common_tree_staff(selector,company_id,is_open,is_check){
+function common_tree_staff(selector,company_id,is_open,is_check,edit_data){
 
     //节点树生成
     $.ajax({
@@ -648,42 +649,5 @@ function common_tree_staff(selector,company_id,is_open,is_check){
         });
 
     }
-
-}
-
-/* common_tree_staff_read()    节点树员工读取
- * @param selector     object  DOM对象
- * @param data         json    数据对象
- */
-function common_tree_staff_read(selector,data){
-
-    //节点读取
-    selector.tree({
-        animate     : false,
-        initialState: "normal",
-        data        : data || [],
-        itemWrapper : true,
-        itemCreator : function($li,item){
-
-            //是否有工号(员工=>用户)
-            if( item.userid!="" ){
-                $li.append( $("<span>").html(`<i class="icon icon-${item.icon}" numb="${item.userid}" type="${item.type}"></i>${item.text}`) );
-            } else {
-                $li.append( $("<p class='text-muted'>").html(`${item.text}`) );
-            }
-
-        }
-    });
-
-    //结果导出
-    var che = selector.find(".icon-checked");
-    var result = "";
-    for( var i=0;i<che.length;i++ ){
-        var che_numb = $(che[i]).attr("numb");
-        var che_type = $(che[i]).attr("type");
-        if( che_type!="0" && che_numb!=undefined ){ result+=che_numb+","; }
-    }
-    var result = result.substr(0,result.length-1);
-    selector.attr("result",result);
 
 }
