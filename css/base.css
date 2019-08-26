@@ -508,3 +508,8 @@ select{ min-width: 100px!important; }
 .tab-content>.active{
     display: block!important;
 }
+/*表单提示信息*/
+.form-control-static{
+    color: #999;
+    font-size: smaller;
+}

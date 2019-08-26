@@ -1,0 +1,395 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="setup_personnel_depart">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="setup_personnel_depart_datagrid">
+
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <div class="tool-search">
+                <label><button class="btn btn-primary" id="setup_personnel_depart_add1_btn"> <i class="icon icon-plus"></i> 添加一级部门</button></label>
+                <label><button class="btn btn-primary" id="setup_personnel_depart_add2_btn"> <i class="icon icon-plus"></i> 添加二级部门</button></label>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子1 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_personnel_depart_add1_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加一级部门</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_depart_add1_dep1">一级部门</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_depart_add1_dep1"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary"  id="setup_personnel_depart_add1_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_personnel_depart_add1_box -->
+
+    <!-- 添加盒子2 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_personnel_depart_add2_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加二级部门</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_depart_add2_dep1">一级部门</label>
+                            <div class="col-sm-8"><select id="setup_personnel_depart_add2_dep1" class="form-control"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_depart_add2_dep2">二级部门</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_depart_add2_dep2"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary"  id="setup_personnel_depart_add2_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_personnel_depart_add2_box -->
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_personnel_depart_edit_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_depart_edit_dep1">一级部门</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_depart_edit_dep1"></div>
+                        </div>                        
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_depart_edit_dep2">二级部门</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_depart_edit_dep2"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary"  id="setup_personnel_depart_edit_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_personnel_depart_edit_box -->
+
+    <!-- 删除盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_personnel_depart_dele_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否删除？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="setup_personnel_depart_dele_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_personnel_depart_dele_box -->
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function(){
+   
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    setup_personnel_depart              = $("#setup_personnel_depart"),                 //页面ID
+    setup_personnel_depart_datagrid     = $("#setup_personnel_depart_datagrid"),        //数据表格
+    //添加1
+    setup_personnel_depart_add1_btn     = $("#setup_personnel_depart_add1_btn"),        //添加按钮
+    setup_personnel_depart_add1_box     = $("#setup_personnel_depart_add1_box"),        //添加盒子
+    setup_personnel_depart_add1_submit  = $("#setup_personnel_depart_add1_submit"),     //添加提交
+    setup_personnel_depart_add1_dep1    = $("#setup_personnel_depart_add1_dep1"),       //一级部门
+    //添加2
+    setup_personnel_depart_add2_btn     = $("#setup_personnel_depart_add2_btn"),        //添加按钮
+    setup_personnel_depart_add2_box     = $("#setup_personnel_depart_add2_box"),        //添加盒子
+    setup_personnel_depart_add2_submit  = $("#setup_personnel_depart_add2_submit"),     //添加提交
+    setup_personnel_depart_add2_dep1    = $("#setup_personnel_depart_add2_dep1"),       //一级部门
+    setup_personnel_depart_add2_dep2    = $("#setup_personnel_depart_add2_dep2"),       //二级部门
+    //修改
+    setup_personnel_depart_edit_box     = $("#setup_personnel_depart_edit_box"),        //修改盒子
+    setup_personnel_depart_edit_submit  = $("#setup_personnel_depart_edit_submit"),     //修改提交
+    setup_personnel_depart_edit_dep1    = $("#setup_personnel_depart_edit_dep1"),       //一级部门
+    setup_personnel_depart_edit_dep2    = $("#setup_personnel_depart_edit_dep2"),       //二级部门
+    //删除
+    setup_personnel_depart_dele_box     = $("#setup_personnel_depart_dele_box"),        //删除盒子
+    setup_personnel_depart_dele_submit  = $("#setup_personnel_depart_dele_submit");     //删除提交
+
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var setup_personnel_depart_api = {
+            datagrid   : LOCAL + "Test/Setup/Personnel/depart.json",                    //数据表格
+            select     : LOCAL + "Test/test_select.json",                               //下拉选择
+        }
+
+    } else if ( window.STATE == "route" ){
+
+        //远程接口
+        var setup_personnel_depart_api = {
+            datagrid   : LOCAL + "Test/test_datagrid.json",                              //数据表格
+            select     : LOCAL + "Test/test_select.json",                               //下拉选择
+        }
+
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    setup_personnel_depart_datagrid.datagrid({
+        height      : zui_datagrid_height(setup_personnel_depart_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",     label:"ID",      width:49},
+                {name:"depart1",label:"一级部门",width:80},
+                {name:"depart2",label:"二级部门",width:80},
+                {name:"state",  label:"操作",    width:150,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = `
+                                <a class="setup_personnel_depart_edit_btn" rowIndex="${cell.rowIndex}" state="${dataValue}">修改</a>
+                                <a class="setup_personnel_depart_dele_btn" rowIndex="${cell.rowIndex}">删除</a>
+                            `;
+                           return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : setup_personnel_depart_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    setup_personnel_depart_datagrid_obj   = setup_personnel_depart_datagrid.data("zui.datagrid"),   //表格对象
+    setup_personnel_depart_edit_btn       = ".setup_personnel_depart_edit_btn",                     //修改按钮
+    setup_personnel_depart_dele_btn       = ".setup_personnel_depart_dele_btn";                     //删除按钮
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //添加二级部门-一级部门获取
+    $.ajax({
+        url     : setup_personnel_depart_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                setup_personnel_depart_add2_dep1.html(option);
+            }
+        }
+    });
+
+    //添加按钮1----------------------------------------------------------------------------------------------
+    setup_personnel_depart_add1_btn.click(function(){
+        setup_personnel_depart_add1_box.modal("show");
+    });
+    //添加提交1
+    setup_personnel_depart_add1_submit.click(function(){
+ 
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                dep1 : setup_personnel_depart_add1_dep1.val()
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_personnel_depart_datagrid_obj,setup_personnel_depart_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //添加按钮2----------------------------------------------------------------------------------------------
+    setup_personnel_depart_add2_btn.click(function(){
+        setup_personnel_depart_add2_box.modal("show");
+    });
+    //添加提交2
+    setup_personnel_depart_add2_submit.click(function(){
+ 
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                dep1 : setup_personnel_depart_add2_dep1.val(),
+                dep2 : setup_personnel_depart_add2_dep2.val()
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_personnel_depart_datagrid_obj,setup_personnel_depart_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",setup_personnel_depart_edit_btn,function(){
+  
+        //数据ID
+        var data_id    = zui_datagrid_get_id($(this).attr("rowIndex"));
+        var data_state = $(this).attr("state");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //数据赋值
+                    if( data_state=="1" ){              //一级部门
+                        setup_personnel_depart_edit_dep1.val(  data.message );
+                        setup_personnel_depart_edit_box.find("form .form-group:last-child").addClass("hidden");
+                    } else if ( data_state=="2" ){      //一级部门+二级部门
+                        setup_personnel_depart_edit_dep1.val(  data.message );
+                        setup_personnel_depart_edit_dep2.val(  data.message );
+                        setup_personnel_depart_edit_box.find("form .form-group:last-child").removeClass("hidden");
+                    }
+
+                    //其他操作
+                    setup_personnel_depart_edit_submit.attr("dataId",data_id);  //数据ID传值
+                    setup_personnel_depart_edit_box.modal("show");              //盒子显示
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    //修改提交
+    setup_personnel_depart_edit_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id      : data_id,
+                dep1    : setup_personnel_depart_edit_dep1.val(),
+                dep2    : setup_personnel_depart_edit_dep2.val(),
+             },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_personnel_depart_datagrid_obj,setup_personnel_depart_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    //删除按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",setup_personnel_depart_dele_btn,function(){
+
+        //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //其他操作
+        setup_personnel_depart_dele_submit.attr("dataId",data_id);                                //ID传值
+        setup_personnel_depart_dele_box.modal("show");                                            //面板显示
+
+    });
+    //删除提交
+    setup_personnel_depart_dele_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_personnel_depart_datagrid_obj,setup_personnel_depart_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+});//预加载结尾
+</script>

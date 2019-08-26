@@ -21,4 +21,13 @@ json转换 http://www.bejson.com
 ```
 1)common_select_linkage()去掉分公司
 2)行政管理页面
+3)所有页面关于分公司的都需要调整
+```
+
+#正则验证
+```
+if (!reg_2_10.test(setup_base_add_comp.val())){ um_tip("公司名称格式错误","1500"   ,"text-danger"); return; }
+if (!reg_2_10.test(setup_base_add_user.val())){ um_tip("企业管理人格式错误","1500" ,"text-danger"); return; }
+if (!reg_2_10.test(setup_base_add_addr.val())){ um_tip("地区称格式错误","1500"     ,"text-danger"); return; }
+if (!reg_ip.test(setup_base_add_ip.val()))    { um_tip("IP格式错误","1500"         ,"text-danger"); return; }
 ```

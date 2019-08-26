@@ -1,0 +1,29 @@
+{
+    "result"  : "success",
+    "data"    : [
+        {"id": 1,"depart1":"商务部","depart2":"商务1部","state":2},
+        {"id": 2,"depart1":"商务部","depart2":"商务2部","state":2},
+        {"id": 3,"depart1":"推广部","depart2":""       ,"state":1},
+        {"id": 4,"depart1":"工程部","depart2":"工程1部","state":2},
+        {"id": 5,"depart1":"工程部","depart2":"工程2部","state":2},
+        {"id": 6,"depart1":"工程部","depart2":"工程3部","state":2},
+        {"id": 7,"depart1":"财务部","depart2":"财务1部","state":2},
+        {"id": 8,"depart1":"财务部","depart2":"财务2部","state":2},
+        {"id": 9,"depart1":"财务部","depart2":"财务3部","state":2},
+        {"id":10,"depart1":"网络部","depart2":"商务1部","state":2},
+        {"id":11,"depart1":"网络部","depart2":"商务2部","state":2},
+        {"id":12,"depart1":"网络部","depart2":"商务3部","state":2},
+        {"id":13,"depart1":"人事部","depart2":"人事1部","state":2},
+        {"id":14,"depart1":"人事部","depart2":"人事2部","state":2},
+        {"id":15,"depart1":"人事部","depart2":"人事3部","state":2},
+        {"id":16,"depart1":"行政部","depart2":"行政1部","state":2},      
+        {"id":17,"depart1":"行政部","depart2":"行政2部","state":2},
+        {"id":18,"depart1":"行政部","depart2":"行政3部","state":2},
+        {"id":19,"depart1":"主案部","depart2":"主案1部","state":2},
+        {"id":20,"depart1":"主案部","depart2":"主案2部","state":2},
+        {"id":21,"depart1":"主案部","depart2":"主案3部","state":2},
+        {"id":22,"depart1":"主案部","depart2":"主案4部","state":2}         
+    ],
+    "message" : "",
+    "pager"   : {"page":1,"recTotal":22,"recPerPage":20}
+}

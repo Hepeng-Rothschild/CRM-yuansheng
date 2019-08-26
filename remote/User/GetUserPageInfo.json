@@ -197,13 +197,13 @@
                 "url"       :"setup_base"
             },
             { 
-                "title" : "账号设置",
-                "url"   : "blank" 
+                "title"     : "账号设置",
+                "url"       : "setup_account" 
             },
             {   
                 "title"     :"人事设置",
                 "children"  :[
-                    { "title":"部门设置",  "icon":"","url":"blank"},
+                    { "title":"部门设置",  "icon":"","url":"setup_personnel_depart"},
                     { "title":"职位设置"  ,"icon":"","url":"blank"},
                     { "title":"承包商类型","icon":"","url":"blank"},
                     { "title":"考试类型",  "icon":"","url":"blank"}
