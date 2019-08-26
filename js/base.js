@@ -299,7 +299,10 @@ function zui_datagrid_height(datagrid){
     return height;
 }
 
-//数据网格-取值(修改删除用)
+/*zui_datagrid_get_id() 数据表格行ID[注意：ID必须为列1]
+ * @param  rowIndex number 行号
+ * @return          string ID
+ */
 function zui_datagrid_get_id(rowIndex){
     return $(".datagrid").data("zui.datagrid").getCell(rowIndex,1).value;
 }
