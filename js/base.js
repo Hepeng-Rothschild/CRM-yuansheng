@@ -457,7 +457,7 @@ function common_select_linkage(selector,type){
         dataType: "json",
         success : function(data){
             if( data.status>0 ){
-
+                console.log(data.data);
                 //处理(分公司)
                 var data = data.data;
                 var option = '';
