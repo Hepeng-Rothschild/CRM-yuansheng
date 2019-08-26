@@ -260,7 +260,7 @@ $(function(){
     
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_train_exam_datagrid.datagrid({
-        height      : um_height(personnel_train_exam_datagrid),
+        height      : zui_datagrid_height(personnel_train_exam_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -315,7 +315,7 @@ $(function(){
     personnel_train_exam_dele_btn       = ".personnel_train_exam_dele_btn";                     //删除按钮
 
     //时间组件-----------------------------------------------------------------------------------------------
-    common_tool_search_date( personnel_train_exam_tool_date );
+    common_date_duration( personnel_train_exam_tool_date );
     personnel_train_exam_tool_date.find(".start").datetimepicker(option_date);
     personnel_train_exam_tool_date.find(".end").datetimepicker(option_date);
     personnel_train_exam_add_date1.datetimepicker( option_hour);
@@ -345,8 +345,8 @@ $(function(){
     });
 
     //可选择节点树(添加+修改)--------------------------------------------------------------------------------
-    um_tree_check( personnel_train_exam_add_tree  ); //添加    
-    um_tree_check( personnel_train_exam_edit_tree ); //修改
+    //    ( personnel_train_exam_add_tree  ); //添加    【参照 组织架构】
+    //    ( personnel_train_exam_edit_tree ); //修改
 
     //试题添加删除(添加+修改)--------------------------------------------------------------------------------
     personnel_train_exam_list_append(personnel_train_exam_add_list_btn);    //试题添加(添加)
@@ -366,7 +366,7 @@ $(function(){
         + "&date2="  + personnel_train_exam_tool_date.find(".end").val();
 
         //GET提交
-        um_render(personnel_train_exam_datagrid_obj,personnel_train_exam_api.datagrid+keyword);
+        zui_datagrid_render(personnel_train_exam_datagrid_obj,personnel_train_exam_api.datagrid+keyword);
 
     });
 
@@ -425,7 +425,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_train_exam_datagrid_obj,personnel_train_exam_api.datagrid);
+                    zui_datagrid_reset(personnel_train_exam_datagrid_obj,personnel_train_exam_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -460,7 +460,7 @@ $(function(){
                     personnel_train_exam_edit_date2.val( data.date2 );
 
                     //考试人员
-                    um_tree_read( personnel_train_exam_edit_tree,data.tree );
+                    //( personnel_train_exam_edit_tree,data.tree ); 【参照组织架构】
 
                     //列表推进
                     var personnel_train_exam_edit_list_temp   = "";
@@ -549,7 +549,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_train_exam_datagrid_obj,personnel_train_exam_api.datagrid);
+                    zui_datagrid_reset(personnel_train_exam_datagrid_obj,personnel_train_exam_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -584,7 +584,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_train_exam_datagrid_obj,personnel_train_exam_api.datagrid);
+                    zui_datagrid_reset(personnel_train_exam_datagrid_obj,personnel_train_exam_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -619,7 +619,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_train_exam_datagrid_obj,personnel_train_exam_api.datagrid);
+                    zui_datagrid_reset(personnel_train_exam_datagrid_obj,personnel_train_exam_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }

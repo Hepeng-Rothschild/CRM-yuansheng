@@ -96,7 +96,7 @@ $(function(){
  
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_train_result_datagrid.datagrid({
-        height      : um_height(personnel_train_result_datagrid),
+        height      : zui_datagrid_height(personnel_train_result_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -195,7 +195,7 @@ $(function(){
         + "&select2="+ personnel_train_result_tool_select2.val();
 
         //GET提交
-        um_render(personnel_train_result_datagrid_obj,personnel_train_result_api.datagrid+keyword);
+        zui_datagrid_render(personnel_train_result_datagrid_obj,personnel_train_result_api.datagrid+keyword);
 
     });
 

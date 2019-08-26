@@ -3,7 +3,7 @@
     $.zui.store.enable=false;
 
     //接口路径
-    window.STATE = "route";                                         //当前状态 local route
+    window.STATE = "local";                                         //当前状态 local route
     window.LOCAL = "./remote/";                                     //本地路径
     window.ROUTE = "http://192.168.1.26/";                          //远程路径
     window.REC_PER_PAGE = 20;                                       //每页几条
@@ -43,13 +43,3 @@
         }
 
     }
-        
-    /*
-    数据表格 宽度标准
-    id      50
-    sexy    50
-    default 80
-    tels    100
-    full    .1
-    operate 180
-    */

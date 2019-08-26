@@ -96,7 +96,7 @@ $(function(){
 
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_attendance_punch_record_datagrid.datagrid({
-        height      : um_height(personnel_attendance_punch_record_datagrid),
+        height      : zui_datagrid_height(personnel_attendance_punch_record_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -150,13 +150,13 @@ $(function(){
     personnel_attendance_punch_record_result_edit_btn = ".personnel_attendance_punch_record_result_edit_btn";           //修改按钮
 
     //时间组件-----------------------------------------------------------------------------------------------
-    common_tool_search_date( personnel_attendance_punch_record_tool_date );
+    common_date_duration( personnel_attendance_punch_record_tool_date );
     personnel_attendance_punch_record_tool_date.find(".start").datetimepicker(option_date);
     personnel_attendance_punch_record_tool_date.find(".end").datetimepicker(option_date);
     
     //下拉选项-----------------------------------------------------------------------------------------------
     //分公司+部门
-    common_tool_select_group("#personnel_attendance_punch_record_tool_select_group","12");          //搜索
+    common_select_linkage("#personnel_attendance_punch_record_tool_select_group","12");          //搜索
 
     //在职状态
     $.ajax({
@@ -190,7 +190,7 @@ $(function(){
         + "&date2="  + personnel_attendance_punch_record_tool_date.find(".end").val();
 
         //GET提交
-        um_render(personnel_attendance_punch_record_datagrid_obj,personnel_attendance_punch_record_api.datagrid+keyword);
+        zui_datagrid_render(personnel_attendance_punch_record_datagrid_obj,personnel_attendance_punch_record_api.datagrid+keyword);
 
     });
 

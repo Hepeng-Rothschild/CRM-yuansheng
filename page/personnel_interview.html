@@ -244,7 +244,7 @@ $(function(){
 
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_interview_datagrid.datagrid({
-        height      : um_height(personnel_interview_datagrid),
+        height      : zui_datagrid_height(personnel_interview_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -337,10 +337,10 @@ $(function(){
     personnel_interview_state_btn   = ".personnel_interview_state_btn";                 //状态
 
     //下拉组件-----------------------------------------------------------------------------------------------
-    common_tool_select_group("#personnel_interview_tool_select_group","1");             //搜索
+    common_select_linkage("#personnel_interview_tool_select_group","1");             //搜索
 
     //时间组件-----------------------------------------------------------------------------------------------
-    common_tool_search_date( personnel_interview_tool_date );
+    common_date_duration( personnel_interview_tool_date );
     personnel_interview_tool_date.find(".start").datetimepicker(option_date);
     personnel_interview_tool_date.find(".end").datetimepicker(option_date);
     personnel_interview_add_date.datetimepicker(option_hour);
@@ -434,7 +434,7 @@ $(function(){
                 personnel_interview_add_btn.show();
 
                 //表格
-                um_render(personnel_interview_datagrid_obj,personnel_interview_api.datagrid+"?bs=1");
+                zui_datagrid_render(personnel_interview_datagrid_obj,personnel_interview_api.datagrid+"?bs=1");
 
             }
         });
@@ -468,7 +468,7 @@ $(function(){
                 personnel_interview_add_btn.hide();
 
                 //表格
-                um_render(personnel_interview_datagrid_obj,personnel_interview_api.datagrid+"?bs=2");
+                zui_datagrid_render(personnel_interview_datagrid_obj,personnel_interview_api.datagrid+"?bs=2");
 
             }
         });
@@ -489,7 +489,7 @@ $(function(){
         + "&bs="        + personnel_interview_search_btn.attr("bs");
 
         //GET提交
-        um_render(personnel_interview_datagrid_obj,personnel_interview_api.datagrid+keyword);
+        zui_datagrid_render(personnel_interview_datagrid_obj,personnel_interview_api.datagrid+keyword);
 
     });
 
@@ -519,7 +519,7 @@ $(function(){
             success : function(data){
                 if( data.status>0){
                     um_tip(data.message);
-                    um_reset(personnel_interview_datagrid_obj,personnel_interview_api.datagrid);
+                    zui_datagrid_reset(personnel_interview_datagrid_obj,personnel_interview_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -585,7 +585,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_interview_datagrid_obj,personnel_interview_api.datagrid);
+                    zui_datagrid_reset(personnel_interview_datagrid_obj,personnel_interview_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -629,7 +629,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_interview_datagrid_obj,personnel_interview_api.datagrid);
+                    zui_datagrid_reset(personnel_interview_datagrid_obj,personnel_interview_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }

@@ -165,7 +165,7 @@ $(function(){
 
     //数据表格-----------------------------------------------------------------------------------------------
     setup_base_datagrid.datagrid({
-        height      : um_height(setup_base_datagrid),
+        height      : zui_datagrid_height(setup_base_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -242,7 +242,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(setup_base_datagrid_obj,setup_base_api.datagrid);
+                    zui_datagrid_reset(setup_base_datagrid_obj,setup_base_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -301,7 +301,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(setup_base_datagrid_obj,setup_base_api.datagrid);
+                    zui_datagrid_reset(setup_base_datagrid_obj,setup_base_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -336,7 +336,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(setup_base_datagrid_obj,setup_base_api.datagrid);
+                    zui_datagrid_reset(setup_base_datagrid_obj,setup_base_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }

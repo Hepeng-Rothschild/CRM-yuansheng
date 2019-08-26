@@ -219,12 +219,12 @@ $(function(){
     }
 
     //节点树
-    common_staff_tree($("#admin_message_donation_add_tree"));
+    common_tree_staff($("#admin_message_donation_add_tree"));
 
 
     //数据表格-----------------------------------------------------------------------------------------------
     admin_message_donation_datagrid.datagrid({
-        height      : um_height(admin_message_donation_datagrid),
+        height      : zui_datagrid_height(admin_message_donation_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -281,7 +281,7 @@ $(function(){
     admin_message_donation_dele_btn       = ".admin_message_donation_dele_btn";                     //删除
 
     //时间组件-----------------------------------------------------------------------------------------------
-    common_tool_search_date( admin_message_donation_tool_date );
+    common_date_duration( admin_message_donation_tool_date );
     admin_message_donation_tool_date.find(".start").datetimepicker(option_date);
     admin_message_donation_tool_date.find(".end").datetimepicker(option_date);
     
@@ -314,7 +314,7 @@ $(function(){
         + "&date2="  + admin_message_donation_tool_date.find(".end").val();
 
         //GET提交
-        um_render(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid+keyword);
+        zui_datagrid_render(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid+keyword);
 
     });
 
@@ -342,7 +342,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid);
+                    zui_datagrid_reset(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -428,7 +428,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid);
+                    zui_datagrid_reset(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -463,7 +463,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid);
+                    zui_datagrid_reset(admin_message_donation_datagrid_obj,admin_message_donation_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }

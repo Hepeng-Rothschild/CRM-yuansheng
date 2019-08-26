@@ -112,7 +112,7 @@ $(function(){
 
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_attendance_month_datagrid.datagrid({
-        height      : um_height(personnel_attendance_month_datagrid),
+        height      : zui_datagrid_height(personnel_attendance_month_datagrid),
         headerHeight: 60,
         sortable    : false,
         cache       : false,
@@ -243,7 +243,7 @@ $(function(){
                         if( dataValue=="0" ){
                             dataValue=`<span style='color:lightgrey'>${dataValue}</span>`;
                         }
-                        if( isInArray(limited,cell.colIndex) ){
+                        if( um_isinarray(limited,cell.colIndex) ){
                             dataValue = `<a rowIndex='${cell.rowIndex}' class='personnel_attendance_month_show_btn' label='${label}'>${dataValue}</a>`;
                         } else {
                             dataValue = dataValue;
@@ -265,7 +265,7 @@ $(function(){
 
     //下拉选项-----------------------------------------------------------------------------------------------
     //分公司+部门
-    common_tool_select_group("#personnel_attendance_month_tool_select_group","12");                       //搜索
+    common_select_linkage("#personnel_attendance_month_tool_select_group","12");                       //搜索
 
     //在职状态
     $.ajax({
@@ -298,7 +298,7 @@ $(function(){
         + "&date1="  + personnel_attendance_month_tool_date1.val();
 
         //GET提交
-        um_render(personnel_attendance_month_datagrid_obj,personnel_attendance_month_api.datagrid+keyword);
+        zui_datagrid_render(personnel_attendance_month_datagrid_obj,personnel_attendance_month_api.datagrid+keyword);
 
     });
 

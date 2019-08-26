@@ -759,7 +759,7 @@ $(function(){
 
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_staff_datagrid.datagrid({
-        height      : um_height(personnel_staff_datagrid),
+        height      : zui_datagrid_height(personnel_staff_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -831,8 +831,8 @@ $(function(){
     personnel_staff_state_btn       = ".personnel_staff_state_btn";                    //状态按钮
 
     //下拉组件-----------------------------------------------------------------------------------------------
-    common_tool_select_group("#personnel_staff_tool_select_group","123");               //搜索
-    common_tool_select_group("#personnel_staff_add_select_group","123");                //添加
+    common_select_linkage("#personnel_staff_tool_select_group","123");               //搜索
+    common_select_linkage("#personnel_staff_add_select_group","123");                //添加
 
     //时间组件-----------------------------------------------------------------------------------------------
     personnel_staff_add_birt.datetimepicker(option_date);
@@ -1037,11 +1037,11 @@ $(function(){
     //右侧切换-----------------------------------------------------------------------------------------------
     personnel_staff_che1_btn.click(function(){
         personnel_staff_add_btn.show();
-        um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid+"?search=1");
+        zui_datagrid_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid+"?search=1");
     });
     personnel_staff_che2_btn.click(function(){
         personnel_staff_add_btn.hide();
-        um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid+"?search=1");
+        zui_datagrid_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid+"?search=1");
     });
 
     //搜索按钮-----------------------------------------------------------------------------------------------
@@ -1057,7 +1057,7 @@ $(function(){
         + "&isstate="       + personnel_staff_tool_select4.val();
 
         //GET提交
-        um_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid+keyword);
+        zui_datagrid_render(personnel_staff_datagrid_obj,personnel_staff_api.datagrid+keyword);
 
     });
 
@@ -1138,7 +1138,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
+                    zui_datagrid_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -1369,37 +1369,37 @@ $(function(){
                     personnel_staff_edit_wag2.val(      data.Revisedwages   );
                     //资料上传
                     personnel_staff_edit_uploader1.uploader(
-                        upload_fixed(
+                        zui_upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader1",
                             [{id:1,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.pic}]
                         )
                     );
                     personnel_staff_edit_uploader2.uploader(
-                        upload_fixed(
+                        zui_upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader2",
                             [{id:2,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.cartZ}]
                         )
                     );
                     personnel_staff_edit_uploader3.uploader(
-                        upload_fixed(
+                        zui_upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader3",
                             [{id:3,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.cartF}]
                         )
                     );
                     personnel_staff_edit_uploader4.uploader(
-                        upload_fixed(
+                        zui_upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader4",
                             [{id:4,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.certificate}]
                         )
                     );
                     personnel_staff_edit_uploader5.uploader(
-                        upload_fixed(
+                        zui_upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader5",
                             [{id:5,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.certificateofHonor}]
                         )
                     );
                     personnel_staff_edit_uploader6.uploader(
-                        upload_fixed(
+                        zui_upload_fixed(
                             personnel_staff_api.uploader,"personnel_staff_edit_uploader6",
                             [{id:6,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.certificateofparation}]
                         )
@@ -1537,7 +1537,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
+                    zui_datagrid_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -1580,7 +1580,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
+                    zui_datagrid_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -1614,7 +1614,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
+                    zui_datagrid_reset(personnel_staff_datagrid_obj,personnel_staff_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -1624,12 +1624,12 @@ $(function(){
     });
  
     //上传组件-----------------------------------------------------------------------------------------------
-    personnel_staff_add_uploader1.uploader(upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader1"));
-    personnel_staff_add_uploader2.uploader(upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader2"));
-    personnel_staff_add_uploader3.uploader(upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader3"));
-    personnel_staff_add_uploader4.uploader(upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader4"));
-    personnel_staff_add_uploader5.uploader(upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader5"));
-    personnel_staff_add_uploader6.uploader(upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader6"));
+    personnel_staff_add_uploader1.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader1"));
+    personnel_staff_add_uploader2.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader2"));
+    personnel_staff_add_uploader3.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader3"));
+    personnel_staff_add_uploader4.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader4"));
+    personnel_staff_add_uploader5.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader5"));
+    personnel_staff_add_uploader6.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader6"));
 
     //添加测试-----------------------------------------------------------------------------------------------
     setTimeout(function(){

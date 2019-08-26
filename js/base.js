@@ -2,170 +2,179 @@
 //PushMenu()
 +function ($) {
     'use strict';
-  
+
     var DataKey = 'lte.pushmenu';
-  
+
     var Default = {
-      collapseScreenSize   : 767,
-      expandOnHover        : false,
-      expandTransitionDelay: 200
+        collapseScreenSize   : 767,
+        expandOnHover        : false,
+        expandTransitionDelay: 200
     };
-  
+
     var Selector = {
-      collapsed     : '.sidebar-collapse',
-      open          : '.sidebar-open',
-      mainSidebar   : '.main-sidebar',
-      contentWrapper: '.content-wrapper',
-      searchInput   : '.sidebar-form .form-control',
-      button        : '[data-toggle="push-menu"]',
-      mini          : '.sidebar-mini',
-      expanded      : '.sidebar-expanded-on-hover',
-      layoutFixed   : '.fixed'
+        collapsed     : '.sidebar-collapse',
+        open          : '.sidebar-open',
+        mainSidebar   : '.main-sidebar',
+        contentWrapper: '.content-wrapper',
+        searchInput   : '.sidebar-form .form-control',
+        button        : '[data-toggle="push-menu"]',
+        mini          : '.sidebar-mini',
+        expanded      : '.sidebar-expanded-on-hover',
+        layoutFixed   : '.fixed'
     };
-  
+
     var ClassName = {
-      collapsed    : 'sidebar-collapse',
-      open         : 'sidebar-open',
-      mini         : 'sidebar-mini',
-      expanded     : 'sidebar-expanded-on-hover',
-      expandFeature: 'sidebar-mini-expand-feature',
-      layoutFixed  : 'fixed'
+        collapsed    : 'sidebar-collapse',
+        open         : 'sidebar-open',
+        mini         : 'sidebar-mini',
+        expanded     : 'sidebar-expanded-on-hover',
+        expandFeature: 'sidebar-mini-expand-feature',
+        layoutFixed  : 'fixed'
     };
-  
+
     var Event = {
-      expanded : 'expanded.pushMenu',
-      collapsed: 'collapsed.pushMenu'
+        expanded : 'expanded.pushMenu',
+        collapsed: 'collapsed.pushMenu'
     };
-  
+
     // PushMenu Class Definition
     var PushMenu = function (options) {
-      this.options = options;
-      this.init();
+        this.options = options;
+        this.init();
     };
-  
+
     PushMenu.prototype.init = function () {
-      if (this.options.expandOnHover
-        || ($('body').is(Selector.mini + Selector.layoutFixed))) {
-        this.expandOnHover();
-        $('body').addClass(ClassName.expandFeature);
-      }
-  
-      $(Selector.contentWrapper).click(function () {
-        // Enable hide menu when clicking on the content-wrapper on small screens
-        if ($(window).width() <= this.options.collapseScreenSize && $('body').hasClass(ClassName.open)) {
-          this.close();
+        if (this.options.expandOnHover
+            || ($('body').is(Selector.mini + Selector.layoutFixed))) {
+            this.expandOnHover();
+            $('body').addClass(ClassName.expandFeature);
         }
-      }.bind(this));
-  
-      // __Fix for android devices
-      $(Selector.searchInput).click(function (e) {
-        e.stopPropagation();
-      });
+
+        $(Selector.contentWrapper).click(function () {
+            // Enable hide menu when clicking on the content-wrapper on small screens
+            if ($(window).width() <= this.options.collapseScreenSize && $('body').hasClass(ClassName.open)) {
+                this.close();
+            }
+        }.bind(this));
+
+        // __Fix for android devices
+        $(Selector.searchInput).click(function (e) {
+            e.stopPropagation();
+        });
     };
-  
+
     PushMenu.prototype.toggle = function () {
-      var windowWidth = $(window).width();
-      var isOpen      = !$('body').hasClass(ClassName.collapsed);
-  
-      if (windowWidth <= this.options.collapseScreenSize) {
-        isOpen = $('body').hasClass(ClassName.open);
-      }
-  
-      if (!isOpen) {
-        this.open();
-      } else {
-        this.close();
-      }
+        var windowWidth = $(window).width();
+        var isOpen      = !$('body').hasClass(ClassName.collapsed);
+
+        if (windowWidth <= this.options.collapseScreenSize) {
+            isOpen = $('body').hasClass(ClassName.open);
+        }
+
+        if (!isOpen) {
+            this.open();
+        } else {
+            this.close();
+        }
     };
-  
+
     PushMenu.prototype.open = function () {
-      var windowWidth = $(window).width();
-  
-      if (windowWidth > this.options.collapseScreenSize) {
-        $('body').removeClass(ClassName.collapsed)
-          .trigger($.Event(Event.expanded));
-      }
-      else {
-        $('body').addClass(ClassName.open)
-          .trigger($.Event(Event.expanded));
-      }
+        var windowWidth = $(window).width();
+
+        if (windowWidth > this.options.collapseScreenSize) {
+            $('body').removeClass(ClassName.collapsed)
+                .trigger($.Event(Event.expanded));
+        }
+        else {
+            $('body').addClass(ClassName.open)
+                .trigger($.Event(Event.expanded));
+        }
     };
-  
+
     PushMenu.prototype.close = function () {
-      var windowWidth = $(window).width();
-      if (windowWidth > this.options.collapseScreenSize) {
-        $('body').addClass(ClassName.collapsed)
-          .trigger($.Event(Event.collapsed));
-      } else {
-        $('body').removeClass(ClassName.open + ' ' + ClassName.collapsed)
-          .trigger($.Event(Event.collapsed));
-      }
+        var windowWidth = $(window).width();
+        if (windowWidth > this.options.collapseScreenSize) {
+            $('body').addClass(ClassName.collapsed)
+                .trigger($.Event(Event.collapsed));
+        } else {
+            $('body').removeClass(ClassName.open + ' ' + ClassName.collapsed)
+                .trigger($.Event(Event.collapsed));
+        }
     };
-  
+
     PushMenu.prototype.expandOnHover = function () {
-      $(Selector.mainSidebar).hover(function () {
-        if ($('body').is(Selector.mini + Selector.collapsed)
-          && $(window).width() > this.options.collapseScreenSize) {
-          this.expand();
-        }
-      }.bind(this), function () {
-        if ($('body').is(Selector.expanded)) {
-          this.collapse();
-        }
-      }.bind(this));
+        $(Selector.mainSidebar).hover(function () {
+            if ($('body').is(Selector.mini + Selector.collapsed)
+                && $(window).width() > this.options.collapseScreenSize) {
+                this.expand();
+            }
+        }.bind(this), function () {
+            if ($('body').is(Selector.expanded)) {
+                this.collapse();
+            }
+        }.bind(this));
     };
-  
+
     PushMenu.prototype.expand = function () {
-      setTimeout(function () {
-        $('body').removeClass(ClassName.collapsed)
-          .addClass(ClassName.expanded);
-      }, this.options.expandTransitionDelay);
+        setTimeout(function () {
+            $('body').removeClass(ClassName.collapsed)
+                .addClass(ClassName.expanded);
+        }, this.options.expandTransitionDelay);
     };
-  
+
     PushMenu.prototype.collapse = function () {
-      setTimeout(function () {
-        $('body').removeClass(ClassName.expanded)
-          .addClass(ClassName.collapsed);
-      }, this.options.expandTransitionDelay);
+        setTimeout(function () {
+            $('body').removeClass(ClassName.expanded)
+                .addClass(ClassName.collapsed);
+        }, this.options.expandTransitionDelay);
     };
-  
+
     // PushMenu Plugin Definition
     function Plugin(option) {
-      return this.each(function () {
-        var $this = $(this);
-        var data  = $this.data(DataKey);
-  
-        if (!data) {
-          var options = $.extend({}, Default, $this.data(), typeof option == 'object' && option);
-          $this.data(DataKey, (data = new PushMenu(options)));
-        }
-  
-        if (option === 'toggle') data.toggle();
-      });
+        return this.each(function () {
+            var $this = $(this);
+            var data  = $this.data(DataKey);
+
+            if (!data) {
+                var options = $.extend({}, Default, $this.data(), typeof option == 'object' && option);
+                $this.data(DataKey, (data = new PushMenu(options)));
+            }
+
+            if (option === 'toggle') data.toggle();
+        });
     }
-  
+
     var old = $.fn.pushMenu;
-  
+
     $.fn.pushMenu             = Plugin;
     $.fn.pushMenu.Constructor = PushMenu;
-  
+
     // No Conflict Mode
     $.fn.pushMenu.noConflict = function () {
-      $.fn.pushMenu = old;
-      return this;
+        $.fn.pushMenu = old;
+        return this;
     };
-  
+
     // Data API
     $(document).on('click', Selector.button, function (e) {
-      e.preventDefault();
-      Plugin.call($(this), 'toggle');
+        e.preventDefault();
+        Plugin.call($(this), 'toggle');
     });
     $(window).on('load', function () {
-      Plugin.call($(Selector.button));
+        Plugin.call($(Selector.button));
     });
 }(jQuery);
 
-//框架补丁----------------------------------------------------------------------------------
+/*代码规范-------------------------------------------------------------
+ +--------------+---------------------+--------------------------------+
+ | 灵巧工具型   | um_json()           | 不依赖zui                      |
+ +--------------+---------------------+--------------------------------+
+ | 组件复用处理 | zui_upload_unique() | 依赖zui,复用方法,返回处理结果  |
+ +--------------+---------------------+--------------------------------+
+ | 涉及接口型   | common_tree_staff() | 依赖zui,固定接口,DOM组件推进   |
+ +--------------+---------------------+--------------------------------+*/
+
+//框架补丁
 $(function(){
 
     //模拟label触发input的focus
@@ -186,7 +195,7 @@ $(function(){
 
 });//预加载结尾
 
-//配置声明----------------------------------------------------------------------------------
+//变量声明----------------------------------------------------------------------------------
 //正则规则
 var reg_ip   = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
 var reg_2_10 = /^.{2,10}$/;
@@ -216,29 +225,33 @@ var option_hour = {
 }
 
 //函数声明----------------------------------------------------------------------------------
-//当前时间
-Date.prototype.Format = function (fmt){
+//灵巧工具型--------------------------------------------------------------------------------
+/* um_date()  当前时间获取(格式化)
+ * @param fmt string 格式化参数
+ * @return    string 时间字符串
+ */
+function um_date(fmt){
+    var now = new Date();
     var o = {
-        "M+": this.getMonth() + 1,                  //月
-        "d+": this.getDate(),                       //日 
-        "H+": this.getHours(),                      //小时 
-        "m+": this.getMinutes(),                    //分 
-        "s+": this.getSeconds(),                    //秒 
-        "q+": Math.floor((this.getMonth() + 3) / 3),//季度 
-        "S": this.getMilliseconds()                 //毫秒 
+        "M+": now.getMonth() + 1,                  //月
+        "d+": now.getDate(),                       //日
+        "H+": now.getHours(),                      //小时
+        "m+": now.getMinutes(),                    //分
+        "s+": now.getSeconds(),                    //秒
+        "q+": Math.floor((now.getMonth() + 3) / 3),//季度
+        "S": now.getMilliseconds()                 //毫秒
     };
-    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (now.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (var k in o)
-    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
 
-/**
- * 使用循环的方式判断一个元素是否存在于一个数组中
- * @param {Object} arr 数组
- * @param {Object} value 元素值
+/* um_isinarray()  元素是否存在于数组中
+ * @param arr      array         数组
+ * @param value    string/number 元素
  */
-function isInArray(arr,value){
+function um_isinarray(arr,value){
     for(var i = 0; i < arr.length; i++){
         if(value === arr[i]){
             return true;
@@ -247,15 +260,9 @@ function isInArray(arr,value){
     return false;
 }
 
-//数据网格-取值(修改删除用)
-function cell_value(rowIndex,colIndex){
-  //return datagrid_obj.getCell(rowIndex,colIndex).value;
-    return $(".datagrid").data("zui.datagrid").getCell(rowIndex,colIndex).value;
-}
-
 /* um_json() JSON转义
- * @param  data (object|string)
- * @return object
+ * @param  data   object/string json对象
+ * @return        object        object对象
  */
 function um_json(data){
     while ( typeof data == "string" ){
@@ -265,9 +272,9 @@ function um_json(data){
 }
 
 /* um_tip() 信息提示
- * @param text  提示文本 string 
- * @param time  持续时间 string (default:1500|0为不消失)
- * @param cls   提示字色 string (default:"text-success")
+ * @param text string 提示文本
+ * @param time string 持续时间 (default:1500|0为不消失)
+ * @param cls  string 提示字色 (default:"text-success")
  */
 function um_tip(text,time,cls){
     $(".um-tip-mask").remove();
@@ -282,20 +289,27 @@ function um_tip(text,time,cls){
     }
 }
 
-/*um_height() 数据表格高度
- * @param  datagrid object
- * @return height   number
+//组件复用处理------------------------------------------------------------------------------
+/*zui_datagrid_height() 数据表格高度
+ * @param  datagrid object 数据表格DOM
+ * @return          number 数据表格高度
  */
-function um_height(datagrid){
+function zui_datagrid_height(datagrid){
     var height = window.innerHeight - datagrid.find(".datagrid-container").offset().top - 53;
     return height;
 }
 
-/* um_reset() 重置操作
- * @param datagrid_obj object
- * @param datagrid_url string
+//数据网格-取值(修改删除用)
+function cell_value(rowIndex,colIndex){
+    //return datagrid_obj.getCell(rowIndex,colIndex).value;
+    return $(".datagrid").data("zui.datagrid").getCell(rowIndex,colIndex).value;
+}
+
+/* zui_datagrid_reset() 重置操作
+ * @param datagrid_obj object 数据表格对象
+ * @param datagrid_url string 数据表格访问地址
  */
-function um_reset(datagrid_obj,datagrid_url){
+function zui_datagrid_reset(datagrid_obj,datagrid_url){
 
     //延时调用
     setTimeout(function(){
@@ -311,29 +325,29 @@ function um_reset(datagrid_obj,datagrid_url){
 
         //表格刷新
         if( datagrid_obj!=undefined && datagrid_url!=undefined){
-            um_render(datagrid_obj,datagrid_url);
+            zui_datagrid_render(datagrid_obj,datagrid_url);
         }
 
     },1500);
 
 }
 
-/*um_render() 数据表格刷新
- * @param datagrid_obj object
- * @param datagrid_url string
+/*zui_datagrid_render() 数据表格刷新
+ * @param datagrid_obj object 数据表格对象
+ * @param datagrid_url string 数据表格访问地址
  */
-function um_render(datagrid_obj,datagrid_url){
+function zui_datagrid_render(datagrid_obj,datagrid_url){
     datagrid_obj.setDataSource(datagrid_url);
     datagrid_obj.render();
 }
 
-/* upload_fixed()   固定上传
- * @param   upapi   上传路径接口
- * @param   upid    上传组件ID
- * @param   array   静态文件
- * @return  object  参数对象
+/* zui_upload_fixed()   固定上传
+ * @param   upapi       string 上传路径接口
+ * @param   upid        string 上传组件ID
+ * @param   staticFiles array  静态文件
+ * @return              object 参数对象
  */
-function upload_fixed(upapi,upid,staticFiles){
+function zui_upload_fixed(upapi,upid,staticFiles){
     return {
         url                 : upapi,                                    //上传路径
         fileList            : "grid",                                   //列表配置
@@ -348,7 +362,7 @@ function upload_fixed(upapi,upid,staticFiles){
         },
         multipart_params    : function(file,params){                    //参数提交
             return { upid:upid };
-        },            
+        },
         responseHandler     : function(res,file){                       //远程响应
             var data = um_json(res.response);
             $("#"+data.upid).attr("path",data.path);
@@ -361,17 +375,17 @@ function upload_fixed(upapi,upid,staticFiles){
         uploadedMessage     : function(result){                         //上传结果
             return "上传成功";
         }
-    }  
+    }
 }
 
-/* upload_free()    自由上传
- * @param   upapi   上传路径接口
- * @param   upid    上传组件ID
- * @param   array   静态文件
- * @return  object  参数对象
+/* zui_upload_free()    自由上传
+ * @param   upapi       string 上传路径接口
+ * @param   upid        string 上传组件ID
+ * @param   staticFiles array  静态文件
+ * @return              object 参数对象
  */
-var upload_free_path = "";
-function upload_free(upapi,upid,staticFiles){
+var zui_upload_free_path = "";
+function zui_upload_free(upapi,upid,staticFiles){
     return {
         url                 : upapi,                                    //上传路径
         fileList            : "grid",                                   //列表配置
@@ -384,11 +398,11 @@ function upload_free(upapi,upid,staticFiles){
         },
         multipart_params    : function(file,params){                    //参数提交
             return { upid:upid };
-        },            
+        },
         responseHandler     : function(res,file){                       //远程响应
             var data = um_json(res.response);
-            upload_free_path = upload_free_path+","+data.path;
-            $("#"+data.upid).attr("path",upload_free_path);
+            zui_upload_free_path = zui_upload_free_path+","+data.path;
+            $("#"+data.upid).attr("path",zui_upload_free_path);
         },
         staticFiles         : staticFiles || [],                        //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
@@ -396,84 +410,13 @@ function upload_free(upapi,upid,staticFiles){
             $("#"+upid).attr("path","");
         }
     }
-} 
-
-/* um_tree_check() 可选择节点树
- * @param  object selector (id/class)
- */
-function um_tree_check(selector){
-    selector.on("click","span",function(){
-
-        //变量声明
-        var empt = "icon-check-empty";
-        var chec = "icon-checked";
-        var span = $(this);
-        var icon = span.find(".icon");
-        var type = icon.parent().attr("type");
-        var son  = icon.parent().next("ul").find(".icon");
-        var dad  = span.parent().parent().siblings("span").find(".icon");
-        var bro  = span.parent().parent().find("span");
-
-        //选中影响(父级对子级)
-        if( icon.hasClass(empt) ){
-            icon.removeClass(empt).addClass(chec);
-            if( type=="level1" ){ son.removeClass(empt).addClass(chec); }
-        } else {
-            icon.removeClass(chec).addClass(empt);
-            if( type=="level1" ){ son.removeClass(chec).addClass(empt); }
-        } 
-
-        //选中影响(子级对父级)
-        var brod = bro.find(".icon-checked").parent();
-        if( type=="level2" ){
-            if( brod.length==bro.length ){
-                dad.removeClass(empt).addClass(chec);
-            } else {
-                dad.removeClass(chec).addClass(empt);
-            }
-        }
-       
-        //结果导出
-        var che = selector.find("ul .icon-checked");
-        var arr = [];
-        for( var i=0;i<che.length;i++ ){ arr.push( $(che[i]).parent().attr("numb") ) }
-        selector.attr("result",arr);
-    
-    });
 }
 
-/* um_tree_check_read()  可选择节点树读取(修改用)
- * @param  object selector (id/class)
- * @param  json   data
+//涉及接口型--------------------------------------------------------------------------------
+/* common_date_duration() 时间组件推进
+ * @param selector object DOM对象
  */
-function um_tree_read(selector,data){
-
-    //节点读取
-    selector.tree({
-        animate     : false,
-        initialState: "normal",
-        data        : data || [],
-        itemWrapper : true,
-        itemCreator : function($li,item){
-            $li.addClass("open");
-            $li.append($("<span>",{type:item.type,numb:item.numb}).html(
-            "<i class='icon icon-"+item.icon+"'></i> "+item.title
-            ));
-        }
-    });
-       
-    //结果导出
-    var che = selector.find("ul .icon-checked");
-    var arr = [];
-    for( var i=0;i<che.length;i++ ){ arr.push( $(che[i]).parent().attr("numb") ) }
-    selector.attr("result",arr);
-
-}
-
-/* common_tool_search_date() 时间组件推进
- * @param object selector (id/class)
- */
-function common_tool_search_date(selector){
+function common_date_duration(selector){
     var common_tool_search_date_temp = `
         <span>时间：</span>
         <div class="input-group">
@@ -485,11 +428,11 @@ function common_tool_search_date(selector){
     selector.html(common_tool_search_date_temp);
 }
 
-/* common_tool_select_group() 下拉框组(权限-公司-部门-职位)
- * @param string selector (id/class)
- * @param string type
+/* common_select_linkage() 下拉联动
+ * @param selector string  id/class
+ * @param type     string  格式化类型
  */
-function common_tool_select_group(selector,type){
+function common_select_linkage(selector,type){
 
     //变量声明
     var temp_result  = "";
@@ -556,7 +499,7 @@ function common_tool_select_group(selector,type){
             type    : "post",
             dataType: "json",
             data    : { id : $(this).val() },                   //公司ID
-            
+
             success : function(data){
                 if( data.status>0 ){
                     var data = data.data;
@@ -601,17 +544,16 @@ function common_tool_select_group(selector,type){
 
 }
 
-
-/* common_staff_tree() 公共员工节点树
- * selector     object  DOM对象
- * company_id   string  公司ID
- * is_open      bool    是否展开
- * is_check     bool    是否可选
+/* common_tree_staff() 节点树员工
+ * @param selector     object  DOM对象
+ * @param company_id   string  公司ID
+ * @param is_open      bool    是否展开
+ * @param is_check     bool    是否可选
  */
-function common_staff_tree(selector,company_id,is_open,is_check){
-    
+function common_tree_staff(selector,company_id,is_open,is_check){
+
     //节点树生成
-    $.ajax({ 
+    $.ajax({
         url     : API.common_staff,
         type    : "post",
         dataType: "json",
@@ -661,7 +603,7 @@ function common_staff_tree(selector,company_id,is_open,is_check){
             var chec = "icon-checked";
             var midd = "icon-midd";
             var span = $(this);
-            var icon = span.find(".icon");            
+            var icon = span.find(".icon");
             var numb = icon.attr("numb");
             var type = icon.attr("type");
             var son  = icon.parent().next("ul").find(".icon");
@@ -685,7 +627,7 @@ function common_staff_tree(selector,company_id,is_open,is_check){
                     che_son.parents("ul").find(".icon-check-empty").parent("span").parents("ul").siblings("span").children(".icon").removeClass(chec).addClass(empt);
                 } else {
                     if( type=="0" ){
-                        che_son.removeClass(chec).addClass(empt); 
+                        che_son.removeClass(chec).addClass(empt);
                     } else {
                         che_son.parents("ul").siblings("span").children(".icon").removeClass(chec).addClass(empt);
                     }
@@ -695,17 +637,53 @@ function common_staff_tree(selector,company_id,is_open,is_check){
             //结果导出
             var che = selector.find(".icon-checked");
             var result = "";
-            for( var i=0;i<che.length;i++ ){ 
+            for( var i=0;i<che.length;i++ ){
                 var che_numb = $(che[i]).attr("numb");
-                var che_type = $(che[i]).attr("type");                
+                var che_type = $(che[i]).attr("type");
                 if( che_type!="0" && che_numb!=undefined ){ result+=che_numb+","; }
             }
             var result = result.substr(0,result.length-1);
             selector.attr("result",result);
-            console.log(result);
-            
+
         });
 
     }
+
+}
+
+/* common_tree_staff_read()    节点树员工读取
+ * @param selector     object  DOM对象
+ * @param data         json    数据对象
+ */
+function common_tree_staff_read(selector,data){
+
+    //节点读取
+    selector.tree({
+        animate     : false,
+        initialState: "normal",
+        data        : data || [],
+        itemWrapper : true,
+        itemCreator : function($li,item){
+
+            //是否有工号(员工=>用户)
+            if( item.userid!="" ){
+                $li.append( $("<span>").html(`<i class="icon icon-${item.icon}" numb="${item.userid}" type="${item.type}"></i>${item.text}`) );
+            } else {
+                $li.append( $("<p class='text-muted'>").html(`${item.text}`) );
+            }
+
+        }
+    });
+
+    //结果导出
+    var che = selector.find(".icon-checked");
+    var result = "";
+    for( var i=0;i<che.length;i++ ){
+        var che_numb = $(che[i]).attr("numb");
+        var che_type = $(che[i]).attr("type");
+        if( che_type!="0" && che_numb!=undefined ){ result+=che_numb+","; }
+    }
+    var result = result.substr(0,result.length-1);
+    selector.attr("result",result);
 
 }

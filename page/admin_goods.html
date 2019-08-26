@@ -255,7 +255,7 @@ $(function(){
     
     //数据表格-----------------------------------------------------------------------------------------------
     admin_goods_datagrid.datagrid({
-        height      : um_height(admin_goods_datagrid),
+        height      : zui_datagrid_height(admin_goods_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -368,7 +368,7 @@ $(function(){
         + "&select2="+ admin_goods_tool_select2.val();
 
         //GET提交
-        um_render(admin_goods_datagrid_obj,admin_goods_api.datagrid+keyword);
+        zui_datagrid_render(admin_goods_datagrid_obj,admin_goods_api.datagrid+keyword);
 
     });
 
@@ -400,7 +400,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
+                    zui_datagrid_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -509,17 +509,17 @@ $(function(){
                     admin_goods_edit_card_user.val( data.message );
                     //资料上传
                     admin_goods_edit_uploader1.uploader(
-                        upload_fixed(admin_goods_api.uploader,"admin_goods_edit_uploader1",
+                        zui_upload_fixed(admin_goods_api.uploader,"admin_goods_edit_uploader1",
                             [{id:1,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
                     ),
                     admin_goods_edit_uploader2.uploader(
-                        upload_fixed(admin_goods_api.uploader,"admin_goods_edit_uploader2",
+                        zui_upload_fixed(admin_goods_api.uploader,"admin_goods_edit_uploader2",
                             [{id:2,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
                     ),
                     admin_goods_edit_uploaders.uploader(
-                        upload_free(admin_goods_api.uploader,"admin_goods_edit_uploaders",
+                        zui_upload_free(admin_goods_api.uploader,"admin_goods_edit_uploaders",
                             [{id:3,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
                     ),
@@ -567,7 +567,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
+                    zui_datagrid_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -602,7 +602,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
+                    zui_datagrid_reset(admin_goods_datagrid_obj,admin_goods_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -612,9 +612,9 @@ $(function(){
     });
 
     //上传组件-----------------------------------------------------------------------------------------------
-    admin_goods_add_uploader1.uploader(upload_fixed(admin_goods_api.uploader,"admin_goods_add_uploader1"));
-    admin_goods_add_uploader2.uploader(upload_fixed(admin_goods_api.uploader,"admin_goods_add_uploader2"));
-    admin_goods_add_uploaders.uploader(upload_free(admin_goods_api.uploader,"admin_goods_add_uploaders"));
+    admin_goods_add_uploader1.uploader(zui_upload_fixed(admin_goods_api.uploader,"admin_goods_add_uploader1"));
+    admin_goods_add_uploader2.uploader(zui_upload_fixed(admin_goods_api.uploader,"admin_goods_add_uploader2"));
+    admin_goods_add_uploaders.uploader(zui_upload_free(admin_goods_api.uploader,"admin_goods_add_uploaders"));
 
 });//预加载结尾
 </script>

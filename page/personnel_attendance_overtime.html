@@ -83,7 +83,7 @@ $(function(){
 
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_attendance_overtime_datagrid.datagrid({
-        height      : um_height(personnel_attendance_overtime_datagrid),
+        height      : zui_datagrid_height(personnel_attendance_overtime_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -124,7 +124,7 @@ $(function(){
 
     //下拉选项-----------------------------------------------------------------------------------------------
     //分公司+部门
-    common_tool_select_group("#personnel_attendance_overtime_tool_select_group","12");               //搜索
+    common_select_linkage("#personnel_attendance_overtime_tool_select_group","12");               //搜索
  
     //加班类型
     $.ajax({
@@ -175,7 +175,7 @@ $(function(){
         + "&select4="+ personnel_attendance_overtime_tool_select4.val();
 
         //GET提交
-        um_render(personnel_attendance_overtime_datagrid_obj,personnel_attendance_overtime_api.datagrid+keyword);
+        zui_datagrid_render(personnel_attendance_overtime_datagrid_obj,personnel_attendance_overtime_api.datagrid+keyword);
 
     });
 

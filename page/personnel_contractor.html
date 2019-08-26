@@ -282,7 +282,7 @@ $(function(){
  
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_contractor_datagrid.datagrid({
-        height      : um_height(personnel_contractor_datagrid),
+        height      : zui_datagrid_height(personnel_contractor_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -346,7 +346,7 @@ $(function(){
     personnel_contractor_dele_btn       = ".personnel_contractor_dele_btn";                     //删除
 
     //下拉组件-----------------------------------------------------------------------------------------------
-    common_tool_select_group("#personnel_contractor_tool_select_group","1");                    //搜索
+    common_select_linkage("#personnel_contractor_tool_select_group","1");                    //搜索
 
     //下拉选项-----------------------------------------------------------------------------------------------
     //状态
@@ -398,7 +398,7 @@ $(function(){
         + "&select2="+ personnel_contractor_tool_select2.val();
 
         //GET提交
-        um_render(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid+keyword);
+        zui_datagrid_render(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid+keyword);
 
     });
 
@@ -430,7 +430,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
+                    zui_datagrid_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -539,17 +539,17 @@ $(function(){
                     personnel_contractor_edit_card_user.val( data.message );
                     //资料上传
                     personnel_contractor_edit_uploader1.uploader(
-                        upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader1",
+                        zui_upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader1",
                             [{id:1,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
                     ),
                     personnel_contractor_edit_uploader2.uploader(
-                        upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader2",
+                        zui_upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader2",
                             [{id:2,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
                     ),
                     personnel_contractor_edit_uploaders.uploader(
-                        upload_free(personnel_contractor_api.uploader,"personnel_contractor_edit_uploaders",
+                        zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_edit_uploaders",
                             [{id:3,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
                         )
                     ),
@@ -597,7 +597,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
+                    zui_datagrid_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -632,7 +632,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
+                    zui_datagrid_reset(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -642,9 +642,9 @@ $(function(){
     });
 
     //上传组件-----------------------------------------------------------------------------------------------
-    personnel_contractor_add_uploader1.uploader(upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_add_uploader1"));
-    personnel_contractor_add_uploader2.uploader(upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_add_uploader2"));
-    personnel_contractor_add_uploaders.uploader(upload_free(personnel_contractor_api.uploader,"personnel_contractor_add_uploaders"));
+    personnel_contractor_add_uploader1.uploader(zui_upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_add_uploader1"));
+    personnel_contractor_add_uploader2.uploader(zui_upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_add_uploader2"));
+    personnel_contractor_add_uploaders.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_add_uploaders"));
 
 });//预加载结尾
 </script>

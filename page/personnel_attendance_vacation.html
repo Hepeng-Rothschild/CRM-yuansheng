@@ -144,7 +144,7 @@ $(function(){
  
     //数据表格-----------------------------------------------------------------------------------------------
     personnel_attendance_vacation_datagrid.datagrid({
-        height      : um_height(personnel_attendance_vacation_datagrid),
+        height      : zui_datagrid_height(personnel_attendance_vacation_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -210,7 +210,7 @@ $(function(){
  
     //下拉选项-----------------------------------------------------------------------------------------------
     //分公司+部门
-    common_tool_select_group("#personnel_attendance_vacation_tool_select_group","12");                           //搜索
+    common_select_linkage("#personnel_attendance_vacation_tool_select_group","12");                           //搜索
 
     //修改类型
     $.ajax({
@@ -241,7 +241,7 @@ $(function(){
         + "&select2="+ personnel_attendance_vacation_tool_select_group.find(".common_select_depart").val();
 
         //GET提交
-        um_render(personnel_attendance_vacation_datagrid_obj,personnel_attendance_vacation_api.datagrid+keyword);
+        zui_datagrid_render(personnel_attendance_vacation_datagrid_obj,personnel_attendance_vacation_api.datagrid+keyword);
 
     });
 
@@ -324,7 +324,7 @@ $(function(){
 
                 if( data.status>0 ){
                     um_tip(data.message);
-                    um_reset(personnel_attendance_vacation_datagrid_obj,personnel_attendance_vacation_api.datagrid);
+                    zui_datagrid_reset(personnel_attendance_vacation_datagrid_obj,personnel_attendance_vacation_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
