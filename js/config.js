@@ -13,7 +13,7 @@
         //组件接口
         window.API = {
             //全局接口
-            common_view     : "./page/personnel_company.html",          //欢迎页面 welcome personnel_train_exam admin_message_donation personnel_staff personnel_attendance_vacation
+            common_view     : "./page/welcome.html",                    //欢迎页面 welcome personnel_train_exam admin_message_donation personnel_staff personnel_attendance_vacation
             common_tree     : LOCAL+"Test/common_tree.json",            //左侧导航 ROUTE+"User/GetUserPageInfo"
             common_company  : LOCAL+"Test/test_company.json",           //分公司
             common_depart   : LOCAL+"Test/test_depart.json",            //部门
