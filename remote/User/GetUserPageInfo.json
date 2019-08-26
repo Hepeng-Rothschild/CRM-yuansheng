@@ -204,9 +204,9 @@
                 "title"     :"人事设置",
                 "children"  :[
                     { "title":"部门设置",  "icon":"","url":"setup_personnel_depart"},
-                    { "title":"职位设置"  ,"icon":"","url":"blank"},
-                    { "title":"承包商类型","icon":"","url":"blank"},
-                    { "title":"考试类型",  "icon":"","url":"blank"}
+                    { "title":"职位设置"  ,"icon":"","url":"setup_personnel_post"},
+                    { "title":"承包商类型","icon":"","url":"setup_personnel_contractor"},
+                    { "title":"考试类型",  "icon":"","url":"setup_personnel_exam"}
                 ]
             },
             {   
