@@ -254,7 +254,7 @@ $(function(){
     $(document).on("click",setup_base_edit_btn,function(){
   
         //数据ID
-        var data_id  = cell_value($(this).attr("rowIndex"),1);
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
 
         //远程提交
         $.ajax({
@@ -314,7 +314,7 @@ $(function(){
     $(document).on("click",setup_base_dele_btn,function(){
 
         //数据ID
-        var data_id = cell_value($(this).attr("rowIndex"),1);
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
 
         //其他操作
         setup_base_dele_submit.attr("dataId",data_id);                                //ID传值

@@ -398,8 +398,7 @@ $(function(){
             colIndex:$(this).attr("colIndex"), 
             prefix  :$(this).attr("prefix")
         }
-        console.log(result_para);
-        var data_id = cell_value(result_para.rowIndex,1);                   //数据ID
+        var data_id = zui_datagrid_get_id(result_para.rowIndex);            //数据ID
         var column  = "";                                                   //处理栏目
         switch ( result_para.colIndex ){
             case "9"  : column="上班1";break;

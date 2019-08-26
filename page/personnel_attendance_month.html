@@ -335,7 +335,7 @@ $(function(){
     $(document).on("click",personnel_attendance_month_show_btn,function(){ 
 
         //变量声明
-        var data_id = cell_value($(this).attr("rowIndex"),1);
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
         var label   = $(this).attr("label");
 
         //远程提交

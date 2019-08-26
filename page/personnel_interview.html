@@ -532,7 +532,7 @@ $(function(){
     $(document).on("click",personnel_interview_edit_btn,function(){ 
 
         //数据ID
-        var data_id = cell_value($(this).attr("rowIndex"),1);
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
 
         //远程提交
         $.ajax({
@@ -598,7 +598,7 @@ $(function(){
     $(document).on("click",personnel_interview_state_btn,function(){ 
 
         //变量声明
-        var data_id = cell_value($(this).attr("rowIndex"),1);                       //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));                       //数据ID
         var text    = $(this).text();                                               //操作名称
         var state   = $(this).attr("state");                                        //操作代号
 

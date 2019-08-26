@@ -249,7 +249,7 @@ $(function(){
     $(document).on("click",personnel_attendance_vacation_edit_btn,function(){
 
         //变量声明
-        var data_id = cell_value($(this).attr("rowIndex"),1);                               //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));                               //数据ID
         var colName = $(this).attr("colName");                                              //列name
         var colLabel= $(this).attr("colLabel");                                             //列label
 

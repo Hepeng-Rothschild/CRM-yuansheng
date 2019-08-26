@@ -442,7 +442,7 @@ $(function(){
     $(document).on("click",personnel_contractor_show_btn,function(){ 
 
         //数据ID
-        var data_id  = cell_value($(this).attr("rowIndex"),1);
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
 
         //远程提交
         $.ajax({
@@ -516,7 +516,7 @@ $(function(){
         personnel_contractor_show_box.modal("hide");
 
         //数据ID
-        var data_id  = cell_value($(this).attr("rowIndex"),1);
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
 
         //远程提交
         $.ajax({
@@ -610,7 +610,7 @@ $(function(){
     $(document).on("click",personnel_contractor_dele_btn,function(){
 
         //数据ID
-        var data_id = cell_value($(this).attr("rowIndex"),1);
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
 
         //其他操作
         personnel_contractor_dele_submit.attr("dataId",data_id);                                //ID传值

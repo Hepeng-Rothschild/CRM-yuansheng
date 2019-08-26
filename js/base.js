@@ -300,9 +300,8 @@ function zui_datagrid_height(datagrid){
 }
 
 //数据网格-取值(修改删除用)
-function cell_value(rowIndex,colIndex){
-    //return datagrid_obj.getCell(rowIndex,colIndex).value;
-    return $(".datagrid").data("zui.datagrid").getCell(rowIndex,colIndex).value;
+function zui_datagrid_get_id(rowIndex){
+    return $(".datagrid").data("zui.datagrid").getCell(rowIndex,1).value;
 }
 
 /* zui_datagrid_reset() 重置操作

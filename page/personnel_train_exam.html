@@ -438,7 +438,7 @@ $(function(){
     $(document).on("click",personnel_train_exam_edit_btn,function(){
 
         //数据ID
-        var data_id  = cell_value($(this).attr("rowIndex"),1);
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
 
         //试题设置复位
         personnel_train_exam_limit = 5;
@@ -562,7 +562,7 @@ $(function(){
     $(document).on("click",personnel_train_exam_publ_btn,function(){
 
         //数据ID
-        var data_id = cell_value($(this).attr("rowIndex"),1);
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
 
         //其他操作
         personnel_train_exam_publ_submit.attr("rowIndex",data_id);                              //ID传值
@@ -597,7 +597,7 @@ $(function(){
     $(document).on("click",personnel_train_exam_dele_btn,function(){
 
         //数据ID
-        var data_id = cell_value($(this).attr("rowIndex"),1);
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
 
         //其他操作
         personnel_train_exam_dele_submit.attr("rowIndex",data_id);                              //ID传值

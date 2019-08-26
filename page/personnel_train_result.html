@@ -203,7 +203,7 @@ $(function(){
     $(document).on("click",personnel_train_result_show_btn,function(){
 
         //数据ID
-        var data_id  = cell_value($(this).attr("rowIndex"),1);
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
 
         //远程提交
         $.ajax({
