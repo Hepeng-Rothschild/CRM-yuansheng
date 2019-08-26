@@ -48,6 +48,11 @@
         "title"     : "行政管理",
         "children"  : [
             {   
+                "title"     :"物品管理",
+                "icon"      :"admin_goods",
+                "url"       :"blank"
+            },
+            {   
                 "title"     :"信息发布",
                 "children"  :[
                     { "title":"新闻公告","icon":"admin_message_news    ","url":"blank"},
@@ -63,11 +68,6 @@
                     { "title":"资料中心","icon":"admin_train_data  ","url":"blank"},
                     { "title":"案例管理","icon":"admin_train_case  ","url":"blank"}
                 ]
-            },
-            {   
-                "title"     :"物品管理",
-                "icon"      :"admin_goods",
-                "url"       :"blank"
             }
         ]
     },
@@ -195,7 +195,11 @@
             {   
                 "title"     :"基本设置",
                 "url"       :"setup_base"
-            },        
+            },
+            { 
+                "title" : "账号设置",
+                "url"   : "blank" 
+            },
             {   
                 "title"     :"人事设置",
                 "children"  :[
@@ -280,10 +284,6 @@
                     { "title":"回访设置","icon":"","url":"blank"},
                     { "title":"暂停回访","icon":"","url":"blank"}
                 ]
-            },
-            { 
-                "title" : "账号设置",
-                "url"   : "blank" 
             }
         ]
     }
