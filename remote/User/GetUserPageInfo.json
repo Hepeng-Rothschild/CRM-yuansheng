@@ -236,8 +236,7 @@
             {   
                 "title"     :"权限设置",
                 "children"  :[
-                    { "title":"职位权限",  "icon":"","url":"blank"},
-                    { "title":"分公司数据","icon":"","url":"blank"}
+                    { "title":"职位权限",  "icon":"","url":"setup_auth_post"}
                 ]
             },
             {   
@@ -256,7 +255,7 @@
                     { "title":"项目类别设置","icon":"","url":"blank"}
                 ]
             },
-            {   
+            {
                 "title"     :"量房设置",
                 "children"  :[
                     { "title":"量房标准","icon":"","url":"blank"}
