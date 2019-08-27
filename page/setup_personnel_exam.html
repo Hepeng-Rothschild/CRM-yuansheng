@@ -7,7 +7,8 @@
         <!-- 工具条组 -->
         <div class="tool-group">
             <div class="tool-deal">
-                <label><button class="btn btn-primary" id="setup_personnel_exam_add_btn"> <i class="icon icon-plus"></i> 添加</button></label>
+                <label><button class="btn btn-primary" id="setup_personnel_exam_add1_btn"> <i class="icon icon-plus"></i> 添加考试类型</button></label>
+                <label><button class="btn btn-primary" id="setup_personnel_exam_add2_btn"> <i class="icon icon-plus"></i> 添加二级分类</button></label>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -18,34 +19,59 @@
     </div>
     <!-- datagrid -->
 
-    <!-- 添加盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_personnel_exam_add_box">
+    <!-- 添加盒子1 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_personnel_exam_add1_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">添加</h4>
+                    <h4 class="modal-title">添加考试类型</h4>
                 </div>
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="setup_personnel_exam_add_type">考试类型</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_exam_add_type"></div>
+                            <label class="col-sm-2 required" for="setup_personnel_exam_add1_exam1">考试类型</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_exam_add1_exam1"></div>
                         </div>
-                        <div class="form-group require">
-                            <label class="col-sm-2 required" for="">二级分类</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id=""></div>
-                        </div>                        
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary"  id="setup_personnel_exam_add_submit">提交</button>
+                    <button type="button" class="btn btn-primary"  id="setup_personnel_exam_add1_submit">提交</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- setup_personnel_exam_add_box -->
+    <!-- setup_personnel_exam_add1_box -->
+
+    <!-- 添加盒子2 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_personnel_exam_add2_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加二级分类</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_exam_add2_exam1">考试类型</label>
+                            <div class="col-sm-8"><select id="setup_personnel_exam_add2_exam1" class="form-control"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_personnel_exam_add2_exam2">二级分类</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_exam_add2_exam2"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary"  id="setup_personnel_exam_add2_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_personnel_exam_add2_box -->
 
     <!-- 修改盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="setup_personnel_exam_edit_box">
@@ -58,13 +84,13 @@
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="setup_personnel_exam_edit_type">考试类型</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_exam_edit_type"></div>
-                        </div>
+                            <label class="col-sm-2 required" for="setup_personnel_exam_edit_exam1">考试类型</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_exam_edit_exam1"></div>
+                        </div>                        
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="">二级分类</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id=""></div>
-                        </div>   
+                            <label class="col-sm-2 required" for="setup_personnel_exam_edit_exam2">二级分类</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_personnel_exam_edit_exam2"></div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -106,15 +132,22 @@ $(function(){
     var 
     setup_personnel_exam              = $("#setup_personnel_exam"),                 //页面ID
     setup_personnel_exam_datagrid     = $("#setup_personnel_exam_datagrid"),        //数据表格
-    //添加
-    setup_personnel_exam_add_btn      = $("#setup_personnel_exam_add_btn"),         //添加按钮
-    setup_personnel_exam_add_box      = $("#setup_personnel_exam_add_box"),         //添加盒子
-    setup_personnel_exam_add_submit   = $("#setup_personnel_exam_add_submit"),      //添加提交
-    setup_personnel_exam_add_type     = $("#setup_personnel_exam_add_type"),        //职位
+    //添加1
+    setup_personnel_exam_add1_btn     = $("#setup_personnel_exam_add1_btn"),        //添加按钮
+    setup_personnel_exam_add1_box     = $("#setup_personnel_exam_add1_box"),        //添加盒子
+    setup_personnel_exam_add1_submit  = $("#setup_personnel_exam_add1_submit"),     //添加提交
+    setup_personnel_exam_add1_exam1    = $("#setup_personnel_exam_add1_exam1"),       //考试类型
+    //添加2
+    setup_personnel_exam_add2_btn     = $("#setup_personnel_exam_add2_btn"),        //添加按钮
+    setup_personnel_exam_add2_box     = $("#setup_personnel_exam_add2_box"),        //添加盒子
+    setup_personnel_exam_add2_submit  = $("#setup_personnel_exam_add2_submit"),     //添加提交
+    setup_personnel_exam_add2_exam1    = $("#setup_personnel_exam_add2_exam1"),       //考试类型
+    setup_personnel_exam_add2_exam2    = $("#setup_personnel_exam_add2_exam2"),       //二级分类
     //修改
     setup_personnel_exam_edit_box     = $("#setup_personnel_exam_edit_box"),        //修改盒子
     setup_personnel_exam_edit_submit  = $("#setup_personnel_exam_edit_submit"),     //修改提交
-    setup_personnel_exam_edit_type    = $("#setup_personnel_exam_edit_type"),       //职位
+    setup_personnel_exam_edit_exam1    = $("#setup_personnel_exam_edit_exam1"),       //考试类型
+    setup_personnel_exam_edit_exam2    = $("#setup_personnel_exam_edit_exam2"),       //二级分类
     //删除
     setup_personnel_exam_dele_box     = $("#setup_personnel_exam_dele_box"),        //删除盒子
     setup_personnel_exam_dele_submit  = $("#setup_personnel_exam_dele_submit");     //删除提交
@@ -124,16 +157,16 @@ $(function(){
 
         //本地接口
         var setup_personnel_exam_api = {
-            datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
-            select     : LOCAL + "Test/test_select.json",                           //下拉选择
+            datagrid   : LOCAL + "Test/Setup/Personnel/exam.json",                    //数据表格
+            select     : LOCAL + "Test/test_select.json",                             //下拉选择
         }
 
     } else if ( window.STATE == "route" ){
 
         //远程接口
         var setup_personnel_exam_api = {
-            datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
-            select     : LOCAL + "Test/test_select.json",                           //下拉选择
+            datagrid   : LOCAL + "Test/test_datagrid.json",                              //数据表格
+            select     : LOCAL + "Test/test_select.json",                               //下拉选择
         }
 
     }
@@ -156,10 +189,10 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {name:"id",   label:"ID",        width:49},
-                {name:"text8",label:"考试类型",width:150},
-                {name:"text8",label:"二级分类",width:150},
-                {name:"state",label:"操作",      width:150,
+                {name:"id",   label:"ID",      width:49},
+                {name:"exam1",label:"考试类型",width:150},
+                {name:"exam2",label:"二级分类",width:150},
+                {name:"state",label:"操作",    width:150,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
@@ -188,12 +221,31 @@ $(function(){
     setup_personnel_exam_edit_btn       = ".setup_personnel_exam_edit_btn",                     //修改按钮
     setup_personnel_exam_dele_btn       = ".setup_personnel_exam_dele_btn";                     //删除按钮
 
-    //添加按钮-----------------------------------------------------------------------------------------------
-    setup_personnel_exam_add_btn.click(function(){
-        setup_personnel_exam_add_box.modal("show");
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //添加二级分类-考试类型获取
+    $.ajax({
+        url     : setup_personnel_exam_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                setup_personnel_exam_add2_exam1.html(option);
+            }
+        }
     });
-    //添加提交
-    setup_personnel_exam_add_submit.click(function(){
+
+    //添加按钮1----------------------------------------------------------------------------------------------
+    setup_personnel_exam_add1_btn.click(function(){
+        setup_personnel_exam_add1_box.modal("show");
+    });
+    //添加提交1
+    setup_personnel_exam_add1_submit.click(function(){
  
         //远程提交
         $.ajax({
@@ -201,7 +253,34 @@ $(function(){
             type    : "post",
             dataType: "json",
             data    : {
-                type : setup_personnel_exam_add_type.val(),
+                exam1 : setup_personnel_exam_add1_exam1.val()
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_personnel_exam_datagrid_obj,setup_personnel_exam_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //添加按钮2----------------------------------------------------------------------------------------------
+    setup_personnel_exam_add2_btn.click(function(){
+        setup_personnel_exam_add2_box.modal("show");
+    });
+    //添加提交2
+    setup_personnel_exam_add2_submit.click(function(){
+ 
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                exam1 : setup_personnel_exam_add2_exam1.val(),
+                exam2 : setup_personnel_exam_add2_exam2.val()
             },
             success : function(data){
                 if( data.status>0 ){
@@ -231,7 +310,14 @@ $(function(){
                 if( data.status>0 ){
 
                     //数据赋值
-                    setup_personnel_exam_edit_type.val( data.message );
+                    if( data_state=="1" ){              //考试类型
+                        setup_personnel_exam_edit_exam1.val(  data.message );
+                        setup_personnel_exam_edit_box.find("form .form-group:last-child").addClass("hidden");
+                    } else if ( data_state=="2" ){      //考试类型+二级分类
+                        setup_personnel_exam_edit_exam1.val(  data.message );
+                        setup_personnel_exam_edit_exam2.val(  data.message );
+                        setup_personnel_exam_edit_box.find("form .form-group:last-child").removeClass("hidden");
+                    }
 
                     //其他操作
                     setup_personnel_exam_edit_submit.attr("dataId",data_id);  //数据ID传值
@@ -257,7 +343,8 @@ $(function(){
             dataType: "json",
             data    : { 
                 id      : data_id,
-                type    : setup_personnel_exam_edit_type.val()
+                exam1    : setup_personnel_exam_edit_exam1.val(),
+                exam2    : setup_personnel_exam_edit_exam2.val(),
              },
             success : function(data){
                 if( data.status>0 ){

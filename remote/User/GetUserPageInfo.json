@@ -212,11 +212,11 @@
             {   
                 "title"     :"考勤设置",
                 "children"  :[
-                    { "title":"班次设置"  ,"icon":"","url":"blank"},
-                    { "title":"加班规则"  ,"icon":"","url":"blank"},
-                    { "title":"考勤组管理","icon":"","url":"blank"},
-                    { "title":"补卡规则"  ,"icon":"","url":"blank"},
-                    { "title":"假期管理"  ,"icon":"","url":"blank"}
+                    { "title":"班次设置"  ,"icon":"","url":"setup_attendance_worktime"},
+                    { "title":"加班规则"  ,"icon":"","url":"setup_attendance_overtime"},
+                    { "title":"考勤组管理","icon":"","url":"setup_attendance_group"   },
+                    { "title":"补卡规则"  ,"icon":"","url":"setup_attendance_patch"   },
+                    { "title":"假期管理"  ,"icon":"","url":"setup_attendance_vacation"}
                 ]
             },
             {   

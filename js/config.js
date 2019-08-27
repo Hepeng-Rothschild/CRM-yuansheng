@@ -13,7 +13,7 @@
 
         //本地接口
         window.API = {
-            common_view     : "./page/setup_personnel_exam.html",           //setup_base setup_account setup_personnel_post setup_personnel_contractor setup_personnel_exam
+            common_view     : "./page/setup_attendance_worktime.html",       //welcome
             test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
             test_response   : LOCAL+"Test/test_response.json",              //数据响应
             test_export     : LOCAL+"Upload/test_export.pdf",               //导出文件

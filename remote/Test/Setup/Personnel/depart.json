@@ -3,7 +3,7 @@
     "data"    : [
         {"id": 1,"depart1":"商务部","depart2":"商务1部","state":2},
         {"id": 2,"depart1":"商务部","depart2":"商务2部","state":2},
-        {"id": 3,"depart1":"推广部","depart2":""       ,"state":1},
+        {"id": 3,"depart1":"推广部","depart2":"",       "state":1},
         {"id": 4,"depart1":"工程部","depart2":"工程1部","state":2},
         {"id": 5,"depart1":"工程部","depart2":"工程2部","state":2},
         {"id": 6,"depart1":"工程部","depart2":"工程3部","state":2},

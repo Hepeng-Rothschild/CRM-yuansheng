@@ -1,0 +1,27 @@
+{
+    "result"  : "success",
+    "data"    : [
+        {"id": 1,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id": 2,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id": 3,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id": 4,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id": 5,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id": 6,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id": 7,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id": 8,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id": 9,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id":10,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id":11,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id":12,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id":13,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id":14,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id":15,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id":16,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id":17,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id":18,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id":19,"workname":"上午上班时间","worktime":"09:00 - 18:30"},
+        {"id":20,"workname":"上午上班时间","worktime":"09:00 - 18:30"}
+    ],
+    "message" : "",
+    "pager"   : {"page":1,"recTotal":20,"recPerPage":20}
+}
