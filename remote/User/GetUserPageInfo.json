@@ -222,14 +222,14 @@
             {   
                 "title"     :"行政设置",
                 "children"  :[
-                    { "title":"公告分类",    "icon":"","url":"blank"},
-                    { "title":"会议纪要分类","icon":"","url":"blank"},
-                    { "title":"规章制度分类","icon":"","url":"blank"},
-                    { "title":"乐捐设置",    "icon":"","url":"blank"},
-                    { "title":"培训类型",    "icon":"","url":"blank"},
-                    { "title":"资料类型",    "icon":"","url":"blank"},
-                    { "title":"案例分类",    "icon":"","url":"blank"},
-                    { "title":"物品类型",    "icon":"","url":"blank"}
+                    { "title":"物品类型",    "icon":"","url":"setup_admin_goods"           },
+                    { "title":"公告类型",    "icon":"","url":"setup_admin_message_news"    },
+                    { "title":"会议纪要类型","icon":"","url":"setup_admin_message_meeting" },
+                    { "title":"乐捐设置",    "icon":"","url":"setup_admin_message_donation"},
+                    { "title":"培训类型",    "icon":"","url":"setup_admin_train_center"    },
+                    { "title":"规章制度类型","icon":"","url":"setup_admin_train_rule"      },
+                    { "title":"资料类型",    "icon":"","url":"setup_admin_train_data"      },
+                    { "title":"案例类型",    "icon":"","url":"setup_admin_train_case"      }
                 ]
             },
             {   
@@ -251,7 +251,7 @@
                     { "title":"品牌设置",    "icon":"","url":"blank"},
                     { "title":"计量单位设置","icon":"","url":"blank"},
                     { "title":"人工工种设置","icon":"","url":"blank"},
-                    { "title":"材料分类设置","icon":"","url":"blank"},
+                    { "title":"材料类型设置","icon":"","url":"blank"},
                     { "title":"项目类别设置","icon":"","url":"blank"}
                 ]
             },

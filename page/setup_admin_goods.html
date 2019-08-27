@@ -1,0 +1,301 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="setup_admin_goods">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="setup_admin_goods_datagrid">
+
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <div class="tool-deal">
+                <label><button class="btn btn-primary" id="setup_admin_goods_add_btn"> <i class="icon icon-plus"></i> 添加</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_admin_goods_add_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_admin_goods_add_type">物品类型</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_admin_goods_add_type"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary"  id="setup_admin_goods_add_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_admin_goods_add_box -->
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_admin_goods_edit_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_admin_goods_edit_type">物品类型</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_admin_goods_edit_type"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary"  id="setup_admin_goods_edit_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_admin_goods_edit_box -->
+
+    <!-- 删除盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_admin_goods_dele_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否删除？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="setup_admin_goods_dele_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_admin_goods_dele_box -->
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function(){
+   
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    setup_admin_goods              = $("#setup_admin_goods"),                 //页面ID
+    setup_admin_goods_datagrid     = $("#setup_admin_goods_datagrid"),        //数据表格
+    //添加
+    setup_admin_goods_add_btn      = $("#setup_admin_goods_add_btn"),         //添加按钮
+    setup_admin_goods_add_box      = $("#setup_admin_goods_add_box"),         //添加盒子
+    setup_admin_goods_add_submit   = $("#setup_admin_goods_add_submit"),      //添加提交
+    setup_admin_goods_add_type     = $("#setup_admin_goods_add_type"),        //物品类型
+    //修改
+    setup_admin_goods_edit_box     = $("#setup_admin_goods_edit_box"),        //修改盒子
+    setup_admin_goods_edit_submit  = $("#setup_admin_goods_edit_submit"),     //修改提交
+    setup_admin_goods_edit_type    = $("#setup_admin_goods_edit_type"),       //物品类型
+    //删除
+    setup_admin_goods_dele_box     = $("#setup_admin_goods_dele_box"),        //删除盒子
+    setup_admin_goods_dele_submit  = $("#setup_admin_goods_dele_submit");     //删除提交
+
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var setup_admin_goods_api = {
+            datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
+        }
+
+    } else if ( window.STATE == "route" ){
+
+        //远程接口
+        var setup_admin_goods_api = {
+            datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
+        }
+
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    setup_admin_goods_datagrid.datagrid({
+        height      : zui_datagrid_height(setup_admin_goods_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",     label:"ID",      width:49},
+                {name:"text8",  label:"物品类型",width:150},
+                {name:"text8",  label:"二级分类",width:150},
+                {name:"text1",  label:"物品类型",width:80 },
+                {name:"operate",label:"操作",    width:150,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = `
+                                <a class="setup_admin_goods_edit_btn" rowIndex="${cell.rowIndex}" state="${dataValue}">修改</a>
+                                <a class="setup_admin_goods_dele_btn" rowIndex="${cell.rowIndex}">删除</a>
+                            `;
+                           return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : setup_admin_goods_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    setup_admin_goods_datagrid_obj   = setup_admin_goods_datagrid.data("zui.datagrid"),   //表格对象
+    setup_admin_goods_edit_btn       = ".setup_admin_goods_edit_btn",                     //修改按钮
+    setup_admin_goods_dele_btn       = ".setup_admin_goods_dele_btn";                     //删除按钮
+
+    //添加按钮-----------------------------------------------------------------------------------------------
+    setup_admin_goods_add_btn.click(function(){
+        setup_admin_goods_add_box.modal("show");
+    });
+    //添加提交
+    setup_admin_goods_add_submit.click(function(){
+ 
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                type : setup_admin_goods_add_type.val(),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_admin_goods_datagrid_obj,setup_admin_goods_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",setup_admin_goods_edit_btn,function(){
+  
+        //数据ID
+        var data_id    = zui_datagrid_get_id($(this).attr("rowIndex"));
+        var data_state = $(this).attr("state");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //数据赋值
+                    setup_admin_goods_edit_type.val( data.message );
+
+                    //其他操作
+                    setup_admin_goods_edit_submit.attr("dataId",data_id);  //数据ID传值
+                    setup_admin_goods_edit_box.modal("show");              //盒子显示
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    //修改提交
+    setup_admin_goods_edit_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id      : data_id,
+                type    : setup_admin_goods_edit_type.val(),
+             },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_admin_goods_datagrid_obj,setup_admin_goods_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    
+    //删除按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",setup_admin_goods_dele_btn,function(){
+
+        //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //其他操作
+        setup_admin_goods_dele_submit.attr("dataId",data_id);                                //ID传值
+        setup_admin_goods_dele_box.modal("show");                                            //面板显示
+
+    });
+    //删除提交
+    setup_admin_goods_dele_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_admin_goods_datagrid_obj,setup_admin_goods_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+});//预加载结尾
+</script>
