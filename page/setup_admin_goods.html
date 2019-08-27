@@ -7,7 +7,8 @@
         <!-- 工具条组 -->
         <div class="tool-group">
             <div class="tool-deal">
-                <label><button class="btn btn-primary" id="setup_admin_goods_add_btn"> <i class="icon icon-plus"></i> 添加</button></label>
+                <label><button class="btn btn-primary" id="setup_admin_goods_add1_btn"> <i class="icon icon-plus"></i> 添加物品类型</button></label>
+                <label><button class="btn btn-primary" id="setup_admin_goods_add2_btn"> <i class="icon icon-plus"></i> 添加二级分类</button></label>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -18,30 +19,63 @@
     </div>
     <!-- datagrid -->
 
-    <!-- 添加盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_admin_goods_add_box">
+    <!-- 添加盒子1 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_admin_goods_add1_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">添加</h4>
+                    <h4 class="modal-title">添加物品类型</h4>
                 </div>
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="setup_admin_goods_add_type">物品类型</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_admin_goods_add_type"></div>
+                            <label class="col-sm-2 required" for="setup_admin_goods_add1_type1">物品类型</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_admin_goods_add1_type1"></div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary"  id="setup_admin_goods_add_submit">提交</button>
+                    <button type="button" class="btn btn-primary"  id="setup_admin_goods_add1_submit">提交</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- setup_admin_goods_add_box -->
+    <!-- setup_admin_goods_add1_box -->
+
+    <!-- 添加盒子2 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_admin_goods_add2_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加二级分类</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_admin_goods_add2_type1">物品类型</label>
+                            <div class="col-sm-8"><select id="setup_admin_goods_add2_type1" class="form-control"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_admin_goods_add2_type2">二级分类</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_admin_goods_add2_type2"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_admin_goods_add2_unit">物品单位</label>
+                            <div class="col-sm-8"><select id="setup_admin_goods_add2_unit" class="form-control"><!-- JS推进 --></select></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary"  id="setup_admin_goods_add2_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_admin_goods_add2_box -->
 
     <!-- 修改盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="setup_admin_goods_edit_box">
@@ -54,9 +88,17 @@
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="setup_admin_goods_edit_type">物品类型</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_admin_goods_edit_type"></div>
+                            <label class="col-sm-2 required" for="setup_admin_goods_edit_type1">物品类型</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_admin_goods_edit_type1"></div>
+                        </div>                        
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_admin_goods_edit_type2">二级分类</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_admin_goods_edit_type2"></div>
                         </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="setup_admin_goods_edit_unit">物品单位</label>
+                            <div class="col-sm-8"><select id="setup_admin_goods_edit_unit" class="form-control"><!-- JS推进 --></select></div>
+                        </div>                        
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -96,34 +138,45 @@ $(function(){
    
     //变量声明-----------------------------------------------------------------------------------------------
     var 
-    setup_admin_goods              = $("#setup_admin_goods"),                 //页面ID
-    setup_admin_goods_datagrid     = $("#setup_admin_goods_datagrid"),        //数据表格
-    //添加
-    setup_admin_goods_add_btn      = $("#setup_admin_goods_add_btn"),         //添加按钮
-    setup_admin_goods_add_box      = $("#setup_admin_goods_add_box"),         //添加盒子
-    setup_admin_goods_add_submit   = $("#setup_admin_goods_add_submit"),      //添加提交
-    setup_admin_goods_add_type     = $("#setup_admin_goods_add_type"),        //物品类型
+    setup_admin_goods              = $("#setup_admin_goods"),               //页面ID
+    setup_admin_goods_datagrid     = $("#setup_admin_goods_datagrid"),      //数据表格
+    //添加1
+    setup_admin_goods_add1_btn     = $("#setup_admin_goods_add1_btn"),      //添加按钮
+    setup_admin_goods_add1_box     = $("#setup_admin_goods_add1_box"),      //添加盒子
+    setup_admin_goods_add1_submit  = $("#setup_admin_goods_add1_submit"),   //添加提交
+    setup_admin_goods_add1_type1   = $("#setup_admin_goods_add1_type1"),    //物品类型
+    //添加2
+    setup_admin_goods_add2_btn     = $("#setup_admin_goods_add2_btn"),      //添加按钮
+    setup_admin_goods_add2_box     = $("#setup_admin_goods_add2_box"),      //添加盒子
+    setup_admin_goods_add2_submit  = $("#setup_admin_goods_add2_submit"),   //添加提交
+    setup_admin_goods_add2_type1   = $("#setup_admin_goods_add2_type1"),    //物品类型
+    setup_admin_goods_add2_type2   = $("#setup_admin_goods_add2_type2"),    //二级分类
+    setup_admin_goods_add2_unit    = $("#setup_admin_goods_add2_unit"),     //物品单位
     //修改
-    setup_admin_goods_edit_box     = $("#setup_admin_goods_edit_box"),        //修改盒子
-    setup_admin_goods_edit_submit  = $("#setup_admin_goods_edit_submit"),     //修改提交
-    setup_admin_goods_edit_type    = $("#setup_admin_goods_edit_type"),       //物品类型
+    setup_admin_goods_edit_box     = $("#setup_admin_goods_edit_box"),      //修改盒子
+    setup_admin_goods_edit_submit  = $("#setup_admin_goods_edit_submit"),   //修改提交
+    setup_admin_goods_edit_type1   = $("#setup_admin_goods_edit_type1"),    //物品类型
+    setup_admin_goods_edit_type2   = $("#setup_admin_goods_edit_type2"),    //二级分类
+    setup_admin_goods_edit_unit    = $("#setup_admin_goods_edit_unit"),     //物品单位
     //删除
-    setup_admin_goods_dele_box     = $("#setup_admin_goods_dele_box"),        //删除盒子
-    setup_admin_goods_dele_submit  = $("#setup_admin_goods_dele_submit");     //删除提交
+    setup_admin_goods_dele_box     = $("#setup_admin_goods_dele_box"),      //删除盒子
+    setup_admin_goods_dele_submit  = $("#setup_admin_goods_dele_submit");   //删除提交
 
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
 
         //本地接口
         var setup_admin_goods_api = {
-            datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
+            datagrid   : LOCAL + "Test/Setup/Admin/goods.json",               //数据表格
+            select     : LOCAL + "Test/test_select.json",                     //下拉选择
         }
 
     } else if ( window.STATE == "route" ){
 
         //远程接口
         var setup_admin_goods_api = {
-            datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
+            datagrid   : LOCAL + "Test/Setup/Admin/goods.json",               //数据表格
+            select     : LOCAL + "Test/test_select.json",                     //下拉选择
         }
 
     }
@@ -146,11 +199,11 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {name:"id",     label:"ID",      width:49},
-                {name:"text8",  label:"物品类型",width:150},
-                {name:"text8",  label:"二级分类",width:150},
-                {name:"text1",  label:"物品类型",width:80 },
-                {name:"operate",label:"操作",    width:150,
+                {name:"id",   label:"ID",      width:49},
+                {name:"type1",label:"物品类型",width:150},
+                {name:"type2",label:"二级分类",width:150},
+                {name:"unit", label:"物品单位",width:80 },
+                {name:"state",label:"操作",    width:150,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
@@ -179,12 +232,49 @@ $(function(){
     setup_admin_goods_edit_btn       = ".setup_admin_goods_edit_btn",                     //修改按钮
     setup_admin_goods_dele_btn       = ".setup_admin_goods_dele_btn";                     //删除按钮
 
-    //添加按钮-----------------------------------------------------------------------------------------------
-    setup_admin_goods_add_btn.click(function(){
-        setup_admin_goods_add_box.modal("show");
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //添加二级分类-物品类型获取
+    $.ajax({
+        url     : setup_admin_goods_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                setup_admin_goods_add2_type1.html(option);
+            }
+        }
     });
-    //添加提交
-    setup_admin_goods_add_submit.click(function(){
+    //物品单位获取
+    $.ajax({
+        url     : setup_admin_goods_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                setup_admin_goods_add2_unit.html(option);   //添加二级分类
+                setup_admin_goods_edit_unit.html(option);   //修改二级分类
+            }
+        }
+    });
+
+    //添加按钮1----------------------------------------------------------------------------------------------
+    setup_admin_goods_add1_btn.click(function(){
+        setup_admin_goods_add1_box.modal("show");
+    });
+    //添加提交1
+    setup_admin_goods_add1_submit.click(function(){
  
         //远程提交
         $.ajax({
@@ -192,7 +282,35 @@ $(function(){
             type    : "post",
             dataType: "json",
             data    : {
-                type : setup_admin_goods_add_type.val(),
+                type1 : setup_admin_goods_add1_type1.val()
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_admin_goods_datagrid_obj,setup_admin_goods_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //添加按钮2----------------------------------------------------------------------------------------------
+    setup_admin_goods_add2_btn.click(function(){
+        setup_admin_goods_add2_box.modal("show");
+    });
+    //添加提交2
+    setup_admin_goods_add2_submit.click(function(){
+ 
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                type1 : setup_admin_goods_add2_type1.val(),
+                type2 : setup_admin_goods_add2_type2.val(),
+                unit  : setup_admin_goods_add2_unit.val()
             },
             success : function(data){
                 if( data.status>0 ){
@@ -222,7 +340,16 @@ $(function(){
                 if( data.status>0 ){
 
                     //数据赋值
-                    setup_admin_goods_edit_type.val( data.message );
+                    if( data_state=="1" ){              //物品类型
+                        setup_admin_goods_edit_type1.val( data.message );
+                        setup_admin_goods_edit_unit.val(  0 );
+                        setup_admin_goods_edit_box.find("form .form-group:nth-child(2),form .form-group:nth-child(3)").addClass("hidden");
+                    } else if ( data_state=="2" ){      //物品类型+二级分类
+                        setup_admin_goods_edit_type1.val( data.message );
+                        setup_admin_goods_edit_type2.val( data.message );
+                        setup_admin_goods_edit_unit.val(  2 );
+                        setup_admin_goods_edit_box.find("form .form-group:nth-child(2),form .form-group:nth-child(3)").removeClass("hidden");
+                    }
 
                     //其他操作
                     setup_admin_goods_edit_submit.attr("dataId",data_id);  //数据ID传值
@@ -247,8 +374,10 @@ $(function(){
             type    : "post",
             dataType: "json",
             data    : { 
-                id      : data_id,
-                type    : setup_admin_goods_edit_type.val(),
+                id    : data_id,
+                type1 : setup_admin_goods_edit_type1.val(),
+                type2 : setup_admin_goods_edit_type2.val(),
+                unit  : setup_admin_goods_edit_unit.val()
              },
             success : function(data){
                 if( data.status>0 ){
@@ -261,7 +390,6 @@ $(function(){
         });
 
     });
-    
     //删除按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",setup_admin_goods_dele_btn,function(){
 

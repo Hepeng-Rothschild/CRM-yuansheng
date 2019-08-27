@@ -13,7 +13,7 @@
 
         //本地接口
         window.API = {
-            common_view     : "./page/setup_admin_goods.html",              //welcome 制作当中
+            common_view     : "./page/welcome.html",                        //welcome
             test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
             test_response   : LOCAL+"Test/test_response.json",              //数据响应
             test_export     : LOCAL+"Upload/test_export.pdf",               //导出文件
