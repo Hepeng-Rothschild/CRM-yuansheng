@@ -603,7 +603,6 @@ function common_tree_staff(selector,company_id,is_open,is_check,edit_data){
             //变量声明
             var empt = "icon-check-empty";
             var chec = "icon-checked";
-            var midd = "icon-midd";
             var span = $(this);
             var icon = span.find(".icon");
             var numb = icon.attr("numb");
@@ -644,7 +643,7 @@ function common_tree_staff(selector,company_id,is_open,is_check,edit_data){
                 var che_type = $(che[i]).attr("type");
                 if( che_type!="0" && che_numb!=undefined ){ result+=che_numb+","; }
             }
-            var result = result.substr(0,result.length-1);
+            result = result.substr(0,result.length-1);
             selector.attr("result",result);
 
         });

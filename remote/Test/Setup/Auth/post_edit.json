@@ -1,0 +1,255 @@
+{
+	"result" : true,
+	"message": "获取成功",
+	"status" : 1,
+	"data"   : [
+		{
+			"text": "智能办公",
+			"icon": "check-empty",
+			"numb": "1",
+			"type": "1",
+			"children": [
+				{ 
+					"text":"我的申请",
+					"icon":"check-empty",
+					"numb":"2",
+					"type":"2",
+					"children": [{ 
+							"text":"我的申请",
+							"icon":"check-empty",
+							"numb":"3",
+							"type":"3",
+							"children": [
+								{ 
+									"text":"出勤休息",
+									"icon":"checked",
+									"numb":"4",
+									"type":"4"
+								},
+								{ 
+									"text":"人事",
+									"icon":"checked",
+									"numb":"5",
+									"type":"4"
+								},
+								{ 
+									"text":"行政",
+									"icon":"check-empty",
+									"numb":"6",
+									"type":"4"
+								},
+								{ 
+									"text":"财务",
+									"icon":"check-empty",
+									"numb":"7",
+									"type":"4"
+								},
+								{ 
+									"text":"工程",
+									"icon":"check-empty",
+									"numb":"8",
+									"type":"4"
+								}
+							]
+						}
+					
+					]
+				},
+				{ 
+					"text":"我的审批",
+					"icon":"check-empty",
+					"numb":"9",
+					"type":"2",
+					"children": [{ 
+							"text":"我的审批",
+							"icon":"check-empty",
+							"numb":"10",
+							"type":"3",
+							"children": [
+								{ 
+									"text":"出勤休息",
+									"icon":"check-empty",
+									"numb":"11",
+									"type":"4"
+								},
+								{ 
+									"text":"人事",
+									"icon":"check-empty",
+									"numb":"12",
+									"type":"4"
+								},
+								{ 
+									"text":"行政",
+									"icon":"check-empty",
+									"numb":"13",
+									"type":"4"
+								},
+								{ 
+									"text":"财务",
+									"icon":"check-empty",
+									"numb":"14",
+									"type":"4"
+								},
+								{ 
+									"text":"工程",
+									"icon":"check-empty",
+									"numb":"15",
+									"type":"4"
+								}
+							]
+						}
+					
+					]
+				},
+				{ 
+					"text":"我的考试",
+					"icon":"check-empty",
+					"numb":"16",
+					"type":"2",
+					"children": [{ 
+							"text":"我的考试",
+							"icon":"check-empty",
+							"numb":"17",
+							"type":"3",
+							"children": [
+								{ 
+									"text":"查看",
+									"icon":"check-empty",
+									"numb":"18",
+									"type":"4"
+								},
+								{ 
+									"text":"新建",
+									"icon":"check-empty",
+									"numb":"19",
+									"type":"4"
+								}
+							]
+						}
+					
+					]
+				},
+				{ 
+					"text":"抄送通知",
+					"icon":"check-empty",
+					"numb":"20",
+					"type":"2",
+					"children": [{ 
+							"text":"抄送通知",
+							"icon":"check-empty",
+							"numb":"21",
+							"type":"3",
+							"children": [
+								{ 
+									"text":"出勤休息",
+									"icon":"check-empty",
+									"numb":"22",
+									"type":"4"
+								},
+								{ 
+									"text":"人事",
+									"icon":"check-empty",
+									"numb":"23",
+									"type":"4"
+								},
+								{ 
+									"text":"行政",
+									"icon":"check-empty",
+									"numb":"24",
+									"type":"4"
+								},
+								{ 
+									"text":"财务",
+									"icon":"check-empty",
+									"numb":"25",
+									"type":"4"
+								},
+								{ 
+									"text":"工程",
+									"icon":"check-empty",
+									"numb":"26",
+									"type":"4"
+								}
+							]
+						}
+					
+					]
+				}
+			]
+		},
+		{
+			"text": "人事管理",
+			"icon": "check-empty",
+			"numb": "27",
+			"type": "1",
+			"children": [
+				{ 
+					"text":"组织架构",
+					"icon":"check-empty",
+					"numb":"28",
+					"type":"2"
+				},
+				{ 
+					"text":"面试管理",
+					"icon":"check-empty",
+					"numb":"29",
+					"type":"2",
+					"children": [
+						{ 
+							"text":"邀约面试",
+							"icon":"check-empty",
+							"numb":"30",
+							"type":"3",
+							"children": [
+								{ 
+									"text":"添加",
+									"icon":"check-empty",
+									"numb":"31",
+									"type":"4"
+								},
+								{ 
+									"text":"修改",
+									"icon":"check-empty",
+									"numb":"32",
+									"type":"4"
+								},
+								{ 
+									"text":"通过",
+									"icon":"check-empty",
+									"numb":"33",
+									"type":"4"
+								},
+								{ 
+									"text":"储备",
+									"icon":"check-empty",
+									"numb":"34",
+									"type":"4"
+								},
+								{ 
+									"text":"淘汰",
+									"icon":"check-empty",
+									"numb":"35",
+									"type":"4"
+								}
+							]
+						},
+						{ 
+							"text":"人才库",
+							"icon":"check-empty",
+							"numb":"36",
+							"type":"3",
+							"children": [
+								{ 
+									"text":"录用",
+									"icon":"check-empty",
+									"numb":"37",
+									"type":"4"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

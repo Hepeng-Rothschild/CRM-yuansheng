@@ -513,3 +513,17 @@ select{ min-width: 100px!important; }
     color: #999;
     font-size: smaller;
 }
+
+/*权限表格*/
+#setup_auth_post_edit_table table td{
+    padding: 1px;
+}
+#setup_auth_post_edit_table table{
+    margin: 0px;
+}
+#setup_auth_post_edit_table table span,
+#setup_auth_post_edit_table table strong{
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+}

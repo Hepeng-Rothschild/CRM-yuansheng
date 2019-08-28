@@ -17,10 +17,12 @@
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                     <h4 class="modal-title">修改</h4>
                 </div>
-                <div class="modal-body modal-scroll"><!-- JS推进 --></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary"  id="setup_auth_post_edit_submit">提交</button>
+                <div class="modal-body modal-scroll">
+                    <div class="container" id="setup_auth_post_edit_table"><!-- JS推进 --></div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary"  id="setup_auth_post_edit_submit">提交</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,7 +41,8 @@ $(function(){
     setup_auth_post_datagrid     = $("#setup_auth_post_datagrid"),      //数据表格
     //修改
     setup_auth_post_edit_box     = $("#setup_auth_post_edit_box"),      //修改盒子
-    setup_auth_post_edit_submit  = $("#setup_auth_post_edit_submit");   //修改提交
+    setup_auth_post_edit_submit  = $("#setup_auth_post_edit_submit"),   //修改提交
+    setup_auth_post_edit_table   = $("#setup_auth_post_edit_table");    //权限表格
 
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
@@ -47,7 +50,7 @@ $(function(){
         //本地接口
         var setup_auth_post_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",             //数据表格
-            modal_edit : LOCAL + "Test/Setup/auth_edit.json",           //修改盒子
+            modal_edit : LOCAL + "Test/Setup/Auth/post_edit.json",      //修改盒子
         }
 
     } else if ( window.STATE == "route" ){
@@ -55,7 +58,7 @@ $(function(){
         //远程接口
         var setup_auth_post_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",             //数据表格
-            modal_edit : LOCAL + "Test/Setup/auth_edit.json",           //修改盒子
+            modal_edit : LOCAL + "Test/Setup/Auth/post_edit.json",      //修改盒子
         }
 
     }
@@ -116,19 +119,87 @@ $(function(){
 
         //远程提交
         $.ajax({
-            url     : API.test_response,
+            url     : setup_auth_post_api.modal_edit,
             type    : "post",
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
                 if( data.status>0 ){
+
                     //数据赋值
-                    var setup_auth_post_edit_temp = `
-                    <form class="container form-horizontal">
-                        //表格添加
-                    </form>
-                    `;
-                    setup_auth_post_edit_box.find(".modal-body").html( setup_auth_post_edit_temp );
+                    var data = data.data;
+                    var temp = "";
+
+                    //一级循环
+                    for( var a=0;a<data.length;a++ ){
+                        temp += `
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colspan="3">
+                                       <span><i class="icon icon-${data[a].icon}" numb="${data[a].numb}" type="${data[a].type}"></i> ${data[a].text} </span>
+                                       <strong class="pull-right">展开</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+
+                        //二级循环
+                        var l2 = data[a].children;
+                        if( typeof l2 !="undefined" ){
+                            for( var b=0;b<l2.length;b++ ){
+                                temp+= `
+                                <tr>
+                                    <td style="width:120px;">
+                                        <span><i class="icon icon-${l2[b].icon}" numb="${l2[b].numb}" type="${l2[b].type}"></i> ${l2[b].text} </span>
+                                    </td>
+                                    <td>
+                                        <table class="table table-bordered">`;
+
+                                        //三级循环
+                                        var l3 = l2[b].children;
+                                        if( typeof l3 !="undefined" ){
+                                            for( var c=0;c<l3.length;c++ ){
+                                                temp+= `
+                                                <tr>
+                                                    <td style="width:120px;">
+                                                        <span><i class="icon icon-${l3[c].icon}" numb="${l3[c].numb}" type="${l3[c].type}"></i> ${l3[c].text} </span>
+                                                    </td>
+                                                    <td>
+                                                        `;
+
+                                                        //四级循环
+                                                        var l4 = l3[c].children;
+                                                        if( typeof l4 !="undefined" ){
+                                                            for( var d=0;d<l4.length;d++ ){
+                                                                temp+= `<span><i class="icon icon-${l4[d].icon}" numb="${l4[d].numb}" type="${l4[d].type}"></i> ${l4[d].text} </span>`;
+                                                            }
+                                                        }
+
+                                                //三级结尾拼接         
+                                                temp+=`</td></tr>`;
+                                            }
+                                        }
+
+                                //二级结尾拼接
+                                temp+= `</table></td></tr>`; 
+                            }
+                        }
+
+                        //一级结尾拼接
+                        temp += `</tbody></table><br>`;
+                    }
+
+                    //模板推进
+                    setup_auth_post_edit_table.html(temp);
+                    //结果导出
+                    var che = setup_auth_post_edit_table.find(".icon-checked");
+                    var result = "";
+                    for( var i=0;i<che.length;i++ ){
+                        result += $(che[i]).attr("numb")+",";
+                    }
+                    result = result.substr(0,result.length-1);
+                    setup_auth_post_edit_table.attr("result",result);
 
                     //其他操作
                     setup_auth_post_edit_submit.attr("dataId",data_id);  //数据ID传值
@@ -153,6 +224,7 @@ $(function(){
             dataType: "json",
             data    : { 
                 id      : data_id,
+                result  : setup_auth_post_edit_table.attr("result")
              },
             success : function(data){
                 if( data.status>0 ){
@@ -164,6 +236,55 @@ $(function(){
             }
         });
 
+    });
+
+    //权限表格-点击选中
+    setup_auth_post_edit_table.on("click","span",function(){
+
+        //变量声明
+        var empt = "icon-check-empty";
+        var chec = "icon-checked";
+        var span = $(this);
+        var icon = span.find(".icon");
+        var type = icon.attr("type");
+        var son  = icon.parent().parent().parent().find(".icon");
+        var sons = icon.parent().parent().parent().parent().parent().find(".icon");
+        //选中影响(父级对子级)
+        var which = ""; 
+        switch( type ){
+            case "1": which=sons;break;
+            case "4": which=icon;break;
+            default : which=son; break;
+        }
+        if( icon.hasClass(empt) ){
+            which.removeClass(empt).addClass(chec);
+        } else {
+            which.removeClass(chec).addClass(empt);
+        }
+
+        //结果导出
+        var che = setup_auth_post_edit_table.find(".icon-checked");
+        var result = "";
+        for( var i=0;i<che.length;i++ ){
+            result += $(che[i]).attr("numb")+",";
+        }
+        result = result.substr(0,result.length-1);
+        console.log(result);
+        setup_auth_post_edit_table.attr("result",result);
+
+    });
+
+    //权限表格-展开收起
+    setup_auth_post_edit_table.on("click","strong",function(){
+        var text  = $(this).text();
+        var tbody = $(this).parent().parent().parent().siblings();
+        if( text == "展开" ){
+            tbody.addClass("hidden");
+            $(this).html("收起");
+        } else {
+            tbody.removeClass("hidden");
+            $(this).html("展开");
+        }
     });
 
 });//预加载结尾
