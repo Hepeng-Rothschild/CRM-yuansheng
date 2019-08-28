@@ -29,7 +29,7 @@
 
         //远程接口
         window.API = {
-            common_view     : "./page/welcome.html",                        //welcome setup_base setup_account
+            common_view     : "./page/welcome.html",                        //welcome
             test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
             test_response   : LOCAL+"Test/test_response.json",              //数据响应
             test_export     : LOCAL+"Upload/test_export.pdf",               //导出文件
