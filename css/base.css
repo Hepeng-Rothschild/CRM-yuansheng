@@ -513,6 +513,12 @@ select{ min-width: 100px!important; }
     color: #999;
     font-size: smaller;
 }
+/*表单浮层*/
+.form-control-floor{
+    display: block;
+    height:15px;
+    float: none;
+}
 
 /*权限表格*/
 #setup_auth_post_edit_table table td{

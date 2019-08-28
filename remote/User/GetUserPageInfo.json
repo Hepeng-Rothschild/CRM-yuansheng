@@ -210,6 +210,12 @@
                 ]
             },
             {   
+                "title"     :"权限设置",
+                "children"  :[
+                    { "title":"职位权限",  "icon":"","url":"setup_auth_post"}
+                ]
+            },
+            {   
                 "title"     :"考勤设置",
                 "children"  :[
                     { "title":"班次设置"  ,"icon":"","url":"setup_attendance_worktime"},
@@ -234,25 +240,11 @@
                 ]
             },
             {   
-                "title"     :"权限设置",
+                "title"     :"商务设置",
                 "children"  :[
-                    { "title":"职位权限",  "icon":"","url":"setup_auth_post"}
-                ]
-            },
-            {   
-                "title"     :"审批设置",
-                "children"  :[
-                    { "title":"审批列表","icon":"setup_approval","url":"blank"}
-                ]
-            },
-            {   
-                "title"     :"材料设置",
-                "children"  :[
-                    { "title":"品牌设置",    "icon":"","url":"blank"},
-                    { "title":"计量单位设置","icon":"","url":"blank"},
-                    { "title":"人工工种设置","icon":"","url":"blank"},
-                    { "title":"材料类型设置","icon":"","url":"blank"},
-                    { "title":"项目类别设置","icon":"","url":"blank"}
+                    { "title":"回访设置","icon":"","url":"blank"},
+                    { "title":"录入设置","icon":"","url":"blank"},
+                    { "title":"暂停回访","icon":"","url":"blank"}
                 ]
             },
             {
@@ -262,9 +254,19 @@
                 ]
             },
             {   
+                "title"     :"材料设置",
+                "children"  :[
+                    { "title":"品牌设置",    "icon":"","url":"blank"},
+                    { "title":"计量单位设置","icon":"","url":"blank"},
+                    { "title":"人工工种设置","icon":"","url":"blank"},
+                    { "title":"材料类型设置","icon":"","url":"blank"},
+                    { "title":"工程总项设置","icon":"","url":"blank"},
+                    { "title":"项目类别设置","icon":"","url":"blank"}
+                ]
+            },
+            {   
                 "title"     :"报价设置",
                 "children"  :[
-                    { "title":"空间类型",     "icon":"","url":"blank"},
                     { "title":"费率/费用设置","icon":"","url":"blank"},
                     { "title":"报价说明设置", "icon":"","url":"blank"},
                     { "title":"折扣设置",     "icon":"","url":"blank"},
@@ -279,12 +281,12 @@
                 ]
             },
             {   
-                "title"     :"商务设置",
+                "title"     :"审批设置",
                 "children"  :[
-                    { "title":"回访设置","icon":"","url":"blank"},
-                    { "title":"暂停回访","icon":"","url":"blank"}
+                    { "title":"审批列表","icon":"setup_approval","url":"blank"}
                 ]
             }
+            
         ]
     }
 ]

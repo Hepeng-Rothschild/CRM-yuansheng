@@ -27,7 +27,7 @@
                     <h4 class="modal-title">添加</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="container form-horizontal">
+                    <form class="container form-horizontal need-hidden-box">
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="setup_attendance_worktime_add_name">班次名称</label>
                             <div class="col-sm-8"><input type="text" class="form-control" id="setup_attendance_worktime_add_name"></div>
@@ -43,23 +43,59 @@
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="setup_attendance_worktime_add_time1">班次时间</label>
-                            <div class="col-sm-8 flex-box">
-                                <input type="time" id="setup_attendance_worktime_add_time1" class="form-control flex-son">
-                                <input type="time" id="setup_attendance_worktime_add_time2" class="form-control flex-son">
-                                <input type="time" id="setup_attendance_worktime_add_time3" class="form-control flex-son hidden">
-                                <input type="time" id="setup_attendance_worktime_add_time4" class="form-control flex-son hidden">
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">1</span>
+                                    <input type="time" class="form-control" id="setup_attendance_worktime_add_time1">
+                                </div>
+                                <div class="form-control-floor"></div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">2</span>
+                                    <input type="time" class="form-control" id="setup_attendance_worktime_add_time2">
+                                </div>
+                                <div class="need-hidden">
+                                    <div class="form-control-floor"></div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">3</span>
+                                        <input type="time" class="form-control" id="setup_attendance_worktime_add_time3">
+                                    </div>
+                                    <div class="form-control-floor"></div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">4</span>
+                                        <input type="time" class="form-control" id="setup_attendance_worktime_add_time4">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-3"></div>
+                        </div>
+                        <div class="form-group require need-shown">
+                            <label class="col-sm-2 required" for="setup_attendance_worktime_add_noon1">午休时间</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">开始时间</span>
+                                    <input type="time" class="form-control" id="setup_attendance_worktime_add_noon1">
+                                </div>
+                                <div class="form-control-floor"></div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">结束时间</span>
+                                    <input type="time" class="form-control" id="setup_attendance_worktime_add_noon2">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="setup_attendance_worktime_add_noon">午休时间</label>
-                            <div class="col-sm-4"><input type="time" class="form-control" id="setup_attendance_worktime_add_noon1"></div>
-                            <div class="col-sm-4"><input type="time" class="form-control" id="setup_attendance_worktime_add_noon2"></div>
-                        </div>
-                        <div class="form-group require">
-                            <label class="col-sm-2 required" for="">晚走晚到</label>
-                            <div class="col-sm-4"><input type="time" id="setup_attendance_worktime_add_time5" class="form-control"></div>
-                            <div class="col-sm-4"><input type="time" id="setup_attendance_worktime_add_time6" class="form-control"></div>
+                            <label class="col-sm-2 required" for="setup_attendance_worktime_add_time5">晚走晚到</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">第一天上班晚走</span>
+                                    <input type="number" class="form-control" id="setup_attendance_worktime_add_time5">
+                                    <span class="input-group-addon">分钟</span>
+                                </div>
+                                <div class="form-control-floor"></div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">第二天上班晚到</span>
+                                    <input type="number" class="form-control" id="setup_attendance_worktime_add_time6">
+                                    <span class="input-group-addon">分钟</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="setup_attendance_worktime_add_late">旷工迟到</label>
@@ -155,9 +191,7 @@ $(function(){
 
     setup_attendance_worktime_add_time5    = $("#setup_attendance_worktime_add_time5"),       //晚走晚到
     setup_attendance_worktime_add_time6   = $("#setup_attendance_worktime_add_time6"),       //晚走晚到
-
-
-
+ 
     //修改
     setup_attendance_worktime_edit_box     = $("#setup_attendance_worktime_edit_box"),        //修改盒子
     setup_attendance_worktime_edit_submit  = $("#setup_attendance_worktime_edit_submit"),     //修改提交
@@ -235,20 +269,19 @@ $(function(){
     setup_attendance_worktime_edit_btn       = ".setup_attendance_worktime_edit_btn",                     //修改按钮
     setup_attendance_worktime_dele_btn       = ".setup_attendance_worktime_dele_btn";                     //删除按钮
 
- 
-
+    //类型切换-隐藏相应字段
+    $(".need-hidden").addClass("hidden");   //默认隐藏
     setup_attendance_worktime_add_type.change(function(){
+        var need_hidden = $(this).parents(".need-hidden-box").find(".need-hidden");
+        var need_shown  = $(this).parents(".need-hidden-box").find(".need-shown");
         if( $(this).val()=="1" ){
-            setup_attendance_worktime_add_time3.addClass("hidden");
-            setup_attendance_worktime_add_time4.addClass("hidden");
-            setup_attendance_worktime_add_noon1.parent().parent().removeClass("hidden");
+            need_hidden.addClass("hidden");
+            need_shown.removeClass("hidden");
         } else {
-            setup_attendance_worktime_add_time3.removeClass("hidden");
-            setup_attendance_worktime_add_time4.removeClass("hidden");
-            setup_attendance_worktime_add_noon1.parent().parent().addClass("hidden");
+            need_hidden.removeClass("hidden");
+            need_shown.addClass("hidden");
         }
     });
-
 
     //添加按钮-----------------------------------------------------------------------------------------------
     setup_attendance_worktime_add_btn.click(function(){
@@ -367,6 +400,11 @@ $(function(){
         });
 
     });
+
+
+
+    //测试操作-----
+    setup_attendance_worktime_add_box.modal("show");
 
 });//预加载结尾
 </script>
