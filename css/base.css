@@ -533,3 +533,35 @@ select{ min-width: 100px!important; }
     padding: 5px;
     cursor: pointer;
 }
+/*加班规则*/
+.setup_attendance_overtime_table dl dt{
+    font-weight: normal;
+}
+.setup_attendance_overtime_table dl dd{
+    padding: 10px 0 0 16px;
+}
+.setup_attendance_overtime_table dl dd .input-group{
+    width:250px;
+}
+.setup_attendance_overtime_table dl dd .small{
+    padding:7px;
+}
+.setup_attendance_overtime_table tr td{
+    position: relative;
+}
+.setup_attendance_overtime_table .table-disabled-mask{
+    width: 100%;
+    height: 100%;
+    background:rgba(255,255,255,.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:4;
+    display:none;
+}
+.setup_attendance_overtime_table tr td span.for-label{
+    cursor: pointer;
+}
+.setup_attendance_overtime_table tr td span.for-label::selection{
+    background:transparent;
+}

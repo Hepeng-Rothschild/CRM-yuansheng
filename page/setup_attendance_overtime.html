@@ -34,11 +34,7 @@
                         <table class="table table-bordered setup_attendance_overtime_table">
                             <thead><tr><th><span>规则名称</span></th></tr></thead>
                             <tbody><tr><td>
-                                <div class="col-sm-3"><input type="text" class="form-control" id="setup_attendance_overtime_add_name"></div>
-
-                                <button type="button" class="btn" id="export">导出</button><hr>
-                                <textarea class="form-control" id="result"></textarea>
-
+                                <div class="col-sm-3"><input type="text" class="form-control" id="setup_attendance_overtime_add_rule"></div>
                             </td></tr></tbody>
                         </table>
                         <!-- 工作日加班 -->
@@ -58,7 +54,7 @@
                                 <tr>
                                     <td>
                                         <div class="table-disabled-mask"></div>
-                                        <ul>
+                                        <ul radio="1" time1="" time2="" id="setup_attendance_overtime_add_table1_ul">
                                             <li>
                                                 <dl><dt><span class="for-label"><i class="icon icon-dot-circle"></i> 需要审批，以批准单为准</span></dt></dl>
                                             </li>
@@ -68,7 +64,7 @@
                                                     <dd>
                                                         <div class="input-group pull-left">
                                                             <span class="input-group-addon">加班起算时间</span>
-                                                            <input type="number" class="form-control" id="" readonly>
+                                                            <input type="number" class="form-control" readonly>
                                                             <span class="input-group-addon">分钟</span>
                                                         </div>
                                                         <div class="small text-muted pull-left">最后一次下班时间超过该分钟数后，开始计算加班</div>
@@ -77,7 +73,7 @@
                                                     <dd>
                                                         <div class="input-group pull-left">
                                                             <span class="input-group-addon">最小加班时长</span>
-                                                            <input type="number" class="form-control" id="" readonly>
+                                                            <input type="number" class="form-control" readonly>
                                                             <span class="input-group-addon">分钟</span>
                                                         </div>
                                                         <div class="small text-muted pull-left">分钟小于该时长则加班时长记为0</div>
@@ -91,7 +87,7 @@
                                                     <dd>
                                                         <div class="input-group pull-left">
                                                             <span class="input-group-addon">加班起算时间</span>
-                                                            <input type="number" class="form-control" id="" readonly>
+                                                            <input type="number" class="form-control" readonly>
                                                             <span class="input-group-addon">分钟</span>
                                                         </div>
                                                         <div class="small text-muted pull-left">最后一次下班时间超过该分钟数后，开始计算加班</div>
@@ -100,7 +96,7 @@
                                                     <dd>
                                                         <div class="input-group pull-left">
                                                             <span class="input-group-addon">最小加班时长</span>
-                                                            <input type="number" class="form-control" id="" readonly>
+                                                            <input type="number" class="form-control" readonly>
                                                             <span class="input-group-addon">分钟</span>
                                                         </div>
                                                         <div class="small text-muted pull-left">分钟小于该时长则加班时长记为0</div>
@@ -117,12 +113,17 @@
                                         <ol>
                                             <li>
                                                 <dl>
-                                                    <dt><span class="for-label"><i class="icon icon-check-empty"></i> 扣除休息时间</span></dt>
+                                                    <dt>
+                                                        <span class="for-label" id="setup_attendance_overtime_add_table1_ol_check1">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            扣除休息时间
+                                                        </span>
+                                                    </dt>
                                                     <dd>
                                                         <div class="input-group pull-left">
-                                                            <input type="time" class="form-control" id="" readonly>
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_add_table1_ol_duration1" readonly>
                                                             <span class="input-group-addon">至</span>
-                                                            <input type="time" class="form-control" id="" readonly>
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_add_table1_ol_duration2" readonly>
                                                         </div>
                                                         <div class="clearfix"></div>
                                                     </dd>
@@ -130,9 +131,14 @@
                                             </li>
                                             <li>
                                                 <dl>
-                                                    <dt><span class="for-label has-table"><i class="icon icon-check-empty"></i> 计为加班费/调休</span></dt>
+                                                    <dt>
+                                                        <span class="for-label has-table" id="setup_attendance_overtime_add_table1_ol_check2">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            计为加班费/调休
+                                                        </span>
+                                                    </dt>
                                                     <dd>
-                                                        <table class="table">
+                                                        <table class="table" radio="" time="" id="setup_attendance_overtime_add_table1_ol_table">
                                                             <tr>
                                                                 <td colspan="2">
                                                                     <span class="for-label"><i class="icon icon-circle-blank"></i> 计为加班费</span>
@@ -143,7 +149,7 @@
                                                                 <td>
                                                                     <div class="input-group pull-left">
                                                                         <span class="input-group-addon">调休比例 1：</span>
-                                                                        <input type="number" class="form-control" id="" readonly>
+                                                                        <input type="number" class="form-control" readonly>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -152,7 +158,7 @@
                                                                 <td>
                                                                     <div class="input-group pull-left">
                                                                         <span class="input-group-addon">调休比例 1：</span>
-                                                                        <input type="number" class="form-control" id="" readonly>
+                                                                        <input type="number" class="form-control" readonly>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -182,7 +188,7 @@
                                 <tr>
                                     <td>
                                         <div class="table-disabled-mask"></div>
-                                        <ul>
+                                        <ul radio="1" time1="" time2="" id="setup_attendance_overtime_add_table2_ul">
                                             <li>
                                                 <dl><dt><span class="for-label"><i class="icon icon-dot-circle"></i> 需要审批，以批准单为准</span></dt></dl>
                                             </li>
@@ -192,7 +198,7 @@
                                                     <dd>
                                                         <div class="input-group pull-left">
                                                             <span class="input-group-addon">最小加班时长</span>
-                                                            <input type="number" class="form-control" id="" readonly>
+                                                            <input type="number" class="form-control" readonly>
                                                             <span class="input-group-addon">分钟</span>
                                                         </div>
                                                         <div class="small text-muted pull-left">当天加班少于该分钟数不计入加班</div>
@@ -206,7 +212,7 @@
                                                     <dd>
                                                         <div class="input-group pull-left">
                                                             <span class="input-group-addon">最小加班时长</span>
-                                                            <input type="number" class="form-control" id="" readonly>
+                                                            <input type="number" class="form-control" readonly>
                                                             <span class="input-group-addon">分钟</span>
                                                         </div>
                                                         <div class="small text-muted pull-left">当天加班少于该分钟数不计入加班</div>
@@ -223,12 +229,17 @@
                                         <ol>
                                             <li>
                                                 <dl>
-                                                    <dt><span class="for-label"><i class="icon icon-check-empty"></i> 扣除休息时间</span></dt>
+                                                    <dt>
+                                                        <span class="for-label" id="setup_attendance_overtime_add_table2_ol_check1">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            扣除休息时间
+                                                        </span>
+                                                    </dt>
                                                     <dd>
                                                         <div class="input-group pull-left">
-                                                            <input type="time" class="form-control" id="" readonly>
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_add_table2_ol_duration1" readonly>
                                                             <span class="input-group-addon">至</span>
-                                                            <input type="time" class="form-control" id="" readonly>
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_add_table2_ol_duration2" readonly>
                                                         </div>
                                                         <div class="clearfix"></div>
                                                     </dd>
@@ -236,9 +247,14 @@
                                             </li>
                                             <li>
                                                 <dl>
-                                                    <dt><span class="for-label has-table"><i class="icon icon-check-empty"></i> 计为加班费/调休</span></dt>
+                                                    <dt>
+                                                        <span class="for-label has-table" id="setup_attendance_overtime_add_table2_ol_check2">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            计为加班费/调休
+                                                        </span>
+                                                    </dt>
                                                     <dd>
-                                                        <table class="table">
+                                                        <table class="table" radio="" time="" id="setup_attendance_overtime_add_table2_ol_table">
                                                             <tr>
                                                                 <td colspan="2">
                                                                     <span class="for-label"><i class="icon icon-circle-blank"></i> 计为加班费</span>
@@ -249,7 +265,7 @@
                                                                 <td>
                                                                     <div class="input-group pull-left">
                                                                         <span class="input-group-addon">调休比例 1：</span>
-                                                                        <input type="number" class="form-control" id="" readonly>
+                                                                        <input type="number" class="form-control" readonly>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -258,7 +274,7 @@
                                                                 <td>
                                                                     <div class="input-group pull-left">
                                                                         <span class="input-group-addon">调休比例 1：</span>
-                                                                        <input type="number" class="form-control" id="" readonly>
+                                                                        <input type="number" class="form-control" readonly>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -289,7 +305,7 @@
                                 <tr>
                                     <td>
                                         <div class="table-disabled-mask"></div>
-                                        <ul>
+                                        <ul radio="1" time1="" time2="" id="setup_attendance_overtime_add_table3_ul">
                                             <li>
                                                 <dl><dt><span class="for-label"><i class="icon icon-dot-circle"></i> 需要审批，以批准单为准</span></dt></dl>
                                             </li>
@@ -299,7 +315,7 @@
                                                     <dd>
                                                         <div class="input-group pull-left">
                                                             <span class="input-group-addon">最小加班时长</span>
-                                                            <input type="number" class="form-control" id="" readonly>
+                                                            <input type="number" class="form-control" readonly>
                                                             <span class="input-group-addon">分钟</span>
                                                         </div>
                                                         <div class="small text-muted pull-left">当天加班少于该分钟数不计入加班</div>
@@ -313,7 +329,7 @@
                                                     <dd>
                                                         <div class="input-group pull-left">
                                                             <span class="input-group-addon">最小加班时长</span>
-                                                            <input type="number" class="form-control" id="" readonly>
+                                                            <input type="number" class="form-control" readonly>
                                                             <span class="input-group-addon">分钟</span>
                                                         </div>
                                                         <div class="small text-muted pull-left">当天加班少于该分钟数不计入加班</div>
@@ -330,12 +346,17 @@
                                         <ol>
                                             <li>
                                                 <dl>
-                                                    <dt><span class="for-label"><i class="icon icon-check-empty"></i> 扣除休息时间</span></dt>
+                                                    <dt>
+                                                        <span class="for-label" id="setup_attendance_overtime_add_table3_ol_check1">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            扣除休息时间
+                                                        </span>
+                                                    </dt>
                                                     <dd>
                                                         <div class="input-group pull-left">
-                                                            <input type="time" class="form-control" id="" readonly>
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_add_table3_ol_duration1" readonly>
                                                             <span class="input-group-addon">至</span>
-                                                            <input type="time" class="form-control" id="" readonly>
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_add_table3_ol_duration2" readonly>
                                                         </div>
                                                         <div class="clearfix"></div>
                                                     </dd>
@@ -343,9 +364,14 @@
                                             </li>
                                             <li>
                                                 <dl>
-                                                    <dt><span class="for-label has-table"><i class="icon icon-check-empty"></i> 计为加班费/调休</span></dt>
+                                                    <dt>
+                                                        <span class="for-label has-table" id="setup_attendance_overtime_add_table3_ol_check2">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            计为加班费/调休
+                                                        </span>
+                                                    </dt>
                                                     <dd>
-                                                        <table class="table">
+                                                        <table class="table" radio="" time="" id="setup_attendance_overtime_add_table3_ol_table">
                                                             <tr>
                                                                 <td colspan="2">
                                                                     <span class="for-label"><i class="icon icon-circle-blank"></i> 计为加班费</span>
@@ -356,7 +382,7 @@
                                                                 <td>
                                                                     <div class="input-group pull-left">
                                                                         <span class="input-group-addon">调休比例 1：</span>
-                                                                        <input type="number" class="form-control" id="" readonly>
+                                                                        <input type="number" class="form-control" readonly>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -365,7 +391,7 @@
                                                                 <td>
                                                                     <div class="input-group pull-left">
                                                                         <span class="input-group-addon">调休比例 1：</span>
-                                                                        <input type="number" class="form-control" id="" readonly>
+                                                                        <input type="number" class="form-control" readonly>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -389,41 +415,6 @@
         </div>
     </div>
     <!-- setup_attendance_overtime_add_box -->
-
-<style>
-
-    .setup_attendance_overtime_table dl dt{
-        font-weight: normal;
-    }
-    .setup_attendance_overtime_table dl dd{
-        padding: 10px 0 0 16px;
-    }
-    .setup_attendance_overtime_table dl dd .input-group{
-        width:250px;
-    }
-    .setup_attendance_overtime_table dl dd .small{
-        padding:7px;
-    }
-    .setup_attendance_overtime_table tr td{
-        position: relative;
-    }
-    .setup_attendance_overtime_table .table-disabled-mask{
-        width: 100%;
-        height: 100%;
-        background:rgba(255,255,255,.5);
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index:4;
-        display:none;
-    }
-    .setup_attendance_overtime_table tr td span.for-label{
-        cursor: pointer;
-    }
-    .setup_attendance_overtime_table tr td span.for-label::selection{
-        background:transparent;
-    }
-</style>
 
     <!-- 基础盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="setup_attendance_overtime_base_box">
@@ -499,20 +490,395 @@
 
     <!-- 修改盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="setup_attendance_overtime_edit_box">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                     <h4 class="modal-title">修改</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body modal-scroll">
                     <form class="container form-horizontal">
-                        ssss
+
+                        <!-- 规则名称 -->
+                        <table class="table table-bordered setup_attendance_overtime_table">
+                            <thead><tr><th><span>规则名称</span></th></tr></thead>
+                            <tbody><tr><td>
+                                <div class="col-sm-3"><input type="text" class="form-control" id="setup_attendance_overtime_edit_rule"></div>
+                            </td></tr></tbody>
+                        </table>
+                        <!-- 工作日加班 -->
+                        <table class="table table-bordered setup_attendance_overtime_table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span>工作日加班</span>
+                                        <div class="btn-group pull-right" data-toggle="buttons">
+                                            <label class="btn btn-mini btn-default active"><input type="radio">启用</label>
+                                            <label class="btn btn-mini btn-default"><input type="radio">禁用</label>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="table-disabled-mask"></div>
+                                        <ul radio="1" time1="" time2="" id="setup_attendance_overtime_edit_table1_ul">
+                                            <li>
+                                                <dl><dt><span class="for-label"><i class="icon icon-dot-circle"></i> 需要审批，以批准单为准</span></dt></dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 需要审批，以打卡时间为准，但是不能超过审批单时长</span></dt>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">加班起算时间</span>
+                                                            <input type="number" class="form-control" readonly>
+                                                            <span class="input-group-addon">分钟</span>
+                                                        </div>
+                                                        <div class="small text-muted pull-left">最后一次下班时间超过该分钟数后，开始计算加班</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">最小加班时长</span>
+                                                            <input type="number" class="form-control" readonly>
+                                                            <span class="input-group-addon">分钟</span>
+                                                        </div>
+                                                        <div class="small text-muted pull-left">分钟小于该时长则加班时长记为0</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 无需审批，根据打卡时间算加班时间</span></dt>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">加班起算时间</span>
+                                                            <input type="number" class="form-control" readonly>
+                                                            <span class="input-group-addon">分钟</span>
+                                                        </div>
+                                                        <div class="small text-muted pull-left">最后一次下班时间超过该分钟数后，开始计算加班</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">最小加班时长</span>
+                                                            <input type="number" class="form-control" readonly>
+                                                            <span class="input-group-addon">分钟</span>
+                                                        </div>
+                                                        <div class="small text-muted pull-left">分钟小于该时长则加班时长记为0</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="table-disabled-mask"></div>
+                                        <ol>
+                                            <li>
+                                                <dl>
+                                                    <dt>
+                                                        <span class="for-label" id="setup_attendance_overtime_edit_table1_ol_check1">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            扣除休息时间
+                                                        </span>
+                                                    </dt>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_edit_table1_ol_duration1" readonly>
+                                                            <span class="input-group-addon">至</span>
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_edit_table1_ol_duration2" readonly>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt>
+                                                        <span class="for-label has-table" id="setup_attendance_overtime_edit_table1_ol_check2">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            计为加班费/调休
+                                                        </span>
+                                                    </dt>
+                                                    <dd>
+                                                        <table class="table" radio="" time="" id="setup_attendance_overtime_edit_table1_ol_table">
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <span class="for-label"><i class="icon icon-circle-blank"></i> 计为加班费</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:220px;"><span class="for-label"><i class="icon icon-circle-blank"></i> 计为调休时长</span></td>
+                                                                <td>
+                                                                    <div class="input-group pull-left">
+                                                                        <span class="input-group-addon">调休比例 1：</span>
+                                                                        <input type="number" class="form-control" readonly>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><span class="for-label"><i class="icon icon-circle-blank"></i> 计为加班费/调休(员工自行选择)</span></td>
+                                                                <td>
+                                                                    <div class="input-group pull-left">
+                                                                        <span class="input-group-addon">调休比例 1：</span>
+                                                                        <input type="number" class="form-control" readonly>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                        </ol>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- 休息日加班 -->
+                        <table class="table table-bordered setup_attendance_overtime_table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span>休息日加班</span>
+                                        <div class="btn-group pull-right" data-toggle="buttons">
+                                            <label class="btn btn-mini btn-default active"><input type="radio">启用</label>
+                                            <label class="btn btn-mini btn-default"><input type="radio">禁用</label>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="table-disabled-mask"></div>
+                                        <ul radio="1" time1="" time2="" id="setup_attendance_overtime_edit_table2_ul">
+                                            <li>
+                                                <dl><dt><span class="for-label"><i class="icon icon-dot-circle"></i> 需要审批，以批准单为准</span></dt></dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 需要审批，以打卡时间为准，但是不能超过审批单时长</span></dt>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">最小加班时长</span>
+                                                            <input type="number" class="form-control" readonly>
+                                                            <span class="input-group-addon">分钟</span>
+                                                        </div>
+                                                        <div class="small text-muted pull-left">当天加班少于该分钟数不计入加班</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 无需审批，根据打卡时间算加班时间</span></dt>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">最小加班时长</span>
+                                                            <input type="number" class="form-control" readonly>
+                                                            <span class="input-group-addon">分钟</span>
+                                                        </div>
+                                                        <div class="small text-muted pull-left">当天加班少于该分钟数不计入加班</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="table-disabled-mask"></div>
+                                        <ol>
+                                            <li>
+                                                <dl>
+                                                    <dt>
+                                                        <span class="for-label" id="setup_attendance_overtime_edit_table2_ol_check1">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            扣除休息时间
+                                                        </span>
+                                                    </dt>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_edit_table2_ol_duration1" readonly>
+                                                            <span class="input-group-addon">至</span>
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_edit_table2_ol_duration2" readonly>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt>
+                                                        <span class="for-label has-table" id="setup_attendance_overtime_edit_table2_ol_check2">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            计为加班费/调休
+                                                        </span>
+                                                    </dt>
+                                                    <dd>
+                                                        <table class="table" radio="" time="" id="setup_attendance_overtime_edit_table2_ol_table">
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <span class="for-label"><i class="icon icon-circle-blank"></i> 计为加班费</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:220px;"><span class="for-label"><i class="icon icon-circle-blank"></i> 计为调休时长</span></td>
+                                                                <td>
+                                                                    <div class="input-group pull-left">
+                                                                        <span class="input-group-addon">调休比例 1：</span>
+                                                                        <input type="number" class="form-control" readonly>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><span class="for-label"><i class="icon icon-circle-blank"></i> 计为加班费/调休(员工自行选择)</span></td>
+                                                                <td>
+                                                                    <div class="input-group pull-left">
+                                                                        <span class="input-group-addon">调休比例 1：</span>
+                                                                        <input type="number" class="form-control" readonly>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                        </ol>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- 节假日加班 -->
+                        <table class="table table-bordered setup_attendance_overtime_table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span>节假日加班</span>
+                                        <small class="text-danger" style="font-weight:normal;">&nbsp; 注：节假日指节日当天（如5月1日、10月1日等）</small>
+                                        <div class="btn-group pull-right" data-toggle="buttons">
+                                            <label class="btn btn-mini btn-default active"><input type="radio">启用</label>
+                                            <label class="btn btn-mini btn-default"><input type="radio">禁用</label>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="table-disabled-mask"></div>
+                                        <ul radio="1" time1="" time2="" id="setup_attendance_overtime_edit_table3_ul">
+                                            <li>
+                                                <dl><dt><span class="for-label"><i class="icon icon-dot-circle"></i> 需要审批，以批准单为准</span></dt></dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 需要审批，以打卡时间为准，但是不能超过审批单时长</span></dt>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">最小加班时长</span>
+                                                            <input type="number" class="form-control" readonly>
+                                                            <span class="input-group-addon">分钟</span>
+                                                        </div>
+                                                        <div class="small text-muted pull-left">当天加班少于该分钟数不计入加班</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 无需审批，根据打卡时间算加班时间</span></dt>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">最小加班时长</span>
+                                                            <input type="number" class="form-control" readonly>
+                                                            <span class="input-group-addon">分钟</span>
+                                                        </div>
+                                                        <div class="small text-muted pull-left">当天加班少于该分钟数不计入加班</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="table-disabled-mask"></div>
+                                        <ol>
+                                            <li>
+                                                <dl>
+                                                    <dt>
+                                                        <span class="for-label" id="setup_attendance_overtime_edit_table3_ol_check1">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            扣除休息时间
+                                                        </span>
+                                                    </dt>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_edit_table3_ol_duration1" readonly>
+                                                            <span class="input-group-addon">至</span>
+                                                            <input type="time" class="form-control" id="setup_attendance_overtime_edit_table3_ol_duration2" readonly>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt>
+                                                        <span class="for-label has-table" id="setup_attendance_overtime_edit_table3_ol_check2">
+                                                            <i class="icon icon-check-empty"></i> 
+                                                            计为加班费/调休
+                                                        </span>
+                                                    </dt>
+                                                    <dd>
+                                                        <table class="table" radio="" time="" id="setup_attendance_overtime_edit_table3_ol_table">
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <span class="for-label"><i class="icon icon-circle-blank"></i> 计为加班费</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:220px;"><span class="for-label"><i class="icon icon-circle-blank"></i> 计为调休时长</span></td>
+                                                                <td>
+                                                                    <div class="input-group pull-left">
+                                                                        <span class="input-group-addon">调休比例 1：</span>
+                                                                        <input type="number" class="form-control" readonly>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><span class="for-label"><i class="icon icon-circle-blank"></i> 计为加班费/调休(员工自行选择)</span></td>
+                                                                <td>
+                                                                    <div class="input-group pull-left">
+                                                                        <span class="input-group-addon">调休比例 1：</span>
+                                                                        <input type="number" class="form-control" readonly>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                        </ol>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary"  id="setup_attendance_overtime_edit_submit">提交</button>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="setup_attendance_overtime_edit_submit">提交</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -553,17 +919,6 @@ $(function(){
     setup_attendance_overtime_add_btn       = $("#setup_attendance_overtime_add_btn"),      //添加按钮
     setup_attendance_overtime_add_box       = $("#setup_attendance_overtime_add_box"),      //添加盒子
     setup_attendance_overtime_add_submit    = $("#setup_attendance_overtime_add_submit"),   //添加提交
-    setup_attendance_overtime_add_name      = $("#setup_attendance_overtime_add_name"),     //班次名称
-    setup_attendance_overtime_add_type      = $("#setup_attendance_overtime_add_type"),     //班次类型
-    setup_attendance_overtime_add_time1     = $("#setup_attendance_overtime_add_time1"),    //上班时间1
-    setup_attendance_overtime_add_time2     = $("#setup_attendance_overtime_add_time2"),    //上班时间2
-    setup_attendance_overtime_add_time3     = $("#setup_attendance_overtime_add_time3"),    //上班时间3
-    setup_attendance_overtime_add_time4     = $("#setup_attendance_overtime_add_time4"),    //上班时间4
-    setup_attendance_overtime_add_noon1     = $("#setup_attendance_overtime_add_noon1"),    //午休时间1
-    setup_attendance_overtime_add_noon2     = $("#setup_attendance_overtime_add_noon2"),    //午休时间2
-    setup_attendance_overtime_add_flex1     = $("#setup_attendance_overtime_add_flex1"),    //晚走晚到1
-    setup_attendance_overtime_add_flex2     = $("#setup_attendance_overtime_add_flex2"),    //晚走晚到2
-    setup_attendance_overtime_add_late      = $("#setup_attendance_overtime_add_late"),     //旷工迟到
     //基础盒子
     setup_attendance_overtime_base_btn      = $("#setup_attendance_overtime_base_btn"),     //基础按钮
     setup_attendance_overtime_base_box      = $("#setup_attendance_overtime_base_box"),     //基础盒子
@@ -573,20 +928,61 @@ $(function(){
     //修改
     setup_attendance_overtime_edit_box      = $("#setup_attendance_overtime_edit_box"),     //修改盒子
     setup_attendance_overtime_edit_submit   = $("#setup_attendance_overtime_edit_submit"),  //修改提交
-    setup_attendance_overtime_edit_name     = $("#setup_attendance_overtime_edit_name"),    //班次名称
-    setup_attendance_overtime_edit_type     = $("#setup_attendance_overtime_edit_type"),    //班次类型
-    setup_attendance_overtime_edit_time1    = $("#setup_attendance_overtime_edit_time1"),   //上班时间1
-    setup_attendance_overtime_edit_time2    = $("#setup_attendance_overtime_edit_time2"),   //上班时间2
-    setup_attendance_overtime_edit_time3    = $("#setup_attendance_overtime_edit_time3"),   //上班时间3
-    setup_attendance_overtime_edit_time4    = $("#setup_attendance_overtime_edit_time4"),   //上班时间4
-    setup_attendance_overtime_edit_noon1    = $("#setup_attendance_overtime_edit_noon1"),   //午休时间1
-    setup_attendance_overtime_edit_noon2    = $("#setup_attendance_overtime_edit_noon2"),   //午休时间2
-    setup_attendance_overtime_edit_flex1    = $("#setup_attendance_overtime_edit_flex1"),   //晚走晚到1
-    setup_attendance_overtime_edit_flex2    = $("#setup_attendance_overtime_edit_flex2"),   //晚走晚到2
-    setup_attendance_overtime_edit_late     = $("#setup_attendance_overtime_edit_late"),    //旷工迟到
     //删除
     setup_attendance_overtime_dele_box      = $("#setup_attendance_overtime_dele_box"),     //删除盒子
     setup_attendance_overtime_dele_submit   = $("#setup_attendance_overtime_dele_submit");  //删除提交
+    
+    //数据声明-----------------------------------------------------------------------------------------------
+    //添加
+    var 
+    //标题
+    setup_attendance_overtime_add_rule               = $("#setup_attendance_overtime_add_rule"),
+    //表格1
+    setup_attendance_overtime_add_table1_ul          = $("#setup_attendance_overtime_add_table1_ul"),
+    setup_attendance_overtime_add_table1_ol_check1   = $("#setup_attendance_overtime_add_table1_ol_check1"),
+    setup_attendance_overtime_add_table1_ol_duration1= $("#setup_attendance_overtime_add_table1_ol_duration1"),
+    setup_attendance_overtime_add_table1_ol_duration2= $("#setup_attendance_overtime_add_table1_ol_duration2"),
+    setup_attendance_overtime_add_table1_ol_check2   = $("#setup_attendance_overtime_add_table1_ol_check2"),
+    setup_attendance_overtime_add_table1_ol_table    = $("#setup_attendance_overtime_add_table1_ol_table"),
+    //表格2
+    setup_attendance_overtime_add_table2_ul          = $("#setup_attendance_overtime_add_table2_ul"),
+    setup_attendance_overtime_add_table2_ol_check1   = $("#setup_attendance_overtime_add_table2_ol_check1"),
+    setup_attendance_overtime_add_table2_ol_duration1= $("#setup_attendance_overtime_add_table2_ol_duration1"),
+    setup_attendance_overtime_add_table2_ol_duration2= $("#setup_attendance_overtime_add_table2_ol_duration2"),
+    setup_attendance_overtime_add_table2_ol_check2   = $("#setup_attendance_overtime_add_table2_ol_check2"),
+    setup_attendance_overtime_add_table2_ol_table    = $("#setup_attendance_overtime_add_table2_ol_table"),
+    //表格3
+    setup_attendance_overtime_add_table3_ul          = $("#setup_attendance_overtime_add_table3_ul"),
+    setup_attendance_overtime_add_table3_ol_check1   = $("#setup_attendance_overtime_add_table3_ol_check1"),
+    setup_attendance_overtime_add_table3_ol_duration1= $("#setup_attendance_overtime_add_table3_ol_duration1"),
+    setup_attendance_overtime_add_table3_ol_duration2= $("#setup_attendance_overtime_add_table3_ol_duration2"),
+    setup_attendance_overtime_add_table3_ol_check2   = $("#setup_attendance_overtime_add_table3_ol_check2"),
+    setup_attendance_overtime_add_table3_ol_table    = $("#setup_attendance_overtime_add_table3_ol_table");
+    //修改
+    var 
+    //标题
+    setup_attendance_overtime_edit_rule               = $("#setup_attendance_overtime_edit_rule"),
+    //表格1
+    setup_attendance_overtime_edit_table1_ul          = $("#setup_attendance_overtime_edit_table1_ul"),
+    setup_attendance_overtime_edit_table1_ol_check1   = $("#setup_attendance_overtime_edit_table1_ol_check1"),
+    setup_attendance_overtime_edit_table1_ol_duration1= $("#setup_attendance_overtime_edit_table1_ol_duration1"),
+    setup_attendance_overtime_edit_table1_ol_duration2= $("#setup_attendance_overtime_edit_table1_ol_duration2"),
+    setup_attendance_overtime_edit_table1_ol_check2   = $("#setup_attendance_overtime_edit_table1_ol_check2"),
+    setup_attendance_overtime_edit_table1_ol_table    = $("#setup_attendance_overtime_edit_table1_ol_table"),
+    //表格2
+    setup_attendance_overtime_edit_table2_ul          = $("#setup_attendance_overtime_edit_table2_ul"),
+    setup_attendance_overtime_edit_table2_ol_check1   = $("#setup_attendance_overtime_edit_table2_ol_check1"),
+    setup_attendance_overtime_edit_table2_ol_duration1= $("#setup_attendance_overtime_edit_table2_ol_duration1"),
+    setup_attendance_overtime_edit_table2_ol_duration2= $("#setup_attendance_overtime_edit_table2_ol_duration2"),
+    setup_attendance_overtime_edit_table2_ol_check2   = $("#setup_attendance_overtime_edit_table2_ol_check2"),
+    setup_attendance_overtime_edit_table2_ol_table    = $("#setup_attendance_overtime_edit_table2_ol_table"),
+    //表格3
+    setup_attendance_overtime_edit_table3_ul          = $("#setup_attendance_overtime_edit_table3_ul"),
+    setup_attendance_overtime_edit_table3_ol_check1   = $("#setup_attendance_overtime_edit_table3_ol_check1"),
+    setup_attendance_overtime_edit_table3_ol_duration1= $("#setup_attendance_overtime_edit_table3_ol_duration1"),
+    setup_attendance_overtime_edit_table3_ol_duration2= $("#setup_attendance_overtime_edit_table3_ol_duration2"),
+    setup_attendance_overtime_edit_table3_ol_check2   = $("#setup_attendance_overtime_edit_table3_ol_check2"),
+    setup_attendance_overtime_edit_table3_ol_table    = $("#setup_attendance_overtime_edit_table3_ol_table");
 
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
@@ -594,7 +990,7 @@ $(function(){
         //本地接口
         var setup_attendance_overtime_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",                                     //数据表格
-            modal_edit : LOCAL + "Test/Setup/Attendance/worktime_edit.json",                    //修改盒子
+            modal_edit : LOCAL + "Test/Setup/Attendance/overtime_edit.json",                    //修改盒子
         }
 
     } else if ( window.STATE == "route" ){
@@ -602,7 +998,7 @@ $(function(){
         //远程接口
         var setup_attendance_overtime_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",                                     //数据表格
-            modal_edit : LOCAL + "Test/Setup/Attendance/worktime_edit.json",                    //修改盒子
+            modal_edit : LOCAL + "Test/Setup/Attendance/overtime_edit.json",                    //修改盒子
         }
 
     }
@@ -636,9 +1032,9 @@ $(function(){
                                 <a class="setup_attendance_overtime_dele_btn" rowIndex="${cell.rowIndex}">删除</a>
                             `;
                             if( dataValue=="1" ){
-                                temp += `<a class="setup_attendance_overtime_deal_btn" rowIndex="${cell.rowIndex}">启用</a>`;
+                                temp += `<a class="setup_attendance_overtime_deal_btn" rowIndex="${cell.rowIndex}" type="1">启用</a>`;
                             } else {
-                                temp += `<a class="setup_attendance_overtime_deal_btn" rowIndex="${cell.rowIndex}">禁用</a>`;
+                                temp += `<a class="setup_attendance_overtime_deal_btn" rowIndex="${cell.rowIndex}" type="0">禁用</a>`;
                             }
                             return temp;
                         }
@@ -659,36 +1055,8 @@ $(function(){
     var
     setup_attendance_overtime_datagrid_obj   = setup_attendance_overtime_datagrid.data("zui.datagrid"),   //表格对象
     setup_attendance_overtime_edit_btn       = ".setup_attendance_overtime_edit_btn",                     //修改按钮
-    setup_attendance_overtime_dele_btn       = ".setup_attendance_overtime_dele_btn";                     //删除按钮
-
-    //添加按钮-----------------------------------------------------------------------------------------------
-    setup_attendance_overtime_add_btn.click(function(){
-        setup_attendance_overtime_add_box.modal("show");
-    });
-    //添加提交
-    setup_attendance_overtime_add_submit.click(function(){
- 
-        //远程提交
-        $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : {
-                name  : setup_attendance_overtime_add_name.val(),
-                type  : setup_attendance_overtime_add_type.val(),
-                time1 : setup_attendance_overtime_add_time1.val(), 
-            },
-            success : function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    zui_datagrid_reset(setup_attendance_overtime_datagrid_obj,setup_attendance_overtime_api.datagrid);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-
-    });
+    setup_attendance_overtime_dele_btn       = ".setup_attendance_overtime_dele_btn",                     //删除按钮
+    setup_attendance_overtime_deal_btn       = ".setup_attendance_overtime_deal_btn";                     //操作按钮
 
     //基本按钮-----------------------------------------------------------------------------------------------
     setup_attendance_overtime_base_btn.click(function(){
@@ -718,8 +1086,62 @@ $(function(){
 
     });
 
+    //添加按钮-----------------------------------------------------------------------------------------------
+    setup_attendance_overtime_add_btn.click(function(){
+        setup_attendance_overtime_add_box.find("table .btn-group .btn:first-child").trigger("click");     //数据复原
+        setup_attendance_overtime_add_box.modal("show");
+    });
+    //添加提交
+    setup_attendance_overtime_add_submit.click(function(){
+ 
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                //标题
+                rule                : setup_attendance_overtime_add_rule.val(),
+                //表格1
+                table1_radio        : setup_attendance_overtime_add_table1_ul.attr("radio"),
+                table1_time1        : setup_attendance_overtime_add_table1_ul.attr("time1"),
+                table1_time2        : setup_attendance_overtime_add_table1_ul.attr("time2"),
+                table1_check1       : setup_attendance_overtime_add_table1_ol_check1.find(".icon").hasClass("icon-checked"),
+                table1_durat1       : setup_attendance_overtime_add_table1_ol_duration1.val(),
+                table1_durat2       : setup_attendance_overtime_add_table1_ol_duration2.val(),
+                table1_check2       : setup_attendance_overtime_add_table1_ol_check2.find(".icon").hasClass("icon-checked"),
+                table1_table_radio  : setup_attendance_overtime_add_table1_ol_table.attr("radio"),
+                table1_table_time   : setup_attendance_overtime_add_table1_ol_table.attr("time"),
+                //表格2
+                table2_radio        : setup_attendance_overtime_add_table2_ul.attr("radio"),
+                table2_time1        : setup_attendance_overtime_add_table2_ul.attr("time1"),
+                table2_check1       : setup_attendance_overtime_add_table2_ol_check1.find(".icon").hasClass("icon-checked"),
+                table2_durat1       : setup_attendance_overtime_add_table2_ol_duration1.val(),
+                table2_durat2       : setup_attendance_overtime_add_table2_ol_duration2.val(),
+                table2_check2       : setup_attendance_overtime_add_table2_ol_check2.find(".icon").hasClass("icon-checked"),
+                table2_table_radio  : setup_attendance_overtime_add_table2_ol_table.attr("radio"),
+                table2_table_time   : setup_attendance_overtime_add_table2_ol_table.attr("time"),
+                //表格3
+                table3_radio        : setup_attendance_overtime_add_table3_ul.attr("radio"),
+                table3_time1        : setup_attendance_overtime_add_table3_ul.attr("time1"),
+                table3_check1       : setup_attendance_overtime_add_table3_ol_check1.find(".icon").hasClass("icon-checked"),
+                table3_durat1       : setup_attendance_overtime_add_table3_ol_duration1.val(),
+                table3_durat2       : setup_attendance_overtime_add_table3_ol_duration2.val(),
+                table3_check2       : setup_attendance_overtime_add_table3_ol_check2.find(".icon").hasClass("icon-checked"),
+                table3_table_radio  : setup_attendance_overtime_add_table3_ol_table.attr("radio"),
+                table3_table_time   : setup_attendance_overtime_add_table3_ol_table.attr("time"),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_attendance_overtime_datagrid_obj,setup_attendance_overtime_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
 
-
+    });
 
     //修改按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",setup_attendance_overtime_edit_btn,function(){
@@ -730,24 +1152,67 @@ $(function(){
 
         //远程提交
         $.ajax({
-            url     : API.test_response,
+            url     : setup_attendance_overtime_api.modal_edit,
             type    : "post",
             dataType: "json",
-            data    : { id:data_id },
+            // data    : { id:data_id },
             success : function(data){
                 if( data.status>0 ){
-
+                    var data = data.data;
+                    //数据复原
+                    setup_attendance_overtime_edit_box.find("table .btn-group .btn:first-child").trigger("click");
                     //数据赋值
-                    setup_attendance_overtime_edit_name.val(  data.message ),
-                    setup_attendance_overtime_edit_time1.val( "09:00"      ),
-                    setup_attendance_overtime_edit_time2.val( "09:00"      ),
-                    setup_attendance_overtime_edit_time3.val( "09:00"      ),
-                    setup_attendance_overtime_edit_time4.val( "09:00"      ),
-                    setup_attendance_overtime_edit_noon1.val( "09:00"      ),
-                    setup_attendance_overtime_edit_noon2.val( "09:00"      ),
-                    setup_attendance_overtime_edit_flex1.val( "60"         ),
-                    setup_attendance_overtime_edit_flex2.val( "60"         ),
-                    setup_attendance_overtime_edit_late.val(  "60"         ),
+                    setup_attendance_overtime_edit_rule.val( data.rule );
+                    //表格1
+                    setup_attendance_overtime_edit_table1_ul.find("li").eq( data.table1_radio-1 ).find("span").trigger("click");
+                    setup_attendance_overtime_edit_table1_ul.find("li").eq( data.table1_radio-1 ).find("dd").eq(0).find("input").val( data.table1_time1 );
+                    setup_attendance_overtime_edit_table1_ul.find("li").eq( data.table1_radio-1 ).find("dd").eq(1).find("input").val( data.table1_time2 );
+                    setup_attendance_overtime_edit_table1_ul.attr("radio",data.table1_radio);
+                    setup_attendance_overtime_edit_table1_ul.attr("time1",data.table1_time1);
+                    setup_attendance_overtime_edit_table1_ul.attr("time2",data.table1_time2);
+                    if( data.table1_check1==true ){ 
+                        setup_attendance_overtime_edit_table1_ol_check1.trigger("click");
+                        setup_attendance_overtime_edit_table1_ol_duration1.val( data.table1_durat1 );
+                        setup_attendance_overtime_edit_table1_ol_duration2.val( data.table1_durat2 );
+                    }
+                    if( data.table1_check2==true ){
+                        setup_attendance_overtime_edit_table1_ol_table.find("tr").eq( data.table1_table_radio-1 ).find("span").trigger("click");
+                        setup_attendance_overtime_edit_table1_ol_table.find("tr").eq( data.table1_table_radio-1 ).find("input").val( data.table1_table_time );
+                        setup_attendance_overtime_edit_table1_ol_table.attr("radio",data.table1_table_radio);
+                        setup_attendance_overtime_edit_table1_ol_table.attr("time" ,data.table1_table_time );                        
+                    }
+                    //表格2
+                    setup_attendance_overtime_edit_table2_ul.find("li").eq( data.table2_radio-1 ).find("span").trigger("click");
+                    setup_attendance_overtime_edit_table2_ul.find("li").eq( data.table2_radio-1 ).find("dd").eq(0).find("input").val( data.table2_time1 );
+                    setup_attendance_overtime_edit_table2_ul.attr("radio",data.table2_radio);
+                    setup_attendance_overtime_edit_table2_ul.attr("time1",data.table2_time1);
+                    if( data.table2_check1==true ){
+                        setup_attendance_overtime_edit_table2_ol_check1.trigger("click");
+                        setup_attendance_overtime_edit_table2_ol_duration1.val( data.table2_durat1 );
+                        setup_attendance_overtime_edit_table2_ol_duration2.val( data.table2_durat2 );
+                    }
+                    if( data.table2_check2==true ){ 
+                        setup_attendance_overtime_edit_table2_ol_table.find("tr").eq( data.table2_table_radio-1 ).find("span").trigger("click");
+                        setup_attendance_overtime_edit_table2_ol_table.find("tr").eq( data.table2_table_radio-1 ).find("input").val( data.table2_table_time );
+                        setup_attendance_overtime_edit_table2_ol_table.attr("radio",data.table2_table_radio);
+                        setup_attendance_overtime_edit_table2_ol_table.attr("time" ,data.table2_table_time );                        
+                    }
+                    //表格3
+                    setup_attendance_overtime_edit_table3_ul.find("li").eq( data.table3_radio-1 ).find("span").trigger("click");
+                    setup_attendance_overtime_edit_table3_ul.find("li").eq( data.table3_radio-1 ).find("dd").eq(0).find("input").val( data.table3_time1 );
+                    setup_attendance_overtime_edit_table3_ul.attr("radio",data.table3_radio);
+                    setup_attendance_overtime_edit_table3_ul.attr("time1",data.table3_time1);
+                    if( data.table3_check1==true ){ 
+                        setup_attendance_overtime_edit_table3_ol_check1.trigger("click");
+                        setup_attendance_overtime_edit_table3_ol_duration1.val( data.table3_durat1 );
+                        setup_attendance_overtime_edit_table3_ol_duration2.val( data.table3_durat2 );
+                    }
+                    if( data.table3_check2==true ){ 
+                        setup_attendance_overtime_edit_table3_ol_table.find("tr").eq( data.table3_table_radio-1 ).find("span").trigger("click");
+                        setup_attendance_overtime_edit_table3_ol_table.find("tr").eq( data.table3_table_radio-1 ).find("input").val( data.table3_table_time );
+                        setup_attendance_overtime_edit_table3_ol_table.attr("radio",data.table3_table_radio);
+                        setup_attendance_overtime_edit_table3_ol_table.attr("time" ,data.table3_table_time );                        
+                    }
 
                     //其他操作
                     setup_attendance_overtime_edit_submit.attr("dataId",data_id);  //数据ID传值
@@ -760,6 +1225,7 @@ $(function(){
         });
 
     });
+
     //修改提交
     setup_attendance_overtime_edit_submit.click(function(){
 
@@ -772,18 +1238,37 @@ $(function(){
             type    : "post",
             dataType: "json",
             data    : { 
-                id    : data_id,
-                name  : setup_attendance_overtime_edit_name.val(),
-                type  : setup_attendance_overtime_edit_type.val(),
-                time1 : setup_attendance_overtime_edit_time1.val(),
-                time2 : setup_attendance_overtime_edit_time2.val(),
-                time3 : setup_attendance_overtime_edit_time3.val(),
-                time4 : setup_attendance_overtime_edit_time4.val(),
-                noon1 : setup_attendance_overtime_edit_noon1.val(),
-                noon2 : setup_attendance_overtime_edit_noon2.val(),
-                flex1 : setup_attendance_overtime_edit_flex1.val(),
-                flex2 : setup_attendance_overtime_edit_flex2.val(),
-                late  : setup_attendance_overtime_edit_late.val(),
+                id                  : data_id,
+                //标题
+                rule                : setup_attendance_overtime_edit_rule.val(),
+                //表格1
+                table1_radio        : setup_attendance_overtime_edit_table1_ul.attr("radio"),
+                table1_time1        : setup_attendance_overtime_edit_table1_ul.attr("time1"),
+                table1_time2        : setup_attendance_overtime_edit_table1_ul.attr("time2"),
+                table1_check1       : setup_attendance_overtime_edit_table1_ol_check1.find(".icon").hasClass("icon-checked"),
+                table1_durat1       : setup_attendance_overtime_edit_table1_ol_duration1.val(),
+                table1_durat2       : setup_attendance_overtime_edit_table1_ol_duration2.val(),
+                table1_check2       : setup_attendance_overtime_edit_table1_ol_check2.find(".icon").hasClass("icon-checked"),
+                table1_table_radio  : setup_attendance_overtime_edit_table1_ol_table.attr("radio"),
+                table1_table_time   : setup_attendance_overtime_edit_table1_ol_table.attr("time"),
+                //表格2
+                table2_radio        : setup_attendance_overtime_edit_table2_ul.attr("radio"),
+                table2_time1        : setup_attendance_overtime_edit_table2_ul.attr("time1"),
+                table2_check1       : setup_attendance_overtime_edit_table2_ol_check1.find(".icon").hasClass("icon-checked"),
+                table2_durat1       : setup_attendance_overtime_edit_table2_ol_duration1.val(),
+                table2_durat2       : setup_attendance_overtime_edit_table2_ol_duration2.val(),
+                table2_check2       : setup_attendance_overtime_edit_table2_ol_check2.find(".icon").hasClass("icon-checked"),
+                table2_table_radio  : setup_attendance_overtime_edit_table2_ol_table.attr("radio"),
+                table2_table_time   : setup_attendance_overtime_edit_table2_ol_table.attr("time"),
+                //表格3
+                table3_radio        : setup_attendance_overtime_edit_table3_ul.attr("radio"),
+                table3_time1        : setup_attendance_overtime_edit_table3_ul.attr("time1"),
+                table3_check1       : setup_attendance_overtime_edit_table3_ol_check1.find(".icon").hasClass("icon-checked"),
+                table3_durat1       : setup_attendance_overtime_edit_table3_ol_duration1.val(),
+                table3_durat2       : setup_attendance_overtime_edit_table3_ol_duration2.val(),
+                table3_check2       : setup_attendance_overtime_edit_table3_ol_check2.find(".icon").hasClass("icon-checked"),
+                table3_table_radio  : setup_attendance_overtime_edit_table3_ol_table.attr("radio"),
+                table3_table_time   : setup_attendance_overtime_edit_table3_ol_table.attr("time"),
              },
             success : function(data){
                 if( data.status>0 ){
@@ -831,12 +1316,37 @@ $(function(){
 
     });
 
-    setup_attendance_overtime_add_box.modal("show");
+    //操作按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",setup_attendance_overtime_deal_btn,function(){
 
+        //数据ID
+        var data_id = $(this).attr("rowIndex");
+        var type    = $(this).attr("type");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id      : data_id,
+                type    : type              //0-禁用 1-启用
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_attendance_overtime_datagrid_obj,setup_attendance_overtime_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
 
     //表格组-变量声明----------------------------------------------------------------------------------------------------
     var
-    set_table_name = ".setup_attendance_overtime_table",        //class
+    set_table_name  = ".setup_attendance_overtime_table",       //class
     set_table       = $(set_table_name),                        //表格
     set_able        = set_table.find(".btn-group .btn"),        //按钮
     set_radio       = set_table.find("ul dl dt span.for-label"),//单选
@@ -856,16 +1366,24 @@ $(function(){
         var radio1      = $(this).parents(set_table_name).find("ul li:first-child dl dt .icon");
         var radio_son   = $(this).parents(set_table_name).find("table tr .icon");
         var check       = $(this).parents(set_table_name).find("ol dl dt .icon");
-        if( text=="启用" ){
-            mask.fadeOut(200);
+        var ul          = set_table.find("ul");
+
+        input.val("");
+        input.attr("readonly","readonly");
+        radio_son.removeClass(set_radio_check).addClass(set_radio_empty);
+        check.removeClass(set_check_check).addClass(set_check_empty);
+        ul.attr("time1","");
+        ul.attr("time2","");
+        set_table.find("table").attr("radio","");
+        set_table.find("table").attr("time","");
+        if(text=="启用"){
+            mask.fadeOut(200)
             radio1.removeClass(set_radio_empty).addClass(set_radio_check);
-        } else {
+            ul.attr("radio",1);
+        } else { 
             mask.fadeIn(200);
-            input.val("");
-            input.attr("readonly","readonly");
             radio.removeClass(set_radio_check).addClass(set_radio_empty);
-            radio_son.removeClass(set_radio_check).addClass(set_radio_empty);
-            check.removeClass(set_check_check).addClass(set_check_empty);
+            ul.attr("radio","");
         }
     });
 
@@ -880,6 +1398,14 @@ $(function(){
         my_inp.removeAttr("readonly");
         all_icon.removeClass(set_radio_check).addClass(set_radio_empty);
         my_icon.removeClass(set_radio_empty).addClass(set_radio_check);
+
+        //结果处理
+        var ul = $(this).parents(set_table_name + " ul");
+        var li = $(this).parents(set_table_name + " li");
+        var li_index = li.index()+1;
+        ul.attr("radio",li_index);
+        ul.attr("time1","");
+        ul.attr("time2","");
     });
 
     //表格组-复选
@@ -920,12 +1446,31 @@ $(function(){
         my_inp.removeAttr("readonly");
         all_icon.removeClass(set_radio_check).addClass(set_radio_empty);
         my_icon.removeClass(set_radio_empty).addClass(set_radio_check);
+
+        //结果处理
+        var tb = $(this).parents(set_table_name + " table");
+        var tr = $(this).parents(set_table_name + " table tr");
+        var tr_index = tr.index()+1;
+        tb.attr("radio",tr_index);
+        tb.attr("time","");
     });
 
-    //表格组-结果导出
-    $("#export").click(function(){
-        var result = "123";
-        $("#result").text(result);
+    //表格组-单元格1-文本框-结果处理
+    set_table.find("ul input").keyup(function(){
+        var ul = $(this).parents(set_table_name + " ul");
+        var dd = $(this).parents(set_table_name + " dd");
+        var dd_index = dd.index();
+        if( dd_index==1 ){
+            ul.attr("time1",$(this).val());
+        } else {
+            ul.attr("time2",$(this).val());
+        }
+    });
+
+    //表格组-单元格2-表格son-文本框-结果处理
+    set_table.find("table input").keyup(function(){
+        var tb = $(this).parents(set_table_name + " table");
+        tb.attr("time",$(this).val());
     });
 
 });//预加载结尾
