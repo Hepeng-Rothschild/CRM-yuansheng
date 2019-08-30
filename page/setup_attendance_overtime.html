@@ -1028,7 +1028,7 @@ $(function(){
                     valueOperator : {
                         getter : function(dataValue,cell){
                             var temp = `
-                                <a class="setup_attendance_overtime_edit_btn" rowIndex="${cell.rowIndex}" state="${dataValue}">修改</a>
+                                <a class="setup_attendance_overtime_edit_btn" rowIndex="${cell.rowIndex}">修改</a>
                                 <a class="setup_attendance_overtime_dele_btn" rowIndex="${cell.rowIndex}">删除</a>
                             `;
                             if( dataValue=="1" ){
@@ -1148,14 +1148,13 @@ $(function(){
   
         //数据ID
         var data_id    = zui_datagrid_get_id($(this).attr("rowIndex"));
-        var data_state = $(this).attr("state");
 
         //远程提交
         $.ajax({
             url     : setup_attendance_overtime_api.modal_edit,
             type    : "post",
             dataType: "json",
-            // data    : { id:data_id },
+            data    : { id:data_id },
             success : function(data){
                 if( data.status>0 ){
                     var data = data.data;
@@ -1281,6 +1280,7 @@ $(function(){
         });
 
     });
+
     //删除按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",setup_attendance_overtime_dele_btn,function(){
 

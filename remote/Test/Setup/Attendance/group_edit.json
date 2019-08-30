@@ -1,0 +1,35 @@
+{
+    "result" : true,
+    "message": "获取成功",
+    "status" : 1,
+    "data"   : {
+        "rule" : "加班规则之一",
+        "table1_radio"      : 1,
+        "table1_time1"      : "",
+        "table1_time2"      : "",
+        "table1_check1"     : false,
+        "table1_durat1"     : "",
+        "table1_durat2"     : "",
+        "table1_check2"     : true,
+        "table1_table_radio": 1,
+        "table1_table_time" : "",
+
+        "table2_radio"      : 2,
+        "table2_time1"      : 20,
+        "table2_check1"     : true,
+        "table2_durat1"     : "00:20",
+        "table2_durat2"     : "00:20",
+        "table2_check2"     : true,
+        "table2_table_radio": 2,
+        "table2_table_time" : 200,
+
+        "table3_radio"      : 3,
+        "table3_time1"      : 30,
+        "table3_check1"     : true,
+        "table3_durat1"     : "00:30",
+        "table3_durat2"     : "00:30",
+        "table3_check2"     : true,
+        "table3_table_radio": 3,
+        "table3_table_time" : 300
+    }
+}   
