@@ -82,44 +82,8 @@
                             </td></tr></tbody>
                         </table>
 
-<style>
-/*考勤方式-办公地点*/
-.map_select_result{
-    position: relative;
-}
-.map_select_result .map_select_reset{
-    cursor: pointer;
-}
-.map_select_result strong{
-    display: block;
-    font-weight: normal;
-    position: absolute;
-    width: 100%;
-    top: 35px;
-    left: 0;
-    background:#fff;
-    border: 1px solid #ddd;
-    border-radius:2px;
-    overflow: hidden;
-    z-index: 100;
-    padding:10px;
-    box-sizing:border-box;
-    /*display: none;*/
-}
-.map_select_result strong em{
-    display: block;
-    font-style: normal;
-    height:200px;
-    margin-bottom:8px;
-    background: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius:2px;
-    box-sizing:border-box;
-}
-</style>
-
                         <!-- 考勤方式 -->
-                        <table class="table table-bordered">
+                        <table class="table table-bordered setup_attendance_group_add_table3">
                             <thead><tr><th colspan="2">考勤方式 <span class="text-danger text-thin">满足任意一种考勤方式即可完成打卡</span></th></tr></thead>
                             <tbody>
                                 <tr>
@@ -232,6 +196,7 @@ $(function(){
     setup_attendance_group_add_week         = $("#setup_attendance_group_add_week"),        //工作日设置
     setup_attendance_group_add_vaca         = $("#setup_attendance_group_add_vaca"),        //假期日设置
     setup_attendance_group_add_time         = $("#setup_attendance_group_add_time"),        //班次设置
+    setup_attendance_group_add_table3       = $(".setup_attendance_group_add_table3"),      //考勤方式表格
     setup_attendance_group_add_type1        = $("#setup_attendance_group_add_type1"),       //考勤方式1
     setup_attendance_group_add_type1_range  = $("#setup_attendance_group_add_type1_range"), //范围
     setup_attendance_group_add_type1_addr   = $("#setup_attendance_group_add_type1_addr"),  //地点
@@ -264,7 +229,7 @@ $(function(){
         }
 
     }
-    setup_attendance_group_add_box.modal("show");
+    //setup_attendance_group_add_box.modal("show");
 
     //数据表格-----------------------------------------------------------------------------------------------
     setup_attendance_group_datagrid.datagrid({
@@ -487,6 +452,12 @@ $(function(){
         });
 
     });
+
+    //考勤方式-----------------------------------------------------------------------------------------------
+    setup_attendance_group_add_table3.find("label").click(function(){
+        console.log(1);
+    });
+
 
     //地图组件-----------------------------------------------------------------------------------------------
     map_select_result = $(".map_select_result"),                    //地图组件

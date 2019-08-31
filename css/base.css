@@ -523,6 +523,10 @@ select{ min-width: 100px!important; }
 .text-thin{
     font-weight: normal;
 }
+/*label_cursor*/
+label{
+    cursor: pointer;
+}
 /*权限表格*/
 #setup_auth_post_edit_table table td{
     padding: 1px;
@@ -567,4 +571,37 @@ select{ min-width: 100px!important; }
 }
 .setup_attendance_overtime_table tr td span.for-label::selection{
     background:transparent;
+}
+/*考勤组设置-地图组件*/
+.map_select_result{
+    position: relative;
+}
+.map_select_result .map_select_reset{
+    cursor: pointer;
+}
+.map_select_result strong{
+    display: block;
+    font-weight: normal;
+    position: absolute;
+    width: 100%;
+    top: 35px;
+    left: 0;
+    background:#fff;
+    border: 1px solid #ddd;
+    border-radius:2px;
+    overflow: hidden;
+    z-index: 100;
+    padding:10px;
+    box-sizing:border-box;
+    display: none;
+}
+.map_select_result strong em{
+    display: block;
+    font-style: normal;
+    height:200px;
+    margin-bottom:8px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius:2px;
+    box-sizing:border-box;
 }
