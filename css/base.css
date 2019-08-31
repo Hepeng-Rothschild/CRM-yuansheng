@@ -519,7 +519,10 @@ select{ min-width: 100px!important; }
     height:15px;
     float: none;
 }
-
+/*文字变细*/
+.text-thin{
+    font-weight: normal;
+}
 /*权限表格*/
 #setup_auth_post_edit_table table td{
     padding: 1px;

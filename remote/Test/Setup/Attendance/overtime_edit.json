@@ -3,7 +3,7 @@
     "message": "获取成功",
     "status" : 1,
     "data"   : {
-        "rule" : "加班规则之一",
+        "name" : "加班规则之一",
         "table1_radio"      : 1,
         "table1_time1"      : "",
         "table1_time2"      : "",

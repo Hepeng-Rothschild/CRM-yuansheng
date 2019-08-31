@@ -190,6 +190,20 @@ $(function(){
             mask.remove();
         },200);
     });
+    
+    //按钮组-结果导出
+    $(document).on("click",".btn_group_result label",function(){
+        var btn_group = $(this).parents(".btn_group_result");
+        var result = "";
+        setTimeout(function(){
+            var btn_che = btn_group.find("label.active");
+            for(var i=0;i<btn_che.length;i++){
+                result += btn_che.eq(i).find("input").val() + ",";
+            }
+            result = result.substr(0,result.length-1);
+            btn_group.attr("result",result);
+        },50);
+    });
 
     //…
 

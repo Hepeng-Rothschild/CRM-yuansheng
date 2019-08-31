@@ -34,7 +34,7 @@
                         <table class="table table-bordered setup_attendance_overtime_table">
                             <thead><tr><th><span>规则名称</span></th></tr></thead>
                             <tbody><tr><td>
-                                <div class="col-sm-3"><input type="text" class="form-control" id="setup_attendance_overtime_add_rule"></div>
+                                <div class="col-sm-3"><input type="text" class="form-control" id="setup_attendance_overtime_add_name"></div>
                             </td></tr></tbody>
                         </table>
                         <!-- 工作日加班 -->
@@ -503,7 +503,7 @@
                         <table class="table table-bordered setup_attendance_overtime_table">
                             <thead><tr><th><span>规则名称</span></th></tr></thead>
                             <tbody><tr><td>
-                                <div class="col-sm-3"><input type="text" class="form-control" id="setup_attendance_overtime_edit_rule"></div>
+                                <div class="col-sm-3"><input type="text" class="form-control" id="setup_attendance_overtime_edit_name"></div>
                             </td></tr></tbody>
                         </table>
                         <!-- 工作日加班 -->
@@ -936,7 +936,7 @@ $(function(){
     //添加
     var 
     //标题
-    setup_attendance_overtime_add_rule               = $("#setup_attendance_overtime_add_rule"),
+    setup_attendance_overtime_add_name               = $("#setup_attendance_overtime_add_name"),
     //表格1
     setup_attendance_overtime_add_table1_ul          = $("#setup_attendance_overtime_add_table1_ul"),
     setup_attendance_overtime_add_table1_ol_check1   = $("#setup_attendance_overtime_add_table1_ol_check1"),
@@ -961,7 +961,7 @@ $(function(){
     //修改
     var 
     //标题
-    setup_attendance_overtime_edit_rule               = $("#setup_attendance_overtime_edit_rule"),
+    setup_attendance_overtime_edit_name               = $("#setup_attendance_overtime_edit_name"),
     //表格1
     setup_attendance_overtime_edit_table1_ul          = $("#setup_attendance_overtime_edit_table1_ul"),
     setup_attendance_overtime_edit_table1_ol_check1   = $("#setup_attendance_overtime_edit_table1_ol_check1"),
@@ -1101,7 +1101,7 @@ $(function(){
             dataType: "json",
             data    : {
                 //标题
-                rule                : setup_attendance_overtime_add_rule.val(),
+                name                : setup_attendance_overtime_add_name.val(),
                 //表格1
                 table1_radio        : setup_attendance_overtime_add_table1_ul.attr("radio"),
                 table1_time1        : setup_attendance_overtime_add_table1_ul.attr("time1"),
@@ -1161,7 +1161,7 @@ $(function(){
                     //数据复原
                     setup_attendance_overtime_edit_box.find("table .btn-group .btn:first-child").trigger("click");
                     //数据赋值
-                    setup_attendance_overtime_edit_rule.val( data.rule );
+                    setup_attendance_overtime_edit_name.val( data.name );
                     //表格1
                     setup_attendance_overtime_edit_table1_ul.find("li").eq( data.table1_radio-1 ).find("span").trigger("click");
                     setup_attendance_overtime_edit_table1_ul.find("li").eq( data.table1_radio-1 ).find("dd").eq(0).find("input").val( data.table1_time1 );
@@ -1239,7 +1239,7 @@ $(function(){
             data    : { 
                 id                  : data_id,
                 //标题
-                rule                : setup_attendance_overtime_edit_rule.val(),
+                name                : setup_attendance_overtime_edit_name.val(),
                 //表格1
                 table1_radio        : setup_attendance_overtime_edit_table1_ul.attr("radio"),
                 table1_time1        : setup_attendance_overtime_edit_table1_ul.attr("time1"),

@@ -28,6 +28,136 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <form class="container form-horizontal">
+                        
+                        <!-- 考勤组设置 -->
+                        <table class="table table-bordered">
+                            <thead><tr><th>考勤组设置</th></tr></thead>
+                            <tbody><tr><td>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="setup_attendance_group_add_name">考勤组名称</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control" id="setup_attendance_group_add_name" style="max-width:358px"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2">考勤人员</label>
+                                    <div class="col-sm-8"><ul class="tree tree-lines tree-chevrons" id="setup_attendance_group_add_tree"></ul></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="setup_attendance_group_add_rule">加班规则</label>
+                                    <div class="col-sm-8"><select class="form-control" id="setup_attendance_group_add_rule" style="max-width:358px"></select></div>
+                                </div>
+                                </td></tr></tbody>
+                        </table>
+
+                        <!-- 工作日设置 -->
+                        <table class="table table-bordered">
+                            <thead><tr><th>工作日设置</th></tr></thead>
+                            <tbody><tr><td>
+                                <div class="form-group require">
+                                    <label class="col-sm-2">工作日设置</label>
+                                    <div class="col-sm-8">
+                                        <div class="btn-group btn_group_result" data-toggle="buttons" id="setup_attendance_group_add_week" result="1,2,3,4,5">
+                                            <label class="btn active"><input type="checkbox" value="1">周一</label>
+                                            <label class="btn active"><input type="checkbox" value="2">周二</label>
+                                            <label class="btn active"><input type="checkbox" value="3">周三</label>
+                                            <label class="btn active"><input type="checkbox" value="4">周四</label>
+                                            <label class="btn active"><input type="checkbox" value="5">周五</label>
+                                            <label class="btn">       <input type="checkbox" value="6">周六</label>
+                                            <label class="btn">       <input type="checkbox" value="7">周日</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2">法节自动排休</label>
+                                    <div class="col-sm-8">
+                                        <div class="btn-group btn_group_result" data-toggle="buttons" id="setup_attendance_group_add_vaca" result="true">
+                                            <label class="btn active"><input type="radio" value="true">启用</label>
+                                            <label class="btn">       <input type="radio" value="false">禁用</label>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="setup_attendance_group_add_time">班次时间设置</label>
+                                    <div class="col-sm-8"><select class="form-control" id="setup_attendance_group_add_time" style="max-width:358px"></select></div>
+                                </div>
+                            </td></tr></tbody>
+                        </table>
+
+<style>
+/*考勤方式-办公地点*/
+.map_select_result{
+    position: relative;
+}
+.map_select_result .map_select_reset{
+    cursor: pointer;
+}
+.map_select_result strong{
+    display: block;
+    font-weight: normal;
+    position: absolute;
+    width: 100%;
+    top: 35px;
+    left: 0;
+    background:#fff;
+    border: 1px solid #ddd;
+    border-radius:2px;
+    overflow: hidden;
+    z-index: 100;
+    padding:10px;
+    box-sizing:border-box;
+    /*display: none;*/
+}
+.map_select_result strong em{
+    display: block;
+    font-style: normal;
+    height:200px;
+    margin-bottom:8px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius:2px;
+    box-sizing:border-box;
+}
+</style>
+
+                        <!-- 考勤方式 -->
+                        <table class="table table-bordered">
+                            <thead><tr><th colspan="2">考勤方式 <span class="text-danger text-thin">满足任意一种考勤方式即可完成打卡</span></th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-2"><label id="setup_attendance_group_add_type1" style="margin-top:7px;"><i class="icon icon-check-empty"></i> 根据办公地点考勤</label></div>
+                                        <div class="col-sm-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">有效范围</span>
+                                                <input type="number" class="form-control" id="setup_attendance_group_add_type1_range">
+                                                <span class="input-group-addon">米</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+
+                                            <!-- 地图选择 -->
+                                            <div class="input-group map_select_result">
+                                                <span class="input-group-addon">办公地点</span>
+                                                <input type="text" class="form-control" placeholder="请选择办公地点" readonly 
+                                                    id="setup_attendance_group_add_type1_addr" mapx="" mapy="">
+                                                <span class="input-group-addon map_select_reset"><i class="icon icon-reply"></i></span>
+                                                <strong>
+                                                    <em>在此显示百度地图</em>
+                                                    <div class="clearfix"></div>
+                                                    <button type="button" class="btn btn-primary btn-mini pull-right">提交</button>
+                                                    <span class="pull-right"> &nbsp; </span>
+                                                    <button type="button" class="btn btn-default btn-mini pull-right">关闭</button>
+                                                    <div class="clearfix"></div>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                        <!-- 地图选择 -->
+
+                                    </td>
+                                </tr>
+                                <tr><td><div class="col-sm-2"><label id="setup_attendance_group_add_type2"><i class="icon icon-check-empty"></i> 根据公司WIFI</label></div></td></tr>
+                                <tr><td><div class="col-sm-2"><label id="setup_attendance_group_add_type3"><i class="icon icon-check-empty"></i> 允许外勤打卡</label></div></td></tr>
+                            </tbody>
+                        </table>
 
                     </form>
                     <div class="text-center">
@@ -90,37 +220,51 @@ $(function(){
    
     //变量声明-----------------------------------------------------------------------------------------------
     var 
-    setup_attendance_group               = $("#setup_attendance_group"),              //页面ID
-    setup_attendance_group_datagrid      = $("#setup_attendance_group_datagrid"),     //数据表格
+    setup_attendance_group                  = $("#setup_attendance_group"),                 //页面ID
+    setup_attendance_group_datagrid         = $("#setup_attendance_group_datagrid"),        //数据表格
     //添加
-    setup_attendance_group_add_btn       = $("#setup_attendance_group_add_btn"),      //添加按钮
-    setup_attendance_group_add_box       = $("#setup_attendance_group_add_box"),      //添加盒子
-    setup_attendance_group_add_submit    = $("#setup_attendance_group_add_submit"),   //添加提交
+    setup_attendance_group_add_btn          = $("#setup_attendance_group_add_btn"),         //添加按钮
+    setup_attendance_group_add_box          = $("#setup_attendance_group_add_box"),         //添加盒子
+    setup_attendance_group_add_submit       = $("#setup_attendance_group_add_submit"),      //添加提交
+    setup_attendance_group_add_name         = $("#setup_attendance_group_add_name"),        //考勤名称
+    setup_attendance_group_add_tree         = $("#setup_attendance_group_add_tree"),        //考勤人员
+    setup_attendance_group_add_rule         = $("#setup_attendance_group_add_rule"),        //加班规则
+    setup_attendance_group_add_week         = $("#setup_attendance_group_add_week"),        //工作日设置
+    setup_attendance_group_add_vaca         = $("#setup_attendance_group_add_vaca"),        //假期日设置
+    setup_attendance_group_add_time         = $("#setup_attendance_group_add_time"),        //班次设置
+    setup_attendance_group_add_type1        = $("#setup_attendance_group_add_type1"),       //考勤方式1
+    setup_attendance_group_add_type1_range  = $("#setup_attendance_group_add_type1_range"), //范围
+    setup_attendance_group_add_type1_addr   = $("#setup_attendance_group_add_type1_addr"),  //地点
+    setup_attendance_group_add_type2        = $("#setup_attendance_group_add_type2"),       //考勤方式2
+    setup_attendance_group_add_type3        = $("#setup_attendance_group_add_type3"),       //考勤方式3
     //修改
-    setup_attendance_group_edit_box      = $("#setup_attendance_group_edit_box"),     //修改盒子
-    setup_attendance_group_edit_submit   = $("#setup_attendance_group_edit_submit"),  //修改提交
+    setup_attendance_group_edit_box         = $("#setup_attendance_group_edit_box"),        //修改盒子
+    setup_attendance_group_edit_submit      = $("#setup_attendance_group_edit_submit"),     //修改提交
     //删除
-    setup_attendance_group_dele_box      = $("#setup_attendance_group_dele_box"),     //删除盒子
-    setup_attendance_group_dele_submit   = $("#setup_attendance_group_dele_submit");  //删除提交
+    setup_attendance_group_dele_box         = $("#setup_attendance_group_dele_box"),        //删除盒子
+    setup_attendance_group_dele_submit      = $("#setup_attendance_group_dele_submit");     //删除提交
 
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
 
         //本地接口
         var setup_attendance_group_api = {
-            datagrid   : LOCAL + "Test/test_datagrid.json",                                     //数据表格
-            modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                       //修改盒子
+            datagrid   : LOCAL + "Test/test_datagrid.json",                                 //数据表格
+            select     : LOCAL + "Test/test_select.json",                                   //下拉选项
+            modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修改盒子
         }
 
     } else if ( window.STATE == "route" ){
 
         //远程接口
         var setup_attendance_group_api = {
-            datagrid   : LOCAL + "Test/test_datagrid.json",                                     //数据表格
-            modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                       //修改盒子
+            datagrid   : LOCAL + "Test/test_datagrid.json",                                 //数据表格
+            select     : LOCAL + "Test/test_select.json",                                   //下拉选项
+            modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修改盒子
         }
 
     }
+    setup_attendance_group_add_box.modal("show");
 
     //数据表格-----------------------------------------------------------------------------------------------
     setup_attendance_group_datagrid.datagrid({
@@ -172,6 +316,48 @@ $(function(){
     setup_attendance_group_edit_btn       = ".setup_attendance_group_edit_btn",                     //修改按钮
     setup_attendance_group_dele_btn       = ".setup_attendance_group_dele_btn";                     //删除按钮
 
+    //节点树创建(添加+修改)--------------------------------------------------------------------------------
+    common_tree_staff(setup_attendance_group_add_tree,3,false,true);        //添加
+    //common_tree_staff(setup_attendance_group_edit_tree,3,false,true);       //修改
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //加班规则
+    $.ajax({
+        url     : setup_attendance_group_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "<option>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                setup_attendance_group_add_rule.html(option);               //添加
+                //setup_attendance_group_edit_rule.html(option);              //修改 
+            }
+        }
+    });
+    //班次设置
+    $.ajax({
+        url     : setup_attendance_group_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "<option>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                setup_attendance_group_add_time.html(option);               //添加
+                //setup_attendance_group_edit_time.html(option);              //修改 
+            }
+        }
+    });
+
     //添加按钮-----------------------------------------------------------------------------------------------
     setup_attendance_group_add_btn.click(function(){
         setup_attendance_group_add_box.modal("show");
@@ -185,7 +371,18 @@ $(function(){
             type    : "post",
             dataType: "json",
             data    : {
-                rule : 1,
+                name : setup_attendance_group_add_name.val(),
+                tree : setup_attendance_group_add_tree.attr("result"),
+                rule : setup_attendance_group_add_rule.val(),
+                week : setup_attendance_group_add_week.attr("result"),
+                vaca : setup_attendance_group_add_vaca.attr("result"),
+                time : setup_attendance_group_add_time.val(),
+
+
+                range: setup_attendance_group_add_type1_range.val(),
+                addr : setup_attendance_group_add_type1_addr.val(),
+
+
             },
             success : function(data){
                 if( data.status>0 ){
@@ -203,7 +400,7 @@ $(function(){
     $(document).on("click",setup_attendance_group_edit_btn,function(){
   
         //数据ID
-        var data_id    = zui_datagrid_get_id($(this).attr("rowIndex"));
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
 
         //远程提交
         $.ajax({
@@ -229,7 +426,6 @@ $(function(){
         });
 
     });
-
     //修改提交
     setup_attendance_group_edit_submit.click(function(){
 
@@ -291,6 +487,47 @@ $(function(){
         });
 
     });
- 
+
+    //地图组件-----------------------------------------------------------------------------------------------
+    map_select_result = $(".map_select_result"),                    //地图组件
+    map_select_input  = map_select_result.find("input"),            //文本框
+    map_select_reset  = map_select_result.find(".map_select_reset"),//重置按钮
+    map_select_modal  = map_select_result.find("strong"),           //地图面板
+    map_select_map_box= map_select_result.find("em"),               //地图盒子
+    map_select_submit = map_select_result.find(".btn-primary"),     //提交按钮
+    map_select_close  = map_select_result.find(".btn-default");     //关闭按钮
+    //文本框点击
+    map_select_input.click(function(){ map_select_modal.show(); });
+    //关闭按钮
+    map_select_close.click(function(){ map_select_modal.hide(); });
+    //提交按钮
+    map_select_submit.click(function(){
+        //数据获取
+        var addr = map_select_map_box.text();
+        var mapx = "1";
+        var mapy = "2";
+        //数据传值
+        map_select_input.val( addr );
+        map_select_input.attr("mapx",mapx);
+        map_select_input.attr("mapy",mapy);
+        //面板隐藏
+        map_select_modal.hide(); 
+    });
+    //重置按钮
+    map_select_reset.click(function(){
+        //数据重置
+        map_select_input.val("");
+        map_select_input.attr("mapx","");
+        map_select_input.attr("mapy","");
+        //面板隐藏
+        map_select_modal.hide();
+    });
+     
 });//预加载结尾
 </script>
+
+<style>
+.map_select_result strong{
+    display: none;
+}
+</style>
