@@ -205,6 +205,24 @@ $(function(){
         },50);
     });
 
+    //checkbox-toggle
+    $(document).on("click",".for_label_toggle",function(){
+        var icon = $(this).find(".icon");
+        if( icon.hasClass("icon-check-empty") ){
+            icon.removeClass("icon-check-empty").addClass("icon-checked");
+        } else {
+            icon.removeClass("icon-checked").addClass("icon-check-empty");
+        }
+    });
+
+    //模态框-隐藏-重置
+    $(document).on("hide.zui.modal",".modal",function(){
+        var form = $(this).find("form");
+        for(var i=0;i<form.length;i++){
+            form[i].reset();
+        }
+    });
+
     //…
 
 });//预加载结尾
@@ -664,4 +682,20 @@ function common_tree_staff(selector,company_id,is_open,is_check,edit_data){
 
     }
 
+}
+
+/* common_tree_staff_reset() 节点树员工重置
+ * @param selector     object  DOM对象
+ */
+function common_tree_staff_reset(selector){
+    selector.find(".icon-checked").removeClass("icon-checked").addClass("icon-check-empty");
+    selector.attr("result","");
+    selector.find(".has-list").removeClass("open in");
+}
+
+/* common_for_label_toggle_reset() label-checkbox重置
+ * @param selector     object  DOM对象
+ */
+function common_for_label_toggle_reset(selector){
+    selector.find(".icon").removeClass("icon-checked").addClass("icon-check-empty");
 }

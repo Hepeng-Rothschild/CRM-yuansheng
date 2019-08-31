@@ -523,9 +523,12 @@ select{ min-width: 100px!important; }
 .text-thin{
     font-weight: normal;
 }
-/*label_cursor*/
-label{
+/*label*/
+.for-label{
     cursor: pointer;
+}
+.for-label::selection{
+    background:transparent;
 }
 /*权限表格*/
 #setup_auth_post_edit_table table td{
@@ -566,12 +569,7 @@ label{
     z-index:4;
     display:none;
 }
-.setup_attendance_overtime_table tr td span.for-label{
-    cursor: pointer;
-}
-.setup_attendance_overtime_table tr td span.for-label::selection{
-    background:transparent;
-}
+
 /*考勤组设置-地图组件*/
 .map_select_result{
     position: relative;

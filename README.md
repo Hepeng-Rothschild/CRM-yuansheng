@@ -31,3 +31,26 @@ if (!reg_2_10.test(setup_base_add_user.val())){ um_tip("企业管理人格式错
 if (!reg_2_10.test(setup_base_add_addr.val())){ um_tip("地区称格式错误","1500"     ,"text-danger"); return; }
 if (!reg_ip.test(setup_base_add_ip.val()))    { um_tip("IP格式错误","1500"         ,"text-danger"); return; }
 ```
+
+#bug搁置
+```
+//上传
+	描述：打开第二个面板 第一个面板的上传状态仍然存在 
+	//模态框显示
+	$(document).on("show.zui.modal",".modal",function(){
+	    console.log("模态框显示");
+	    if( $(".uploader") ){
+	        $(".uploader").find(".btn-delete-file").trigger("click");
+	    }
+	});
+	//模态框显示
+	$(document).on("hide.zui.modal",".modal",function(){
+	    console.log("模态框隐藏");
+	    if( $(".uploader") ){
+	        $(".uploader").data("zui.uploader").destroy();
+	    }
+	});
+
+//假期余额-修改
+	tab面板显示不出来(css强制显示-需多测试)
+```

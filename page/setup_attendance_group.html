@@ -88,7 +88,11 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <div class="col-sm-2"><label id="setup_attendance_group_add_type1" style="margin-top:7px;"><i class="icon icon-check-empty"></i> 根据办公地点考勤</label></div>
+                                        <div class="col-sm-2">
+                                            <label class="for-label for_label_toggle" id="setup_attendance_group_add_type1" style="margin-top:7px;">
+                                                <i class="icon icon-check-empty"></i> 根据办公地点考勤
+                                            </label>
+                                        </div>
                                         <div class="col-sm-3">
                                             <div class="input-group">
                                                 <span class="input-group-addon">有效范围</span>
@@ -118,8 +122,24 @@
 
                                     </td>
                                 </tr>
-                                <tr><td><div class="col-sm-2"><label id="setup_attendance_group_add_type2"><i class="icon icon-check-empty"></i> 根据公司WIFI</label></div></td></tr>
-                                <tr><td><div class="col-sm-2"><label id="setup_attendance_group_add_type3"><i class="icon icon-check-empty"></i> 允许外勤打卡</label></div></td></tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-8">
+                                            <label class="for-label for_label_toggle" id="setup_attendance_group_add_type2">
+                                                <i class="icon icon-check-empty"></i> 根据公司WIFI
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-8">
+                                            <label class="for-label for_label_toggle" id="setup_attendance_group_add_type3">
+                                                <i class="icon icon-check-empty"></i> 允许外勤打卡
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
 
@@ -229,7 +249,6 @@ $(function(){
         }
 
     }
-    //setup_attendance_group_add_box.modal("show");
 
     //数据表格-----------------------------------------------------------------------------------------------
     setup_attendance_group_datagrid.datagrid({
@@ -325,7 +344,18 @@ $(function(){
 
     //添加按钮-----------------------------------------------------------------------------------------------
     setup_attendance_group_add_btn.click(function(){
+
+        //数据重置
+        common_tree_staff_reset( setup_attendance_group_add_tree );
+        setup_attendance_group_add_week.attr("result","1,2,3,4,5").find(".btn").removeClass("active");
+        for( var i=0;i<5;i++ ){ setup_attendance_group_add_week.find(".btn").eq(i).addClass("active"); }
+        setup_attendance_group_add_vaca.find(".btn").eq(0).trigger("click");
+        common_for_label_toggle_reset( setup_attendance_group_add_table3 );
+        setup_attendance_group_add_table3.find(".map_select_reset").trigger("click");
+
+        //面板显示
         setup_attendance_group_add_box.modal("show");
+        
     });
     //添加提交
     setup_attendance_group_add_submit.click(function(){
@@ -342,12 +372,13 @@ $(function(){
                 week : setup_attendance_group_add_week.attr("result"),
                 vaca : setup_attendance_group_add_vaca.attr("result"),
                 time : setup_attendance_group_add_time.val(),
-
-
+                type1: setup_attendance_group_add_type1.find(".icon").hasClass("icon-checked"),
+                type2: setup_attendance_group_add_type1.find(".icon").hasClass("icon-checked"),
+                type3: setup_attendance_group_add_type1.find(".icon").hasClass("icon-checked"),
                 range: setup_attendance_group_add_type1_range.val(),
                 addr : setup_attendance_group_add_type1_addr.val(),
-
-
+                mapx : setup_attendance_group_add_type1_addr.attr("mapx"),
+                mapy : setup_attendance_group_add_type1_addr.attr("mapy"),
             },
             success : function(data){
                 if( data.status>0 ){
@@ -453,12 +484,6 @@ $(function(){
 
     });
 
-    //考勤方式-----------------------------------------------------------------------------------------------
-    setup_attendance_group_add_table3.find("label").click(function(){
-        console.log(1);
-    });
-
-
     //地图组件-----------------------------------------------------------------------------------------------
     map_select_result = $(".map_select_result"),                    //地图组件
     map_select_input  = map_select_result.find("input"),            //文本框
@@ -494,6 +519,8 @@ $(function(){
         map_select_modal.hide();
     });
      
+    setup_attendance_group_add_box.modal("show");
+
 });//预加载结尾
 </script>
 
