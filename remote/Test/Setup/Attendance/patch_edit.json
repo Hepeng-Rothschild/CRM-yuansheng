@@ -1,0 +1,10 @@
+{
+    "result" : true,
+    "message": "获取成功",
+    "status" : 1,
+    "data"   : {
+        "able" : true,
+        "time" : 1,
+        "days" : 2
+    }
+}   

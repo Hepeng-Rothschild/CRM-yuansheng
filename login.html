@@ -50,12 +50,15 @@ $(function(){
             url     : API.test_response,
             type    : "post",
             dataType: "json", 
-            data    :{common_login_val_account,common_login_val_password},
+            data    :{
+                account : common_login_val_account,
+                password : common_login_val_password
+            },
             success :function(data){
-                um_tip(data.mess);
+                um_tip(data.message);
                 setTimeout(function(){
                     window.location.href="index.html";
-                },1500);
+                },111500);
             }
         });
     });

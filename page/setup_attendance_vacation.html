@@ -1,0 +1,322 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="setup_attendance_vacation">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="setup_attendance_vacation_datagrid">
+
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <div class="tool-deal">
+                <label><button class="btn btn-primary" id="setup_attendance_vacation_add_btn"> <i class="icon icon-plus"></i> 添加</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_attendance_vacation_add_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="container form-horizontal">
+
+                    </form>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="setup_attendance_vacation_add_submit">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_attendance_vacation_add_box -->
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_attendance_vacation_edit_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="container form-horizontal">
+
+                    </form>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="setup_attendance_vacation_edit_submit">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_attendance_vacation_edit_box -->
+
+    <!-- 删除盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_attendance_vacation_dele_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否删除？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="setup_attendance_vacation_dele_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_attendance_vacation_dele_box -->
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+    $(function(){
+
+        //变量声明-----------------------------------------------------------------------------------------------
+        var
+                setup_attendance_vacation                  = $("#setup_attendance_vacation"),                 //页面ID
+                setup_attendance_vacation_datagrid         = $("#setup_attendance_vacation_datagrid"),        //数据表格
+                //添加
+                setup_attendance_vacation_add_btn          = $("#setup_attendance_vacation_add_btn"),         //添加按钮
+                setup_attendance_vacation_add_box          = $("#setup_attendance_vacation_add_box"),         //添加盒子
+                setup_attendance_vacation_add_submit       = $("#setup_attendance_vacation_add_submit"),      //添加提交
+                //修改
+                setup_attendance_vacation_edit_box         = $("#setup_attendance_vacation_edit_box"),        //修改盒子
+                setup_attendance_vacation_edit_submit      = $("#setup_attendance_vacation_edit_submit"),     //修改提交
+                //删除
+                setup_attendance_vacation_dele_box         = $("#setup_attendance_vacation_dele_box"),        //删除盒子
+                setup_attendance_vacation_dele_submit      = $("#setup_attendance_vacation_dele_submit");     //删除提交
+
+        //接口对象-----------------------------------------------------------------------------------------------
+        if( window.STATE == "local" ){
+
+            //本地接口
+            var setup_attendance_vacation_api = {
+                datagrid   : LOCAL + "Test/test_datagrid.json",                                 //数据表格
+                select     : LOCAL + "Test/test_select.json",                                   //下拉选项
+                modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修改盒子
+            }
+
+        } else if ( window.STATE == "route" ){
+
+            //远程接口
+            var setup_attendance_vacation_api = {
+                datagrid   : LOCAL + "Test/test_datagrid.json",                                 //数据表格
+                select     : LOCAL + "Test/test_select.json",                                   //下拉选项
+                modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修改盒子
+            }
+
+        }
+
+        //数据表格-----------------------------------------------------------------------------------------------
+        setup_attendance_vacation_datagrid.datagrid({
+            height      : zui_datagrid_height(setup_attendance_vacation_datagrid),
+            sortable    : false,
+            cache       : false,
+            showRowIndex: true,
+            configs     : {
+                R0:{className:"text-center"},
+                C1:{className:"cell-hidden"}
+            },
+            states      : {
+                pager           : {
+                    page        : 1,
+                    recPerPage  : window.REC_PER_PAGE,
+                }
+            },
+            dataSource : {
+                cols   : [
+                    {name:"id",      label:"ID",          width:49 },
+                    {name:"text8",   label:"假期名称",      width:150},
+                    {name:"text8",   label:"请假单位",      width:150},
+                    {name:"text8",   label:"计算请假时长方式",width:150},
+                    {name:"text8",   label:"余额规则",      width:150},
+                    {name:"operate", label:"操作",         width:150,
+                        html:true,
+                        valueOperator : {
+                            getter : function(dataValue,cell){
+                                var temp = `
+                                <a class="setup_attendance_vacation_edit_btn" rowIndex="${cell.rowIndex}">修改</a>
+                                <a class="setup_attendance_vacation_dele_btn" rowIndex="${cell.rowIndex}">删除</a>
+                            `;
+                                return temp;
+                            }
+                        }
+                    }
+                ],
+                remote : function(){
+                    return {
+                        url     : setup_attendance_vacation_api.datagrid,
+                        type    : "POST",
+                        dataType: "json",
+                    }
+                }
+            }
+        });
+
+        //变量声明-----------------------------------------------------------------------------------------------
+        var
+                setup_attendance_vacation_datagrid_obj   = setup_attendance_vacation_datagrid.data("zui.datagrid"),   //表格对象
+                setup_attendance_vacation_edit_btn       = ".setup_attendance_vacation_edit_btn",                     //修改按钮
+                setup_attendance_vacation_dele_btn       = ".setup_attendance_vacation_dele_btn";                     //删除按钮
+
+        //下拉选项-----------------------------------------------------------------------------------------------
+        //加班规则
+        $.ajax({
+            url     : setup_attendance_vacation_api.select,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                if( data.status>0 ){
+                    var data = data.data;
+                    var option = "<option>全部</option>";
+                    for(var i=0;i<data.length;i++){
+                        option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                    }
+                    //setup_attendance_vacation_add_rule.html(option);               //添加
+                    //setup_attendance_vacation_edit_rule.html(option);              //修改 
+                }
+            }
+        });
+
+        //添加按钮-----------------------------------------------------------------------------------------------
+        setup_attendance_vacation_add_btn.click(function(){
+
+            //面板显示
+            setup_attendance_vacation_add_box.modal("show");
+
+        });
+        //添加提交
+        setup_attendance_vacation_add_submit.click(function(){
+
+            //远程提交
+            $.ajax({
+                url     : API.test_response,
+                type    : "post",
+                dataType: "json",
+                data    : {
+                    name : ""
+                },
+                success : function(data){
+                    if( data.status>0 ){
+                        um_tip(data.message);
+                        zui_datagrid_reset(setup_attendance_vacation_datagrid_obj,setup_attendance_vacation_api.datagrid);
+                    } else {
+                        um_tip(data.message,"1500","text-danger");
+                    }
+                }
+            });
+
+        });
+
+        //修改按钮-----------------------------------------------------------------------------------------------
+        $(document).on("click",setup_attendance_vacation_edit_btn,function(){
+
+            //数据ID
+            var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+            //远程提交
+            $.ajax({
+                url     : setup_attendance_vacation_api.modal_edit,
+                type    : "post",
+                dataType: "json",
+                data    : { id:data_id },
+                success : function(data){
+                    if( data.status>0 ){
+                        var data = data.data;
+
+                        //数据赋值
+                        console.log( data );
+
+                        //其他操作
+                        setup_attendance_vacation_edit_submit.attr("dataId",data_id);  //数据ID传值
+                        setup_attendance_vacation_edit_box.modal("show");              //盒子显示
+
+                    } else {
+                        um_tip(data.message,"1500","text-danger");
+                    }
+                }
+            });
+
+        });
+        //修改提交
+        setup_attendance_vacation_edit_submit.click(function(){
+
+            //数据ID
+            var data_id = $(this).attr("dataId");
+
+            //远程提交
+            $.ajax({
+                url     : API.test_response,
+                type    : "post",
+                dataType: "json",
+                data    : {
+                    id   : data_id,
+                    name : 1,
+                },
+                success : function(data){
+                    if( data.status>0 ){
+                        um_tip(data.message);
+                        zui_datagrid_reset(setup_attendance_vacation_datagrid_obj,setup_attendance_vacation_api.datagrid);
+                    } else {
+                        um_tip(data.message,"1500","text-danger");
+                    }
+                }
+            });
+
+        });
+
+        //删除按钮-----------------------------------------------------------------------------------------------
+        $(document).on("click",setup_attendance_vacation_dele_btn,function(){
+
+            //数据ID
+            var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+            //其他操作
+            setup_attendance_vacation_dele_submit.attr("dataId",data_id);                                //ID传值
+            setup_attendance_vacation_dele_box.modal("show");                                            //面板显示
+
+        });
+        //删除提交
+        setup_attendance_vacation_dele_submit.click(function(){
+
+            //数据ID
+            var data_id = $(this).attr("dataId");
+
+            //远程提交
+            $.ajax({
+                url     : API.test_response,
+                type    : "post",
+                dataType: "json",
+                data    : { id:data_id },
+                success : function(data){
+                    if( data.status>0 ){
+                        um_tip(data.message);
+                        zui_datagrid_reset(setup_attendance_vacation_datagrid_obj,setup_attendance_vacation_api.datagrid);
+                    } else {
+                        um_tip(data.message,"1500","text-danger");
+                    }
+                }
+            });
+
+        });
+
+    });//预加载结尾
+</script>
