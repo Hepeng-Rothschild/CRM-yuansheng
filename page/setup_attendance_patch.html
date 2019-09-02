@@ -3,9 +3,14 @@
 
     <!-- 工具条组 -->
     <div class="tool-group">
-        <div class="tool-deal" style="padding-bottom:5px;border-bottom:1px solid #ddd;">
+        <div class="tool-deal" style="padding-bottom:5px;">
             <button class="btn btn-primary" id="setup_attendance_patch_edit_btn"> <i class="icon icon-plus"></i> 修改</button>
         </div>
+        <table class="table table-bordered">
+            <tbody>
+              
+            </tbody>
+        </table>
     </div>
     <!-- tool-group -->
  
@@ -18,36 +23,39 @@
                     <h4 class="modal-title">修改</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="container form-horizontal">
 
+                    <form class="container form-horizontal">
                         <div class="form-group require">
                             <label class="col-sm-3">补卡规则</label>
                             <div class="col-sm-8">
                                 <div class="btn-group btn_group_result" data-toggle="buttons" id="setup_attendance_patch_edit_able" result="true">
-                                    <label class="btn active"><input type="radio" value="true"> 启用</label>
-                                    <label class="btn">       <input type="radio" value="false">禁用</label>
+                                    <label class="btn"><input type="radio" value="true"> 启用</label>
+                                    <label class="btn"><input type="radio" value="false">禁用</label>
                                 </div>
                             </div>
-                        </div>                                
+                        </div>
                         <div class="form-group require">
                             <label class="col-sm-3" for="setup_attendance_patch_edit_time">限制补卡次数</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="setup_attendance_patch_edit_time">
-                                    <option value="1">1次</option>
-                                    <option value="2">2次</option>
-                                </select>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="setup_attendance_patch_edit_time">
+                                    <span class="input-group-addon">次</span>
+                                </div>
                             </div>
+                            <div class="col-sm-6 small text-muted" style="line-height:32px;">每月可提交，按自然月计算</div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-3" for="setup_attendance_patch_edit_days">限制补卡时间</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="setup_attendance_patch_edit_days">
-                                    <option value="1">1天</option>
-                                    <option value="2">2天</option>
-                                </select>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="setup_attendance_patch_edit_days">
+                                    <span class="input-group-addon">天</span>
+                                </div>
                             </div>
+                            <div class="col-sm-6 small text-muted" style="line-height:32px;">可申请过去补卡，0天表示只能当天补卡</div>
                         </div>
                     </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -66,6 +74,7 @@ $(function(){
    
     //变量声明-----------------------------------------------------------------------------------------------
     var
+    setup_attendance_patch             = $("#setup_attendance_patch"),              //页面ID
     setup_attendance_patch_edit_btn    = $("#setup_attendance_patch_edit_btn"),     //修改按钮
     setup_attendance_patch_edit_box    = $("#setup_attendance_patch_edit_box"),     //修改盒子
     setup_attendance_patch_edit_submit = $("#setup_attendance_patch_edit_submit"),  //修改提交
@@ -90,10 +99,37 @@ $(function(){
 
     }
 
-    //修改按钮-----------------------------------------------------------------------------------------------
+    //远程请求-----------------------------------------------------------------------------------------------
+    $.ajax({
+        url     : setup_attendance_patch_api.modal_edit,
+        type    : "post",
+        dataType: "json",
+        data    : { },
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+
+                //数据赋值
+                if( data.able==true ){
+                    setup_attendance_patch.find("tbody").html(`
+                        <tr><td style="width:100px;"><b>补卡规则</b></td><td>启用</td></tr>
+                        <tr><td><b>限制补卡次数</b></td><td>${data.time}次 (每月可提交，按自然月计算)</td></tr>
+                        <tr><td><b>限制补卡时间</b></td><td>${data.days}天 (可申请过去补卡，0天表示只能当天补卡)</td></tr>  
+                    `);
+                } else {
+                    setup_attendance_patch.find("tbody").html(`
+                        <tr><td style="width:100px;"><b>补卡规则</b></td><td>禁用</td></tr>
+                    `);
+                }
+
+            } else {
+                um_tip(data.message,"1500","text-danger");
+            }
+        }
+    });
+    //修改按钮
     setup_attendance_patch_edit_btn.click(function(){
 
-        //远程提交
         $.ajax({
             url     : setup_attendance_patch_api.modal_edit,
             type    : "post",
@@ -102,18 +138,15 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     var data = data.data;
-                    
+
                     //数据赋值
-                    setup_attendance_patch_edit_time.val( data.time );
-                    setup_attendance_patch_edit_days.val( data.days );                    
                     if( data.able==true ){
                         setup_attendance_patch_edit_able.find(".btn").eq(0).trigger("click");
-                    } else {
+                        setup_attendance_patch_edit_time.val( data.time );
+                        setup_attendance_patch_edit_days.val( data.days );
+                    } else {                  
                         setup_attendance_patch_edit_able.find(".btn").eq(1).trigger("click");
                     }
-
-                    //面板显示
-                    setup_attendance_patch_edit_box.modal("show");
 
                 } else {
                     um_tip(data.message,"1500","text-danger");
@@ -121,6 +154,7 @@ $(function(){
             }
         });
 
+        setup_attendance_patch_edit_box.modal("show");
     });
     //修改提交
     setup_attendance_patch_edit_submit.click(function(){
@@ -152,12 +186,11 @@ $(function(){
     //补卡规则-----------------------------------------------------------------------------------------------
     setup_attendance_patch_edit_able.find(".btn").click(function(){
         var able = $(this).find("input").val();
-        var sele = setup_attendance_patch_edit_box.find("select");
+        var inp  = setup_attendance_patch_edit_box.find("input[type='number']");
         if( able=="true" ){
-            sele.removeAttr("disabled");
+            inp.removeAttr("disabled");
         } else {
-            sele.val(1);
-            sele.attr("disabled","disabled");
+            inp.val("").attr("disabled","disabled");
         }
     });
 
