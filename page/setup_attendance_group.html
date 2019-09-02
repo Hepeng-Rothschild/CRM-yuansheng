@@ -67,6 +67,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group require">
+                                    <label class="col-sm-2" for="setup_attendance_group_add_time">班次时间设置</label>
+                                    <div class="col-sm-8"><select class="form-control" id="setup_attendance_group_add_time" style="max-width:358px"></select></div>
+                                </div>
+                                <div class="form-group require">
                                     <label class="col-sm-2">法节自动排休</label>
                                     <div class="col-sm-8">
                                         <div class="btn-group btn_group_result" data-toggle="buttons" id="setup_attendance_group_add_vaca" result="true">
@@ -74,10 +78,6 @@
                                             <label class="btn">       <input type="radio" value="false">禁用</label>
                                         </div>
                                     </div>
-                                </div>                                
-                                <div class="form-group require">
-                                    <label class="col-sm-2" for="setup_attendance_group_add_time">班次时间设置</label>
-                                    <div class="col-sm-8"><select class="form-control" id="setup_attendance_group_add_time" style="max-width:358px"></select></div>
                                 </div>
                             </td></tr></tbody>
                         </table>
@@ -103,12 +103,12 @@
                                         <div class="col-sm-7">
 
                                             <!-- 地图选择 -->
-                                            <div class="input-group map_select_result">
+                                            <div class="input-group map-select-result" id="add_map_select_map">
                                                 <span class="input-group-addon">办公地点</span>
                                                 <input type="text" class="form-control" placeholder="请选择办公地点" readonly id="setup_attendance_group_add_type1_addr" mapx="" mapy="">
                                                 <span class="input-group-addon map_select_reset"><i class="icon icon-reply"></i></span>
                                                 <strong>
-                                                    <em id="map_select_map_box"></em>
+                                                    <em id="add_map_select_map_box"></em>
                                                     <div class="flex-box">
                                                         <div class="flex-son"><input type="text" class="form-control input-sm map_select_map_input"></div>
                                                         <div style="width:120px;margin:0.5px 0 0 5px;text-align:center">
@@ -166,9 +166,125 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <form class="container form-horizontal">
+                        
+                        <!-- 考勤组设置 -->
+                        <table class="table table-bordered">
+                            <thead><tr><th>考勤组设置</th></tr></thead>
+                            <tbody><tr><td>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="setup_attendance_group_edit_name">考勤组名称</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control" id="setup_attendance_group_edit_name" style="max-width:358px"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2">考勤人员</label>
+                                    <div class="col-sm-8"><ul class="tree tree-lines tree-chevrons" id="setup_attendance_group_edit_tree"></ul></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="setup_attendance_group_edit_rule">加班规则</label>
+                                    <div class="col-sm-8"><select class="form-control" id="setup_attendance_group_edit_rule" style="max-width:358px"></select></div>
+                                </div>
+                                </td></tr></tbody>
+                        </table>
+
+                        <!-- 工作日设置 -->
+                        <table class="table table-bordered">
+                            <thead><tr><th>工作日设置</th></tr></thead>
+                            <tbody><tr><td>
+                                <div class="form-group require">
+                                    <label class="col-sm-2">工作日设置</label>
+                                    <div class="col-sm-8">
+                                        <div class="btn-group btn_group_result" data-toggle="buttons" id="setup_attendance_group_edit_week" result="1,2,3,4,5">
+                                            <label class="btn active"><input type="checkbox" value="1">周一</label>
+                                            <label class="btn active"><input type="checkbox" value="2">周二</label>
+                                            <label class="btn active"><input type="checkbox" value="3">周三</label>
+                                            <label class="btn active"><input type="checkbox" value="4">周四</label>
+                                            <label class="btn active"><input type="checkbox" value="5">周五</label>
+                                            <label class="btn">       <input type="checkbox" value="6">周六</label>
+                                            <label class="btn">       <input type="checkbox" value="7">周日</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="setup_attendance_group_edit_time">班次时间设置</label>
+                                    <div class="col-sm-8"><select class="form-control" id="setup_attendance_group_edit_time" style="max-width:358px"></select></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2">法节自动排休</label>
+                                    <div class="col-sm-8">
+                                        <div class="btn-group btn_group_result" data-toggle="buttons" id="setup_attendance_group_edit_vaca" result="true">
+                                            <label class="btn active"><input type="radio" value="true">启用</label>
+                                            <label class="btn">       <input type="radio" value="false">禁用</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td></tr></tbody>
+                        </table>
+
+                        <!-- 考勤方式 -->
+                        <table class="table table-bordered setup_attendance_group_edit_table3">
+                            <thead><tr><th colspan="2">考勤方式 <span class="text-danger text-thin">满足任意一种考勤方式即可完成打卡</span></th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-2">
+                                            <label class="for-label for_label_toggle" id="setup_attendance_group_edit_type1" style="margin-top:7px;">
+                                                <i class="icon icon-check-empty"></i> 根据办公地点考勤
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">有效范围</span>
+                                                <input type="number" class="form-control" id="setup_attendance_group_edit_type1_range">
+                                                <span class="input-group-addon">米</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+
+                                            <!-- 地图选择 -->
+                                            <div class="input-group map-select-result" id="edit_map_select_map">
+                                                <span class="input-group-addon">办公地点</span>
+                                                <input type="text" class="form-control" placeholder="请选择办公地点" readonly id="setup_attendance_group_edit_type1_addr" mapx="" mapy="">
+                                                <span class="input-group-addon map_select_reset"><i class="icon icon-reply"></i></span>
+                                                <strong>
+                                                    <em id="edit_map_select_map_box"></em>
+                                                    <div class="flex-box">
+                                                        <div class="flex-son"><input type="text" class="form-control input-sm map_select_map_input"></div>
+                                                        <div style="width:120px;margin:0.5px 0 0 5px;text-align:center">
+                                                            <button type="button" class="btn btn-primary btn-mini map_select_map_sea pull-left">搜索</button>
+                                                            <button type="button" class="btn btn-primary btn-mini map_select_map_sub">提交</button>
+                                                            <button type="button" class="btn btn-default btn-mini map_select_map_clo pull-right">关闭</button>
+                                                        </div>
+                                                    </div>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                        <!-- 地图选择 -->
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-8">
+                                            <label class="for-label for_label_toggle" id="setup_attendance_group_edit_type2">
+                                                <i class="icon icon-check-empty"></i> 根据公司WIFI
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-8">
+                                            <label class="for-label for_label_toggle" id="setup_attendance_group_edit_type3">
+                                                <i class="icon icon-check-empty"></i> 允许外勤打卡
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
                     </form>
-                    <div class="text-center">
+                    <div class="text-center" style="margin:100px 0">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         <button type="button" class="btn btn-primary" id="setup_attendance_group_edit_submit">提交</button>
                     </div>
@@ -227,6 +343,18 @@ $(function(){
     //修改
     setup_attendance_group_edit_box         = $("#setup_attendance_group_edit_box"),        //修改盒子
     setup_attendance_group_edit_submit      = $("#setup_attendance_group_edit_submit"),     //修改提交
+    setup_attendance_group_edit_name        = $("#setup_attendance_group_edit_name"),       //考勤名称
+    setup_attendance_group_edit_tree        = $("#setup_attendance_group_edit_tree"),       //考勤人员
+    setup_attendance_group_edit_rule        = $("#setup_attendance_group_edit_rule"),       //加班规则
+    setup_attendance_group_edit_week        = $("#setup_attendance_group_edit_week"),       //工作日设置
+    setup_attendance_group_edit_vaca        = $("#setup_attendance_group_edit_vaca"),       //假期日设置
+    setup_attendance_group_edit_time        = $("#setup_attendance_group_edit_time"),       //班次设置
+    setup_attendance_group_edit_table3      = $(".setup_attendance_group_edit_table3"),     //考勤方式表格
+    setup_attendance_group_edit_type1       = $("#setup_attendance_group_edit_type1"),      //考勤方式1
+    setup_attendance_group_edit_type1_range = $("#setup_attendance_group_edit_type1_range"),//范围
+    setup_attendance_group_edit_type1_addr  = $("#setup_attendance_group_edit_type1_addr"), //地点
+    setup_attendance_group_edit_type2       = $("#setup_attendance_group_edit_type2"),      //考勤方式2
+    setup_attendance_group_edit_type3       = $("#setup_attendance_group_edit_type3"),      //考勤方式3    
     //删除
     setup_attendance_group_dele_box         = $("#setup_attendance_group_dele_box"),        //删除盒子
     setup_attendance_group_dele_submit      = $("#setup_attendance_group_dele_submit");     //删除提交
@@ -304,7 +432,7 @@ $(function(){
 
     //节点树创建(添加+修改)--------------------------------------------------------------------------------
     common_tree_staff(setup_attendance_group_add_tree,3,false,true);        //添加
-    //common_tree_staff(setup_attendance_group_edit_tree,3,false,true);       //修改
+    common_tree_staff(setup_attendance_group_edit_tree,3,false,true);       //修改
 
     //下拉选项-----------------------------------------------------------------------------------------------
     //加班规则
@@ -321,7 +449,7 @@ $(function(){
                     option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
                 setup_attendance_group_add_rule.html(option);               //添加
-                //setup_attendance_group_edit_rule.html(option);              //修改 
+                setup_attendance_group_edit_rule.html(option);              //修改 
             }
         }
     });
@@ -339,7 +467,7 @@ $(function(){
                     option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
                 setup_attendance_group_add_time.html(option);               //添加
-                //setup_attendance_group_edit_time.html(option);              //修改 
+                setup_attendance_group_edit_time.html(option);              //修改 
             }
         }
     });
@@ -372,8 +500,8 @@ $(function(){
                 tree : setup_attendance_group_add_tree.attr("result"),
                 rule : setup_attendance_group_add_rule.val(),
                 week : setup_attendance_group_add_week.attr("result"),
-                vaca : setup_attendance_group_add_vaca.attr("result"),
                 time : setup_attendance_group_add_time.val(),
+                vaca : setup_attendance_group_add_vaca.attr("result"),
                 type1: setup_attendance_group_add_type1.find(".icon").hasClass("icon-checked"),
                 type2: setup_attendance_group_add_type1.find(".icon").hasClass("icon-checked"),
                 type3: setup_attendance_group_add_type1.find(".icon").hasClass("icon-checked"),
@@ -409,9 +537,41 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     var data = data.data;
-                    
+
                     //数据赋值
-                    console.log( data );
+                    setup_attendance_group_edit_name.val( data.name );
+                    common_tree_staff_read(setup_attendance_group_edit_tree,data.tree);
+                    setup_attendance_group_edit_rule.val( data.rule );
+                    //工作日
+                    setup_attendance_group_edit_week.attr("result",data.week).find(".btn").removeClass("active");
+                    var week = data.week.split(",");
+                    for( var i=0;i<week.length;i++ ){ 
+                        setup_attendance_group_edit_week.find(".btn").eq(week[i]-1).addClass("active"); 
+                    }
+                    //班次设置
+                    setup_attendance_group_edit_time.val( data.time );
+                    //法节自动排休
+                    ( data.vaca==true  ) ? setup_attendance_group_edit_vaca.find(".btn").eq(0).trigger("click") : setup_attendance_group_edit_vaca.find(".btn").eq(1).trigger("click");
+                    //考勤方式
+                    ( data.type1==true ) ? setup_attendance_group_edit_type1.find(".icon").removeClass("icon-check-empty").addClass("icon-checked") : setup_attendance_group_edit_type1.find(".icon").removeClass("icon-checked").addClass("icon-check-empty");
+                    ( data.type2==true ) ? setup_attendance_group_edit_type2.find(".icon").removeClass("icon-check-empty").addClass("icon-checked") : setup_attendance_group_edit_type2.find(".icon").removeClass("icon-checked").addClass("icon-check-empty");
+                    ( data.type3==true ) ? setup_attendance_group_edit_type3.find(".icon").removeClass("icon-check-empty").addClass("icon-checked") : setup_attendance_group_edit_type3.find(".icon").removeClass("icon-checked").addClass("icon-check-empty");
+                    //地图-初始化
+                    var map2 = new BMap.Map("edit_map_select_map_box",{minZoom:5,maxZoom:19});   //缩放级别
+                    map2.centerAndZoom(new BMap.Point(data.mapy,data.mapx),19);                  //默认坐标
+                    map2.enableScrollWheelZoom(true);                                            //滚动缩放
+                    map2.addControl(new BMap.NavigationControl());                               //平移缩放
+                    map_select("#edit_map_select_map");
+                    //地图点击
+                    map.addEventListener("click",function(e){
+                        $("#edit_map_select_map").children("input").attr("mapx",e.point.lat);
+                        $("#edit_map_select_map").children("input").attr("mapy",e.point.lng);
+                    });
+                    //地图赋值
+                    setup_attendance_group_edit_type1_range.val(data.range ),
+                    setup_attendance_group_edit_type1_addr.val( data.addr ),
+                    setup_attendance_group_edit_type1_addr.attr("mapx",data.mapx),
+                    setup_attendance_group_edit_type1_addr.attr("mapy",data.mapy),
 
                     //其他操作
                     setup_attendance_group_edit_submit.attr("dataId",data_id);  //数据ID传值
@@ -437,7 +597,19 @@ $(function(){
             dataType: "json",
             data    : { 
                 id   : data_id,
-                rule : 1,
+                name : setup_attendance_group_edit_name.val(),
+                tree : setup_attendance_group_edit_tree.attr("result"),
+                rule : setup_attendance_group_edit_rule.val(),
+                week : setup_attendance_group_edit_week.attr("result"),
+                time : setup_attendance_group_edit_time.val(),
+                vaca : setup_attendance_group_edit_vaca.attr("result"),
+                type1: setup_attendance_group_edit_type1.find(".icon").hasClass("icon-checked"),
+                type2: setup_attendance_group_edit_type1.find(".icon").hasClass("icon-checked"),
+                type3: setup_attendance_group_edit_type1.find(".icon").hasClass("icon-checked"),
+                range: setup_attendance_group_edit_type1_range.val(),
+                addr : setup_attendance_group_edit_type1_addr.val(),
+                mapx : setup_attendance_group_edit_type1_addr.attr("mapx"),
+                mapy : setup_attendance_group_edit_type1_addr.attr("mapy"),
              },
             success : function(data){
                 if( data.status>0 ){
@@ -487,57 +659,65 @@ $(function(){
     });
 
     //地图组件-----------------------------------------------------------------------------------------------
-    map_select_result  = $(".map_select_result"),                           //地图组件
-    map_select_input   = setup_attendance_group_add_type1_addr,             //文本框
-    map_select_reset   = map_select_result.find(".map_select_reset"),       //重置按钮
-    map_select_modal   = map_select_result.find("strong"),                  //地图面板
-    map_select_map_inp = map_select_result.find(".map_select_map_input"),   //地址搜索
-    map_select_map_sea = map_select_result.find(".map_select_map_sea"),     //搜索按钮
-    map_select_map_sub = map_select_result.find(".map_select_map_sub"),     //提交按钮
-    map_select_map_clo = map_select_result.find(".map_select_map_clo");     //关闭按钮
     //地图-初始化
-    var map = new BMap.Map("map_select_map_box",{minZoom:5,maxZoom:19});    //缩放级别
-    map.centerAndZoom(new BMap.Point(121.36564,31.22611),19);               //默认坐标
-    map.enableScrollWheelZoom(true);                                        //滚动缩放
-    map.addControl(new BMap.NavigationControl());                           //平移缩放
-    //文本框点击
-    map_select_input.click(function(){   map_select_modal.show(); });
-    //关闭按钮
-    map_select_map_clo.click(function(){ map_select_modal.hide(); });
-    //搜索按钮
-    map_select_map_sea.click(function(){
-        var local = new BMap.LocalSearch(map,{renderOptions:{map:map}});
-        var city = map_select_map_inp.val();
-        if( city!="" ){ local.search(city); }
-    });
+    var map = new BMap.Map("add_map_select_map_box",{minZoom:5,maxZoom:19});    //缩放级别
+    map.centerAndZoom(new BMap.Point(121.36564,31.22611),19);                   //默认坐标
+    map.enableScrollWheelZoom(true);                                            //滚动缩放
+    map.addControl(new BMap.NavigationControl());                               //平移缩放
     //地图点击
     map.addEventListener("click",function(e){
-        map_select_input.attr("mapx",e.point.lat);
-        map_select_input.attr("mapy",e.point.lng);
+        $("#add_map_select_map").children("input").attr("mapx",e.point.lat);
+        $("#add_map_select_map").children("input").attr("mapy",e.point.lng);
     });
-    //提交按钮
-    map_select_map_sub.click(function(e){
-        var name = $(".BMap_pop p").text();
-        var addr = $(".BMap_pop table tr:nth-child(1) td:nth-child(2)").text();
-        var mapx = map_select_input.attr("mapx");
-        var mapy = map_select_input.attr("mapy");
-        if( mapx!="" && mapy!="" ){
-            map_select_input.val( name+"("+addr+")" );
-            map_select_modal.hide(); 
-        } else {
-            um_tip("请点击选择地址","1500","text-danger");
-        }
-    });
-    //重置按钮
-    map_select_reset.click(function(){
-        //数据重置
-        map_select_input.val("");
-        map_select_input.attr("mapx","");
-        map_select_input.attr("mapy","");
-        map_select_map_inp.val("");
-        //面板隐藏
-        map_select_modal.hide();
-    });
+    //地图选择-----------------------------------------------------------------------------------------------
+    function map_select(selecor){
+        //变量声明
+        var 
+        map_select_result  = $(selecor),                                        //地图组件
+        map_select_input   = map_select_result.children("input"),               //文本框
+        map_select_reset   = map_select_result.find(".map_select_reset"),       //重置按钮
+        map_select_modal   = map_select_result.find("strong"),                  //地图面板
+        map_select_map_inp = map_select_result.find(".map_select_map_input"),   //地址搜索
+        map_select_map_sea = map_select_result.find(".map_select_map_sea"),     //搜索按钮
+        map_select_map_sub = map_select_result.find(".map_select_map_sub"),     //提交按钮
+        map_select_map_clo = map_select_result.find(".map_select_map_clo");     //关闭按钮
+        //文本框点击
+        map_select_input.click(function(){   map_select_modal.show(); });
+        //关闭按钮
+        map_select_map_clo.click(function(){ map_select_modal.hide(); });
+        //搜索按钮
+        map_select_map_sea.click(function(){
+            var local = new BMap.LocalSearch(map,{renderOptions:{map:map}});
+            var city = map_select_map_inp.val();
+            if( city!="" ){ local.search(city); }
+        });
+        //提交按钮
+        map_select_map_sub.click(function(e){
+            var name = $(".BMap_pop p").text();
+            var addr = $(".BMap_pop table tr:nth-child(1) td:nth-child(2)").text();
+            var mapx = map_select_input.attr("mapx");
+            var mapy = map_select_input.attr("mapy");
+            if( mapx!="" && mapy!="" ){
+                map_select_input.val( name+"("+addr+")" );
+                map_select_modal.hide(); 
+            } else {
+                um_tip("请点击选择地址","1500","text-danger");
+            }
+        });
+        //重置按钮
+        map_select_reset.click(function(){
+            //数据重置
+            map_select_input.val("");
+            map_select_input.attr("mapx","");
+            map_select_input.attr("mapy","");
+            map_select_map_inp.val("");
+            //面板隐藏
+            map_select_modal.hide();
+        });
+    }
+
+    //地图调用
+    map_select("#add_map_select_map");
 
 });//预加载结尾
 </script>

@@ -3,33 +3,76 @@
     "message": "获取成功",
     "status" : 1,
     "data"   : {
-        "rule" : "加班规则之一",
-        "table1_radio"      : 1,
-        "table1_time1"      : "",
-        "table1_time2"      : "",
-        "table1_check1"     : false,
-        "table1_durat1"     : "",
-        "table1_durat2"     : "",
-        "table1_check2"     : true,
-        "table1_table_radio": 1,
-        "table1_table_time" : "",
-
-        "table2_radio"      : 2,
-        "table2_time1"      : 20,
-        "table2_check1"     : true,
-        "table2_durat1"     : "00:20",
-        "table2_durat2"     : "00:20",
-        "table2_check2"     : true,
-        "table2_table_radio": 2,
-        "table2_table_time" : 200,
-
-        "table3_radio"      : 3,
-        "table3_time1"      : 30,
-        "table3_check1"     : true,
-        "table3_durat1"     : "00:30",
-        "table3_durat2"     : "00:30",
-        "table3_check2"     : true,
-        "table3_table_radio": 3,
-        "table3_table_time" : 300
+        "name" : "考勤组名称",
+        "tree" : [
+            {  
+                "text"      : "总经办",
+                "icon"      : "check-empty",
+                "type"      : "0",
+                "children"  : [
+                    {
+                        "text": "网络部",
+                        "icon": "checked",
+                        "type"  : "0",
+                        "children": [
+                            { "text":"刘德华","icon":"checked","userid":"10010","type":"1" },
+                            { "text":"张学友","icon":"checked","userid":"10011","type":"1" },
+                            { "text":"郑中基","icon":"checked","userid":"10012","type":"1" },
+                            { "text":"李连杰","icon":"checked","userid":"10013","type":"1" },
+                            { "text":"甄子丹","icon":"checked","userid":"","type":"1" }
+                        ]           
+                    },{
+                        "text": "主案部",
+                        "icon": "check-empty",
+                        "type"  : "0",
+                        "children": [{
+                            "text": "主案1部",
+                            "icon": "check-empty",
+                            "type"  : "0",
+                            "children": [
+                                { "text":"吴青峰","icon":"check-empty","userid":"10015","type":"1" },
+                                { "text":"陈嘉桦","icon":"check-empty","userid":"10016","type":"1" },
+                                { "text":"林宥嘉","icon":"check-empty","userid":"10017","type":"1" }
+                            ]
+                        }]
+                    },{
+                        "text": "工程部",
+                        "icon": "check-empty",
+                        "type"  : "0",
+                        "children": [{
+                            "text": "工程1部",
+                            "icon": "check-empty",
+                            "type"  : "0",
+                            "children": [
+                                { "text":"孟美岐","icon":"check-empty","userid":"10018","type":"1" },
+                                { "text":"吴宣仪","icon":"check-empty","userid":"10019","type":"1" },
+                                { "text":"杨超越","icon":"check-empty","userid":"10020","type":"1" }
+                            ]
+                        },{
+                            "text"  : "工程2部",
+                            "icon"  : "check-empty",
+                            "type"  : "0",
+                            "children": [
+                                { "text":"言承旭","icon":"check-empty","userid":"10021","type":"1" },
+                                { "text":"周渝民","icon":"check-empty","userid":"10022","type":"1" },
+                                { "text":"吴建豪","icon":"check-empty","userid":"10023","type":"1" },
+                                { "text":"朱孝天","icon":"check-empty","userid":"10024","type":"1" }
+                            ]
+                        }]
+                    }
+                ]
+            }
+        ],
+        "rule" : 3,
+        "week" : "1,3,5",
+        "time" : 3,
+        "vaca" : false,
+        "type1": true,
+        "type2": false,
+        "type3": true,
+        "range": 100,
+        "addr" : "富金大厦(裕华区体育南大街262号)",
+        "mapx" : 38.031671,
+        "mapy" : 114.539317
     }
 }   

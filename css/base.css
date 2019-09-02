@@ -571,13 +571,13 @@ select{ min-width: 100px!important; }
 }
 
 /*考勤组设置-地图组件*/
-.map_select_result{
+.map-select-result{
     position: relative;
 }
-.map_select_result .map_select_reset{
+.map-select-result .map_select_reset{
     cursor: pointer;
 }
-.map_select_result strong{
+.map-select-result strong{
     display: block;
     font-weight: normal;
     position: absolute;
@@ -593,7 +593,7 @@ select{ min-width: 100px!important; }
     box-sizing:border-box;
     display: none;
 }
-.map_select_result strong em{
+.map-select-result strong em{
     display: block;
     font-style: normal;
     height:300px;
@@ -603,6 +603,6 @@ select{ min-width: 100px!important; }
     border-radius:2px;
     box-sizing:border-box;
 }
-.map_select_result strong em img{
+.map-select-result strong em img{
     max-width:none;
 }

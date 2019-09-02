@@ -458,10 +458,7 @@ $(function(){
                     personnel_train_exam_edit_score.val( data.score );
                     personnel_train_exam_edit_date1.val( data.date1 );
                     personnel_train_exam_edit_date2.val( data.date2 );
-
-                    //节点树-刷新
-                    personnel_train_exam_edit_tree.data("zui.tree").reload(data.tree);
-
+                    common_tree_staff_read(personnel_train_exam_edit_tree,data.tree);
                     //列表推进
                     var personnel_train_exam_edit_list_temp   = "";
                     var personnel_train_exam_edit_list_length = data.list.length;

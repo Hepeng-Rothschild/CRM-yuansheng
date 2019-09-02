@@ -582,9 +582,8 @@ function common_select_linkage(selector,type){
  * @param company_id   string  公司ID
  * @param is_open      bool    是否展开
  * @param is_check     bool    是否可选
- * @param edit_data    json    修改用数据
  */
-function common_tree_staff(selector,company_id,is_open,is_check,edit_data){
+function common_tree_staff(selector,company_id,is_open,is_check){
 
     //节点树生成
     $.ajax({
@@ -681,6 +680,28 @@ function common_tree_staff(selector,company_id,is_open,is_check,edit_data){
         });
 
     }
+
+}
+
+/* common_tree_staff_read() 节点树员工读取
+ * @param selector     object  DOM对象
+ * @param edit_data    json    修改用数据
+ */
+function common_tree_staff_read(selector,edit_data){
+
+    //节点树刷新
+    selector.data("zui.tree").reload(edit_data);
+
+    //结果导出
+    var che = selector.find(".icon-checked");
+    var result = "";
+    for( var i=0;i<che.length;i++ ){
+        var che_numb = $(che[i]).attr("numb");
+        var che_type = $(che[i]).attr("type");
+        if( che_type!="0" && che_numb!=undefined ){ result+=che_numb+","; }
+    }
+    result = result.substr(0,result.length-1);
+    selector.attr("result",result);
 
 }
 
