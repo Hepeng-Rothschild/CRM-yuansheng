@@ -596,10 +596,13 @@ select{ min-width: 100px!important; }
 .map_select_result strong em{
     display: block;
     font-style: normal;
-    height:200px;
+    height:300px;
     margin-bottom:8px;
     background: #f5f5f5;
     border: 1px solid #ddd;
     border-radius:2px;
     box-sizing:border-box;
+}
+.map_select_result strong em img{
+    max-width:none;
 }

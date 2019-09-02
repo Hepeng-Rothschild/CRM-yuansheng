@@ -105,16 +105,18 @@
                                             <!-- 地图选择 -->
                                             <div class="input-group map_select_result">
                                                 <span class="input-group-addon">办公地点</span>
-                                                <input type="text" class="form-control" placeholder="请选择办公地点" readonly 
-                                                    id="setup_attendance_group_add_type1_addr" mapx="" mapy="">
+                                                <input type="text" class="form-control" placeholder="请选择办公地点" readonly id="setup_attendance_group_add_type1_addr" mapx="" mapy="">
                                                 <span class="input-group-addon map_select_reset"><i class="icon icon-reply"></i></span>
                                                 <strong>
-                                                    <em>在此显示百度地图</em>
-                                                    <div class="clearfix"></div>
-                                                    <button type="button" class="btn btn-primary btn-mini pull-right">提交</button>
-                                                    <span class="pull-right"> &nbsp; </span>
-                                                    <button type="button" class="btn btn-default btn-mini pull-right">关闭</button>
-                                                    <div class="clearfix"></div>
+                                                    <em id="map_select_map_box"></em>
+                                                    <div class="flex-box">
+                                                        <div class="flex-son"><input type="text" class="form-control input-sm map_select_map_input"></div>
+                                                        <div style="width:120px;margin:0.5px 0 0 5px;text-align:center">
+                                                            <button type="button" class="btn btn-primary btn-mini map_select_map_sea pull-left">搜索</button>
+                                                            <button type="button" class="btn btn-primary btn-mini map_select_map_sub">提交</button>
+                                                            <button type="button" class="btn btn-default btn-mini map_select_map_clo pull-right">关闭</button>
+                                                        </div>
+                                                    </div>
                                                 </strong>
                                             </div>
                                         </div>
@@ -144,7 +146,7 @@
                         </table>
 
                     </form>
-                    <div class="text-center">
+                    <div class="text-center" style="margin:100px 0">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         <button type="button" class="btn btn-primary" id="setup_attendance_group_add_submit">提交</button>
                     </div>
@@ -485,29 +487,46 @@ $(function(){
     });
 
     //地图组件-----------------------------------------------------------------------------------------------
-    map_select_result = $(".map_select_result"),                    //地图组件
-    map_select_input  = map_select_result.find("input"),            //文本框
-    map_select_reset  = map_select_result.find(".map_select_reset"),//重置按钮
-    map_select_modal  = map_select_result.find("strong"),           //地图面板
-    map_select_map_box= map_select_result.find("em"),               //地图盒子
-    map_select_submit = map_select_result.find(".btn-primary"),     //提交按钮
-    map_select_close  = map_select_result.find(".btn-default");     //关闭按钮
+    map_select_result  = $(".map_select_result"),                           //地图组件
+    map_select_input   = setup_attendance_group_add_type1_addr,             //文本框
+    map_select_reset   = map_select_result.find(".map_select_reset"),       //重置按钮
+    map_select_modal   = map_select_result.find("strong"),                  //地图面板
+    map_select_map_inp = map_select_result.find(".map_select_map_input"),   //地址搜索
+    map_select_map_sea = map_select_result.find(".map_select_map_sea"),     //搜索按钮
+    map_select_map_sub = map_select_result.find(".map_select_map_sub"),     //提交按钮
+    map_select_map_clo = map_select_result.find(".map_select_map_clo");     //关闭按钮
+    //地图-初始化
+    var map = new BMap.Map("map_select_map_box",{minZoom:5,maxZoom:19});    //缩放级别
+    map.centerAndZoom(new BMap.Point(121.36564,31.22611),19);               //默认坐标
+    map.enableScrollWheelZoom(true);                                        //滚动缩放
+    map.addControl(new BMap.NavigationControl());                           //平移缩放
     //文本框点击
-    map_select_input.click(function(){ map_select_modal.show(); });
+    map_select_input.click(function(){   map_select_modal.show(); });
     //关闭按钮
-    map_select_close.click(function(){ map_select_modal.hide(); });
+    map_select_map_clo.click(function(){ map_select_modal.hide(); });
+    //搜索按钮
+    map_select_map_sea.click(function(){
+        var local = new BMap.LocalSearch(map,{renderOptions:{map:map}});
+        var city = map_select_map_inp.val();
+        if( city!="" ){ local.search(city); }
+    });
+    //地图点击
+    map.addEventListener("click",function(e){
+        map_select_input.attr("mapx",e.point.lat);
+        map_select_input.attr("mapy",e.point.lng);
+    });
     //提交按钮
-    map_select_submit.click(function(){
-        //数据获取
-        var addr = map_select_map_box.text();
-        var mapx = "1";
-        var mapy = "2";
-        //数据传值
-        map_select_input.val( addr );
-        map_select_input.attr("mapx",mapx);
-        map_select_input.attr("mapy",mapy);
-        //面板隐藏
-        map_select_modal.hide(); 
+    map_select_map_sub.click(function(e){
+        var name = $(".BMap_pop p").text();
+        var addr = $(".BMap_pop table tr:nth-child(1) td:nth-child(2)").text();
+        var mapx = map_select_input.attr("mapx");
+        var mapy = map_select_input.attr("mapy");
+        if( mapx!="" && mapy!="" ){
+            map_select_input.val( name+"("+addr+")" );
+            map_select_modal.hide(); 
+        } else {
+            um_tip("请点击选择地址","1500","text-danger");
+        }
     });
     //重置按钮
     map_select_reset.click(function(){
@@ -515,17 +534,10 @@ $(function(){
         map_select_input.val("");
         map_select_input.attr("mapx","");
         map_select_input.attr("mapy","");
+        map_select_map_inp.val("");
         //面板隐藏
         map_select_modal.hide();
     });
-     
-    setup_attendance_group_add_box.modal("show");
 
 });//预加载结尾
 </script>
-
-<style>
-.map_select_result strong{
-    display: none;
-}
-</style>
