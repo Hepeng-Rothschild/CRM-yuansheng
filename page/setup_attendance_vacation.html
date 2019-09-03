@@ -29,6 +29,177 @@
                 <div class="modal-body modal-scroll">
                     <form class="container form-horizontal">
 
+                        <!-- 规则名称 -->
+                        <table class="table table-bordered setup_attendance_vacation_table">
+                            <thead><tr><th><span>基础设置</span></th></tr></thead>
+                            <tbody><tr><td>
+                                <div class="form-group require">
+                                    <label class="col-sm-3" for="setup_attendance_vacation_add_name">假期名称</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="setup_attendance_vacation_add_name">
+                                    </div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-3" for="setup_attendance_vacation_add_unit">最小请假单位</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" id="setup_attendance_vacation_add_unit">
+                                            <option value="1">按天请假</option>
+                                            <option value="2">按半天请假</option>
+                                            <option value="3">按小时请假</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group require" for="setup_attendance_vacation_add_duration">
+                                    <label class="col-sm-3">请假时长计算</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" id="setup_attendance_vacation_add_duration">
+                                            <option value="1">按自然日计算</option>
+                                            <option value="2">按工作日计算</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td></tr></tbody>
+                        </table>
+                        <!-- 假期余额 -->
+                        <table class="table table-bordered setup_attendance_vacation_table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span>假期余额</span>
+                                        <div class="btn-group pull-right" data-toggle="buttons">
+                                            <label class="btn btn-mini btn-default active"><input type="radio">启用</label>
+                                            <label class="btn btn-mini btn-default"><input type="radio">禁用</label>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="table-disabled-mask"></div>
+                                        <ul id="setup_attendance_vacation_table_ul" radio="1" input="" select="1">
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-dot-circle"></i> 按照入职时间自动发放</span></dt>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 &nbsp; &lt; 1年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 >= 1年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 >= 2年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 >= 3年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 >= 4年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 >= 5年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>                                                                                                        
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">有效期规则</span>
+                                                            <select class="form-control">
+                                                                <option value="1">按自然年</option>
+                                                                <option value="2">按入职日期12个月</option>
+                                                            </select>
+                                                        </div>
+                                                    </dd>                                                        
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 每年固定发放天数</span></dt>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">每人发放天数</span>
+                                                            <input type="number" class="form-control" disabled>
+                                                            <span class="input-group-addon">天</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">有效期规则</span>
+                                                            <select class="form-control" disabled="disabled">
+                                                                <option value="1">按自然年</option>
+                                                                <option value="2">按入职日期12个月</option>
+                                                            </select>
+                                                        </div>
+                                                    </dd>                                                     
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 每月固定发放天数</span></dt>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">每人发放天数</span>
+                                                            <input type="number" class="form-control" disabled>
+                                                            <span class="input-group-addon">天</span>
+                                                        </div>                                                 
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">有效期规则</span>
+                                                            <span type="text" class="form-control" style="background:#f5f5f5;">按每月1号开始算起<span>
+                                                        </div>
+                                                        <div class="small text-muted pull-left">适用于一个月公休N天，例如：一个月公休4天</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>                                                    
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 加班时长自动计入余额</span></dt>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">有效期规则</span>
+                                                            <select class="form-control" disabled="disabled" style="width:130px;">
+                                                                <option value="1">每年固定时间作废</option>
+                                                                <option value="2">加班多少天后作废</option>
+                                                            </select>
+                                                            <span class="input-group-addon fix-border fix-padding"></span>
+                                                            <input type="text"   class="form-control input-date" readonly disabled="disabled">
+                                                            <input type="number" class="form-control input-numb hidden">
+                                                        </div>
+                                                        <div class="small text-muted pull-left">适用于调休余额，且只能用在一个假期上</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                </dl>
+                                            </li>                                            
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                     </form>
                     <div class="text-center">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -86,237 +257,337 @@
 <!-- page-wrapper -->
 
 <script>
-    $(function(){
+$(function(){
 
-        //变量声明-----------------------------------------------------------------------------------------------
-        var
-                setup_attendance_vacation                  = $("#setup_attendance_vacation"),                 //页面ID
-                setup_attendance_vacation_datagrid         = $("#setup_attendance_vacation_datagrid"),        //数据表格
-                //添加
-                setup_attendance_vacation_add_btn          = $("#setup_attendance_vacation_add_btn"),         //添加按钮
-                setup_attendance_vacation_add_box          = $("#setup_attendance_vacation_add_box"),         //添加盒子
-                setup_attendance_vacation_add_submit       = $("#setup_attendance_vacation_add_submit"),      //添加提交
-                //修改
-                setup_attendance_vacation_edit_box         = $("#setup_attendance_vacation_edit_box"),        //修改盒子
-                setup_attendance_vacation_edit_submit      = $("#setup_attendance_vacation_edit_submit"),     //修改提交
-                //删除
-                setup_attendance_vacation_dele_box         = $("#setup_attendance_vacation_dele_box"),        //删除盒子
-                setup_attendance_vacation_dele_submit      = $("#setup_attendance_vacation_dele_submit");     //删除提交
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    setup_attendance_vacation                  = $("#setup_attendance_vacation"),                 //页面ID
+    setup_attendance_vacation_datagrid         = $("#setup_attendance_vacation_datagrid"),        //数据表格
+    //添加
+    setup_attendance_vacation_add_btn          = $("#setup_attendance_vacation_add_btn"),         //添加按钮
+    setup_attendance_vacation_add_box          = $("#setup_attendance_vacation_add_box"),         //添加盒子
+    setup_attendance_vacation_add_submit       = $("#setup_attendance_vacation_add_submit"),      //添加提交
 
-        //接口对象-----------------------------------------------------------------------------------------------
-        if( window.STATE == "local" ){
+    setup_attendance_vacation_add_name         = $("#setup_attendance_vacation_add_name"),        //
+    setup_attendance_vacation_add_unit         = $("#setup_attendance_vacation_add_unit"),        //
+    setup_attendance_vacation_add_duration     = $("#setup_attendance_vacation_add_duration"),    //
+    setup_attendance_vacation_table_ul         = $("#setup_attendance_vacation_table_ul"),        //
 
-            //本地接口
-            var setup_attendance_vacation_api = {
-                datagrid   : LOCAL + "Test/test_datagrid.json",                                 //数据表格
-                select     : LOCAL + "Test/test_select.json",                                   //下拉选项
-                modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修改盒子
-            }
+    //修改
+    setup_attendance_vacation_edit_box         = $("#setup_attendance_vacation_edit_box"),        //修改盒子
+    setup_attendance_vacation_edit_submit      = $("#setup_attendance_vacation_edit_submit"),     //修改提交
+    //删除
+    setup_attendance_vacation_dele_box         = $("#setup_attendance_vacation_dele_box"),        //删除盒子
+    setup_attendance_vacation_dele_submit      = $("#setup_attendance_vacation_dele_submit");     //删除提交
 
-        } else if ( window.STATE == "route" ){
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
 
-            //远程接口
-            var setup_attendance_vacation_api = {
-                datagrid   : LOCAL + "Test/test_datagrid.json",                                 //数据表格
-                select     : LOCAL + "Test/test_select.json",                                   //下拉选项
-                modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修改盒子
-            }
-
+        //本地接口
+        var setup_attendance_vacation_api = {
+            datagrid   : LOCAL + "Test/test_datagrid.json",                                 //数据表格
+            select     : LOCAL + "Test/test_select.json",                                   //下拉选项
+            modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修改盒子
         }
 
-        //数据表格-----------------------------------------------------------------------------------------------
-        setup_attendance_vacation_datagrid.datagrid({
-            height      : zui_datagrid_height(setup_attendance_vacation_datagrid),
-            sortable    : false,
-            cache       : false,
-            showRowIndex: true,
-            configs     : {
-                R0:{className:"text-center"},
-                C1:{className:"cell-hidden"}
-            },
-            states      : {
-                pager           : {
-                    page        : 1,
-                    recPerPage  : window.REC_PER_PAGE,
-                }
-            },
-            dataSource : {
-                cols   : [
-                    {name:"id",      label:"ID",          width:49 },
-                    {name:"text8",   label:"假期名称",      width:150},
-                    {name:"text8",   label:"请假单位",      width:150},
-                    {name:"text8",   label:"计算请假时长方式",width:150},
-                    {name:"text8",   label:"余额规则",      width:150},
-                    {name:"operate", label:"操作",         width:150,
-                        html:true,
-                        valueOperator : {
-                            getter : function(dataValue,cell){
-                                var temp = `
-                                <a class="setup_attendance_vacation_edit_btn" rowIndex="${cell.rowIndex}">修改</a>
-                                <a class="setup_attendance_vacation_dele_btn" rowIndex="${cell.rowIndex}">删除</a>
+    } else if ( window.STATE == "route" ){
+
+        //远程接口
+        var setup_attendance_vacation_api = {
+            datagrid   : LOCAL + "Test/test_datagrid.json",                                 //数据表格
+            select     : LOCAL + "Test/test_select.json",                                   //下拉选项
+            modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修改盒子
+        }
+
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    setup_attendance_vacation_datagrid.datagrid({
+        height      : zui_datagrid_height(setup_attendance_vacation_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",              width:49 },
+                {name:"text8",   label:"假期名称",        width:150},
+                {name:"text8",   label:"请假单位",        width:150},
+                {name:"text8",   label:"计算请假时长方式",width:150},
+                {name:"text8",   label:"余额规则",        width:150},
+                {name:"operate", label:"操作",            width:150,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = `
+                            <a class="setup_attendance_vacation_edit_btn" rowIndex="${cell.rowIndex}">修改</a>
+                            <a class="setup_attendance_vacation_dele_btn" rowIndex="${cell.rowIndex}">删除</a>
                             `;
-                                return temp;
-                            }
+                            return temp;
                         }
                     }
-                ],
-                remote : function(){
-                    return {
-                        url     : setup_attendance_vacation_api.datagrid,
-                        type    : "POST",
-                        dataType: "json",
-                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : setup_attendance_vacation_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    setup_attendance_vacation_datagrid_obj   = setup_attendance_vacation_datagrid.data("zui.datagrid"),   //表格对象
+    setup_attendance_vacation_edit_btn       = ".setup_attendance_vacation_edit_btn",                     //修改按钮
+    setup_attendance_vacation_dele_btn       = ".setup_attendance_vacation_dele_btn";                     //删除按钮
+    
+    //添加按钮-----------------------------------------------------------------------------------------------
+    setup_attendance_vacation_add_btn.click(function(){
+
+        //面板显示
+        setup_attendance_vacation_add_box.modal("show");
+
+    });
+    //添加提交
+    setup_attendance_vacation_add_submit.click(function(){
+
+        //文本框处理(按照入职时间自动发放)
+        if( setup_attendance_vacation_table_ul.attr("radio")=="1" ){
+            var result = "";
+            var length = setup_attendance_vacation_table_ul.find("li:nth-child(1) input").length;
+            for(var i=0;i<length;i++){
+                result+=setup_attendance_vacation_table_ul.find("li:nth-child(1) dd div").eq(i).find("input").val()+",";
+
+            }
+            result = result.substr(0,result.length-1);
+            setup_attendance_vacation_table_ul.attr("input",result);
+        }
+         //文本框处理(加班时长自动计入余额)
+        if( setup_attendance_vacation_table_ul.attr("radio")=="4" ){
+            var s = setup_attendance_vacation_table_ul.find("li:nth-child(4) input:visible").val();
+            console.log("s:"+s);
+            setup_attendance_vacation_table_ul.attr("input",s); 
+        }
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                name  : setup_attendance_vacation_add_name.val(),
+                unit  : setup_attendance_vacation_add_unit.val(),
+                dura  : setup_attendance_vacation_add_duration.val(),
+                radio : setup_attendance_vacation_table_ul.attr("radio"),
+                input : setup_attendance_vacation_table_ul.attr("input"),
+                select : setup_attendance_vacation_table_ul.attr("select"),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_attendance_vacation_datagrid_obj,setup_attendance_vacation_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
 
-        //变量声明-----------------------------------------------------------------------------------------------
-        var
-                setup_attendance_vacation_datagrid_obj   = setup_attendance_vacation_datagrid.data("zui.datagrid"),   //表格对象
-                setup_attendance_vacation_edit_btn       = ".setup_attendance_vacation_edit_btn",                     //修改按钮
-                setup_attendance_vacation_dele_btn       = ".setup_attendance_vacation_dele_btn";                     //删除按钮
+    });
 
-        //下拉选项-----------------------------------------------------------------------------------------------
-        //加班规则
+    //修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",setup_attendance_vacation_edit_btn,function(){
+
+        //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //远程提交
         $.ajax({
-            url     : setup_attendance_vacation_api.select,
+            url     : setup_attendance_vacation_api.modal_edit,
             type    : "post",
             dataType: "json",
-            data    : {},
+            data    : { id:data_id },
             success : function(data){
                 if( data.status>0 ){
                     var data = data.data;
-                    var option = "<option>全部</option>";
-                    for(var i=0;i<data.length;i++){
-                        option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-                    }
-                    //setup_attendance_vacation_add_rule.html(option);               //添加
-                    //setup_attendance_vacation_edit_rule.html(option);              //修改 
+
+                    //数据赋值
+                    console.log( data );
+
+                    //其他操作
+                    setup_attendance_vacation_edit_submit.attr("dataId",data_id);  //数据ID传值
+                    setup_attendance_vacation_edit_box.modal("show");              //盒子显示
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
                 }
             }
         });
 
-        //添加按钮-----------------------------------------------------------------------------------------------
-        setup_attendance_vacation_add_btn.click(function(){
+    });
+    //修改提交
+    setup_attendance_vacation_edit_submit.click(function(){
 
-            //面板显示
-            setup_attendance_vacation_add_box.modal("show");
+        //数据ID
+        var data_id = $(this).attr("dataId");
 
-        });
-        //添加提交
-        setup_attendance_vacation_add_submit.click(function(){
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                id   : data_id,
 
-            //远程提交
-            $.ajax({
-                url     : API.test_response,
-                type    : "post",
-                dataType: "json",
-                data    : {
-                    name : ""
-                },
-                success : function(data){
-                    if( data.status>0 ){
-                        um_tip(data.message);
-                        zui_datagrid_reset(setup_attendance_vacation_datagrid_obj,setup_attendance_vacation_api.datagrid);
-                    } else {
-                        um_tip(data.message,"1500","text-danger");
-                    }
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_attendance_vacation_datagrid_obj,setup_attendance_vacation_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
                 }
-            });
-
+            }
         });
 
-        //修改按钮-----------------------------------------------------------------------------------------------
-        $(document).on("click",setup_attendance_vacation_edit_btn,function(){
+    });
 
-            //数据ID
-            var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+    //删除按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",setup_attendance_vacation_dele_btn,function(){
 
-            //远程提交
-            $.ajax({
-                url     : setup_attendance_vacation_api.modal_edit,
-                type    : "post",
-                dataType: "json",
-                data    : { id:data_id },
-                success : function(data){
-                    if( data.status>0 ){
-                        var data = data.data;
+        //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
 
-                        //数据赋值
-                        console.log( data );
+        //其他操作
+        setup_attendance_vacation_dele_submit.attr("dataId",data_id);                                //ID传值
+        setup_attendance_vacation_dele_box.modal("show");                                            //面板显示
 
-                        //其他操作
-                        setup_attendance_vacation_edit_submit.attr("dataId",data_id);  //数据ID传值
-                        setup_attendance_vacation_edit_box.modal("show");              //盒子显示
+    });
+    //删除提交
+    setup_attendance_vacation_dele_submit.click(function(){
 
-                    } else {
-                        um_tip(data.message,"1500","text-danger");
-                    }
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_attendance_vacation_datagrid_obj,setup_attendance_vacation_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
                 }
-            });
-
-        });
-        //修改提交
-        setup_attendance_vacation_edit_submit.click(function(){
-
-            //数据ID
-            var data_id = $(this).attr("dataId");
-
-            //远程提交
-            $.ajax({
-                url     : API.test_response,
-                type    : "post",
-                dataType: "json",
-                data    : {
-                    id   : data_id,
-                    name : 1,
-                },
-                success : function(data){
-                    if( data.status>0 ){
-                        um_tip(data.message);
-                        zui_datagrid_reset(setup_attendance_vacation_datagrid_obj,setup_attendance_vacation_api.datagrid);
-                    } else {
-                        um_tip(data.message,"1500","text-danger");
-                    }
-                }
-            });
-
+            }
         });
 
-        //删除按钮-----------------------------------------------------------------------------------------------
-        $(document).on("click",setup_attendance_vacation_dele_btn,function(){
+    });
 
-            //数据ID
-            var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+    //表格组-变量声明----------------------------------------------------------------------------------------------------
+    var
+    set_table_name  = ".setup_attendance_vacation_table",       //class
+    set_table       = $(set_table_name),                        //表格
+    set_able        = set_table.find(".btn-group .btn"),        //按钮
+    set_radio       = set_table.find("ul dl dt span.for-label"),//单选
+    set_radio_empty = "icon-circle-blank",                      //empty
+    set_radio_check = "icon-dot-circle";                        //check
 
-            //其他操作
-            setup_attendance_vacation_dele_submit.attr("dataId",data_id);                                //ID传值
-            setup_attendance_vacation_dele_box.modal("show");                                            //面板显示
+    //表格组-按钮
+    set_able.click(function(){
+        var text        = $(this).text();
+        var mask        = $(this).parents(set_table_name).find(".table-disabled-mask");
+        var input       = $(this).parents(set_table_name).find("input");
+        var select      = $(this).parents(set_table_name).find("select");
+        var radio       = $(this).parents(set_table_name).find("ul dl dt .icon");
+        var radio1      = $(this).parents(set_table_name).find("ul li:first-child dl dt .icon");
+        var ul          = set_table.find("ul");
 
-        });
-        //删除提交
-        setup_attendance_vacation_dele_submit.click(function(){
+        input.val("").attr("disabled","disabled");
+        select.val(1).attr("disabled","disabled");
+        ul.attr("input","");
+        ul.attr("select","");
+        set_table.find("table").attr("radio","");
+        set_table.find("table").attr("time","");
+        if(text=="启用"){
+            mask.fadeOut(200)
+            radio1.trigger("click");
+            ul.attr("radio",1);
+        } else { 
+            mask.fadeIn(200);
+            radio.removeClass(set_radio_check).addClass(set_radio_empty);
+            ul.attr("radio","");
+        }
+    });
 
-            //数据ID
-            var data_id = $(this).attr("dataId");
+    //表格组-单选
+    set_radio.click(function(){
+        var all_inp  = $(this).parents(set_table_name).find("ul input");
+        var all_sel  = $(this).parents(set_table_name).find("ul select");
+        var all_icon = $(this).parents(set_table_name).find("ul dl dt .icon");
+        var my_inp   = $(this).parents(set_table_name + " dl").find("dd input");
+        var my_sel   = $(this).parents(set_table_name + " dl").find("dd select");
+        var my_icon  = $(this).find(".icon");
+        all_inp.val("").attr("disabled","disabled");
+        all_sel.val(1 ).attr("disabled","disabled");
+        my_inp.removeAttr("disabled");
+        my_sel.removeAttr("disabled");
+        all_icon.removeClass(set_radio_check).addClass(set_radio_empty);
+        my_icon.removeClass(set_radio_empty).addClass(set_radio_check);
 
-            //远程提交
-            $.ajax({
-                url     : API.test_response,
-                type    : "post",
-                dataType: "json",
-                data    : { id:data_id },
-                success : function(data){
-                    if( data.status>0 ){
-                        um_tip(data.message);
-                        zui_datagrid_reset(setup_attendance_vacation_datagrid_obj,setup_attendance_vacation_api.datagrid);
-                    } else {
-                        um_tip(data.message,"1500","text-danger");
-                    }
-                }
-            });
+        //结果处理
+        var ul = $(this).parents(set_table_name + " ul");
+        var li = $(this).parents(set_table_name + " li");
+        var li_index = li.index()+1;
+        ul.attr("radio",li_index);
+        ul.attr("input","");
+        if( li_index==3 ){
+            ul.attr("select","");
+        } else {
+            ul.attr("select","1");
+        }
+        
+    });
 
-        });
+    //表格组-input
+    setup_attendance_vacation_table_ul.find("li:nth-child(2) input,li:nth-child(3) input").change(function(){
+        setup_attendance_vacation_table_ul.attr("input",$(this).val()); 
+    });
 
-    });//预加载结尾
+    //表格组-select
+    setup_attendance_vacation_table_ul.find("select").change(function(){
+        setup_attendance_vacation_table_ul.attr("select",$(this).val()); 
+    });
+    setup_attendance_vacation_table_ul.find("li:nth-child(4) select").change(function(){
+        var the_inp = setup_attendance_vacation_table_ul.find("li:nth-child(4) input");
+        the_inp.val("");
+        if( $(this).val()=="1" ){
+            $(".input-numb").addClass("hidden");
+            $(".input-date").removeClass("hidden");
+        } else {
+            $(".input-date").addClass("hidden");
+            $(".input-numb").removeClass("hidden");
+        }
+    });
+
+    setup_attendance_vacation_add_box.modal("show");
+    // //时间组件-----------------------------------------------------------------------------------------------
+
+    $(".input-date").datetimepicker(option_month_day);
+
+});//预加载结尾
 </script>

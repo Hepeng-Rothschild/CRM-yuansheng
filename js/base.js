@@ -218,9 +218,9 @@ $(function(){
     //模态框-隐藏-重置
     $(document).on("hide.zui.modal",".modal",function(){
         var form = $(this).find("form");
-        for(var i=0;i<form.length;i++){
-            form[i].reset();
-        }
+        // for(var i=0;i<form.length;i++){
+        //     form[i].reset();
+        // }
     });
 
     //…
@@ -254,6 +254,13 @@ var option_hour = {
     startView: 2,
     minView  : 1,
     format   : "yyyy-mm-dd hh:00"
+}
+//月日
+var option_month_day = {
+    autoclose: 1,
+    startView: 3,
+    minView  : 2,
+    format   : "mm-dd"
 }
 
 //函数声明----------------------------------------------------------------------------------

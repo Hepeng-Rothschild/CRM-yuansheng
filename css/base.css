@@ -543,23 +543,29 @@ select{ min-width: 100px!important; }
     padding: 5px;
     cursor: pointer;
 }
-/*加班规则*/
-.setup_attendance_overtime_table dl dt{
+/*加班规则+假期管理*/
+.setup_attendance_overtime_table dl dt,
+.setup_attendance_vacation_table dl dt{    
     font-weight: normal;
 }
-.setup_attendance_overtime_table dl dd{
+.setup_attendance_overtime_table dl dd,
+.setup_attendance_vacation_table dl dd{    
     padding: 10px 0 0 16px;
 }
-.setup_attendance_overtime_table dl dd .input-group{
-    width:250px;
+.setup_attendance_overtime_table dl dd .input-group,
+.setup_attendance_vacation_table dl dd .input-group{    
+    width:300px;
 }
-.setup_attendance_overtime_table dl dd .small{
+.setup_attendance_overtime_table dl dd .small,
+.setup_attendance_vacation_table dl dd .small{    
     padding:7px;
 }
-.setup_attendance_overtime_table tr td{
+.setup_attendance_overtime_table tr td,
+.setup_attendance_vacation_table tr td{    
     position: relative;
 }
-.setup_attendance_overtime_table .table-disabled-mask{
+.setup_attendance_overtime_table .table-disabled-mask,
+.setup_attendance_vacation_table .table-disabled-mask{    
     width: 100%;
     height: 100%;
     background:rgba(255,255,255,.5);
