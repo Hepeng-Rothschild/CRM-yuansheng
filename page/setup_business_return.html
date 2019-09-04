@@ -1,0 +1,298 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="setup_business_return">
+
+    <!-- 工具条组 -->
+    <div class="tool-group">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th style="width:100px;">类型</th>
+                    <th style="width:100px;">等级</th>
+                    <th style="width:100px;">天数</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td rowspan="5"><b>信息员</b></td>
+                    <td>A</td>
+                    <td>10</td>
+                    <td rowspan="5"><a>修改</a></td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>40</td>
+                </tr>
+                <tr>
+                    <td>E</td>
+                    <td>50</td>
+                </tr>  
+                
+                <tr>
+                    <td><b>业务正跟踪</b></td>
+                    <td></td>
+                    <td>10</td>
+                    <td><a>修改</a></td>
+                </tr>
+                
+                <tr>
+                    <td rowspan="5"><b>业务在谈</b></td>
+                    <td>A</td>
+                    <td>10</td>
+                    <td rowspan="5"><a>修改</a></td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>40</td>
+                </tr>
+                <tr>
+                    <td>E</td>
+                    <td>50</td>
+                </tr>  
+
+                <tr>
+                    <td rowspan="5"><b>设计在谈</b></td>
+                    <td>A</td>
+                    <td>10</td>
+                    <td rowspan="5"><a>修改</a></td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>40</td>
+                </tr>
+                <tr>
+                    <td>E</td>
+                    <td>50</td>
+                </tr>  
+
+            </tbody>
+        </table>
+    </div>
+    <!-- tool-group -->
+ 
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_business_return_edit_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="container form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-3">补卡规则</label>
+                            <div class="col-sm-8">
+                                <div class="btn-group btn_group_result" data-toggle="buttons" id="setup_business_return_edit_able" result="true">
+                                    <label class="btn"><input type="radio" value="true"> 启用</label>
+                                    <label class="btn"><input type="radio" value="false">禁用</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-3" for="setup_business_return_edit_time">限制补卡次数</label>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="setup_business_return_edit_time">
+                                    <span class="input-group-addon">次</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 small text-muted" style="line-height:32px;">每月可提交，按自然月计算</div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-3" for="setup_business_return_edit_days">限制补卡时间</label>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="setup_business_return_edit_days">
+                                    <span class="input-group-addon">天</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 small text-muted" style="line-height:32px;">可申请过去补卡，0天表示只能当天补卡</div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="setup_business_return_edit_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_business_return_edit_box -->
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function(){
+   
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    setup_business_return             = $("#setup_business_return"),              //页面ID
+    setup_business_return_edit_btn    = $("#setup_business_return_edit_btn"),     //修改按钮
+    setup_business_return_edit_box    = $("#setup_business_return_edit_box"),     //修改盒子
+    setup_business_return_edit_submit = $("#setup_business_return_edit_submit"),  //修改提交
+    setup_business_return_edit_able   = $("#setup_business_return_edit_able"),    //补卡规则
+    setup_business_return_edit_time   = $("#setup_business_return_edit_time"),    //补卡次数
+    setup_business_return_edit_days   = $("#setup_business_return_edit_days");    //补卡时间
+
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var setup_business_return_api = {
+            modal_edit : LOCAL + "Test/Setup/Business/return_edit.json",           //修改盒子
+        }
+
+    } else if ( window.STATE == "route" ){
+
+        //远程接口
+        var setup_business_return_api = {
+            modal_edit : LOCAL + "Test/Setup/Business/return_edit.json",           //修改盒子
+        }
+
+    }
+
+    //远程请求-----------------------------------------------------------------------------------------------
+    $.ajax({
+        url     : setup_business_return_api.modal_edit,
+        type    : "post",
+        dataType: "json",
+        data    : { },
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+
+                //数据赋值
+                // setup_business_return.find("tbody").html(`
+                //     <tr><td><b>信息员    </b></td>
+                //         <td>A</td>
+                //         <td>B</td>
+                //         <td>C</td>
+                //         <td>D</td>
+                //         <td>E</td>
+                //         <td>${data[0].days}</td><td><a href="#">修改</a></td>
+                //     </tr>
+                //     <tr><td><b>业务正跟踪</b></td>
+                //         <td></td>
+                //         <td>${data[1].days}</td><td><a href="#">修改</a></td>
+                //     </tr>
+                //     <tr><td><b>业务在谈  </b></td>
+                //         <td>A</td>
+                //         <td>B</td>
+                //         <td>C</td>
+                //         <td>D</td>
+                //         <td>E</td>
+                //         <td>${data[2].days}</td><td><a href="#">修改</a></td>
+                //     </tr>
+                //     <tr><td><b>设计在谈  </b></td>
+                //         <td>A</td>
+                //         <td>B</td>
+                //         <td>C</td>
+                //         <td>D</td>
+                //         <td>E</td>
+                //         <td>${data[3].days}</td><td><a href="#">修改</a></td>
+                //     </tr>
+                // `);
+
+            } else {
+                um_tip(data.message,"1500","text-danger");
+            }
+        }
+    });
+    //修改按钮
+    setup_business_return_edit_btn.click(function(){
+
+        $.ajax({
+            url     : setup_business_return_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { },
+            success : function(data){
+                if( data.status>0 ){
+                    var data = data.data;
+
+                    //数据赋值
+                    if( data.able==true ){
+                        setup_business_return_edit_able.find(".btn").eq(0).trigger("click");
+                        setup_business_return_edit_time.val( data.time );
+                        setup_business_return_edit_days.val( data.days );
+                    } else {                  
+                        setup_business_return_edit_able.find(".btn").eq(1).trigger("click");
+                    }
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+        setup_business_return_edit_box.modal("show");
+    });
+    //修改提交
+    setup_business_return_edit_submit.click(function(){
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                able : setup_business_return_edit_able.attr("result"),
+                time : setup_business_return_edit_time.val(),
+                days : setup_business_return_edit_days.val(),
+             },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        setup_business_return_edit_box.modal("hide"); 
+                    },1500); 
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //补卡规则-----------------------------------------------------------------------------------------------
+    setup_business_return_edit_able.find(".btn").click(function(){
+        var able = $(this).find("input").val();
+        var inp  = setup_business_return_edit_box.find("input[type='number']");
+        if( able=="true" ){
+            inp.removeAttr("disabled");
+        } else {
+            inp.val("").attr("disabled","disabled");
+        }
+    });
+
+});//预加载结尾
+</script>

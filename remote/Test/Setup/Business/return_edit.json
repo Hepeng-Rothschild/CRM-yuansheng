@@ -1,0 +1,11 @@
+{
+    "result" : true,
+    "message": "获取成功",
+    "status" : 1,
+    "data"   : [
+    	{"level":"A","days":10},
+    	{ 			 "days":20},
+    	{"level":"C","days":30},
+    	{"level":"D","days":40}
+    ]
+}   

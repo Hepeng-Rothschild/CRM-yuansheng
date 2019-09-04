@@ -215,13 +215,10 @@ $(function(){
         }
     });
 
-    //模态框-隐藏-重置
-    $(document).on("hide.zui.modal",".modal",function(){
-        var form = $(this).find("form");
-        // for(var i=0;i<form.length;i++){
-        //     form[i].reset();
-        // }
-    });
+    /*模态框-隐藏-重置[弃用]
+    $(document).on("show.zui.modal",".modal",function(){
+        $(this).find("form")[0].reset();
+    });*/
 
     //…
 
@@ -726,4 +723,13 @@ function common_tree_staff_reset(selector){
  */
 function common_for_label_toggle_reset(selector){
     selector.find(".icon").removeClass("icon-checked").addClass("icon-check-empty");
+}
+
+// common_form_reset() 表单重置
+function common_form_reset(){
+    var form = $("form");
+    console.log(form.length);
+    for( var i=0;i<form.length;i++ ){
+        form[i].reset();
+    }
 }

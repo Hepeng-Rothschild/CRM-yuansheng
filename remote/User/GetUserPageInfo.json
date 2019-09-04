@@ -242,7 +242,7 @@
             {   
                 "title"     :"商务设置",
                 "children"  :[
-                    { "title":"回访设置","icon":"","url":"blank"},
+                    { "title":"回访设置","icon":"","url":"setup_business_return"},
                     { "title":"录入设置","icon":"","url":"blank"},
                     { "title":"暂停回访","icon":"","url":"blank"}
                 ]

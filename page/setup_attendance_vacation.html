@@ -77,7 +77,7 @@
                                 <tr>
                                     <td>
                                         <div class="table-disabled-mask"></div>
-                                        <ul id="setup_attendance_vacation_table_ul" radio="1" input="" select="1">
+                                        <ul id="setup_attendance_vacation_add_ul" radio="1" input="" select="1">
                                             <li>
                                                 <dl>
                                                     <dt><span class="for-label"><i class="icon icon-dot-circle"></i> 按照入职时间自动发放</span></dt>
@@ -222,6 +222,177 @@
                 <div class="modal-body modal-scroll">
                     <form class="container form-horizontal">
 
+                        <!-- 规则名称 -->
+                        <table class="table table-bordered setup_attendance_vacation_table">
+                            <thead><tr><th><span>基础设置</span></th></tr></thead>
+                            <tbody><tr><td>
+                                <div class="form-group require">
+                                    <label class="col-sm-3" for="setup_attendance_vacation_edit_name">假期名称</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="setup_attendance_vacation_edit_name">
+                                    </div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-3" for="setup_attendance_vacation_edit_unit">最小请假单位</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" id="setup_attendance_vacation_edit_unit">
+                                            <option value="1">按天请假</option>
+                                            <option value="2">按半天请假</option>
+                                            <option value="3">按小时请假</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group require" for="setup_attendance_vacation_edit_duration">
+                                    <label class="col-sm-3">请假时长计算</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" id="setup_attendance_vacation_edit_duration">
+                                            <option value="1">按自然日计算</option>
+                                            <option value="2">按工作日计算</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td></tr></tbody>
+                        </table>
+                        <!-- 假期余额 -->
+                        <table class="table table-bordered setup_attendance_vacation_table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span>假期余额</span>
+                                        <div class="btn-group pull-right" data-toggle="buttons">
+                                            <label class="btn btn-mini btn-default active"><input type="radio">启用</label>
+                                            <label class="btn btn-mini btn-default"><input type="radio">禁用</label>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="table-disabled-mask"></div>
+                                        <ul id="setup_attendance_vacation_edit_ul" radio="1" input="" select="1">
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-dot-circle"></i> 按照入职时间自动发放</span></dt>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 &nbsp; &lt; 1年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 >= 1年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 >= 2年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 >= 3年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 >= 4年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">入职 >= 5年，享有</span>
+                                                            <input type="number" class="form-control">
+                                                            <span class="input-group-addon">天年假</span>
+                                                        </div>
+                                                    </dd>                                                                                                        
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">有效期规则</span>
+                                                            <select class="form-control">
+                                                                <option value="1">按自然年</option>
+                                                                <option value="2">按入职日期12个月</option>
+                                                            </select>
+                                                        </div>
+                                                    </dd>                                                        
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 每年固定发放天数</span></dt>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">每人发放天数</span>
+                                                            <input type="number" class="form-control" disabled>
+                                                            <span class="input-group-addon">天</span>
+                                                        </div>
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">有效期规则</span>
+                                                            <select class="form-control" disabled="disabled">
+                                                                <option value="1">按自然年</option>
+                                                                <option value="2">按入职日期12个月</option>
+                                                            </select>
+                                                        </div>
+                                                    </dd>                                                     
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 每月固定发放天数</span></dt>
+                                                    <dd>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">每人发放天数</span>
+                                                            <input type="number" class="form-control" disabled>
+                                                            <span class="input-group-addon">天</span>
+                                                        </div>                                                 
+                                                    </dd>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">有效期规则</span>
+                                                            <span type="text" class="form-control" style="background:#f5f5f5;">按每月1号开始算起<span>
+                                                        </div>
+                                                        <div class="small text-muted pull-left">适用于一个月公休N天，例如：一个月公休4天</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>                                                    
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt><span class="for-label"><i class="icon icon-circle-blank"></i> 加班时长自动计入余额</span></dt>
+                                                    <dd>
+                                                        <div class="input-group pull-left">
+                                                            <span class="input-group-addon">有效期规则</span>
+                                                            <select class="form-control" disabled="disabled" style="width:130px;">
+                                                                <option value="1">每年固定时间作废</option>
+                                                                <option value="2">加班多少天后作废</option>
+                                                            </select>
+                                                            <span class="input-group-addon fix-border fix-padding"></span>
+                                                            <input type="text"   class="form-control input-date" readonly disabled="disabled">
+                                                            <input type="number" class="form-control input-numb hidden">
+                                                        </div>
+                                                        <div class="small text-muted pull-left">适用于调休余额，且只能用在一个假期上</div>
+                                                        <div class="clearfix"></div>
+                                                    </dd>
+                                                </dl>
+                                            </li>                                            
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                     </form>
                     <div class="text-center">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -267,15 +438,18 @@ $(function(){
     setup_attendance_vacation_add_btn          = $("#setup_attendance_vacation_add_btn"),         //添加按钮
     setup_attendance_vacation_add_box          = $("#setup_attendance_vacation_add_box"),         //添加盒子
     setup_attendance_vacation_add_submit       = $("#setup_attendance_vacation_add_submit"),      //添加提交
-
-    setup_attendance_vacation_add_name         = $("#setup_attendance_vacation_add_name"),        //
-    setup_attendance_vacation_add_unit         = $("#setup_attendance_vacation_add_unit"),        //
-    setup_attendance_vacation_add_duration     = $("#setup_attendance_vacation_add_duration"),    //
-    setup_attendance_vacation_table_ul         = $("#setup_attendance_vacation_table_ul"),        //
-
+    setup_attendance_vacation_add_name         = $("#setup_attendance_vacation_add_name"),        //假期名称
+    setup_attendance_vacation_add_unit         = $("#setup_attendance_vacation_add_unit"),        //请假单位
+    setup_attendance_vacation_add_duration     = $("#setup_attendance_vacation_add_duration"),    //时长计算
+    setup_attendance_vacation_add_ul           = $("#setup_attendance_vacation_add_ul"),        //假期余额
     //修改
     setup_attendance_vacation_edit_box         = $("#setup_attendance_vacation_edit_box"),        //修改盒子
     setup_attendance_vacation_edit_submit      = $("#setup_attendance_vacation_edit_submit"),     //修改提交
+    setup_attendance_vacation_edit_name        = $("#setup_attendance_vacation_edit_name"),        //假期名称
+    setup_attendance_vacation_edit_unit        = $("#setup_attendance_vacation_edit_unit"),        //请假单位
+    setup_attendance_vacation_edit_duration    = $("#setup_attendance_vacation_edit_duration"),    //时长计算
+    setup_attendance_vacation_edit_ul          = $("#setup_attendance_vacation_edit_ul"),          //假期余额
+
     //删除
     setup_attendance_vacation_dele_box         = $("#setup_attendance_vacation_dele_box"),        //删除盒子
     setup_attendance_vacation_dele_submit      = $("#setup_attendance_vacation_dele_submit");     //删除提交
@@ -287,7 +461,7 @@ $(function(){
         var setup_attendance_vacation_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",                                 //数据表格
             select     : LOCAL + "Test/test_select.json",                                   //下拉选项
-            modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修改盒子
+            modal_edit : LOCAL + "Test/Setup/Attendance/vacation_edit.json",                //修改盒子
         }
 
     } else if ( window.STATE == "route" ){
@@ -296,7 +470,7 @@ $(function(){
         var setup_attendance_vacation_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",                                 //数据表格
             select     : LOCAL + "Test/test_select.json",                                   //下拉选项
-            modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修改盒子
+            modal_edit : LOCAL + "Test/Setup/Attendance/vacation_edit.json",                //修改盒子
         }
 
     }
@@ -356,6 +530,10 @@ $(function(){
     //添加按钮-----------------------------------------------------------------------------------------------
     setup_attendance_vacation_add_btn.click(function(){
 
+        //数据复原
+        common_form_reset();
+        setup_attendance_vacation_add_box.find("table .btn-group .btn:first-child").trigger("click");
+
         //面板显示
         setup_attendance_vacation_add_box.modal("show");
 
@@ -364,21 +542,20 @@ $(function(){
     setup_attendance_vacation_add_submit.click(function(){
 
         //文本框处理(按照入职时间自动发放)
-        if( setup_attendance_vacation_table_ul.attr("radio")=="1" ){
+        if( setup_attendance_vacation_add_ul.attr("radio")=="1" ){
             var result = "";
-            var length = setup_attendance_vacation_table_ul.find("li:nth-child(1) input").length;
+            var length = setup_attendance_vacation_add_ul.find("li:nth-child(1) input").length;
             for(var i=0;i<length;i++){
-                result+=setup_attendance_vacation_table_ul.find("li:nth-child(1) dd div").eq(i).find("input").val()+",";
+                result+=setup_attendance_vacation_add_ul.find("li:nth-child(1) dd div").eq(i).find("input").val()+",";
 
             }
             result = result.substr(0,result.length-1);
-            setup_attendance_vacation_table_ul.attr("input",result);
+            setup_attendance_vacation_add_ul.attr("input",result);
         }
          //文本框处理(加班时长自动计入余额)
-        if( setup_attendance_vacation_table_ul.attr("radio")=="4" ){
-            var s = setup_attendance_vacation_table_ul.find("li:nth-child(4) input:visible").val();
-            console.log("s:"+s);
-            setup_attendance_vacation_table_ul.attr("input",s); 
+        if( setup_attendance_vacation_add_ul.attr("radio")=="4" ){
+            var s = setup_attendance_vacation_add_ul.find("li:nth-child(4) input:visible").val();
+            setup_attendance_vacation_add_ul.attr("input",s); 
         }
 
         //远程提交
@@ -390,9 +567,9 @@ $(function(){
                 name  : setup_attendance_vacation_add_name.val(),
                 unit  : setup_attendance_vacation_add_unit.val(),
                 dura  : setup_attendance_vacation_add_duration.val(),
-                radio : setup_attendance_vacation_table_ul.attr("radio"),
-                input : setup_attendance_vacation_table_ul.attr("input"),
-                select : setup_attendance_vacation_table_ul.attr("select"),
+                radio : setup_attendance_vacation_add_ul.attr("radio"),
+                input : setup_attendance_vacation_add_ul.attr("input"),
+                select: setup_attendance_vacation_add_ul.attr("select"),
             },
             success : function(data){
                 if( data.status>0 ){
@@ -423,7 +600,32 @@ $(function(){
                     var data = data.data;
 
                     //数据赋值
-                    console.log( data );
+                    setup_attendance_vacation_edit_name.val(        data.name     );
+                    setup_attendance_vacation_edit_unit.val(        data.unit     );
+                    setup_attendance_vacation_edit_duration.val(    data.duration );
+                    setup_attendance_vacation_edit_ul.find("li:nth-child("+ data.radio +") .icon" ).trigger("click");
+                    setup_attendance_vacation_edit_ul.find("li:nth-child("+ data.radio +") input" ).val(data.input);
+                    setup_attendance_vacation_edit_ul.find("li:nth-child("+ data.radio +") select").val(data.select);
+                    if( data.radio=="1" ){
+                        setup_attendance_vacation_edit_ul.find("li:nth-child(1) input" ).val("");
+                        var input_gup = setup_attendance_vacation_edit_ul.find("li:nth-child(1) input");
+                        var input_arr = data.input.split(",");
+                        for( var i=0;i<input_arr.length;i++ ){
+                            input_gup.eq(i).val(input_arr[i]);
+                        }
+                    }
+                    if( data.radio=="4" ){
+                        if( data.select=="1" ){
+                            setup_attendance_vacation_edit_ul.find(".input-numb").addClass("hidden");
+                            setup_attendance_vacation_edit_ul.find(".input-date").removeClass("hidden");
+                        } else {
+                            setup_attendance_vacation_edit_ul.find(".input-date").addClass("hidden");
+                            setup_attendance_vacation_edit_ul.find(".input-numb").removeClass("hidden");
+                        }
+                    }
+                    setup_attendance_vacation_edit_ul.attr("radio", data.radio    );
+                    setup_attendance_vacation_edit_ul.attr("input", data.input    );
+                    setup_attendance_vacation_edit_ul.attr("select",data.select   );
 
                     //其他操作
                     setup_attendance_vacation_edit_submit.attr("dataId",data_id);  //数据ID传值
@@ -442,14 +644,36 @@ $(function(){
         //数据ID
         var data_id = $(this).attr("dataId");
 
+        //文本框处理(按照入职时间自动发放)
+        if( setup_attendance_vacation_edit_ul.attr("radio")=="1" ){
+            var result = "";
+            var length = setup_attendance_vacation_edit_ul.find("li:nth-child(1) input").length;
+            for(var i=0;i<length;i++){
+                result+=setup_attendance_vacation_edit_ul.find("li:nth-child(1) dd div").eq(i).find("input").val()+",";
+
+            }
+            result = result.substr(0,result.length-1);
+            setup_attendance_vacation_edit_ul.attr("input",result);
+        }
+        //文本框处理(加班时长自动计入余额)
+        if( setup_attendance_vacation_edit_ul.attr("radio")=="4" ){
+            var s = setup_attendance_vacation_edit_ul.find("li:nth-child(4) input:visible").val();
+            setup_attendance_vacation_edit_ul.attr("input",s); 
+        }
+        
         //远程提交
         $.ajax({
             url     : API.test_response,
             type    : "post",
             dataType: "json",
             data    : {
-                id   : data_id,
-
+                id    : data_id,
+                name  : setup_attendance_vacation_edit_name.val(),
+                unit  : setup_attendance_vacation_edit_unit.val(),
+                dura  : setup_attendance_vacation_edit_duration.val(),
+                radio : setup_attendance_vacation_edit_ul.attr("radio"),
+                input : setup_attendance_vacation_edit_ul.attr("input"),
+                select: setup_attendance_vacation_edit_ul.attr("select"),
             },
             success : function(data){
                 if( data.status>0 ){
@@ -505,7 +729,8 @@ $(function(){
     set_able        = set_table.find(".btn-group .btn"),        //按钮
     set_radio       = set_table.find("ul dl dt span.for-label"),//单选
     set_radio_empty = "icon-circle-blank",                      //empty
-    set_radio_check = "icon-dot-circle";                        //check
+    set_radio_check = "icon-dot-circle",                        //check
+    set_table_ul    = set_table.find("ul");                     //set_table_ul
 
     //表格组-按钮
     set_able.click(function(){
@@ -515,22 +740,22 @@ $(function(){
         var select      = $(this).parents(set_table_name).find("select");
         var radio       = $(this).parents(set_table_name).find("ul dl dt .icon");
         var radio1      = $(this).parents(set_table_name).find("ul li:first-child dl dt .icon");
-        var ul          = set_table.find("ul");
-
         input.val("").attr("disabled","disabled");
         select.val(1).attr("disabled","disabled");
-        ul.attr("input","");
-        ul.attr("select","");
+        set_table_ul.attr("input","");
+        set_table_ul.attr("select","");
         set_table.find("table").attr("radio","");
         set_table.find("table").attr("time","");
+        set_table_ul.find(".input-numb").addClass("hidden");
+        set_table_ul.find(".input-date").removeClass("hidden");
         if(text=="启用"){
             mask.fadeOut(200)
             radio1.trigger("click");
-            ul.attr("radio",1);
+            set_table_ul.attr("radio",1);
         } else { 
             mask.fadeIn(200);
             radio.removeClass(set_radio_check).addClass(set_radio_empty);
-            ul.attr("radio","");
+            set_table_ul.attr("radio","");
         }
     });
 
@@ -564,29 +789,27 @@ $(function(){
     });
 
     //表格组-input
-    setup_attendance_vacation_table_ul.find("li:nth-child(2) input,li:nth-child(3) input").change(function(){
-        setup_attendance_vacation_table_ul.attr("input",$(this).val()); 
+    set_table_ul.find("li:nth-child(2) input,li:nth-child(3) input").change(function(){
+        set_table_ul.attr("input",$(this).val()); 
     });
 
     //表格组-select
-    setup_attendance_vacation_table_ul.find("select").change(function(){
-        setup_attendance_vacation_table_ul.attr("select",$(this).val()); 
+    set_table_ul.find("select").change(function(){
+        set_table_ul.attr("select",$(this).val()); 
     });
-    setup_attendance_vacation_table_ul.find("li:nth-child(4) select").change(function(){
-        var the_inp = setup_attendance_vacation_table_ul.find("li:nth-child(4) input");
+    set_table_ul.find("li:nth-child(4) select").change(function(){
+        var the_inp = set_table_ul.find("li:nth-child(4) input");
         the_inp.val("");
         if( $(this).val()=="1" ){
-            $(".input-numb").addClass("hidden");
-            $(".input-date").removeClass("hidden");
+            set_table_ul.find(".input-numb").addClass("hidden");
+            set_table_ul.find(".input-date").removeClass("hidden");
         } else {
-            $(".input-date").addClass("hidden");
-            $(".input-numb").removeClass("hidden");
+            set_table_ul.find(".input-date").addClass("hidden");
+            set_table_ul.find(".input-numb").removeClass("hidden");
         }
     });
 
-    setup_attendance_vacation_add_box.modal("show");
-    // //时间组件-----------------------------------------------------------------------------------------------
-
+    //时间组件-----------------------------------------------------------------------------------------------
     $(".input-date").datetimepicker(option_month_day);
 
 });//预加载结尾
