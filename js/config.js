@@ -13,7 +13,7 @@
 
         //本地接口
         window.API = {
-            common_view     : "./page/welcome.html",                        //welcome setup_business_return
+            common_view     : "./page/setup_attendance_group.html",         //welcome setup_business_return
             test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
             test_response   : LOCAL+"Test/test_response.json",              //数据响应
             test_export     : LOCAL+"Upload/test_export.pdf",               //导出文件
@@ -44,6 +44,6 @@
     }
 
     //在做页面：
-    //考勤管理 setup_attendance_group
+    //考勤管理 
     //补卡规则 setup_attendance_patch
     //假期管理 setup_attendance_vacation

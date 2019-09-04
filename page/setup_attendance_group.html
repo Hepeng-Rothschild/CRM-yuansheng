@@ -483,6 +483,9 @@ $(function(){
         common_for_label_toggle_reset( setup_attendance_group_add_table3 );
         setup_attendance_group_add_table3.find(".map_select_reset").trigger("click");
 
+        //地图调用
+        map_select("#add_map_select_map");
+
         //面板显示
         setup_attendance_group_add_box.modal("show");
         
@@ -556,17 +559,10 @@ $(function(){
                     ( data.type1==true ) ? setup_attendance_group_edit_type1.find(".icon").removeClass("icon-check-empty").addClass("icon-checked") : setup_attendance_group_edit_type1.find(".icon").removeClass("icon-checked").addClass("icon-check-empty");
                     ( data.type2==true ) ? setup_attendance_group_edit_type2.find(".icon").removeClass("icon-check-empty").addClass("icon-checked") : setup_attendance_group_edit_type2.find(".icon").removeClass("icon-checked").addClass("icon-check-empty");
                     ( data.type3==true ) ? setup_attendance_group_edit_type3.find(".icon").removeClass("icon-check-empty").addClass("icon-checked") : setup_attendance_group_edit_type3.find(".icon").removeClass("icon-checked").addClass("icon-check-empty");
-                    //地图-初始化
-                    var map2 = new BMap.Map("edit_map_select_map_box",{minZoom:5,maxZoom:19});   //缩放级别
-                    map2.centerAndZoom(new BMap.Point(data.mapy,data.mapx),19);                  //默认坐标
-                    map2.enableScrollWheelZoom(true);                                            //滚动缩放
-                    map2.addControl(new BMap.NavigationControl());                               //平移缩放
+
+                    //地图调用
                     map_select("#edit_map_select_map");
-                    //地图点击
-                    map.addEventListener("click",function(e){
-                        $("#edit_map_select_map").children("input").attr("mapx",e.point.lat);
-                        $("#edit_map_select_map").children("input").attr("mapy",e.point.lng);
-                    });
+ 
                     //地图赋值
                     setup_attendance_group_edit_type1_range.val(data.range ),
                     setup_attendance_group_edit_type1_addr.val( data.addr ),
@@ -658,66 +654,123 @@ $(function(){
 
     });
 
-    //地图组件-----------------------------------------------------------------------------------------------
-    //地图-初始化
-    var map = new BMap.Map("add_map_select_map_box",{minZoom:5,maxZoom:19});    //缩放级别
-    map.centerAndZoom(new BMap.Point(121.36564,31.22611),19);                   //默认坐标
-    map.enableScrollWheelZoom(true);                                            //滚动缩放
-    map.addControl(new BMap.NavigationControl());                               //平移缩放
-    //地图点击
-    map.addEventListener("click",function(e){
-        $("#add_map_select_map").children("input").attr("mapx",e.point.lat);
-        $("#add_map_select_map").children("input").attr("mapy",e.point.lng);
-    });
     //地图选择-----------------------------------------------------------------------------------------------
     function map_select(selecor){
-        //变量声明
-        var 
-        map_select_result  = $(selecor),                                        //地图组件
-        map_select_input   = map_select_result.children("input"),               //文本框
-        map_select_reset   = map_select_result.find(".map_select_reset"),       //重置按钮
-        map_select_modal   = map_select_result.find("strong"),                  //地图面板
-        map_select_map_inp = map_select_result.find(".map_select_map_input"),   //地址搜索
-        map_select_map_sea = map_select_result.find(".map_select_map_sea"),     //搜索按钮
-        map_select_map_sub = map_select_result.find(".map_select_map_sub"),     //提交按钮
-        map_select_map_clo = map_select_result.find(".map_select_map_clo");     //关闭按钮
-        //文本框点击
-        map_select_input.click(function(){   map_select_modal.show(); });
-        //关闭按钮
-        map_select_map_clo.click(function(){ map_select_modal.hide(); });
-        //搜索按钮
-        map_select_map_sea.click(function(){
-            var local = new BMap.LocalSearch(map,{renderOptions:{map:map}});
-            var city = map_select_map_inp.val();
-            if( city!="" ){ local.search(city); }
-        });
-        //提交按钮
-        map_select_map_sub.click(function(e){
-            var name = $(".BMap_pop p").text();
-            var addr = $(".BMap_pop table tr:nth-child(1) td:nth-child(2)").text();
-            var mapx = map_select_input.attr("mapx");
-            var mapy = map_select_input.attr("mapy");
-            if( mapx!="" && mapy!="" ){
-                map_select_input.val( name+"("+addr+")" );
-                map_select_modal.hide(); 
-            } else {
-                um_tip("请点击选择地址","1500","text-danger");
-            }
-        });
-        //重置按钮
-        map_select_reset.click(function(){
-            //数据重置
-            map_select_input.val("");
-            map_select_input.attr("mapx","");
-            map_select_input.attr("mapy","");
-            map_select_map_inp.val("");
-            //面板隐藏
-            map_select_modal.hide();
-        });
-    }
 
-    //地图调用
-    map_select("#add_map_select_map");
+        if( selecor=="#add_map_select_map" ){
+
+            //变量声明
+            var 
+            map_select_result  = $(selecor),                                        //地图组件
+            map_select_input   = map_select_result.children("input"),               //文本框
+            map_select_reset   = map_select_result.find(".map_select_reset"),       //重置按钮
+            map_select_modal   = map_select_result.find("strong"),                  //地图面板
+            map_select_map_inp = map_select_result.find(".map_select_map_input"),   //地址搜索
+            map_select_map_sea = map_select_result.find(".map_select_map_sea"),     //搜索按钮
+            map_select_map_sub = map_select_result.find(".map_select_map_sub"),     //提交按钮
+            map_select_map_clo = map_select_result.find(".map_select_map_clo");     //关闭按钮
+            //文本框点击
+            map_select_input.click(function(){   map_select_modal.show(); });
+            //关闭按钮
+            map_select_map_clo.click(function(){ map_select_modal.hide(); });
+            //地图-初始化
+            var map = new BMap.Map("add_map_select_map_box",{minZoom:5,maxZoom:19});    //缩放级别
+            map.centerAndZoom(new BMap.Point(121.36564,31.22611),19);                   //默认坐标
+            map.enableScrollWheelZoom(true);                                            //滚动缩放
+            map.addControl(new BMap.NavigationControl());                               //平移缩放
+            //地图点击
+            map.addEventListener("click",function(e){
+                $("#add_map_select_map").children("input").attr("mapx",e.point.lat);
+                $("#add_map_select_map").children("input").attr("mapy",e.point.lng);
+            });
+            //搜索按钮
+            map_select_map_sea.click(function(){
+                var local = new BMap.LocalSearch(map,{renderOptions:{map:map}});
+                var city = map_select_map_inp.val();
+                if( city!="" ){ local.search(city); }
+            });
+            //提交按钮
+            map_select_map_sub.click(function(e){
+                var name = $(".BMap_pop p").text();
+                var addr = $(".BMap_pop table tr:nth-child(1) td:nth-child(2)").text();
+                var mapx = map_select_input.attr("mapx");
+                var mapy = map_select_input.attr("mapy");
+                if( mapx!="" && mapy!="" ){
+                    map_select_input.val( name+"("+addr+")" );
+                    map_select_modal.hide(); 
+                } else {
+                    um_tip("请点击选择地址","1500","text-danger");
+                }
+            });
+            //重置按钮
+            map_select_reset.click(function(){
+                //数据重置
+                map_select_input.val("");
+                map_select_input.attr("mapx","");
+                map_select_input.attr("mapy","");
+                map_select_map_inp.val("");
+                //面板隐藏
+                map_select_modal.hide();
+            });
+
+        } else {
+
+            //变量声明
+            var 
+            map_select_result  = $(selecor),                                        //地图组件
+            map_select_input   = map_select_result.children("input"),               //文本框
+            map_select_reset   = map_select_result.find(".map_select_reset"),       //重置按钮
+            map_select_modal   = map_select_result.find("strong"),                  //地图面板
+            map_select_map_inp = map_select_result.find(".map_select_map_input"),   //地址搜索
+            map_select_map_sea = map_select_result.find(".map_select_map_sea"),     //搜索按钮
+            map_select_map_sub = map_select_result.find(".map_select_map_sub"),     //提交按钮
+            map_select_map_clo = map_select_result.find(".map_select_map_clo");     //关闭按钮
+            //文本框点击
+            map_select_input.click(function(){   map_select_modal.show(); });
+            //关闭按钮
+            map_select_map_clo.click(function(){ map_select_modal.hide(); });
+            //地图-初始化
+            var map = new BMap.Map("edit_map_select_map_box",{minZoom:5,maxZoom:19});    //缩放级别
+            map.centerAndZoom(new BMap.Point(121.36564,31.22611),19);                   //默认坐标
+            map.enableScrollWheelZoom(true);                                            //滚动缩放
+            map.addControl(new BMap.NavigationControl());                               //平移缩放
+            //地图点击
+            map.addEventListener("click",function(e){
+                $("#edit_map_select_map").children("input").attr("mapx",e.point.lat);
+                $("#edit_map_select_map").children("input").attr("mapy",e.point.lng);
+            });
+            //搜索按钮
+            map_select_map_sea.click(function(){
+                var local = new BMap.LocalSearch(map,{renderOptions:{map:map}});
+                var city = map_select_map_inp.val();
+                if( city!="" ){ local.search(city); }
+            });
+            //提交按钮
+            map_select_map_sub.click(function(e){
+                var name = $(".BMap_pop p").text();
+                var addr = $(".BMap_pop table tr:nth-child(1) td:nth-child(2)").text();
+                var mapx = map_select_input.attr("mapx");
+                var mapy = map_select_input.attr("mapy");
+                if( mapx!="" && mapy!="" ){
+                    map_select_input.val( name+"("+addr+")" );
+                    map_select_modal.hide(); 
+                } else {
+                    um_tip("请点击选择地址","1500","text-danger");
+                }
+            });
+            //重置按钮
+            map_select_reset.click(function(){
+                //数据重置
+                map_select_input.val("");
+                map_select_input.attr("mapx","");
+                map_select_input.attr("mapy","");
+                map_select_map_inp.val("");
+                //面板隐藏
+                map_select_modal.hide();
+            });
+
+        }
+    }
 
 });//预加载结尾
 </script>

@@ -1367,9 +1367,9 @@ $(function(){
         var radio_son   = $(this).parents(set_table_name).find("table tr .icon");
         var check       = $(this).parents(set_table_name).find("ol dl dt .icon");
         var ul          = set_table.find("ul");
-
         input.val("");
         input.attr("readonly","readonly");
+        radio.removeClass(set_radio_check).addClass(set_radio_empty);
         radio_son.removeClass(set_radio_check).addClass(set_radio_empty);
         check.removeClass(set_check_check).addClass(set_check_empty);
         ul.attr("time1","");
@@ -1377,12 +1377,11 @@ $(function(){
         set_table.find("table").attr("radio","");
         set_table.find("table").attr("time","");
         if(text=="启用"){
-            mask.fadeOut(200)
+            mask.fadeOut(200);
             radio1.removeClass(set_radio_empty).addClass(set_radio_check);
             ul.attr("radio",1);
         } else { 
             mask.fadeIn(200);
-            radio.removeClass(set_radio_check).addClass(set_radio_empty);
             ul.attr("radio","");
         }
     });
