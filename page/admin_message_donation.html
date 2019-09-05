@@ -36,13 +36,13 @@
 
     <!-- 添加盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_donation_add_box">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                     <h4 class="modal-title">添加</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body modal-scroll">
                     <form class="form-horizontal">
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="admin_message_donation_add_tit">乐捐标题</label>
@@ -67,10 +67,7 @@
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="admin_message_donation_add_auth">权限分配</label>
                             <div class="col-sm-8">
-                                
-                                    <ul class="tree tree-lines tree-chevrons" id="admin_message_donation_add_tree"></ul>
-
-
+                                <ul class="tree tree-lines tree-chevrons" id="admin_message_donation_add_tree"></ul>
                             </div>
                         </div>
                         <div class="form-group require">
@@ -218,10 +215,6 @@ $(function(){
 
     }
 
-    //节点树
-    common_tree_staff($("#admin_message_donation_add_tree"));
-
-
     //数据表格-----------------------------------------------------------------------------------------------
     admin_message_donation_datagrid.datagrid({
         height      : zui_datagrid_height(admin_message_donation_datagrid),
@@ -284,6 +277,13 @@ $(function(){
     common_date_duration( admin_message_donation_tool_date );
     admin_message_donation_tool_date.find(".start").datetimepicker(option_date);
     admin_message_donation_tool_date.find(".end").datetimepicker(option_date);
+
+    //节点树-------------------------------------------------------------------------------------------------
+    common_tree_staff($("#admin_message_donation_add_tree"));
+
+    //富文本编辑器-------------------------------------------------------------------------------------------
+    KindEditor.create("#admin_message_donation_add_text",option_editor);
+    admin_message_donation_add_box.modal("show");
     
     //下拉选项-----------------------------------------------------------------------------------------------
     //乐捐类型

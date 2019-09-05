@@ -260,6 +260,25 @@ var option_month_day = {
     format   : "mm-dd"
 }
 
+//富文本编辑器(如需表情/地图/图片上传=>解压plugins.zip)
+var option_editor = {
+    basePath   : "./lib/kindeditor/",
+    cssPath    : "./css/zui.min.css",
+    bodyClass  : "article-content",
+    width      : "100%",
+    height     : "280",
+    resizeType : 1,
+    items      : [
+        "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic", "underline",
+        "removeformat", "|", "justifyleft", "justifycenter", "justifyright", "insertorderedlist",
+        "insertunorderedlist", "|", "emoticons", "image", "link","fullscreen"
+    ],
+    uploadJson            : API.test_editor, 
+    allowPreviewEmoticons : true,
+    allowImageUpload      : true,
+    allowFileManager      : true,
+}
+
 //函数声明----------------------------------------------------------------------------------
 //灵巧工具型--------------------------------------------------------------------------------
 /* um_date()  当前时间获取(格式化)

@@ -16,6 +16,7 @@
             common_view     : "./page/admin_message_donation.html",         //welcome
             test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
             test_response   : LOCAL+"Test/test_response.json",              //数据响应
+            test_editor     : LOCAL+"Test/test_editor.php",                 //富文本编辑器
             test_export     : LOCAL+"Upload/test_export.pdf",               //导出文件
 
             common_tree     : LOCAL+"User/GetUserPageInfo.json",            //左侧导航
@@ -32,6 +33,7 @@
             common_view     : "./page/welcome.html",                        //welcome
             test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
             test_response   : LOCAL+"Test/test_response.json",              //数据响应
+            test_editor     : LOCAL+"Test/test_editor.php",                 //富文本编辑器
             test_export     : LOCAL+"Upload/test_export.pdf",               //导出文件
             
             common_tree     : LOCAL+"User/GetUserPageInfo.json",            //左侧导航
