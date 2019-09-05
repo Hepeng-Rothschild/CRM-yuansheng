@@ -608,7 +608,9 @@ select{ min-width: 100px!important; }
 #common_map_box_main img{
     max-width:none;
 }
-
+.common_map_reset{
+    cursor:pointer;
+}
 /*简洁页面
 .simple-box{
     border: 1px solid #ddd;

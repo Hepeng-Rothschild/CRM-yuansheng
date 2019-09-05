@@ -39,8 +39,7 @@
 
 <link rel="stylesheet" href="./lib/datetimepicker/datetimepicker.min.css">
 <script src="./lib/datetimepicker/datetimepicker.js"></script>
-<!-- 百度地图 -->
-<script src="http://api.map.baidu.com/api?key=&amp;v=1.3&amp;services=true"></script>
+
 <!-- 自定义资源 -->
 <link href="./css/page.css" rel="stylesheet">
 <script src="./js/config.js"></script>
@@ -265,6 +264,86 @@ $(function(){
     });
 
 });//预加载结尾
+</script>
+
+<!-- 全局地图 -->
+<div class="common_map_mask">
+    <div id="common_map_box" event-id="" mapx="" mapy="">
+        <div class="flex-box">
+            <input type="text" class="form-control input-sm flex-son"> &nbsp;
+            <button type="button" class="btn btn-primary btn-mini pull-left">搜索</button>
+        </div>
+        <em id="common_map_box_main"></em>
+        <div class="text-center">
+            <button type="button" class="btn btn-default btn-mini">关闭</button>
+            <button type="button" class="btn btn-primary btn-mini">提交</button>
+        </div>
+    </div>
+</div>    
+<!-- common_map_mask -->
+
+<script src="http://api.map.baidu.com/api?key=&amp;v=1.3&amp;services=true"></script>
+<script>
+$(function(){
+
+    //全局地图
+    var
+    common_map_btn          = ".common_map_btn",
+    common_map_mask         = $(".common_map_mask"),
+    common_map_box          = $("#common_map_box"),
+    common_map_box_main     = $("#common_map_box_main"),
+    common_map_box_input    = $("#common_map_box div:nth-child(1) input"),
+    common_map_box_search   = $("#common_map_box div:nth-child(1) .btn-primary"),
+    common_map_box_close    = $("#common_map_box div:nth-child(3) .btn-default"),
+    common_map_box_submit   = $("#common_map_box div:nth-child(3) .btn-primary");
+
+    //地图显示
+    $(document).on("click",common_map_btn,function(){
+        common_map_box.attr("event-id",$(this).attr("id"));
+        common_map_box_input.val("");
+        common_map_box.attr("mapx","").attr("mapy","");
+        common_map_mask.show();
+    });
+
+    //地图实例化
+    var common_map = new BMap.Map("common_map_box_main",{minZoom:5,maxZoom:19});    //缩放级别
+    common_map.centerAndZoom(new BMap.Point(114.539317,38.031671),19);              //默认坐标
+    common_map.enableScrollWheelZoom(true);                                         //滚动缩放
+    common_map.addControl(new BMap.NavigationControl());                            //平移缩放
+
+    //地图搜索
+    common_map_box_search.click(function(){
+        var local = new BMap.LocalSearch(common_map,{renderOptions:{map:common_map}});
+        if( common_map_box_input.val()!="" ){ local.search(common_map_box_input.val()); }
+    });
+
+    //地图点击
+    common_map.addEventListener("click",function(e){
+        common_map_box.attr("mapx",e.point.lat).attr("mapy",e.point.lng);
+    });
+
+    //地图提交
+    common_map_box_submit.click(function(){
+        var name = $(".BMap_pop p").text();
+        var addr = $(".BMap_pop table tr:nth-child(1) td:nth-child(2)").text();
+        var mapx = common_map_box.attr("mapx");
+        var mapy = common_map_box.attr("mapy");
+        if( mapx!="" && mapy!="" ){
+            $("#"+common_map_box.attr("event-id")).val(name+"("+addr+")").attr("mapx",mapx).attr("mapy",mapy);
+            console.log(common_map_box.attr("event-id"),addr,mapx,mapy);
+            common_map_mask.hide();
+        } else {
+            um_tip("请点击选择地址","1500","text-danger");
+        }
+    });
+
+    //地图关闭
+    common_map_box_close.click(function(){ common_map_mask.hide(); });              //关闭按钮
+    $(document).keyup(function(e){if(e.keyCode==27){ common_map_mask.hide(); }});   //ESC关闭
+    common_map_mask.click(function(){ common_map_mask.hide(); });                   //遮罩关闭
+    common_map_box.click(function(e){ e.stopPropagation(); });                      //遮罩关闭(阻止事件冒泡)
+
+});
 </script>
 </body>
 </html>
