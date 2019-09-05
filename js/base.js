@@ -725,7 +725,8 @@ function common_for_label_toggle_reset(selector){
     selector.find(".icon").removeClass("icon-checked").addClass("icon-check-empty");
 }
 
-// common_form_reset() 表单重置
+/* common_form_reset() 表单重置
+ */
 function common_form_reset(){
     var form = $("form");
     console.log(form.length);

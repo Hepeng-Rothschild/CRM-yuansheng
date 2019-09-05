@@ -330,7 +330,6 @@ $(function(){
         var mapy = common_map_box.attr("mapy");
         if( mapx!="" && mapy!="" ){
             $("#"+common_map_box.attr("event-id")).val(name+"("+addr+")").attr("mapx",mapx).attr("mapy",mapy);
-            console.log(common_map_box.attr("event-id"),addr,mapx,mapy);
             common_map_mask.hide();
         } else {
             um_tip("请点击选择地址","1500","text-danger");

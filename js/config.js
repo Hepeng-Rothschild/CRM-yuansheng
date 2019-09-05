@@ -13,7 +13,7 @@
 
         //本地接口
         window.API = {
-            common_view     : "./page/setup_attendance_group.html",         //welcome setup_business_return
+            common_view     : "./page/admin_message_donation.html",         //welcome
             test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
             test_response   : LOCAL+"Test/test_response.json",              //数据响应
             test_export     : LOCAL+"Upload/test_export.pdf",               //导出文件
@@ -43,7 +43,13 @@
 
     }
 
-    //在做页面：
-    //考勤管理 
-    //补卡规则 setup_attendance_patch
-    //假期管理 setup_attendance_vacation
+    /*在做页面
+    admin_goods             物品管理
+    admin_message_donation  乐捐通知
+    admin_message_meeting   会议纪要
+    admin_message_news      新闻公告
+    admin_train_case        案例管理
+    admin_train_center      培训中心
+    admin_train_data        资料中心
+    admin_train_rule        规章制度
+    */

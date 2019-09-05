@@ -88,8 +88,7 @@
                 <tr>
                     <td>E</td>
                     <td>50</td>
-                </tr>  
-
+                </tr>
             </tbody>
         </table>
     </div>
@@ -191,43 +190,15 @@ $(function(){
                 var data = data.data;
 
                 //数据赋值
-                // setup_business_return.find("tbody").html(`
-                //     <tr><td><b>信息员    </b></td>
-                //         <td>A</td>
-                //         <td>B</td>
-                //         <td>C</td>
-                //         <td>D</td>
-                //         <td>E</td>
-                //         <td>${data[0].days}</td><td><a href="#">修改</a></td>
-                //     </tr>
-                //     <tr><td><b>业务正跟踪</b></td>
-                //         <td></td>
-                //         <td>${data[1].days}</td><td><a href="#">修改</a></td>
-                //     </tr>
-                //     <tr><td><b>业务在谈  </b></td>
-                //         <td>A</td>
-                //         <td>B</td>
-                //         <td>C</td>
-                //         <td>D</td>
-                //         <td>E</td>
-                //         <td>${data[2].days}</td><td><a href="#">修改</a></td>
-                //     </tr>
-                //     <tr><td><b>设计在谈  </b></td>
-                //         <td>A</td>
-                //         <td>B</td>
-                //         <td>C</td>
-                //         <td>D</td>
-                //         <td>E</td>
-                //         <td>${data[3].days}</td><td><a href="#">修改</a></td>
-                //     </tr>
-                // `);
+                //setup_business_return.find("tbody").html(``);
 
             } else {
                 um_tip(data.message,"1500","text-danger");
             }
         }
     });
-    //修改按钮
+    
+    //修改按钮-----------------------------------------------------------------------------------------------
     setup_business_return_edit_btn.click(function(){
 
         $.ajax({
