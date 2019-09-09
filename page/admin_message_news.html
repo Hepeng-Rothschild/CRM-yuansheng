@@ -1,8 +1,569 @@
 <!-- 页面外套 -->
-<div class="page-wrapper">
-    <br>
-    <div class="alert alert-info alert-block">
-        <h2>仿【乐捐通知】</h2>
+<div class="page-wrapper" id="admin_message_news">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="admin_message_news_datagrid">
+
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <div class="tool-search">
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" id="admin_message_news_tool_keys">
+                            <option value="1">公告标题</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="admin_message_news_tool_search">
+                    </div>
+                </div>
+                <label><span>公告类型：</span><select class="form-control" id="admin_message_news_tool_select1"><!--JS推进--></select></label>
+                <label><span>公告状态：</span><select class="form-control" id="admin_message_news_tool_select2"><!--JS推进--></select></label>
+                <div class="im-label" id="admin_message_news_tool_date"><!-- JS推进 --></div>
+                <label><button class="btn btn-primary" id="admin_message_news_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </div>
+            <div class="tool-deal">
+                <label><button class="btn btn-primary" id="admin_message_news_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
     </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_news_add_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_news_add_tit">公告标题</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_message_news_add_tit"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_news_add_numb">公告文号</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_message_news_add_numb"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_news_add_type">公告类型</label>
+                            <div class="col-sm-8"><select class="form-control input-short" id="admin_message_news_add_type"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">权限分配</label>
+                            <div class="col-sm-8">
+                                <ul class="tree tree-lines tree-chevrons" id="admin_message_news_add_tree"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">强制阅读</label>
+                            <div class="col-sm-8">
+                                <div class="btn-group" data-toggle="buttons" id="admin_message_news_add_read">
+                                    <label class="btn active"><input type="radio" value="1">是</label>
+                                    <label class="btn"><input type="radio" value="2">否</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_news_add_text">详细内容</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="admin_message_news_add_text"></textarea>
+                            </div>
+                        </div>                        
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="admin_message_news_add_submit">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_message_news_add_box -->
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_news_edit_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_news_edit_tit">公告标题</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_message_news_edit_tit"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_news_edit_numb">公告文号</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_message_news_edit_numb"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_news_edit_type">公告类型</label>
+                            <div class="col-sm-8"><select class="form-control input-short" id="admin_message_news_edit_type"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">权限分配</label>
+                            <div class="col-sm-8">
+                                <ul class="tree tree-lines tree-chevrons" id="admin_message_news_edit_tree"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">强制阅读</label>
+                            <div class="col-sm-8">
+                                <div class="btn-group" data-toggle="buttons" id="admin_message_news_edit_read">
+                                    <label class="btn active"><input type="radio" value="1">是</label>
+                                    <label class="btn"><input type="radio" value="2">否</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_news_edit_text">详细内容</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="admin_message_news_edit_text"></textarea>
+                            </div>
+                        </div>                        
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="admin_message_news_edit_submit">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_message_news_edit_box -->
+
+    <!-- 删除盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_news_dele_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否删除？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="admin_message_news_dele_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_message_news_dele_box -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_news_show_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll"><!-- JS推进 --></div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_message_news_show_box -->
+
 </div>
 <!-- page-wrapper -->
+
+<script>
+$(function(){
+   
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    admin_message_news                    = $("#admin_message_news"),                   //页面ID
+    admin_message_news_datagrid           = $("#admin_message_news_datagrid"),          //数据表格
+    //搜索
+    admin_message_news_tool_keys          = $("#admin_message_news_tool_keys"),         //搜索类别
+    admin_message_news_tool_search        = $("#admin_message_news_tool_search"),       //搜索字段
+    admin_message_news_tool_select1       = $("#admin_message_news_tool_select1"),      //下拉选择1
+    admin_message_news_tool_select2       = $("#admin_message_news_tool_select2"),      //下拉选择1    
+    admin_message_news_tool_date          = $("#admin_message_news_tool_date"),         //起止时间
+    admin_message_news_search_btn         = $("#admin_message_news_search_btn"),        //搜索按钮
+    //添加
+    admin_message_news_add_btn            = $("#admin_message_news_add_btn"),           //添加按钮
+    admin_message_news_add_box            = $("#admin_message_news_add_box"),           //添加盒子
+    admin_message_news_add_submit         = $("#admin_message_news_add_submit"),        //添加提交
+    admin_message_news_add_tit            = $("#admin_message_news_add_tit"),           //公告标题
+    admin_message_news_add_numb           = $("#admin_message_news_add_numb"),          //公告文号
+    admin_message_news_add_type           = $("#admin_message_news_add_type"),          //公告类型
+    admin_message_news_add_tree           = $("#admin_message_news_add_tree"),          //权限分配
+    admin_message_news_add_read           = $("#admin_message_news_add_read"),          //强制阅读
+    admin_message_news_add_text           = $("#admin_message_news_add_text"),          //详细内容
+    //修改
+    admin_message_news_edit_box           = $("#admin_message_news_edit_box"),          //修改盒子
+    admin_message_news_edit_submit        = $("#admin_message_news_edit_submit"),       //修改提交
+    admin_message_news_edit_tit           = $("#admin_message_news_edit_tit"),          //公告标题
+    admin_message_news_edit_numb          = $("#admin_message_news_edit_numb"),         //公告文号
+    admin_message_news_edit_type          = $("#admin_message_news_edit_type"),         //公告类型
+    admin_message_news_edit_tree          = $("#admin_message_news_edit_tree"),         //权限分配
+    admin_message_news_edit_read          = $("#admin_message_news_edit_read"),         //强制阅读
+    admin_message_news_edit_text          = $("#admin_message_news_edit_text"),         //详细内容
+    //查看
+    admin_message_news_show_box           = $("#admin_message_news_show_box"),          //查看盒子
+    //删除
+    admin_message_news_dele_box           = $("#admin_message_news_dele_box"),          //删除盒子
+    admin_message_news_dele_submit        = $("#admin_message_news_dele_submit");       //删除提交
+
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var admin_message_news_api = {
+            datagrid  : API.test_datagrid,                                    //数据表格
+            select    : LOCAL + "Test/test_select.json",                      //下拉选择
+            modal_edit: LOCAL + "Test/Admin/Message/duration_edit.json",      //修改盒子
+        }
+
+    } else if ( window.STATE == "route" ){
+
+        //远程接口
+        var admin_message_news_api = {
+            datagrid  : LOCAL + "Test/Admin/goods.json",                      //数据表格
+            select    : LOCAL + "Test/test_select.json",                      //下拉选择
+            modal_edit: LOCAL + "Test/Admin/Message/duration_edit.json",      //修改盒子
+        }
+
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    admin_message_news_datagrid.datagrid({
+        height      : zui_datagrid_height(admin_message_news_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            fixedLeftUntil  : 3,
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",             width:49 },
+                {name:"text8",   label:"公告标题",       width:200},
+                {name:"text6",   label:"公告文号",       width:100},
+                {name:"name",    label:"上传人",         width:80 },
+                {name:"text2",   label:"公告类型",       width:80 },
+                {name:"text3",   label:"公告状态",       width:80 },
+                {name:"datetime",label:"时间",           width:150},
+                {name:"text4",   label:"已读人数/总人数",width:150},
+                {name:"state",   label:"操作",           width:150,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+
+                            var temp = `<a rowIndex="${cell.rowIndex}" class="admin_message_news_show_btn">查看</a> `;
+                            if( dataValue==1 ){
+                                temp += `<a rowIndex="${cell.rowIndex}" class="admin_message_news_dele_btn">删除</a>`;
+                            } else {
+                                temp += `
+                                <a rowIndex="${cell.rowIndex}" class="admin_message_news_edit_btn">修改</a>
+                                <a rowIndex="${cell.rowIndex}" class="admin_message_news_dele_btn">删除</a>
+                                `;
+                            }
+                            return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : admin_message_news_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    admin_message_news_datagrid_obj   = admin_message_news_datagrid.data("zui.datagrid"),   //表格对象
+    admin_message_news_show_btn       = ".admin_message_news_show_btn",                     //查看
+    admin_message_news_edit_btn       = ".admin_message_news_edit_btn",                     //修改
+    admin_message_news_dele_btn       = ".admin_message_news_dele_btn";                     //删除
+
+    //时间组件-----------------------------------------------------------------------------------------------
+    common_date_duration( admin_message_news_tool_date );
+    admin_message_news_tool_date.find(".start").datetimepicker(option_date);
+    admin_message_news_tool_date.find(".end").datetimepicker(option_date);
+
+    //节点树-------------------------------------------------------------------------------------------------
+    common_tree_staff($("#admin_message_news_add_tree"),3,false,true); 
+    common_tree_staff($("#admin_message_news_edit_tree"),3,false,true); 
+
+    //富文本编辑器-------------------------------------------------------------------------------------------
+    var admin_message_news_add_text_editor = KindEditor.create("#admin_message_news_add_text",option_editor);
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //公告状态
+    $.ajax({
+        url     : admin_message_news_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "<option value='0'>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_message_news_tool_select2.html(option);               //工具条
+        }
+    });
+    //公告类型
+    $.ajax({
+        url     : admin_message_news_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "<option value='0'>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_message_news_tool_select1.html(option);               //工具条
+        }
+    });
+    //公告类型
+    $.ajax({
+        url     : admin_message_news_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_message_news_add_type.html(option);                   //添加
+            admin_message_news_edit_type.html(option);                  //修改
+        }
+    });
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    admin_message_news_search_btn.click(function(){
+
+        //字段整理
+        var keyword
+        = "?sid="    + admin_message_news_tool_keys.val()
+        + "&search=" + admin_message_news_tool_search.val()
+        + "&select1="+ admin_message_news_tool_select1.val()
+        + "&select2="+ admin_message_news_tool_select2.val()
+        + "&date1="  + admin_message_news_tool_date.find(".start").val()
+        + "&date2="  + admin_message_news_tool_date.find(".end").val();
+
+        //GET提交
+        zui_datagrid_render(admin_message_news_datagrid_obj,admin_message_news_api.datagrid+keyword);
+
+    });
+
+    //添加按钮-----------------------------------------------------------------------------------------------
+    admin_message_news_add_btn.click(function(){
+
+        //数据重置
+        common_form_reset();
+        common_tree_staff_reset(admin_message_news_add_tree);
+        admin_message_news_add_read.find("label:nth-child(1)").trigger("click");
+        admin_message_news_add_text_editor.html("");
+
+        //面板显示
+        admin_message_news_add_box.modal("show");
+
+    });
+    //添加提交
+    admin_message_news_add_submit.click(function(){
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                tit     : admin_message_news_add_tit.val(),
+                numb    : admin_message_news_add_numb.val(),
+                type    : admin_message_news_add_type.val(),
+                tree    : admin_message_news_add_tree.attr("result"),
+                read    : admin_message_news_add_read.find(".active input").val(),
+                text    : admin_message_news_add_text.val(),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(admin_message_news_datagrid_obj,admin_message_news_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+ 
+    //查看按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_message_news_show_btn,function(){ 
+
+        //数据ID
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //远程提交
+        $.ajax({
+            url     : admin_message_news_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    var data = data.data;
+
+                    //查看模板
+                    var temp = `
+                        <div class="container">
+                            <table class="table table-bordered">
+                                <thead><tr><th colspan="2">基本内容</th></tr></thead>
+                                <tbody>
+                                    <tr><td style="width:100px;">公告标题</td><td>${data.tit}  </td></tr>
+                                    <tr><td>公告文号</td><td>${data.numb}       </td></tr>
+                                    <tr><td>公告类型</td><td>${data.typename}   </td></tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead><tr><th>详细内容</th></tr></thead>
+                                <tbody><tr><td>${data.text}</td></tr></tbody>
+                            </table>
+                        </div>
+                    `;
+                    admin_message_news_show_box.find(".modal-body").html(temp);                //模板填充
+                    admin_message_news_show_box.modal("show");                                 //盒子显示
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_message_news_edit_btn,function(){
+
+        //查看盒子关闭
+        admin_message_news_show_box.modal("hide");
+
+        //数据ID
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //远程提交
+        $.ajax({
+            url     : admin_message_news_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //数据赋值
+                    var data = data.data;
+                    admin_message_news_edit_tit.val(   data.tit   );
+                    admin_message_news_edit_numb.val(  data.numb  );
+                    admin_message_news_edit_type.val(  data.type  );
+                    common_tree_staff_read(admin_message_news_edit_tree,data.tree);
+                    admin_message_news_edit_read.find("label:nth-child("+ data.read +")").trigger("click");
+                    KindEditor.create("#admin_message_news_edit_text",option_editor).html( data.text )
+                    //其他操作
+                    admin_message_news_edit_submit.attr("dataId",data_id);                     //数据ID传值
+                    admin_message_news_edit_box.modal("show");                                 //盒子显示
+                    
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    //修改提交
+    admin_message_news_edit_submit.click(function(){
+
+        //数据ID
+        var data_id  = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id      : data_id,
+                tit     : admin_message_news_edit_tit.val(),
+                numb    : admin_message_news_edit_numb.val(),
+                type    : admin_message_news_edit_type.val(),
+                tree    : admin_message_news_edit_tree.attr("result"),
+                read    : admin_message_news_edit_read.find(".active input").val(),
+                text    : admin_message_news_edit_text.val(),
+            },            
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(admin_message_news_datagrid_obj,admin_message_news_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //删除按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_message_news_dele_btn,function(){
+
+        //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //其他操作
+        admin_message_news_dele_submit.attr("dataId",data_id);                                //ID传值
+        admin_message_news_dele_box.modal("show");                                            //面板显示
+
+    });
+    //删除提交
+    admin_message_news_dele_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(admin_message_news_datagrid_obj,admin_message_news_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+});//预加载结尾
+</script>

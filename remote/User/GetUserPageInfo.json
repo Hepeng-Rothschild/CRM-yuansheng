@@ -63,10 +63,10 @@
             {   
                 "title"     :"资料培训",
                 "children"  :[
-                    { "title":"培训中心","icon":"admin_train_center","url":"blank"},
-                    { "title":"规章制度","icon":"admin_train_rule  ","url":"blank"},
-                    { "title":"资料中心","icon":"admin_train_data  ","url":"blank"},
-                    { "title":"案例管理","icon":"admin_train_case  ","url":"blank"}
+                    { "title":"培训中心","icon":"","url":"admin_train_center"},
+                    { "title":"规章制度","icon":"","url":"admin_train_rule"},
+                    { "title":"资料中心","icon":"","url":"admin_train_data"},
+                    { "title":"案例管理","icon":"","url":"admin_train_case"}
                 ]
             }
         ]
