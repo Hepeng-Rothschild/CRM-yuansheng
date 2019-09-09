@@ -501,8 +501,6 @@ $(function(){
     //添加提交
     personnel_interview_add_submit.click(function(){
 
-        //性别字段
-        var personnel_interview_add_sexy = $("#personnel_interview_add_sexy .active input");
         //远程提交
         $.ajax({
             url     : personnel_interview_api.modal_add,
@@ -511,7 +509,7 @@ $(function(){
             data    : {
                 userid    : COMMON.user_id,
                 name      : personnel_interview_add_user.val(),
-                sex       : personnel_interview_add_sexy.val(),
+                sex       : personnel_interview_add_sexy.find(".active input").val(),
                 tel       : parseInt(personnel_interview_add_tels.val()),
                 datetime  : personnel_interview_add_date.val(),
                 positionid: personnel_interview_add_post.val(),

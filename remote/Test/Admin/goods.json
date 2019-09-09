@@ -16,13 +16,13 @@
         {"id":13,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"},
         {"id":14,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"},
         {"id":15,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"},
-        {"id":16,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"},      
+        {"id":16,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"},
         {"id":17,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"},
         {"id":18,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"},
         {"id":19,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"},
         {"id":20,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"},
         {"id":21,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"},
-        {"id":22,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"}         
+        {"id":22,"name":"卫生工具套装","type":"办公用品","stock":"100","unit":"包","price":"100.5","total":"1000.5"}
     ],
     "message" : "",
     "pager"   : {"page":1,"recTotal":22,"recPerPage":20}

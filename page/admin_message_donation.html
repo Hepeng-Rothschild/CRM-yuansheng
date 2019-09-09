@@ -46,32 +46,37 @@
                     <form class="form-horizontal">
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="admin_message_donation_add_tit">乐捐标题</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_message_donation_add_tit"></div>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_message_donation_add_tit"></div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="admin_message_donation_add_numb">乐捐文号</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_message_donation_add_numb"></div>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_message_donation_add_numb"></div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="admin_message_donation_add_user">员工姓名</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_message_donation_add_user"></div>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_message_donation_add_user"></div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="admin_message_donation_add_type">乐捐类型</label>
-                            <div class="col-sm-8"><select class="form-control" id="admin_message_donation_add_type"><!-- JS推进 --></select></div>
+                            <div class="col-sm-8"><select class="form-control input-short" id="admin_message_donation_add_type"><!-- JS推进 --></select></div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="admin_message_donation_add_price">乐捐金额</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="admin_message_donation_add_price"></div>
+                            <div class="col-sm-8">
+                                <div class="input-group input-short">
+                                    <input type="number" class="form-control" id="admin_message_donation_add_price">
+                                    <span class="input-group-addon">元</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="admin_message_donation_add_auth">权限分配</label>
+                            <label class="col-sm-2 required">权限分配</label>
                             <div class="col-sm-8">
                                 <ul class="tree tree-lines tree-chevrons" id="admin_message_donation_add_tree"></ul>
                             </div>
                         </div>
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="admin_message_donation_add_read">强制阅读</label>
+                            <label class="col-sm-2 required">强制阅读</label>
                             <div class="col-sm-8">
                                 <div class="btn-group" data-toggle="buttons" id="admin_message_donation_add_read">
                                     <label class="btn active"><input type="radio" value="1">是</label>
@@ -80,7 +85,7 @@
                             </div>
                         </div>                        
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="admin_message_donation_add_down">下载附件</label>
+                            <label class="col-sm-2 required">下载附件</label>
                             <div class="col-sm-8">
                                 <div class="btn-group" data-toggle="buttons" id="admin_message_donation_add_down">
                                     <label class="btn active"><input type="radio" value="1">是</label>
@@ -105,31 +110,75 @@
     </div>
     <!-- admin_message_donation_add_box -->
 
-    <!-- 查看盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_donation_show_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">查看</h4>
-                </div>
-                <div class="modal-body"><!-- JS推进 --></div>
-            </div>
-        </div>
-    </div>
-    <!-- admin_message_donation_show_box -->
-
     <!-- 修改盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_donation_edit_box">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                     <h4 class="modal-title">修改</h4>
                 </div>
-                <div class="modal-body">
-                    <form class="container">
-                      
+                <div class="modal-body modal-scroll">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_edit_tit">乐捐标题</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_message_donation_edit_tit"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_edit_numb">乐捐文号</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_message_donation_edit_numb"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_edit_user">员工姓名</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_message_donation_edit_user"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_edit_type">乐捐类型</label>
+                            <div class="col-sm-8"><select class="form-control input-short" id="admin_message_donation_edit_type"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_edit_price">乐捐金额</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-short">
+                                    <input type="number" class="form-control" id="admin_message_donation_edit_price">
+                                    <span class="input-group-addon">元</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">权限分配</label>
+                            <div class="col-sm-8">
+                                <ul class="tree tree-lines tree-chevrons" id="admin_message_donation_edit_tree"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">强制阅读</label>
+                            <div class="col-sm-8">
+                                <div class="btn-group" data-toggle="buttons" id="admin_message_donation_edit_read">
+                                    <label class="btn active"><input type="radio" value="1">是</label>
+                                    <label class="btn"><input type="radio" value="2">否</label>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">下载附件</label>
+                            <div class="col-sm-8">
+                                <div class="btn-group" data-toggle="buttons" id="admin_message_donation_edit_down">
+                                    <label class="btn active"><input type="radio" value="1">是</label>
+                                    <label class="btn"><input type="radio" value="2">否</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_message_donation_edit_text">详细内容</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="admin_message_donation_edit_text"></textarea>
+                            </div>
+                        </div>                        
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="admin_message_donation_edit_submit">保存</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -157,6 +206,20 @@
     </div>
     <!-- admin_message_donation_dele_box -->
 
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_message_donation_show_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll"><!-- JS推进 --></div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_message_donation_show_box -->
+
 </div>
 <!-- page-wrapper -->
 
@@ -171,6 +234,7 @@ $(function(){
     admin_message_donation_tool_keys          = $("#admin_message_donation_tool_keys"),         //搜索类别
     admin_message_donation_tool_search        = $("#admin_message_donation_tool_search"),       //搜索字段
     admin_message_donation_tool_select1       = $("#admin_message_donation_tool_select1"),      //下拉选择1
+    admin_message_donation_tool_select2       = $("#admin_message_donation_tool_select2"),      //下拉选择1    
     admin_message_donation_tool_date          = $("#admin_message_donation_tool_date"),         //起止时间
     admin_message_donation_search_btn         = $("#admin_message_donation_search_btn"),        //搜索按钮
     //添加
@@ -182,14 +246,22 @@ $(function(){
     admin_message_donation_add_user           = $("#admin_message_donation_add_user"),          //员工姓名
     admin_message_donation_add_type           = $("#admin_message_donation_add_type"),          //乐捐类型
     admin_message_donation_add_price          = $("#admin_message_donation_add_price"),         //乐捐金额
-    admin_message_donation_add_auth           = $("#admin_message_donation_add_auth"),          //权限分配
+    admin_message_donation_add_tree           = $("#admin_message_donation_add_tree"),          //权限分配
     admin_message_donation_add_read           = $("#admin_message_donation_add_read"),          //强制阅读
     admin_message_donation_add_down           = $("#admin_message_donation_add_down"),          //下载附件
     admin_message_donation_add_text           = $("#admin_message_donation_add_text"),          //详细内容
     //修改
-    admin_message_donation_edit_btn           = $("#admin_message_donation_edit_btn"),          //修改按钮
     admin_message_donation_edit_box           = $("#admin_message_donation_edit_box"),          //修改盒子
     admin_message_donation_edit_submit        = $("#admin_message_donation_edit_submit"),       //修改提交
+    admin_message_donation_edit_tit           = $("#admin_message_donation_edit_tit"),          //乐捐标题
+    admin_message_donation_edit_numb          = $("#admin_message_donation_edit_numb"),         //乐捐文号
+    admin_message_donation_edit_user          = $("#admin_message_donation_edit_user"),         //员工姓名
+    admin_message_donation_edit_type          = $("#admin_message_donation_edit_type"),         //乐捐类型
+    admin_message_donation_edit_price         = $("#admin_message_donation_edit_price"),        //乐捐金额
+    admin_message_donation_edit_tree          = $("#admin_message_donation_edit_tree"),         //权限分配
+    admin_message_donation_edit_read          = $("#admin_message_donation_edit_read"),         //强制阅读
+    admin_message_donation_edit_down          = $("#admin_message_donation_edit_down"),         //下载附件
+    admin_message_donation_edit_text          = $("#admin_message_donation_edit_text"),         //详细内容
     //查看
     admin_message_donation_show_box           = $("#admin_message_donation_show_box"),          //查看盒子
     //删除
@@ -203,6 +275,7 @@ $(function(){
         var admin_message_donation_api = {
             datagrid  : API.test_datagrid,                                    //数据表格
             select    : LOCAL + "Test/test_select.json",                      //下拉选择
+            modal_edit: LOCAL + "Test/Admin/Message/duration_edit.json",      //修改盒子
         }
 
     } else if ( window.STATE == "route" ){
@@ -211,6 +284,7 @@ $(function(){
         var admin_message_donation_api = {
             datagrid  : LOCAL + "Test/Admin/goods.json",                      //数据表格
             select    : LOCAL + "Test/test_select.json",                      //下拉选择
+            modal_edit: LOCAL + "Test/Admin/Message/duration_edit.json",      //修改盒子
         }
 
     }
@@ -242,15 +316,20 @@ $(function(){
                 {name:"text3",   label:"乐捐状态",       width:80 },
                 {name:"datetime",label:"时间",           width:150},
                 {name:"text4",   label:"已读人数/总人数",width:150},
-                {name:"tes",     label:"操作",           width:150,
+                {name:"state",   label:"操作",           width:150,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            var temp = `
-                                <a rowIndex="${cell.rowIndex}" class="admin_message_donation_show_btn">查看</a>
+
+                            var temp = `<a rowIndex="${cell.rowIndex}" class="admin_message_donation_show_btn">查看</a> `;
+                            if( dataValue==1 ){
+                                temp += `<a rowIndex="${cell.rowIndex}" class="admin_message_donation_dele_btn">删除</a>`;
+                            } else {
+                                temp += `
                                 <a rowIndex="${cell.rowIndex}" class="admin_message_donation_edit_btn">修改</a>
                                 <a rowIndex="${cell.rowIndex}" class="admin_message_donation_dele_btn">删除</a>
-                            `;
+                                `;
+                            }
                             return temp;
                         }
                     }
@@ -279,13 +358,28 @@ $(function(){
     admin_message_donation_tool_date.find(".end").datetimepicker(option_date);
 
     //节点树-------------------------------------------------------------------------------------------------
-    common_tree_staff($("#admin_message_donation_add_tree"));
+    common_tree_staff($("#admin_message_donation_add_tree"),3,false,true); 
+    common_tree_staff($("#admin_message_donation_edit_tree"),3,false,true); 
 
     //富文本编辑器-------------------------------------------------------------------------------------------
-    KindEditor.create("#admin_message_donation_add_text",option_editor);
-    //admin_message_donation_add_box.modal("show");
-    
+    var admin_message_donation_add_text_editor = KindEditor.create("#admin_message_donation_add_text",option_editor);
+
     //下拉选项-----------------------------------------------------------------------------------------------
+    //乐捐状态
+    $.ajax({
+        url     : admin_message_donation_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "<option value='0'>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_message_donation_tool_select2.html(option);               //工具条
+        }
+    });
     //乐捐类型
     $.ajax({
         url     : admin_message_donation_api.select,
@@ -293,12 +387,28 @@ $(function(){
         dataType: "json",
         data    : {},
         success : function(data){
+            var data = data.data;
             var option = "<option value='0'>全部</option>";
             for(var i=0;i<data.length;i++){
                 option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
             }
             admin_message_donation_tool_select1.html(option);               //工具条
+        }
+    });
+    //乐捐类型
+    $.ajax({
+        url     : admin_message_donation_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
             admin_message_donation_add_type.html(option);                   //添加
+            admin_message_donation_edit_type.html(option);                  //修改
         }
     });
 
@@ -310,6 +420,7 @@ $(function(){
         = "?sid="    + admin_message_donation_tool_keys.val()
         + "&search=" + admin_message_donation_tool_search.val()
         + "&select1="+ admin_message_donation_tool_select1.val()
+        + "&select2="+ admin_message_donation_tool_select2.val()
         + "&date1="  + admin_message_donation_tool_date.find(".start").val()
         + "&date2="  + admin_message_donation_tool_date.find(".end").val();
 
@@ -320,7 +431,17 @@ $(function(){
 
     //添加按钮-----------------------------------------------------------------------------------------------
     admin_message_donation_add_btn.click(function(){
+
+        //数据重置
+        common_form_reset();
+        common_tree_staff_reset(admin_message_donation_add_tree);
+        admin_message_donation_add_read.find("label:nth-child(1)").trigger("click");
+        admin_message_donation_add_down.find("label:nth-child(1)").trigger("click");
+        admin_message_donation_add_text_editor.html("");
+
+        //面板显示
         admin_message_donation_add_box.modal("show");
+
     });
     //添加提交
     admin_message_donation_add_submit.click(function(){
@@ -334,9 +455,9 @@ $(function(){
                 user    : admin_message_donation_add_user.val(),
                 type    : admin_message_donation_add_type.val(),
                 price   : admin_message_donation_add_price.val(),
-                auth    : admin_message_donation_add_auth.val(),
-                read    : admin_message_donation_add_read.val(),
-                down    : admin_message_donation_add_down.val(),
+                tree    : admin_message_donation_add_tree.attr("result"),
+                read    : admin_message_donation_add_read.find(".active input").val(),
+                down    : admin_message_donation_add_down.find(".active input").val(),
                 text    : admin_message_donation_add_text.val(),
             },
             success : function(data){
@@ -358,16 +479,33 @@ $(function(){
 
         //远程提交
         $.ajax({
-            url     : API.test_response,
+            url     : admin_message_donation_api.modal_edit,
             type    : "post",
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
                 if( data.status>0 ){
 
+                    var data = data.data;
+
                     //查看模板
                     var temp = `
-                        <div class="container">模板查看</div>
+                        <div class="container">
+                            <table class="table table-bordered">
+                                <thead><tr><th colspan="2">基本内容</th></tr></thead>
+                                <tbody>
+                                    <tr><td style="width:100px;">乐捐标题</td><td>${data.tit}  </td></tr>
+                                    <tr><td>乐捐文号</td><td>${data.numb}       </td></tr>
+                                    <tr><td>员工姓名</td><td>${data.user}       </td></tr>
+                                    <tr><td>乐捐类型</td><td>${data.typename}   </td></tr>
+                                    <tr><td>乐捐金额</td><td>${data.price} 元   </td></tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead><tr><th>详细内容</th></tr></thead>
+                                <tbody><tr><td>${data.text}</td></tr></tbody>
+                            </table>
+                        </div>
                     `;
                     admin_message_donation_show_box.find(".modal-body").html(temp);                //模板填充
                     admin_message_donation_show_box.modal("show");                                 //盒子显示
@@ -390,7 +528,7 @@ $(function(){
 
         //远程提交
         $.ajax({
-            url     : API.test_response,
+            url     : admin_message_donation_api.modal_edit,
             type    : "post",
             dataType: "json",
             data    : { id:data_id },
@@ -398,11 +536,20 @@ $(function(){
                 if( data.status>0 ){
 
                     //数据赋值
-                    admin_message_donation_edit_user.val(      data.message );
-
+                    var data = data.data;
+                    admin_message_donation_edit_tit.val(   data.tit   );
+                    admin_message_donation_edit_numb.val(  data.numb  );
+                    admin_message_donation_edit_user.val(  data.user  );
+                    admin_message_donation_edit_type.val(  data.type  );
+                    admin_message_donation_edit_price.val( data.price );
+                    common_tree_staff_read(admin_message_donation_edit_tree,data.tree);
+                    admin_message_donation_edit_read.find("label:nth-child("+ data.read +")").trigger("click");
+                    admin_message_donation_edit_down.find("label:nth-child("+ data.down +")").trigger("click");
+                    KindEditor.create("#admin_message_donation_edit_text",option_editor).html( data.text )
                     //其他操作
                     admin_message_donation_edit_submit.attr("dataId",data_id);                     //数据ID传值
                     admin_message_donation_edit_box.modal("show");                                 //盒子显示
+                    
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -422,9 +569,17 @@ $(function(){
             type    : "post",
             dataType: "json",
             data    : { 
-                id          : data_id,
-                user      : admin_message_donation_edit_user.val(),
-            },
+                id      : data_id,
+                tit     : admin_message_donation_edit_tit.val(),
+                numb    : admin_message_donation_edit_numb.val(),
+                user    : admin_message_donation_edit_user.val(),
+                type    : admin_message_donation_edit_type.val(),
+                price   : admin_message_donation_edit_price.val(),
+                tree    : admin_message_donation_edit_tree.attr("result"),
+                read    : admin_message_donation_edit_read.find(".active input").val(),
+                down    : admin_message_donation_edit_down.find(".active input").val(),
+                text    : admin_message_donation_edit_text.val(),
+            },            
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);

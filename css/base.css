@@ -23,9 +23,6 @@ ul,li{
     padding:0;
     list-style:none;
 }
-a{
-    cursor:pointer;
-}
 html,body{
     height:100%;
 }
@@ -489,10 +486,6 @@ html,body{
     margin-left:0;
 }
 /*其他样式*/
-[data-toggle="modal"],
-.tree span{
-    cursor: pointer;
-}
 select{ min-width: 100px!important; }
 .input-min-box input{ width: 120px; }
 /*单元格隐藏*/
@@ -524,8 +517,12 @@ select{ min-width: 100px!important; }
     font-weight: normal;
 }
 /*label*/
-.for-label{
-    cursor: pointer;
+a,
+label,
+[data-toggle="modal"],
+.for-label,
+.tree span{
+    cursor:pointer;
 }
 .for-label::selection{
     background:transparent;
@@ -622,3 +619,8 @@ select{ min-width: 100px!important; }
 .simple-box .text-muted{
     line-height:32px;
 }*/
+
+
+.input-short{
+    max-width:220px;
+}

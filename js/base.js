@@ -277,6 +277,7 @@ var option_editor = {
     allowPreviewEmoticons : true,
     allowImageUpload      : true,
     allowFileManager      : true,
+    afterBlur             : function(){ this.sync(); }  //失焦执行
 }
 
 //函数声明----------------------------------------------------------------------------------
@@ -713,6 +714,7 @@ function common_tree_staff(selector,company_id,is_open,is_check){
 function common_tree_staff_read(selector,edit_data){
 
     //节点树刷新
+    console.log( edit_data );
     selector.data("zui.tree").reload(edit_data);
 
     //结果导出
