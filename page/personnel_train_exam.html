@@ -372,35 +372,10 @@ $(function(){
 
     //添加按钮-----------------------------------------------------------------------------------------------
     personnel_train_exam_add_btn.click(function(){
-    
-        //远程提交
-        $.ajax({ 
-            url     : personnel_train_exam_api.tree,
-            type    : "post",
-            dataType: "json",
-            success : function(data){
-                personnel_train_exam_add_tree.tree({
-                    //参数配置
-                    animate     : false,
-                    initialState: "normal",
-                    data        : data,
-                    itemWrapper : true,
-                    itemCreator : function($li,item){
-                        $li.append($("<span>",{type:item.type,numb:item.numb}).html(
-                        "<i class='icon icon-"+item.icon+"'></i> "+item.title
-                        ));
-                    }
-                });
-            }
-        });
-
-        //试题设置复位
-        personnel_train_exam_limit = 5;
-        personnel_train_exam_add_list.html("");
-
-        //面板显示
-        personnel_train_exam_add_box.modal("show");
-
+        common_form_reset();                        //数据复原
+        personnel_train_exam_limit = 5;             //试题设置复原
+        personnel_train_exam_add_list.html("");     //试题设置复原
+        personnel_train_exam_add_box.modal("show"); //面板显示
     });
     //添加提交
     personnel_train_exam_add_submit.click(function(){

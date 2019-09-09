@@ -1088,6 +1088,7 @@ $(function(){
 
     //添加按钮-----------------------------------------------------------------------------------------------
     setup_attendance_overtime_add_btn.click(function(){
+        common_form_reset();
         setup_attendance_overtime_add_box.find("table .btn-group .btn:first-child").trigger("click");     //数据复原
         setup_attendance_overtime_add_box.modal("show");
     });

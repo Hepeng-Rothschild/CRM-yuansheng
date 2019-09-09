@@ -13,7 +13,7 @@
 
         //本地接口
         window.API = {
-            common_view     : "./page/admin_message_donation.html",         //welcome
+            common_view     : "./page/welcome.html",                        //welcome admin_message_donation
             test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
             test_response   : LOCAL+"Test/test_response.json",              //数据响应
             test_editor     : LOCAL+"Test/test_editor.php",                 //富文本编辑器

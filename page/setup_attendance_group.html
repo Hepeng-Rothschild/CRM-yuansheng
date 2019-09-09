@@ -446,6 +446,7 @@ $(function(){
     setup_attendance_group_add_btn.click(function(){
 
         //数据重置
+        common_form_reset();
         common_tree_staff_reset( setup_attendance_group_add_tree );
         setup_attendance_group_add_week.attr("result","1,2,3,4,5").find(".btn").removeClass("active");
         for( var i=0;i<5;i++ ){ setup_attendance_group_add_week.find(".btn").eq(i).addClass("active"); }
