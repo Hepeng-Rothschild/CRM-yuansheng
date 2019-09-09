@@ -619,8 +619,11 @@ label,
 .simple-box .text-muted{
     line-height:32px;
 }*/
-
-
 .input-short{
     max-width:220px;
+}
+/*树状图-上下居中*/
+.tree.tree-lines.tree-chevrons{
+    position: relative;
+    top: 5px;
 }

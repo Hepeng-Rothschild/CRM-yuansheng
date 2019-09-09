@@ -269,9 +269,14 @@ var option_editor = {
     height     : "280",
     resizeType : 1,
     items      : [
-        "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic", "underline",
-        "removeformat", "|", "justifyleft", "justifycenter", "justifyright", "insertorderedlist",
-        "insertunorderedlist", "|", "emoticons", "image", "link","fullscreen"
+        'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+        'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+        'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+        'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+        'anchor', 'link', 'unlink', '|', 'about'
     ],
     uploadJson            : API.test_editor, 
     allowPreviewEmoticons : true,

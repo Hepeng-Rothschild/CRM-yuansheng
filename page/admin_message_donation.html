@@ -83,15 +83,6 @@
                                     <label class="btn"><input type="radio" value="2">否</label>
                                 </div>
                             </div>
-                        </div>                        
-                        <div class="form-group require">
-                            <label class="col-sm-2 required">下载附件</label>
-                            <div class="col-sm-8">
-                                <div class="btn-group" data-toggle="buttons" id="admin_message_donation_add_down">
-                                    <label class="btn active"><input type="radio" value="1">是</label>
-                                    <label class="btn"><input type="radio" value="2">否</label>
-                                </div>
-                            </div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="admin_message_donation_add_text">详细内容</label>
@@ -155,15 +146,6 @@
                             <label class="col-sm-2 required">强制阅读</label>
                             <div class="col-sm-8">
                                 <div class="btn-group" data-toggle="buttons" id="admin_message_donation_edit_read">
-                                    <label class="btn active"><input type="radio" value="1">是</label>
-                                    <label class="btn"><input type="radio" value="2">否</label>
-                                </div>
-                            </div>
-                        </div>                        
-                        <div class="form-group require">
-                            <label class="col-sm-2 required">下载附件</label>
-                            <div class="col-sm-8">
-                                <div class="btn-group" data-toggle="buttons" id="admin_message_donation_edit_down">
                                     <label class="btn active"><input type="radio" value="1">是</label>
                                     <label class="btn"><input type="radio" value="2">否</label>
                                 </div>
@@ -248,7 +230,6 @@ $(function(){
     admin_message_donation_add_price          = $("#admin_message_donation_add_price"),         //乐捐金额
     admin_message_donation_add_tree           = $("#admin_message_donation_add_tree"),          //权限分配
     admin_message_donation_add_read           = $("#admin_message_donation_add_read"),          //强制阅读
-    admin_message_donation_add_down           = $("#admin_message_donation_add_down"),          //下载附件
     admin_message_donation_add_text           = $("#admin_message_donation_add_text"),          //详细内容
     //修改
     admin_message_donation_edit_box           = $("#admin_message_donation_edit_box"),          //修改盒子
@@ -260,7 +241,6 @@ $(function(){
     admin_message_donation_edit_price         = $("#admin_message_donation_edit_price"),        //乐捐金额
     admin_message_donation_edit_tree          = $("#admin_message_donation_edit_tree"),         //权限分配
     admin_message_donation_edit_read          = $("#admin_message_donation_edit_read"),         //强制阅读
-    admin_message_donation_edit_down          = $("#admin_message_donation_edit_down"),         //下载附件
     admin_message_donation_edit_text          = $("#admin_message_donation_edit_text"),         //详细内容
     //查看
     admin_message_donation_show_box           = $("#admin_message_donation_show_box"),          //查看盒子
@@ -436,7 +416,6 @@ $(function(){
         common_form_reset();
         common_tree_staff_reset(admin_message_donation_add_tree);
         admin_message_donation_add_read.find("label:nth-child(1)").trigger("click");
-        admin_message_donation_add_down.find("label:nth-child(1)").trigger("click");
         admin_message_donation_add_text_editor.html("");
 
         //面板显示
@@ -457,7 +436,6 @@ $(function(){
                 price   : admin_message_donation_add_price.val(),
                 tree    : admin_message_donation_add_tree.attr("result"),
                 read    : admin_message_donation_add_read.find(".active input").val(),
-                down    : admin_message_donation_add_down.find(".active input").val(),
                 text    : admin_message_donation_add_text.val(),
             },
             success : function(data){
@@ -544,7 +522,6 @@ $(function(){
                     admin_message_donation_edit_price.val( data.price );
                     common_tree_staff_read(admin_message_donation_edit_tree,data.tree);
                     admin_message_donation_edit_read.find("label:nth-child("+ data.read +")").trigger("click");
-                    admin_message_donation_edit_down.find("label:nth-child("+ data.down +")").trigger("click");
                     KindEditor.create("#admin_message_donation_edit_text",option_editor).html( data.text )
                     //其他操作
                     admin_message_donation_edit_submit.attr("dataId",data_id);                     //数据ID传值
@@ -577,7 +554,6 @@ $(function(){
                 price   : admin_message_donation_edit_price.val(),
                 tree    : admin_message_donation_edit_tree.attr("result"),
                 read    : admin_message_donation_edit_read.find(".active input").val(),
-                down    : admin_message_donation_edit_down.find(".active input").val(),
                 text    : admin_message_donation_edit_text.val(),
             },            
             success : function(data){

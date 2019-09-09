@@ -68,8 +68,7 @@
                 ]
             }
         ],
-        "read"    : 1,
-        "down"    : 2,
+        "read"    : 2,
         "text"    : "<span style='color:#E53333;font-size:24px;'>富文本编辑器</span>"
     }
 }   

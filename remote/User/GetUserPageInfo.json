@@ -55,8 +55,8 @@
             {   
                 "title"     :"信息发布",
                 "children"  :[
-                    { "title":"新闻公告","icon":"admin_message_news    ","url":"blank"},
-                    { "title":"会议纪要","icon":"admin_message_meeting ","url":"blank"},
+                    { "title":"新闻公告","icon":"","url":"admin_message_news"},
+                    { "title":"会议纪要","icon":"","url":"admin_message_meeting"},
                     { "title":"乐捐通知","icon":"","url":"admin_message_donation"}
                 ]
             },
