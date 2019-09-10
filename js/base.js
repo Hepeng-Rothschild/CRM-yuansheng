@@ -445,10 +445,22 @@ function zui_upload_fixed(upapi,upid,staticFiles){
  * @param   upapi       string 上传路径接口
  * @param   upid        string 上传组件ID
  * @param   staticFiles array  静态文件
+ * @param   maxSize     string 大小限定 (default : "1mb" )
  * @return              object 参数对象
  */
 var zui_upload_free_path = "";
-function zui_upload_free(upapi,upid,staticFiles){
+function zui_upload_free(upapi,upid,staticFiles,maxSize="1mb"){
+
+    //修改赋值
+    if( staticFiles && staticFiles!="" ){
+        var staticFiles_result = "";
+        for(var i=0;i<staticFiles.length;i++){
+            staticFiles_result+=staticFiles[i].url+",";
+        }
+        staticFiles_result = staticFiles_result.substr(0,staticFiles_result.length-1);
+        $("#"+upid).attr("path",staticFiles_result);
+    }
+
     return {
         url                 : upapi,                                    //上传路径
         fileList            : "grid",                                   //列表配置
@@ -456,7 +468,7 @@ function zui_upload_free(upapi,upid,staticFiles){
         autoUpload          : true,                                     //自动上传
         filters             : {                                         //文件过滤
             mime_types         : [{title:"图片",extensions:"jpg,png"}], //类型限定
-            max_file_size      : "1mb",                                 //大小限定
+            max_file_size      : maxSize,                               //大小限定
             prevent_duplicates : true                                   //重传禁止
         },
         multipart_params    : function(file,params){                    //参数提交
@@ -464,7 +476,7 @@ function zui_upload_free(upapi,upid,staticFiles){
         },
         responseHandler     : function(res,file){                       //远程响应
             var data = um_json(res.response);
-            zui_upload_free_path = zui_upload_free_path+","+data.path;
+            zui_upload_free_path+= data.file+",";
             $("#"+data.upid).attr("path",zui_upload_free_path);
         },
         staticFiles         : staticFiles || [],                        //静态文件
@@ -719,7 +731,6 @@ function common_tree_staff(selector,company_id,is_open,is_check){
 function common_tree_staff_read(selector,edit_data){
 
     //节点树刷新
-    console.log( edit_data );
     selector.data("zui.tree").reload(edit_data);
 
     //结果导出
@@ -755,7 +766,6 @@ function common_for_label_toggle_reset(selector){
  */
 function common_form_reset(){
     var form = $("form");
-    console.log(form.length);
     for( var i=0;i<form.length;i++ ){
         form[i].reset();
     }
