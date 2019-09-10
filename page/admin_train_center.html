@@ -1,8 +1,619 @@
 <!-- 页面外套 -->
-<div class="page-wrapper">
-    <br>
-    <div class="alert alert-info alert-block">
-        <h2>培训中心</h2>
+<div class="page-wrapper" id="admin_train_center">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="admin_train_center_datagrid">
+
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <div class="tool-search">
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" id="admin_train_center_tool_keys">
+                            <option value="1">培训标题</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="admin_train_center_tool_search">
+                    </div>
+                </div>
+                <label><span>培训类型：</span><select class="form-control" id="admin_train_center_tool_select1"><!--JS推进--></select></label>
+                <label><button class="btn btn-primary" id="admin_train_center_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </div>
+            <div class="tool-deal">
+                <label><button class="btn btn-primary" id="admin_train_center_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
     </div>
+    <!-- datagrid -->
+
+ 	<!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_train_center_add_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_center_add_tit">培训标题</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_train_center_add_tit"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_center_add_type">培训类型</label>
+                            <div class="col-sm-8"><select class="form-control input-short" id="admin_train_center_add_type"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">权限分配</label>
+                            <div class="col-sm-8">
+                                <ul class="tree tree-lines tree-chevrons" id="admin_train_center_add_tree"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_center_add_text">详细内容</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="admin_train_center_add_text"></textarea>
+                            </div>
+                        </div>   
+
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">附件下载</label>
+                            <div class="col-sm-8">
+                                <div class="btn-group" data-toggle="buttons" id="admin_train_center_add_read">
+                                    <label class="btn active"><input type="radio" value="1">允许</label>
+                                    <label class="btn"><input type="radio" value="2">禁止</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">附件上传</label>
+                            <div class="col-sm-8">
+                                <div class="uploader" id="admin_train_center_add_file" path="">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list"></div>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">点击上传</button>
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="admin_train_center_add_submit">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_train_center_add_box -->
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_train_center_edit_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_center_edit_case">培训标题</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_train_center_edit_case"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_center_edit_type">培训类型</label>
+                            <div class="col-sm-8"><select class="form-control input-short" id="admin_train_center_edit_type"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_center_edit_designer">设计师</label>
+                            <div class="col-sm-8"><select class="form-control input-short" id="admin_train_center_edit_designer"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_center_edit_painter">绘图员</label>
+                            <div class="col-sm-8"><select class="form-control input-short" id="admin_train_center_edit_painter"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_center_edit_area">培训面积</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-short">
+                                    <input type="number" class="form-control" id="admin_train_center_edit_area">
+                                    <span class="input-group-addon">㎡</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_center_edit_date">培训时间</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_train_center_edit_date" readonly></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_center_edit_addr">培训详址</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_train_center_edit_addr"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_center_edit_text">培训说明</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="admin_train_center_edit_text" style="min-height:120px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">图片上传</label>
+                            <div class="col-sm-8">
+                                <div class="uploader" id="admin_train_center_edit_imgs" path="">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list"></div>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">点击上传</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="admin_train_center_edit_submit">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_train_center_edit_box -->
+
+    <!-- 删除盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_train_center_dele_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否删除？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="admin_train_center_dele_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_train_center_dele_box -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_train_center_show_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll"><!-- JS推进 --></div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_train_center_show_box -->
+
 </div>
 <!-- page-wrapper -->
+
+<script>
+$(function(){
+   
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    admin_train_center                    = $("#admin_train_center"),                   //页面ID
+    admin_train_center_datagrid           = $("#admin_train_center_datagrid"),          //数据表格
+    //搜索
+    admin_train_center_tool_keys          = $("#admin_train_center_tool_keys"),         //搜索类别
+    admin_train_center_tool_search        = $("#admin_train_center_tool_search"),       //搜索字段
+    admin_train_center_tool_select1       = $("#admin_train_center_tool_select1"),      //下拉选择1
+    admin_train_center_tool_select2       = $("#admin_train_center_tool_select2"),      //下拉选择1    
+    admin_train_center_tool_date          = $("#admin_train_center_tool_date"),         //起止时间
+    admin_train_center_search_btn         = $("#admin_train_center_search_btn"),        //搜索按钮
+    //添加
+    admin_train_center_add_btn            = $("#admin_train_center_add_btn"),           //添加按钮
+    admin_train_center_add_box            = $("#admin_train_center_add_box"),           //添加盒子
+    admin_train_center_add_submit         = $("#admin_train_center_add_submit"),        //添加提交
+    admin_train_center_add_case           = $("#admin_train_center_add_case"),          //培训标题
+    admin_train_center_add_type           = $("#admin_train_center_add_type"),          //培训类型
+    admin_train_center_add_designer       = $("#admin_train_center_add_designer"),      //设计师
+    admin_train_center_add_painter        = $("#admin_train_center_add_painter"),       //绘图员
+    admin_train_center_add_area           = $("#admin_train_center_add_area"),          //培训面积
+    admin_train_center_add_date           = $("#admin_train_center_add_date"),          //培训时间
+    admin_train_center_add_addr           = $("#admin_train_center_add_addr"),          //培训详址
+    admin_train_center_add_text           = $("#admin_train_center_add_text"),          //培训说明
+    admin_train_center_add_file           = $("#admin_train_center_add_file"),          //图片上传
+    //修改
+    admin_train_center_edit_box           = $("#admin_train_center_edit_box"),          //修改盒子
+    admin_train_center_edit_submit        = $("#admin_train_center_edit_submit"),       //修改提交
+    admin_train_center_edit_case          = $("#admin_train_center_edit_case"),         //培训标题
+    admin_train_center_edit_type          = $("#admin_train_center_edit_type"),         //培训类型
+    admin_train_center_edit_designer      = $("#admin_train_center_edit_designer"),     //设计师
+    admin_train_center_edit_painter       = $("#admin_train_center_edit_painter"),      //绘图员
+    admin_train_center_edit_area          = $("#admin_train_center_edit_area"),         //培训面积
+    admin_train_center_edit_date          = $("#admin_train_center_edit_date"),         //培训时间
+    admin_train_center_edit_addr         = $("#admin_train_center_edit_addr"),        //培训详址
+    admin_train_center_edit_text          = $("#admin_train_center_edit_text"),         //培训说明
+    admin_train_center_edit_imgs          = $("#admin_train_center_edit_imgs"),         //图片上传
+    //查看
+    admin_train_center_show_box           = $("#admin_train_center_show_box"),          //查看盒子
+    //删除
+    admin_train_center_dele_box           = $("#admin_train_center_dele_box"),          //删除盒子
+    admin_train_center_dele_submit        = $("#admin_train_center_dele_submit");       //删除提交
+
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var admin_train_center_api = {
+            datagrid  : API.test_datagrid,                                    //数据表格
+            select    : LOCAL + "Test/test_select.json",                      //下拉选择
+            modal_edit: LOCAL + "Test/Admin/Train/case_edit.json",            //修改盒子
+            uploader  : LOCAL + "Test/test_upload.php"                        //上传路径
+        }
+
+    } else if ( window.STATE == "route" ){
+
+        //远程接口
+        var admin_train_center_api = {
+            datagrid  : LOCAL + "Test/Admin/goods.json",                      //数据表格
+            select    : LOCAL + "Test/test_select.json",                      //下拉选择
+            modal_edit: LOCAL + "Test/Admin/Train/case_edit.json",            //修改盒子
+            uploader  : LOCAL + "Test/test_upload.php"                        //上传路径
+        }
+
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    admin_train_center_datagrid.datagrid({
+        height      : zui_datagrid_height(admin_train_center_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            fixedLeftUntil  : 3,
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",      width:49 },
+                {name:"text8",   label:"培训标题",width:200},
+                {name:"text2",   label:"培训类型",width:100},
+                {name:"name",    label:"上传人",  width:100},
+                {name:"date",    label:"上传时间",width:100},
+                {name:"state",   label:"操作",    width:150,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = `
+                            <a rowIndex="${cell.rowIndex}" class="admin_train_center_show_btn">查看</a>
+                            <a rowIndex="${cell.rowIndex}" class="admin_train_center_edit_btn">修改</a>
+                            <a rowIndex="${cell.rowIndex}" class="admin_train_center_dele_btn">删除</a>
+                            `;
+                            return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : admin_train_center_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    admin_train_center_datagrid_obj   = admin_train_center_datagrid.data("zui.datagrid"),   //表格对象
+    admin_train_center_show_btn       = ".admin_train_center_show_btn",                     //查看
+    admin_train_center_edit_btn       = ".admin_train_center_edit_btn",                     //修改
+    admin_train_center_dele_btn       = ".admin_train_center_dele_btn";                     //删除
+
+    //时间组件-----------------------------------------------------------------------------------------------
+    admin_train_center_add_date.datetimepicker(option_date);
+    admin_train_center_edit_date.datetimepicker(option_date);
+ 
+    //节点树-------------------------------------------------------------------------------------------------
+    common_tree_staff($("#admin_train_center_add_tree"),3,false,true); 
+    // common_tree_staff($("#admin_train_center_edit_tree"),3,false,true); 
+
+    //富文本编辑器-------------------------------------------------------------------------------------------
+    var admin_train_center_add_text_editor = KindEditor.create("#admin_train_center_add_text",option_editor);
+
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //培训类型
+    $.ajax({
+        url     : admin_train_center_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "<option value='0'>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_train_center_tool_select1.html(option);                     //工具条
+        }
+    });
+    //培训类型
+    $.ajax({
+        url     : admin_train_center_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_train_center_add_type.html(option);                         //添加
+            admin_train_center_edit_type.html(option);                        //修改
+        }
+    });
+    //设计师
+    $.ajax({
+        url     : admin_train_center_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_train_center_add_designer.html(option);                     //添加
+            admin_train_center_edit_designer.html(option);                    //修改
+        }
+    });
+    //绘图员
+    $.ajax({
+        url     : admin_train_center_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_train_center_add_painter.html(option);                      //添加
+            admin_train_center_edit_painter.html(option);                     //修改
+        }
+    });
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    admin_train_center_search_btn.click(function(){
+
+        //字段整理
+        var keyword
+        = "?sid="    + admin_train_center_tool_keys.val()
+        + "&search=" + admin_train_center_tool_search.val()
+        + "&select1="+ admin_train_center_tool_select1.val()
+        + "&date1="  + admin_train_center_tool_date.find(".start").val()
+        + "&date2="  + admin_train_center_tool_date.find(".end").val();
+
+        //GET提交
+        zui_datagrid_render(admin_train_center_datagrid_obj,admin_train_center_api.datagrid+keyword);
+
+    });
+
+    //添加按钮-----------------------------------------------------------------------------------------------
+    admin_train_center_add_btn.click(function(){
+        common_form_reset();
+        admin_train_center_add_file.uploader(zui_upload_free(admin_train_center_api.uploader,"admin_train_center_add_file","","50mb"));
+        admin_train_center_add_box.modal("show");
+    });
+    //添加提交
+    admin_train_center_add_submit.click(function(){
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                case    : admin_train_center_add_case.val(),
+                type    : admin_train_center_add_type.val(),
+                designer: admin_train_center_add_designer.val(),
+                painter : admin_train_center_add_painter.val(),
+                area    : admin_train_center_add_area.val(),
+                date    : admin_train_center_add_date.val(),
+                addr    : admin_train_center_add_addr.val(),
+                text    : admin_train_center_add_text.val(),
+                imgs    : admin_train_center_add_imgs.attr("path") || "",
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(admin_train_center_datagrid_obj,admin_train_center_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //查看按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_train_center_show_btn,function(){ 
+
+        //数据ID
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //远程提交
+        $.ajax({
+            url     : admin_train_center_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    var data = data.data;
+                    var temp = `
+                        <div class="container">
+                            <table class="table table-bordered">
+                                <thead><tr><th colspan="2">基本内容</th></tr></thead>
+                                <tbody>
+                                    <tr><td style="width:100px;">培训标题</td><td>${data.case}  </td></tr>
+                                    <tr><td>培训类型</td><td>${data.typename}       </td></tr>
+                                    <tr><td>设计师  </td><td>${data.designername}   </td></tr>
+                                    <tr><td>绘图员  </td><td>${data.paintername}    </td></tr>
+                                    <tr><td>培训面积</td><td>${data.area} ㎡        </td></tr>
+                                    <tr><td>培训详址</td><td>${data.addr}           </td></tr>
+                                    <tr><td>培训说明</td><td>${data.text}           </td></tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead><tr><th>图片查看</th></tr></thead>
+                                <tbody>
+                                    <tr><td>
+                    `;
+                    for(var i=0;i<data.imgs.length;i++){
+                        temp+=`
+                            <div class="col-sm-2">
+                                <a class="card" target="_blank" href="${data.imgs[i].url}">
+                                    <span class="media-wrapper"><img src="${data.imgs[i].url}"></span>
+                                    <span class="card-heading">${data.imgs[i].name}</span>
+                                </a>
+                            </div>
+                        `;
+                    }
+                    temp += `</td></tr></tbody></table></div>`;
+                    admin_train_center_show_box.find(".modal-body").html(temp);                //模板填充
+                    admin_train_center_show_box.modal("show");                                 //盒子显示
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_train_center_edit_btn,function(){
+
+        //查看盒子关闭
+        admin_train_center_show_box.modal("hide");
+
+        //数据ID
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //远程提交
+        $.ajax({
+            url     : admin_train_center_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //数据赋值
+                    var data = data.data;
+                    admin_train_center_edit_case.val(     data.case       );
+                    admin_train_center_edit_type.val(     data.type       );
+                    admin_train_center_edit_designer.val( data.designer   );
+                    admin_train_center_edit_painter.val(  data.painter    );
+                    admin_train_center_edit_area.val(     data.area       );
+                    admin_train_center_edit_date.val(     data.date       );
+                    admin_train_center_edit_addr.val(     data.addr       );
+                    admin_train_center_edit_text.val(     data.text       );
+                    admin_train_center_edit_imgs.uploader(zui_upload_free(admin_train_center_api.uploader,"admin_train_center_edit_imgs",data.imgs));
+                    //其他操作
+                    admin_train_center_edit_submit.attr("dataId",data_id);                     //数据ID传值
+                    admin_train_center_edit_box.modal("show");                                 //盒子显示
+                    
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    //修改提交
+    admin_train_center_edit_submit.click(function(){
+
+        //数据ID
+        var data_id  = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id      : data_id,
+                case    : admin_train_center_edit_case.val(),
+                type    : admin_train_center_edit_type.val(),
+                designer: admin_train_center_edit_designer.val(),
+                painter : admin_train_center_edit_painter.val(),
+                area    : admin_train_center_edit_area.val(),
+                date    : admin_train_center_edit_date.val(),
+                addr    : admin_train_center_edit_addr.val(),
+                text    : admin_train_center_edit_text.val(),
+                imgs    : admin_train_center_edit_imgs.attr("path") || "",
+            },            
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(admin_train_center_datagrid_obj,admin_train_center_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //删除按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_train_center_dele_btn,function(){
+
+        //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //其他操作
+        admin_train_center_dele_submit.attr("dataId",data_id);                                //ID传值
+        admin_train_center_dele_box.modal("show");                                            //面板显示
+
+    });
+    //删除提交
+    admin_train_center_dele_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(admin_train_center_datagrid_obj,admin_train_center_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+});//预加载结尾
+</script>
