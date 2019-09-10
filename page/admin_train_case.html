@@ -1,8 +1,558 @@
 <!-- 页面外套 -->
-<div class="page-wrapper">
-    <br>
-    <div class="alert alert-info alert-block">
-        <h2>案例管理</h2>
+<div class="page-wrapper" id="admin_train_case">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="admin_train_case_datagrid">
+
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <div class="tool-search">
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" id="admin_train_case_tool_keys">
+                            <option value="1">案例名称</option>
+                            <option value="2">设计师</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="admin_train_case_tool_search">
+                    </div>
+                </div>
+                <label><span>空间类型：</span><select class="form-control" id="admin_train_case_tool_select1"><!--JS推进--></select></label>
+                <label><button class="btn btn-primary" id="admin_train_case_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </div>
+            <div class="tool-deal">
+                <label><button class="btn btn-primary" id="admin_train_case_add_btn">   <i class="icon icon-plus"></i>   添加</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
     </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_train_case_add_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_case_add_case">案例名称</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_train_case_add_case"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_case_add_type">空间类型</label>
+                            <div class="col-sm-8"><select class="form-control input-short" id="admin_train_case_add_type"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_case_add_designer">设计师</label>
+                            <div class="col-sm-8"><select class="form-control input-short" id="admin_train_case_add_designer"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_case_add_painter">绘图员</label>
+                            <div class="col-sm-8"><select class="form-control input-short" id="admin_train_case_add_painter"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_case_add_area">案例面积</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-short">
+                                    <input type="number" class="form-control" id="admin_train_case_add_area">
+                                    <span class="input-group-addon">㎡</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_case_add_date">案例时间</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_train_case_add_date" readonly></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_case_add_addr">案例详址</label>
+                            <div class="col-sm-8"><input type="text" class="form-control input-short" id="admin_train_case_add_addr"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="admin_train_case_add_text">案例说明</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="admin_train_case_add_text" style="min-height:120px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">图片上传</label>
+                            <div class="col-sm-8">
+                                <!-- 上传组件 -->
+                                <div class="uploader upload-free" id="admin_train_case_add_imgs" path="">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list"></div>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">点击上传</button>
+                                </div>
+                                <!-- 上传组件 -->
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="admin_train_case_add_submit">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_train_case_add_box -->
+
+    <!-- 修改盒子 -->
+    
+    <!-- admin_train_case_edit_box -->
+
+    <!-- 删除盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_train_case_dele_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否删除？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="admin_train_case_dele_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_train_case_dele_box -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="admin_train_case_show_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll"><!-- JS推进 --></div>
+            </div>
+        </div>
+    </div>
+    <!-- admin_train_case_show_box -->
+
 </div>
 <!-- page-wrapper -->
+
+<script>
+$(function(){
+   
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    admin_train_case                    = $("#admin_train_case"),                   //页面ID
+    admin_train_case_datagrid           = $("#admin_train_case_datagrid"),          //数据表格
+    //搜索
+    admin_train_case_tool_keys          = $("#admin_train_case_tool_keys"),         //搜索类别
+    admin_train_case_tool_search        = $("#admin_train_case_tool_search"),       //搜索字段
+    admin_train_case_tool_select1       = $("#admin_train_case_tool_select1"),      //下拉选择1
+    admin_train_case_tool_select2       = $("#admin_train_case_tool_select2"),      //下拉选择1    
+    admin_train_case_tool_date          = $("#admin_train_case_tool_date"),         //起止时间
+    admin_train_case_search_btn         = $("#admin_train_case_search_btn"),        //搜索按钮
+    //添加
+    admin_train_case_add_btn            = $("#admin_train_case_add_btn"),           //添加按钮
+    admin_train_case_add_box            = $("#admin_train_case_add_box"),           //添加盒子
+    admin_train_case_add_submit         = $("#admin_train_case_add_submit"),        //添加提交
+    admin_train_case_add_case           = $("#admin_train_case_add_case"),          //案例名称
+    admin_train_case_add_type           = $("#admin_train_case_add_type"),          //空间类型
+    admin_train_case_add_designer       = $("#admin_train_case_add_designer"),      //设计师
+    admin_train_case_add_painter        = $("#admin_train_case_add_painter"),       //绘图员
+    admin_train_case_add_area           = $("#admin_train_case_add_area"),          //案例面积
+    admin_train_case_add_date           = $("#admin_train_case_add_date"),          //案例时间
+    admin_train_case_add_addr           = $("#admin_train_case_add_addr"),          //案例详址
+    admin_train_case_add_text           = $("#admin_train_case_add_text"),          //案例说明
+    admin_train_case_add_imgs           = $("#admin_train_case_add_imgs"),          //图片上传
+
+    //修改
+    admin_train_case_edit_box           = $("#admin_train_case_edit_box"),          //修改盒子
+    admin_train_case_edit_submit        = $("#admin_train_case_edit_submit"),       //修改提交
+
+
+    //查看
+    admin_train_case_show_box           = $("#admin_train_case_show_box"),          //查看盒子
+    //删除
+    admin_train_case_dele_box           = $("#admin_train_case_dele_box"),          //删除盒子
+    admin_train_case_dele_submit        = $("#admin_train_case_dele_submit");       //删除提交
+
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var admin_train_case_api = {
+            datagrid  : API.test_datagrid,                                    //数据表格
+            select    : LOCAL + "Test/test_select.json",                      //下拉选择
+            modal_edit: LOCAL + "Test/Admin/Message/duration_edit.json",      //修改盒子
+            uploader  : LOCAL + "Test/test_upload.php"                        //上传路径
+        }
+
+    } else if ( window.STATE == "route" ){
+
+        //远程接口
+        var admin_train_case_api = {
+            datagrid  : LOCAL + "Test/Admin/goods.json",                      //数据表格
+            select    : LOCAL + "Test/test_select.json",                      //下拉选择
+            modal_edit: LOCAL + "Test/Admin/Message/duration_edit.json",      //修改盒子
+            uploader  : LOCAL + "Test/test_upload.php"                        //上传路径
+        }
+
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    admin_train_case_datagrid.datagrid({
+        height      : zui_datagrid_height(admin_train_case_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            fixedLeftUntil  : 3,
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",      width:49 },
+                {name:"text8",   label:"案例名称",width:200},
+                {name:"date",    label:"案例时间",width:100},
+                {name:"text2",   label:"空间类型",width:100},
+                {name:"name",    label:"设计师",  width:100},
+                {name:"state",   label:"操作",    width:150,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = `
+                            <a rowIndex="${cell.rowIndex}" class="admin_train_case_show_btn">查看</a>
+                            <a rowIndex="${cell.rowIndex}" class="admin_train_case_edit_btn">修改</a>
+                            <a rowIndex="${cell.rowIndex}" class="admin_train_case_dele_btn">删除</a>
+                            `;
+                            return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : admin_train_case_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    admin_train_case_datagrid_obj   = admin_train_case_datagrid.data("zui.datagrid"),   //表格对象
+    admin_train_case_show_btn       = ".admin_train_case_show_btn",                     //查看
+    admin_train_case_edit_btn       = ".admin_train_case_edit_btn",                     //修改
+    admin_train_case_dele_btn       = ".admin_train_case_dele_btn";                     //删除
+
+    //时间组件-----------------------------------------------------------------------------------------------
+    admin_train_case_add_date.datetimepicker(option_date);
+ 
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //空间类型
+    $.ajax({
+        url     : admin_train_case_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "<option value='0'>全部</option>";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_train_case_tool_select1.html(option);               //工具条
+        }
+    });
+    //空间类型
+    $.ajax({
+        url     : admin_train_case_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_train_case_add_type.html(option);                   //添加
+            // admin_train_case_edit_type.html(option);               //修改
+        }
+    });
+    //设计师
+    $.ajax({
+        url     : admin_train_case_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_train_case_add_designer.html(option);                   //添加
+            // admin_train_case_edit_designer.html(option);               //修改
+        }
+    });
+    //绘图员
+    $.ajax({
+        url     : admin_train_case_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            var data = data.data;
+            var option = "";
+            for(var i=0;i<data.length;i++){
+                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+            }
+            admin_train_case_add_painter.html(option);                   //添加
+            // admin_train_case_edit_painter.html(option);               //修改
+        }
+    });
+
+
+
+
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    admin_train_case_search_btn.click(function(){
+
+        //字段整理
+        var keyword
+        = "?sid="    + admin_train_case_tool_keys.val()
+        + "&search=" + admin_train_case_tool_search.val()
+        + "&select1="+ admin_train_case_tool_select1.val()
+        + "&date1="  + admin_train_case_tool_date.find(".start").val()
+        + "&date2="  + admin_train_case_tool_date.find(".end").val();
+
+        //GET提交
+        zui_datagrid_render(admin_train_case_datagrid_obj,admin_train_case_api.datagrid+keyword);
+
+    });
+
+    //添加按钮-----------------------------------------------------------------------------------------------
+    admin_train_case_add_btn.click(function(){
+        common_form_reset();
+        admin_train_case_add_box.modal("show");
+    });
+    //添加提交
+    admin_train_case_add_submit.click(function(){
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                case    : admin_train_case_add_case.val(),
+                type    : admin_train_case_add_type.val(),
+                designer: admin_train_case_add_designer.val(),
+                painter : admin_train_case_add_painter.val(),
+                area    : admin_train_case_add_area.val(),
+                date    : admin_train_case_add_date.val(),
+                addr    : admin_train_case_add_addr.val(),
+                text    : admin_train_case_add_text.val(),
+                imgs    : admin_train_case_add_imgs.val(),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(admin_train_case_datagrid_obj,admin_train_case_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+ 
+    //查看按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_train_case_show_btn,function(){ 
+
+        //数据ID
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //远程提交
+        $.ajax({
+            url     : admin_train_case_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    var data = data.data;
+
+                    //查看模板
+                    var temp = `
+                        <div class="container">
+                            <table class="table table-bordered">
+                                <thead><tr><th colspan="2">基本内容</th></tr></thead>
+                                <tbody>
+                                    <tr><td style="width:100px;">案例标题</td><td>${data.tit}  </td></tr>
+                                    <tr><td>案例文号</td><td>${data.numb}       </td></tr>
+                                    <tr><td>员工姓名</td><td>${data.user}       </td></tr>
+                                    <tr><td>空间类型</td><td>${data.typename}   </td></tr>
+                                    <tr><td>案例金额</td><td>${data.price} 元   </td></tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead><tr><th>详细内容</th></tr></thead>
+                                <tbody><tr><td>${data.text}</td></tr></tbody>
+                            </table>
+                        </div>
+                    `;
+                    admin_train_case_show_box.find(".modal-body").html(temp);                //模板填充
+                    admin_train_case_show_box.modal("show");                                 //盒子显示
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_train_case_edit_btn,function(){
+
+        //查看盒子关闭
+        admin_train_case_show_box.modal("hide");
+
+        //数据ID
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //远程提交
+        $.ajax({
+            url     : admin_train_case_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //数据赋值
+                    var data = data.data;
+                    admin_train_case_edit_tit.val(   data.tit   );
+                    admin_train_case_edit_numb.val(  data.numb  );
+                    admin_train_case_edit_user.val(  data.user  );
+                    admin_train_case_edit_type.val(  data.type  );
+                    admin_train_case_edit_price.val( data.price );
+                    common_tree_staff_read(admin_train_case_edit_tree,data.tree);
+                    admin_train_case_edit_read.find("label:nth-child("+ data.read +")").trigger("click");
+                    admin_train_case_edit_down.find("label:nth-child("+ data.down +")").trigger("click");
+                    KindEditor.create("#admin_train_case_edit_text",option_editor).html( data.text )
+                    //其他操作
+                    admin_train_case_edit_submit.attr("dataId",data_id);                     //数据ID传值
+                    admin_train_case_edit_box.modal("show");                                 //盒子显示
+                    
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    //修改提交
+    admin_train_case_edit_submit.click(function(){
+
+        //数据ID
+        var data_id  = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id      : data_id,
+                tit     : admin_train_case_edit_tit.val(),
+                numb    : admin_train_case_edit_numb.val(),
+                user    : admin_train_case_edit_user.val(),
+                type    : admin_train_case_edit_type.val(),
+                price   : admin_train_case_edit_price.val(),
+                tree    : admin_train_case_edit_tree.attr("result"),
+                read    : admin_train_case_edit_read.find(".active input").val(),
+                down    : admin_train_case_edit_down.find(".active input").val(),
+                text    : admin_train_case_edit_text.val(),
+            },            
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(admin_train_case_datagrid_obj,admin_train_case_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //删除按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",admin_train_case_dele_btn,function(){
+
+        //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //其他操作
+        admin_train_case_dele_submit.attr("dataId",data_id);                                //ID传值
+        admin_train_case_dele_box.modal("show");                                            //面板显示
+
+    });
+    //删除提交
+    admin_train_case_dele_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(admin_train_case_datagrid_obj,admin_train_case_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    admin_train_case_add_imgs.uploader(zui_upload_free(admin_train_case_api.uploader,"admin_train_case_add_imgs"));
+
+});//预加载结尾
+</script>
+
+
+<style>
+.uploader{
+    width: 100%;
+}
+.uploader-files, .file-list{
+    min-height:auto;
+    margin-bottom:0;
+}
+</style>
