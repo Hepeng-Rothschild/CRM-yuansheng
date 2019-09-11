@@ -449,7 +449,7 @@ function zui_upload_fixed(upapi,upid,staticFiles){
  * @return              object 参数对象
  */
 var zui_upload_free_path = "";
-function zui_upload_free(upapi,upid,staticFiles,maxSize="1mb"){
+function zui_upload_free(upapi,upid,staticFiles,maxSize="1mb",type="img",fileList="grid"){
 
     //修改赋值
     if( staticFiles && staticFiles!="" ){
@@ -461,13 +461,19 @@ function zui_upload_free(upapi,upid,staticFiles,maxSize="1mb"){
         $("#"+upid).attr("path",staticFiles_result);
     }
 
+    //类型设定
+    var mime_types = [];
+    if( type=="img" ){
+        mime_types = [{title:"图片",extensions:"jpg,png"}]
+    }
+
     return {
         url                 : upapi,                                    //上传路径
-        fileList            : "grid",                                   //列表配置
+        fileList            : fileList,                                 //列表配置
         previewImageIcon    : true ,                                    //图片预览
         autoUpload          : true,                                     //自动上传
         filters             : {                                         //文件过滤
-            mime_types         : [{title:"图片",extensions:"jpg,png"}], //类型限定
+            mime_types         : mime_types,                            //类型限定
             max_file_size      : maxSize,                               //大小限定
             prevent_duplicates : true                                   //重传禁止
         },

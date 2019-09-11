@@ -13,7 +13,7 @@
 
         //本地接口
         window.API = {
-            common_view     : "./page/admin_train_center.html",             //welcome
+            common_view     : "./page/welcome.html",                        //welcome
             test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
             test_response   : LOCAL+"Test/test_response.json",              //数据响应
             test_editor     : LOCAL+"Test/test_editor.php",                 //富文本编辑器
@@ -44,10 +44,3 @@
         }
 
     }
-
-    /*在做页面
-    admin_goods             物品管理
-    admin_train_center      培训中心
-    admin_train_data        资料中心
-    admin_train_rule        规章制度
-    */

@@ -1,0 +1,38 @@
+{
+    "result" : true,
+    "message": "获取成功",
+    "status" : 1,
+    "data"   : {
+        "case"          : "测试名称",
+        "type"          : 3,
+        "designer"      : 2,
+        "painter"       : 2,
+        "typename"      : "测试类型",
+        "designername"  : "测试设计师",
+        "paintername"   : "测试绘图员",                
+        "area"          : 100,
+        "date"          : "2019-09-10",
+        "addr"          : "测试详址",
+        "text"          : "测试说明",
+        "imgs"          : [
+            {
+                "id"                : 1,
+                "name"              : "1.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg"
+            },
+            {
+                "id"                : 2,
+                "name"              : "2.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg"
+            }            
+        ]
+    }
+}   

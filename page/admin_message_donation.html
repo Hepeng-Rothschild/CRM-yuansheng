@@ -522,7 +522,7 @@ $(function(){
                     admin_message_donation_edit_price.val( data.price );
                     common_tree_staff_read(admin_message_donation_edit_tree,data.tree);
                     admin_message_donation_edit_read.find("label:nth-child("+ data.read +")").trigger("click");
-                    KindEditor.create("#admin_message_donation_edit_text",option_editor).html( data.text )
+                    KindEditor.create("#admin_message_donation_edit_text",option_editor).html( data.text );
                     //其他操作
                     admin_message_donation_edit_submit.attr("dataId",data_id);                     //数据ID传值
                     admin_message_donation_edit_box.modal("show");                                 //盒子显示

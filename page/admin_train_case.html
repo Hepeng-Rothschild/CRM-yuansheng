@@ -221,8 +221,7 @@ $(function(){
     admin_train_case_tool_keys          = $("#admin_train_case_tool_keys"),         //搜索类别
     admin_train_case_tool_search        = $("#admin_train_case_tool_search"),       //搜索字段
     admin_train_case_tool_select1       = $("#admin_train_case_tool_select1"),      //下拉选择1
-    admin_train_case_tool_select2       = $("#admin_train_case_tool_select2"),      //下拉选择1    
-    admin_train_case_tool_date          = $("#admin_train_case_tool_date"),         //起止时间
+    admin_train_case_tool_select2       = $("#admin_train_case_tool_select2"),      //下拉选择1
     admin_train_case_search_btn         = $("#admin_train_case_search_btn"),        //搜索按钮
     //添加
     admin_train_case_add_btn            = $("#admin_train_case_add_btn"),           //添加按钮
@@ -409,9 +408,7 @@ $(function(){
         var keyword
         = "?sid="    + admin_train_case_tool_keys.val()
         + "&search=" + admin_train_case_tool_search.val()
-        + "&select1="+ admin_train_case_tool_select1.val()
-        + "&date1="  + admin_train_case_tool_date.find(".start").val()
-        + "&date2="  + admin_train_case_tool_date.find(".end").val();
+        + "&select1="+ admin_train_case_tool_select1.val();
 
         //GET提交
         zui_datagrid_render(admin_train_case_datagrid_obj,admin_train_case_api.datagrid+keyword);
