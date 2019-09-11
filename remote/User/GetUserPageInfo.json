@@ -78,27 +78,27 @@
             {   
                 "title"     :"合作伙伴",
                 "children"  :[
-                    { "title":"信息员",    "icon":"","url":"blank"},
-                    { "title":"信息员管理","icon":"","url":"blank"}
+                    { "title":"信息员列表","icon":"business_provider_list","url":"blank"},
+                    { "title":"信息员管理","icon":"business_provider_admin","url":"blank"}
                 ]
             },
             {   
                 "title"     :"客户列表",
                 "children"  :[
-                    { "title":"客户跟踪","icon":"","url":"blank"},
-                    { "title":"客户管理","icon":"","url":"blank"},
-                    { "title":"客户审批","icon":"","url":"blank"},
-                    { "title":"过期审批","icon":"","url":"blank"},
-                    { "title":"失败审批","icon":"","url":"blank"}
+                    { "title":"客户跟踪","icon":"business_customer_tracked","url":"blank"},
+                    { "title":"客户管理","icon":"business_customer_admin","url":"blank"},
+                    { "title":"客户审批","icon":"business_customer_approval","url":"blank"},
+                    { "title":"过期审批","icon":"business_customer_overdue","url":"blank"},
+                    { "title":"失败审批","icon":"business_customer_failure","url":"blank"}
                 ]
             },
             {   
                 "title"     :"公共池",
                 "children"  :[
-                    { "title":"可抢信息员","icon":"","url":"blank"},
-                    { "title":"可抢客户",  "icon":"","url":"blank"},
-                    { "title":"合作资源",  "icon":"","url":"blank"},
-                    { "title":"客户资源",  "icon":"","url":"blank"}
+                    { "title":"可抢信息员","icon":"business_public_provider_get","url":"blank"},
+                    { "title":"可抢客户",  "icon":"business_public_customer_get","url":"blank"},
+                    { "title":"信息员资源","icon":"business_public_provider_source","url":"blank"},
+                    { "title":"客户资源",  "icon":"business_public_customer_source","url":"blank"}
                 ]
             }
         ]

@@ -44,3 +44,18 @@
         }
 
     }
+
+    /*
+    #商务管理
+    信息员列表  business_provider_list
+    信息员管理  business_provider_admin
+    客户跟踪    business_customer_tracked
+    客户管理    business_customer_admin
+    客户审批    business_customer_approval
+    过期审批    business_customer_overdue
+    失败审批    business_customer_failure
+    可抢信息员  business_public_provider_get
+    可抢客户    business_public_customer_get
+    信息员资源  business_public_provider_source
+    客户资源    business_public_customer_source
+    */
