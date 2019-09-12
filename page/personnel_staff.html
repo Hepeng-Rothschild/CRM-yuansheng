@@ -116,42 +116,42 @@
                         <blockquote>资料上传 <span class="small text-red">(证件照/身份证正面/身份证反面 为必填项; 图片大小不超过1M)</span></blockquote>
                         <ul class="uploader-square-box">
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_add_uploader1">
+                                <div class="uploader" id="personnel_staff_add_uploader1" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>证件照</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_add_uploader2">
+                                <div class="uploader" id="personnel_staff_add_uploader2" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>身份证正面</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_add_uploader3">
+                                <div class="uploader" id="personnel_staff_add_uploader3" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>身份证反面</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_add_uploader4">
+                                <div class="uploader" id="personnel_staff_add_uploader4" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>毕业证件</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_add_uploader5">
+                                <div class="uploader" id="personnel_staff_add_uploader5" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>荣誉证书</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_add_uploader6">
+                                <div class="uploader" id="personnel_staff_add_uploader6" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
@@ -361,42 +361,42 @@
                         <blockquote>资料上传 <span class="small text-red">(证件照/身份证正面/身份证反面 为必填项; 图片大小不超过1M)</span></blockquote>
                         <ul class="uploader-square-box">
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_edit_uploader1">
+                                <div class="uploader" id="personnel_staff_edit_uploader1" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>证件照</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_edit_uploader2">
+                                <div class="uploader" id="personnel_staff_edit_uploader2" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>身份证正面</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_edit_uploader3">
+                                <div class="uploader" id="personnel_staff_edit_uploader3" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>身份证反面</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_edit_uploader4">
+                                <div class="uploader" id="personnel_staff_edit_uploader4" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>毕业证件</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_edit_uploader5">
+                                <div class="uploader" id="personnel_staff_edit_uploader5" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
                                 <strong>荣誉证书</strong>
                             </li>
                             <li class="col-sm-2">
-                                <div class="uploader" id="personnel_staff_edit_uploader6">
+                                <div class="uploader" id="personnel_staff_edit_uploader6" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
                                 </div>
@@ -732,12 +732,12 @@ $(function(){
         //本地接口
         var personnel_staff_api = {
             select          : LOCAL + "Test/test_select.json",                      //下拉选择
-            uploader        : LOCAL + "Test/test_upload.php.json",                  //上传路径
+            uploader        : LOCAL + "Test/test_upload.php",                       //上传路径
 
             modal_add       : LOCAL + "User/addStaff.json",                         //添加提交
             modal_edit_read : LOCAL + "User/UpdateDetail.json",                     //修改读取
             modal_edit      : LOCAL + "User/updateStaff.json",                      //修改提交
-            modal_show      : LOCAL + "User/staffDetail.json",                      //查看盒子
+            modal_show      : LOCAL + "User/UpdateDetail.json",                     //查看盒子
             datagrid        : LOCAL + "User/SearchStaff.json",                      //数据表格
         }
 
@@ -1063,7 +1063,6 @@ $(function(){
 
     //添加按钮-----------------------------------------------------------------------------------------------
     personnel_staff_add_btn.click(function(){
-        common_form_reset();
         personnel_staff_add_box.modal("show");
     });
     //添加提交
@@ -1146,7 +1145,22 @@ $(function(){
             }
         });
     });
- 
+    //添加关闭
+    var personnel_staff_add_uploader1 = personnel_staff_add_uploader1.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_add_uploader1","","1mb","img","grid",1));
+    var personnel_staff_add_uploader2 = personnel_staff_add_uploader2.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_add_uploader2","","1mb","img","grid",1));
+    var personnel_staff_add_uploader3 = personnel_staff_add_uploader3.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_add_uploader3","","1mb","img","grid",1));
+    var personnel_staff_add_uploader4 = personnel_staff_add_uploader4.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_add_uploader4","","1mb","img","grid",1));
+    var personnel_staff_add_uploader5 = personnel_staff_add_uploader5.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_add_uploader5","","1mb","img","grid",1));
+    var personnel_staff_add_uploader6 = personnel_staff_add_uploader6.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_add_uploader6","","1mb","img","grid",1));
+    personnel_staff_add_box.on("hide.zui.modal",function(){
+        common_form_reset(personnel_staff_add_uploader1);
+        common_form_reset(personnel_staff_add_uploader2);
+        common_form_reset(personnel_staff_add_uploader3);
+        common_form_reset(personnel_staff_add_uploader4);
+        common_form_reset(personnel_staff_add_uploader5);
+        common_form_reset(personnel_staff_add_uploader6);
+    });
+
     //查看按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",personnel_staff_show_btn,function(){ 
 
@@ -1164,6 +1178,12 @@ $(function(){
 
                     //查看模板
                     var data = data.data;
+                    if( data.pic1[0] ){ var pic1_url = data.pic1[0].url } else { var pic1_url = API.IMAGE_DEFAULT; } 
+                    if( data.pic2[0] ){ var pic2_url = data.pic2[0].url } else { var pic2_url = API.IMAGE_DEFAULT; } 
+                    if( data.pic3[0] ){ var pic3_url = data.pic3[0].url } else { var pic3_url = API.IMAGE_DEFAULT; } 
+                    if( data.pic4[0] ){ var pic4_url = data.pic4[0].url } else { var pic4_url = API.IMAGE_DEFAULT; } 
+                    if( data.pic5[0] ){ var pic5_url = data.pic5[0].url } else { var pic5_url = API.IMAGE_DEFAULT; } 
+                    if( data.pic6[0] ){ var pic6_url = data.pic6[0].url } else { var pic6_url = API.IMAGE_DEFAULT; } 
                     var temp = `
                         <div class="container">
                             <!-- 角色权限 -->
@@ -1207,39 +1227,43 @@ $(function(){
                             </table>
                             <!-- 资料上传 -->
                             <blockquote>资料上传</blockquote>
-                            <ul class="show-square-box">
-                                <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="证件照"     href="${data.pic}" data-lightbox-group="staff">
-                                        <img src="${data.pic}">
-                                    </a>
-                                </li>
-                                <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="身份证正面" href="${data.cartZ}" data-lightbox-group="staff">
-                                        <img src="${data.cartZ}">
-                                    </a>
-                                </li>
-                                <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="身份证反面" href="${data.cartF}" data-lightbox-group="staff">
-                                        <img src="${data.cartF}">
-                                    </a>
-                                </li>
-                                <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="毕业证件"   href="${data.certificate}" data-lightbox-group="staff">
-                                        <img src="${data.certificate}">
-                                    </a>
-                                </li>
-                                <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="荣誉证书"   href="${data.certificateofHonor}" data-lightbox-group="staff">
-                                        <img src="${data.certificateofHonor}">
-                                    </a>
-                                </li>
-                                <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="staff" data-caption="离职证明"   href="${data.certificateofparation}" data-lightbox-group="staff">
-                                        <img src="${data.certificateofparation}">
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div><hr>
+                            <div class="col-sm-2">
+                                <a class="card" target="_blank" href="${pic1_url}">
+                                    <span class="media-wrapper"><img src="${pic1_url}"></span>
+                                    <span class="card-heading">证件照</span>
+                                </a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="card" target="_blank" href="${pic2_url}">
+                                    <span class="media-wrapper"><img src="${pic2_url}"></span>
+                                    <span class="card-heading">身份证正面</span>
+                                </a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="card" target="_blank" href="${pic3_url}">
+                                    <span class="media-wrapper"><img src="${pic3_url}"></span>
+                                    <span class="card-heading">身份证反面</span>
+                                </a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="card" target="_blank" href="${pic4_url}">
+                                    <span class="media-wrapper"><img src="${pic4_url}"></span>
+                                    <span class="card-heading">毕业证件</span>
+                                </a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="card" target="_blank" href="${pic5_url}">
+                                    <span class="media-wrapper"><img src="${pic5_url}"></span>
+                                    <span class="card-heading">荣誉证书</span>
+                                </a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="card" target="_blank" href="${pic6_url}">
+                                    <span class="media-wrapper"><img src="${pic6_url}"></span>
+                                    <span class="card-heading">离职证明</span>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
                             <!-- 最高学历 -->
                             <blockquote>最高学历</blockquote>
                             <table class="table table-bordered">
@@ -1348,7 +1372,20 @@ $(function(){
                 if( data.status>0 ){
 
                     //数据赋值
-                    var data = data;
+                    var data = data.data;
+                    var uploader1 = personnel_staff_edit_uploader1.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_edit_uploader1",data.pic1,"1mb","img","grid",1));
+                    var uploader2 = personnel_staff_edit_uploader2.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_edit_uploader2",data.pic2,"1mb","img","grid",1));
+                    var uploader3 = personnel_staff_edit_uploader3.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_edit_uploader3",data.pic3,"1mb","img","grid",1));
+                    var uploader4 = personnel_staff_edit_uploader4.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_edit_uploader4",data.pic4,"1mb","img","grid",1));
+                    var uploader5 = personnel_staff_edit_uploader5.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_edit_uploader5",data.pic5,"1mb","img","grid",1));
+                    var uploader6 = personnel_staff_edit_uploader6.uploader(zui_upload_free(personnel_staff_api.uploader,"personnel_staff_edit_uploader6",data.pic6,"1mb","img","grid",1));
+                    common_form_reset(uploader1);
+                    common_form_reset(uploader2);
+                    common_form_reset(uploader3);
+                    common_form_reset(uploader4);
+                    common_form_reset(uploader5);
+                    common_form_reset(uploader6);
+                    //基本信息
                     personnel_staff_edit_user.val(      data.name           );
                     personnel_staff_edit_sexy.val(      data.sex            );
                     personnel_staff_edit_tels.val(      data.tel            );
@@ -1368,51 +1405,6 @@ $(function(){
                     personnel_staff_edit_pass.val(      data.date           );
                     personnel_staff_edit_wag1.val(      data.Probationpay   );
                     personnel_staff_edit_wag2.val(      data.Revisedwages   );
-                    //资料上传
-                    personnel_staff_edit_uploader1.uploader(
-                        zui_upload_fixed(
-                            personnel_staff_api.uploader,"personnel_staff_edit_uploader1",
-                            [{id:1,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.pic}]
-                        )
-                    );
-                    personnel_staff_edit_uploader2.uploader(
-                        zui_upload_fixed(
-                            personnel_staff_api.uploader,"personnel_staff_edit_uploader2",
-                            [{id:2,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.cartZ}]
-                        )
-                    );
-                    personnel_staff_edit_uploader3.uploader(
-                        zui_upload_fixed(
-                            personnel_staff_api.uploader,"personnel_staff_edit_uploader3",
-                            [{id:3,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.cartF}]
-                        )
-                    );
-                    personnel_staff_edit_uploader4.uploader(
-                        zui_upload_fixed(
-                            personnel_staff_api.uploader,"personnel_staff_edit_uploader4",
-                            [{id:4,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.certificate}]
-                        )
-                    );
-                    personnel_staff_edit_uploader5.uploader(
-                        zui_upload_fixed(
-                            personnel_staff_api.uploader,"personnel_staff_edit_uploader5",
-                            [{id:5,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.certificateofHonor}]
-                        )
-                    );
-                    personnel_staff_edit_uploader6.uploader(
-                        zui_upload_fixed(
-                            personnel_staff_api.uploader,"personnel_staff_edit_uploader6",
-                            [{id:6,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:data.certificateofparation}]
-                        )
-                    );
-                    //资料上传对属性的影响
-                    personnel_staff_edit_uploader1.attr( "path",data.pic );
-                    personnel_staff_edit_uploader2.attr( "path",data.cartZ );
-                    personnel_staff_edit_uploader3.attr( "path",data.cartF );
-                    personnel_staff_edit_uploader4.attr( "path",data.certificate );
-                    personnel_staff_edit_uploader5.attr( "path",data.certificateofHonor );
-                    personnel_staff_edit_uploader6.attr( "path",data.certificateofparation );
-
                     //最高学历
                     personnel_staff_edit_edu_school.val(   data.schoolName          );
                     personnel_staff_edit_edu_date1.val(    data.inSchool            );
@@ -1623,18 +1615,9 @@ $(function(){
         });
 
     });
- 
-    //上传组件-----------------------------------------------------------------------------------------------
-    personnel_staff_add_uploader1.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader1"));
-    personnel_staff_add_uploader2.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader2"));
-    personnel_staff_add_uploader3.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader3"));
-    personnel_staff_add_uploader4.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader4"));
-    personnel_staff_add_uploader5.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader5"));
-    personnel_staff_add_uploader6.uploader(zui_upload_fixed(personnel_staff_api.uploader,"personnel_staff_add_uploader6"));
 
     //添加测试-----------------------------------------------------------------------------------------------
     setTimeout(function(){
-        
         personnel_staff_add_user.val("刘德华");
         personnel_staff_add_sexy.val(1);
         personnel_staff_add_tels.val("18332367556");
@@ -1688,15 +1671,7 @@ $(function(){
         personnel_staff_add_home2_user.val("张学友");
         personnel_staff_add_home2_rela.val("朋友");
         personnel_staff_add_home2_work.val("演员");
-        personnel_staff_add_home2_tels.val("17715814754");    
-
-        // personnel_staff_add_uploader1.
-        // personnel_staff_add_uploader2.
-        // personnel_staff_add_uploader3.
-        // personnel_staff_add_uploader4.
-        // personnel_staff_add_uploader5.
-        // personnel_staff_add_uploader6.
-        
+        personnel_staff_add_home2_tels.val("17715814754");
     },1000);
 
 });//预加载结尾

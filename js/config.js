@@ -13,7 +13,7 @@
 
         //本地接口
         window.API = {
-            common_view     : "./page/welcome.html",                        //welcome
+            common_view     : "./page/personnel_contractor.html",           //welcome
             test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
             test_response   : LOCAL+"Test/test_response.json",              //数据响应
             test_editor     : LOCAL+"Test/test_editor.php",                 //富文本编辑器
@@ -24,6 +24,7 @@
             common_depart   : LOCAL+"Company/getDeparment.json",            //部门
             common_post     : LOCAL+"Position/getPostionsByDid.json",       //职位
             common_staff    : LOCAL+"Company/getCompanybyid.json",          //员工
+            IMAGE_DEFAULT   : "./img/image_default.jpg",                    //占位图片
         }
 
     } else {
@@ -41,6 +42,7 @@
             common_depart   : ROUTE+"Company/getDeparment",                 //部门
             common_post     : ROUTE+"Position/getPostionsByDid",            //职位
             common_staff    : ROUTE+"Company/getCompanybyid",               //员工
+            IMAGE_DEFAULT   : "./img/image_default.jpg",                    //占位图片
         }
 
     }

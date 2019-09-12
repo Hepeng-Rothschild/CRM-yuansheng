@@ -374,13 +374,6 @@ $(function(){
 
     //添加按钮-----------------------------------------------------------------------------------------------
     admin_train_center_add_btn.click(function(){
-
-        //数据重置
-        common_form_reset();
-        common_tree_staff_reset(admin_train_center_add_tree);
-        admin_train_center_add_text_editor.html("");
-        admin_train_center_add_down.find("label:nth-child(1)").trigger("click");
-        admin_train_center_add_file.uploader(zui_upload_free(admin_train_center_api.uploader,"admin_train_center_add_file","","50mb","file",""));
         admin_train_center_add_box.modal("show");
     });
     //添加提交
@@ -406,6 +399,14 @@ $(function(){
                 }
             }
         });
+    });
+    //添加关闭
+    var admin_train_center_add_uploader = admin_train_center_add_file.uploader(zui_upload_free(admin_train_center_api.uploader,"admin_train_center_add_file","","50mb","file",""));
+    admin_train_center_add_box.on("hide.zui.modal",function(){
+        common_form_reset(admin_train_center_add_uploader);
+        common_tree_staff_reset(admin_train_center_add_tree);
+        admin_train_center_add_text_editor.html("");
+        admin_train_center_add_down.find("label:nth-child(1)").trigger("click");
     });
 
     //查看按钮-----------------------------------------------------------------------------------------------
@@ -475,12 +476,13 @@ $(function(){
 
                     //数据赋值
                     var data = data.data;
+                    var uploader = admin_train_center_edit_file.uploader(zui_upload_free(admin_train_center_api.uploader,"admin_train_center_edit_file",data.file,"50mb","file",""));
+                    common_form_reset(uploader);
                     admin_train_center_edit_tit.val(  data.tit  );
                     admin_train_center_edit_type.val( data.type );
                     common_tree_staff_read(admin_train_center_edit_tree,data.tree);
                     admin_train_center_edit_down.find("label:nth-child("+ data.down +")").trigger("click");
                     KindEditor.create("#admin_train_center_edit_text",option_editor).html( data.text );
-                    admin_train_center_edit_file.uploader(zui_upload_free(admin_train_center_api.uploader,"admin_train_center_edit_file",data.file,"50mb","file",""));
                     //其他操作
                     admin_train_center_edit_submit.attr("dataId",data_id);                     //数据ID传值
                     admin_train_center_edit_box.modal("show");                                 //盒子显示

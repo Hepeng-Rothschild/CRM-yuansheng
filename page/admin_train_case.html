@@ -527,7 +527,7 @@ $(function(){
 
                     //数据赋值
                     var data = data.data;
-                    var uploader = admin_train_case_edit_imgs.uploader(zui_upload_free(admin_train_case_api.uploader,"admin_train_case_edit_imgs",data.imgs));
+                    var uploader = admin_train_case_edit_imgs.uploader(zui_upload_free(admin_train_case_api.uploader,"admin_train_case_edit_imgs",data.imgs,"50mb"));
                     common_form_reset(uploader);
                     admin_train_case_edit_case.val(     data.case     );
                     admin_train_case_edit_type.val(     data.type     );

@@ -410,54 +410,19 @@ function zui_datagrid_render(datagrid_obj,datagrid_url){
     datagrid_obj.render();
 }
 
-/* zui_upload_fixed()   固定上传
- * @param   upapi       string 上传路径接口
- * @param   upid        string 上传组件ID
- * @param   staticFiles array  静态文件
- * @return              object 参数对象
- */
-function zui_upload_fixed(upapi,upid,staticFiles){
-    return {
-        url                 : upapi,                                    //上传路径
-        fileList            : "grid",                                   //列表配置
-        previewImageIcon    : true ,                                    //图片预览
-        autoUpload          : true,                                     //自动上传
-        multi_selection     : true,                                     //多选限制
-        limitFilesCount     : 1,                                        //个数限制
-        filters             : {                                         //文件过滤
-            mime_types         : [{title:"图片",extensions:"jpg,png"}], //类型限定
-            max_file_size      : "1mb",                                 //大小限定
-            prevent_duplicates : true                                   //重传禁止
-        },
-        multipart_params    : function(file,params){                    //参数提交
-            return { upid:upid };
-        },
-        responseHandler     : function(res,file){                       //远程响应
-            var data = um_json(res.response);
-            $("#"+data.upid).attr("path",data.path);
-        },
-        staticFiles         : staticFiles || [],                        //静态文件
-        deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
-            doRemoveFile();                                             //本地删除
-            $("#"+upid).attr("path","");
-        },
-        uploadedMessage     : function(result){                         //上传结果
-            return "上传成功";
-        }
-    }
-}
-
 /* zui_upload_free()    自由上传
  * @param   upapi       string 上传路径接口
  * @param   upid        string 上传组件ID
  * @param   staticFiles array  静态文件
  * @param   maxSize     string 大小限定 (default : "1mb" )
+ * @param   count       number 个数限制
  * @return              object 参数对象
  */
 var zui_upload_free_path = "";
-function zui_upload_free(upapi,upid,staticFiles,maxSize="1mb",type="img",fileList="grid"){
+function zui_upload_free(upapi,upid,staticFiles,maxSize="1mb",type="img",fileList="grid",count=""){
 
     //修改赋值
+    $("#"+upid).attr("path","");                                        //属性清空
     if( staticFiles && staticFiles!="" ){
         var staticFiles_result = "";
         for(var i=0;i<staticFiles.length;i++){
@@ -465,6 +430,7 @@ function zui_upload_free(upapi,upid,staticFiles,maxSize="1mb",type="img",fileLis
         }
         staticFiles_result = staticFiles_result.substr(0,staticFiles_result.length-1);
         $("#"+upid).attr("path",staticFiles_result);
+        console.log(staticFiles_result);
     }
 
     //类型设定
@@ -473,11 +439,13 @@ function zui_upload_free(upapi,upid,staticFiles,maxSize="1mb",type="img",fileLis
         mime_types = [{title:"图片",extensions:"jpg,png"}]
     }
 
+    //配置返回
     return {
         url                 : upapi,                                    //上传路径
         fileList            : fileList,                                 //列表配置
         previewImageIcon    : true ,                                    //图片预览
         autoUpload          : true,                                     //自动上传
+        limitFilesCount     : count,                                    //个数限制
         filters             : {                                         //文件过滤
             mime_types         : mime_types,                            //类型限定
             max_file_size      : maxSize,                               //大小限定
@@ -488,8 +456,12 @@ function zui_upload_free(upapi,upid,staticFiles,maxSize="1mb",type="img",fileLis
         },
         responseHandler     : function(res,file){                       //远程响应
             var data = um_json(res.response);
-            zui_upload_free_path+= data.file+",";
-            $("#"+data.upid).attr("path",zui_upload_free_path);
+            if( count==1 ){
+                $("#"+data.upid).attr("path",data.file);
+            } else {
+                zui_upload_free_path+= data.file+",";
+                $("#"+data.upid).attr("path",zui_upload_free_path);
+            }
         },
         staticFiles         : staticFiles || [],                        //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
@@ -786,7 +758,6 @@ function common_form_reset(uploader){
     //上传重置
     if( uploader ){
         var upload_obj = uploader.data("zui.uploader");
-        $("#"+upload_obj.$.context.id).attr("path","");
         if( upload_obj!=undefined ){
             var files = upload_obj.getFiles();
             var dele_arr = []

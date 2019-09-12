@@ -1,0 +1,81 @@
+{
+    "result" : true,
+    "message": "获取成功",
+    "status" : 1,
+    "data"   : {
+        "name"          : "刘德华",
+        "sex"           : 2,
+        "tel"           : "18332367556",
+        "mingzu"        : "汉族",
+        "birthDate"     : "1994-05-10",
+        "hyzk"          : 2,
+        "p1"            : "张学友",                
+        "tel1"          : "18332367556",
+        "addr1"         : 2,
+        "addr2"         : 2,
+        "addr3"         : 2,
+        "addr4"         : 2,
+        "companyId"     : 2,
+        "departmentId"  : 2,
+        "positionld"    : 2,
+        "date"          : "2019-05-10",
+        "Probationpay"  : "5000",
+        "Revisedwages"  : "6000",
+        "pic1"          : [
+            {
+                "id"                : 1,
+                "name"              : "1.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg"
+            }           
+        ],
+        "pic2"          : [
+            {
+                "id"                : 2,
+                "name"              : "2.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg"
+            }           
+        ],
+        "pic3"          : [
+            {
+                "id"                : 3,
+                "name"              : "3.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg"
+            }           
+        ],
+        "pic4"          : [
+            {
+                "id"                : 4,
+                "name"              : "4.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg"
+            }           
+        ],
+        "pic5"          : [
+            {
+                "id"                : 5,
+                "name"              : "5.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg"
+            }           
+        ],
+        "pic6"          : ""        
+    }
+}
