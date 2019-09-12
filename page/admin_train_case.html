@@ -417,8 +417,6 @@ $(function(){
 
     //添加按钮-----------------------------------------------------------------------------------------------
     admin_train_case_add_btn.click(function(){
-        common_form_reset();
-        admin_train_case_add_imgs.uploader(zui_upload_free(admin_train_case_api.uploader,"admin_train_case_add_imgs","","50mb"));
         admin_train_case_add_box.modal("show");
     });
     //添加提交
@@ -447,6 +445,11 @@ $(function(){
                 }
             }
         });
+    });
+    //添加关闭
+    var admin_train_case_add_uploader = admin_train_case_add_imgs.uploader(zui_upload_free(admin_train_case_api.uploader,"admin_train_case_add_imgs","","50mb"));
+    admin_train_case_add_box.on("hide.zui.modal",function(){
+        common_form_reset(admin_train_case_add_uploader);
     });
 
     //查看按钮-----------------------------------------------------------------------------------------------
@@ -524,15 +527,16 @@ $(function(){
 
                     //数据赋值
                     var data = data.data;
-                    admin_train_case_edit_case.val(     data.case       );
-                    admin_train_case_edit_type.val(     data.type       );
-                    admin_train_case_edit_designer.val( data.designer   );
-                    admin_train_case_edit_painter.val(  data.painter    );
-                    admin_train_case_edit_area.val(     data.area       );
-                    admin_train_case_edit_date.val(     data.date       );
-                    admin_train_case_edit_addr.val(     data.addr       );
-                    admin_train_case_edit_text.val(     data.text       );
-                    admin_train_case_edit_imgs.uploader(zui_upload_free(admin_train_case_api.uploader,"admin_train_case_edit_imgs",data.imgs));
+                    var uploader = admin_train_case_edit_imgs.uploader(zui_upload_free(admin_train_case_api.uploader,"admin_train_case_edit_imgs",data.imgs));
+                    common_form_reset(uploader);
+                    admin_train_case_edit_case.val(     data.case     );
+                    admin_train_case_edit_type.val(     data.type     );
+                    admin_train_case_edit_designer.val( data.designer );
+                    admin_train_case_edit_painter.val(  data.painter  );
+                    admin_train_case_edit_area.val(     data.area     );
+                    admin_train_case_edit_date.val(     data.date     );
+                    admin_train_case_edit_addr.val(     data.addr     );
+                    admin_train_case_edit_text.val(     data.text     );
                     //其他操作
                     admin_train_case_edit_submit.attr("dataId",data_id);                     //数据ID传值
                     admin_train_case_edit_box.modal("show");                                 //盒子显示

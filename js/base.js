@@ -775,10 +775,27 @@ function common_for_label_toggle_reset(selector){
 }
 
 /* common_form_reset() 表单重置
+ * @param uploader     object  上传对象
  */
-function common_form_reset(){
+function common_form_reset(uploader){
+    //表单重置
     var form = $("form");
     for( var i=0;i<form.length;i++ ){
         form[i].reset();
+    }
+    //上传重置
+    if( uploader ){
+        var upload_obj = uploader.data("zui.uploader");
+        $("#"+upload_obj.$.context.id).attr("path","");
+        if( upload_obj!=undefined ){
+            var files = upload_obj.getFiles();
+            var dele_arr = []
+            for( var i=0;i<files.length;i++ ){
+                dele_arr.push(files[i]);
+            }
+            for( var i=0;i<dele_arr.length;i++ ){
+                upload_obj.removeFile(dele_arr[i]);
+            }
+        }
     }
 }

@@ -12,8 +12,7 @@
 		operate 180
 
 #bug记录
-	1)全局页面-上传组件：表单重置
-	2)假期余额-修改面板：tab面板显示不出来(css强制显示-需多测试)
+	1)假期余额-修改面板：tab面板显示不出来(css强制显示-需多测试)
 
 #工作计划
 	1)商务管理：页面制作
@@ -28,14 +27,3 @@
 	    可抢客户
 	    信息员资源
 	    客户资源
-	2)全局页面-上传组件：bug解决
-		var upload_obj = $("#dom").data("zui.uploader");
-		if( upload_obj!=underfined ){
-			var files = upload_obj.getFiles();
-			for( var i=0;i<files.length;i++ ){
-				upload_obj.removeFile(files[i]);
-			}
-			for( var i=0;i<files.length;i++ ){
-				upload_obj.removeFile(files[i]);
-			}			
-		}
