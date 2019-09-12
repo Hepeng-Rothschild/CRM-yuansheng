@@ -1,0 +1,60 @@
+{
+    "result" : true,
+    "message": "获取成功",
+    "status" : 1,
+    "data"   : {
+        "user"          : "刘德华",
+        "acco"          : "10015",
+        "tel"           : "18332367556",
+        "addr"          : "石家庄市裕华区体育大街富金大厦A座601",
+        "type"          : 2,
+        "typename"      : "测试类型",
+        "state"         : 2,
+        "statename"     : "测试类型",
+        "card"          : "6217 2545 2457 2575 689",
+        "bank"          : "建设银行体育大街支行",
+        "carduser"      : "刘德华",
+        "pic1"          : [
+            {
+                "id"                : 1,
+                "name"              : "1.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg"
+            }           
+        ],
+        "pic2"          : [
+            {
+                "id"                : 2,
+                "name"              : "2.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg"
+            }
+        ],
+        "pics"          : [
+            {
+                "id"                : 3,
+                "name"              : "3.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg"
+            },
+            {
+                "id"                : 4,
+                "name"              : "4.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg"
+            }    
+        ]
+    }
+}

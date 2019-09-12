@@ -266,7 +266,8 @@ $(function(){
         var personnel_contractor_api = {
             datagrid  : LOCAL + "Test/Personnel/contractor.json",                               //数据表格
             select    : LOCAL + "Test/test_select.json",                                        //下拉选择
-            uploader  : LOCAL + "Test/test_upload.php"                                          //上传路径
+            uploader  : LOCAL + "Test/test_upload.php",                                         //上传路径
+            modal_edit: LOCAL + "Test/Personnel/contractor_edit.json",                          //修改盒子
         }
 
     } else if ( window.STATE == "route" ){
@@ -275,7 +276,8 @@ $(function(){
         var personnel_contractor_api = {
             datagrid  : LOCAL + "Test/Personnel/contractor.json",                               //数据表格
             select    : LOCAL + "Test/test_select.json",                                        //下拉选择
-            uploader  : LOCAL + "Test/test_upload.php"                                          //上传路径
+            uploader  : LOCAL + "Test/test_upload.php",                                         //上传路径
+            modal_edit: LOCAL + "Test/Personnel/contractor_edit.json",                          //修改盒子
         }
 
     }
@@ -346,7 +348,7 @@ $(function(){
     personnel_contractor_dele_btn       = ".personnel_contractor_dele_btn";                     //删除
 
     //下拉组件-----------------------------------------------------------------------------------------------
-    common_select_linkage("#personnel_contractor_tool_select_group","1");                    //搜索
+    common_select_linkage("#personnel_contractor_tool_select_group","1");                       //搜索
 
     //下拉选项-----------------------------------------------------------------------------------------------
     //状态
@@ -404,7 +406,6 @@ $(function(){
 
     //添加按钮-----------------------------------------------------------------------------------------------
     personnel_contractor_add_btn.click(function(){
-        common_form_reset();
         personnel_contractor_add_box.modal("show");
     });
     //添加提交
@@ -426,7 +427,7 @@ $(function(){
                 //资料上传
                 pic1      : personnel_contractor_add_uploader1.attr("path") || "",
                 pic2      : personnel_contractor_add_uploader2.attr("path") || "",
-                pics      : personnel_contractor_add_uploaders.attr("path").substr(1).split(",") || "",
+                pics      : personnel_contractor_add_uploaders.attr("path") || "",
             },
             success : function(data){
                 if( data.status>0 ){
@@ -438,7 +439,16 @@ $(function(){
             }
         });
     });
- 
+    //添加关闭
+    var personnel_contractor_add_uploader1 = personnel_contractor_add_uploader1.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_add_uploader1","","1mb","img","grid",1));
+    var personnel_contractor_add_uploader2 = personnel_contractor_add_uploader2.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_add_uploader2","","1mb","img","grid",1));
+    var personnel_contractor_add_uploaders = personnel_contractor_add_uploaders.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_add_uploaders","","1mb","img","grid"));
+    personnel_contractor_add_box.on("hide.zui.modal",function(){
+        common_form_reset(personnel_contractor_add_uploader1);
+        common_form_reset(personnel_contractor_add_uploader2);
+        common_form_reset(personnel_contractor_add_uploaders);
+    });
+    
     //查看按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",personnel_contractor_show_btn,function(){ 
 
@@ -447,7 +457,7 @@ $(function(){
 
         //远程提交
         $.ajax({
-            url     : API.test_response,
+            url     : personnel_contractor_api.modal_edit,
             type    : "post",
             dataType: "json",
             data    : { id:data_id },
@@ -455,51 +465,63 @@ $(function(){
                 if( data.status>0 ){
 
                     //查看模板
+                    var data = data.data;
                     var temp = `
                         <div class="container">
                             <!-- 个人资料 -->
                             <blockquote>个人资料</blockquote>
                             <table class="table table-bordered">
                                 <tr>
-                                    <td>姓名：刘德华</td>
-                                    <td>工号：10015</td>
-                                    <td>手机：183****7556</td>
-                                    <td>地址：石家庄市裕华区体育大街富金大厦A座601</td>
+                                    <td>姓名：${data.user}</td>
+                                    <td>工号：${data.acco}</td>
+                                    <td>手机：${data.tel} </td>
+                                    <td>地址：${data.addr}</td>
                                 </tr>
                                 <tr>
-                                    <td>承包商类型：未知</td>
-                                    <td colspan="3">工作状态：未知</td>
+                                    <td>承包商类型：${data.typename}</td>
+                                    <td colspan="3">工作状态：${data.statename}</td>
                                 </tr>
                             </table>
                             <!-- 账户信息 -->
                             <blockquote>账户信息</blockquote>
                             <table class="table table-bordered">
                                 <tr>
-                                    <td>银行卡号：6217 2545 2457 2575 689</td>
-                                    <td>开户行：建设银行体育大街支行</td>
-                                    <td colspan="2">开户人：刘德华</td>
+                                    <td>银行卡号：${data.card}</td>
+                                    <td>开户行：  ${data.bank}</td>
+                                    <td colspan="2">开户人：${data.carduser}</td>
                                 </tr>
                             </table>
                             <!-- 证件信息 -->
                             <blockquote>证件信息</blockquote>
-                            <ul class="show-square-box">
-                                <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="contractor" data-caption="身份证正面" href="./remote/Upload/test_upload.jpg" data-lightbox-group="contractor">
-                                        <img src="./remote/Upload/test_upload.jpg">
-                                    </a>
-                                </li>
-                                <li class="col-sm-2">
-                                    <a data-toggle="lightbox" data-group="contractor" data-caption="身份证反面" href="./remote/Upload/test_upload.jpg" data-lightbox-group="contractor">
-                                        <img src="./remote/Upload/test_upload.jpg">
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div><hr>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <div class="col-sm-2">
+                                <a class="card" target="_blank" href="${data.pic1[0].url}">
+                                    <span class="media-wrapper"><img src="${data.pic1[0].url}"></span>
+                                    <span class="card-heading">身份证正面</span>
+                                </a>
                             </div>
+                            <div class="col-sm-2">
+                                <a class="card" target="_blank" href="${data.pic2[0].url}">
+                                    <span class="media-wrapper"><img src="${data.pic2[0].url}"></span>
+                                    <span class="card-heading">身份证反面</span>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div><hr>`;
+                    for(var i=0;i<data.pics.length;i++){
+                        temp += `
+                            <div class="col-sm-2">
+                                <a class="card" target="_blank" href="${data.pics[i].url}">
+                                    <span class="media-wrapper"><img src="${data.pics[i].url}"></span>
+                                    <span class="card-heading">${data.pics[i].name}</span>
+                                </a>
+                            </div>
+                        `;
+                    }
+                    temp += `
+                        <div class="clearfix"></div><hr>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
-                    `;
+                    </div>`;
                     personnel_contractor_show_box.find(".modal-body").html(temp);                //模板填充
                     personnel_contractor_show_box.modal("show");                                 //盒子显示
                 } else {
@@ -521,7 +543,7 @@ $(function(){
 
         //远程提交
         $.ajax({
-            url     : API.test_response,
+            url     : personnel_contractor_api.modal_edit,
             type    : "post",
             dataType: "json",
             data    : { id:data_id },
@@ -529,35 +551,23 @@ $(function(){
                 if( data.status>0 ){
 
                     //数据赋值
-                    personnel_contractor_edit_user.val(      data.message );
-                    personnel_contractor_edit_acco.val(      data.message );
-                    personnel_contractor_edit_tels.val(      data.message );
-                    personnel_contractor_edit_addr.val(      data.message );
-                    personnel_contractor_edit_type.val(      1         );
-                    personnel_contractor_edit_state.val(     1         );
-                    personnel_contractor_edit_card_numb.val( data.message );
-                    personnel_contractor_edit_card_bank.val( data.message );
-                    personnel_contractor_edit_card_user.val( data.message );
-                    //资料上传
-                    personnel_contractor_edit_uploader1.uploader(
-                        zui_upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader1",
-                            [{id:1,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
-                        )
-                    ),
-                    personnel_contractor_edit_uploader2.uploader(
-                        zui_upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader2",
-                            [{id:2,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
-                        )
-                    ),
-                    personnel_contractor_edit_uploaders.uploader(
-                        zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_edit_uploaders",
-                            [{id:3,name:"static.jpg",type:"image/jpeg",origSize:256,size:128,lastModifiedDate:"10:20",url:"./remote/Upload/test_upload.jpg"}]
-                        )
-                    ),
-                    //资料上传对属性的影响
-                    personnel_contractor_edit_uploader1.attr("path","./remote/Upload/test_upload.jpg");
-                    personnel_contractor_edit_uploader2.attr("path","./remote/Upload/test_upload.jpg");
-                    personnel_contractor_edit_uploaders.attr("path","./remote/Upload/test_upload.jpg");
+                    var data = data.data;
+                    var uploader1 = personnel_contractor_edit_uploader1.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader1",data.pic1,"1mb","img","grid",1));
+                    var uploader2 = personnel_contractor_edit_uploader2.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader2",data.pic2,"1mb","img","grid",1));
+                    var uploaders = personnel_contractor_edit_uploaders.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader2",data.pics,"1mb","img","grid"));
+                    common_form_reset(uploader1);
+                    common_form_reset(uploader2);
+                    common_form_reset(uploaders);
+                    //基本信息
+                    personnel_contractor_edit_user.val(      data.user     );
+                    personnel_contractor_edit_acco.val(      data.acco     );
+                    personnel_contractor_edit_tels.val(      data.tel      );
+                    personnel_contractor_edit_addr.val(      data.addr     );
+                    personnel_contractor_edit_type.val(      data.type     );
+                    personnel_contractor_edit_state.val(     data.state    );
+                    personnel_contractor_edit_card_numb.val( data.card     );
+                    personnel_contractor_edit_card_bank.val( data.bank     );
+                    personnel_contractor_edit_card_user.val( data.carduser );
                     //其他操作
                     personnel_contractor_edit_submit.attr("dataId",data_id);                     //数据ID传值
                     personnel_contractor_edit_box.modal("show");                                 //盒子显示
@@ -593,7 +603,7 @@ $(function(){
                 //资料上传
                 pic1      : personnel_contractor_edit_uploader1.attr("path") || "",
                 pic2      : personnel_contractor_edit_uploader2.attr("path") || "",
-                pics      : personnel_contractor_edit_uploaders.attr("path").substr(1).split(",") || "",
+                pics      : personnel_contractor_edit_uploaders.attr("path") || "",
             },
             success : function(data){
                 if( data.status>0 ){
@@ -641,11 +651,6 @@ $(function(){
         });
 
     });
-
-    //上传组件-----------------------------------------------------------------------------------------------
-    personnel_contractor_add_uploader1.uploader(zui_upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_add_uploader1"));
-    personnel_contractor_add_uploader2.uploader(zui_upload_fixed(personnel_contractor_api.uploader,"personnel_contractor_add_uploader2"));
-    personnel_contractor_add_uploaders.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_add_uploaders"));
 
 });//预加载结尾
 </script>
