@@ -78,8 +78,8 @@
             {   
                 "title"     :"合作伙伴",
                 "children"  :[
-                    { "title":"信息员列表","icon":"business_provider_list","url":"blank"},
-                    { "title":"信息员管理","icon":"business_provider_admin","url":"blank"}
+                    { "title":"信息员列表","icon":"","url":"business_provider_list"},
+                    { "title":"信息员管理","icon":"","url":"business_provider_admin"}
                 ]
             },
             {   
