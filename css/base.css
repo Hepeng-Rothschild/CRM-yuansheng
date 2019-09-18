@@ -629,6 +629,9 @@ label,
 }
 
 /*跟踪日志-评论组件*/
+.comments-list .comment b{
+    color: #000;
+}
 .common_topic_imgs_wrap{
     position: relative;
 }

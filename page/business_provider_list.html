@@ -382,13 +382,13 @@
     </div>
     <!-- business_provider_list_add_customer_box -->
 
-    <!-- 跟踪日志盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_log_box">
+    <!-- 日志查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_logShow_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">跟踪日志</h4>
+                    <h4 class="modal-title">日志查看</h4>
                 </div>
                 <div class="modal-body modal-scroll">
                     <div class="container comments">
@@ -398,26 +398,48 @@
             </div>
         </div>
     </div>
-    <!-- business_provider_list_log_box -->
+    <!-- business_provider_list_logShow_box -->
+
+    <!-- 日志添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_logAdd_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">日志添加</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="business_provider_list_logAdd_text">日志内容</label>
+                            <div class="col-sm-8"><textarea class="form-control" id="business_provider_list_logAdd_text"></textarea></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required">图片添加</label>
+                            <div class="col-sm-8">
+                                <button type="button" class="btn btn-default">点击添加(上传暂时未做)</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="business_provider_list_logAdd_date">下次跟踪</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="business_provider_list_logAdd_date" readonly>
+                            </div>
+                        </div>                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="business_provider_list_logAdd_submit">提交</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <!-- business_provider_list_logAdd_box -->
 
 </div>
 <!-- page-wrapper -->
-
-<style>
-.comments-list .comment b{
-    color: #000;
-}
-</style>
-
-
 <script>
-$("#business_provider_list_log_box").modal("show");
-$(".btn-answer").click(function(){
-    $(this).hide();
-    $(this).next("div").show();
-});
-
-
 $(function(){
    
     //变量声明-----------------------------------------------------------------------------------------------
@@ -496,8 +518,11 @@ $(function(){
     business_provider_list_add_customer_rivalstep   = $("#business_provider_list_add_customer_rivalstep"),  //对手进展
     business_provider_list_add_customer_text        = $("#business_provider_list_add_customer_text"),       //备注信息
     //跟踪日志
-    business_provider_list_log_box                  = $("#business_provider_list_log_box"),                 //日志盒子
-    business_provider_list_log_submit               = $("#business_provider_list_log_submit"),              //日志提交
+    business_provider_list_logShow_box              = $("#business_provider_list_logShow_box"),             //日志查看
+    business_provider_list_logAdd_box               = $("#business_provider_list_logAdd_box"),              //日志添加
+    business_provider_list_logAdd_submit            = $("#business_provider_list_logAdd_submit"),           //日志添加提交
+    business_provider_list_logAdd_text              = $("#business_provider_list_logAdd_text"),             //日志添加内容
+    business_provider_list_logAdd_date              = $("#business_provider_list_logAdd_date"),             //添加下次跟踪
     a;
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
@@ -555,7 +580,9 @@ $(function(){
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            return `<a class="business_provider_list_log_btn" rowIndex="${cell.rowIndex}">跟踪日志</a>`;
+                            return `
+                            <a class="business_provider_list_logShow_btn" rowIndex="${cell.rowIndex}">查看</a>
+                            <a class="business_provider_list_logAdd_btn"  rowIndex="${cell.rowIndex}">添加</a>`;
                         }
                     }
                 },
@@ -595,7 +622,8 @@ $(function(){
     business_provider_list_show_btn         = ".business_provider_list_show_btn",                   //查看按钮
     business_provider_list_edit_btn         = ".business_provider_list_edit_btn",                   //修改按钮
     business_provider_list_dele_btn         = ".business_provider_list_dele_btn",                   //放弃按钮
-    business_provider_list_log_btn          = ".business_provider_list_log_btn",                    //跟踪日志
+    business_provider_list_logShow_btn      = ".business_provider_list_logShow_btn",                //日志查看
+    business_provider_list_logAdd_btn       = ".business_provider_list_logAdd_btn",                 //日志添加
     business_provider_list_add_customer_btn = ".business_provider_list_add_customer_btn";           //添加客户    
 
     //时间组件-----------------------------------------------------------------------------------------------
@@ -603,6 +631,7 @@ $(function(){
     business_provider_list_edit_birt.datetimepicker(option_date);
     business_provider_list_add_customer_housedate1.datetimepicker(option_date);
     business_provider_list_add_customer_housedate2.datetimepicker(option_date);
+    business_provider_list_logAdd_date.datetimepicker(option_date);
 
     //搜索按钮-----------------------------------------------------------------------------------------------
     business_provider_list_search_btn.click(function(){
@@ -814,12 +843,7 @@ $(function(){
             }
         });
 
-    });
-
- // business_provider_show_box.modal("show");
-
-
-
+    }); 
 
 //信息员查看-表格切换----------------------------------------------------------------------------------------
 //数据配置-客户记录
@@ -990,136 +1014,99 @@ $(function(){
         });
     });
 
+    //日志查看-----------------------------------------------------------------------------------------------
+    $(document).on("click",business_provider_list_logShow_btn,function(){
 
-    //跟踪日志按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",business_provider_list_log_btn,function(){
-        common_form_reset();
+        //数据复原
         common_topic_answer_reset();
-        business_provider_list_log_box.modal("show");
-    });
-    //跟踪日志提交
-    business_provider_list_log_submit.click(function(){
- 
+
+        //ID取值
+        var data_id = $(this).attr("rowIndex");
+
         //远程提交
         $.ajax({
-            url     : API.test_response,
+            url     : business_provider_list_api.topic,
             type    : "post",
-            dataType: "json",
+            dataType: "json",        
             data    : {
-                user    : business_provider_list_add_user.val(),
-                comp    : business_provider_list_add_comp.val(),
-                tel1    : business_provider_list_add_tel1.val(),
-                tel2    : business_provider_list_add_tel2.val(),
-                level   : business_provider_list_add_level.val(),
-                natu    : business_provider_list_add_natu.val(),
-                area    : business_provider_list_add_area.val(),
-                bankcode: business_provider_list_add_bankcode.val(),
-                bankuser: business_provider_list_add_bankuser.val(),
-                bankname: business_provider_list_add_bankname.val(),
-                birt    : business_provider_list_add_birt.val(),
-                card    : business_provider_list_add_card.val(),
-                text    : business_provider_list_add_text.val(),
+                id : data_id,
             },
             success : function(data){
+
                 if( data.status>0 ){
-                    um_tip(data.message);
-                    zui_datagrid_reset(business_provider_list_datagrid_obj,business_provider_list_api.datagrid);
+
+                    //变量赋值
+                    var data = data.data;
+                    var temp = "";
+
+                    //一级话题
+                    for(var i=0;i<data.length;i++){
+                        temp+=`
+                            <div class="comments-list">
+                                <div class="comment">
+                                    <div class="avatar text-center">
+                                        <i class="icon-user icon-2x text-primary"></i>
+                                        <div class="small text-primary">${data[i].user}</div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="pull-right text-muted">${data[i].date}</div>
+                                        <div class="text">${data[i].text}</div>
+                                        <div class="actions common_topic_imgs_wrap">
+                                            <a class="common_topic_imgs_btn">图片[${data[i].imgs.length}]</a>
+                                            <div class="common_topic_imgs_box hide">`;
+
+                        //图片循环
+                        for(var m=0;m<data[i].imgs.length;m++){
+                            temp+=`<a class="ov1" target="_blank" href=${data[i].imgs[m].path}>${data[i].imgs[m].name}</a>`;
+                        }
+
+                        //标签收尾
+                        temp+=`</div></div></div>`;
+
+                        //评论嵌套
+                        for(var j=0;j<data[i].childTopic.length;j++){
+                            temp+=`
+                                <div class="comments-list">
+                                    <div class="comment">
+                                        <div class="content">
+                                            <div class="pull-right text-muted">10-20 11:00</div>
+                                            <div><b>${data[i].childTopic[j].user}</b></div>
+                                            <div class="text">${data[i].childTopic[j].text}</div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                        }
+
+                        //标签收尾
+                        temp+=`
+                        <div class="comments-list comments-list-for-answer">
+                            <div class="actions">
+                                <a class="common_topic_answer_btn">回复</a>
+                                <div class="hide common_topic_answer_text_wrap">
+                                    <textarea class="form-control common_topic_answer_text"></textarea>
+                                    <button type="button" class="pull-right btn btn-mini btn-primary common_topic_answer_submit" data-tid="${data[i].id}" style="margin-top:5px;">提交</button>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div></div>`;
+                    }
+
+                    //文本推进
+                    business_provider_list_logShow_box.find(".comments").html(temp);
+
+                    //面板显示
+                    business_provider_list_logShow_box.modal("show");
+
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
             }
         });
+
     });
-
-
-    $.ajax({
-        url     : business_provider_list_api.topic,
-        type    : "post",
-        dataType: "json",        
-        data    : {},
-        success : function(data){
-
-            if( data.status>0 ){
-
-                //变量赋值
-                var data = data.data;
-                var temp = "";
-
-                //一级话题
-                for(var i=0;i<data.length;i++){
-                    temp+=`
-                        <div class="comments-list">
-                            <div class="comment">
-                                <div class="avatar text-center">
-                                    <i class="icon-user icon-2x text-primary"></i>
-                                    <div class="small text-primary">${data[i].user}</div>
-                                </div>
-                                <div class="content">
-                                    <div class="pull-right text-muted">${data[i].date}</div>
-                                    <div class="text">${data[i].text}</div>
-                                    <div class="actions common_topic_imgs_wrap">
-                                        <a class="common_topic_imgs_btn">图片[${data[i].imgs.length}]</a>
-                                        <div class="common_topic_imgs_box hide">`;
-
-                    //图片循环
-                    for(var m=0;m<data[i].imgs.length;m++){
-                        temp+=`<a class="ov1" target="_blank" href=${data[i].imgs[m].path}>${data[i].imgs[m].name}</a>`;
-                    }
-
-                    //标签收尾
-                    temp+=`</div></div></div>`;
-
-                    //评论嵌套
-                    for(var j=0;j<data[i].childTopic.length;j++){
-                        temp+=`
-                            <div class="comments-list">
-                                <div class="comment">
-                                    <div class="content">
-                                        <div class="pull-right text-muted">10-20 11:00</div>
-                                        <div><b>${data[i].childTopic[j].user}</b></div>
-                                        <div class="text">${data[i].childTopic[j].text}</div>
-                                    </div>
-                                </div>
-                            </div>`;
-                    }
-
-                    //标签收尾
-                    temp+=`
-                    <div class="comments-list comments-list-for-answer">
-                        <div class="actions">
-                            <a class="common_topic_answer_btn">回复</a>
-                            <div class="hide common_topic_answer_text_wrap">
-                                <textarea class="form-control common_topic_answer_text"></textarea>
-                                <button type="button" class="pull-right btn btn-mini btn-primary common_topic_answer_submit" data-tid="${data[i].id}" style="margin-top:5px;">提交</button>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                    </div></div>`;
-                }
-
-                //文本推进
-                business_provider_list_log_box.find(".comments").html(temp);
-
-            } else {
-                um_tip(data.message,"1500","text-danger");
-            }
-        }
-    });
-
-    //图片查看
-    $(document).on("click",".common_topic_imgs_btn",function(){
-        $(this).next().is(":visible") ? $(this).next().hide() : $(this).next().show();
-    });
-  
-    //回复点击
-    $(document).on("click",".common_topic_answer_btn",function(){
-        common_topic_answer_reset();
-        $(this).next(".common_topic_answer_text_wrap").show();
-    });
-    //回复提交
+    //日志回复
     $(document).on("click",".common_topic_answer_submit",function(){
-
         //变量声明
         var tid = $(this).attr("data-tid");
         var text= $(this).parent().find(".common_topic_answer_text").val();
@@ -1142,13 +1129,33 @@ $(function(){
             }
         });
     });
-    //回复重置
-    function common_topic_answer_reset(){
-        $(".common_topic_imgs_box").hide();
-        $(".common_topic_answer_text_wrap").hide();
-        $(".common_topic_answer_text").val("");
-        $(".common_topic_answer_submit").attr("tid","");
-    }
 
+    //日志添加-----------------------------------------------------------------------------------------------
+    $(document).on("click",".business_provider_list_logAdd_btn",function(){
+        common_form_reset();
+        business_provider_list_logAdd_box.modal("show");
+    });
+    //日志提交
+    business_provider_list_logAdd_submit.click(function(){
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                text : business_provider_list_logAdd_text.val(),
+                date : business_provider_list_logAdd_text.val(),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(business_provider_list_datagrid_obj,business_provider_list_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+    
 });//预加载结尾
 </script>

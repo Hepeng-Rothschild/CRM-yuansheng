@@ -770,3 +770,23 @@ function common_form_reset(uploader){
         }
     }
 }
+
+//跟踪日志---------------------------------------------------------------------------
+$(function(){
+    //图片查看
+    $(document).on("click",".common_topic_imgs_btn",function(){
+        $(this).next().is(":visible") ? $(this).next().hide() : $(this).next().show();
+    });
+    //回复点击
+    $(document).on("click",".common_topic_answer_btn",function(){
+        common_topic_answer_reset();
+        $(this).next(".common_topic_answer_text_wrap").show();
+    });
+});
+//回复重置
+function common_topic_answer_reset(){
+    $(".common_topic_imgs_box").hide();
+    $(".common_topic_answer_text_wrap").hide();
+    $(".common_topic_answer_text").val("");
+    $(".common_topic_answer_submit").attr("tid","");
+}
