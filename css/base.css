@@ -292,6 +292,13 @@ html,body{
 .main-header .navbar-brand .logo-mini{
     background:url(../img/logomini.png) no-repeat;
 }
+/*一行省略*/
+.ov1{
+    display: block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
 /*伸缩盒子(自定义)--------------------------------------------------*/
 .flex-box{ 
     display: block!important;
@@ -485,48 +492,7 @@ html,body{
 .tool-group div button:first-child{
     margin-left:0;
 }
-/*其他样式*/
-select{ min-width: 100px!important; }
-.input-min-box input{ width: 120px; }
-/*单元格隐藏*/
-.cell-hidden{
-    border:none;
-    opacity: 0.5;
-}
-/*按钮+表单元素：圆角设定*/
-.btn,.form-control{
-    border-radius: 2px!important;
-}
-/*面板激活补丁*/
-.tab-content>.active{
-    display: block!important;
-}
-/*表单提示信息*/
-.form-control-static{
-    color: #999;
-    font-size: smaller;
-}
-/*表单浮层*/
-.form-control-floor{
-    display: block;
-    height:15px;
-    float: none;
-}
-/*文字变细*/
-.text-thin{
-    font-weight: normal;
-}
-/*label*/
-a,
-label,
-[data-toggle="modal"],
-.for-label,
-.tree span{
-    cursor:pointer;
-}
-.for-label::selection{
-    background:transparent;
-}
+/*其他样式-全局模块----------------------------------------------------*/
 /*权限表格*/
 #setup_auth_post_edit_table table td{
     padding: 1px;
@@ -608,27 +574,7 @@ label,
 .common_map_reset{
     cursor:pointer;
 }
-/*简洁页面
-.simple-box{
-    border: 1px solid #ddd;
-    background: #f5f5f5;
-    padding: 20px 0 10px 10px;
-    margin-top: 10px;
-    max-width: 500px;
-}
-.simple-box .text-muted{
-    line-height:32px;
-}*/
-.input-short{
-    max-width:220px;
-}
-/*树状图-上下居中*/
-.tree.tree-lines.tree-chevrons{
-    position: relative;
-    top: 5px;
-}
-
-/*跟踪日志-评论组件*/
+/*全局跟踪日志-评论组件*/
 .comments-list .comment b{
     color: #000;
 }
@@ -653,10 +599,53 @@ label,
 .comment:hover a{
     color: #3280fc;
 }
-
-.ov1{
+/*其他样式-表单样式----------------------------------------------------*/
+/*表单宽度*/
+select{ min-width: 100px!important; }
+.input-min-box input{ width: 120px; }
+.input-short{ max-width:220px; }
+/*表单label*/
+a,
+label,
+[data-toggle="modal"],
+.for-label,
+.tree span{
+    cursor:pointer;
+}
+.for-label::selection{
+    background:transparent;
+}
+/*表单提示信息*/
+.form-control-static{
+    color: #999;
+    font-size: smaller;
+}
+/*表单浮层*/
+.form-control-floor{
     display: block;
-    overflow:hidden; 
-    text-overflow:ellipsis; 
-    white-space:nowrap;
+    height:15px;
+    float: none;
+}
+/*圆角设定(按钮+表单元素)*/
+.btn,.form-control{
+    border-radius: 2px!important;
+}
+/*其他样式-零散样式----------------------------------------------------*/
+/*文字变细*/
+.text-thin{
+    font-weight: normal;
+}
+/*树状图-上下居中*/
+.tree.tree-lines.tree-chevrons{
+    position: relative;
+    top: 5px;
+}
+/*单元格隐藏-ID列*/
+.cell-hidden{
+    border:none;
+    opacity: 0.5;
+}
+/*面板激活补丁*/
+.tab-content>.active{
+    display: block!important;
 }

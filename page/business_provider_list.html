@@ -193,13 +193,13 @@
     </div>
     <!-- business_provider_list_edit_box -->
 
-    <!-- 放弃盒子 -->
+    <!-- 放弃信息员盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_dele_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">放弃</h4>
+                    <h4 class="modal-title">放弃信息员</h4>
                 </div>
                 <div class="modal-body">
                     <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否放弃？</p>
@@ -446,7 +446,7 @@ $(function(){
     var 
     business_provider_list                          = $("#business_provider_list"),                         //页面ID
     business_provider_list_datagrid                 = $("#business_provider_list_datagrid"),                //数据表格
-    //搜索    
+    //搜索
     business_provider_list_tool_keys                = $("#business_provider_list_tool_keys"),               //搜索类别
     business_provider_list_tool_search              = $("#business_provider_list_tool_search"),             //搜索字段
     business_provider_list_tool_select1             = $("#business_provider_list_tool_select1"),            //下拉选择1
@@ -468,7 +468,7 @@ $(function(){
     business_provider_list_add_birt                 = $("#business_provider_list_add_birt"),                //生日
     business_provider_list_add_card                 = $("#business_provider_list_add_card"),                //身份证号
     business_provider_list_add_text                 = $("#business_provider_list_add_text"),                //备注信息
-    //修改
+    //修改信息员
     business_provider_list_edit_box                 = $("#business_provider_list_edit_box"),                //修改盒子
     business_provider_list_edit_submit              = $("#business_provider_list_edit_submit"),             //修改提交
     business_provider_list_edit_user                = $("#business_provider_list_edit_user"),               //姓名
@@ -484,16 +484,16 @@ $(function(){
     business_provider_list_edit_birt                = $("#business_provider_list_edit_birt"),               //生日
     business_provider_list_edit_card                = $("#business_provider_list_edit_card"),               //身份证号
     business_provider_list_edit_text                = $("#business_provider_list_edit_text"),               //备注信息
-    //查看
-    business_provider_show_box                      = $("#business_provider_show_box"),                     //查看盒子
-    business_provider_list_show_table0              = $("#business_provider_list_show_table0"),             // 
-    business_provider_list_show_table1              = $("#business_provider_list_show_table1"),             //
-    business_provider_list_show_table2              = $("#business_provider_list_show_table2"),             //
-    business_provider_list_show_table3              = $("#business_provider_list_show_table3"),             //
-    business_provider_list_show_table4              = $("#business_provider_list_show_table4"),             //
-    //放弃
+    //放弃信息员
     business_provider_list_dele_box                 = $("#business_provider_list_dele_box"),                //放弃盒子
     business_provider_list_dele_submit              = $("#business_provider_list_dele_submit"),             //放弃提交
+    //查看信息员
+    business_provider_show_box                      = $("#business_provider_show_box"),                     //查看盒子
+    business_provider_list_show_table0              = $("#business_provider_list_show_table0"),             //切换表格1
+    business_provider_list_show_table1              = $("#business_provider_list_show_table1"),             //切换表格2
+    business_provider_list_show_table2              = $("#business_provider_list_show_table2"),             //切换表格3
+    business_provider_list_show_table3              = $("#business_provider_list_show_table3"),             //切换表格4
+    business_provider_list_show_table4              = $("#business_provider_list_show_table4"),             //切换表格5
     //添加客户
     business_provider_list_add_customer_box         = $("#business_provider_list_add_customer_box"),        //客户盒子
     business_provider_list_add_customer_submit      = $("#business_provider_list_add_customer_submit"),     //客户提交
@@ -518,20 +518,21 @@ $(function(){
     business_provider_list_add_customer_rivalstep   = $("#business_provider_list_add_customer_rivalstep"),  //对手进展
     business_provider_list_add_customer_text        = $("#business_provider_list_add_customer_text"),       //备注信息
     //跟踪日志
-    business_provider_list_logShow_box              = $("#business_provider_list_logShow_box"),             //日志查看
-    business_provider_list_logAdd_box               = $("#business_provider_list_logAdd_box"),              //日志添加
+    business_provider_list_logShow_box              = $("#business_provider_list_logShow_box"),             //日志查看按钮
+    business_provider_list_logAdd_box               = $("#business_provider_list_logAdd_box"),              //日志添加按钮
     business_provider_list_logAdd_submit            = $("#business_provider_list_logAdd_submit"),           //日志添加提交
     business_provider_list_logAdd_text              = $("#business_provider_list_logAdd_text"),             //日志添加内容
-    business_provider_list_logAdd_date              = $("#business_provider_list_logAdd_date"),             //添加下次跟踪
-    a;
+    business_provider_list_logAdd_date              = $("#business_provider_list_logAdd_date");             //添加下次跟踪
+    
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
 
         //本地接口
         var business_provider_list_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
+            select     : LOCAL + "Test/test_select.json",                           //下拉选择
             modal_show : LOCAL + "Test/Business/provider_edit.json",                //修改盒子
-            topic      : LOCAL + "Test/Business/provider_topic.json",               //跟踪日志
+            topic      : LOCAL + "Test/Business/provider_topic.json",               //日志查看
         }
 
     } else if ( window.STATE == "route" ){
@@ -539,8 +540,9 @@ $(function(){
         //远程接口
         var business_provider_list_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
+            select     : LOCAL + "Test/test_select.json",                           //下拉选择
             modal_show : LOCAL + "Test/Business/provider_edit.json",                //修改盒子
-            topic      : LOCAL + "Test/Business/provider_topic.json",               //跟踪日志
+            topic      : LOCAL + "Test/Business/provider_topic.json",               //日志查看
         }
 
     }
@@ -575,7 +577,7 @@ $(function(){
                 {name:"text8",  label:"公司名称",    width:150},
                 {name:"text5",  label:"工作性质",    width:100},
                 {name:"text5",  label:"级别",        width:100},
-                {name:"text1",  label:"剩余回访天数",width:100},
+                {name:"state",  label:"剩余回访天数",width:100},
                 {name:"log",    label:"跟踪日志",    width:80,
                     html:true,
                     valueOperator : {
@@ -590,7 +592,7 @@ $(function(){
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            return `<a class="business_provider_list_add_customer_btn"  rowIndex="${cell.rowIndex}" dataValue="${dataValue}">添加客户</a>`;
+                            return `<a class="business_provider_list_add_customer_btn" rowIndex="${cell.rowIndex}" dataValue="${dataValue}">添加客户</a>`;
                         }
                     }
                 },
@@ -619,12 +621,12 @@ $(function(){
     //变量声明-----------------------------------------------------------------------------------------------
     var
     business_provider_list_datagrid_obj     = business_provider_list_datagrid.data("zui.datagrid"), //表格对象
-    business_provider_list_show_btn         = ".business_provider_list_show_btn",                   //查看按钮
     business_provider_list_edit_btn         = ".business_provider_list_edit_btn",                   //修改按钮
     business_provider_list_dele_btn         = ".business_provider_list_dele_btn",                   //放弃按钮
+    business_provider_list_show_btn         = ".business_provider_list_show_btn",                   //查看按钮
+    business_provider_list_add_customer_btn = ".business_provider_list_add_customer_btn",           //添加客户
     business_provider_list_logShow_btn      = ".business_provider_list_logShow_btn",                //日志查看
-    business_provider_list_logAdd_btn       = ".business_provider_list_logAdd_btn",                 //日志添加
-    business_provider_list_add_customer_btn = ".business_provider_list_add_customer_btn";           //添加客户    
+    business_provider_list_logAdd_btn       = ".business_provider_list_logAdd_btn";                 //日志添加
 
     //时间组件-----------------------------------------------------------------------------------------------
     business_provider_list_add_birt.datetimepicker(option_date);
@@ -632,6 +634,24 @@ $(function(){
     business_provider_list_add_customer_housedate1.datetimepicker(option_date);
     business_provider_list_add_customer_housedate2.datetimepicker(option_date);
     business_provider_list_logAdd_date.datetimepicker(option_date);
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    $.ajax({
+        url     : business_provider_list_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                business_provider_list_add_customer_type.html(option);                              //添加客户-项目类型
+            }
+        }
+    });
 
     //搜索按钮-----------------------------------------------------------------------------------------------
     business_provider_list_search_btn.click(function(){
@@ -845,128 +865,160 @@ $(function(){
 
     }); 
 
-//信息员查看-表格切换----------------------------------------------------------------------------------------
-//数据配置-客户记录
-    var dataSource1 = {
-        cols   : [
-            {name:"id",     label:"ID",         width:49 },
-            {name:"text4",  label:"项目编号",   width:80 },
-            {name:"text8",  label:"项目名称",   width:130},
-            {name:"name",   label:"联系人",     width:80 },
-            {name:"tel",    label:"联系手机",   width:100},
-            {name:"text2",  label:"面积",       width:80 },
-            {name:"text8",  label:"项目地址",   width:130},
-            {name:"name",   label:"业务员",     width:80 },
-            {name:"name",   label:"设计师",     width:80 },
-            {name:"text1",  label:"流程状态",   width:80 },
-        ],
-        remote : function(){
-            return {
-                url     : business_provider_list_api.datagrid,
-                type    : "POST",
-                dataType: "json",
+    //查看盒子-切换表格----------------------------------------------------------------------------------------
+    //客户记录
+    business_provider_list_show_table1.datagrid({
+        height      : zui_datagrid_height(business_provider_list_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
             }
-        }
-    }
-//数据配置-信息费记录
-    var dataSource2 = {
-        cols   : [
-            {name:"id",      label:"ID",      width:49 },
-            {name:"text4",   label:"项目编号",width:80 },
-            {name:"name",    label:"客户名称",width:80 },
-            {name:"name",    label:"业务员",  width:80 },
-            {name:"name",    label:"设计师",  width:80 },
-            {name:"date",    label:"申请时间",width:100},
-            {name:"username",label:"申请金额",width:80 },
-            {name:"state",   label:"申请状态",width:80 },
-        ],
-        remote : function(){
-            return {
-                url     : business_provider_list_api.datagrid,
-                type    : "POST",
-                dataType: "json",
-            }
-        }
-    }
-
-//数据配置-提成记录
-    var dataSource3 = {
-        cols   : [
-            {name:"id",      label:"ID",        width:49 },
-            {name:"text4",   label:"项目编号",  width:80 },
-            {name:"text8",   label:"项目名称",  width:130},
-            {name:"name",    label:"业务员",    width:80 },
-            {name:"name",    label:"设计师",    width:80 },
-            {name:"text4",   label:"合同总金额",width:90 },
-            {name:"date",    label:"申请时间",  width:100},
-            {name:"state",   label:"申请提点",  width:80 },
-            {name:"username",label:"应发提成",  width:80 },
-            {name:"username",label:"实发提成",  width:80 },
-            {name:"state",   label:"申请状态",  width:80 },
-
-        ],
-        remote : function(){
-            return {
-                url     : business_provider_list_api.datagrid,
-                type    : "POST",
-                dataType: "json",
-            }
-        }
-    }
-
-//数据配置-过程记录
-    var dataSource4 = {
-        cols   : [
-            {name:"id",     label:"ID",        width:49 },
-            {name:"name",   label:"操作人",    width:80 },
-            {name:"date",   label:"操作时间",  width:100},
-            {name:"tex10",   label:"过程说明", width:200},
-        ],
-        remote : function(){
-            return {
-                url     : business_provider_list_api.datagrid,
-                type    : "POST",
-                dataType: "json",
-            }
-        }
-    }
-
-    for(var i=1;i<5;i++){
-        var dataSource = dataSource1;
-        switch(i){
-            case 1:dataSource=dataSource1;break;
-            case 2:dataSource=dataSource2;break;
-            case 3:dataSource=dataSource3;break;
-            case 4:dataSource=dataSource4;break;
-        }
-        $("#business_provider_list_show_table"+i).datagrid({
-            height      : zui_datagrid_height(business_provider_list_datagrid),
-            sortable    : false,
-            cache       : false,
-            showRowIndex: true,
-            configs     : {
-                R0:{className:"text-center"},
-                C1:{className:"cell-hidden"}
-            },
-            states      : {
-                pager           : {
-                    page        : 1,
-                    recPerPage  : window.REC_PER_PAGE,
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",     label:"ID",         width:49 },
+                {name:"text4",  label:"项目编号",   width:80 },
+                {name:"text8",  label:"项目名称",   width:130},
+                {name:"name",   label:"联系人",     width:80 },
+                {name:"tel",    label:"联系手机",   width:100},
+                {name:"text2",  label:"面积",       width:80 },
+                {name:"text8",  label:"项目地址",   width:130},
+                {name:"name",   label:"业务员",     width:80 },
+                {name:"name",   label:"设计师",     width:80 },
+                {name:"text1",  label:"流程状态",   width:80 },
+            ],
+            remote : function(){
+                return {
+                    url     : business_provider_list_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
                 }
-            },
-            dataSource : dataSource
-        });
-        
-    }
-
+            }
+        }
+    });
+    //信息费记录
+    business_provider_list_show_table2.datagrid({
+        height      : zui_datagrid_height(business_provider_list_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",      width:49 },
+                {name:"text4",   label:"项目编号",width:80 },
+                {name:"name",    label:"客户名称",width:80 },
+                {name:"name",    label:"业务员",  width:80 },
+                {name:"name",    label:"设计师",  width:80 },
+                {name:"date",    label:"申请时间",width:100},
+                {name:"username",label:"申请金额",width:80 },
+                {name:"state",   label:"申请状态",width:80 },
+            ],
+            remote : function(){
+                return {
+                    url     : business_provider_list_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+    //提成记录
+    business_provider_list_show_table3.datagrid({
+        height      : zui_datagrid_height(business_provider_list_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",        width:49 },
+                {name:"text4",   label:"项目编号",  width:80 },
+                {name:"text8",   label:"项目名称",  width:130},
+                {name:"name",    label:"业务员",    width:80 },
+                {name:"name",    label:"设计师",    width:80 },
+                {name:"text4",   label:"合同总金额",width:90 },
+                {name:"date",    label:"申请时间",  width:100},
+                {name:"state",   label:"申请提点",  width:80 },
+                {name:"username",label:"应发提成",  width:80 },
+                {name:"username",label:"实发提成",  width:80 },
+                {name:"state",   label:"申请状态",  width:80 },
+            ],
+            remote : function(){
+                return {
+                    url     : business_provider_list_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+    //过程记录
+    business_provider_list_show_table4.datagrid({
+        height      : zui_datagrid_height(business_provider_list_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",     label:"ID",        width:49 },
+                {name:"name",   label:"操作人",    width:80 },
+                {name:"date",   label:"操作时间",  width:140},
+                {name:"tex10",  label:"过程说明",  width:400},
+            ],
+            remote : function(){
+                return {
+                    url     : business_provider_list_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
 
     //添加客户按钮----------------------------------------------------------------------------------------------
     $(document).on("click",business_provider_list_add_customer_btn,function(){
         common_form_reset();
-        var rowIndex = $(this).attr("rowIndex");
         var dataValue= $(this).attr("dataValue");
-        business_provider_list_add_customer_submit.attr("rowIndex",rowIndex);
+        var rowIndex = $(this).attr("rowIndex");
         business_provider_list_add_customer_provider.val(dataValue);
+        business_provider_list_add_customer_submit.attr("rowIndex",rowIndex);
         business_provider_list_add_customer_box.modal("show");
     });
     //添加客户提交
@@ -1132,17 +1184,33 @@ $(function(){
 
     //日志添加-----------------------------------------------------------------------------------------------
     $(document).on("click",".business_provider_list_logAdd_btn",function(){
+
+        //数据复原
         common_form_reset();
+
+        //ID取值
+        var rowIndex = $(this).attr("rowIndex");
+
+        //ID赋值
+        business_provider_list_logAdd_submit.attr("rowIndex",rowIndex);
+
+        //面板显示
         business_provider_list_logAdd_box.modal("show");
+
     });
     //日志提交
     business_provider_list_logAdd_submit.click(function(){
+
+        //ID取值
+        var data_id = $(this).attr("rowIndex");
+
         //远程提交
         $.ajax({
             url     : API.test_response,
             type    : "post",
             dataType: "json",
             data    : {
+                id   : data_id,
                 text : business_provider_list_logAdd_text.val(),
                 date : business_provider_list_logAdd_text.val(),
             },
