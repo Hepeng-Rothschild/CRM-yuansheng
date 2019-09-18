@@ -214,7 +214,7 @@
     <!-- business_provider_list_dele_box -->
 
     <!-- 信息员查看盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_show_box">
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_show_box">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
@@ -258,7 +258,7 @@
             </div>
         </div>
     </div>
-    <!-- business_provider_show_box -->
+    <!-- business_provider_list_show_box -->
 
     <!-- 添加客户盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_add_customer_box">
@@ -488,7 +488,7 @@ $(function(){
     business_provider_list_dele_box                 = $("#business_provider_list_dele_box"),                //放弃盒子
     business_provider_list_dele_submit              = $("#business_provider_list_dele_submit"),             //放弃提交
     //查看信息员
-    business_provider_show_box                      = $("#business_provider_show_box"),                     //查看盒子
+    business_provider_list_show_box                 = $("#business_provider_list_show_box"),                //查看盒子
     business_provider_list_show_table0              = $("#business_provider_list_show_table0"),             //切换表格1
     business_provider_list_show_table1              = $("#business_provider_list_show_table1"),             //切换表格2
     business_provider_list_show_table2              = $("#business_provider_list_show_table2"),             //切换表格3
@@ -518,8 +518,8 @@ $(function(){
     business_provider_list_add_customer_rivalstep   = $("#business_provider_list_add_customer_rivalstep"),  //对手进展
     business_provider_list_add_customer_text        = $("#business_provider_list_add_customer_text"),       //备注信息
     //跟踪日志
-    business_provider_list_logShow_box              = $("#business_provider_list_logShow_box"),             //日志查看按钮
-    business_provider_list_logAdd_box               = $("#business_provider_list_logAdd_box"),              //日志添加按钮
+    business_provider_list_logShow_box              = $("#business_provider_list_logShow_box"),             //日志查看盒子
+    business_provider_list_logAdd_box               = $("#business_provider_list_logAdd_box"),              //日志添加盒子
     business_provider_list_logAdd_submit            = $("#business_provider_list_logAdd_submit"),           //日志添加提交
     business_provider_list_logAdd_text              = $("#business_provider_list_logAdd_text"),             //日志添加内容
     business_provider_list_logAdd_date              = $("#business_provider_list_logAdd_date");             //添加下次跟踪
@@ -856,7 +856,7 @@ $(function(){
                         <tr><td>备注信息  </td><td>${data.text}     </td></tr>
                     `;
                     business_provider_list_show_table0.find("tbody").html(temp);            //模板填充
-                    business_provider_show_box.modal("show");                               //盒子显示
+                    business_provider_list_show_box.modal("show");                               //盒子显示
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
