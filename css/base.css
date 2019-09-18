@@ -627,3 +627,33 @@ label,
     position: relative;
     top: 5px;
 }
+
+/*跟踪日志-评论组件*/
+.common_topic_imgs_wrap{
+    position: relative;
+}
+.common_topic_imgs_wrap 
+.common_topic_imgs_box{
+    position: absolute;
+    width: 200px;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius:2px;
+}
+.comments-list-for-answer{
+    padding-top: 0!important;
+}
+.comments-list-for-answer a{
+    color: grey;
+}
+.comment:hover a{
+    color: #3280fc;
+}
+
+.ov1{
+    display: block;
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    white-space:nowrap;
+}

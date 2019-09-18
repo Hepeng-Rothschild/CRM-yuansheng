@@ -34,7 +34,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="tool-deal">
-                <label><button class="btn btn-primary" id="business_provider_list_add_btn"> <i class="icon icon-plus"></i> 添加</button></label>
+                <label><button class="btn btn-primary" id="business_provider_list_add_btn"> <i class="icon icon-plus"></i> 添加信息员</button></label>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -118,6 +118,147 @@
         </div>
     </div>
     <!-- business_provider_list_add_box -->
+
+    <!-- 修改信息员盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_edit_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改信息员</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="business_provider_list_edit_user">姓名</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_provider_list_edit_user"></div>
+                            <label class="col-sm-2 required" for="business_provider_list_edit_tel1">手机1</label>
+                            <div class="col-sm-4"><input type="text" class="form-control" id="business_provider_list_edit_tel1"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="business_provider_list_edit_comp">公司名称</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_provider_list_edit_comp"></div>
+                            <label class="col-sm-2 required" for="business_provider_list_edit_tel2">手机2</label>
+                            <div class="col-sm-4"><input type="text" class="form-control" id="business_provider_list_edit_tel2"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="business_provider_list_edit_level">级别</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_provider_list_edit_level">
+                                <option value="1">A</option>
+                                <option value="2">B</option>
+                                <option value="3">C</option>
+                                <option value="4">D</option>
+                                <option value="5">E</option>
+                            </select></div>
+                            <label class="col-sm-2 required" for="business_provider_list_edit_natu">工作性质</label>
+                            <div class="col-sm-4"><select class="form-control" id="business_provider_list_edit_natu">
+                                <option value="1">开发商</option>
+                                <option value="2">物业</option>
+                                <option value="3">自由经纪人</option>
+                                <option value="4">租赁</option>
+                                <option value="5">招商</option>
+                                <option value="6">售楼</option>
+                            </select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="business_provider_list_edit_area">服务区域</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_provider_list_edit_area"></div>
+                            <label class="col-sm-2 required" for="business_provider_list_edit_bankcode">银行卡号</label>
+                            <div class="col-sm-4"><input type="text" class="form-control" id="business_provider_list_edit_bankcode"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="business_provider_list_edit_bankuser">开户人</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_provider_list_edit_bankuser"></div>
+                            <label class="col-sm-2 required" for="business_provider_list_edit_bankname">开户行</label>
+                            <div class="col-sm-4"><input type="text" class="form-control" id="business_provider_list_edit_bankname"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="business_provider_list_edit_birt">生日</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_provider_list_edit_birt" readonly></div>
+                            <label class="col-sm-2 required" for="business_provider_list_edit_card">身份证号</label>
+                            <div class="col-sm-4"><input type="text" class="form-control" id="business_provider_list_edit_card"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="business_provider_list_edit_text">备注信息</label>
+                            <div class="col-sm-9"><textarea class="form-control" id="business_provider_list_edit_text"></textarea></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="business_provider_list_edit_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- business_provider_list_edit_box -->
+
+    <!-- 放弃盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_dele_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">放弃</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否放弃？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="business_provider_list_dele_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- business_provider_list_dele_box -->
+
+    <!-- 信息员查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_show_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">信息员查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        <!-- 基本信息 -->
+                        <table class="table table-bordered" id="business_provider_list_show_table0">
+                            <thead><tr><th colspan="2">基本信息</th></tr></thead>
+                            <tbody><!-- JS推进 --></tbody>
+                        </table>
+                        <!-- 切换面板 -->
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-tab="" href="#business_provider_list_show_table1">客户记录</a></li>
+                            <li><a data-tab="" href="#business_provider_list_show_table2">信息费记录</a></li>
+                            <li><a data-tab="" href="#business_provider_list_show_table3">提成记录</a></li>
+                            <li><a data-tab="" href="#business_provider_list_show_table4">过程记录</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="datagrid datagrid-striped tab-pane active" id="business_provider_list_show_table1">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+                            </div>
+                            <div class="datagrid datagrid-striped tab-pane" id="business_provider_list_show_table2">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+                            </div>
+                            <div class="datagrid datagrid-striped tab-pane" id="business_provider_list_show_table3">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+                            </div>
+                            <div class="datagrid datagrid-striped tab-pane" id="business_provider_list_show_table4">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- business_provider_show_box -->
 
     <!-- 添加客户盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_add_customer_box">
@@ -241,95 +382,41 @@
     </div>
     <!-- business_provider_list_add_customer_box -->
 
-
-    
-    <!-- 日志查看盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_log_show_box">
+    <!-- 跟踪日志盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_log_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">日志查看</h4>
+                    <h4 class="modal-title">跟踪日志</h4>
                 </div>
-                <div class="modal-body">
-                    <form class="container form-horizontal">
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="business_provider_list_add_customer_submit">提交</button>
+                <div class="modal-body modal-scroll">
+                    <div class="container comments">
+                        <!-- JS推进 -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- business_provider_list_log_show_box -->
-
-
-    <!-- 修改盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_edit_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">修改</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="container form-horizontal">
-                        <div class="form-group require">
-                            <label class="col-sm-2 required" for="business_provider_list_edit_type">培训类型</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_provider_list_edit_type"></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary"  id="business_provider_list_edit_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- business_provider_list_edit_box -->
-
-    <!-- 删除盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_list_dele_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">删除</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否删除？</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-danger"  id="business_provider_list_dele_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- business_provider_list_dele_box -->
-
-    <!-- 信息员查看盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="business_provider_show_box">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">信息员查看</h4>
-                </div>
-                <div class="modal-body modal-scroll"><!-- JS推进 --></div>
-            </div>
-        </div>
-    </div>
-    <!-- business_provider_show_box -->
+    <!-- business_provider_list_log_box -->
 
 </div>
 <!-- page-wrapper -->
 
+<style>
+.comments-list .comment b{
+    color: #000;
+}
+</style>
+
+
 <script>
-// $("#business_provider_list_add_customer_box").modal("show");
+$("#business_provider_list_log_box").modal("show");
+$(".btn-answer").click(function(){
+    $(this).hide();
+    $(this).next("div").show();
+});
+
 
 $(function(){
    
@@ -359,6 +446,32 @@ $(function(){
     business_provider_list_add_birt                 = $("#business_provider_list_add_birt"),                //生日
     business_provider_list_add_card                 = $("#business_provider_list_add_card"),                //身份证号
     business_provider_list_add_text                 = $("#business_provider_list_add_text"),                //备注信息
+    //修改
+    business_provider_list_edit_box                 = $("#business_provider_list_edit_box"),                //修改盒子
+    business_provider_list_edit_submit              = $("#business_provider_list_edit_submit"),             //修改提交
+    business_provider_list_edit_user                = $("#business_provider_list_edit_user"),               //姓名
+    business_provider_list_edit_comp                = $("#business_provider_list_edit_comp"),               //公司    
+    business_provider_list_edit_tel1                = $("#business_provider_list_edit_tel1"),               //手机1
+    business_provider_list_edit_tel2                = $("#business_provider_list_edit_tel2"),               //手机2
+    business_provider_list_edit_level               = $("#business_provider_list_edit_level"),              //级别
+    business_provider_list_edit_natu                = $("#business_provider_list_edit_natu"),               //工作性质
+    business_provider_list_edit_area                = $("#business_provider_list_edit_area"),               //服务区域
+    business_provider_list_edit_bankcode            = $("#business_provider_list_edit_bankcode"),           //银行卡号
+    business_provider_list_edit_bankuser            = $("#business_provider_list_edit_bankuser"),           //开户人
+    business_provider_list_edit_bankname            = $("#business_provider_list_edit_bankname"),           //开户行
+    business_provider_list_edit_birt                = $("#business_provider_list_edit_birt"),               //生日
+    business_provider_list_edit_card                = $("#business_provider_list_edit_card"),               //身份证号
+    business_provider_list_edit_text                = $("#business_provider_list_edit_text"),               //备注信息
+    //查看
+    business_provider_show_box                      = $("#business_provider_show_box"),                     //查看盒子
+    business_provider_list_show_table0              = $("#business_provider_list_show_table0"),             // 
+    business_provider_list_show_table1              = $("#business_provider_list_show_table1"),             //
+    business_provider_list_show_table2              = $("#business_provider_list_show_table2"),             //
+    business_provider_list_show_table3              = $("#business_provider_list_show_table3"),             //
+    business_provider_list_show_table4              = $("#business_provider_list_show_table4"),             //
+    //放弃
+    business_provider_list_dele_box                 = $("#business_provider_list_dele_box"),                //放弃盒子
+    business_provider_list_dele_submit              = $("#business_provider_list_dele_submit"),             //放弃提交
     //添加客户
     business_provider_list_add_customer_box         = $("#business_provider_list_add_customer_box"),        //客户盒子
     business_provider_list_add_customer_submit      = $("#business_provider_list_add_customer_submit"),     //客户提交
@@ -382,27 +495,18 @@ $(function(){
     business_provider_list_add_customer_rivalnumb   = $("#business_provider_list_add_customer_rivalnumb"),  //对手数量
     business_provider_list_add_customer_rivalstep   = $("#business_provider_list_add_customer_rivalstep"),  //对手进展
     business_provider_list_add_customer_text        = $("#business_provider_list_add_customer_text"),       //备注信息
-    //日志查看
-    business_provider_list_log_show_box             = $("#business_provider_list_log_show_box"),
-    //日志添加
-
-    //查看
-    business_provider_show_box                      = $("#business_provider_show_box"),                     //查看盒子
-    //修改
-    business_provider_list_edit_box                 = $("#business_provider_list_edit_box"),                //修改盒子
-    business_provider_list_edit_submit              = $("#business_provider_list_edit_submit"),             //修改提交
-    business_provider_list_edit_type                = $("#business_provider_list_edit_type"),               //培训类型
-    //删除
-    business_provider_list_dele_box                 = $("#business_provider_list_dele_box"),                //删除盒子
-    business_provider_list_dele_submit              = $("#business_provider_list_dele_submit");             //删除提交
-
+    //跟踪日志
+    business_provider_list_log_box                  = $("#business_provider_list_log_box"),                 //日志盒子
+    business_provider_list_log_submit               = $("#business_provider_list_log_submit"),              //日志提交
+    a;
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
 
         //本地接口
         var business_provider_list_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
-            modal_show : LOCAL + "Test/Business/provider_edit.json"                 //修改盒子
+            modal_show : LOCAL + "Test/Business/provider_edit.json",                //修改盒子
+            topic      : LOCAL + "Test/Business/provider_topic.json",               //跟踪日志
         }
 
     } else if ( window.STATE == "route" ){
@@ -410,7 +514,8 @@ $(function(){
         //远程接口
         var business_provider_list_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
-            modal_show : LOCAL + "Test/Business/provider_edit.json"                 //修改盒子
+            modal_show : LOCAL + "Test/Business/provider_edit.json",                //修改盒子
+            topic      : LOCAL + "Test/Business/provider_topic.json",               //跟踪日志
         }
 
     }
@@ -445,30 +550,34 @@ $(function(){
                 {name:"text8",  label:"公司名称",    width:150},
                 {name:"text5",  label:"工作性质",    width:100},
                 {name:"text5",  label:"级别",        width:100},
+                {name:"text1",  label:"剩余回访天数",width:100},
                 {name:"log",    label:"跟踪日志",    width:80,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            var temp = `
-                                <a class="business_provider_list_log_show_btn" rowIndex="${cell.rowIndex}">查看</a>
-                                <a class="business_provider_list_log_add_btn" rowIndex="${cell.rowIndex}">添加</a>
-                            `;
-                           return temp;
+                            return `<a class="business_provider_list_log_btn" rowIndex="${cell.rowIndex}">跟踪日志</a>`;
                         }
                     }
                 },
-                {name:"text1",  label:"剩余回访天数",width:100},
-                {name:"name",   label:"操作",width:150,html:true,
+                {name:"name",   label:"添加客户",width:80,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            return `<a class="business_provider_list_add_customer_btn"  rowIndex="${cell.rowIndex}" dataValue="${dataValue}">添加客户</a>`;
+                        }
+                    }
+                },
+                {name:"operate",  label:"操作",width:150,
+                    html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
                             return `
-                            <a class="business_provider_list_add_customer_btn"  rowIndex="${cell.rowIndex}" dataValue="${dataValue}">添加客户</a>
                             <a class="business_provider_list_edit_btn" rowIndex="${cell.rowIndex}">修改</a>
                             <a class="business_provider_list_dele_btn" rowIndex="${cell.rowIndex}">放弃</a>
                             `;
                         }
                     }
-                }
+                }                
             ],
             remote : function(){
                 return {
@@ -483,15 +592,15 @@ $(function(){
     //变量声明-----------------------------------------------------------------------------------------------
     var
     business_provider_list_datagrid_obj     = business_provider_list_datagrid.data("zui.datagrid"), //表格对象
-    business_provider_list_log_show_btn     = ".business_provider_list_log_show_btn",               //日志查看
-    business_provider_list_log_add_btn      = ".business_provider_list_log_add_btn",                //日志添加
-    business_provider_list_add_customer_btn = ".business_provider_list_add_customer_btn",           //添加客户
     business_provider_list_show_btn         = ".business_provider_list_show_btn",                   //查看按钮
     business_provider_list_edit_btn         = ".business_provider_list_edit_btn",                   //修改按钮
-    business_provider_list_dele_btn         = ".business_provider_list_dele_btn";                   //放弃按钮
+    business_provider_list_dele_btn         = ".business_provider_list_dele_btn",                   //放弃按钮
+    business_provider_list_log_btn          = ".business_provider_list_log_btn",                    //跟踪日志
+    business_provider_list_add_customer_btn = ".business_provider_list_add_customer_btn";           //添加客户    
 
     //时间组件-----------------------------------------------------------------------------------------------
     business_provider_list_add_birt.datetimepicker(option_date);
+    business_provider_list_edit_birt.datetimepicker(option_date);
     business_provider_list_add_customer_housedate1.datetimepicker(option_date);
     business_provider_list_add_customer_housedate2.datetimepicker(option_date);
 
@@ -547,6 +656,285 @@ $(function(){
             }
         });
     });
+ 
+    //修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",business_provider_list_edit_btn,function(){
+  
+        //数据ID
+        var data_id    = zui_datagrid_get_id($(this).attr("rowIndex"));
+        var data_state = $(this).attr("state");
+
+        //远程提交
+        $.ajax({
+            url     : business_provider_list_api.modal_show,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //数据赋值
+                    var data = data.data;
+                    business_provider_list_edit_user.val(     data.user     );
+                    business_provider_list_edit_comp.val(     data.comp     );
+                    business_provider_list_edit_tel1.val(     data.tel1     );
+                    business_provider_list_edit_tel2.val(     data.tel2     );
+                    business_provider_list_edit_level.val(    data.level    );
+                    business_provider_list_edit_natu.val(     data.natu     );
+                    business_provider_list_edit_area.val(     data.area     );
+                    business_provider_list_edit_bankcode.val( data.bankcode );
+                    business_provider_list_edit_bankuser.val( data.bankuser );
+                    business_provider_list_edit_bankname.val( data.bankname );
+                    business_provider_list_edit_birt.val(     data.birt     );
+                    business_provider_list_edit_card.val(     data.card     );
+                    business_provider_list_edit_text.val(     data.text     );
+
+                    //其他操作
+                    business_provider_list_edit_submit.attr("dataId",data_id);  //数据ID传值
+                    business_provider_list_edit_box.modal("show");              //盒子显示
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    //修改提交
+    business_provider_list_edit_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id      : data_id,
+                user    : business_provider_list_edit_user.val(),
+                comp    : business_provider_list_edit_comp.val(),
+                tel1    : business_provider_list_edit_tel1.val(),
+                tel2    : business_provider_list_edit_tel2.val(),
+                level   : business_provider_list_edit_level.val(),
+                natu    : business_provider_list_edit_natu.val(),
+                area    : business_provider_list_edit_area.val(),
+                bankcode: business_provider_list_edit_bankcode.val(),
+                bankuser: business_provider_list_edit_bankuser.val(),
+                bankname: business_provider_list_edit_bankname.val(),
+                birt    : business_provider_list_edit_birt.val(),
+                card    : business_provider_list_edit_card.val(),
+                text    : business_provider_list_edit_text.val(),
+             },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(business_provider_list_datagrid_obj,business_provider_list_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    
+    //放弃按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",business_provider_list_dele_btn,function(){
+
+        //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //其他操作
+        business_provider_list_dele_submit.attr("dataId",data_id);                                //ID传值
+        business_provider_list_dele_box.modal("show");                                            //面板显示
+
+    });
+    //放弃提交
+    business_provider_list_dele_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(business_provider_list_datagrid_obj,business_provider_list_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //查看按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",business_provider_list_show_btn,function(){ 
+
+        //数据ID
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //远程提交
+        $.ajax({
+            url     : business_provider_list_api.modal_show,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //查看模板
+                    var data = data.data;
+                    var temp = `
+                        <tr><td style="width:100px;">姓名</td><td>${data.user}</td></tr>
+                        <tr><td>公司名称  </td><td>${data.comp}     </td></tr>
+                        <tr><td>手机1     </td><td>${data.tel1}     </td></tr>
+                        <tr><td>手机2     </td><td>${data.tel2}     </td></tr>
+                        <tr><td>级别      </td><td>${data.levelname}</td></tr>
+                        <tr><td>工作性质  </td><td>${data.natuname} </td></tr>
+                        <tr><td>服务区域  </td><td>${data.area}     </td></tr>
+                        <tr><td>银行卡号  </td><td>${data.bankcode} </td></tr>
+                        <tr><td>开户人    </td><td>${data.bankuser} </td></tr>
+                        <tr><td>开户行    </td><td>${data.bankname} </td></tr>
+                        <tr><td>生日      </td><td>${data.birt}     </td></tr>
+                        <tr><td>身份证号  </td><td>${data.card}     </td></tr>
+                        <tr><td>备注信息  </td><td>${data.text}     </td></tr>
+                    `;
+                    business_provider_list_show_table0.find("tbody").html(temp);            //模板填充
+                    business_provider_show_box.modal("show");                               //盒子显示
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+ // business_provider_show_box.modal("show");
+
+
+
+
+//信息员查看-表格切换----------------------------------------------------------------------------------------
+//数据配置-客户记录
+    var dataSource1 = {
+        cols   : [
+            {name:"id",     label:"ID",         width:49 },
+            {name:"text4",  label:"项目编号",   width:80 },
+            {name:"text8",  label:"项目名称",   width:130},
+            {name:"name",   label:"联系人",     width:80 },
+            {name:"tel",    label:"联系手机",   width:100},
+            {name:"text2",  label:"面积",       width:80 },
+            {name:"text8",  label:"项目地址",   width:130},
+            {name:"name",   label:"业务员",     width:80 },
+            {name:"name",   label:"设计师",     width:80 },
+            {name:"text1",  label:"流程状态",   width:80 },
+        ],
+        remote : function(){
+            return {
+                url     : business_provider_list_api.datagrid,
+                type    : "POST",
+                dataType: "json",
+            }
+        }
+    }
+//数据配置-信息费记录
+    var dataSource2 = {
+        cols   : [
+            {name:"id",      label:"ID",      width:49 },
+            {name:"text4",   label:"项目编号",width:80 },
+            {name:"name",    label:"客户名称",width:80 },
+            {name:"name",    label:"业务员",  width:80 },
+            {name:"name",    label:"设计师",  width:80 },
+            {name:"date",    label:"申请时间",width:100},
+            {name:"username",label:"申请金额",width:80 },
+            {name:"state",   label:"申请状态",width:80 },
+        ],
+        remote : function(){
+            return {
+                url     : business_provider_list_api.datagrid,
+                type    : "POST",
+                dataType: "json",
+            }
+        }
+    }
+
+//数据配置-提成记录
+    var dataSource3 = {
+        cols   : [
+            {name:"id",      label:"ID",        width:49 },
+            {name:"text4",   label:"项目编号",  width:80 },
+            {name:"text8",   label:"项目名称",  width:130},
+            {name:"name",    label:"业务员",    width:80 },
+            {name:"name",    label:"设计师",    width:80 },
+            {name:"text4",   label:"合同总金额",width:90 },
+            {name:"date",    label:"申请时间",  width:100},
+            {name:"state",   label:"申请提点",  width:80 },
+            {name:"username",label:"应发提成",  width:80 },
+            {name:"username",label:"实发提成",  width:80 },
+            {name:"state",   label:"申请状态",  width:80 },
+
+        ],
+        remote : function(){
+            return {
+                url     : business_provider_list_api.datagrid,
+                type    : "POST",
+                dataType: "json",
+            }
+        }
+    }
+
+//数据配置-过程记录
+    var dataSource4 = {
+        cols   : [
+            {name:"id",     label:"ID",        width:49 },
+            {name:"name",   label:"操作人",    width:80 },
+            {name:"date",   label:"操作时间",  width:100},
+            {name:"tex10",   label:"过程说明", width:200},
+        ],
+        remote : function(){
+            return {
+                url     : business_provider_list_api.datagrid,
+                type    : "POST",
+                dataType: "json",
+            }
+        }
+    }
+
+    for(var i=1;i<5;i++){
+        var dataSource = dataSource1;
+        switch(i){
+            case 1:dataSource=dataSource1;break;
+            case 2:dataSource=dataSource2;break;
+            case 3:dataSource=dataSource3;break;
+            case 4:dataSource=dataSource4;break;
+        }
+        $("#business_provider_list_show_table"+i).datagrid({
+            height      : zui_datagrid_height(business_provider_list_datagrid),
+            sortable    : false,
+            cache       : false,
+            showRowIndex: true,
+            configs     : {
+                R0:{className:"text-center"},
+                C1:{className:"cell-hidden"}
+            },
+            states      : {
+                pager           : {
+                    page        : 1,
+                    recPerPage  : window.REC_PER_PAGE,
+                }
+            },
+            dataSource : dataSource
+        });
+        
+    }
+
 
     //添加客户按钮----------------------------------------------------------------------------------------------
     $(document).on("click",business_provider_list_add_customer_btn,function(){
@@ -603,90 +991,147 @@ $(function(){
     });
 
 
-    //日志查看按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",business_provider_list_log_show_btn,function(){
+    //跟踪日志按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",business_provider_list_log_btn,function(){
         common_form_reset();
-        business_provider_list_log_show_box.modal("show");
+        common_topic_answer_reset();
+        business_provider_list_log_box.modal("show");
     });
-    //日志查看提交
-    // business_provider_list_log_show_submit.click(function(){
+    //跟踪日志提交
+    business_provider_list_log_submit.click(function(){
  
-    //     //远程提交
-    //     $.ajax({
-    //         url     : API.test_response,
-    //         type    : "post",
-    //         dataType: "json",
-    //         data    : {
-    //             user    : business_provider_list_add_user.val(),
-    //             comp    : business_provider_list_add_comp.val(),
-    //             tel1    : business_provider_list_add_tel1.val(),
-    //             tel2    : business_provider_list_add_tel2.val(),
-    //             level   : business_provider_list_add_level.val(),
-    //             natu    : business_provider_list_add_natu.val(),
-    //             area    : business_provider_list_add_area.val(),
-    //             bankcode: business_provider_list_add_bankcode.val(),
-    //             bankuser: business_provider_list_add_bankuser.val(),
-    //             bankname: business_provider_list_add_bankname.val(),
-    //             birt    : business_provider_list_add_birt.val(),
-    //             card    : business_provider_list_add_card.val(),
-    //             text    : business_provider_list_add_text.val(),
-    //         },
-    //         success : function(data){
-    //             if( data.status>0 ){
-    //                 um_tip(data.message);
-    //                 zui_datagrid_reset(business_provider_list_datagrid_obj,business_provider_list_api.datagrid);
-    //             } else {
-    //                 um_tip(data.message,"1500","text-danger");
-    //             }
-    //         }
-    //     });
-    // });
-
-    //修改按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",business_provider_list_edit_btn,function(){
-  
-        //数据ID
-        var data_id    = zui_datagrid_get_id($(this).attr("rowIndex"));
-        var data_state = $(this).attr("state");
-
         //远程提交
         $.ajax({
             url     : API.test_response,
             type    : "post",
             dataType: "json",
-            data    : { id:data_id },
+            data    : {
+                user    : business_provider_list_add_user.val(),
+                comp    : business_provider_list_add_comp.val(),
+                tel1    : business_provider_list_add_tel1.val(),
+                tel2    : business_provider_list_add_tel2.val(),
+                level   : business_provider_list_add_level.val(),
+                natu    : business_provider_list_add_natu.val(),
+                area    : business_provider_list_add_area.val(),
+                bankcode: business_provider_list_add_bankcode.val(),
+                bankuser: business_provider_list_add_bankuser.val(),
+                bankname: business_provider_list_add_bankname.val(),
+                birt    : business_provider_list_add_birt.val(),
+                card    : business_provider_list_add_card.val(),
+                text    : business_provider_list_add_text.val(),
+            },
             success : function(data){
                 if( data.status>0 ){
-
-                    //数据赋值
-                    business_provider_list_edit_type.val( data.message );
-
-                    //其他操作
-                    business_provider_list_edit_submit.attr("dataId",data_id);  //数据ID传值
-                    business_provider_list_edit_box.modal("show");              //盒子显示
-
+                    um_tip(data.message);
+                    zui_datagrid_reset(business_provider_list_datagrid_obj,business_provider_list_api.datagrid);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
             }
         });
-
     });
-    //修改提交
-    business_provider_list_edit_submit.click(function(){
 
-        //数据ID
-        var data_id = $(this).attr("dataId");
 
+    $.ajax({
+        url     : business_provider_list_api.topic,
+        type    : "post",
+        dataType: "json",        
+        data    : {},
+        success : function(data){
+
+            if( data.status>0 ){
+
+                //变量赋值
+                var data = data.data;
+                var temp = "";
+
+                //一级话题
+                for(var i=0;i<data.length;i++){
+                    temp+=`
+                        <div class="comments-list">
+                            <div class="comment">
+                                <div class="avatar text-center">
+                                    <i class="icon-user icon-2x text-primary"></i>
+                                    <div class="small text-primary">${data[i].user}</div>
+                                </div>
+                                <div class="content">
+                                    <div class="pull-right text-muted">${data[i].date}</div>
+                                    <div class="text">${data[i].text}</div>
+                                    <div class="actions common_topic_imgs_wrap">
+                                        <a class="common_topic_imgs_btn">图片[${data[i].imgs.length}]</a>
+                                        <div class="common_topic_imgs_box hide">`;
+
+                    //图片循环
+                    for(var m=0;m<data[i].imgs.length;m++){
+                        temp+=`<a class="ov1" target="_blank" href=${data[i].imgs[m].path}>${data[i].imgs[m].name}</a>`;
+                    }
+
+                    //标签收尾
+                    temp+=`</div></div></div>`;
+
+                    //评论嵌套
+                    for(var j=0;j<data[i].childTopic.length;j++){
+                        temp+=`
+                            <div class="comments-list">
+                                <div class="comment">
+                                    <div class="content">
+                                        <div class="pull-right text-muted">10-20 11:00</div>
+                                        <div><b>${data[i].childTopic[j].user}</b></div>
+                                        <div class="text">${data[i].childTopic[j].text}</div>
+                                    </div>
+                                </div>
+                            </div>`;
+                    }
+
+                    //标签收尾
+                    temp+=`
+                    <div class="comments-list comments-list-for-answer">
+                        <div class="actions">
+                            <a class="common_topic_answer_btn">回复</a>
+                            <div class="hide common_topic_answer_text_wrap">
+                                <textarea class="form-control common_topic_answer_text"></textarea>
+                                <button type="button" class="pull-right btn btn-mini btn-primary common_topic_answer_submit" data-tid="${data[i].id}" style="margin-top:5px;">提交</button>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div></div>`;
+                }
+
+                //文本推进
+                business_provider_list_log_box.find(".comments").html(temp);
+
+            } else {
+                um_tip(data.message,"1500","text-danger");
+            }
+        }
+    });
+
+    //图片查看
+    $(document).on("click",".common_topic_imgs_btn",function(){
+        $(this).next().is(":visible") ? $(this).next().hide() : $(this).next().show();
+    });
+  
+    //回复点击
+    $(document).on("click",".common_topic_answer_btn",function(){
+        common_topic_answer_reset();
+        $(this).next(".common_topic_answer_text_wrap").show();
+    });
+    //回复提交
+    $(document).on("click",".common_topic_answer_submit",function(){
+
+        //变量声明
+        var tid = $(this).attr("data-tid");
+        var text= $(this).parent().find(".common_topic_answer_text").val();
         //远程提交
         $.ajax({
             url     : API.test_response,
             type    : "post",
             dataType: "json",
             data    : { 
-                id      : data_id,
-                type    : business_provider_list_edit_type.val(),
-             },
+                tid : tid,
+                text: text
+            },
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
@@ -696,95 +1141,14 @@ $(function(){
                 }
             }
         });
-
     });
-    
-    //删除按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",business_provider_list_dele_btn,function(){
+    //回复重置
+    function common_topic_answer_reset(){
+        $(".common_topic_imgs_box").hide();
+        $(".common_topic_answer_text_wrap").hide();
+        $(".common_topic_answer_text").val("");
+        $(".common_topic_answer_submit").attr("tid","");
+    }
 
-        //数据ID
-        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
-
-        //其他操作
-        business_provider_list_dele_submit.attr("dataId",data_id);                                //ID传值
-        business_provider_list_dele_box.modal("show");                                            //面板显示
-
-    });
-    //删除提交
-    business_provider_list_dele_submit.click(function(){
-
-        //数据ID
-        var data_id = $(this).attr("dataId");
-
-        //远程提交
-        $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : { id:data_id },
-            success : function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    zui_datagrid_reset(business_provider_list_datagrid_obj,business_provider_list_api.datagrid);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-
-    });
-
-    //查看按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",business_provider_list_show_btn,function(){ 
-
-        //数据ID
-        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
-
-        //远程提交
-        $.ajax({
-            url     : business_provider_list_api.modal_show,
-            type    : "post",
-            dataType: "json",
-            data    : { id:data_id },
-            success : function(data){
-                if( data.status>0 ){
-
-                    //查看模板
-                    var data = data.data;
-                    var temp = `
-                    <div class="container">
-                        <table class="table table-bordered">
-                            <thead><tr><th colspan="2">基本信息</th></tr></thead>
-                            <tbody>
-                                <tr><td style="width:100px;">姓名</td><td>${data.user}</td></tr>
-                                <tr><td>公司名称  </td><td>${data.comp}     </td></tr>
-                                <tr><td>手机1     </td><td>${data.tel1}     </td></tr>
-                                <tr><td>手机2     </td><td>${data.tel2}     </td></tr>
-                                <tr><td>级别      </td><td>${data.levelname}</td></tr>
-                                <tr><td>工作性质  </td><td>${data.natuname} </td></tr>
-                                <tr><td>服务区域  </td><td>${data.area}     </td></tr>
-                                <tr><td>银行卡号  </td><td>${data.bankcode} </td></tr>
-                                <tr><td>开户人    </td><td>${data.bankuser} </td></tr>
-                                <tr><td>开户行    </td><td>${data.bankname} </td></tr>
-                                <tr><td>生日      </td><td>${data.birt}     </td></tr>
-                                <tr><td>身份证号  </td><td>${data.card}     </td></tr>
-                                <tr><td>备注信息  </td><td>${data.text}     </td></tr>
-                            </tbody>
-                        </table>
-
-                        <div>客户记录 信息费记录 提成记录 过程记录</div>
-                        
-                    </div>
-                    `;
-                    business_provider_show_box.find(".modal-body").html(temp);              //模板填充
-                    business_provider_show_box.modal("show");                               //盒子显示
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-
-    });
-    
 });//预加载结尾
 </script>
