@@ -566,27 +566,42 @@ $(function(){
     //批量转移按钮-----------------------------------------------------------------------------------------------
     business_provider_admin_turn_btn.click(function(){
         
-        //条数限制
-        var data_arr = [1,2,3,4,5];
-        if( data_arr.length<1 ){
-            um_tip("至少选择一条数据","1000","text-danger");
-            return;
-        }
-
         //数据复原
         common_form_reset();
 
-        //ID赋值
-        business_provider_admin_turn_submit.attr("dataArr",data_arr.join(","));
+        //批量取值
+        var data_arr = business_provider_admin_datagrid_obj.getCheckItems().filter(function(e){return e});
+        if( data_arr.length>1 ){
+            
+            //ID获取
+            var data_id = [];
+            for(var i=0;i<data_arr.length;i++){
+                data_id.push(data_arr[i].id);
+            }
 
-        //面板显示
-        business_provider_admin_turn_box.modal("show");
+            //姓名获取
+            var data_user = [];
+            for(var x=0;x<data_id.length;x++){
+                data_user.push(data_arr[x].name);
+            }
+
+            //数据赋值
+            business_provider_admin_turn_provider.val(data_user.join(","));
+            business_provider_admin_turn_submit.attr("dataId",data_id.join(","));
+
+            //面板显示
+            business_provider_admin_turn_box.modal("show");
+
+        } else {
+            um_tip("至少选择一条数据","1000","text-danger");
+        }
+
     });
     //批量转移提交
     business_provider_admin_turn_submit.click(function(){
 
         //ID取值
-        var data_arr = $(this).attr("dataArr");
+        var data_id = $(this).attr("dataId");
 
         //远程提交
         $.ajax({
@@ -594,8 +609,7 @@ $(function(){
             type    : "post",
             dataType: "json",
             data    : { 
-                id      : data_arr,
-                provider: business_provider_admin_turn_provider.val(),
+                id      : data_id,
                 salesman: business_provider_admin_turn_salesman.val(),
                 checkbox: business_provider_admin_turn_checkbox.val(),
             },
@@ -613,28 +627,36 @@ $(function(){
 
     //批量放弃按钮-----------------------------------------------------------------------------------------------
     business_provider_admin_aban_btn.click(function(){
-        
-        //条数限制
-        var data_arr = [1,2,3,4,5];
-        if( data_arr.length<1 ){
-            um_tip("至少选择一条数据","1000","text-danger");
-            return;
-        }
 
         //数据复原
         common_form_reset();
 
-        //ID赋值
-        business_provider_admin_aban_submit.attr("dataArr",data_arr.join(","));
+        //批量取值
+        var data_arr = business_provider_admin_datagrid_obj.getCheckItems().filter(function(e){return e});
+        if( data_arr.length>1 ){
+            
+            //ID获取
+            var data_id = [];
+            for(var i=0;i<data_arr.length;i++){
+                data_id.push(data_arr[i].id);
+            }
 
-        //面板显示
-        business_provider_admin_aban_box.modal("show");
+            //数据赋值
+            business_provider_admin_aban_submit.attr("dataId",data_id.join(","));
+     
+            //面板显示
+            business_provider_admin_aban_box.modal("show");
+
+        } else {
+            um_tip("至少选择一条数据","1000","text-danger");
+        }
+
     });
     //批量放弃提交
     business_provider_admin_aban_submit.click(function(){
 
         //ID取值
-        var data_arr = $(this).attr("dataArr");
+        var data_id = $(this).attr("dataId");
 
         //远程提交
         $.ajax({
@@ -642,7 +664,7 @@ $(function(){
             type    : "post",
             dataType: "json",
             data    : { 
-                id   : data_arr,
+                id   : data_id,
                 type : business_provider_admin_aban_type.val(),
                 text : business_provider_admin_aban_text.val(),
             },
@@ -660,35 +682,43 @@ $(function(){
 
     //批量删除按钮-----------------------------------------------------------------------------------------------
     business_provider_admin_dele_btn.click(function(){
-        
-        //条数限制
-        var data_arr = [1,2,3,4,5];
-        if( data_arr.length<1 ){
-            um_tip("至少选择一条数据","1000","text-danger");
-            return;
-        }
-
+ 
         //数据复原
         common_form_reset();
 
-        //ID赋值
-        business_provider_admin_dele_submit.attr("dataArr",data_arr.join(","));
+        //批量取值
+        var data_arr = business_provider_admin_datagrid_obj.getCheckItems().filter(function(e){return e});
+        if( data_arr.length>1 ){
+            
+            //ID获取
+            var data_id = [];
+            for(var i=0;i<data_arr.length;i++){
+                data_id.push(data_arr[i].id);
+            }
 
-        //面板显示
-        business_provider_admin_dele_box.modal("show");
+            //数据赋值
+            business_provider_admin_dele_submit.attr("dataId",data_id.join(","));
+     
+            //面板显示
+            business_provider_admin_dele_box.modal("show");
+
+        } else {
+            um_tip("至少选择一条数据","1000","text-danger");
+        }
+ 
     });
     //批量删除提交
     business_provider_admin_dele_submit.click(function(){
 
         //ID取值
-        var data_arr = $(this).attr("dataArr");
+        var data_id = $(this).attr("dataId");
 
         //远程提交
         $.ajax({
             url     : API.test_response,
             type    : "post",
             dataType: "json",
-            data    : { id:data_arr },
+            data    : { id:data_id },
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
