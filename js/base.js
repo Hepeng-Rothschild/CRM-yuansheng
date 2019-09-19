@@ -378,7 +378,7 @@ function zui_datagrid_get_id(rowIndex){
  * @param datagrid_obj object 数据表格对象
  * @param datagrid_url string 数据表格访问地址
  */
-function zui_datagrid_reset(datagrid_obj,datagrid_url){
+function zui_datagrid_reset(datagrid_obj,datagrid_url,checkbox_clear){
 
     //延时调用
     setTimeout(function(){
@@ -392,6 +392,13 @@ function zui_datagrid_reset(datagrid_obj,datagrid_url){
             form[i].reset();
         }
 
+        //表格勾选去除
+        if( checkbox_clear=="clear" ){
+            for(var i=0;i<datagrid_obj.getCheckItems().filter(function(e){return e}).length;i++){
+                datagrid_obj.checkRow(i,false);
+            }
+        }
+        
         //表格刷新
         if( datagrid_obj!=undefined && datagrid_url!=undefined){
             zui_datagrid_render(datagrid_obj,datagrid_url);
