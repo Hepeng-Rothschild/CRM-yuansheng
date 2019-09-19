@@ -3,7 +3,6 @@
     outline:0!important;
     -webkit-tap-highlight-color:transparent;
 }
-input{-webkit-appearance:none;}
 select {
     appearance:none;
     -moz-appearance:none;
