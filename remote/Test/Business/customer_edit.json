@@ -1,0 +1,51 @@
+{
+	"status"  : 1,
+	"data" 	  : {
+		"case"    		: "刘德华",
+		"type"      	: 3,
+		"typename" 	 	: "项目类型",
+		"decoarea"  	: "100",
+		"state"     	: 2,
+		"statename"	 	: "已定",
+		"decoaddr" 	 	: "广州省深圳市宝安区光华路960号",
+		"user1" 		: "张学友",
+		"tel1" 	 		: "18332367556",
+		"user2" 		: "李连杰",
+		"tel2" 			: "15684575425",
+		"addr" 			: "广州省深圳市宝安区",
+		"tel0" 			: "18332367556",
+		"provider" 		: 3,
+		"providername"  : "郑少秋",		
+		"housetype" 	: 3,
+		"housetypename" : "局部改造",
+		"housetodo" 	: 3,
+		"housetodoname" : "自用",
+		"houseserv" 	: 3,
+		"houseservname" : "设计+施工",
+		"housedate1"	: "2019-10-10",
+		"housedate2" 	: "2019-10-10",
+		"rivalnumb" 	: 100,
+		"rivalstep" 	: 3,
+		"rivalstepname" : "效果图",
+		"text"  		: "这里是备注信息",
+
+		"---------"     : "客户查看-项目进度",
+		"prog" 			: [
+			{"state":"1","name":"业务阶段","date":"2019-01:10 10:00:00"},
+			{"state":"1","name":"设计阶段","date":"2019-02:10 10:00:00"},
+			{"state":"1","name":"合同签单","date":"2019-03:10 10:00:00"},
+			{"state":"1","name":"在建施工","date":"2019-04:10 10:00:00"},
+			{"state":"0","name":"保修期  ","date":"2019-05:10 10:00:00"},
+			{"state":"0","name":"保修期外","date":"2019-06:10 10:00:00"}
+		],
+
+		"---------"     : "客户查看-负责人信息",
+		"salesman" 		: "李连杰",
+		"designer" 		: "张栋梁",
+		"sketcher"  	: "周润发",
+		"draftsman" 	: "林依轮",
+		"budgetor" 		: "陈凯歌",
+		"supervision" 	: "杨志刚",
+		"manager" 	    : "杨志刚"
+	}
+}

@@ -38,12 +38,11 @@
                         <option value="10">已放弃</option>
                     </select>
                 </label>
-                <div class="im-label" id="business_customer_tracked_tool_date"><!--JS推进--></div>
                 <label><button class="btn btn-primary" id="business_customer_tracked_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
             </div>
             <div class="tool-deal">
-                <label><button class="btn btn-primary" id="business_customer_tracked_add_customer_btn"> <i class="icon icon-plus"></i> 添加客户</button></label>
+                <label><button class="btn btn-primary" id="business_customer_tracked_add_btn"> <i class="icon icon-plus"></i> 添加客户</button></label>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -55,7 +54,7 @@
     <!-- datagrid -->
 
     <!-- 添加客户盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="business_customer_tracked_add_customer_box">
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_customer_tracked_add_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -65,53 +64,53 @@
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="business_customer_tracked_add_customer_case">项目名称</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_customer_case"></div>
-                            <label class="col-sm-2 required" for="business_customer_tracked_add_customer_type">项目类型</label>
-                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_customer_type"><!-- JS推进 --></select></div>
+                            <label class="col-sm-2 required" for="business_customer_tracked_add_case">项目名称</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_case"></div>
+                            <label class="col-sm-2 required" for="business_customer_tracked_add_type">项目类型</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_type"><!-- JS推进 --></select></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="business_customer_tracked_add_customer_decoarea">装修面积</label>
+                            <label class="col-sm-2 required" for="business_customer_tracked_add_decoarea">装修面积</label>
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    <input type="number" class="form-control" id="business_customer_tracked_add_customer_decoarea">
+                                    <input type="number" class="form-control" id="business_customer_tracked_add_decoarea">
                                     <span class="input-group-addon">㎡</span>
                                 </div>
                             </div>
-                            <label class="col-sm-2 required" for="business_customer_tracked_add_customer_state">房源状态</label>
-                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_customer_state">
+                            <label class="col-sm-2 required" for="business_customer_tracked_add_state">房源状态</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_state">
                                 <option value="">--请选择--</option>
                                 <option value="1">未定</option>
                                 <option value="2">已定</option>
                             </select></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="business_customer_tracked_add_customer_decoaddr">装修地址</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="business_customer_tracked_add_customer_decoaddr"></div>
+                            <label class="col-sm-2 required" for="business_customer_tracked_add_decoaddr">装修地址</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="business_customer_tracked_add_decoaddr"></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="business_customer_tracked_add_customer_user1">联系人1</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_customer_user1"></div>
-                            <label class="col-sm-2 required" for="business_customer_tracked_add_customer_tel1">手机1</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_customer_tel1"></div>
+                            <label class="col-sm-2 required" for="business_customer_tracked_add_user1">联系人1</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_user1"></div>
+                            <label class="col-sm-2 required" for="business_customer_tracked_add_tel1">手机1</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_tel1"></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_user2">联系人2</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_customer_user2"></div>
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_tel2">手机2</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_customer_tel2"></div>
+                            <label class="col-sm-2" for="business_customer_tracked_add_user2">联系人2</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_user2"></div>
+                            <label class="col-sm-2" for="business_customer_tracked_add_tel2">手机2</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_tel2"></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_addr">办公地址</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_customer_addr"></div>
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_tel0">办公电话</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_customer_tel0"></div>
+                            <label class="col-sm-2" for="business_customer_tracked_add_addr">办公地址</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_addr"></div>
+                            <label class="col-sm-2" for="business_customer_tracked_add_tel0">办公电话</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_tel0"></div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2">信息员</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_customer_provider" readonly></div>
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_housetype">房屋类型</label>
-                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_customer_housetype">
+                            <div class="col-sm-3"><input type="text" class="form-control common_salesman_btn" id="business_customer_tracked_add_provider" readonly></div>
+                            <label class="col-sm-2" for="business_customer_tracked_add_housetype">房屋类型</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_housetype">
                                 <option value="">--请选择--</option>
                                 <option value="1">毛坯</option>
                                 <option value="2">旧房改造</option>
@@ -120,16 +119,16 @@
                             </select></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_housetodo">装修意向</label>
-                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_customer_housetodo">
+                            <label class="col-sm-2" for="business_customer_tracked_add_housetodo">装修意向</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_housetodo">
                                 <option value="">--请选择--</option>
                                 <option value="1">精装</option>
                                 <option value="2">简装</option>
                                 <option value="3">自用</option>
                                 <option value="4">出租</option>
                             </select></div>
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_houseserv">装修服务</label>
-                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_customer_houseserv">
+                            <label class="col-sm-2" for="business_customer_tracked_add_houseserv">装修服务</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_houseserv">
                                 <option value="">--请选择--</option>
                                 <option value="1">设计</option>
                                 <option value="2">施工</option>
@@ -138,21 +137,21 @@
                             </select></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_housedate1">交房日期</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_customer_housedate1" readonly></div>
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_housedate2">期望完工</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_customer_housedate2" readonly></div>
+                            <label class="col-sm-2" for="business_customer_tracked_add_housedate1">交房日期</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_housedate1" readonly></div>
+                            <label class="col-sm-2" for="business_customer_tracked_add_housedate2">期望完工</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_add_housedate2" readonly></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_rivalnumb">对手数量</label>
+                            <label class="col-sm-2" for="business_customer_tracked_add_rivalnumb">对手数量</label>
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    <input type="number" class="form-control" id="business_customer_tracked_add_customer_rivalnumb">
+                                    <input type="number" class="form-control" id="business_customer_tracked_add_rivalnumb">
                                     <span class="input-group-addon">个</span>
                                 </div>
                             </div>
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_rivalstep">对手进展</label>
-                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_customer_rivalstep">
+                            <label class="col-sm-2" for="business_customer_tracked_add_rivalstep">对手进展</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_add_rivalstep">
                                 <option value="">--请选择--</option>
                                 <option value="1">无</option>
                                 <option value="2">方案</option>
@@ -162,82 +161,130 @@
                             </select></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2" for="business_customer_tracked_add_customer_text">备注信息</label>
-                            <div class="col-sm-8"><textarea class="form-control" id="business_customer_tracked_add_customer_text"></textarea></div>
+                            <label class="col-sm-2" for="business_customer_tracked_add_text">备注信息</label>
+                            <div class="col-sm-8"><textarea class="form-control" id="business_customer_tracked_add_text"></textarea></div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="business_customer_tracked_add_customer_submit">提交</button>
+                    <button type="button" class="btn btn-primary" id="business_customer_tracked_add_submit">提交</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- business_customer_tracked_add_customer_box -->
+    <!-- business_customer_tracked_add_box -->
 
-    <!-- 修改信息员盒子 -->
+    <!-- 修改客户盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="business_customer_tracked_edit_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">修改信息员</h4>
+                    <h4 class="modal-title">修改客户</h4>
                 </div>
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_user">姓名</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_user"></div>
+                            <label class="col-sm-2 required" for="business_customer_tracked_edit_case">项目名称</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_case"></div>
+                            <label class="col-sm-2 required" for="business_customer_tracked_edit_type">项目类型</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_edit_type"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="business_customer_tracked_edit_decoarea">装修面积</label>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="business_customer_tracked_edit_decoarea">
+                                    <span class="input-group-addon">㎡</span>
+                                </div>
+                            </div>
+                            <label class="col-sm-2 required" for="business_customer_tracked_edit_state">房源状态</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_edit_state">
+                                <option value="">--请选择--</option>
+                                <option value="1">未定</option>
+                                <option value="2">已定</option>
+                            </select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="business_customer_tracked_edit_decoaddr">装修地址</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="business_customer_tracked_edit_decoaddr"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="business_customer_tracked_edit_user1">联系人1</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_user1"></div>
                             <label class="col-sm-2 required" for="business_customer_tracked_edit_tel1">手机1</label>
-                            <div class="col-sm-4"><input type="text" class="form-control" id="business_customer_tracked_edit_tel1"></div>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_tel1"></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_comp">公司名称</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_comp"></div>
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_tel2">手机2</label>
-                            <div class="col-sm-4"><input type="text" class="form-control" id="business_customer_tracked_edit_tel2"></div>
+                            <label class="col-sm-2" for="business_customer_tracked_edit_user2">联系人2</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_user2"></div>
+                            <label class="col-sm-2" for="business_customer_tracked_edit_tel2">手机2</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_tel2"></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_level">级别</label>
-                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_edit_level">
-                                <option value="1">A</option>
-                                <option value="2">B</option>
-                                <option value="3">C</option>
-                                <option value="4">D</option>
-                                <option value="5">E</option>
+                            <label class="col-sm-2" for="business_customer_tracked_edit_addr">办公地址</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_addr"></div>
+                            <label class="col-sm-2" for="business_customer_tracked_edit_tel0">办公电话</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_tel0"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">信息员</label>
+                            <div class="col-sm-3"><input type="text" class="form-control common_salesman_btn" id="business_customer_tracked_edit_provider" readonly></div>
+                            <label class="col-sm-2" for="business_customer_tracked_edit_housetype">房屋类型</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_edit_housetype">
+                                <option value="">--请选择--</option>
+                                <option value="1">毛坯</option>
+                                <option value="2">旧房改造</option>
+                                <option value="3">局部改造</option>
+                                <option value="4">其他</option>
                             </select></div>
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_natu">工作性质</label>
-                            <div class="col-sm-4"><select class="form-control" id="business_customer_tracked_edit_natu">
-                                <option value="1">开发商</option>
-                                <option value="2">物业</option>
-                                <option value="3">自由经纪人</option>
-                                <option value="4">租赁</option>
-                                <option value="5">招商</option>
-                                <option value="6">售楼</option>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="business_customer_tracked_edit_housetodo">装修意向</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_edit_housetodo">
+                                <option value="">--请选择--</option>
+                                <option value="1">精装</option>
+                                <option value="2">简装</option>
+                                <option value="3">自用</option>
+                                <option value="4">出租</option>
+                            </select></div>
+                            <label class="col-sm-2" for="business_customer_tracked_edit_houseserv">装修服务</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_edit_houseserv">
+                                <option value="">--请选择--</option>
+                                <option value="1">设计</option>
+                                <option value="2">施工</option>
+                                <option value="3">设计+施工</option>
+                                <option value="4">参与报价</option>
                             </select></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_area">服务区域</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_area"></div>
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_bankcode">银行卡号</label>
-                            <div class="col-sm-4"><input type="text" class="form-control" id="business_customer_tracked_edit_bankcode"></div>
+                            <label class="col-sm-2" for="business_customer_tracked_edit_housedate1">交房日期</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_housedate1" readonly></div>
+                            <label class="col-sm-2" for="business_customer_tracked_edit_housedate2">期望完工</label>
+                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_housedate2" readonly></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_bankuser">开户人</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_bankuser"></div>
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_bankname">开户行</label>
-                            <div class="col-sm-4"><input type="text" class="form-control" id="business_customer_tracked_edit_bankname"></div>
-                        </div>
-                        <div class="form-group require">
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_birt">生日</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" id="business_customer_tracked_edit_birt" readonly></div>
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_card">身份证号</label>
-                            <div class="col-sm-4"><input type="text" class="form-control" id="business_customer_tracked_edit_card"></div>
+                            <label class="col-sm-2" for="business_customer_tracked_edit_rivalnumb">对手数量</label>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="business_customer_tracked_edit_rivalnumb">
+                                    <span class="input-group-addon">个</span>
+                                </div>
+                            </div>
+                            <label class="col-sm-2" for="business_customer_tracked_edit_rivalstep">对手进展</label>
+                            <div class="col-sm-3"><select class="form-control" id="business_customer_tracked_edit_rivalstep">
+                                <option value="">--请选择--</option>
+                                <option value="1">无</option>
+                                <option value="2">方案</option>
+                                <option value="3">效果图</option>
+                                <option value="4">报价</option>
+                                <option value="5">合同</option>
+                            </select></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="business_customer_tracked_edit_text">备注信息</label>
-                            <div class="col-sm-9"><textarea class="form-control" id="business_customer_tracked_edit_text"></textarea></div>
+                            <label class="col-sm-2" for="business_customer_tracked_edit_text">备注信息</label>
+                            <div class="col-sm-8"><textarea class="form-control" id="business_customer_tracked_edit_text"></textarea></div>
                         </div>
                     </form>
                 </div>
@@ -250,47 +297,43 @@
     </div>
     <!-- business_customer_tracked_edit_box -->
 
-    <!-- 放弃信息员盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="business_customer_tracked_dele_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">放弃信息员</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否放弃？</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-danger"  id="business_customer_tracked_dele_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- business_customer_tracked_dele_box -->
-
-    <!-- 信息员查看盒子 -->
+    <!-- 客户查看盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="business_customer_tracked_show_box">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">信息员查看</h4>
+                    <h4 class="modal-title">客户查看</h4>
                 </div>
                 <div class="modal-body modal-scroll">
                     <div class="container">
-                        <!-- 基本信息 -->
-                        <table class="table table-bordered" id="business_customer_tracked_show_table0">
-                            <thead><tr><th colspan="2">基本信息</th></tr></thead>
+
+                        <!-- 项目进度 -->
+                        <table class="table table-bordered" id="business_customer_tracked_show_t_prog">
+                            <thead><tr><th>项目进度</th></tr></thead>
                             <tbody><!-- JS推进 --></tbody>
                         </table>
+
+                        <!-- 项目信息 -->
+                        <table class="table table-bordered" id="business_customer_tracked_show_t_case">
+                            <thead><tr><th colspan="2">项目信息 
+                                <button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
+                            </th></tr></thead>
+                            <tbody><!-- JS推进 --></tbody>
+                        </table>
+
+                        <!-- 负责人信息 -->
+                        <table class="table table-bordered" id="business_customer_tracked_show_t_user">
+                            <thead><tr><th colspan="2">负责人信息 
+                                <button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
+                            </th></tr></thead>
+                            <tbody><!-- JS推进 --></tbody>
+                        </table>
+ 
                         <!-- 切换面板 -->
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-tab="" href="#business_customer_tracked_show_table1">客户记录</a></li>
-                            <li><a data-tab="" href="#business_customer_tracked_show_table2">信息费记录</a></li>
-                            <li><a data-tab="" href="#business_customer_tracked_show_table3">提成记录</a></li>
-                            <li><a data-tab="" href="#business_customer_tracked_show_table4">过程记录</a></li>
+                            <li class="active"><a data-tab="" href="#business_customer_tracked_show_table1">客户附件</a></li>
+                            <li><a data-tab="" href="#business_customer_tracked_show_table2">操作记录</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="datagrid datagrid-striped tab-pane active" id="business_customer_tracked_show_table1">
@@ -301,14 +344,6 @@
                                 <div class="datagrid-container"></div>
                                 <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
                             </div>
-                            <div class="datagrid datagrid-striped tab-pane" id="business_customer_tracked_show_table3">
-                                <div class="datagrid-container"></div>
-                                <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
-                            </div>
-                            <div class="datagrid datagrid-striped tab-pane" id="business_customer_tracked_show_table4">
-                                <div class="datagrid-container"></div>
-                                <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
-                            </div>                            
                         </div>
                     </div>
                 </div>
@@ -316,7 +351,84 @@
         </div>
     </div>
     <!-- business_customer_tracked_show_box -->
- 
+
+    <!-- 放弃客户盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_customer_tracked_aban_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">放弃客户</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="business_customer_tracked_aban_type">放弃理由</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="business_customer_tracked_aban_type">
+                                        <option value="1">有价值</option>
+                                        <option value="2">无价值</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="business_customer_tracked_aban_text">理由详情</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" id="business_customer_tracked_aban_text"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger"  id="business_customer_tracked_aban_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- business_customer_tracked_aban_box --> 
+    
+    <!-- 提交至经理盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_customer_tracked_tomanager_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">提交至经理</h4>
+                </div>
+                <div class="modal-body">
+                    <p>是否提交至经理？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="business_customer_tracked_tomanager_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- business_customer_tracked_tomanager_box -->
+
+    <!-- 转为正跟踪盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_customer_tracked_totrack_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">转为正跟踪</h4>
+                </div>
+                <div class="modal-body">
+                    <p>是否转为正跟踪？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="business_customer_tracked_totrack_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- business_customer_tracked_totrack_box -->
+
     <!-- 日志查看盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="business_customer_tracked_logShow_box">
         <div class="modal-dialog">
@@ -372,85 +484,153 @@
     </div>
     <!-- business_customer_tracked_logAdd_box -->
 
+    <!-- 人员选择盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="business_customer_tracked_salesman_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">人员选择</h4>
+                </div>
+                <div class="modal-body no-padding">
+
+                    <!-- 数据网格 -->
+                    <div class="datagrid datagrid-striped" id="business_customer_tracked_salesman_datagrid">
+
+                        <!-- 工具条组 -->
+                        <div class="tool-group no-padding">
+                            <div class="tool-deal" style="border:none;">
+                                <label>
+                                    <span>姓名：</span>
+                                    <input type="text" class="form-control" id="business_customer_tracked_salesman_user">
+                                </label>
+                                <label>
+                                    <span>部门：</span>
+                                    <select class="form-control" id="business_customer_tracked_salesman_depart"><!-- JS推进 --></select>
+                                </label>
+                                <label><button class="btn btn-primary" id="business_customer_tracked_salesman_search_btn">搜索</button></label>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <!-- tool-group -->
+                        <div class="datagrid-container"></div>
+                        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+                    </div>
+                    <!-- datagrid -->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="business_customer_tracked_salesman_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- business_customer_tracked_salesman_box -->
+
 </div>
 <!-- page-wrapper -->
+
 <script>
 $(function(){
-   
-    //变量声明-----------------------------------------------------------------------------------------------
+
+//变量声明-----------------------------------------------------------------------------------------------
     var 
-    business_customer_tracked                          = $("#business_customer_tracked"),                         //页面ID
-    business_customer_tracked_datagrid                 = $("#business_customer_tracked_datagrid"),                //数据表格
+    business_customer_tracked                   = $("#business_customer_tracked"),                  //页面ID
+    business_customer_tracked_datagrid          = $("#business_customer_tracked_datagrid"),         //数据表格
     //搜索
-    business_customer_tracked_tool_keys                = $("#business_customer_tracked_tool_keys"),               //搜索类别
-    business_customer_tracked_tool_search              = $("#business_customer_tracked_tool_search"),             //搜索字段
-    business_customer_tracked_tool_select1             = $("#business_customer_tracked_tool_select1"),            //下拉选择1
-    business_customer_tracked_search_btn               = $("#business_customer_tracked_search_btn"),              //搜索按钮
+    business_customer_tracked_tool_keys         = $("#business_customer_tracked_tool_keys"),        //搜索类别
+    business_customer_tracked_tool_search       = $("#business_customer_tracked_tool_search"),      //搜索字段
+    business_customer_tracked_tool_select1      = $("#business_customer_tracked_tool_select1"),     //下拉选择1
+    business_customer_tracked_search_btn        = $("#business_customer_tracked_search_btn"),       //搜索按钮
     //添加客户
-    business_customer_tracked_add_customer_btn         = $("#business_customer_tracked_add_customer_btn"),        //添加客户
-    business_customer_tracked_add_customer_box         = $("#business_customer_tracked_add_customer_box"),        //客户盒子
-    business_customer_tracked_add_customer_submit      = $("#business_customer_tracked_add_customer_submit"),     //客户提交
-    business_customer_tracked_add_customer_case        = $("#business_customer_tracked_add_customer_case"),       //项目名称
-    business_customer_tracked_add_customer_type        = $("#business_customer_tracked_add_customer_type"),       //项目类型
-    business_customer_tracked_add_customer_decoarea    = $("#business_customer_tracked_add_customer_decoarea"),   //装修面积
-    business_customer_tracked_add_customer_state       = $("#business_customer_tracked_add_customer_state"),      //房源状态
-    business_customer_tracked_add_customer_decoaddr    = $("#business_customer_tracked_add_customer_decoaddr"),   //装修地址
-    business_customer_tracked_add_customer_user1       = $("#business_customer_tracked_add_customer_user1"),      //装修地址
-    business_customer_tracked_add_customer_tel1        = $("#business_customer_tracked_add_customer_tel1"),       //手机1
-    business_customer_tracked_add_customer_user2       = $("#business_customer_tracked_add_customer_user2"),      //联系人2
-    business_customer_tracked_add_customer_tel2        = $("#business_customer_tracked_add_customer_tel2"),       //手机2
-    business_customer_tracked_add_customer_addr        = $("#business_customer_tracked_add_customer_addr"),       //办公地址
-    business_customer_tracked_add_customer_tel0        = $("#business_customer_tracked_add_customer_tel0"),       //办公电话
-    business_customer_tracked_add_customer_provider    = $("#business_customer_tracked_add_customer_provider"),   //信息员
-    business_customer_tracked_add_customer_housetype   = $("#business_customer_tracked_add_customer_housetype"),  //房屋类型
-    business_customer_tracked_add_customer_housetodo   = $("#business_customer_tracked_add_customer_housetodo"),  //装修意向
-    business_customer_tracked_add_customer_houseserv   = $("#business_customer_tracked_add_customer_houseserv"),  //装修服务
-    business_customer_tracked_add_customer_housedate1  = $("#business_customer_tracked_add_customer_housedate1"), //交房日期
-    business_customer_tracked_add_customer_housedate2  = $("#business_customer_tracked_add_customer_housedate2"), //期望完工
-    business_customer_tracked_add_customer_rivalnumb   = $("#business_customer_tracked_add_customer_rivalnumb"),  //对手数量
-    business_customer_tracked_add_customer_rivalstep   = $("#business_customer_tracked_add_customer_rivalstep"),  //对手进展
-    business_customer_tracked_add_customer_text        = $("#business_customer_tracked_add_customer_text"),       //备注信息
-    //修改信息员
-    business_customer_tracked_edit_box                 = $("#business_customer_tracked_edit_box"),                //修改盒子
-    business_customer_tracked_edit_submit              = $("#business_customer_tracked_edit_submit"),             //修改提交
-    business_customer_tracked_edit_user                = $("#business_customer_tracked_edit_user"),               //姓名
-    business_customer_tracked_edit_comp                = $("#business_customer_tracked_edit_comp"),               //公司    
-    business_customer_tracked_edit_tel1                = $("#business_customer_tracked_edit_tel1"),               //手机1
-    business_customer_tracked_edit_tel2                = $("#business_customer_tracked_edit_tel2"),               //手机2
-    business_customer_tracked_edit_level               = $("#business_customer_tracked_edit_level"),              //级别
-    business_customer_tracked_edit_natu                = $("#business_customer_tracked_edit_natu"),               //工作性质
-    business_customer_tracked_edit_area                = $("#business_customer_tracked_edit_area"),               //服务区域
-    business_customer_tracked_edit_bankcode            = $("#business_customer_tracked_edit_bankcode"),           //银行卡号
-    business_customer_tracked_edit_bankuser            = $("#business_customer_tracked_edit_bankuser"),           //开户人
-    business_customer_tracked_edit_bankname            = $("#business_customer_tracked_edit_bankname"),           //开户行
-    business_customer_tracked_edit_birt                = $("#business_customer_tracked_edit_birt"),               //生日
-    business_customer_tracked_edit_card                = $("#business_customer_tracked_edit_card"),               //身份证号
-    business_customer_tracked_edit_text                = $("#business_customer_tracked_edit_text"),               //备注信息
-    //放弃信息员
-    business_customer_tracked_dele_box                 = $("#business_customer_tracked_dele_box"),                //放弃盒子
-    business_customer_tracked_dele_submit              = $("#business_customer_tracked_dele_submit"),             //放弃提交
-    //查看信息员
-    business_customer_tracked_show_box                 = $("#business_customer_tracked_show_box"),                //查看盒子
-    business_customer_tracked_show_table0              = $("#business_customer_tracked_show_table0"),             //切换表格1
-    business_customer_tracked_show_table1              = $("#business_customer_tracked_show_table1"),             //切换表格2
-    business_customer_tracked_show_table2              = $("#business_customer_tracked_show_table2"),             //切换表格3
-    business_customer_tracked_show_table3              = $("#business_customer_tracked_show_table3"),             //切换表格4
-    business_customer_tracked_show_table4              = $("#business_customer_tracked_show_table4"),             //切换表格5
+    business_customer_tracked_add_btn           = $("#business_customer_tracked_add_btn"),          //添加客户
+    business_customer_tracked_add_box           = $("#business_customer_tracked_add_box"),          //客户盒子
+    business_customer_tracked_add_submit        = $("#business_customer_tracked_add_submit"),       //客户提交
+    business_customer_tracked_add_case          = $("#business_customer_tracked_add_case"),         //项目名称
+    business_customer_tracked_add_type          = $("#business_customer_tracked_add_type"),         //项目类型
+    business_customer_tracked_add_decoarea      = $("#business_customer_tracked_add_decoarea"),     //装修面积
+    business_customer_tracked_add_state         = $("#business_customer_tracked_add_state"),        //房源状态
+    business_customer_tracked_add_decoaddr      = $("#business_customer_tracked_add_decoaddr"),     //装修地址
+    business_customer_tracked_add_user1         = $("#business_customer_tracked_add_user1"),        //装修地址
+    business_customer_tracked_add_tel1          = $("#business_customer_tracked_add_tel1"),         //手机1
+    business_customer_tracked_add_user2         = $("#business_customer_tracked_add_user2"),        //联系人2
+    business_customer_tracked_add_tel2          = $("#business_customer_tracked_add_tel2"),         //手机2
+    business_customer_tracked_add_addr          = $("#business_customer_tracked_add_addr"),         //办公地址
+    business_customer_tracked_add_tel0          = $("#business_customer_tracked_add_tel0"),         //办公电话
+    business_customer_tracked_add_provider      = $("#business_customer_tracked_add_provider"),     //信息员
+    business_customer_tracked_add_housetype     = $("#business_customer_tracked_add_housetype"),    //房屋类型
+    business_customer_tracked_add_housetodo     = $("#business_customer_tracked_add_housetodo"),    //装修意向
+    business_customer_tracked_add_houseserv     = $("#business_customer_tracked_add_houseserv"),    //装修服务
+    business_customer_tracked_add_housedate1    = $("#business_customer_tracked_add_housedate1"),   //交房日期
+    business_customer_tracked_add_housedate2    = $("#business_customer_tracked_add_housedate2"),   //期望完工
+    business_customer_tracked_add_rivalnumb     = $("#business_customer_tracked_add_rivalnumb"),    //对手数量
+    business_customer_tracked_add_rivalstep     = $("#business_customer_tracked_add_rivalstep"),    //对手进展
+    business_customer_tracked_add_text          = $("#business_customer_tracked_add_text"),         //备注信息
+    //修改客户
+    business_customer_tracked_edit_box          = $("#business_customer_tracked_edit_box"),         //客户盒子
+    business_customer_tracked_edit_submit       = $("#business_customer_tracked_edit_submit"),      //客户提交
+    business_customer_tracked_edit_case         = $("#business_customer_tracked_edit_case"),        //项目名称
+    business_customer_tracked_edit_type         = $("#business_customer_tracked_edit_type"),        //项目类型
+    business_customer_tracked_edit_decoarea     = $("#business_customer_tracked_edit_decoarea"),    //装修面积
+    business_customer_tracked_edit_state        = $("#business_customer_tracked_edit_state"),       //房源状态
+    business_customer_tracked_edit_decoaddr     = $("#business_customer_tracked_edit_decoaddr"),    //装修地址
+    business_customer_tracked_edit_user1        = $("#business_customer_tracked_edit_user1"),       //装修地址
+    business_customer_tracked_edit_tel1         = $("#business_customer_tracked_edit_tel1"),        //手机1
+    business_customer_tracked_edit_user2        = $("#business_customer_tracked_edit_user2"),       //联系人2
+    business_customer_tracked_edit_tel2         = $("#business_customer_tracked_edit_tel2"),        //手机2
+    business_customer_tracked_edit_addr         = $("#business_customer_tracked_edit_addr"),        //办公地址
+    business_customer_tracked_edit_tel0         = $("#business_customer_tracked_edit_tel0"),        //办公电话
+    business_customer_tracked_edit_provider     = $("#business_customer_tracked_edit_provider"),    //信息员
+    business_customer_tracked_edit_housetype    = $("#business_customer_tracked_edit_housetype"),   //房屋类型
+    business_customer_tracked_edit_housetodo    = $("#business_customer_tracked_edit_housetodo"),   //装修意向
+    business_customer_tracked_edit_houseserv    = $("#business_customer_tracked_edit_houseserv"),   //装修服务
+    business_customer_tracked_edit_housedate1   = $("#business_customer_tracked_edit_housedate1"),  //交房日期
+    business_customer_tracked_edit_housedate2   = $("#business_customer_tracked_edit_housedate2"),  //期望完工
+    business_customer_tracked_edit_rivalnumb    = $("#business_customer_tracked_edit_rivalnumb"),   //对手数量
+    business_customer_tracked_edit_rivalstep    = $("#business_customer_tracked_edit_rivalstep"),   //对手进展
+    business_customer_tracked_edit_text         = $("#business_customer_tracked_edit_text"),        //备注信息
+    //查看客户
+    business_customer_tracked_show_box          = $("#business_customer_tracked_show_box"),         //查看盒子
+    business_customer_tracked_show_t_prog       = $("#business_customer_tracked_show_t_prog"),      //项目进度
+    business_customer_tracked_show_t_case       = $("#business_customer_tracked_show_t_case"),      //项目信息
+    business_customer_tracked_show_t_user       = $("#business_customer_tracked_show_t_user"),      //负责人信息
+    business_customer_tracked_show_table1       = $("#business_customer_tracked_show_table1"),      //切换表格2
+    business_customer_tracked_show_table2       = $("#business_customer_tracked_show_table2"),      //切换表格3
+    //放弃客户
+    business_customer_tracked_aban_box          = $("#business_customer_tracked_aban_box"),         //放弃盒子
+    business_customer_tracked_aban_submit       = $("#business_customer_tracked_aban_submit"),      //放弃提交
+    business_customer_tracked_aban_type         = $("#business_customer_tracked_aban_type"),        //放弃类型
+    business_customer_tracked_aban_text         = $("#business_customer_tracked_aban_text"),        //放弃文本
+    //提交至经理
+    business_customer_tracked_tomanager_box     = $("#business_customer_tracked_tomanager_box"),    //提交至经理盒子
+    business_customer_tracked_tomanager_submit  = $("#business_customer_tracked_tomanager_submit"), //提交至经理按钮
+    //转为正跟踪
+    business_customer_tracked_totrack_box       = $("#business_customer_tracked_totrack_box"),       //提交至经理盒子
+    business_customer_tracked_totrack_submit    = $("#business_customer_tracked_totrack_submit"),    //提交至经理按钮
     //跟踪日志
-    business_customer_tracked_logShow_box              = $("#business_customer_tracked_logShow_box"),             //日志查看盒子
-    business_customer_tracked_logAdd_box               = $("#business_customer_tracked_logAdd_box"),              //日志添加盒子
-    business_customer_tracked_logAdd_submit            = $("#business_customer_tracked_logAdd_submit"),           //日志添加提交
-    business_customer_tracked_logAdd_text              = $("#business_customer_tracked_logAdd_text"),             //日志添加内容
-    business_customer_tracked_logAdd_date              = $("#business_customer_tracked_logAdd_date");             //添加下次跟踪
-    
+    business_customer_tracked_logShow_box       = $("#business_customer_tracked_logShow_box"),       //日志查看盒子
+    business_customer_tracked_logAdd_box        = $("#business_customer_tracked_logAdd_box"),        //日志添加盒子
+    business_customer_tracked_logAdd_submit     = $("#business_customer_tracked_logAdd_submit"),     //日志添加提交
+    business_customer_tracked_logAdd_text       = $("#business_customer_tracked_logAdd_text"),       //日志添加内容
+    business_customer_tracked_logAdd_date       = $("#business_customer_tracked_logAdd_date"),       //添加下次跟踪
+    //人员选择
+    business_customer_tracked_salesman_box      = $("#business_customer_tracked_salesman_box"),      //人员选择盒子
+    business_customer_tracked_salesman_submit   = $("#business_customer_tracked_salesman_submit"),   //人员选择提交
+    business_customer_tracked_salesman_datagrid = $("#business_customer_tracked_salesman_datagrid"), //人员选择表格
+    business_customer_tracked_salesman_depart   = $("#business_customer_tracked_salesman_depart");   //人员选择部门下拉
+
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
 
         //本地接口
         var business_customer_tracked_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
+            datagrid1  : LOCAL + "Test/test_datagrid.json",                         //查看表格1
+            datagrid2  : LOCAL + "Test/test_datagrid.json",                         //查看表格2
+            salesman_datagrid   : LOCAL + "Test/test_datagrid.json",                //人员选择表格
             select     : LOCAL + "Test/test_select.json",                           //下拉选择
-            modal_show : LOCAL + "Test/Business/provider_edit.json",                //修改盒子
+            modal_show : LOCAL + "Test/Business/customer_edit.json",                //修改盒子
             topic      : LOCAL + "Test/Business/provider_topic.json",               //日志查看
         }
 
@@ -459,8 +639,11 @@ $(function(){
         //远程接口
         var business_customer_tracked_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格
+            datagrid1  : LOCAL + "Test/test_datagrid.json",                         //查看表格1
+            datagrid2  : LOCAL + "Test/test_datagrid.json",                         //查看表格2
+            salesman_datagrid   : LOCAL + "Test/test_datagrid.json",                //人员选择表格
             select     : LOCAL + "Test/test_select.json",                           //下拉选择
-            modal_show : LOCAL + "Test/Business/provider_edit.json",                //修改盒子
+            modal_show : LOCAL + "Test/Business/customer_edit.json",                //修改盒子
             topic      : LOCAL + "Test/Business/provider_topic.json",               //日志查看
         }
 
@@ -511,14 +694,22 @@ $(function(){
                         }
                     }
                 },
-                {name:"operate",  label:"操作",width:150,
+                {name:"state",  label:"操作",width:180,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            return `
-                            <a class="business_customer_tracked_edit_btn" rowIndex="${cell.rowIndex}">修改</a>
-                            <a class="business_customer_tracked_dele_btn" rowIndex="${cell.rowIndex}">放弃</a>
-                            `;
+                            var temp = `<a class="business_customer_tracked_edit_btn" rowIndex="${cell.rowIndex}">修改</a>`;
+                            if( dataValue==1 ){             //跟踪
+                                temp+= `
+                                <a class="business_customer_tracked_tomanager_btn" rowIndex="${cell.rowIndex}">提交至经理</a>
+                                <a class="business_customer_tracked_aban_btn" rowIndex="${cell.rowIndex}">放弃</a>
+                                `;
+                            } else if( dataValue==2 ) {     //转正
+                                temp+= `
+                                <a class="business_customer_tracked_totrack_btn" rowIndex="${cell.rowIndex}">转为正跟踪</a>
+                                `;
+                            }
+                            return temp;
                         }
                     }
                 }                
@@ -533,271 +724,7 @@ $(function(){
         }
     });
 
-    //变量声明-----------------------------------------------------------------------------------------------
-    var
-    business_customer_tracked_datagrid_obj     = business_customer_tracked_datagrid.data("zui.datagrid"), //表格对象
-    business_customer_tracked_edit_btn         = ".business_customer_tracked_edit_btn",                   //修改按钮
-    business_customer_tracked_dele_btn         = ".business_customer_tracked_dele_btn",                   //放弃按钮
-    business_customer_tracked_show_btn         = ".business_customer_tracked_show_btn",                   //查看按钮
-    business_customer_tracked_logShow_btn      = ".business_customer_tracked_logShow_btn",                //日志查看
-    business_customer_tracked_logAdd_btn       = ".business_customer_tracked_logAdd_btn";                 //日志添加
-
-    //时间组件-----------------------------------------------------------------------------------------------
-    // business_customer_tracked_add_birt.datetimepicker(option_date);
-    // business_customer_tracked_edit_birt.datetimepicker(option_date);
-    // business_customer_tracked_add_customer_housedate1.datetimepicker(option_date);
-    // business_customer_tracked_add_customer_housedate2.datetimepicker(option_date);
-    // business_customer_tracked_logAdd_date.datetimepicker(option_date);
-
-    //下拉选项-----------------------------------------------------------------------------------------------
-    $.ajax({
-        url     : business_customer_tracked_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            if( data.status>0 ){
-                var data = data.data;
-                var option = "";
-                for(var i=0;i<data.length;i++){
-                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-                }
-                business_customer_tracked_add_customer_type.html(option);                              //添加客户-项目类型
-            }
-        }
-    });
-
-    //搜索按钮-----------------------------------------------------------------------------------------------
-    business_customer_tracked_search_btn.click(function(){
-
-        //字段整理
-        var keyword
-        = "?sid="    + business_customer_tracked_tool_keys.val()
-        + "&search=" + business_customer_tracked_tool_search.val()
-        + "&level="  + business_customer_tracked_tool_select1.val();
-
-        //GET提交
-        zui_datagrid_render(business_customer_tracked_datagrid_obj,business_customer_tracked_api.datagrid+keyword);
-
-    });
- 
-    //添加客户按钮----------------------------------------------------------------------------------------------
-    business_customer_tracked_add_customer_btn.click(function(){
-        common_form_reset();
-        var dataValue= $(this).attr("dataValue");
-        var rowIndex = $(this).attr("rowIndex");
-        business_customer_tracked_add_customer_provider.val(dataValue);
-        business_customer_tracked_add_customer_submit.attr("rowIndex",rowIndex);
-        business_customer_tracked_add_customer_box.modal("show");
-    });
-    //添加客户提交
-    business_customer_tracked_add_customer_submit.click(function(){
-        
-        //ID取值
-        var data_id = $(this).attr("rowIndex");
-
-        //远程提交
-        $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : {
-                id          : data_id,
-                case        : business_customer_tracked_add_customer_case.val(),
-                type        : business_customer_tracked_add_customer_type.val(),
-                decoarea    : business_customer_tracked_add_customer_decoarea.val(),
-                state       : business_customer_tracked_add_customer_state.val(),
-                decoaddr    : business_customer_tracked_add_customer_decoaddr.val(),
-                user1       : business_customer_tracked_add_customer_user1.val(),
-                tel1        : business_customer_tracked_add_customer_tel1.val(),
-                user2       : business_customer_tracked_add_customer_user2.val(),
-                tel2        : business_customer_tracked_add_customer_tel2.val(),
-                addr        : business_customer_tracked_add_customer_addr.val(),
-                tel0        : business_customer_tracked_add_customer_tel0.val(),
-                provider    : business_customer_tracked_add_customer_provider.val(),
-                housetype   : business_customer_tracked_add_customer_housetype.val(),
-                housetodo   : business_customer_tracked_add_customer_housetodo.val(),
-                houseserv   : business_customer_tracked_add_customer_houseserv.val(),
-                housedate1  : business_customer_tracked_add_customer_housedate1.val(),
-                housedate2  : business_customer_tracked_add_customer_housedate2.val(),
-                rivalnumb   : business_customer_tracked_add_customer_rivalnumb.val(),
-                rivalstep   : business_customer_tracked_add_customer_rivalstep.val(),
-                text        : business_customer_tracked_add_customer_text.val(),
-            },
-            success : function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    zui_datagrid_reset(business_customer_tracked_datagrid_obj,business_customer_tracked_api.datagrid);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-    });
-
-
-
-    //修改按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",business_customer_tracked_edit_btn,function(){
-  
-        //数据ID
-        var data_id    = zui_datagrid_get_id($(this).attr("rowIndex"));
-        var data_state = $(this).attr("state");
-
-        //远程提交
-        $.ajax({
-            url     : business_customer_tracked_api.modal_show,
-            type    : "post",
-            dataType: "json",
-            data    : { id:data_id },
-            success : function(data){
-                if( data.status>0 ){
-
-                    //数据赋值
-                    var data = data.data;
-                    business_customer_tracked_edit_user.val(     data.user     );
-                    business_customer_tracked_edit_comp.val(     data.comp     );
-                    business_customer_tracked_edit_tel1.val(     data.tel1     );
-                    business_customer_tracked_edit_tel2.val(     data.tel2     );
-                    business_customer_tracked_edit_level.val(    data.level    );
-                    business_customer_tracked_edit_natu.val(     data.natu     );
-                    business_customer_tracked_edit_area.val(     data.area     );
-                    business_customer_tracked_edit_bankcode.val( data.bankcode );
-                    business_customer_tracked_edit_bankuser.val( data.bankuser );
-                    business_customer_tracked_edit_bankname.val( data.bankname );
-                    business_customer_tracked_edit_birt.val(     data.birt     );
-                    business_customer_tracked_edit_card.val(     data.card     );
-                    business_customer_tracked_edit_text.val(     data.text     );
-
-                    //其他操作
-                    business_customer_tracked_edit_submit.attr("dataId",data_id);  //数据ID传值
-                    business_customer_tracked_edit_box.modal("show");              //盒子显示
-
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-
-    });
-    //修改提交
-    business_customer_tracked_edit_submit.click(function(){
-
-        //数据ID
-        var data_id = $(this).attr("dataId");
-
-        //远程提交
-        $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : { 
-                id      : data_id,
-                user    : business_customer_tracked_edit_user.val(),
-                comp    : business_customer_tracked_edit_comp.val(),
-                tel1    : business_customer_tracked_edit_tel1.val(),
-                tel2    : business_customer_tracked_edit_tel2.val(),
-                level   : business_customer_tracked_edit_level.val(),
-                natu    : business_customer_tracked_edit_natu.val(),
-                area    : business_customer_tracked_edit_area.val(),
-                bankcode: business_customer_tracked_edit_bankcode.val(),
-                bankuser: business_customer_tracked_edit_bankuser.val(),
-                bankname: business_customer_tracked_edit_bankname.val(),
-                birt    : business_customer_tracked_edit_birt.val(),
-                card    : business_customer_tracked_edit_card.val(),
-                text    : business_customer_tracked_edit_text.val(),
-             },
-            success : function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    zui_datagrid_reset(business_customer_tracked_datagrid_obj,business_customer_tracked_api.datagrid);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-
-    });
-    
-    //放弃按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",business_customer_tracked_dele_btn,function(){
-
-        //数据ID
-        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
-
-        //其他操作
-        business_customer_tracked_dele_submit.attr("dataId",data_id);                                //ID传值
-        business_customer_tracked_dele_box.modal("show");                                            //面板显示
-
-    });
-    //放弃提交
-    business_customer_tracked_dele_submit.click(function(){
-
-        //数据ID
-        var data_id = $(this).attr("dataId");
-
-        //远程提交
-        $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : { id:data_id },
-            success : function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    zui_datagrid_reset(business_customer_tracked_datagrid_obj,business_customer_tracked_api.datagrid);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-
-    });
-
-    //查看按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",business_customer_tracked_show_btn,function(){ 
-
-        //数据ID
-        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
-
-        //远程提交
-        $.ajax({
-            url     : business_customer_tracked_api.modal_show,
-            type    : "post",
-            dataType: "json",
-            data    : { id:data_id },
-            success : function(data){
-                if( data.status>0 ){
-
-                    //查看模板
-                    var data = data.data;
-                    var temp = `
-                        <tr><td style="width:100px;">姓名</td><td>${data.user}</td></tr>
-                        <tr><td>公司名称  </td><td>${data.comp}     </td></tr>
-                        <tr><td>手机1     </td><td>${data.tel1}     </td></tr>
-                        <tr><td>手机2     </td><td>${data.tel2}     </td></tr>
-                        <tr><td>级别      </td><td>${data.levelname}</td></tr>
-                        <tr><td>工作性质  </td><td>${data.natuname} </td></tr>
-                        <tr><td>服务区域  </td><td>${data.area}     </td></tr>
-                        <tr><td>银行卡号  </td><td>${data.bankcode} </td></tr>
-                        <tr><td>开户人    </td><td>${data.bankuser} </td></tr>
-                        <tr><td>开户行    </td><td>${data.bankname} </td></tr>
-                        <tr><td>生日      </td><td>${data.birt}     </td></tr>
-                        <tr><td>身份证号  </td><td>${data.card}     </td></tr>
-                        <tr><td>备注信息  </td><td>${data.text}     </td></tr>
-                    `;
-                    business_customer_tracked_show_table0.find("tbody").html(temp);            //模板填充
-                    business_customer_tracked_show_box.modal("show");                               //盒子显示
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-
-    }); 
-
-    //查看盒子-切换表格----------------------------------------------------------------------------------------
-    //客户记录
+    //查看表格-客户附件
     business_customer_tracked_show_table1.datagrid({
         height      : zui_datagrid_height(business_customer_tracked_datagrid),
         sortable    : false,
@@ -828,14 +755,14 @@ $(function(){
             ],
             remote : function(){
                 return {
-                    url     : business_customer_tracked_api.datagrid,
+                    url     : business_customer_tracked_api.datagrid1,
                     type    : "POST",
                     dataType: "json",
                 }
             }
         }
     });
-    //信息费记录
+    //查看表格-操作记录
     business_customer_tracked_show_table2.datagrid({
         height      : zui_datagrid_height(business_customer_tracked_datagrid),
         sortable    : false,
@@ -853,95 +780,439 @@ $(function(){
         },
         dataSource : {
             cols   : [
-                {name:"id",      label:"ID",      width:49 },
-                {name:"text4",   label:"项目编号",width:80 },
-                {name:"name",    label:"客户名称",width:80 },
-                {name:"name",    label:"业务员",  width:80 },
-                {name:"name",    label:"设计师",  width:80 },
-                {name:"date",    label:"申请时间",width:100},
-                {name:"username",label:"申请金额",width:80 },
-                {name:"state",   label:"申请状态",width:80 },
+                {name:"id",      label:"ID",    width:49 },
+                {name:"name",    label:"操作人",width:80 },
+                {name:"object",  label:"日志",  width:240,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell,datagrid){
+                            var temp = "";
+                            if( dataValue.state==1 ){
+                                temp = `<span class="text-danger">${dataValue.text}</span>`;
+                            } else {
+                                temp = `<span class="text-success">${dataValue.text}</span>`;
+                            }
+                            return temp;
+                        }
+                    }
+                },
+                {name:"date",    label:"时间",  width:140},
             ],
             remote : function(){
                 return {
-                    url     : business_customer_tracked_api.datagrid,
+                    url     : business_customer_tracked_api.datagrid2,
                     type    : "POST",
                     dataType: "json",
                 }
             }
         }
     });
-    //提成记录
-    business_customer_tracked_show_table3.datagrid({
-        height      : zui_datagrid_height(business_customer_tracked_datagrid),
-        sortable    : false,
-        cache       : false,
-        showRowIndex: true,
-        configs     : {
-            R0:{className:"text-center"},
-            C1:{className:"cell-hidden"}
-        },
-        states      : {
-            pager           : {
-                page        : 1,
-                recPerPage  : window.REC_PER_PAGE,
-            }
-        },
-        dataSource : {
-            cols   : [
-                {name:"id",      label:"ID",        width:49 },
-                {name:"text4",   label:"项目编号",  width:80 },
-                {name:"text8",   label:"项目名称",  width:130},
-                {name:"name",    label:"业务员",    width:80 },
-                {name:"name",    label:"设计师",    width:80 },
-                {name:"text4",   label:"合同总金额",width:90 },
-                {name:"date",    label:"申请时间",  width:100},
-                {name:"state",   label:"申请提点",  width:80 },
-                {name:"username",label:"应发提成",  width:80 },
-                {name:"username",label:"实发提成",  width:80 },
-                {name:"state",   label:"申请状态",  width:80 },
-            ],
-            remote : function(){
-                return {
-                    url     : business_customer_tracked_api.datagrid,
-                    type    : "POST",
-                    dataType: "json",
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    business_customer_tracked_datagrid_obj     = business_customer_tracked_datagrid.data("zui.datagrid"),   //表格对象
+    business_customer_tracked_show_table1_obj  = business_customer_tracked_show_table1.data("zui.datagrid"),//查看表格1
+    business_customer_tracked_show_table2_obj  = business_customer_tracked_show_table2.data("zui.datagrid"),//查看表格2
+    business_customer_tracked_edit_btn         = ".business_customer_tracked_edit_btn",                     //修改按钮
+    business_customer_tracked_show_btn         = ".business_customer_tracked_show_btn",                     //查看按钮
+    business_customer_tracked_aban_btn         = ".business_customer_tracked_aban_btn",                     //放弃按钮
+    business_customer_tracked_tomanager_btn    = ".business_customer_tracked_tomanager_btn",                //提交至经理
+    business_customer_tracked_totrack_btn      = ".business_customer_tracked_totrack_btn",                  //转为正跟踪
+    business_customer_tracked_logShow_btn      = ".business_customer_tracked_logShow_btn",                  //日志查看
+    business_customer_tracked_logAdd_btn       = ".business_customer_tracked_logAdd_btn";                   //日志添加
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //项目类型
+    $.ajax({
+        url     : business_customer_tracked_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
+                business_customer_tracked_add_type.html(option);                              //添加客户
+                business_customer_tracked_edit_type.html(option);                             //修改客户
             }
         }
     });
-    //过程记录
-    business_customer_tracked_show_table4.datagrid({
-        height      : zui_datagrid_height(business_customer_tracked_datagrid),
-        sortable    : false,
-        cache       : false,
-        showRowIndex: true,
-        configs     : {
-            R0:{className:"text-center"},
-            C1:{className:"cell-hidden"}
-        },
-        states      : {
-            pager           : {
-                page        : 1,
-                recPerPage  : window.REC_PER_PAGE,
-            }
-        },
-        dataSource : {
-            cols   : [
-                {name:"id",     label:"ID",        width:49 },
-                {name:"name",   label:"操作人",    width:80 },
-                {name:"date",   label:"操作时间",  width:140},
-                {name:"tex10",  label:"过程说明",  width:400},
-            ],
-            remote : function(){
-                return {
-                    url     : business_customer_tracked_api.datagrid,
-                    type    : "POST",
-                    dataType: "json",
+
+    //人员选择-部门
+    $.ajax({
+        url     : business_customer_tracked_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "<option value='0'>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
+                business_customer_tracked_salesman_depart.html(option);
             }
         }
     });
+
+    //时间组件-----------------------------------------------------------------------------------------------
+    business_customer_tracked_add_housedate1.datetimepicker(option_date);
+    business_customer_tracked_add_housedate2.datetimepicker(option_date);
+    business_customer_tracked_edit_housedate1.datetimepicker(option_date);
+    business_customer_tracked_edit_housedate2.datetimepicker(option_date);    
+    business_customer_tracked_logAdd_date.datetimepicker(option_date);
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    business_customer_tracked_search_btn.click(function(){
+
+        //字段整理
+        var keyword
+        = "?sid="    + business_customer_tracked_tool_keys.val()
+        + "&search=" + business_customer_tracked_tool_search.val()
+        + "&level="  + business_customer_tracked_tool_select1.val();
+
+        //GET提交
+        zui_datagrid_render(business_customer_tracked_datagrid_obj,business_customer_tracked_api.datagrid+keyword);
+
+    });
+
+    //添加客户按钮----------------------------------------------------------------------------------------------
+    business_customer_tracked_add_btn.click(function(){
+        business_customer_tracked_add_provider.attr("dataId","");
+        common_form_reset();
+        business_customer_tracked_add_box.modal("show");
+    });
+    //添加客户提交
+    business_customer_tracked_add_submit.click(function(){
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                case        : business_customer_tracked_add_case.val(),
+                type        : business_customer_tracked_add_type.val(),
+                decoarea    : business_customer_tracked_add_decoarea.val(),
+                state       : business_customer_tracked_add_state.val(),
+                decoaddr    : business_customer_tracked_add_decoaddr.val(),
+                user1       : business_customer_tracked_add_user1.val(),
+                tel1        : business_customer_tracked_add_tel1.val(),
+                user2       : business_customer_tracked_add_user2.val(),
+                tel2        : business_customer_tracked_add_tel2.val(),
+                addr        : business_customer_tracked_add_addr.val(),
+                tel0        : business_customer_tracked_add_tel0.val(),
+                provider    : business_customer_tracked_add_provider.attr("dataId"),
+                housetype   : business_customer_tracked_add_housetype.val(),
+                housetodo   : business_customer_tracked_add_housetodo.val(),
+                houseserv   : business_customer_tracked_add_houseserv.val(),
+                housedate1  : business_customer_tracked_add_housedate1.val(),
+                housedate2  : business_customer_tracked_add_housedate2.val(),
+                rivalnumb   : business_customer_tracked_add_rivalnumb.val(),
+                rivalstep   : business_customer_tracked_add_rivalstep.val(),
+                text        : business_customer_tracked_add_text.val(),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(business_customer_tracked_datagrid_obj,business_customer_tracked_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //修改客户按钮----------------------------------------------------------------------------------------------
+    $(document).on("click",business_customer_tracked_edit_btn,function(){
+
+        //ID取值
+        var rowIndex = $(this).attr("rowIndex");
+
+        //数据赋值
+        $.ajax({
+            url     : business_customer_tracked_api.modal_show,
+            type    : "post",
+            dataType: "json",
+            data    : { id : rowIndex },
+            success : function(data){
+                if( data.status>0 ){
+
+                    var data = data.data;
+                    business_customer_tracked_edit_case.val(       data.case );
+                    business_customer_tracked_edit_type.val(       data.type );
+                    business_customer_tracked_edit_decoarea.val(   data.decoarea );
+                    business_customer_tracked_edit_state.val(      data.state );
+                    business_customer_tracked_edit_decoaddr.val(   data.decoaddr );
+                    business_customer_tracked_edit_user1.val(      data.user1 );
+                    business_customer_tracked_edit_tel1.val(       data.tel1 );
+                    business_customer_tracked_edit_user2.val(      data.user2 );
+                    business_customer_tracked_edit_tel2.val(       data.tel2 );
+                    business_customer_tracked_edit_addr.val(       data.addr );
+                    business_customer_tracked_edit_tel0.val(       data.tel0 );
+                    business_customer_tracked_edit_provider.attr("dataId",data.provider),
+                    business_customer_tracked_edit_provider.val(   data.providername );
+                    business_customer_tracked_edit_housetype.val(  data.housetype );
+                    business_customer_tracked_edit_housetodo.val(  data.housetodo );
+                    business_customer_tracked_edit_houseserv.val(  data.houseserv );
+                    business_customer_tracked_edit_housedate1.val( data.housedate1 );
+                    business_customer_tracked_edit_housedate2.val( data.housedate2 );
+                    business_customer_tracked_edit_rivalnumb.val(  data.rivalnumb );
+                    business_customer_tracked_edit_rivalstep.val(  data.rivalstep );
+                    business_customer_tracked_edit_text.val(       data.text );
+
+                    //其他操作
+                    business_customer_tracked_edit_submit.attr("rowIndex",rowIndex);
+                    business_customer_tracked_edit_box.modal("show");
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+    //修改客户提交
+    business_customer_tracked_edit_submit.click(function(){
+        
+        //ID取值
+        var data_id = $(this).attr("rowIndex");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                id          : data_id,
+                case        : business_customer_tracked_edit_case.val(),
+                type        : business_customer_tracked_edit_type.val(),
+                decoarea    : business_customer_tracked_edit_decoarea.val(),
+                state       : business_customer_tracked_edit_state.val(),
+                decoaddr    : business_customer_tracked_edit_decoaddr.val(),
+                user1       : business_customer_tracked_edit_user1.val(),
+                tel1        : business_customer_tracked_edit_tel1.val(),
+                user2       : business_customer_tracked_edit_user2.val(),
+                tel2        : business_customer_tracked_edit_tel2.val(),
+                addr        : business_customer_tracked_edit_addr.val(),
+                tel0        : business_customer_tracked_edit_tel0.val(),
+                provider    : business_customer_tracked_edit_provider.attr("dataId"),
+                housetype   : business_customer_tracked_edit_housetype.val(),
+                housetodo   : business_customer_tracked_edit_housetodo.val(),
+                houseserv   : business_customer_tracked_edit_houseserv.val(),
+                housedate1  : business_customer_tracked_edit_housedate1.val(),
+                housedate2  : business_customer_tracked_edit_housedate2.val(),
+                rivalnumb   : business_customer_tracked_edit_rivalnumb.val(),
+                rivalstep   : business_customer_tracked_edit_rivalstep.val(),
+                text        : business_customer_tracked_edit_text.val(),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(business_customer_tracked_datagrid_obj,business_customer_tracked_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //查看按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",business_customer_tracked_show_btn,function(){ 
+
+        //数据ID
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //远程提交
+        $.ajax({
+            url     : business_customer_tracked_api.modal_show,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //查看模板
+                    var data = data.data;
+
+                    //项目进度
+                    var temp_prog = `<tr><td><ul class="bussiness-prog-group flex-box">`;
+                    var temp_prog_state_class = "bg-primary";
+                    for( var i=0;i<data.prog.length;i++){
+                        if( data.prog[i].state==0 ){ temp_prog_state_class = "bg-grey" }
+                        temp_prog +=`
+                            <li class="flex-son text-center">
+                                <b class="${temp_prog_state_class}">${i+1}</b>
+                                <div class="small">${data.prog[i].name}</div>
+                                <div class="small">${data.prog[i].date}</div>
+                            </li>
+                        `;
+                    }
+                    business_customer_tracked_show_t_prog.find("tbody").html(temp_prog+"</ul></td></tr>");
+
+                    //项目信息
+                    var temp_case = `
+                        <tr><td style="width:120px;">项目名称</td><td>${data.case}</td></tr>
+                        <tr><td>项目类型  </td><td>${data.typename}     </td></tr>
+                        <tr><td>装修面积  </td><td>${data.decoarea} ㎡  </td></tr>
+                        <tr><td>房源状态  </td><td>${data.statename}    </td></tr>
+                        <tr><td>装修地址  </td><td>${data.decoaddr}     </td></tr>
+                        <tr><td>联系人1   </td><td>${data.user1}        </td></tr>
+                        <tr><td>手机1     </td><td>${data.tel1}         </td></tr>
+                        <tr><td>联系人2   </td><td>${data.user2}        </td></tr>
+                        <tr><td>手机2     </td><td>${data.tel2}         </td></tr>
+                        <tr><td>办公地址  </td><td>${data.addr}         </td></tr>
+                        <tr><td>办公电话  </td><td>${data.tel0}         </td></tr>
+                        <tr><td>信息员    </td><td>${data.providername} </td></tr>
+                        <tr><td>房屋类型  </td><td>${data.housetypename}</td></tr>
+                        <tr><td>装修意向  </td><td>${data.housetodoname}</td></tr>
+                        <tr><td>装修服务  </td><td>${data.houseservname}</td></tr>
+                        <tr><td>交房日期  </td><td>${data.housedate1}   </td></tr>
+                        <tr><td>期望完工  </td><td>${data.housedate2}   </td></tr>
+                        <tr><td>对手数量  </td><td>${data.rivalnumb}    </td></tr>
+                        <tr><td>对手进展  </td><td>${data.rivalstepname}</td></tr>
+                    `;
+                    business_customer_tracked_show_t_case.find("tbody").html(temp_case);
+
+                    //负责人信息
+                    var temp_user = `
+                        <tr><td style="width:120px;">业务员</td><td>${data.salesman}</td></tr>
+                        <tr><td>设计师      </td><td>${data.designer}   </td></tr>
+                        <tr><td>效果图绘图员</td><td>${data.sketcher}   </td></tr>
+                        <tr><td>施工图绘图员</td><td>${data.draftsman}  </td></tr>
+                        <tr><td>预算员      </td><td>${data.budgetor}   </td></tr>
+                        <tr><td>工程监理    </td><td>${data.supervision}</td></tr>
+                        <tr><td>项目经理    </td><td>${data.manager}    </td></tr>
+                    `;
+                    business_customer_tracked_show_t_user.find("tbody").html(temp_user);
+                    
+                    //数据表格
+                    zui_datagrid_render(business_customer_tracked_show_table1_obj,business_customer_tracked_api.datagrid1+"?="+data_id);
+                    zui_datagrid_render(business_customer_tracked_show_table2_obj,business_customer_tracked_api.datagrid2+"?="+data_id);
+                    
+                    business_customer_tracked_show_box.modal("show");                          //盒子显示
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //放弃按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",business_customer_tracked_aban_btn,function(){
+
+        //数据复原
+        common_form_reset();
+
+        //其他操作
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));                                 //数据ID
+        business_customer_tracked_aban_submit.attr("dataId",data_id);                                //ID传值
+        business_customer_tracked_aban_box.modal("show");                                            //面板显示
+
+    });
+    //放弃提交
+    business_customer_tracked_aban_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id   : data_id,
+                type : business_customer_tracked_aban_type.val(),
+                text : business_customer_tracked_aban_text.val(),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(business_customer_tracked_datagrid_obj,business_customer_tracked_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    }); 
+    
+    //提交至经理按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",business_customer_tracked_tomanager_btn,function(){
+
+        //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //其他操作
+        business_customer_tracked_tomanager_submit.attr("dataId",data_id);                                //ID传值
+        business_customer_tracked_tomanager_box.modal("show");                                            //面板显示
+
+    });
+    //提交至经理提交
+    business_customer_tracked_tomanager_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(business_customer_tracked_datagrid_obj,business_customer_tracked_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    }); 
+
+    //转为正跟踪按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",business_customer_tracked_totrack_btn,function(){
+
+        //数据ID
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //其他操作
+        business_customer_tracked_totrack_submit.attr("dataId",data_id);                                //ID传值
+        business_customer_tracked_totrack_box.modal("show");                                            //面板显示
+
+    });
+    //转为正跟踪提交
+    business_customer_tracked_totrack_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(business_customer_tracked_datagrid_obj,business_customer_tracked_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    }); 
 
     //日志查看-----------------------------------------------------------------------------------------------
     $(document).on("click",business_customer_tracked_logShow_btn,function(){
@@ -1101,6 +1372,92 @@ $(function(){
             }
         });
     });
-    
+
+    //人员选择-----------------------------------------------------------------------------------------------
+    //数据列表
+    business_customer_tracked_salesman_datagrid.datagrid({
+        height      : 400,
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        checkable   : true,
+        selectable  : false,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",   label:"ID",  width:1 },
+                {name:"name", label:"姓名",width:80 },
+                {name:"tel",  label:"电话",width:100},
+                {name:"tex10",label:"公司"}
+            ],
+            remote : function(){
+                return {
+                    url     : business_customer_tracked_api.salesman_datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+    var business_customer_tracked_salesman_datagrid_obj = business_customer_tracked_salesman_datagrid.data("zui.datagrid");
+
+    //搜索按钮
+    business_customer_tracked_salesman_search_btn.click(function(){
+
+        //字段整理
+        var keyword
+        = "?search=" + business_customer_tracked_salesman_user.val()
+        + "&depart=" + business_customer_tracked_salesman_depart.val();
+
+        //GET提交
+        zui_datagrid_render(business_customer_tracked_salesman_datagrid_obj,business_provider_admin_api.salesman_datagrid+keyword);
+
+    });
+    //点击显示
+    $(".common_salesman_btn").click(function(){
+
+        //按钮ID获取
+        COMMON_SALESMAN_BTNID = $(this).attr("id");
+
+        //批量勾选去除
+        var data_arr = business_customer_tracked_salesman_datagrid_obj.getCheckItems().filter(function(e){return e});
+        for(var i=0;i<data_arr.length;i++){
+            business_customer_tracked_salesman_datagrid_obj.checkRow(i,false);
+        }
+
+        //面板显示
+        business_customer_tracked_salesman_box.modal("show");
+
+    });
+    //提交按钮
+    business_customer_tracked_salesman_submit.click(function(){
+        
+        //批量取值
+        var data_arr = business_customer_tracked_salesman_datagrid_obj.getCheckItems().filter(function(e){return e});
+       
+        if( data_arr.length==1 ){
+            
+            //数据赋值
+            $("#"+COMMON_SALESMAN_BTNID).val(data_arr[0].name);
+            $("#"+COMMON_SALESMAN_BTNID).attr("dataId",data_arr[0].id);
+
+            //面板显示
+            business_customer_tracked_salesman_box.modal("hide");
+
+        } else {
+            um_tip("请选择一条数据","1000","text-danger");
+        }
+
+    });
+
 });//预加载结尾
 </script>

@@ -215,6 +215,19 @@ $(function(){
         }
     });
 
+    //表格-展开收起
+    $(document).on("click",".um_btn_collapse",function(){
+        var icon  = $(this).find(".icon");
+        var tbody = $(this).parent().parent().parent().next();
+        if( tbody.is(":visible") ){
+            icon.removeClass("icon-angle-up").addClass("icon-angle-down");
+            tbody.hide();
+        } else {
+            icon.removeClass("icon-angle-down").addClass("icon-angle-up");
+            tbody.show();
+        }
+    });
+    
     /*模态框-隐藏-重置[弃用]
     $(document).on("show.zui.modal",".modal",function(){
         $(this).find("form")[0].reset();
