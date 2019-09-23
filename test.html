@@ -41,14 +41,23 @@
 <aside class="main-sidebar scrollbar-hover bg-default"></aside>
 <div class="content-wrapper scrollbar-hover"><div class="tabs" id="common_tabs"></div></div></div>
 <script>
-var page = "business_provider_admin";
+//公共数据----------------------------------------------------------------
+window.COMMON = {
+    position_id: 1,
+    user_id    : 2,
+}
+
+var page = "personnel_staff";
 $("#common_tabs").tabs({tabs:[{
     id    : page,
     type  : "ajax",
     title : "测试单页",
     url   : "./page/"+ page +".html",
 }]});
-/* personnel_contractor
+/*
+personnel_staff
+personnel_contractor
+
 客户管理    business_customer_admin
 客户审批    business_customer_approval
 过期审批    business_customer_overdue

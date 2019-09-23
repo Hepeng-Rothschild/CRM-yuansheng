@@ -18,8 +18,7 @@
                         <input type="text" class="form-control" id="personnel_contractor_tool_search">
                     </div>
                 </div>
-                <label id="personnel_contractor_tool_select_group"><!--JS推进--></label>
-                <label><span>状态：  </span><select class="form-control" id="personnel_contractor_tool_select2"><!--JS推进--></select></label>
+                <label><span>状态：  </span><select class="form-control" id="personnel_contractor_tool_select"><!--JS推进--></select></label>
                 <label><button class="btn btn-primary" id="personnel_contractor_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
             </div>
@@ -207,19 +206,15 @@ $(function(){
     var 
     personnel_contractor                    = $("#personnel_contractor"),                   //页面ID
     personnel_contractor_datagrid           = $("#personnel_contractor_datagrid"),          //数据表格
-
     //搜索
     personnel_contractor_tool_keys          = $("#personnel_contractor_tool_keys"),         //搜索类别
     personnel_contractor_tool_search        = $("#personnel_contractor_tool_search"),       //搜索字段
-    personnel_contractor_tool_select_group  = $("#personnel_contractor_tool_select_group"), //下拉框组
-    personnel_contractor_tool_select2       = $("#personnel_contractor_tool_select2"),      //下拉选择2
+    personnel_contractor_tool_select        = $("#personnel_contractor_tool_select"),       //下拉选择
     personnel_contractor_search_btn         = $("#personnel_contractor_search_btn"),        //搜索按钮
-
     //添加
     personnel_contractor_add_btn            = $("#personnel_contractor_add_btn"),           //添加按钮
     personnel_contractor_add_box            = $("#personnel_contractor_add_box"),           //添加盒子
     personnel_contractor_add_submit         = $("#personnel_contractor_add_submit"),        //添加提交
-
     personnel_contractor_add_user           = $("#personnel_contractor_add_user"),          //姓名字段
     personnel_contractor_add_acco           = $("#personnel_contractor_add_acco"),          //工号字段
     personnel_contractor_add_tels           = $("#personnel_contractor_add_tels"),          //手机字段
@@ -229,7 +224,6 @@ $(function(){
     personnel_contractor_add_card_numb      = $("#personnel_contractor_add_card_numb"),     //银行卡号
     personnel_contractor_add_card_bank      = $("#personnel_contractor_add_card_bank"),     //开户行
     personnel_contractor_add_card_user      = $("#personnel_contractor_add_card_user"),     //开户人
-
     personnel_contractor_add_uploader1      = $("#personnel_contractor_add_uploader1"),
     personnel_contractor_add_uploader2      = $("#personnel_contractor_add_uploader2"),
     personnel_contractor_add_uploaders      = $("#personnel_contractor_add_uploaders"),
@@ -237,7 +231,6 @@ $(function(){
     personnel_contractor_edit_btn           = $("#personnel_contractor_edit_btn"),          //修改按钮
     personnel_contractor_edit_box           = $("#personnel_contractor_edit_box"),          //修改盒子
     personnel_contractor_edit_submit        = $("#personnel_contractor_edit_submit"),       //修改提交
-
     personnel_contractor_edit_user          = $("#personnel_contractor_edit_user"),         //姓名字段
     personnel_contractor_edit_acco          = $("#personnel_contractor_edit_acco"),         //工号字段
     personnel_contractor_edit_tels          = $("#personnel_contractor_edit_tels"),         //手机字段
@@ -247,14 +240,11 @@ $(function(){
     personnel_contractor_edit_card_numb     = $("#personnel_contractor_edit_card_numb"),    //银行卡号
     personnel_contractor_edit_card_bank     = $("#personnel_contractor_edit_card_bank"),    //开户行
     personnel_contractor_edit_card_user     = $("#personnel_contractor_edit_card_user"),    //开户人
-
     personnel_contractor_edit_uploader1     = $("#personnel_contractor_edit_uploader1"),
     personnel_contractor_edit_uploader2     = $("#personnel_contractor_edit_uploader2"),
     personnel_contractor_edit_uploaders     = $("#personnel_contractor_edit_uploaders"),
-
     //查看
     personnel_contractor_show_box           = $("#personnel_contractor_show_box"),          //查看盒子
-
     //删除
     personnel_contractor_dele_box           = $("#personnel_contractor_dele_box"),          //删除盒子
     personnel_contractor_dele_submit        = $("#personnel_contractor_dele_submit");       //删除提交
@@ -346,10 +336,7 @@ $(function(){
     personnel_contractor_show_btn       = ".personnel_contractor_show_btn",                     //查看
     personnel_contractor_edit_btn       = ".personnel_contractor_edit_btn",                     //修改
     personnel_contractor_dele_btn       = ".personnel_contractor_dele_btn";                     //删除
-
-    //下拉组件-----------------------------------------------------------------------------------------------
-    common_select_linkage("#personnel_contractor_tool_select_group","1");                       //搜索
-
+  
     //下拉选项-----------------------------------------------------------------------------------------------
     //状态
     $.ajax({
@@ -364,7 +351,7 @@ $(function(){
                 for(var i=0;i<data.length;i++){
                     option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
-                personnel_contractor_tool_select2.html(option);             //工具条
+                personnel_contractor_tool_select.html(option);             //工具条
                 personnel_contractor_add_state.html(option);                //添加
                 personnel_contractor_edit_state.html(option);               //修改
             }            
@@ -395,9 +382,8 @@ $(function(){
         //字段整理
         var keyword
         = "?sid="    + personnel_contractor_tool_keys.val()
-        + "&search=" + personnel_contractor_tool_search.val()
-        + "&select1="+ personnel_contractor_tool_select_group.find(".common_select_company").val()
-        + "&select2="+ personnel_contractor_tool_select2.val();
+        + "&search=" + personnel_contractor_tool_search.val() 
+        + "&select2="+ personnel_contractor_tool_select.val();
 
         //GET提交
         zui_datagrid_render(personnel_contractor_datagrid_obj,personnel_contractor_api.datagrid+keyword);

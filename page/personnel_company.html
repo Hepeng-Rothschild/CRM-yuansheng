@@ -3,10 +3,6 @@
 
     <!-- 工具条组 -->
     <div class="tool-group">
-        <div class="tool-search">
-            <label><select class="form-control" id="personnel_company_tool_select1" style="width:360px!important;"><!-- JS推进 --></select></label>
-            <div class="clearfix"></div>
-        </div>
         <div class="tool-deal">
             <label><button class="btn btn-primary" company-id="" id="personnel_company_structure_btn"><i class="icon icon-sitemap"></i> 组织架构表</button></label>
             <div class="clearfix"></div>
@@ -53,83 +49,39 @@ $(function(){
     personnel_company_structure_dom = $("#personnel_company_structure_dom"),    //架构组件
     personnel_company_tree          = $("#personnel_company_tree");             //数据节点树
 
-    //接口对象-----------------------------------------------------------------------------------------------
+    //接口对象------------------------------------------------------------------------------
     if( window.STATE == "local" ){
 
         //本地接口
         var personnel_company_api = {
-            select    : LOCAL + "Company/getAllCompany.json",                       //下拉框
-            structure : LOCAL + "Company/getdeparmentid.json",                      //架构图
+            structure : LOCAL + "Company/getdeparmentid.json",
         }
 
     } else if ( window.STATE == "route" ){
 
         //远程接口
         var personnel_company_api = {
-            select    : ROUTE + "Company/getAllCompany",                            //下拉框
-            structure : ROUTE + "Company/getdeparmentid",                           //架构图
+            structure : ROUTE + "Company/getdeparmentid",
         }
 
     }
 
-    //下拉选择------------------------------------------------------------------------
-    $.ajax({
-        url     : personnel_company_api.select,
-        type    : "POST",
-        dataType: "json",
-        success : function(data){
-
-            //变量声明
-            var data = data.data;
-            var personnel_company_first_id = data[0].id;                            //初始ID
-
-            //下拉框-创建
-            var resu = "";
-            for(i=0;i<data.length;i++){
-                resu += `<option value="${data[i].id}">${data[i].name}</option>`;
-            }
-            personnel_company_tool_select1.html(resu);
-
-            //架构图按钮-ID赋值
-            personnel_company_structure_btn.attr("company-id",personnel_company_first_id);
-
-            //节点树-创建
-            common_tree_staff(personnel_company_tree,personnel_company_first_id,true,false);
-
-        }
-    }); 
-
-    //下拉选择-改动-------------------------------------------------------------------
-    personnel_company_tool_select1.change(function(){
-
-        //变量声明
-        var data_id = personnel_company_tool_select1.val();                         //数据ID
-
-        //架构图-刷新
-        personnel_company_structure_btn.attr("company-id",data_id);
-
-        //节点树-刷新
-        $.ajax({
-            url     :  API.common_staff,
-            type    : "post",
-            data    : { id : data_id },
-            success : function(data){
-                var data = um_json(data);
-                if( data.status>0 ){
-                   personnel_company_tree.data("zui.tree").reload(data);
-                }
-            }
-        });
-      
+    //节点树--------------------------------------------------------------------------------
+    //实例化
+    common_tree_staff(personnel_company_tree,true,false);
+    //点击选中
+    personnel_company_tree.on("click","span",function(){
+        personnel_company_tree.find("span").removeClass("text-primary");
+        $(this).addClass("text-primary");
     });
 
-    //架构图-点击生成----------------------------------------------------------------------
+    //架构图--------------------------------------------------------------------------------
     personnel_company_structure_btn.click(function(){
         $.ajax({
             url     : personnel_company_api.structure,
             type    : "POST",
             dataType: "json",
-            data    : { id  : personnel_company_structure_btn.attr("company-id") },
+            data    : {},
             success : function(data){
                 var data = um_json(data.data);                                      //JSON解析
                 if( data.status>0 ){
@@ -139,12 +91,6 @@ $(function(){
             }
         });
     });
-
-    //节点树-点击选中
-    personnel_company_tree.on("click","span",function(){
-        personnel_company_tree.find("span").removeClass("text-primary");
-        $(this).addClass("text-primary");
-    });
-
+    
 });//预加载结尾
 </script>

@@ -123,8 +123,7 @@ $(function(){
     var personnel_attendance_overtime_datagrid_obj = personnel_attendance_overtime_datagrid.data("zui.datagrid");//表格对象
 
     //下拉选项-----------------------------------------------------------------------------------------------
-    //分公司+部门
-    common_select_linkage("#personnel_attendance_overtime_tool_select_group","12");                             //搜索
+    common_select_linkage("#personnel_attendance_overtime_tool_select_group","1");                               //搜索
  
     //加班类型
     $.ajax({
@@ -169,10 +168,9 @@ $(function(){
         var keyword
         = "?sid="    + personnel_attendance_overtime_tool_keys.val()
         + "&search=" + personnel_attendance_overtime_tool_search.val()
-        + "&select1="+ personnel_attendance_overtime_tool_select_group.find(".common_select_company").val()
-        + "&select2="+ personnel_attendance_overtime_tool_select_group.find(".common_select_depart").val()
-        + "&select3="+ personnel_attendance_overtime_tool_select3.val()
-        + "&select4="+ personnel_attendance_overtime_tool_select4.val();
+        + "&depart=" + personnel_attendance_overtime_tool_select_group.find(".common_select_depart").val()
+        + "&type="   + personnel_attendance_overtime_tool_select3.val()
+        + "&method=" + personnel_attendance_overtime_tool_select4.val();
 
         //GET提交
         zui_datagrid_render(personnel_attendance_overtime_datagrid_obj,personnel_attendance_overtime_api.datagrid+keyword);
@@ -190,10 +188,9 @@ $(function(){
             data    : {
                 keys    : personnel_attendance_overtime_tool_keys.val(),
                 search  : personnel_attendance_overtime_tool_search.val(),
-                select1 : personnel_attendance_overtime_tool_select_group.find(".common_select_company").val(),
-                select2 : personnel_attendance_overtime_tool_select_group.find(".common_select_depart").val(),
-                select3 : personnel_attendance_overtime_tool_select3.val(),
-                select4 : personnel_attendance_overtime_tool_select4.val(),
+                depart  : personnel_attendance_overtime_tool_select_group.find(".common_select_depart").val(),
+                type    : personnel_attendance_overtime_tool_select3.val(),
+                method  : personnel_attendance_overtime_tool_select4.val(),
             },
             beforesend : function(){
                 um_tip("导出中…");

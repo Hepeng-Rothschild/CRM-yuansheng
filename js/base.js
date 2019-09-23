@@ -514,83 +514,52 @@ function common_date_duration(selector){
 function common_select_linkage(selector,type){
 
     //变量声明
-    var temp_result  = "";
-    var temp_company = '<label><span>分公司：</span><select class="form-control common_select_company"></select></label>';
-    var temp_depart  = '<label><span>  部门：</span><select class="form-control common_select_depart" ></select></label>';
-    var temp_post    = '<label><span>  职位：</span><select class="form-control common_select_post"   ></select></label>';
+    var temp_result = "";
+    var temp_depart = '<label><span>部门：</span><select class="form-control common_select_depart" ></select></label>';
+    var temp_post   = '<label><span>职位：</span><select class="form-control common_select_post"   ></select></label>';
 
     //类型区分
-    if( type=="1"   ){ temp_result = temp_company;                      } else
-    if( type=="12"  ){ temp_result = temp_company+temp_depart;          } else
-    if( type=="123" ){ temp_result = temp_company+temp_depart+temp_post;} else { console.log("无此组合"); }
+    if( type=="1"  ){ temp_result = temp_depart;           } else
+    if( type=="2"  ){ temp_result = temp_post;             } else
+    if( type=="12" ){ temp_result = temp_depart+temp_post; } else { console.log("无此组合"); }
 
     //节点推进
     $(selector).html(temp_result);
 
-    //远程获取(分公司)
+    //远程获取(部门)
     $.ajax({
-        url     : API.common_company,
+        url     : API.common_depart,
         type    : "post",
         dataType: "json",
+        data    : {},
         success : function(data){
             if( data.status>0 ){
-                //处理(分公司)
                 var data = data.data;
-                var option = '';
+                var option = '<option value="0">全部</option>';
                 for( var i=0;i<data.length;i++ ){
-                    option += '<option value="'+ data[i].deparmenid +'">'+ data[i].deparmenname +'</option>';
+                    option += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
                 }
-                $(selector).find(".common_select_company").html(option);
-
-                //远程获取(部门)
-                $.ajax({
-                    url     : API.common_depart,
-                    type    : "post",
-                    dataType: "json",
-                    data    : { id : data[0].deparmenid },      //公司ID
-                    success : function(data){
-                        if( data.status>0 ){
-
-                            //处理(部门)
-                            var data = data.data;
-                            var option = '<option value="0">全部</option>';
-                            for( var i=0;i<data.length;i++ ){
-                                option += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
-                            }
-                            $(selector).find(".common_select_depart").html(option);
-
-
-                        }
-                    }
-                });//ajax
-
+                $(selector).find(".common_select_depart").html(option);
             }
         }
-    });//ajax
-
-    //远程获取(分公司->部门)---------------------------------------------------------
-    $(document).on("change",selector+" .common_select_company",function(){
-
-        //远程获取(部门)
-        $.ajax({
-            url     : API.common_depart,
-            type    : "post",
-            dataType: "json",
-            data    : { id : $(this).val() },                   //公司ID
-
-            success : function(data){
-                if( data.status>0 ){
-                    var data = data.data;
-                    var option = '<option value="0">全部</option>';
-                    for( var i=0;i<data.length;i++ ){
-                        option += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
-                    }
-                    $(selector).find(".common_select_depart").html(option);
-                    $(selector).find(".common_select_post").html("");
+    });
+    
+    //远程获取(职位)
+    $.ajax({
+        url     : API.common_post,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = '<option value="0">全部</option>';
+                for( var i=0;i<data.length;i++ ){
+                    option += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
                 }
+                $(selector).find(".common_select_post").html(option);
             }
-        });
-
+        }
     });
 
     //远程获取(部门->职位)---------------------------------------------------------
@@ -624,18 +593,17 @@ function common_select_linkage(selector,type){
 
 /* common_tree_staff() 节点树员工
  * @param selector     object  DOM对象
- * @param company_id   string  公司ID
  * @param is_open      bool    是否展开
  * @param is_check     bool    是否可选
  */
-function common_tree_staff(selector,company_id,is_open,is_check){
+function common_tree_staff(selector,is_open,is_check){
 
     //节点树生成
     $.ajax({
         url     : API.common_staff,
         type    : "post",
         dataType: "json",
-        data    : { id : company_id },
+        data    : {},
         success : function(data){
             var data = um_json(data);
             if( data.status>0 ){

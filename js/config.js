@@ -20,7 +20,6 @@ if( STATE == "local" ){
         test_export     : LOCAL+"Upload/test_export.pdf",               //导出文件
 
         common_tree     : LOCAL+"User/GetUserPageInfo.json",            //左侧导航
-        common_company  : LOCAL+"Company/getCompanyByPositionid.json",  //分公司
         common_depart   : LOCAL+"Company/getDeparment.json",            //部门
         common_post     : LOCAL+"Position/getPostionsByDid.json",       //职位
         common_staff    : LOCAL+"Company/getCompanybyid.json",          //员工
@@ -38,7 +37,6 @@ if( STATE == "local" ){
         test_export     : LOCAL+"Upload/test_export.pdf",               //导出文件
         
         common_tree     : LOCAL+"User/GetUserPageInfo.json",            //左侧导航
-        common_company  : ROUTE+"Company/getCompanyByPositionid",       //分公司
         common_depart   : ROUTE+"Company/getDeparment",                 //部门
         common_post     : ROUTE+"Position/getPostionsByDid",            //职位
         common_staff    : ROUTE+"Company/getCompanybyid",               //员工

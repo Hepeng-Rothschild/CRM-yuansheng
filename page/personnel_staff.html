@@ -12,7 +12,6 @@
                         <select class="form-control" id="personnel_staff_tool_keys">
                             <option value="1">姓名</option>
                             <option value="2">工号</option>
-                            <option value="3">部门</option>
                         </select>
                         <span class="input-group-addon fix-border fix-padding"></span>
                         <input type="text" class="form-control" id="personnel_staff_tool_search">
@@ -100,16 +99,10 @@
                         <!-- 入职情况 -->
                         <blockquote>入职情况 <span class="small text-red">(以下均为必填项)</span></blockquote>
                         <ul class="form-checker-board">
-                            <!-- <li class="col-sm-3"><label><span>分公司    </span><select id="personnel_staff_add_comp" class="form-control"></select></li></label>
-                            <li class="col-sm-3"><label><span>部门      </span><select id="personnel_staff_add_depa" class="form-control"></select></li></label>
-                            <li class="col-sm-3"><label><span>职位      </span><select id="personnel_staff_add_post" class="form-control"></select></li></label> -->
-
-                            <li class="flex-box" id="personnel_staff_add_select_group"></li>
-                            <li class="flex-box" >
-                                <label><span>入职日期  </span><input  id="personnel_staff_add_pass" class="form-control" type="text" readonly></label>
-                                <label><span>试用期工资</span><input  id="personnel_staff_add_wag1" class="form-control" type="text"></label>
-                                <label><span>转正工资  </span><input  id="personnel_staff_add_wag2" class="form-control" type="text"></label>
-                            </li>
+                            <li class="flex-box col-sm-6" id="personnel_staff_add_select_group"></li>
+                            <li class="flex-box col-sm-3"><label><span>入职日期  </span><input  id="personnel_staff_add_pass" class="form-control" type="text" readonly></label></li>
+                            <li class="flex-box col-sm-3"><label><span>试用期工资</span><input  id="personnel_staff_add_wag1" class="form-control" type="text"></label></li>
+                            <li class="flex-box col-sm-3"><label><span>转正工资  </span><input  id="personnel_staff_add_wag2" class="form-control" type="text"></label></li>
                         </ul>
                         <div class="clearfix"></div><hr>
                         <!-- 资料上传 -->
@@ -349,9 +342,7 @@
                         <!-- 入职情况 -->
                         <blockquote>入职情况 <span class="small text-red">(以下均为必填项)</span></blockquote>
                         <ul class="form-checker-board">
-                            <li class="col-sm-3"><label><span>分公司    </span><select id="personnel_staff_edit_comp" class="form-control"></select></li></label>
-                            <li class="col-sm-3"><label><span>部门      </span><select id="personnel_staff_edit_depa" class="form-control"></select></li></label>
-                            <li class="col-sm-3"><label><span>职位      </span><select id="personnel_staff_edit_post" class="form-control"></select></li></label>
+                            <li class="flex-box col-sm-6" id="personnel_staff_edit_select_group"></li>
                             <li class="col-sm-3"><label><span>入职日期  </span><input  id="personnel_staff_edit_pass" class="form-control" type="text" readonly></li></label>
                             <li class="col-sm-3"><label><span>试用期工资</span><input  id="personnel_staff_edit_wag1" class="form-control" type="text"></li></label>
                             <li class="col-sm-3"><label><span>转正工资  </span><input  id="personnel_staff_edit_wag2" class="form-control" type="text"></li></label>
@@ -779,7 +770,6 @@ $(function(){
                 {name:"id",            label:"ID"  ,  width:49 },
                 {name:"name",          label:"姓名",  width:80 },
                 {name:"username",      label:"工号",  width:80 },
-                {name:"companyname",   label:"分公司",width:100},
                 {name:"departmentname",label:"部门",  width:80 },
                 {name:"positionname",  label:"职位",  width:80 },
                 {name:"sex",           label:"性别",  width:50 },
@@ -825,14 +815,15 @@ $(function(){
 
     //变量声明-----------------------------------------------------------------------------------------------
     var
-    personnel_staff_datagrid_obj    = personnel_staff_datagrid.data("zui.datagrid"),   //表格对象
-    personnel_staff_show_btn        = ".personnel_staff_show_btn",                     //查看
-    personnel_staff_reset_btn       = ".personnel_staff_reset_btn",                    //重置密码
-    personnel_staff_state_btn       = ".personnel_staff_state_btn";                    //状态按钮
+    personnel_staff_datagrid_obj    = personnel_staff_datagrid.data("zui.datagrid"),    //表格对象
+    personnel_staff_show_btn        = ".personnel_staff_show_btn",                      //查看
+    personnel_staff_reset_btn       = ".personnel_staff_reset_btn",                     //重置密码
+    personnel_staff_state_btn       = ".personnel_staff_state_btn";                     //状态按钮
 
     //下拉组件-----------------------------------------------------------------------------------------------
-    common_select_linkage("#personnel_staff_tool_select_group","123");               //搜索
-    common_select_linkage("#personnel_staff_add_select_group","123");                //添加
+    common_select_linkage("#personnel_staff_tool_select_group","12");                   //搜索
+    common_select_linkage("#personnel_staff_add_select_group","12");                    //添加
+    common_select_linkage("#personnel_staff_edit_select_group","12");                   //修改    
 
     //时间组件-----------------------------------------------------------------------------------------------
     personnel_staff_add_birt.datetimepicker(option_date);
@@ -1051,7 +1042,6 @@ $(function(){
         var keyword
         = "?sid="           + personnel_staff_tool_keys.val()
         + "&search="        + personnel_staff_tool_search.val()
-        + "&companyid="     + personnel_staff_tool_select_group.find(".common_select_company").val()
         + "&departmentid="  + personnel_staff_tool_select_group.find(".common_select_depart").val()
         + "&positionid="    + personnel_staff_tool_select_group.find(".common_select_post").val()
         + "&isstate="       + personnel_staff_tool_select4.val();
@@ -1086,7 +1076,6 @@ $(function(){
                 addr3            : personnel_staff_add_addr3.val(),
                 addr4            : personnel_staff_add_addr4.val(),
                 //入职情况
-                companyId        : personnel_staff_add_comp.val(),
                 departmentId     : personnel_staff_add_depa.val(),
                 positionld       : personnel_staff_add_post.val(),
                 date             : personnel_staff_add_pass.val(),
@@ -1215,10 +1204,10 @@ $(function(){
                             <blockquote>入职情况</blockquote>
                             <table class="table table-bordered">
                                 <tr>
-                                    <td>分公司：   ${data.companyId}</td>
                                     <td>部门：     ${data.departmentId}</td>
                                     <td>职位：     ${data.positionld}</td>
                                     <td>入职日期： ${data.date}</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>试用期工资：           ${data.probationpay}</td>
@@ -1399,7 +1388,6 @@ $(function(){
                     personnel_staff_edit_addr3.val(     data.addr3          );
                     personnel_staff_edit_addr4.val(     data.addr4          );
                     //入职情况
-                    personnel_staff_edit_comp.val(      data.companyId      );
                     personnel_staff_edit_depa.val(      data.departmentId   );
                     personnel_staff_edit_post.val(      data.positionld     );
                     personnel_staff_edit_pass.val(      data.date           );
@@ -1478,7 +1466,6 @@ $(function(){
                 addr3            : personnel_staff_edit_addr3.val(),
                 addr4            : personnel_staff_edit_addr4.val(),
                 //入职情况
-                companyId        : personnel_staff_edit_comp.val(),
                 departmentId     : personnel_staff_edit_depa.val(),
                 positionld       : personnel_staff_edit_post.val(),
                 date             : personnel_staff_edit_pass.val(),
