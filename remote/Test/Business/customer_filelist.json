@@ -1,0 +1,52 @@
+{
+    "result"  : "success",
+    "data"    : [
+		{
+			"id" 		: 1,
+			"name" 		: "设计图",
+			"type" 		: "image",
+			"thumb"     : { "thumb_icon":"image","thumb_path":"./remote/Upload/test_upload.jpg"},
+			"path" 		: "./remote/Upload/test_upload.jpg",
+			"uploader" 	: "刘德华",
+			"date"  	: "2019-10-10 11:11:11"
+		},
+		{
+			"id" 		: 2,
+			"name" 		: "说明文档",
+			"type" 		: "word",
+			"thumb"     : { "thumb_icon":"word","thumb_path":""},
+			"path" 		: "./remote/Upload/test_export.pdf",
+			"uploader" 	: "刘德华",
+			"date"  	: "2019-10-10 11:11:11"
+		},
+		{
+			"id" 		: 3,
+			"name" 		: "企业文化",
+			"type" 		: "pdf",
+			"thumb"     : { "thumb_icon":"pdf","thumb_path":""},
+			"path" 		: "./remote/Upload/test_export.pdf",
+			"uploader" 	: "刘德华",
+			"date"  	: "2019-10-10 11:11:11"
+		},
+		{
+			"id" 		: 4,
+			"name" 		: "统计表格",
+			"type" 		: "excel",
+			"thumb"     : { "thumb_icon":"excel","thumb_path":""},
+			"path" 		: "./remote/Upload/test_export.pdf",
+			"uploader" 	: "刘德华",
+			"date"  	: "2019-10-10 11:11:11"
+		},
+		{
+			"id" 		: 5,
+			"name" 		: "默认文件",
+			"type" 		: "file",
+			"thumb"     : { "thumb_icon":"file","thumb_path":""},
+			"path" 		: "./remote/Upload/test_export.pdf",
+			"uploader" 	: "刘德华",
+			"date"  	: "2019-10-10 11:11:11"
+		}    
+    ],
+    "message" : "",
+    "pager"   : {"page":1,"recTotal":5,"recPerPage":10}
+}
