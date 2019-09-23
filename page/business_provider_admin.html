@@ -328,22 +328,30 @@ $(function(){
 
         //本地接口
         var business_provider_admin_api = {
-            datagrid            : LOCAL + "Test/test_datagrid.json",                         //数据表格
-            salesman_datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格2
-            select              : LOCAL + "Test/test_select.json",                           //下拉选择
-            modal_show          : LOCAL + "Test/Business/provider_edit.json",                //修改盒子
-            topic               : LOCAL + "Test/Business/provider_topic.json",               //日志查看
+            datagrid            : LOCAL + "Test/test_datagrid.json",            //数据表格
+            datagrid_salesman   : LOCAL + "Test/test_datagrid.json",            //数据表格2
+            datagrid_table1     : LOCAL + "Test/test_datagrid.json",            //查看表格1
+            datagrid_table2     : LOCAL + "Test/test_datagrid.json",            //查看表格2
+            datagrid_table3     : LOCAL + "Test/test_datagrid.json",            //查看表格3
+            datagrid_table4     : LOCAL + "Test/test_datagrid.json",            //查看表格4
+            select              : LOCAL + "Test/test_select.json",              //下拉选择
+            modal_show          : LOCAL + "Test/Business/provider_edit.json",   //修改盒子
+            topic               : LOCAL + "Test/Business/provider_topic.json",  //日志查看
         }
 
     } else if ( window.STATE == "route" ){
 
         //远程接口
         var business_provider_admin_api = {
-            datagrid            : LOCAL + "Test/test_datagrid.json",                         //数据表格
-            salesman_datagrid   : LOCAL + "Test/test_datagrid.json",                         //数据表格2
-            select              : LOCAL + "Test/test_select.json",                           //下拉选择
-            modal_show          : LOCAL + "Test/Business/provider_edit.json",                //修改盒子
-            topic               : LOCAL + "Test/Business/provider_topic.json",               //日志查看
+            datagrid            : LOCAL + "Test/test_datagrid.json",            //数据表格
+            datagrid_salesman   : LOCAL + "Test/test_datagrid.json",            //数据表格2
+            datagrid_table1     : LOCAL + "Test/test_datagrid.json",            //查看表格1
+            datagrid_table2     : LOCAL + "Test/test_datagrid.json",            //查看表格2
+            datagrid_table3     : LOCAL + "Test/test_datagrid.json",            //查看表格3
+            datagrid_table4     : LOCAL + "Test/test_datagrid.json",            //查看表格4
+            select              : LOCAL + "Test/test_select.json",              //下拉选择
+            modal_show          : LOCAL + "Test/Business/provider_edit.json",   //修改盒子
+            topic               : LOCAL + "Test/Business/provider_topic.json",  //日志查看
         }
 
     }
@@ -409,12 +417,163 @@ $(function(){
         }
     });
 
+    //查看盒子-切换表格----------------------------------------------------------------------------------------
+    //客户记录
+    business_provider_admin_show_table1.datagrid({
+        height      : "page",
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",     label:"ID",         width:49 },
+                {name:"text4",  label:"项目编号",   width:80 },
+                {name:"text8",  label:"项目名称",   width:130},
+                {name:"name",   label:"联系人",     width:80 },
+                {name:"tel",    label:"联系手机",   width:100},
+                {name:"text2",  label:"面积",       width:80 },
+                {name:"text8",  label:"项目地址",   width:130},
+                {name:"name",   label:"业务员",     width:80 },
+                {name:"name",   label:"设计师",     width:80 },
+                {name:"text1",  label:"流程状态",   width:80 },
+            ],
+            remote : function(){
+                return {
+                    url     : business_provider_admin_api.datagrid_table1,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+    //信息费记录
+    business_provider_admin_show_table2.datagrid({
+        height      : "page",
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",      width:49 },
+                {name:"text4",   label:"项目编号",width:80 },
+                {name:"name",    label:"客户名称",width:80 },
+                {name:"name",    label:"业务员",  width:80 },
+                {name:"name",    label:"设计师",  width:80 },
+                {name:"date",    label:"申请时间",width:100},
+                {name:"username",label:"申请金额",width:80 },
+                {name:"state",   label:"申请状态",width:80 },
+            ],
+            remote : function(){
+                return {
+                    url     : business_provider_admin_api.datagrid_table2,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+    //提成记录
+    business_provider_admin_show_table3.datagrid({
+        height      : "page",
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",        width:49 },
+                {name:"text4",   label:"项目编号",  width:80 },
+                {name:"text8",   label:"项目名称",  width:130},
+                {name:"name",    label:"业务员",    width:80 },
+                {name:"name",    label:"设计师",    width:80 },
+                {name:"text4",   label:"合同总金额",width:90 },
+                {name:"date",    label:"申请时间",  width:100},
+                {name:"state",   label:"申请提点",  width:80 },
+                {name:"username",label:"应发提成",  width:80 },
+                {name:"username",label:"实发提成",  width:80 },
+                {name:"state",   label:"申请状态",  width:80 },
+            ],
+            remote : function(){
+                return {
+                    url     : business_provider_admin_api.datagrid_table3,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+    //过程记录
+    business_provider_admin_show_table4.datagrid({
+        height      : "page",
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",     label:"ID",        width:49 },
+                {name:"name",   label:"操作人",    width:80 },
+                {name:"date",   label:"操作时间",  width:140},
+                {name:"tex10",  label:"过程说明",  width:400},
+            ],
+            remote : function(){
+                return {
+                    url     : business_provider_admin_api.datagrid_table4,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
     //变量声明-----------------------------------------------------------------------------------------------
     var
-    business_provider_admin_datagrid_obj     = business_provider_admin_datagrid.data("zui.datagrid"), //表格对象
-    business_provider_admin_turn_customer_btn= ".business_provider_admin_turn_customer_btn",  		  //转为客户
-    business_provider_admin_show_btn         = ".business_provider_admin_show_btn",                   //查看按钮
-    business_provider_admin_logShow_btn      = ".business_provider_admin_logShow_btn";                //日志查看
+    business_provider_admin_datagrid_obj     = business_provider_admin_datagrid.data("zui.datagrid"),       //表格对象
+    business_provider_admin_show_table1_obj  = business_provider_admin_show_table1.data("zui.datagrid"),    //查看表格1
+    business_provider_admin_show_table2_obj  = business_provider_admin_show_table2.data("zui.datagrid"),    //查看表格2
+    business_provider_admin_show_table3_obj  = business_provider_admin_show_table3.data("zui.datagrid"),    //查看表格3
+    business_provider_admin_show_table4_obj  = business_provider_admin_show_table4.data("zui.datagrid"),    //查看表格4
+    business_provider_admin_turn_customer_btn= ".business_provider_admin_turn_customer_btn",  		        //转为客户
+    business_provider_admin_show_btn         = ".business_provider_admin_show_btn",                         //查看按钮
+    business_provider_admin_logShow_btn      = ".business_provider_admin_logShow_btn";                      //日志查看
  
     //下拉选项-----------------------------------------------------------------------------------------------
     $.ajax({
@@ -478,8 +637,19 @@ $(function(){
                         <tr><td>身份证号  </td><td>${data.card}     </td></tr>
                         <tr><td>备注信息  </td><td>${data.text}     </td></tr>
                     `;
-                    business_provider_admin_show_table0.find("tbody").html(temp);               //模板填充
-                    business_provider_admin_show_box.modal("show");                             //盒子显示
+
+                    //模板填充
+                    business_provider_admin_show_table0.find("tbody").html(temp);
+
+                    //列表刷新
+                    zui_datagrid_render(business_provider_admin_show_table1_obj,business_provider_admin_api.datagrid_table1+"?id="+data_id);
+                    zui_datagrid_render(business_provider_admin_show_table2_obj,business_provider_admin_api.datagrid_table2+"?id="+data_id);
+                    zui_datagrid_render(business_provider_admin_show_table3_obj,business_provider_admin_api.datagrid_table3+"?id="+data_id);
+                    zui_datagrid_render(business_provider_admin_show_table4_obj,business_provider_admin_api.datagrid_table4+"?id="+data_id);
+
+                    //盒子显示
+                    business_provider_admin_show_box.modal("show");
+                    
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -487,153 +657,6 @@ $(function(){
         });
 
     }); 
-
-    //查看盒子-切换表格----------------------------------------------------------------------------------------
-    //客户记录
-    business_provider_admin_show_table1.datagrid({
-        height      : zui_datagrid_height(business_provider_admin_datagrid),
-        sortable    : false,
-        cache       : false,
-        showRowIndex: true,
-        configs     : {
-            R0:{className:"text-center"},
-            C1:{className:"cell-hidden"}
-        },
-        states      : {
-            pager           : {
-                page        : 1,
-                recPerPage  : window.REC_PER_PAGE,
-            }
-        },
-        dataSource : {
-            cols   : [
-                {name:"id",     label:"ID",         width:49 },
-                {name:"text4",  label:"项目编号",   width:80 },
-                {name:"text8",  label:"项目名称",   width:130},
-                {name:"name",   label:"联系人",     width:80 },
-                {name:"tel",    label:"联系手机",   width:100},
-                {name:"text2",  label:"面积",       width:80 },
-                {name:"text8",  label:"项目地址",   width:130},
-                {name:"name",   label:"业务员",     width:80 },
-                {name:"name",   label:"设计师",     width:80 },
-                {name:"text1",  label:"流程状态",   width:80 },
-            ],
-            remote : function(){
-                return {
-                    url     : business_provider_admin_api.datagrid,
-                    type    : "POST",
-                    dataType: "json",
-                }
-            }
-        }
-    });
-    //信息费记录
-    business_provider_admin_show_table2.datagrid({
-        height      : zui_datagrid_height(business_provider_admin_datagrid),
-        sortable    : false,
-        cache       : false,
-        showRowIndex: true,
-        configs     : {
-            R0:{className:"text-center"},
-            C1:{className:"cell-hidden"}
-        },
-        states      : {
-            pager           : {
-                page        : 1,
-                recPerPage  : window.REC_PER_PAGE,
-            }
-        },
-        dataSource : {
-            cols   : [
-                {name:"id",      label:"ID",      width:49 },
-                {name:"text4",   label:"项目编号",width:80 },
-                {name:"name",    label:"客户名称",width:80 },
-                {name:"name",    label:"业务员",  width:80 },
-                {name:"name",    label:"设计师",  width:80 },
-                {name:"date",    label:"申请时间",width:100},
-                {name:"username",label:"申请金额",width:80 },
-                {name:"state",   label:"申请状态",width:80 },
-            ],
-            remote : function(){
-                return {
-                    url     : business_provider_admin_api.datagrid,
-                    type    : "POST",
-                    dataType: "json",
-                }
-            }
-        }
-    });
-    //提成记录
-    business_provider_admin_show_table3.datagrid({
-        height      : zui_datagrid_height(business_provider_admin_datagrid),
-        sortable    : false,
-        cache       : false,
-        showRowIndex: true,
-        configs     : {
-            R0:{className:"text-center"},
-            C1:{className:"cell-hidden"}
-        },
-        states      : {
-            pager           : {
-                page        : 1,
-                recPerPage  : window.REC_PER_PAGE,
-            }
-        },
-        dataSource : {
-            cols   : [
-                {name:"id",      label:"ID",        width:49 },
-                {name:"text4",   label:"项目编号",  width:80 },
-                {name:"text8",   label:"项目名称",  width:130},
-                {name:"name",    label:"业务员",    width:80 },
-                {name:"name",    label:"设计师",    width:80 },
-                {name:"text4",   label:"合同总金额",width:90 },
-                {name:"date",    label:"申请时间",  width:100},
-                {name:"state",   label:"申请提点",  width:80 },
-                {name:"username",label:"应发提成",  width:80 },
-                {name:"username",label:"实发提成",  width:80 },
-                {name:"state",   label:"申请状态",  width:80 },
-            ],
-            remote : function(){
-                return {
-                    url     : business_provider_admin_api.datagrid,
-                    type    : "POST",
-                    dataType: "json",
-                }
-            }
-        }
-    });
-    //过程记录
-    business_provider_admin_show_table4.datagrid({
-        height      : zui_datagrid_height(business_provider_admin_datagrid),
-        sortable    : false,
-        cache       : false,
-        showRowIndex: true,
-        configs     : {
-            R0:{className:"text-center"},
-            C1:{className:"cell-hidden"}
-        },
-        states      : {
-            pager           : {
-                page        : 1,
-                recPerPage  : window.REC_PER_PAGE,
-            }
-        },
-        dataSource : {
-            cols   : [
-                {name:"id",     label:"ID",        width:49 },
-                {name:"name",   label:"操作人",    width:80 },
-                {name:"date",   label:"操作时间",  width:140},
-                {name:"tex10",  label:"过程说明",  width:400},
-            ],
-            remote : function(){
-                return {
-                    url     : business_provider_admin_api.datagrid,
-                    type    : "POST",
-                    dataType: "json",
-                }
-            }
-        }
-    });
 
     //批量转移按钮-----------------------------------------------------------------------------------------------
     business_provider_admin_turn_btn.click(function(){
@@ -874,7 +897,7 @@ $(function(){
                                 <a class="common_topic_answer_btn">回复</a>
                                 <div class="hide common_topic_answer_text_wrap">
                                     <textarea class="form-control common_topic_answer_text"></textarea>
-                                    <button type="button" class="pull-right btn btn-mini btn-primary common_topic_answer_submit" data-tid="${data[i].id}" style="margin-top:5px;">提交</button>
+                                    <button type="button" class="pull-right btn btn-mini btn-primary business_provider_admin_logShow_submit" data-tid="${data[i].id}" style="margin-top:5px;">提交</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
@@ -884,7 +907,10 @@ $(function(){
 
                     //文本推进
                     business_provider_admin_logShow_box.find(".comments").html(temp);
-
+                    
+                    //ID赋值
+                    business_provider_admin_logShow_box.attr("rowIndex",data_id);
+                    
                     //面板显示
                     business_provider_admin_logShow_box.modal("show");
 
@@ -896,16 +922,18 @@ $(function(){
 
     });
     //日志回复
-    $(document).on("click",".common_topic_answer_submit",function(){
+    $(document).on("click",".business_provider_admin_logShow_submit",function(){
         //变量声明
-        var tid = $(this).attr("data-tid");
-        var text= $(this).parent().find(".common_topic_answer_text").val();
+        var data_id = business_provider_admin_logShow_box.attr("rowIndex");
+        var tid     = $(this).attr("data-tid");
+        var text    = $(this).parent().find(".common_topic_answer_text").val();
         //远程提交
         $.ajax({
             url     : API.test_response,
             type    : "post",
             dataType: "json",
             data    : { 
+                id  : data_id,
                 tid : tid,
                 text: text
             },
@@ -983,7 +1011,7 @@ $(function(){
             ],
             remote : function(){
                 return {
-                    url     : business_provider_admin_api.salesman_datagrid,
+                    url     : business_provider_admin_api.datagrid_salesman,
                     type    : "POST",
                     dataType: "json",
                 }
@@ -1001,7 +1029,7 @@ $(function(){
         + "&depart=" + business_provider_admin_salesman_depart.val();
 
         //GET提交
-        zui_datagrid_render(business_provider_admin_salesman_datagrid_obj,business_provider_admin_api.salesman_datagrid+keyword);
+        zui_datagrid_render(business_provider_admin_salesman_datagrid_obj,business_provider_admin_api.datagrid_salesman+keyword);
 
     });
     //点击显示

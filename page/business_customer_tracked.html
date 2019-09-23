@@ -910,7 +910,7 @@ $(function(){
         var keyword
         = "?sid="    + business_customer_tracked_tool_keys.val()
         + "&search=" + business_customer_tracked_tool_search.val()
-        + "&level="  + business_customer_tracked_tool_select1.val();
+        + "&state="  + business_customer_tracked_tool_select1.val();
 
         //GET提交
         zui_datagrid_render(business_customer_tracked_datagrid_obj,business_customer_tracked_api.datagrid+keyword);
@@ -1333,7 +1333,7 @@ $(function(){
                                 <a class="common_topic_answer_btn">回复</a>
                                 <div class="hide common_topic_answer_text_wrap">
                                     <textarea class="form-control common_topic_answer_text"></textarea>
-                                    <button type="button" class="pull-right btn btn-mini btn-primary common_topic_answer_submit" data-tid="${data[i].id}" style="margin-top:5px;">提交</button>
+                                    <button type="button" class="pull-right btn btn-mini btn-primary business_customer_tracked_logShow_submit" data-tid="${data[i].id}" style="margin-top:5px;">提交</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
@@ -1343,6 +1343,9 @@ $(function(){
 
                     //文本推进
                     business_customer_tracked_logShow_box.find(".comments").html(temp);
+
+                    //ID赋值
+                    business_customer_tracked_logShow_box.attr("rowIndex",data_id);
 
                     //面板显示
                     business_customer_tracked_logShow_box.modal("show");
@@ -1355,16 +1358,18 @@ $(function(){
 
     });
     //日志回复
-    $(document).on("click",".common_topic_answer_submit",function(){
+    $(document).on("click",".business_customer_tracked_logShow_submit",function(){
         //变量声明
-        var tid = $(this).attr("data-tid");
-        var text= $(this).parent().find(".common_topic_answer_text").val();
+        var data_id = business_customer_tracked_logShow_box.attr("rowIndex");
+        var tid     = $(this).attr("data-tid");
+        var text    = $(this).parent().find(".common_topic_answer_text").val();
         //远程提交
         $.ajax({
             url     : API.test_response,
             type    : "post",
             dataType: "json",
             data    : { 
+                id  : data_id,
                 tid : tid,
                 text: text
             },
@@ -1468,7 +1473,7 @@ $(function(){
         + "&depart=" + business_customer_tracked_salesman_depart.val();
 
         //GET提交
-        zui_datagrid_render(business_customer_tracked_salesman_datagrid_obj,business_provider_admin_api.datagrid_salesman+keyword);
+        zui_datagrid_render(business_customer_tracked_salesman_datagrid_obj,business_customer_tracked_api.datagrid_salesman+keyword);
 
     });
     //点击显示
