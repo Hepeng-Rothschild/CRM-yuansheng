@@ -43,50 +43,83 @@
                     <h4 class="modal-title">添加</h4>
                 </div>
                 <div class="modal-body modal-scroll">
-                    <form class="container">
+                    <form class="container form-horizontal">
                         <!-- 个人资料 -->
-                        <blockquote>个人资料 <span class="small text-red">(以下均为必填项)</span></blockquote>
-                        <ul class="form-checker-board">
-                            <li class="col-sm-3"><label><span>姓名</span><input id="personnel_contractor_add_user" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>工号</span><input id="personnel_contractor_add_acco" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>电话</span><input id="personnel_contractor_add_tels" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>地址</span><input id="personnel_contractor_add_addr" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>承包商类型</span><select id="personnel_contractor_add_type"  class="form-control"><!-- JS推进 --></select></label></li>
-                            <li class="col-sm-3"><label><span>工作状态  </span><select id="personnel_contractor_add_state" class="form-control"><!-- JS推进 --></select></label></li>
-                        </ul>
-                        <div class="clearfix"></div><hr>
+                        <table class="table table-bordered">
+                            <thead><tr><th>个人资料</th></tr></thead>
+                            <tbody><tr><td>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_add_user">姓名</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_add_user"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_add_acco">工号</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_add_acco"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_add_tels">电话</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_add_tels"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_add_addr">地址</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_add_addr"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_add_type">承包商类型</label>
+                                    <div class="col-sm-8"><select id="personnel_contractor_add_type"  class="form-control input-middle"><!-- JS推进 --></select></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_add_state">工作状态</label>
+                                    <div class="col-sm-8"><select id="personnel_contractor_add_state" class="form-control input-middle"><!-- JS推进 --></select></div>
+                                </div>
+                            </td></tr></tbody>
+                        </table>
                         <!-- 账户信息 -->
-                        <blockquote>账户信息 <span class="small text-red">(以下均为必填项)</span></blockquote>
-                        <ul class="form-checker-board">
-                            <li class="col-sm-3"><label><span>银行卡号</span><input id="personnel_contractor_add_card_numb" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>开户行  </span><input id="personnel_contractor_add_card_bank" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>开户人  </span><input id="personnel_contractor_add_card_user" class="form-control" type="text"></label></li>
-                        </ul>
-                        <div class="clearfix"></div><hr>
+                        <table class="table table-bordered">
+                            <thead><tr><th>账户信息 <span class="small text-red">(以下均为必填项)</span></th></tr></thead>
+                            <tbody><tr><td>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_add_card_numb">银行卡号</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_add_card_numb"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_add_card_bank">开户行</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_add_card_bank"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_add_card_user">开户人</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_add_card_user"></div>
+                                </div>
+                            </td></tr></tbody>
+                        </table>
                         <!-- 证件信息 -->
-                        <blockquote>证件信息 <span class="small text-red">(图片大小不超过1M)</span></blockquote>
-                        <ul class="uploader-square-box">
-                            <li class="col-sm-2">
-                                <div class="uploader" id="personnel_contractor_add_uploader1">
-                                    <div class="uploader-message text-center"><div class="content"></div></div>
-                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
-                                </div>
-                                <strong>身份证正面</strong>
-                            </li>
-                            <li class="col-sm-2">
-                                <div class="uploader" id="personnel_contractor_add_uploader2">
-                                    <div class="uploader-message text-center"><div class="content"></div></div>
-                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
-                                </div>
-                                <strong>身份证反面</strong>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                        <div class="uploader upload-free" id="personnel_contractor_add_uploaders" path="">
-                            <div class="uploader-message text-center"><div class="content"></div></div>
-                            <div class="uploader-files file-list"></div>
-                            <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
-                        </div>
+                        <table class="table table-bordered">
+                            <thead><tr><th>证件信息 <span class="small text-red">(图片大小不超过1M)</span></th></tr></thead>
+                            <tbody><tr><td>
+                                <ul class="uploader-square-box">
+                                    <li class="col-sm-2">
+                                        <div class="uploader" id="personnel_contractor_add_uploader1">
+                                            <div class="uploader-message text-center"><div class="content"></div></div>
+                                            <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                        </div>
+                                        <strong>身份证正面</strong>
+                                    </li>
+                                    <li class="col-sm-2">
+                                        <div class="uploader" id="personnel_contractor_add_uploader2">
+                                            <div class="uploader-message text-center"><div class="content"></div></div>
+                                            <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                        </div>
+                                        <strong>身份证反面</strong>
+                                    </li>
+                                </ul>
+                            </td></tr><tr><td>
+                                    <div class="uploader upload-free" id="personnel_contractor_add_uploaders" path="">
+                                        <div class="uploader-message text-center"><div class="content"></div></div>
+                                        <div class="uploader-files file-list"></div>
+                                        <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
+                                    </div>
+                            </td></tr></tbody>
+                        </table>
                         <div class="text-center">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                             <button type="button" class="btn btn-primary" id="personnel_contractor_add_submit">保存</button>
@@ -121,50 +154,83 @@
                     <h4 class="modal-title">修改</h4>
                 </div>
                 <div class="modal-body modal-scroll">
-                    <form class="container">
+                    <form class="container form-horizontal">
                         <!-- 个人资料 -->
-                        <blockquote>个人资料 <span class="small text-red">(以下均为必填项)</span></blockquote>
-                        <ul class="form-checker-board">
-                            <li class="col-sm-3"><label><span>姓名</span><input id="personnel_contractor_edit_user" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>工号</span><input id="personnel_contractor_edit_acco" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>电话</span><input id="personnel_contractor_edit_tels" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>地址</span><input id="personnel_contractor_edit_addr" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>承包商类型</span><select id="personnel_contractor_edit_type"  class="form-control"><!-- JS推进 --></select></label></li>
-                            <li class="col-sm-3"><label><span>工作状态  </span><select id="personnel_contractor_edit_state" class="form-control"><!-- JS推进 --></select></label></li>
-                        </ul>
-                        <div class="clearfix"></div><hr>
+                        <table class="table table-bordered">
+                            <thead><tr><th>个人资料</th></tr></thead>
+                            <tbody><tr><td>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_edit_user">姓名</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_edit_user"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_edit_acco">工号</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_edit_acco"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_edit_tels">电话</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_edit_tels"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_edit_addr">地址</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_edit_addr"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_edit_type">承包商类型</label>
+                                    <div class="col-sm-8"><select id="personnel_contractor_edit_type"  class="form-control input-middle"><!-- JS推进 --></select></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_edit_state">工作状态</label>
+                                    <div class="col-sm-8"><select id="personnel_contractor_edit_state" class="form-control input-middle"><!-- JS推进 --></select></div>
+                                </div>
+                            </td></tr></tbody>
+                        </table>
                         <!-- 账户信息 -->
-                        <blockquote>账户信息 <span class="small text-red">(以下均为必填项)</span></blockquote>
-                        <ul class="form-checker-board">
-                            <li class="col-sm-3"><label><span>银行卡号</span><input id="personnel_contractor_edit_card_numb" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>开户行  </span><input id="personnel_contractor_edit_card_bank" class="form-control" type="text"></label></li>
-                            <li class="col-sm-3"><label><span>开户人  </span><input id="personnel_contractor_edit_card_user" class="form-control" type="text"></label></li>
-                        </ul>
-                        <div class="clearfix"></div><hr>
+                        <table class="table table-bordered">
+                            <thead><tr><th>账户信息 <span class="small text-red">(以下均为必填项)</span></th></tr></thead>
+                            <tbody><tr><td>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_edit_card_numb">银行卡号</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_edit_card_numb"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_edit_card_bank">开户行</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_edit_card_bank"></div>
+                                </div>
+                                <div class="form-group require">
+                                    <label class="col-sm-2" for="personnel_contractor_edit_card_user">开户人</label>
+                                    <div class="col-sm-8"><input type="text" class="form-control input-middle" id="personnel_contractor_edit_card_user"></div>
+                                </div>
+                            </td></tr></tbody>
+                        </table>
                         <!-- 证件信息 -->
-                        <blockquote>证件信息 <span class="small text-red">(图片大小不超过1M)</span></blockquote>
-                        <ul class="uploader-square-box">
-                            <li class="col-sm-2">
-                                <div class="uploader" id="personnel_contractor_edit_uploader1">
-                                    <div class="uploader-message text-center"><div class="content"></div></div>
-                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
-                                </div>
-                                <strong>身份证正面</strong>
-                            </li>
-                            <li class="col-sm-2">
-                                <div class="uploader" id="personnel_contractor_edit_uploader2">
-                                    <div class="uploader-message text-center"><div class="content"></div></div>
-                                    <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
-                                </div>
-                                <strong>身份证反面</strong>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                        <div class="uploader upload-free" id="personnel_contractor_edit_uploaders" path="">
-                            <div class="uploader-message text-center"><div class="content"></div></div>
-                            <div class="uploader-files file-list"></div>
-                            <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
-                        </div>
+                        <table class="table table-bordered">
+                            <thead><tr><th>证件信息 <span class="small text-red">(图片大小不超过1M)</span></th></tr></thead>
+                            <tbody><tr><td>
+                                <ul class="uploader-square-box">
+                                    <li class="col-sm-2">
+                                        <div class="uploader" id="personnel_contractor_edit_uploader1">
+                                            <div class="uploader-message text-center"><div class="content"></div></div>
+                                            <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                        </div>
+                                        <strong>身份证正面</strong>
+                                    </li>
+                                    <li class="col-sm-2">
+                                        <div class="uploader" id="personnel_contractor_edit_uploader2">
+                                            <div class="uploader-message text-center"><div class="content"></div></div>
+                                            <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                        </div>
+                                        <strong>身份证反面</strong>
+                                    </li>
+                                </ul>
+                            </td></tr><tr><td>
+                                    <div class="uploader upload-free" id="personnel_contractor_edit_uploaders" path="">
+                                        <div class="uploader-message text-center"><div class="content"></div></div>
+                                        <div class="uploader-files file-list"></div>
+                                        <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
+                                    </div>
+                            </td></tr></tbody>
+                        </table>
                         <div class="text-center">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                             <button type="button" class="btn btn-primary" id="personnel_contractor_edit_submit">保存</button>
@@ -454,44 +520,46 @@ $(function(){
                     var data = data.data;
                     var temp = `
                         <div class="container">
-                            <!-- 个人资料 -->
-                            <blockquote>个人资料</blockquote>
                             <table class="table table-bordered">
-                                <tr>
-                                    <td>姓名：${data.user}</td>
-                                    <td>工号：${data.acco}</td>
-                                    <td>手机：${data.tel} </td>
-                                    <td>地址：${data.addr}</td>
-                                </tr>
-                                <tr>
-                                    <td>承包商类型：${data.typename}</td>
-                                    <td colspan="3">工作状态：${data.statename}</td>
-                                </tr>
+                                <thead><tr><th colspan="2">个人资料</th></tr></thead>
+                                <tbody>
+                                    <tr><td style="width:120px;">姓名</td><td>${data.user}</td></tr>
+                                    <tr><td>工号      </td><td>${data.acco}</td></tr>
+                                    <tr><td>手机      </td><td>${data.tel} </td></tr>
+                                    <tr><td>地址      </td><td>${data.addr}</td></tr>
+                                    <tr><td>承包商类型</td><td>${data.typename}</td></tr>
+                                    <tr><td>工作状态  </td><td>${data.statename}</td></tr>
+                                </tbody>
                             </table>
-                            <!-- 账户信息 -->
-                            <blockquote>账户信息</blockquote>
+
                             <table class="table table-bordered">
-                                <tr>
-                                    <td>银行卡号：${data.card}</td>
-                                    <td>开户行：  ${data.bank}</td>
-                                    <td colspan="2">开户人：${data.carduser}</td>
-                                </tr>
+                                <thead><tr><th colspan="2">账户信息</th></tr></thead>
+                                <tbody>
+                                    <tr><td style="width:120px;">姓名</td><td>${data.user}</td></tr>
+                                    <tr><td>银行卡号  </td><td>${data.card}    </td></tr>
+                                    <tr><td>开户行    </td><td>${data.bank}    </td></tr>
+                                    <tr><td>开户人    </td><td>${data.carduser}</td></tr>
+                                </tbody>
                             </table>
-                            <!-- 证件信息 -->
-                            <blockquote>证件信息</blockquote>
-                            <div class="col-sm-2">
-                                <a class="card" target="_blank" href="${data.pic1[0].url}">
-                                    <span class="media-wrapper"><img src="${data.pic1[0].url}"></span>
-                                    <span class="card-heading">身份证正面</span>
-                                </a>
-                            </div>
-                            <div class="col-sm-2">
-                                <a class="card" target="_blank" href="${data.pic2[0].url}">
-                                    <span class="media-wrapper"><img src="${data.pic2[0].url}"></span>
-                                    <span class="card-heading">身份证反面</span>
-                                </a>
-                            </div>
-                            <div class="clearfix"></div><hr>`;
+
+                            <table class="table table-bordered">
+                                <thead><tr><th>证件信息</th></tr></thead>
+                                <tbody>
+                                    <tr><td>
+                                        <div class="col-sm-2">
+                                            <a class="card" target="_blank" href="${data.pic1[0].url}">
+                                                <span class="media-wrapper"><img src="${data.pic1[0].url}"></span>
+                                                <span class="card-heading">身份证正面</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <a class="card" target="_blank" href="${data.pic2[0].url}">
+                                                <span class="media-wrapper"><img src="${data.pic2[0].url}"></span>
+                                                <span class="card-heading">身份证反面</span>
+                                            </a>
+                                        </div>
+                                    </td></tr>
+                                    <tr><td>`;
                     for(var i=0;i<data.pics.length;i++){
                         temp += `
                             <div class="col-sm-2">
@@ -502,8 +570,7 @@ $(function(){
                             </div>
                         `;
                     }
-                    temp += `
-                        <div class="clearfix"></div><hr>
+                    temp += `</td></tr></tbody></table>
                         <div class="text-center">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
