@@ -603,6 +603,7 @@ html,body{
 select{ min-width: 100px!important; }
 .input-min-box input{ width: 120px; }
 .input-short{ max-width:220px; }
+.input-middle{ max-width:358px; }
 /*表单label*/
 a,
 label,
