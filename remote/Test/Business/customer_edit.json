@@ -1,12 +1,14 @@
 {
 	"status"  : 1,
 	"data" 	  : {
+		"number" 		: "000001",
 		"case"    		: "刘德华",
 		"type"      	: 3,
 		"typename" 	 	: "项目类型",
 		"decoarea"  	: "100",
 		"state"     	: 2,
 		"statename"	 	: "已定",
+		"reason" 		: "申请理由",
 		"decoaddr" 	 	: "广州省深圳市宝安区光华路960号",
 		"user1" 		: "张学友",
 		"tel1" 	 		: "18332367556",

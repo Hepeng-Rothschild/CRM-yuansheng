@@ -694,7 +694,7 @@ $(function(){
                 },
                 {name:"tex10",  label:"项目状态",    width:150},
                 {name:"name",   label:"项目联系人",  width:100},
-                {name:"tel",    label:"联系人手机",  width:100},
+                {name:"tel",    label:"联系手机",    width:100},
                 {name:"text2",  label:"面积",        width:100},
                 {name:"name",   label:"信息员",      width:100},
                 {name:"name",   label:"设计师",      width:100},
@@ -1094,8 +1094,10 @@ $(function(){
 
                     //项目信息
                     var temp_case = `
-                        <tr><td style="width:120px;">项目名称</td><td>${data.case}</td></tr>
-                        <tr><td>项目类型  </td><td>${data.typename}     </td></tr>
+                        <tr><td style="width:120px;">项目编号</td><td>${data.number}</td></tr>
+                        <tr><td>项目名称  </td><td>${data.case}         </td></tr>
+                        <tr><td>项目状态  </td><td>${data.state}        </td></tr>
+                        <tr><td>申请理由  </td><td>${data.reason}       </td></tr>
                         <tr><td>装修面积  </td><td>${data.decoarea} ㎡  </td></tr>
                         <tr><td>房源状态  </td><td>${data.statename}    </td></tr>
                         <tr><td>装修地址  </td><td>${data.decoaddr}     </td></tr>
@@ -1113,6 +1115,7 @@ $(function(){
                         <tr><td>期望完工  </td><td>${data.housedate2}   </td></tr>
                         <tr><td>对手数量  </td><td>${data.rivalnumb}    </td></tr>
                         <tr><td>对手进展  </td><td>${data.rivalstepname}</td></tr>
+                        <tr><td>备注      </td><td>${data.text}         </td></tr>
                     `;
                     business_customer_tracked_show_t_case.find("tbody").html(temp_case);
 
