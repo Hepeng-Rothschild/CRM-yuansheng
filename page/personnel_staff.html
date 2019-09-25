@@ -592,7 +592,6 @@ $(function(){
     personnel_staff_add_addr3           = $("#personnel_staff_add_addr3"),          //现居地址3
     personnel_staff_add_addr4           = $("#personnel_staff_add_addr4"),          //现居地址4
 
-    personnel_staff_add_comp            = $("#personnel_staff_add_comp"),           //分公司
     personnel_staff_add_depa            = $("#personnel_staff_add_depa"),           //部门
     personnel_staff_add_post            = $("#personnel_staff_add_post"),           //职位
     personnel_staff_add_pass            = $("#personnel_staff_add_pass"),           //入职日期
@@ -659,7 +658,6 @@ $(function(){
     personnel_staff_edit_addr3          = $("#personnel_staff_edit_addr3"),         //现居地址3
     personnel_staff_edit_addr4          = $("#personnel_staff_edit_addr4"),         //现居地址4
 
-    personnel_staff_edit_comp           = $("#personnel_staff_edit_comp"),          //分公司
     personnel_staff_edit_depa           = $("#personnel_staff_edit_depa"),          //部门
     personnel_staff_edit_post           = $("#personnel_staff_edit_post"),          //职位
     personnel_staff_edit_pass           = $("#personnel_staff_edit_pass"),          //入职日期
@@ -1206,12 +1204,11 @@ $(function(){
                                 <tr>
                                     <td>部门：     ${data.departmentId}</td>
                                     <td>职位：     ${data.positionld}</td>
-                                    <td>入职日期： ${data.date}</td>
-                                    <td></td>
+                                    <td>试用期工资：${data.probationpay}</td>
+                                    <td>转正工资：  ${data.revisedwages}</td>
                                 </tr>
                                 <tr>
-                                    <td>试用期工资：           ${data.probationpay}</td>
-                                    <td colspan="3">转正工资： ${data.revisedwages}</td>
+                                    <td colspan="4">入职日期： ${data.date}</td>
                                 </tr>
                             </table>
                             <!-- 资料上传 -->
@@ -1618,7 +1615,6 @@ $(function(){
         personnel_staff_add_addr3.val(1);
         personnel_staff_add_addr4.val("211中山路197号");
 
-        personnel_staff_add_comp.val(3);
         personnel_staff_add_depa.val(1);
         personnel_staff_add_post.val(1);
         personnel_staff_add_pass.val("2019-06-10");

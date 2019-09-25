@@ -186,8 +186,7 @@ $(function(){
     //搜索
     admin_goods_tool_keys          = $("#admin_goods_tool_keys"),         //搜索类别
     admin_goods_tool_search        = $("#admin_goods_tool_search"),       //搜索字段
-    admin_goods_tool_select1       = $("#admin_goods_tool_select1"),      //下拉选择1
-    admin_goods_tool_select2       = $("#admin_goods_tool_select2"),      //下拉选择2
+    admin_goods_tool_select1       = $("#admin_goods_tool_select1"),      //下拉选择2
     admin_goods_search_btn         = $("#admin_goods_search_btn"),        //搜索按钮
 
     //添加
@@ -311,20 +310,6 @@ $(function(){
     admin_goods_dele_btn       = ".admin_goods_dele_btn";                     //删除
     
     //下拉选项-----------------------------------------------------------------------------------------------
-    //分公司
-    $.ajax({
-        url     : admin_goods_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            var option = "<option value='0'>全部</option>";
-            for(var i=0;i<data.length;i++){
-                option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-            }
-            admin_goods_tool_select1.html(option);             //工具条
-        }
-    });
     //状态
     $.ajax({
         url     : admin_goods_api.select,
@@ -336,7 +321,7 @@ $(function(){
             for(var i=0;i<data.length;i++){
                 option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
             }
-            admin_goods_tool_select2.html(option);             //工具条
+            admin_goods_tool_select1.html(option);             //工具条
             admin_goods_add_state.html(option);                //添加
             admin_goods_edit_state.html(option);               //修改
         }
@@ -364,8 +349,7 @@ $(function(){
         var keyword
         = "?sid="    + admin_goods_tool_keys.val()
         + "&search=" + admin_goods_tool_search.val()
-        + "&select1="+ admin_goods_tool_select1.val()
-        + "&select2="+ admin_goods_tool_select2.val();
+        + "&select2="+ admin_goods_tool_select1.val();
 
         //GET提交
         zui_datagrid_render(admin_goods_datagrid_obj,admin_goods_api.datagrid+keyword);
