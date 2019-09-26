@@ -30,53 +30,22 @@
     overflow-y:scroll!important;
     padding-bottom: 100px;
 }
-/*上传：边距清理*/
-.uploader-files, .file-list{
-    min-height:auto;
-    margin-bottom:5px;
-/*    border:none;*/
+/*单图上传*/
+.zui-upload-img,
+.zui_upload_img{
+    max-width: 160px;
+    background: #fff;
+    padding-bottom: 10px;
 }
-/*上传：上传方形盒子*/
-.uploader-square-box .uploader+strong{
-    display: block;
-    line-height:30px;
-    font-weight: normal;
-    color: #999;
+.zui-upload-img .media-wrapper,
+.zui_upload_img .media-wrapper{
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
 }
-.uploader-square-box .uploader{
-   width: 120px;
-   height:120px;
-   cursor: pointer;
-   background: #f4f4f4;
-    overflow: hidden;
-    margin: 0 auto;
-}
-.uploader-square-box .uploader .file{
-    margin: 0;
-}
-.uploader-square-box .uploader .file-list{
-    width: 120px;
-    height:120px;
-    margin: 0;
-}
-/*上传：查看方形盒子*/
-.show-square-box a{
-    display: block;
-    width: 120px;
-    height: 120px;
-    overflow: hidden;
-    float: left;
-    border: 1px solid #ddd;
-    margin:0 10px 10px 10px;
-}
-.show-square-box a img{
-    display: block;
-    width: 120px;
-    min-height: 120px;
-}
-/*上传：自由上传*/
-.upload-free{
-    width: 96.5%;
-    margin: 5px auto;
+.zui-upload-img .media-wrapper img,
+.zui_upload_img .media-wrapper img{
+    height:auto;
 }

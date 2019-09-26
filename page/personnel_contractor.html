@@ -98,26 +98,42 @@
                             <tbody><tr><td>
                                 <ul class="uploader-square-box">
                                     <li class="col-sm-2">
-                                        <div class="uploader" id="personnel_contractor_add_uploader1">
+                                        <!-- 单图上传 -->
+                                        <div class="card zui_upload_img" id="personnel_contractor_add_uploader1" path="">
+                                            <span class="media-wrapper"><img src=""></span>
                                             <div class="uploader-message text-center"><div class="content"></div></div>
-                                            <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                            <div class="uploader-files file-list hidden"></div>
+                                            <span class="card-heading">身份证正面</span>
+                                            <span class="card-actions">
+                                                <a class="btn btn-danger  btn-mini uploader-btn-delete">清空</a>
+                                                <a class="btn btn-primary btn-mini uploader-btn-browse">上传</a>
+                                            </span> 
                                         </div>
-                                        <strong>身份证正面</strong>
+                                        <!-- zui_upload_img -->
                                     </li>
                                     <li class="col-sm-2">
-                                        <div class="uploader" id="personnel_contractor_add_uploader2">
+                                        <!-- 单图上传 -->
+                                        <div class="card zui_upload_img" id="personnel_contractor_add_uploader2" path="">
+                                            <span class="media-wrapper"><img src=""></span>
                                             <div class="uploader-message text-center"><div class="content"></div></div>
-                                            <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                            <div class="uploader-files file-list hidden"></div>
+                                            <span class="card-heading">身份证反面</span>
+                                            <span class="card-actions">
+                                                <a class="btn btn-danger  btn-mini uploader-btn-delete">清空</a>
+                                                <a class="btn btn-primary btn-mini uploader-btn-browse">上传</a>
+                                            </span> 
                                         </div>
-                                        <strong>身份证反面</strong>
+                                        <!-- zui_upload_img -->
                                     </li>
                                 </ul>
                             </td></tr><tr><td>
-                                    <div class="uploader upload-free" id="personnel_contractor_add_uploaders" path="">
-                                        <div class="uploader-message text-center"><div class="content"></div></div>
-                                        <div class="uploader-files file-list"></div>
-                                        <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
-                                    </div>
+                                        <!-- 组队上传 -->
+                                        <div class="uploader" id="personnel_contractor_add_uploaders" path="">
+                                            <div class="uploader-message text-center"><div class="content"></div></div>
+                                            <div class="uploader-files file-list"></div>
+                                            <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
+                                        </div>
+                                        <!-- uploader -->
                             </td></tr></tbody>
                         </table>
                         <div class="text-center">
@@ -209,26 +225,42 @@
                             <tbody><tr><td>
                                 <ul class="uploader-square-box">
                                     <li class="col-sm-2">
-                                        <div class="uploader" id="personnel_contractor_edit_uploader1">
+                                        <!-- 单图上传 -->
+                                        <div class="card zui_upload_img" id="personnel_contractor_edit_uploader1" path="">
+                                            <span class="media-wrapper"><img src=""></span>
                                             <div class="uploader-message text-center"><div class="content"></div></div>
-                                            <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                            <div class="uploader-files file-list hidden"></div>
+                                            <span class="card-heading">身份证正面</span>
+                                            <span class="card-actions">
+                                                <a class="btn btn-danger  btn-mini uploader-btn-delete">清空</a>
+                                                <a class="btn btn-primary btn-mini uploader-btn-browse">上传</a>
+                                            </span> 
                                         </div>
-                                        <strong>身份证正面</strong>
+                                        <!-- zui_upload_img -->
                                     </li>
                                     <li class="col-sm-2">
-                                        <div class="uploader" id="personnel_contractor_edit_uploader2">
+                                        <!-- 单图上传 -->
+                                        <div class="card zui_upload_img" id="personnel_contractor_edit_uploader2" path="">
+                                            <span class="media-wrapper"><img src=""></span>
                                             <div class="uploader-message text-center"><div class="content"></div></div>
-                                            <div class="uploader-files file-list uploader-btn-browse" data-drag-placeholder="点击上传"></div>
+                                            <div class="uploader-files file-list hidden"></div>
+                                            <span class="card-heading">身份证反面</span>
+                                            <span class="card-actions">
+                                                <a class="btn btn-danger  btn-mini uploader-btn-delete">清空</a>
+                                                <a class="btn btn-primary btn-mini uploader-btn-browse">上传</a>
+                                            </span> 
                                         </div>
-                                        <strong>身份证反面</strong>
+                                        <!-- zui_upload_img -->
                                     </li>
                                 </ul>
                             </td></tr><tr><td>
-                                    <div class="uploader upload-free" id="personnel_contractor_edit_uploaders" path="">
-                                        <div class="uploader-message text-center"><div class="content"></div></div>
-                                        <div class="uploader-files file-list"></div>
-                                        <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
-                                    </div>
+                                        <!-- 组队上传 -->
+                                        <div class="uploader" id="personnel_contractor_edit_uploaders" path="">
+                                            <div class="uploader-message text-center"><div class="content"></div></div>
+                                            <div class="uploader-files file-list"></div>
+                                            <button type="button" class="btn btn-default uploader-btn-browse">添加其他证件</button>
+                                        </div>
+                                        <!-- uploader -->
                             </td></tr></tbody>
                         </table>
                         <div class="text-center">
@@ -403,6 +435,11 @@ $(function(){
     personnel_contractor_edit_btn       = ".personnel_contractor_edit_btn",                     //修改
     personnel_contractor_dele_btn       = ".personnel_contractor_dele_btn";                     //删除
   
+    //上传创建-----------------------------------------------------------------------------------------------
+    zui_upload_img({upid:"personnel_contractor_add_uploader1"});
+    zui_upload_img({upid:"personnel_contractor_add_uploader2"});
+    zui_upload_group({upid:"personnel_contractor_add_uploaders",type:"img"});
+
     //下拉选项-----------------------------------------------------------------------------------------------
     //状态
     $.ajax({
@@ -458,6 +495,7 @@ $(function(){
 
     //添加按钮-----------------------------------------------------------------------------------------------
     personnel_contractor_add_btn.click(function(){
+        common_form_reset();
         personnel_contractor_add_box.modal("show");
     });
     //添加提交
@@ -492,15 +530,15 @@ $(function(){
         });
     });
     //添加关闭
-    var personnel_contractor_add_uploader1 = personnel_contractor_add_uploader1.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_add_uploader1","","1mb","img","grid",1));
-    var personnel_contractor_add_uploader2 = personnel_contractor_add_uploader2.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_add_uploader2","","1mb","img","grid",1));
-    var personnel_contractor_add_uploaders = personnel_contractor_add_uploaders.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_add_uploaders","","1mb","img","grid"));
     personnel_contractor_add_box.on("hide.zui.modal",function(){
-        common_form_reset(personnel_contractor_add_uploader1);
-        common_form_reset(personnel_contractor_add_uploader2);
-        common_form_reset(personnel_contractor_add_uploaders);
+        //上传重置
+        zui_upload_img_reset([
+            personnel_contractor_add_uploader1,
+            personnel_contractor_add_uploader2,
+            personnel_contractor_add_uploaders
+        ]);
     });
-    
+
     //查看按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",personnel_contractor_show_btn,function(){ 
 
@@ -547,13 +585,13 @@ $(function(){
                                 <tbody>
                                     <tr><td>
                                         <div class="col-sm-2">
-                                            <a class="card" target="_blank" href="${data.pic1[0].url}">
+                                            <a class="card zui-upload-img" target="_blank" href="${data.pic1[0].url}">
                                                 <span class="media-wrapper"><img src="${data.pic1[0].url}"></span>
                                                 <span class="card-heading">身份证正面</span>
                                             </a>
                                         </div>
                                         <div class="col-sm-2">
-                                            <a class="card" target="_blank" href="${data.pic2[0].url}">
+                                            <a class="card zui-upload-img" target="_blank" href="${data.pic2[0].url}">
                                                 <span class="media-wrapper"><img src="${data.pic2[0].url}"></span>
                                                 <span class="card-heading">身份证反面</span>
                                             </a>
@@ -563,7 +601,7 @@ $(function(){
                     for(var i=0;i<data.pics.length;i++){
                         temp += `
                             <div class="col-sm-2">
-                                <a class="card" target="_blank" href="${data.pics[i].url}">
+                                <a class="card zui-upload-img" target="_blank" href="${data.pics[i].url}">
                                     <span class="media-wrapper"><img src="${data.pics[i].url}"></span>
                                     <span class="card-heading">${data.pics[i].name}</span>
                                 </a>
@@ -602,15 +640,12 @@ $(function(){
             data    : { id:data_id },
             success : function(data){
                 if( data.status>0 ){
-
                     //数据赋值
                     var data = data.data;
-                    var uploader1 = personnel_contractor_edit_uploader1.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader1",data.pic1,"1mb","img","grid",1));
-                    var uploader2 = personnel_contractor_edit_uploader2.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader2",data.pic2,"1mb","img","grid",1));
-                    var uploaders = personnel_contractor_edit_uploaders.uploader(zui_upload_free(personnel_contractor_api.uploader,"personnel_contractor_edit_uploader2",data.pics,"1mb","img","grid"));
-                    common_form_reset(uploader1);
-                    common_form_reset(uploader2);
-                    common_form_reset(uploaders);
+                    //上传创建
+                    window.personnel_contractor_edit_uploader1_obj = zui_upload_img({upid:"personnel_contractor_edit_uploader1",list:data.pic1});
+                    window.personnel_contractor_edit_uploader2_obj = zui_upload_img({upid:"personnel_contractor_edit_uploader2",list:data.pic2});
+                    window.personnel_contractor_edit_uploaders_obj = zui_upload_group({upid:"personnel_contractor_edit_uploaders",type:"img",list:data.pics});
                     //基本信息
                     personnel_contractor_edit_user.val(      data.user     );
                     personnel_contractor_edit_acco.val(      data.acco     );
@@ -668,6 +703,15 @@ $(function(){
             }
         });
 
+    });
+    //修改关闭-销毁
+    personnel_contractor_edit_box.on("hide.zui.modal",function(){
+        //上传销毁
+        zui_upload_destroy([
+            personnel_contractor_edit_uploader1_obj,
+            personnel_contractor_edit_uploader2_obj,
+            personnel_contractor_edit_uploaders_obj
+        ]);
     });
 
     //删除按钮-----------------------------------------------------------------------------------------------
