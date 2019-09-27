@@ -30,6 +30,5 @@ if( !$chunks || $chunk==$chunks-1 ){ rename("{$file_path}.part",$file_path); } 	
 //结果返回
 echo json_encode(array( 														//返回格式
 	"result" => "ok", 															//结果状态
-	"upid" 	 => $upid,															//上传ID
 	"file" 	 => $file_path 														//文件路径+名称
 ));

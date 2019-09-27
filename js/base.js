@@ -397,7 +397,7 @@ function zui_datagrid_reset(datagrid_obj,datagrid_url,checkbox_clear){
     setTimeout(function(){
 
         //面板关闭
-        $(".modal").modal("hide");
+        $(".modal:visible").modal("hide");
 
         //表单重置
         var form = $(".modal form");
@@ -457,13 +457,10 @@ function zui_upload_img(object){
             max_file_size      : maxSize,                               //大小限定
             prevent_duplicates : true                                   //重传禁止
         },
-        multipart_params    : function(file,params){                    //参数提交
-            return { upid:upid };
-        },
         responseHandler     : function(res,file){                       //远程响应
             var data = um_json(res.response);
-            $("#"+data.upid).attr("path",data.file);
-            $("#"+data.upid).find("img").attr("src",prev_path+data.file);
+            $("#"+upid).attr("path",data.file);
+            $("#"+upid).find("img").attr("src",prev_path+data.file);
         },
         staticFiles         : staticFiles,                              //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
@@ -512,12 +509,9 @@ function zui_upload_group(object){
             max_file_size      : maxSize,                               //大小限定
             prevent_duplicates : true                                   //重传禁止
         },
-        multipart_params    : function(file,params){                    //参数提交
-            return { upid:upid };
-        },
         responseHandler     : function(res,file){                       //远程响应
             var data = um_json(res.response);
-            var updom = $("#"+data.upid);
+            var updom = $("#"+upid);
             var upload_result = updom.attr("path");
             upload_result = upload_result+","+data.file;
 
