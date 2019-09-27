@@ -524,7 +524,7 @@ function zui_upload_group(object){
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
             doRemoveFile();                                             //本地删除
             console.log(file);
-            $("#"+upid).attr("path","");                                //[???]
+            $("#"+upid).attr("path","");                                //[???] 删除一个 path全清空
         }
     });
     return upobj;                                                       //实例对象
