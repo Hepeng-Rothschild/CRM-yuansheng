@@ -62,8 +62,7 @@
                             <div class="col-sm-8">
                                 <textarea class="form-control" id="admin_train_center_add_text"></textarea>
                             </div>
-                        </div>   
-
+                        </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required">附件下载</label>
                             <div class="col-sm-8">
@@ -76,11 +75,13 @@
                         <div class="form-group require">
                             <label class="col-sm-2 required">附件上传</label>
                             <div class="col-sm-8">
+                                <!-- 组队上传 -->
                                 <div class="uploader" id="admin_train_center_add_file" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list"></div>
-                                    <button type="button" class="btn btn-default uploader-btn-browse">点击上传</button>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
                                 </div>
+                                <!-- uploader -->
                             </div>
                         </div>   
                         <div class="text-center">
@@ -136,11 +137,13 @@
                         <div class="form-group require">
                             <label class="col-sm-2 required">附件上传</label>
                             <div class="col-sm-8">
+                                <!-- 组队上传 -->
                                 <div class="uploader" id="admin_train_center_edit_file" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list"></div>
-                                    <button type="button" class="btn btn-default uploader-btn-browse">点击上传</button>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
                                 </div>
+                                <!-- uploader -->
                             </div>
                         </div>   
                         <div class="text-center">
@@ -311,6 +314,9 @@ $(function(){
     admin_train_center_edit_btn       = ".admin_train_center_edit_btn",                     //修改
     admin_train_center_dele_btn       = ".admin_train_center_dele_btn";                     //删除
 
+    //上传创建-----------------------------------------------------------------------------------------------
+    zui_upload_group({upid:"admin_train_center_add_file",type:"img",maxSize:"10mb"});
+
     //时间组件-----------------------------------------------------------------------------------------------
     common_date_duration( admin_train_center_tool_date );
     admin_train_center_tool_date.find(".start").datetimepicker(option_date);
@@ -374,6 +380,7 @@ $(function(){
 
     //添加按钮-----------------------------------------------------------------------------------------------
     admin_train_center_add_btn.click(function(){
+        common_form_reset();
         admin_train_center_add_box.modal("show");
     });
     //添加提交
@@ -401,12 +408,9 @@ $(function(){
         });
     });
     //添加关闭
-    var admin_train_center_add_uploader = admin_train_center_add_file.uploader(zui_upload_free(admin_train_center_api.uploader,"admin_train_center_add_file","","50mb","file",""));
     admin_train_center_add_box.on("hide.zui.modal",function(){
-        common_form_reset(admin_train_center_add_uploader);
-        common_tree_staff_reset(admin_train_center_add_tree);
-        admin_train_center_add_text_editor.html("");
-        admin_train_center_add_down.find("label:nth-child(1)").trigger("click");
+        //上传重置
+        zui_upload_reset([admin_train_center_add_file]);
     });
 
     //查看按钮-----------------------------------------------------------------------------------------------
@@ -476,8 +480,9 @@ $(function(){
 
                     //数据赋值
                     var data = data.data;
-                    var uploader = admin_train_center_edit_file.uploader(zui_upload_free(admin_train_center_api.uploader,"admin_train_center_edit_file",data.file,"50mb","file",""));
-                    common_form_reset(uploader);
+                    //上传创建
+                    window.admin_train_center_edit_file_obj = zui_upload_group({upid:"admin_train_center_edit_file",type:"img",maxSize:"10mb",list:data.file});
+                    //基本信息
                     admin_train_center_edit_tit.val(  data.tit  );
                     admin_train_center_edit_type.val( data.type );
                     common_tree_staff_read(admin_train_center_edit_tree,data.tree);
@@ -524,6 +529,11 @@ $(function(){
             }
         });
 
+    });
+    //修改关闭
+    admin_train_center_edit_box.on("hide.zui.modal",function(){
+        //上传销毁
+        zui_upload_destroy([admin_train_center_edit_file_obj]);
     });
 
     //删除按钮-----------------------------------------------------------------------------------------------

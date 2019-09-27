@@ -85,11 +85,13 @@
                         <div class="form-group require">
                             <label class="col-sm-2 required">图片上传</label>
                             <div class="col-sm-8">
+                                <!-- 组队上传 -->
                                 <div class="uploader" id="admin_train_case_add_imgs" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list"></div>
-                                    <button type="button" class="btn btn-default uploader-btn-browse">点击上传</button>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
                                 </div>
+                                <!-- uploader -->
                             </div>
                         </div>
                         <div class="text-center">
@@ -155,11 +157,13 @@
                         <div class="form-group require">
                             <label class="col-sm-2 required">图片上传</label>
                             <div class="col-sm-8">
+                                <!-- 组队上传 -->
                                 <div class="uploader" id="admin_train_case_edit_imgs" path="">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list"></div>
-                                    <button type="button" class="btn btn-default uploader-btn-browse">点击上传</button>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
                                 </div>
+                                <!-- uploader -->
                             </div>
                         </div>
                         <div class="text-center">
@@ -262,7 +266,6 @@ $(function(){
             datagrid  : API.test_datagrid,                                    //数据表格
             select    : LOCAL + "Test/test_select.json",                      //下拉选择
             modal_edit: LOCAL + "Test/Admin/Train/case_edit.json",            //修改盒子
-            uploader  : LOCAL + "Test/test_upload.php"                        //上传路径
         }
 
     } else if ( window.STATE == "route" ){
@@ -272,7 +275,6 @@ $(function(){
             datagrid  : LOCAL + "Test/Admin/goods.json",                      //数据表格
             select    : LOCAL + "Test/test_select.json",                      //下拉选择
             modal_edit: LOCAL + "Test/Admin/Train/case_edit.json",            //修改盒子
-            uploader  : LOCAL + "Test/test_upload.php"                        //上传路径
         }
 
     }
@@ -331,6 +333,9 @@ $(function(){
     admin_train_case_show_btn       = ".admin_train_case_show_btn",                     //查看
     admin_train_case_edit_btn       = ".admin_train_case_edit_btn",                     //修改
     admin_train_case_dele_btn       = ".admin_train_case_dele_btn";                     //删除
+
+    //上传创建-----------------------------------------------------------------------------------------------
+    zui_upload_group({upid:"admin_train_case_add_imgs",type:"img",maxSize:"10mb"});
 
     //时间组件-----------------------------------------------------------------------------------------------
     admin_train_case_add_date.datetimepicker(option_date);
@@ -417,6 +422,7 @@ $(function(){
 
     //添加按钮-----------------------------------------------------------------------------------------------
     admin_train_case_add_btn.click(function(){
+        common_form_reset();
         admin_train_case_add_box.modal("show");
     });
     //添加提交
@@ -447,9 +453,9 @@ $(function(){
         });
     });
     //添加关闭
-    var admin_train_case_add_uploader = admin_train_case_add_imgs.uploader(zui_upload_free(admin_train_case_api.uploader,"admin_train_case_add_imgs","","50mb"));
     admin_train_case_add_box.on("hide.zui.modal",function(){
-        common_form_reset(admin_train_case_add_uploader);
+        //上传重置
+        zui_upload_reset([admin_train_case_add_imgs]);
     });
 
     //查看按钮-----------------------------------------------------------------------------------------------
@@ -489,7 +495,7 @@ $(function(){
                     for(var i=0;i<data.imgs.length;i++){
                         temp+=`
                             <div class="col-sm-2">
-                                <a class="card" target="_blank" href="${data.imgs[i].url}">
+                                <a class="card zui-upload-img" target="_blank" href="${data.imgs[i].url}">
                                     <span class="media-wrapper"><img src="${data.imgs[i].url}"></span>
                                     <span class="card-heading">${data.imgs[i].name}</span>
                                 </a>
@@ -527,8 +533,9 @@ $(function(){
 
                     //数据赋值
                     var data = data.data;
-                    var uploader = admin_train_case_edit_imgs.uploader(zui_upload_free(admin_train_case_api.uploader,"admin_train_case_edit_imgs",data.imgs,"50mb"));
-                    common_form_reset(uploader);
+                    //上传创建
+                    window.admin_train_case_edit_imgs_obj = zui_upload_group({upid:"admin_train_case_edit_imgs",type:"img",maxSize:"10mb",list:data.imgs});
+                    //基本信息
                     admin_train_case_edit_case.val(     data.case     );
                     admin_train_case_edit_type.val(     data.type     );
                     admin_train_case_edit_designer.val( data.designer );
@@ -581,6 +588,11 @@ $(function(){
             }
         });
 
+    });
+    //修改关闭
+    admin_train_case_edit_box.on("hide.zui.modal",function(){
+        //上传销毁
+        zui_upload_destroy([admin_train_case_edit_imgs_obj]);
     });
 
     //删除按钮-----------------------------------------------------------------------------------------------

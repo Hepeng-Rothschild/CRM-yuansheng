@@ -532,14 +532,14 @@ function zui_upload_group(object){
 //上传重置(单图上传)
 $(function(){
     $(document).on("click",".zui_upload_img .uploader-btn-delete",function(){
-        zui_upload_img_reset([$(this).parents(".zui_upload_img")])
+        zui_upload_reset([$(this).parents(".zui_upload_img")])
     });
 });
 
 /* zui_upload_reset() 上传重置
  * @param updom array 上传DOM
  */
-function zui_upload_img_reset(updom){
+function zui_upload_reset(updom){
     $(".uploader-message").hide();
     if( updom instanceof Array ){
         for(var i=0;i<updom.length;i++){

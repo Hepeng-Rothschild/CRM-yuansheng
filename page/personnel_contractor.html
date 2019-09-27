@@ -96,7 +96,7 @@
                         <table class="table table-bordered">
                             <thead><tr><th>证件信息 <span class="small text-red">(图片大小不超过1M)</span></th></tr></thead>
                             <tbody><tr><td>
-                                <ul class="uploader-square-box">
+                                <ul>
                                     <li class="col-sm-2">
                                         <!-- 单图上传 -->
                                         <div class="card zui_upload_img" id="personnel_contractor_add_uploader1" path="">
@@ -223,7 +223,7 @@
                         <table class="table table-bordered">
                             <thead><tr><th>证件信息 <span class="small text-red">(图片大小不超过1M)</span></th></tr></thead>
                             <tbody><tr><td>
-                                <ul class="uploader-square-box">
+                                <ul>
                                     <li class="col-sm-2">
                                         <!-- 单图上传 -->
                                         <div class="card zui_upload_img" id="personnel_contractor_edit_uploader1" path="">
@@ -533,7 +533,7 @@ $(function(){
     //添加关闭
     personnel_contractor_add_box.on("hide.zui.modal",function(){
         //上传重置
-        zui_upload_img_reset([
+        zui_upload_reset([
             personnel_contractor_add_uploader1,
             personnel_contractor_add_uploader2,
             personnel_contractor_add_uploaders
