@@ -368,7 +368,13 @@
                         <div class="form-group">
                             <label class="col-sm-2 required">图片添加</label>
                             <div class="col-sm-8">
-                                <button type="button" class="btn btn-default">点击添加(上传暂时未做)</button>
+                                <!-- 组队上传 -->
+                                <div class="uploader" id="business_customer_admin_logAdd_file" path="">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list"></div>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
+                                </div>
+                                <!-- uploader -->
                             </div>
                         </div>
                         <div class="form-group">
@@ -490,6 +496,7 @@ $(function(){
     business_customer_admin_logAdd_box          = $("#business_customer_admin_logAdd_box"),           //日志添加盒子
     business_customer_admin_logAdd_submit       = $("#business_customer_admin_logAdd_submit"),        //日志添加提交
     business_customer_admin_logAdd_text         = $("#business_customer_admin_logAdd_text"),          //日志添加内容
+    business_customer_admin_logAdd_file         = $("#business_customer_admin_logAdd_file"),          //日志添加附件
     business_customer_admin_logAdd_date         = $("#business_customer_admin_logAdd_date"),          //添加下次跟踪
     //人员选择
     business_customer_admin_salesman_box        = $("#business_customer_admin_salesman_box"),         //人员选择盒子
@@ -725,6 +732,9 @@ $(function(){
     //日志
     business_customer_admin_logShow_btn      = ".business_customer_admin_logShow_btn",                      //日志查看
     business_customer_admin_logAdd_btn       = ".business_customer_admin_logAdd_btn";                       //日志添加
+
+    //上传创建-----------------------------------------------------------------------------------------------
+    zui_upload_group({upid:"business_customer_admin_logAdd_file",type:"img",maxSize:"10mb"});
 
     //搜索按钮-----------------------------------------------------------------------------------------------
     business_customer_admin_search_btn.click(function(){
@@ -1394,6 +1404,7 @@ $(function(){
             data    : {
                 id   : data_id,
                 text : business_customer_admin_logAdd_text.val(),
+                file : business_customer_admin_logAdd_file.attr("path"),
                 date : business_customer_admin_logAdd_text.val(),
             },
             success : function(data){
@@ -1405,6 +1416,11 @@ $(function(){
                 }
             }
         });
+    });
+    //日志关闭
+    business_customer_admin_logAdd_box.on("hide.zui.modal",function(){
+        //上传重置
+        zui_upload_reset([business_customer_admin_logAdd_file]);
     });
 
     //人员选择-----------------------------------------------------------------------------------------------

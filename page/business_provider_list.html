@@ -416,7 +416,13 @@
                         <div class="form-group">
                             <label class="col-sm-2 required">图片添加</label>
                             <div class="col-sm-8">
-                                <button type="button" class="btn btn-default">点击添加(上传暂时未做)</button>
+                                <!-- 组队上传 -->
+                                <div class="uploader" id="business_provider_list_logAdd_file" path="">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list"></div>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
+                                </div>
+                                <!-- uploader -->
                             </div>
                         </div>
                         <div class="form-group">
@@ -521,6 +527,7 @@ $(function(){
     business_provider_list_logAdd_box               = $("#business_provider_list_logAdd_box"),              //日志添加盒子
     business_provider_list_logAdd_submit            = $("#business_provider_list_logAdd_submit"),           //日志添加提交
     business_provider_list_logAdd_text              = $("#business_provider_list_logAdd_text"),             //日志添加内容
+    business_provider_list_logAdd_file              = $("#business_provider_list_logAdd_file"),             //日志添加附件
     business_provider_list_logAdd_date              = $("#business_provider_list_logAdd_date");             //添加下次跟踪
     
     //接口对象-----------------------------------------------------------------------------------------------
@@ -787,7 +794,7 @@ $(function(){
     business_provider_list_logAdd_btn       = ".business_provider_list_logAdd_btn";                     //日志添加
 
     //上传创建-----------------------------------------------------------------------------------------------
-    // zui_upload_group({upid:"admin_train_case_add_imgs",type:"img",maxSize:"10mb"});
+    zui_upload_group({upid:"business_provider_list_logAdd_file",type:"img",maxSize:"10mb"});
 
     //时间组件-----------------------------------------------------------------------------------------------
     business_provider_list_add_birt.datetimepicker(option_date);
@@ -1242,6 +1249,7 @@ $(function(){
             data    : {
                 id   : data_id,
                 text : business_provider_list_logAdd_text.val(),
+                file : business_provider_list_logAdd_file.attr("path"),
                 date : business_provider_list_logAdd_text.val(),
             },
             success : function(data){
@@ -1254,6 +1262,11 @@ $(function(){
             }
         });
     });
+    //日志关闭
+    business_provider_list_logAdd_box.on("hide.zui.modal",function(){
+        //上传重置
+        zui_upload_reset([business_provider_list_logAdd_file]);
+    });    
     
 });//预加载结尾
 </script>

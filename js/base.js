@@ -523,7 +523,8 @@ function zui_upload_group(object){
         staticFiles         : staticFiles,                              //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
             doRemoveFile();                                             //本地删除
-            $("#"+upid).attr("path","");
+            console.log(file);
+            $("#"+upid).attr("path","");                                //[???]
         }
     });
     return upobj;                                                       //实例对象
