@@ -441,13 +441,15 @@ function zui_upload_img(object){
     var upid = object.upid;                                             //上传ID
     var maxSize = object.maxSize || "1mb";                              //大小限制
     var staticFiles = object.list || [];                                //数据读取
+    //上传DOM
+    var updom = $("#"+upid);
     //数据赋值
     if( staticFiles && staticFiles!="" ){
-        $("#"+upid).attr("path",staticFiles[0].url);
-        $("#"+upid).find("img").attr("src",staticFiles[0].url);
+        updom.attr("path",staticFiles[0].url);
+        updom.find("img").attr("src",staticFiles[0].url);
     }
     //上传实例
-    var upobj = $("#"+upid).uploader ({
+    var upobj = updom.uploader ({
         url                 : API.common_upload,                        //上传路径
         fileList            : "grid",                                   //列表形式
         autoUpload          : true,                                     //自动上传
@@ -459,14 +461,14 @@ function zui_upload_img(object){
         },
         responseHandler     : function(res,file){                       //远程响应
             var data = um_json(res.response);
-            $("#"+upid).attr("path",data.file);
-            $("#"+upid).find("img").attr("src",prev_path+data.file);
+            updom.attr("path",data.file);
+            updom.find("img").attr("src",prev_path+data.file);
         },
         staticFiles         : staticFiles,                              //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
             doRemoveFile();                                             //本地删除
-            $("#"+upid).attr("path","");
-            $("#"+upid).find("img").attr("src","");
+            updom.attr("path","");
+            updom.find("img").attr("src","");
         }
     });
     return upobj;                                                       //实例对象
@@ -483,6 +485,8 @@ function zui_upload_group(object){
     var maxSize = object.maxSize || "1mb";                              //大小限制
     var count = object.count || 50;                                     //个数限制
     var staticFiles = object.list || [];                                //数据读取
+    //上传DOM
+    var updom = $("#"+upid);
     //数据赋值
     if( staticFiles && staticFiles!="" ){
         var staticFiles_result = "";
@@ -490,7 +494,7 @@ function zui_upload_group(object){
             staticFiles_result+=staticFiles[i].url+",";
         }
         staticFiles_result = staticFiles_result.substr(0,staticFiles_result.length-1);
-        $("#"+upid).attr("path",staticFiles_result);
+        updom.attr("path",staticFiles_result);
     }
     //类型设定
     var mime_types = [];
@@ -498,7 +502,7 @@ function zui_upload_group(object){
         mime_types = [{title:"图片",extensions:"jpg,png"}]
     }
     //上传实例
-    var upobj = $("#"+upid).uploader ({
+    var upobj = updom.uploader ({
         url                 : API.common_upload,                        //上传路径
         fileList            : mode,                                     //列表形式
         previewImageIcon    : true ,                                    //图片预览
@@ -511,10 +515,9 @@ function zui_upload_group(object){
         },
         responseHandler     : function(res,file){                       //远程响应
             var data = um_json(res.response);
-            var updom = $("#"+upid);
+
             var upload_result = updom.attr("path");
             upload_result = upload_result+","+data.file;
-
             if( upload_result.charAt(0)=="," ){
                 upload_result = upload_result.substring(1);
             }
@@ -523,8 +526,9 @@ function zui_upload_group(object){
         staticFiles         : staticFiles,                              //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
             doRemoveFile();                                             //本地删除
-            console.log(file);
-            $("#"+upid).attr("path","");                                //[???] 删除一个 path全清空
+            var pathArr = updom.attr("path").split(",");                //字符串转数组
+            pathArr.splice($.inArray(file.url,pathArr),1);              //据值移除元素
+            updom.attr("path",pathArr);                                 //结果赋值
         }
     });
     return upobj;                                                       //实例对象
