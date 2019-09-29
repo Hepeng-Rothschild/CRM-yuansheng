@@ -1,7 +1,7 @@
 <?php
 //参数配置
 ini_set("date.timezone","Asia/Shanghai"); 										//时区设置
-$path = "../Upload/"; 															//保存路径
+$path = "../../remote/Upload/"; 															//保存路径
 
 //参数接收
 $chunk  = isset($_REQUEST["chunk"] ) ? intval($_REQUEST["chunk"] ) : 0; 		//分块处理
@@ -29,5 +29,5 @@ if( !$chunks || $chunk==$chunks-1 ){ rename("{$file_path}.part",$file_path); } 	
 //结果返回
 echo json_encode(array( 														//返回格式
 	"result" => "ok", 															//结果状态
-	"file" 	 => $file_path 														//文件路径+名称
+	"file" 	 => substr($file_path, 4) 											//文件路径+名称
 ));

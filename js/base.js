@@ -435,8 +435,6 @@ function zui_datagrid_render(datagrid_obj,datagrid_url){
  * @param   object  参数对象
  */
 function zui_upload_img(object){
-    //预览路径
-    var prev_path = "./remote/Upload/";
     //参数接收
     var upid = object.upid;                                             //上传ID
     var maxSize = object.maxSize || "1mb";                              //大小限制
@@ -446,7 +444,7 @@ function zui_upload_img(object){
     //数据赋值
     if( staticFiles && staticFiles!="" ){
         updom.attr("path",staticFiles[0].url);
-        updom.find("img").attr("src",staticFiles[0].url);
+        updom.find("img").attr("src", FILE_PATH + staticFiles[0].url);
     }
     //上传实例
     var upobj = updom.uploader ({
@@ -462,7 +460,7 @@ function zui_upload_img(object){
         responseHandler     : function(res,file){                       //远程响应
             var data = um_json(res.response);
             updom.attr("path",data.file);
-            updom.find("img").attr("src",prev_path+data.file);
+            updom.find("img").attr("src", FILE_PATH + data.file);
         },
         staticFiles         : staticFiles,                              //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
@@ -495,6 +493,9 @@ function zui_upload_group(object){
         }
         staticFiles_result = staticFiles_result.substr(0,staticFiles_result.length-1);
         updom.attr("path",staticFiles_result);
+        for(var i=0;i<staticFiles.length;i++){
+            staticFiles[i].url = FILE_PATH + staticFiles[i].url
+        }
     }
     //类型设定
     var mime_types = [];

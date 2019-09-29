@@ -446,7 +446,7 @@ $(function(){
                     if( data.down==1 ){
                         temp += `<div class="container"><table class="table table-bordered"><thead><tr><th>附件查看</th></tr></thead><tbody>`;
                         for(var i=0;i<data.file.length;i++){
-                            temp+=`<tr><td><a target="_blank" href="${data.file[i].url}">${data.file[i].name}</a></td></tr>`;
+                            temp+=`<tr><td><a target="_blank" href="${FILE_PATH}${data.file[i].url}">${data.file[i].name}</a></td></tr>`;
                         }
                         temp += `</tbody></table></div>`;
                     }

@@ -99,48 +99,46 @@ $(function(){
  	
 });
 
+//上传相关----------------------------------------------------------------------------------
 /* zui_upload_img() 单图上传
  * @param   object  参数对象
  */
 function zui_upload_img(object){
-	//预览路径
-	var prev_path = "./remote/Upload/";
     //参数接收
-    var upid = object.upid;                 							//上传ID
-    var maxSize = object.maxSize || "1mb";  							//大小限制
-    var staticFiles = object.list || [];    							//数据读取
+    var upid = object.upid;                                             //上传ID
+    var maxSize = object.maxSize || "1mb";                              //大小限制
+    var staticFiles = object.list || [];                                //数据读取
+    //上传DOM
+    var updom = $("#"+upid);
     //数据赋值
     if( staticFiles && staticFiles!="" ){
-	    $("#"+upid).attr("path",staticFiles[0].url);
-	    $("#"+upid).find("img").attr("src",staticFiles[0].url);
+        updom.attr("path",staticFiles[0].url);
+        updom.find("img").attr("src", FILE_PATH + staticFiles[0].url);
     }
     //上传实例
-    var upobj = $("#"+upid).uploader ({
+    var upobj = updom.uploader ({
         url                 : API.common_upload,                        //上传路径
         fileList            : "grid",                                   //列表形式
         autoUpload          : true,                                     //自动上传
-        limitFilesCount     : 1,                                    	//个数限制
+        limitFilesCount     : 1,                                        //个数限制
         filters             : {                                         //文件过滤
             mime_types         : [{title:"图片",extensions:"jpg,png"}], //类型限定
             max_file_size      : maxSize,                               //大小限定
             prevent_duplicates : true                                   //重传禁止
         },
-        multipart_params    : function(file,params){                    //参数提交
-            return { upid:upid };
-        },
         responseHandler     : function(res,file){                       //远程响应
             var data = um_json(res.response);
-			$("#"+data.upid).attr("path",data.file);
-            $("#"+data.upid).find("img").attr("src",prev_path+data.file);
+            updom.attr("path",data.file);
+            updom.find("img").attr("src", FILE_PATH + data.file);
         },
-        staticFiles         : staticFiles,                        		//静态文件
+        staticFiles         : staticFiles,                              //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
             doRemoveFile();                                             //本地删除
-            $("#"+upid).attr("path","");
-            $("#"+upid).find("img").attr("src","");
+            updom.attr("path","");
+            updom.find("img").attr("src","");
         }
     });
-	return upobj; 														//实例对象
+    return upobj;                                                       //实例对象
 }
 
 /* zui_upload_group() 组队上传
@@ -148,12 +146,14 @@ function zui_upload_img(object){
  */
 function zui_upload_group(object){
     //参数接收
-    var upid = object.upid;                 							//上传ID
-    var mode = object.mode || "large";       							//列表形式
-    var type = object.type || "";           							//格式限制
-    var maxSize = object.maxSize || "1mb";  							//大小限制
-    var count = object.count || 50;         							//个数限制
-    var staticFiles = object.list || [];    							//数据读取
+    var upid = object.upid;                                             //上传ID
+    var mode = object.mode || "large";                                  //列表形式
+    var type = object.type || "";                                       //格式限制
+    var maxSize = object.maxSize || "1mb";                              //大小限制
+    var count = object.count || 50;                                     //个数限制
+    var staticFiles = object.list || [];                                //数据读取
+    //上传DOM
+    var updom = $("#"+upid);
     //数据赋值
     if( staticFiles && staticFiles!="" ){
         var staticFiles_result = "";
@@ -161,7 +161,10 @@ function zui_upload_group(object){
             staticFiles_result+=staticFiles[i].url+",";
         }
         staticFiles_result = staticFiles_result.substr(0,staticFiles_result.length-1);
-        $("#"+upid).attr("path",staticFiles_result);
+        updom.attr("path",staticFiles_result);
+        for(var i=0;i<staticFiles.length;i++){
+            staticFiles[i].url = FILE_PATH + staticFiles[i].url
+        }
     }
     //类型设定
     var mime_types = [];
@@ -169,8 +172,8 @@ function zui_upload_group(object){
         mime_types = [{title:"图片",extensions:"jpg,png"}]
     }
     //上传实例
-    var upobj = $("#"+upid).uploader ({
-		url                 : API.common_upload,                        //上传路径
+    var upobj = updom.uploader ({
+        url                 : API.common_upload,                        //上传路径
         fileList            : mode,                                     //列表形式
         previewImageIcon    : true ,                                    //图片预览
         autoUpload          : true,                                     //自动上传
@@ -180,45 +183,43 @@ function zui_upload_group(object){
             max_file_size      : maxSize,                               //大小限定
             prevent_duplicates : true                                   //重传禁止
         },
-        multipart_params    : function(file,params){                    //参数提交
-            return { upid:upid };
-        },
         responseHandler     : function(res,file){                       //远程响应
-			var data = um_json(res.response);
-			var updom = $("#"+data.upid);
-			var upload_result = updom.attr("path");
-			upload_result = upload_result+","+data.file;
+            var data = um_json(res.response);
 
-			if( upload_result.charAt(0)=="," ){
-				upload_result = upload_result.substring(1);
-			}
-			updom.attr("path",upload_result);
+            var upload_result = updom.attr("path");
+            upload_result = upload_result+","+data.file;
+            if( upload_result.charAt(0)=="," ){
+                upload_result = upload_result.substring(1);
+            }
+            updom.attr("path",upload_result);
         },
-        staticFiles         : staticFiles,                        		//静态文件
+        staticFiles         : staticFiles,                              //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
             doRemoveFile();                                             //本地删除
-            $("#"+upid).attr("path","");
+            var pathArr = updom.attr("path").split(",");                //字符串转数组
+            pathArr.splice($.inArray(file.url,pathArr),1);              //据值移除元素
+            updom.attr("path",pathArr);                                 //结果赋值
         }
     });
-	return upobj; 														//实例对象
+    return upobj;                                                       //实例对象
 }
 
 //上传重置(单图上传)
 $(function(){
-	$(document).on("click",".zui_upload_img .uploader-btn-delete",function(){
-		zui_upload_reset([$(this).parents(".zui_upload_img")])
-	});
+    $(document).on("click",".zui_upload_img .uploader-btn-delete",function(){
+        zui_upload_reset([$(this).parents(".zui_upload_img")])
+    });
 });
 
 /* zui_upload_reset() 上传重置
  * @param updom array 上传DOM
  */
 function zui_upload_reset(updom){
-	$(".uploader-message").hide();
+    $(".uploader-message").hide();
     if( updom instanceof Array ){
-		for(var i=0;i<updom.length;i++){
-			updom[i].find(".btn-delete-file").trigger("click");
-		}
+        for(var i=0;i<updom.length;i++){
+            updom[i].find(".btn-delete-file").trigger("click");
+        }
     }
 }
 
@@ -226,14 +227,14 @@ function zui_upload_reset(updom){
  * @param upobj array   上传对象
  */
 function zui_upload_destroy(upobj){
-	$(".uploader-message").hide();
+    $(".uploader-message").hide();
     if( upobj instanceof Array ){
-		for(var i=0;i<upobj.length;i++){
-			$(upobj[i].selector).find(".btn-delete-file").trigger("click");
-			if( upobj[i].data("zui.uploader")!=null ) {
-				upobj[i].data("zui.uploader").destroy();
-			}
-		}
-	}
+        for(var i=0;i<upobj.length;i++){
+            $(upobj[i].selector).find(".btn-delete-file").trigger("click");
+            if( upobj[i].data("zui.uploader")!=null ) {
+                upobj[i].data("zui.uploader").destroy();
+            }
+        }
+    }
 }
 </script>

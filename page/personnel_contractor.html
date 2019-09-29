@@ -586,14 +586,14 @@ $(function(){
                                 <tbody>
                                     <tr><td>
                                         <div class="col-sm-2">
-                                            <a class="card zui-upload-img" target="_blank" href="${data.pic1[0].url}">
-                                                <span class="media-wrapper"><img src="${data.pic1[0].url}"></span>
+                                            <a class="card zui-upload-img" target="_blank" href="${FILE_PATH}${data.pic1[0].url}">
+                                                <span class="media-wrapper"><img src="${FILE_PATH}${data.pic1[0].url}"></span>
                                                 <span class="card-heading">身份证正面</span>
                                             </a>
                                         </div>
                                         <div class="col-sm-2">
-                                            <a class="card zui-upload-img" target="_blank" href="${data.pic2[0].url}">
-                                                <span class="media-wrapper"><img src="${data.pic2[0].url}"></span>
+                                            <a class="card zui-upload-img" target="_blank" href="${FILE_PATH}${data.pic2[0].url}">
+                                                <span class="media-wrapper"><img src="${FILE_PATH}${data.pic2[0].url}"></span>
                                                 <span class="card-heading">身份证反面</span>
                                             </a>
                                         </div>
@@ -602,8 +602,8 @@ $(function(){
                     for(var i=0;i<data.pics.length;i++){
                         temp += `
                             <div class="col-sm-2">
-                                <a class="card zui-upload-img" target="_blank" href="${data.pics[i].url}">
-                                    <span class="media-wrapper"><img src="${data.pics[i].url}"></span>
+                                <a class="card zui-upload-img" target="_blank" href="${FILE_PATH}${data.pics[i].url}">
+                                    <span class="media-wrapper"><img src="${FILE_PATH}${data.pics[i].url}"></span>
                                     <span class="card-heading">${data.pics[i].name}</span>
                                 </a>
                             </div>

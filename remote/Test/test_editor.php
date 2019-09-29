@@ -1,1 +1,1 @@
-<?php  echo json_encode(array("error"=>0,"url"=>"./remote/Upload/test_editor.jpg")); ?>
+<?php echo json_encode(array("error"=>0,"url"=>"./remote/Upload/test_editor.jpg")); ?>
