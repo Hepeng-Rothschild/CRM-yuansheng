@@ -155,9 +155,7 @@ $(function(){
                 {html:true,width:190,name:"work1_resu",label:"待合并",
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            var prefix=dataValue.match(/(\S*)_/)[1], value=dataValue.match(/_(\S*)/)[1], temp="";
-                            ( prefix>8 ) ? temp=`<a rowIndex='${cell.rowIndex}' colIndex="${cell.colIndex}" prefix='${prefix}' class='personnel_attendance_days_result_edit_btn'>${value}</a>` : temp=value;
-                            return temp;
+                            return (dataValue.numb>8) ? `<a rowIndex='${cell.rowIndex}' colIndex="${cell.colIndex}" prefix='${dataValue.numb}' class='personnel_attendance_days_result_edit_btn'>${dataValue.text}</a>` : dataValue.text;
                         }
                     }
                 },
@@ -165,9 +163,7 @@ $(function(){
                 {html:true,width:190,name:"rest1_resu",label:"待合并",
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            var prefix=dataValue.match(/(\S*)_/)[1], value=dataValue.match(/_(\S*)/)[1], temp="";
-                            ( prefix>8 ) ? temp=`<a rowIndex='${cell.rowIndex}' colIndex="${cell.colIndex}" prefix='${prefix}' class='personnel_attendance_days_result_edit_btn'>${value}</a>` : temp=value;
-                            return temp;
+                            return (dataValue.numb>8) ? `<a rowIndex='${cell.rowIndex}' colIndex="${cell.colIndex}" prefix='${dataValue.numb}' class='personnel_attendance_days_result_edit_btn'>${dataValue.text}</a>` : dataValue.text;
                         }
                     }
                 },
@@ -175,9 +171,7 @@ $(function(){
                 {html:true,width:190,name:"work2_resu",label:"待合并",
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            var prefix=dataValue.match(/(\S*)_/)[1], value=dataValue.match(/_(\S*)/)[1], temp="";
-                            ( prefix>8 ) ? temp=`<a rowIndex='${cell.rowIndex}' colIndex="${cell.colIndex}" prefix='${prefix}' class='personnel_attendance_days_result_edit_btn'>${value}</a>` : temp=value;
-                            return temp;
+                            return (dataValue.numb>8) ? `<a rowIndex='${cell.rowIndex}' colIndex="${cell.colIndex}" prefix='${dataValue.numb}' class='personnel_attendance_days_result_edit_btn'>${dataValue.text}</a>` : dataValue.text;
                         }
                     }
                 },
@@ -185,9 +179,7 @@ $(function(){
                 {html:true,width:190,name:"rest2_resu",label:"待合并",
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            var prefix=dataValue.match(/(\S*)_/)[1], value=dataValue.match(/_(\S*)/)[1], temp="";
-                            ( prefix>8 ) ? temp=`<a rowIndex='${cell.rowIndex}' colIndex="${cell.colIndex}" prefix='${prefix}' class='personnel_attendance_days_result_edit_btn'>${value}</a>` : temp=value;
-                            return temp;
+                            return (dataValue.numb>8) ? `<a rowIndex='${cell.rowIndex}' colIndex="${cell.colIndex}" prefix='${dataValue.numb}' class='personnel_attendance_days_result_edit_btn'>${dataValue.text}</a>` : dataValue.text;
                         }
                     }
                 },
