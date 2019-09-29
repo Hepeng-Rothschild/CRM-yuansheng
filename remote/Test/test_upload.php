@@ -4,7 +4,6 @@ ini_set("date.timezone","Asia/Shanghai"); 										//时区设置
 $path = "../Upload/"; 															//保存路径
 
 //参数接收
-$upid   = isset($_REQUEST["upid"]  ) ? $_REQUEST["upid"] : "upid"; 				//上传ID
 $chunk  = isset($_REQUEST["chunk"] ) ? intval($_REQUEST["chunk"] ) : 0; 		//分块处理
 $chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 0; 		//分块处理
 
