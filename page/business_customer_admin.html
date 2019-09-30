@@ -922,28 +922,42 @@ $(function(){
     //导出按钮
     business_customer_admin_export_btn.click(function(){
 
-
-        //远程提交
-        $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : {
-                keys    : business_customer_admin_tool_keys.val(),
-                search  : business_customer_admin_tool_search.val(),
-                state   : business_customer_admin_tool_select1.val(),
-            },
-            beforesend : function(){
-                um_tip("导出中…");
-            },
-            success : function(data){
-                if( data.status>0 ){
-                    window.open(API.test_export);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
+        //批量取值
+        var data_arr = business_customer_admin_datagrid_obj.getCheckItems().filter(function(e){return e});
+        if( data_arr.length>0 ){
+            
+            //ID获取
+            var data_id = [];
+            for(var i=0;i<data_arr.length;i++){
+                data_id.push(data_arr[i].id);
             }
-        });
+
+            //远程提交
+            $.ajax({
+                url     : API.test_response,
+                type    : "post",
+                dataType: "json",
+                data    : {
+                    id      : data_id.join(","),
+                    keys    : business_customer_admin_tool_keys.val(),
+                    search  : business_customer_admin_tool_search.val(),
+                    state   : business_customer_admin_tool_select1.val(),
+                },
+                beforesend : function(){
+                    um_tip("导出中…");
+                },
+                success : function(data){
+                    if( data.status>0 ){
+                        window.open(API.test_export);
+                    } else {
+                        um_tip(data.message,"1500","text-danger");
+                    }
+                }
+            });
+
+        } else {
+            um_tip("至少选择一条数据","1000","text-danger");
+        }
 
     });
 
