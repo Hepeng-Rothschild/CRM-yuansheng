@@ -87,9 +87,9 @@
                 "children"  :[
                     { "title":"客户跟踪","icon":"","url":"business_customer_tracked"},
                     { "title":"客户管理","icon":"","url":"business_customer_admin"},
-                    { "title":"客户审批","icon":"business_customer_approval","url":"blank"},
-                    { "title":"过期审批","icon":"business_customer_overdue","url":"blank"},
-                    { "title":"失败审批","icon":"business_customer_failure","url":"blank"}
+                    { "title":"客户审批","icon":"","url":"business_customer_approval"},
+                    { "title":"过期审批","icon":"","url":"business_customer_overdue"},
+                    { "title":"失败审批","icon":"","url":"business_customer_failure"}
                 ]
             },
             {   
