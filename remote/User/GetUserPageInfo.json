@@ -95,10 +95,10 @@
             {   
                 "title"     :"公共池",
                 "children"  :[
-                    { "title":"可抢信息员","icon":"business_public_provider_get","url":"blank"},
-                    { "title":"可抢客户",  "icon":"business_public_customer_get","url":"blank"},
-                    { "title":"信息员资源","icon":"business_public_provider_source","url":"blank"},
-                    { "title":"客户资源",  "icon":"business_public_customer_source","url":"blank"}
+                    { "title":"可抢信息员","icon":"","url":"business_public_provider_get"},
+                    { "title":"可抢客户",  "icon":"","url":"business_public_customer_get"},
+                    { "title":"信息员资源","icon":"","url":"business_public_provider_source"},
+                    { "title":"客户资源",  "icon":"","url":"business_public_customer_source"}
                 ]
             }
         ]
