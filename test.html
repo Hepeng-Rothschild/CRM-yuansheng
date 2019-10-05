@@ -47,7 +47,7 @@ window.COMMON = {
     user_id    : 2,
 }
 
-var page = "business_public_customer_source";
+var page = "business_public_provider_source";
 $("#common_tabs").tabs({tabs:[{
     id    : page,
     type  : "ajax",
@@ -55,7 +55,25 @@ $("#common_tabs").tabs({tabs:[{
     url   : "./page/"+ page +".html",
 }]});
 /*
-客户管理 business_customer_admin
-信息员资源  business_public_provider_source   
+客户管理 	business_customer_admin
+客户资源 	business_public_customer_source
+
+#工作搁置
+1)行政管理-物品管理：页面制作
+2)全局页面-数据表格：宽度标准
+    id      50
+    sexy    50
+    default 80
+    tels    100
+    full    .1
+    operate 180
+
+#bug记录
+1)假期余额-修改面板：tab面板显示不出来(css强制显示-需多测试)
+
+#工作计划
+    8  2 	工作对接 回访设置
+    9  3 	录入设置 暂停回访
+    10 4
 */
 </script>

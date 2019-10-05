@@ -48,6 +48,10 @@
 		"draftsman" 	: "林依轮",
 		"budgetor" 		: "陈凯歌",
 		"supervision" 	: "杨志刚",
-		"manager" 	    : "杨志刚"
+		"manager" 	    : "杨志刚",
+
+		"---------"     : "客户查看-放弃理由",
+		"abandon" 		: "该客户已转行"
+
 	}
 }
