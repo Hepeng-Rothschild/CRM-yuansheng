@@ -7,7 +7,7 @@ window.LOCAL = "./remote/";                                             //本地
 window.ROUTE = "http://192.168.1.57/";                                  //远程路径
 window.REC_PER_PAGE = 20;                                               //每页几条
 window.COMMON_PERSON_BTNID = "";                                        //人员选择按钮ID预置
-window.FILE_PATH = '';                                                  //文件路径 "" | http://debug.fanyisj.com  ${FILE_PATH}
+window.FILE_PATH = '';                                                  //文件路径 "" | http://debug.wentesjj.com/  ${FILE_PATH}
 
 //全局接口
 if( STATE == "local" ){
