@@ -110,13 +110,13 @@
                             <tbody><!-- JS推进 --></tbody>
                         </table>
 
-                         <!-- 放弃理由 -->
+                         <!-- 放弃理由 
                         <table class="table table-bordered" id="business_public_customer_source_show_t_abandon">
                             <thead><tr><th colspan="2">放弃理由 
                                 <button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
                             </th></tr></thead>
-                            <tbody><!-- JS推进 --></tbody>
-                        </table>
+                            <tbody></tbody>
+                        </table>-->
  
                         <!-- 切换面板 -->
                         <ul class="nav nav-tabs">
@@ -283,7 +283,7 @@ $(function(){
     business_public_customer_source_show_t_prog        = $("#business_public_customer_source_show_t_prog"),       	//项目进度
     business_public_customer_source_show_t_case        = $("#business_public_customer_source_show_t_case"),       	//项目信息
     business_public_customer_source_show_t_user        = $("#business_public_customer_source_show_t_user"),       	//负责人信息
-    business_public_customer_source_show_t_abandon 	   = $("#business_public_customer_source_show_t_abandon"), 		//放弃理由
+    // business_public_customer_source_show_t_abandon  = $("#business_public_customer_source_show_t_abandon"), 		//放弃理由
     business_public_customer_source_show_filelist      = $("#business_public_customer_source_show_filelist"),     	//客户附件
     business_public_customer_source_show_filelist_type = $("#business_public_customer_source_show_filelist_type"),	//客户附件类型
     business_public_customer_source_show_record        = $("#business_public_customer_source_show_record"),       	//操作记录
@@ -361,6 +361,8 @@ $(function(){
                 {name:"name",   label:"业务员",      width:100},
                 {name:"name",   label:"信息员",      width:100},
                 {name:"name",   label:"设计师",      width:100},
+                {name:"date",   label:"放弃时间",    width:160},
+                {name:"text3",  label:"放弃理由",    width:80},
                 {name:"log",    label:"跟踪日志",    width:80,
                     html:true,
                     valueOperator : {
@@ -370,9 +372,7 @@ $(function(){
                             <a class="business_public_customer_source_logAdd_btn"  rowIndex="${cell.rowIndex}">添加</a>`;
                         }
                     }
-                },
-                {name:"date",   label:"放弃时间",      width:160},
-                {name:"text3",  label:"放弃理由",      width:80},
+                }
             ],
             remote : function(){
                 return {
@@ -511,7 +511,7 @@ $(function(){
         var keyword
         = "?sid="    + business_public_customer_source_tool_keys.val()
         + "&search=" + business_public_customer_source_tool_search.val()
-        + "&reason=" + business_public_customer_source_tool_select1.val();
+        + "&abandon="+ business_public_customer_source_tool_select1.val();
         //GET提交
         zui_datagrid_render(business_public_customer_source_datagrid_obj,business_public_customer_source_api.datagrid+keyword);
 
@@ -572,6 +572,7 @@ $(function(){
                         <tr><td>对手数量  </td><td>${data.rivalnumb}    </td></tr>
                         <tr><td>对手进展  </td><td>${data.rivalstepname}</td></tr>
                         <tr><td>备注      </td><td>${data.text}         </td></tr>
+                        <tr><td>放弃理由  </td><td>${data.abandon_type}： ${data.abandon_reason}</td></tr>
                     `;
                     business_public_customer_source_show_t_case.find("tbody").html(temp_case);
 
@@ -587,11 +588,11 @@ $(function(){
                     `;
                     business_public_customer_source_show_t_user.find("tbody").html(temp_user);
 
-                    //放弃理由
+                    /*放弃理由
                     var temp_abandon = `
                         <tr><td style="width:120px;">无价值</td><td>${data.abandon}</td></tr>                
                     `;
-                    business_public_customer_source_show_t_abandon.find("tbody").html(temp_abandon);
+                    business_public_customer_source_show_t_abandon.find("tbody").html(temp_abandon);*/
                     
                     //数据表格
                     zui_datagrid_render(business_public_customer_source_show_filelist_obj,business_public_customer_source_api.datagrid_filelist+"?id="+data_id+"&type=1");
