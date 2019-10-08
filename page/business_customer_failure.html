@@ -147,9 +147,9 @@
 				<div class="modal-body">
 					<form class="container form-horizontal">
 						<div class="form-group require">
-						    <label class="col-sm-2 required" for="business_customer_failure_back_type">打回类型</label>
+						    <label class="col-sm-2 required" for="business_customer_failure_back_target">打回目标</label>
 						    <div class="col-sm-8">
-						    	<select class="form-control" id="business_customer_failure_back_type">
+						    	<select class="form-control" id="business_customer_failure_back_target">
 						    		<option value="1">设计部</option>
 						    		<option value="2">商务专员</option>
 						    	</select>
@@ -165,7 +165,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-danger"  id="business_customer_failure_back_submit">提交</button>
+					<button type="button" class="btn btn-primary" id="business_customer_failure_back_submit">提交</button>
 				</div>
 			</div>
 		</div>
@@ -262,7 +262,7 @@ $(function(){
 	//打回
 	business_customer_failure_back_box            	= $("#business_customer_failure_back_box"),				//打回盒子
 	business_customer_failure_back_submit         	= $("#business_customer_failure_back_submit"),			//打回提交
-	business_customer_failure_back_type 			= $("#business_customer_failure_back_type"), 			//打回类型
+	business_customer_failure_back_target 			= $("#business_customer_failure_back_target"), 			//打回目标
 	business_customer_failure_back_reason 			= $("#business_customer_failure_back_reason"), 			//打回理由
 	//跟踪日志
 	business_customer_failure_logShow_box			= $("#business_customer_failure_logShow_box"),			//日志查看盒子
@@ -661,7 +661,7 @@ $(function(){
 			dataType: "json",
 			data    : { 
 				id : data_id,
-				type : business_customer_failure_back_type.val(),
+				target : business_customer_failure_back_target.val(),
 				reason : business_customer_failure_back_reason.val()
 			},
 			success : function(data){

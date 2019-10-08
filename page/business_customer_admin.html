@@ -283,9 +283,9 @@
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="business_customer_admin_back_type">打回类型</label>
+                            <label class="col-sm-2 required" for="business_customer_admin_back_target">打回目标</label>
                             <div class="col-sm-8">
-                                <select class="form-control" id="business_customer_admin_back_type">
+                                <select class="form-control" id="business_customer_admin_back_target">
                                     <option value="1">设计部</option>
                                     <option value="2">商务专员</option>
                                 </select>
@@ -525,7 +525,7 @@ $(function(){
     //操作-打回
     business_customer_admin_back_box            = $("#business_customer_admin_back_box"),             //打回盒子
     business_customer_admin_back_submit         = $("#business_customer_admin_back_submit"),          //打回提交
-    business_customer_admin_back_type           = $("#business_customer_admin_back_type"),            //打回类型
+    business_customer_admin_back_target         = $("#business_customer_admin_back_target"),          //打回目标
     business_customer_admin_back_reason         = $("#business_customer_admin_back_reason"),          //打回理由    
     //操作-归库
     business_customer_admin_sink_box            = $("#business_customer_admin_sink_box"),             //同意盒子
@@ -643,7 +643,7 @@ $(function(){
                         getter : function(dataValue,cell){
 
                             var temp = `
-                                <a class="business_customer_admin_back_btn" rowIndex="${cell.rowIndex}" rowState="${cell.dataValue}">打回</a>
+                                <a class="business_customer_admin_back_btn" rowIndex="${cell.rowIndex}" rowState="${dataValue}">打回</a>
                             `;
                             if( dataValue==1 ){         //已提交(商务经理未审批)
                                 temp+=`
@@ -1223,6 +1223,16 @@ $(function(){
 
         //数据取值
         var data_id = $(this).attr("rowIndex");
+        var state   = $(this).attr("rowState");
+
+        //状态判断
+        if (state == 1) {   //已提交(商务经理未审批)
+            business_customer_admin_back_target.val(2);
+            business_customer_admin_back_target.attr("disabled","disabled");
+        } else {            //不准申请中 | 未签申请中
+            business_customer_admin_back_target.val(1);
+            business_customer_admin_back_target.removeAttr("disabled");
+        }
 
         //数据赋值
         business_customer_admin_back_submit.attr("dataId",data_id);
@@ -1244,7 +1254,7 @@ $(function(){
             dataType: "json",
             data    : { 
                 id   : data_id,
-                type : business_customer_admin_back_type.val(),
+                target : business_customer_admin_back_target.val(),
                 reason : business_customer_admin_back_reason.val()                
             },
             success : function(data){

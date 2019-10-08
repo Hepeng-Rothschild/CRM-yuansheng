@@ -140,6 +140,14 @@
 				<div class="modal-body">
 					<form class="container form-horizontal">
 						<div class="form-group require">
+							<label class="col-sm-2 required" for="business_customer_approval_back_target">打回目标</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="business_customer_approval_back_target" disabled>
+									<option value="2">商务专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group require">
 						    <label class="col-sm-2 required" for="business_customer_approval_back_reason">打回理由</label>
 						    <div class="col-sm-8">
 						    	<textarea class="form-control" id="business_customer_approval_back_reason"></textarea>
@@ -149,7 +157,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-danger"  id="business_customer_approval_back_submit">提交</button>
+					<button type="button" class="btn btn-primary" id="business_customer_approval_back_submit">提交</button>
 				</div>
 			</div>
 		</div>
@@ -245,6 +253,7 @@ $(function(){
 	//打回
 	business_customer_approval_back_box            	= $("#business_customer_approval_back_box"),			//打回盒子
 	business_customer_approval_back_submit         	= $("#business_customer_approval_back_submit"),			//打回提交
+	business_customer_approval_back_target 			= $("#business_customer_approval_back_target"), 		//打回目标
 	business_customer_approval_back_reason 			= $("#business_customer_approval_back_reason"), 		//打回理由
 	//跟踪日志
 	business_customer_approval_logShow_box			= $("#business_customer_approval_logShow_box"),			//日志查看盒子
@@ -659,6 +668,7 @@ $(function(){
 			dataType: "json",
 			data    : { 
 				id : data_id,
+				target : business_customer_approval_back_target.val(),
 				reason : business_customer_approval_back_reason.val()
 			},
 			success : function(data){
