@@ -934,9 +934,9 @@ $(function(){
             }
 
             //项目编号获取
-            var data_numb = [];
+            var data_item = [];
             for(var x=0;x<data_id.length;x++){
-                data_numb.push(data_arr[x].username);
+                data_item.push(data_arr[x].username);
             }
 
             //原商务专员获取
@@ -946,7 +946,7 @@ $(function(){
             }
 
             //数据赋值
-            business_customer_admin_turnSalesman_item.val(data_numb.join(","));
+            business_customer_admin_turnSalesman_item.val(data_item.join(","));
             business_customer_admin_turnSalesman_pre.val(data_pre.join(","));
             business_customer_admin_turnSalesman_submit.attr("dataId",data_id.join(","));
 
