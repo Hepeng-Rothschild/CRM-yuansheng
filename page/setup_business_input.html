@@ -1,8 +1,146 @@
 <!-- 页面外套 -->
-<div class="page-wrapper">
-	<br>
-	<div class="alert alert-info alert-block">
-		<h2>空白页面</h2><hr>setup_business_input
-	</div>
+<div class="page-wrapper" id="setup_business_input">
+
+    <!-- 工具条组 -->
+    <div class="tool-group">
+        <div class="tool-deal" style="padding-bottom:5px;">
+            <button class="btn btn-primary" id="setup_business_input_edit_btn"> <i class="icon icon-plus"></i> 修改</button>
+        </div>
+        <table class="table table-bordered"><tbody><!-- JS推进 --></tbody></table>
+    </div>
+    <!-- tool-group -->
+ 
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_business_input_edit_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group require checkbox"><label><input type="checkbox" id="setup_business_input_edit_provider"><b>信息员电话查重</b></label></div>
+                        <div class="form-group require checkbox"><label><input type="checkbox" id="setup_business_input_edit_customer"><b>客户电话查重  </b></label></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="setup_business_input_edit_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_business_input_edit_box -->
+
 </div>
 <!-- page-wrapper -->
+
+<script>
+$(function(){
+   
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    setup_business_input                = $("#setup_business_input"),                   //页面ID
+    setup_business_input_edit_btn       = $("#setup_business_input_edit_btn"),          //修改按钮
+    setup_business_input_edit_box       = $("#setup_business_input_edit_box"),          //修改盒子
+    setup_business_input_edit_submit    = $("#setup_business_input_edit_submit"),       //修改提交
+	setup_business_input_edit_provider 	= $("#setup_business_input_edit_provider"),     //电话查重(信息员)
+	setup_business_input_edit_customer 	= $("#setup_business_input_edit_customer");     //电话查重(客户)
+
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var setup_business_input_api = {
+            modal_edit : LOCAL + "Test/Setup/Business/input_edit.json",                 //修改盒子
+        }
+
+    } else if ( window.STATE == "route" ){
+
+        //远程接口
+        var setup_business_input_api = {
+            modal_edit : LOCAL + "Test/Setup/Business/input_edit.json",                 //修改盒子
+        }
+
+    }
+
+    //数据表格调用-------------------------------------------------------------------------------------------
+    setup_business_input_dataTable();
+
+    //修改按钮-----------------------------------------------------------------------------------------------
+    setup_business_input_edit_btn.click(function(){
+
+        $.ajax({
+            url     : setup_business_input_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { },
+            success : function(data){
+                if( data.status>0 ){
+                    var data = data.data;
+                    setup_business_input_edit_provider.attr("checked",Boolean(data.provider));
+                    setup_business_input_edit_customer.attr("checked",Boolean(data.customer));
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+        setup_business_input_edit_box.modal("show");
+    });
+    //修改提交
+    setup_business_input_edit_submit.click(function(){
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+				provider : setup_business_input_edit_provider.is(":checked"),
+				customer : setup_business_input_edit_customer.is(":checked"),
+             },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        setup_business_input_dataTable(); //数据表格刷新
+                        setup_business_input_edit_box.modal("hide"); 
+                    },1500); 
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+ 
+    //数据表格声明-------------------------------------------------------------------------------------------
+    function setup_business_input_dataTable () {
+        $.ajax({
+            url     : setup_business_input_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //数据赋值
+                    var data = data.data;
+                    var provider = data.provider==1 ? "<span class='text-primary'>启用</span>" : "<span class='text-danger'>禁用</span>";
+                    var customer = data.customer==1 ? "<span class='text-primary'>启用</span>" : "<span class='text-danger'>禁用</span>";
+                    setup_business_input.find("tbody").html(`
+                        <tr><td style="width:150px"><b>信息员电话查重</b></td><td>${provider}</td></tr>
+                        <tr><td><b>客户电话查重  </b></td><td>${customer}</td></tr> 
+                    `);
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    }    
+
+});//预加载结尾
+</script>

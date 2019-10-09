@@ -1,0 +1,9 @@
+{
+    "result" : true,
+    "message": "获取成功",
+    "status" : 1,
+    "data"   : {
+		"provider" : 0,
+		"customer" : 1
+    }
+}   
