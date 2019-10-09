@@ -137,7 +137,7 @@
 <!-- 隐藏文本域 -->
 <input type="hidden" id="common_positionid" value="1" title="权限ID">
 <input type="hidden" id="common_userid"     value="1" title="用户ID">
-
+<input type="hidden" id="common_logAllow"     value="1" title="跟进允许">
 <script>
 $(function(){
 
@@ -145,6 +145,7 @@ $(function(){
     window.COMMON = {
         position_id: $("#common_positionid").val(),
         user_id    : $("#common_userid").val(),
+        logAllow   : $("#common_logAllow").val(),
     }
 
     //变量声明----------------------------------------------------------------

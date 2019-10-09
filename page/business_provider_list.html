@@ -583,7 +583,11 @@ $(function(){
                 {name:"name",label:"姓名",width:80,html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            return `<a class="business_provider_list_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
+                            var temp = `<span>${dataValue}</span>`;
+                            if ( COMMON.logAllow ){
+                                temp = `<a class="business_provider_list_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
+                            }
+                            return temp;
                         }
                     }
                 },
@@ -596,9 +600,14 @@ $(function(){
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            return `
-                            <a class="business_provider_list_logShow_btn" rowIndex="${cell.rowIndex}">查看</a>
-                            <a class="business_provider_list_logAdd_btn"  rowIndex="${cell.rowIndex}">添加</a>`;
+                            var temp = "";
+                            if ( COMMON.logAllow ){
+                                temp = `
+                                <a class="business_provider_list_logShow_btn" rowIndex="${cell.rowIndex}">查看</a>
+                                <a class="business_provider_list_logAdd_btn"  rowIndex="${cell.rowIndex}">添加</a>
+                                `;
+                            }
+                            return temp;
                         }
                     }
                 },
@@ -606,7 +615,11 @@ $(function(){
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            return `<a class="business_provider_list_add_customer_btn" rowIndex="${cell.rowIndex}" dataValue="${dataValue}">添加客户</a>`;
+                            var temp = "";
+                            if ( COMMON.logAllow ){
+                                temp = `<a class="business_provider_list_add_customer_btn" rowIndex="${cell.rowIndex}" dataValue="${dataValue}">添加客户</a>`;
+                            }
+                            return temp;
                         }
                     }
                 },
@@ -614,10 +627,14 @@ $(function(){
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            return `
-                            <a class="business_provider_list_edit_btn" rowIndex="${cell.rowIndex}">修改</a>
-                            <a class="business_provider_list_dele_btn" rowIndex="${cell.rowIndex}">放弃</a>
-                            `;
+                            var temp = "";
+                            if ( COMMON.logAllow ){
+                                temp = `
+                                <a class="business_provider_list_edit_btn" rowIndex="${cell.rowIndex}">修改</a>
+                                <a class="business_provider_list_dele_btn" rowIndex="${cell.rowIndex}">放弃</a>
+                                `;
+                            }
+                            return temp;
                         }
                     }
                 }                
