@@ -211,7 +211,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 required" for="business_customer_approval_logAdd_date">下次跟踪</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="business_customer_approval_logAdd_date" readonly>
+								<select class="form-control" id="business_customer_approval_logAdd_date"><!-- JS推进 --></select>
 							</div>
 						</div>                        
 					</form>
@@ -473,11 +473,9 @@ $(function(){
 
 	//上传创建-----------------------------------------------------------------------------------------------
 	zui_upload_group({upid:"business_customer_approval_logAdd_file",type:"img",maxSize:"10mb"});
-
-	//时间组件-----------------------------------------------------------------------------------------------
-	business_customer_approval_logAdd_date.datetimepicker(option_date);
-
+ 
 	//下拉选项-----------------------------------------------------------------------------------------------
+	//提交设计部部门
 	$.ajax({
 		url     : business_customer_approval_api.select,
 		type    : "post",
@@ -490,7 +488,24 @@ $(function(){
 				for(var i=0;i<data.length;i++){
 					option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
 				}
-				business_customer_approval_toDesigner_depart.html(option);                              		//提交设计部部门
+				business_customer_approval_toDesigner_depart.html(option);
+			}
+		}
+	});
+	//日志时间
+	$.ajax({
+		url     : business_customer_approval_api.select,
+		type    : "post",
+		dataType: "json",
+		data    : {},
+		success : function(data){
+			if( data.status>0 ){
+				var data = data.data;
+				var option = "";
+				for(var i=0;i<data.length;i++){
+					option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+				}
+				business_customer_approval_logAdd_date.html(option);
 			}
 		}
 	});

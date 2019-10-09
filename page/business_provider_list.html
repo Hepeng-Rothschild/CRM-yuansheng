@@ -428,7 +428,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 required" for="business_provider_list_logAdd_date">下次跟踪</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="business_provider_list_logAdd_date" readonly>
+                                <select class="form-control" id="business_provider_list_logAdd_date"><!-- JS推进 --></select>
                             </div>
                         </div>                        
                     </form>
@@ -801,9 +801,9 @@ $(function(){
     business_provider_list_edit_birt.datetimepicker(option_date);
     business_provider_list_add_customer_housedate1.datetimepicker(option_date);
     business_provider_list_add_customer_housedate2.datetimepicker(option_date);
-    business_provider_list_logAdd_date.datetimepicker(option_date);
 
     //下拉选项-----------------------------------------------------------------------------------------------
+    //添加客户-项目类型
     $.ajax({
         url     : business_provider_list_api.select,
         type    : "post",
@@ -816,7 +816,24 @@ $(function(){
                 for(var i=0;i<data.length;i++){
                     option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
-                business_provider_list_add_customer_type.html(option);                              //添加客户-项目类型
+                business_provider_list_add_customer_type.html(option);
+            }
+        }
+    });
+    //日志时间
+    $.ajax({
+        url     : business_provider_list_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                business_provider_list_logAdd_date.html(option);
             }
         }
     });

@@ -1,8 +1,473 @@
 <!-- 页面外套 -->
-<div class="page-wrapper">
-	<br>
-	<div class="alert alert-info alert-block">
-		<h2>空白页面</h2><hr>setup_business_suspend
-	</div>
+<div class="page-wrapper" id="setup_business_suspend">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="setup_business_suspend_datagrid">
+
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <div class="tool-search">
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" id="setup_business_suspend_tool_keys">
+                            <option value="1">姓名</option>
+                            <option value="2">部门</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="setup_business_suspend_tool_search">
+                    </div>
+                </div>
+                <label><button class="btn btn-primary" id="setup_business_suspend_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </div>
+            <div class="tool-deal">
+                <label><button class="btn btn-primary" id="setup_business_suspend_turnSalesman_btn"> <i class="icon icon-pause"></i> 回访暂停</button></label>
+                <label><button class="btn btn-primary" id="setup_business_suspend_aban_btn"> <i class="icon icon-repeat"></i> 回访重启</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 回访重启盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_business_suspend_aban_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">回访重启</h4>
+                </div>
+                <div class="modal-body">
+                    <p>确定启用员工：「XXX」的系统回访倒计时吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="setup_business_suspend_aban_submit">提交</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <!-- setup_business_suspend_aban_box -->
+
+    <!-- 转移客户盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_business_suspend_turnSalesman_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">转移客户的商务专员</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 required">项目编号</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_business_suspend_turnSalesman_item" readonly></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required">原商务专员</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="setup_business_suspend_turnSalesman_pre" readonly></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required">新商务专员</label>
+                            <div class="col-sm-8"><input type="text" class="form-control salesman_person_btn" id="setup_business_suspend_turnSalesman_now" readonly></div>
+                        </div>                      
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="setup_business_suspend_turnSalesman_submit">提交</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <!-- setup_business_suspend_turnSalesman_box -->
+
+    <!-- 人员选择盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_business_suspend_salesman_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">商务专员选择</h4>
+                </div>
+                <div class="modal-body no-padding">
+
+                    <!-- 数据网格 -->
+                    <div class="datagrid datagrid-striped" id="setup_business_suspend_salesman_datagrid">
+
+                        <!-- 工具条组 -->
+                        <div class="tool-group no-padding">
+                            <div class="tool-deal" style="border:none;">
+                                <label>
+                                    <span>姓名：</span>
+                                    <input type="text" class="form-control" id="setup_business_suspend_salesman_user">
+                                </label>
+                                <label>
+                                    <span>部门：</span>
+                                    <select class="form-control" id="setup_business_suspend_salesman_depart"><!-- JS推进 --></select>
+                                </label>
+                                <label><button class="btn btn-primary" id="setup_business_suspend_salesman_search_btn">搜索</button></label>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <!-- tool-group -->
+                        <div class="datagrid-container"></div>
+                        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+                    </div>
+                    <!-- datagrid -->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="setup_business_suspend_salesman_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_business_suspend_salesman_box -->
+
 </div>
 <!-- page-wrapper -->
+
+<script>
+$(function(){
+
+
+//变量声明-----------------------------------------------------------------------------------------------
+    var 
+    setup_business_suspend                     = $("#setup_business_suspend"),                      //页面ID
+    setup_business_suspend_datagrid            = $("#setup_business_suspend_datagrid"),             //数据表格
+    //搜索
+    setup_business_suspend_tool_keys           = $("#setup_business_suspend_tool_keys"),            //搜索类别
+    setup_business_suspend_tool_search         = $("#setup_business_suspend_tool_search"),          //搜索字段
+    setup_business_suspend_tool_select1        = $("#setup_business_suspend_tool_select1"),         //下拉选择1
+    setup_business_suspend_search_btn          = $("#setup_business_suspend_search_btn"),           //搜索按钮
+    //批量-放弃
+    setup_business_suspend_aban_box            = $("#setup_business_suspend_aban_box"),             //放弃盒子
+    setup_business_suspend_aban_btn            = $("#setup_business_suspend_aban_btn"),             //放弃按钮
+    setup_business_suspend_aban_submit         = $("#setup_business_suspend_aban_submit"),          //放弃提交
+    setup_business_suspend_aban_type           = $("#setup_business_suspend_aban_type"),            //放弃类型
+    setup_business_suspend_aban_reason         = $("#setup_business_suspend_aban_reason"),          //放弃理由
+
+    //批量-转移客户
+    setup_business_suspend_turnSalesman_btn    = $("#setup_business_suspend_turnSalesman_btn"),     //转移商务按钮
+    setup_business_suspend_turnSalesman_box    = $("#setup_business_suspend_turnSalesman_box"),     //转移商务盒子
+    setup_business_suspend_turnSalesman_submit = $("#setup_business_suspend_turnSalesman_submit"),  //转移商务提交
+    setup_business_suspend_turnSalesman_item   = $("#setup_business_suspend_turnSalesman_item"),    //转移商务项目
+    setup_business_suspend_turnSalesman_pre    = $("#setup_business_suspend_turnSalesman_pre"),     //转移商务原来
+    setup_business_suspend_turnSalesman_now    = $("#setup_business_suspend_turnSalesman_now"),     //转移商务现在    
+
+    //人员选择
+    setup_business_suspend_salesman_box        = $("#setup_business_suspend_salesman_box"),         //人员选择盒子
+    setup_business_suspend_salesman_submit     = $("#setup_business_suspend_salesman_submit"),      //人员选择提交
+    setup_business_suspend_salesman_datagrid   = $("#setup_business_suspend_salesman_datagrid"),    //人员选择表格
+    setup_business_suspend_salesman_user       = $("#setup_business_suspend_salesman_user"),        //人员选择姓名
+    setup_business_suspend_salesman_depart     = $("#setup_business_suspend_salesman_depart"),      //人员选择部门
+    setup_business_suspend_salesman_search_btn = $("#setup_business_suspend_salesman_search_btn");  //人员选择搜索
+
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var setup_business_suspend_api = {
+            datagrid            : LOCAL + "Test/test_datagrid.json",                                  //数据表格
+            datagrid_salesman   : LOCAL + "Test/test_datagrid.json",                                  //人员选择表格
+            select              : LOCAL + "Test/test_select.json",                                    //下拉选择
+        }
+
+    } else if ( window.STATE == "route" ){
+
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    setup_business_suspend_datagrid.datagrid({
+        height      : zui_datagrid_height(setup_business_suspend_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        checkable   : true,
+        checkByClickRow:false,
+        selectable  : false,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",        label:"ID",      width:49},
+                {name:"name",      label:"姓名",	width:80},
+                {name:"departname",label:"部门",	width:80},
+                {name:"date",      label:"暂停时间",width:100},
+                {name:"tex10",     label:"暂停原因",width:150}
+            ],
+            remote : function(){
+                return {
+                    url     : setup_business_suspend_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var setup_business_suspend_datagrid_obj = setup_business_suspend_datagrid.data("zui.datagrid");
+
+    //时间组件-----------------------------------------------------------------------------------------------
+    // setup_business_suspend_logAdd_date.datetimepicker(option_date);
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //人员选择-商务专员-部门
+    $.ajax({
+        url     : setup_business_suspend_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "<option value='0'>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                setup_business_suspend_salesman_depart.html(option);
+            }
+        }
+    });
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    setup_business_suspend_search_btn.click(function(){
+
+        //字段整理
+        var keyword
+        = "?sid="    + setup_business_suspend_tool_keys.val()
+        + "&search=" + setup_business_suspend_tool_search.val()
+        + "&state="  + setup_business_suspend_tool_search.val();
+
+        //GET提交
+        zui_datagrid_render(setup_business_suspend_datagrid_obj,setup_business_suspend_api.datagrid+keyword);
+
+    });
+  
+    //批量转移客户按钮-----------------------------------------------------------------------------------------------
+    setup_business_suspend_turnSalesman_btn.click(function(){
+        
+        //数据复原
+        setup_business_suspend_turnSalesman_now.attr("dataId","");
+        common_form_reset();
+
+        //批量取值
+        var data_arr = setup_business_suspend_datagrid_obj.getCheckItems().filter(function(e){return e});
+        if( data_arr.length>0 ){
+            
+            //ID获取
+            var data_id = [];
+            for(var i=0;i<data_arr.length;i++){
+                data_id.push(data_arr[i].id);
+            }
+
+            //项目编号获取
+            var data_item = [];
+            for(var x=0;x<data_id.length;x++){
+                data_item.push(data_arr[x].username);
+            }
+
+            //原商务专员获取
+            var data_pre = [];
+            for(var p=0;p<data_id.length;p++){
+                data_pre.push(data_arr[p].name);
+            }
+
+            //数据赋值
+            setup_business_suspend_turnSalesman_item.val(data_item.join(","));
+            setup_business_suspend_turnSalesman_pre.val(data_pre.join(","));
+            setup_business_suspend_turnSalesman_submit.attr("dataId",data_id.join(","));
+
+            //面板显示
+            setup_business_suspend_turnSalesman_box.modal("show");
+
+        } else {
+            um_tip("至少选择一条数据","1000","text-danger");
+        }
+
+    });
+    //批量转移客户提交
+    setup_business_suspend_turnSalesman_submit.click(function(){
+
+        //ID取值
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id   : data_id,
+                now  : setup_business_suspend_turnSalesman_now.attr("dataId")
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_business_suspend_datagrid_obj,setup_business_suspend_api.datagrid,"clear");
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //批量放弃按钮-----------------------------------------------------------------------------------------------
+    setup_business_suspend_aban_btn.click(function(){
+
+        //数据复原
+        common_form_reset();
+
+        //批量取值
+        var data_arr = setup_business_suspend_datagrid_obj.getCheckItems().filter(function(e){return e});
+        if( data_arr.length>0 ){
+            
+            //ID获取
+            var data_id = [];
+            for(var i=0;i<data_arr.length;i++){
+                data_id.push(data_arr[i].id);
+            }
+
+            //数据赋值
+            setup_business_suspend_aban_submit.attr("dataId",data_id.join(","));
+     
+            //面板显示
+            setup_business_suspend_aban_box.modal("show");
+
+        } else {
+            um_tip("至少选择一条数据","1000","text-danger");
+        }
+
+    });
+    //批量放弃提交
+    setup_business_suspend_aban_submit.click(function(){
+
+        //ID取值
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id : data_id,
+                type : setup_business_suspend_aban_type.val(),
+                reason : setup_business_suspend_aban_reason.val(),
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(setup_business_suspend_datagrid_obj,setup_business_suspend_api.datagrid,"clear");
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //人员选择------------------------------------------------------------------------------------------
+    //数据列表
+    setup_business_suspend_salesman_datagrid.datagrid({
+        height      : 400,
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        checkable   : true,
+        selectable  : false,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",label:"ID",  width:1 },
+                {name:"name",label:"姓名",width:80 },
+                {name:"departname",label:"部门",width:100},
+                {name:"positionname",label:"职务"}
+            ],
+            remote : function(){
+                return {
+                    url     : setup_business_suspend_api.datagrid_salesman,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+    var setup_business_suspend_salesman_datagrid_obj = setup_business_suspend_salesman_datagrid.data("zui.datagrid");
+
+    //搜索按钮
+    setup_business_suspend_salesman_search_btn.click(function(){
+
+        //字段整理
+        var keyword
+        = "?search=" + setup_business_suspend_salesman_user.val()
+        + "&depart=" + setup_business_suspend_salesman_depart.val();
+
+        //GET提交
+        zui_datagrid_render(setup_business_suspend_salesman_datagrid_obj,setup_business_suspend_api.datagrid_salesman+keyword);
+
+    });
+    //点击显示
+    $(".salesman_person_btn").click(function(){
+
+        //按钮ID获取
+        COMMON_PERSON_BTNID = $(this).attr("id");
+
+        //批量勾选去除
+        var data_arr = setup_business_suspend_salesman_datagrid_obj.getCheckItems().filter(function(e){return e});
+        for(var i=0;i<data_arr.length;i++){
+            setup_business_suspend_salesman_datagrid_obj.checkRow(i,false);
+        }
+
+        //面板显示
+        setup_business_suspend_salesman_box.modal("show");
+
+    });
+    //提交按钮
+    setup_business_suspend_salesman_submit.click(function(){
+        
+        //批量取值
+        var data_arr = setup_business_suspend_salesman_datagrid_obj.getCheckItems().filter(function(e){return e});
+       
+        if( data_arr.length==1 ){
+            
+            //数据赋值
+            $("#"+COMMON_PERSON_BTNID).val(data_arr[0].name);
+            $("#"+COMMON_PERSON_BTNID).attr("dataId",data_arr[0].id);
+
+            //面板显示
+            setup_business_suspend_salesman_box.modal("hide");
+
+        } else {
+            um_tip("请选择一条数据","1000","text-danger");
+        }
+
+    });
+
+});//预加载结尾
+</script>

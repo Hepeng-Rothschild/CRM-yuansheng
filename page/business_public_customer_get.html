@@ -173,7 +173,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 required" for="business_public_customer_get_logAdd_date">下次跟踪</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="business_public_customer_get_logAdd_date" readonly>
+                                <select class="form-control" id="business_public_customer_get_logAdd_date"><!-- JS推进 --></select>
                             </div>
                         </div>                        
                     </form>
@@ -230,6 +230,7 @@ $(function(){
             datagrid_record     : LOCAL + "Test/test_datagrid.json",                //操作记录表格
             modal_show          : LOCAL + "Test/Business/customer_edit.json",       //查看盒子
             topic               : LOCAL + "Test/Business/provider_topic.json",      //日志查看
+            select              : LOCAL + "Test/test_select.json",                  //下拉选择
         }
 
     } else if ( window.STATE == "route" ){
@@ -241,6 +242,7 @@ $(function(){
             datagrid_record     : LOCAL + "Test/test_datagrid.json",                //操作记录表格
             modal_show          : LOCAL + "Test/Business/customer_edit.json",       //查看盒子
             topic               : LOCAL + "Test/Business/provider_topic.json",      //日志查看
+            select              : LOCAL + "Test/test_select.json",                  //下拉选择
         }
 
     }
@@ -420,8 +422,24 @@ $(function(){
     //上传创建-----------------------------------------------------------------------------------------------
     zui_upload_group({upid:"business_public_customer_get_logAdd_file",type:"img",maxSize:"10mb"});
 
-    //时间组件-----------------------------------------------------------------------------------------------  
-    business_public_customer_get_logAdd_date.datetimepicker(option_date);
+    //下拉选项-----------------------------------------------------------------------------------------------  
+    //日志时间
+    $.ajax({
+        url     : business_public_customer_get_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                business_public_customer_get_logAdd_date.html(option);
+            }
+        }
+    });
 
     //搜索按钮-----------------------------------------------------------------------------------------------
     business_public_customer_get_search_btn.click(function(){

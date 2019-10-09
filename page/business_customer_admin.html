@@ -429,7 +429,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 required" for="business_customer_admin_logAdd_date">下次跟踪</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="business_customer_admin_logAdd_date" readonly>
+                                <select class="form-control" id="business_customer_admin_logAdd_date"><!-- JS推进 --></select>
                             </div>
                         </div>                        
                     </form>
@@ -860,10 +860,7 @@ $(function(){
     business_customer_admin_logAdd_btn       = ".business_customer_admin_logAdd_btn";                       //日志添加
 
     //上传创建-----------------------------------------------------------------------------------------------
-    
     zui_upload_group({upid:"business_customer_admin_logAdd_file",type:"img",maxSize:"10mb"});
-    //时间组件-----------------------------------------------------------------------------------------------
-    business_customer_admin_logAdd_date.datetimepicker(option_date);
 
     //下拉选项-----------------------------------------------------------------------------------------------
     //提交设计部-部门
@@ -883,7 +880,6 @@ $(function(){
             }
         }
     });
-
     //人员选择-商务专员-部门
     $.ajax({
         url     : business_customer_admin_api.select,
@@ -898,6 +894,23 @@ $(function(){
                     option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
                 business_customer_admin_salesman_depart.html(option);
+            }
+        }
+    });
+    //日志时间
+    $.ajax({
+        url     : business_customer_admin_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                business_customer_admin_logAdd_date.html(option);
             }
         }
     });

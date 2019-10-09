@@ -159,7 +159,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 required" for="business_public_provider_get_logAdd_date">下次跟踪</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="business_public_provider_get_logAdd_date" readonly>
+                                <select class="form-control" id="business_public_provider_get_logAdd_date"><!-- JS推进 --></select>
                             </div>
                         </div>                        
                     </form>
@@ -199,12 +199,12 @@ $(function(){
     business_public_provider_get_show_table3    = $("#business_public_provider_get_show_table3"), 	//切换表格4
     business_public_provider_get_show_table4    = $("#business_public_provider_get_show_table4"), 	//切换表格5
     //跟踪日志
-    business_public_provider_get_logShow_box       = $("#business_public_provider_get_logShow_box"),       //日志查看盒子
-    business_public_provider_get_logAdd_box        = $("#business_public_provider_get_logAdd_box"),        //日志添加盒子
-    business_public_provider_get_logAdd_submit     = $("#business_public_provider_get_logAdd_submit"),     //日志添加提交
-    business_public_provider_get_logAdd_text       = $("#business_public_provider_get_logAdd_text"),       //日志添加内容
-    business_public_provider_get_logAdd_file       = $("#business_public_provider_get_logAdd_file"),       //日志添加附件
-    business_public_provider_get_logAdd_date       = $("#business_public_provider_get_logAdd_date");       //添加下次跟踪
+    business_public_provider_get_logShow_box    = $("#business_public_provider_get_logShow_box"),   //日志查看盒子
+    business_public_provider_get_logAdd_box     = $("#business_public_provider_get_logAdd_box"),    //日志添加盒子
+    business_public_provider_get_logAdd_submit  = $("#business_public_provider_get_logAdd_submit"), //日志添加提交
+    business_public_provider_get_logAdd_text    = $("#business_public_provider_get_logAdd_text"),   //日志添加内容
+    business_public_provider_get_logAdd_file    = $("#business_public_provider_get_logAdd_file"),   //日志添加附件
+    business_public_provider_get_logAdd_date    = $("#business_public_provider_get_logAdd_date");   //添加下次跟踪
 
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
@@ -218,6 +218,7 @@ $(function(){
             datagrid_table4     : LOCAL + "Test/test_datagrid.json",            //查看表格4
             modal_show          : LOCAL + "Test/Business/provider_edit.json",   //查看盒子
             topic               : LOCAL + "Test/Business/provider_topic.json",  //日志查看
+            select              : LOCAL + "Test/test_select.json",              //下拉选择
         }
 
     } else if ( window.STATE == "route" ){
@@ -231,6 +232,7 @@ $(function(){
             datagrid_table4 	: LOCAL + "Test/test_datagrid.json",            //查看表格4
             modal_show          : LOCAL + "Test/Business/provider_edit.json",   //查看盒子
             topic               : LOCAL + "Test/Business/provider_topic.json",  //日志查看
+            select              : LOCAL + "Test/test_select.json",              //下拉选择
         }
 
     }
@@ -451,8 +453,24 @@ $(function(){
     //上传创建-----------------------------------------------------------------------------------------------
     zui_upload_group({upid:"business_public_provider_get_logAdd_file",type:"img",maxSize:"10mb"});
 
-    //时间组件-----------------------------------------------------------------------------------------------  
-    business_public_provider_get_logAdd_date.datetimepicker(option_date);
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //日志时间
+    $.ajax({
+        url     : business_public_provider_get_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                business_public_provider_get_logAdd_date.html(option);
+            }
+        }
+    });
 
     //搜索按钮-----------------------------------------------------------------------------------------------
     business_public_provider_get_search_btn.click(function(){

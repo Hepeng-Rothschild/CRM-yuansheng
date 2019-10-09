@@ -576,6 +576,7 @@ $(function(){
     business_provider_admin_logShow_btn      = ".business_provider_admin_logShow_btn";                      //日志查看
  
     //下拉选项-----------------------------------------------------------------------------------------------
+    //人员选择
     $.ajax({
         url     : business_provider_admin_api.select,
         type    : "post",
@@ -588,7 +589,7 @@ $(function(){
                 for(var i=0;i<data.length;i++){
                     option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
-                business_provider_admin_salesman_depart.html(option);                                   //人员选择
+                business_provider_admin_salesman_depart.html(option);
             }
         }
     });
