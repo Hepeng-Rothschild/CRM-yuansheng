@@ -12,90 +12,13 @@
                     <th>操作</th>
                 </tr>
             </thead>
-            <tbody>
-                
-                <tr>
-                    <td rowspan="5"><b>信息员</b></td>
-                    <td>A</td>
-                    <td>10</td>
-                    <td rowspan="5"><a>修改</a></td>
-                </tr>
-                <tr>
-                    <td>B</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>C</td>
-                    <td>30</td>
-                </tr>
-                <tr>
-                    <td>D</td>
-                    <td>40</td>
-                </tr>
-                <tr>
-                    <td>E</td>
-                    <td>50</td>
-                </tr>  
-                
-                <tr>
-                    <td><b>业务正跟踪</b></td>
-                    <td></td>
-                    <td>10</td>
-                    <td><a>修改</a></td>
-                </tr>
-                
-                <tr>
-                    <td rowspan="5"><b>业务在谈</b></td>
-                    <td>A</td>
-                    <td>10</td>
-                    <td rowspan="5"><a>修改</a></td>
-                </tr>
-                <tr>
-                    <td>B</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>C</td>
-                    <td>30</td>
-                </tr>
-                <tr>
-                    <td>D</td>
-                    <td>40</td>
-                </tr>
-                <tr>
-                    <td>E</td>
-                    <td>50</td>
-                </tr>  
-
-                <tr>
-                    <td rowspan="5"><b>设计在谈</b></td>
-                    <td>A</td>
-                    <td>10</td>
-                    <td rowspan="5"><a>修改</a></td>
-                </tr>
-                <tr>
-                    <td>B</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>C</td>
-                    <td>30</td>
-                </tr>
-                <tr>
-                    <td>D</td>
-                    <td>40</td>
-                </tr>
-                <tr>
-                    <td>E</td>
-                    <td>50</td>
-                </tr>
-            </tbody>
+            <tbody><!-- JS推进 --></tbody>
         </table>
     </div>
     <!-- tool-group -->
  
-    <!-- 修改盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_business_return_edit_box">
+    <!-- 修改盒子(业务正跟踪) -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_business_return_edit1_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -103,48 +26,92 @@
                     <h4 class="modal-title">修改</h4>
                 </div>
                 <div class="modal-body">
-
                     <form class="container form-horizontal">
                         <div class="form-group require">
-                            <label class="col-sm-3">补卡规则</label>
+                            <label class="col-sm-3"></label>
                             <div class="col-sm-8">
-                                <div class="btn-group btn_group_result" data-toggle="buttons" id="setup_business_return_edit_able" result="true">
-                                    <label class="btn"><input type="radio" value="true"> 启用</label>
-                                    <label class="btn"><input type="radio" value="false">禁用</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group require">
-                            <label class="col-sm-3" for="setup_business_return_edit_time">限制补卡次数</label>
-                            <div class="col-sm-3">
-                                <div class="input-group">
-                                    <input type="number" class="form-control" id="setup_business_return_edit_time">
-                                    <span class="input-group-addon">次</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 small text-muted" style="line-height:32px;">每月可提交，按自然月计算</div>
-                        </div>
-                        <div class="form-group require">
-                            <label class="col-sm-3" for="setup_business_return_edit_days">限制补卡时间</label>
-                            <div class="col-sm-3">
-                                <div class="input-group">
-                                    <input type="number" class="form-control" id="setup_business_return_edit_days">
+                                <div class="input-group input-short">
+                                    <input type="number" class="form-control" id="setup_business_return_edit1_day">
                                     <span class="input-group-addon">天</span>
                                 </div>
                             </div>
-                            <div class="col-sm-6 small text-muted" style="line-height:32px;">可申请过去补卡，0天表示只能当天补卡</div>
                         </div>
                     </form>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="setup_business_return_edit_submit">提交</button>
+                    <button type="button" class="btn btn-primary" id="setup_business_return_edit1_submit">提交</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- setup_business_return_edit_box -->
+    <!-- setup_business_return_edit1_box -->
+
+    <!-- 修改盒子(通用) -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_business_return_edits_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">信息员修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-3">A</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-short">
+                                    <input type="number" class="form-control" id="setup_business_return_edits_daya">
+                                    <span class="input-group-addon">天</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-3">B</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-short">
+                                    <input type="number" class="form-control" id="setup_business_return_edits_dayb">
+                                    <span class="input-group-addon">天</span>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="form-group require">
+                            <label class="col-sm-3">C</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-short">
+                                    <input type="number" class="form-control" id="setup_business_return_edits_dayc">
+                                    <span class="input-group-addon">天</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-3">D</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-short">
+                                    <input type="number" class="form-control" id="setup_business_return_edits_dayd">
+                                    <span class="input-group-addon">天</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-3">E</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-short">
+                                    <input type="number" class="form-control" id="setup_business_return_edits_daye">
+                                    <span class="input-group-addon">天</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="setup_business_return_edits_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- setup_business_return_edits_box -->    
 
 </div>
 <!-- page-wrapper -->
@@ -154,13 +121,19 @@ $(function(){
    
     //变量声明-----------------------------------------------------------------------------------------------
     var
-    setup_business_return             = $("#setup_business_return"),              //页面ID
-    setup_business_return_edit_btn    = $("#setup_business_return_edit_btn"),     //修改按钮
-    setup_business_return_edit_box    = $("#setup_business_return_edit_box"),     //修改盒子
-    setup_business_return_edit_submit = $("#setup_business_return_edit_submit"),  //修改提交
-    setup_business_return_edit_able   = $("#setup_business_return_edit_able"),    //补卡规则
-    setup_business_return_edit_time   = $("#setup_business_return_edit_time"),    //补卡次数
-    setup_business_return_edit_days   = $("#setup_business_return_edit_days");    //补卡时间
+    setup_business_return               = $("#setup_business_return"),              //页面ID
+    //修改盒子(业务正跟踪)
+    setup_business_return_edit1_box     = $("#setup_business_return_edit1_box"),    //修改盒子
+    setup_business_return_edit1_submit  = $("#setup_business_return_edit1_submit"), //修改提交
+    setup_business_return_edit1_day     = $("#setup_business_return_edit1_day"),    //修改天数
+    //修改盒子(通用)
+    setup_business_return_edits_box     = $("#setup_business_return_edits_box"),    //修改盒子
+    setup_business_return_edits_submit  = $("#setup_business_return_edits_submit"), //修改提交
+    setup_business_return_edits_daya    = $("#setup_business_return_edits_daya"),   //等级A天数
+    setup_business_return_edits_dayb    = $("#setup_business_return_edits_dayb"),   //等级B天数
+    setup_business_return_edits_dayc    = $("#setup_business_return_edits_dayc"),   //等级C天数
+    setup_business_return_edits_dayd    = $("#setup_business_return_edits_dayd"),   //等级D天数
+    setup_business_return_edits_daye    = $("#setup_business_return_edits_daye");   //等级E天数
 
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
@@ -179,72 +152,60 @@ $(function(){
 
     }
 
-    //远程请求-----------------------------------------------------------------------------------------------
-    $.ajax({
-        url     : setup_business_return_api.modal_edit,
-        type    : "post",
-        dataType: "json",
-        data    : { },
-        success : function(data){
-            if( data.status>0 ){
-                var data = data.data;
+    //数据表格调用-------------------------------------------------------------------------------------------
+    setup_business_return_dataTable();
 
-                //数据赋值
-                //setup_business_return.find("tbody").html(``);
+    //变量声明
+    var
+    setup_business_return_edit1_btn = ".setup_business_return_edit1_btn",    //业务正跟踪
+    setup_business_return_edits_btn = ".setup_business_return_edits_btn";    //通用
 
-            } else {
-                um_tip(data.message,"1500","text-danger");
-            }
-        }
-    });
-    
-    //修改按钮-----------------------------------------------------------------------------------------------
-    setup_business_return_edit_btn.click(function(){
+    //修改按钮(业务正跟踪)-----------------------------------------------------------------------------------
+    $(document).on("click",setup_business_return_edit1_btn,function(){
 
+        //数据获取
+        var data_type = $(this).attr("type");
+        setup_business_return_edit1_submit.attr("type",data_type);
+
+        //远程请求
         $.ajax({
             url     : setup_business_return_api.modal_edit,
             type    : "post",
             dataType: "json",
-            data    : { },
+            data    : { type : data_type },
             success : function(data){
                 if( data.status>0 ){
                     var data = data.data;
-
-                    //数据赋值
-                    if( data.able==true ){
-                        setup_business_return_edit_able.find(".btn").eq(0).trigger("click");
-                        setup_business_return_edit_time.val( data.time );
-                        setup_business_return_edit_days.val( data.days );
-                    } else {                  
-                        setup_business_return_edit_able.find(".btn").eq(1).trigger("click");
-                    }
-
+                    setup_business_return_edit1_day.val( data.provider[0] );
+                    setup_business_return_edit1_box.modal("show");
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
             }
         });
 
-        setup_business_return_edit_box.modal("show");
     });
     //修改提交
-    setup_business_return_edit_submit.click(function(){
+    setup_business_return_edit1_submit.click(function(){
+
+        //数据获取
+        var data_type = $(this).attr("type");
 
         //远程提交
         $.ajax({
             url     : API.test_response,
             type    : "post",
             dataType: "json",
-            data    : { 
-                able : setup_business_return_edit_able.attr("result"),
-                time : setup_business_return_edit_time.val(),
-                days : setup_business_return_edit_days.val(),
+            data    : {
+                type : data_type,
+                day  : setup_business_return_edit1_day.val(),
              },
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
                     setTimeout(function(){
-                        setup_business_return_edit_box.modal("hide"); 
+                        setup_business_return_dataTable(); //数据表格刷新
+                        setup_business_return_edit1_box.modal("hide"); 
                     },1500); 
                 } else {
                     um_tip(data.message,"1500","text-danger");
@@ -254,16 +215,119 @@ $(function(){
 
     });
 
-    //补卡规则-----------------------------------------------------------------------------------------------
-    setup_business_return_edit_able.find(".btn").click(function(){
-        var able = $(this).find("input").val();
-        var inp  = setup_business_return_edit_box.find("input[type='number']");
-        if( able=="true" ){
-            inp.removeAttr("disabled");
-        } else {
-            inp.val("").attr("disabled","disabled");
-        }
+    //修改按钮(通用)-----------------------------------------------------------------------------------------
+    $(document).on("click",setup_business_return_edits_btn,function(){
+
+        //数据获取
+        var data_type = $(this).attr("type");
+        setup_business_return_edits_submit.attr("type",data_type);
+
+        //远程请求
+        $.ajax({
+            url     : setup_business_return_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { type : data_type },
+            success : function(data){
+                if( data.status>0 ){
+                    var data = data.data;
+                    setup_business_return_edits_daya.val( data.provider[0] );
+                    setup_business_return_edits_dayb.val( data.provider[1] );
+                    setup_business_return_edits_dayc.val( data.provider[2] );
+                    setup_business_return_edits_dayd.val( data.provider[3] );
+                    setup_business_return_edits_daye.val( data.provider[4] );
+                    setup_business_return_edits_box.modal("show");
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
     });
+    //修改提交
+    setup_business_return_edits_submit.click(function(){
+
+        //数据获取
+        var data_type = $(this).attr("type");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                type : data_type,
+                a : setup_business_return_edits_daya.val(),
+                b : setup_business_return_edits_dayb.val(),
+                c : setup_business_return_edits_dayc.val(),
+                d : setup_business_return_edits_dayd.val(),
+                e : setup_business_return_edits_daye.val(),
+             },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        setup_business_return_dataTable(); //数据表格刷新
+                        setup_business_return_edits_box.modal("hide"); 
+                    },1500); 
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+ 
+    //数据表格声明-------------------------------------------------------------------------------------------
+    function setup_business_return_dataTable() {
+        $.ajax({
+            url     : setup_business_return_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //数据赋值
+                    var data = data.data;
+                    var temp = `
+                    <tr>
+                        <td rowspan="5"><b>信息员</b></td><td>A</td>
+                        <td>${data.provider[0]}</td><td rowspan="5"><a type="provider" class="setup_business_return_edits_btn">修改</a></td>
+                    </tr>
+                    <tr><td>B</td><td>${data.provider[1]}</td></tr>
+                    <tr><td>C</td><td>${data.provider[2]}</td></tr>
+                    <tr><td>D</td><td>${data.provider[3]}</td></tr>
+                    <tr><td>E</td><td>${data.provider[4]}</td></tr>
+                    <tr>
+                        <td><b>业务正跟踪</b></td><td></td>
+                        <td>${data.tracked[0]}</td><td><a type="tracked" class="setup_business_return_edit1_btn">修改</a></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5"><b>业务在谈</b></td><td>A</td>
+                        <td>${data.business[0]}</td><td rowspan="5"><a type="business" class="setup_business_return_edits_btn">修改</a></td>
+                    </tr>
+                    <tr><td>B</td><td>${data.business[1]}</td></tr>
+                    <tr><td>C</td><td>${data.business[2]}</td></tr>
+                    <tr><td>D</td><td>${data.business[3]}</td></tr>
+                    <tr><td>E</td><td>${data.business[4]}</td></tr>
+                    <tr>
+                        <td rowspan="5"><b>设计在谈</b></td><td>A</td>
+                        <td>${data.designer[0]}</td><td rowspan="5"><a type="designer" class="setup_business_return_edits_btn">修改</a></td>
+                    </tr>
+                    <tr><td>B</td><td>${data.designer[1]}</td></tr>
+                    <tr><td>C</td><td>${data.designer[2]}</td></tr>
+                    <tr><td>D</td><td>${data.designer[3]}</td></tr>
+                    <tr><td>E</td><td>${data.designer[4]}</td></tr>
+                    `;
+                    setup_business_return.find("tbody").html(temp);
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    }
 
 });//预加载结尾
 </script>

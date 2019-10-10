@@ -6,11 +6,7 @@
         <div class="tool-deal" style="padding-bottom:5px;">
             <button class="btn btn-primary" id="setup_attendance_patch_edit_btn"> <i class="icon icon-plus"></i> 修改</button>
         </div>
-        <table class="table table-bordered">
-            <tbody>
-              
-            </tbody>
-        </table>
+        <table class="table table-bordered"><tbody><!-- JS推进 --></tbody></table>
     </div>
     <!-- tool-group -->
  
@@ -99,35 +95,10 @@ $(function(){
 
     }
 
-    //远程请求-----------------------------------------------------------------------------------------------
-    $.ajax({
-        url     : setup_attendance_patch_api.modal_edit,
-        type    : "post",
-        dataType: "json",
-        data    : { },
-        success : function(data){
-            if( data.status>0 ){
-                var data = data.data;
+    //数据表格调用-------------------------------------------------------------------------------------------
+    setup_attendance_patch_dataTable();
 
-                //数据赋值
-                if( data.able==true ){
-                    setup_attendance_patch.find("tbody").html(`
-                        <tr><td style="width:100px;"><b>补卡规则</b></td><td>启用</td></tr>
-                        <tr><td><b>限制补卡次数</b></td><td>${data.time}次 (每月可提交，按自然月计算)</td></tr>
-                        <tr><td><b>限制补卡时间</b></td><td>${data.days}天 (可申请过去补卡，0天表示只能当天补卡)</td></tr>  
-                    `);
-                } else {
-                    setup_attendance_patch.find("tbody").html(`
-                        <tr><td style="width:100px;"><b>补卡规则</b></td><td>禁用</td></tr>
-                    `);
-                }
-
-            } else {
-                um_tip(data.message,"1500","text-danger");
-            }
-        }
-    });
-    //修改按钮
+    //修改按钮-----------------------------------------------------------------------------------------------
     setup_attendance_patch_edit_btn.click(function(){
 
         $.ajax({
@@ -173,6 +144,7 @@ $(function(){
                 if( data.status>0 ){
                     um_tip(data.message);
                     setTimeout(function(){
+                        setup_attendance_patch_dataTable(); //数据表格刷新
                         setup_attendance_patch_edit_box.modal("hide"); 
                     },1500); 
                 } else {
@@ -193,6 +165,37 @@ $(function(){
             inp.val("").attr("disabled","disabled");
         }
     });
+
+    //数据表格声明-------------------------------------------------------------------------------------------
+    function setup_attendance_patch_dataTable () {
+        $.ajax({
+            url     : setup_attendance_patch_api.modal_edit,
+            type    : "post",
+            dataType: "json",
+            data    : { },
+            success : function(data){
+                if( data.status>0 ){
+                    var data = data.data;
+
+                    //数据赋值
+                    if( data.able==true ){
+                        setup_attendance_patch.find("tbody").html(`
+                            <tr><td style="width:100px;"><b>补卡规则</b></td><td>启用</td></tr>
+                            <tr><td><b>限制补卡次数</b></td><td>${data.time}次 (每月可提交，按自然月计算)</td></tr>
+                            <tr><td><b>限制补卡时间</b></td><td>${data.days}天 (可申请过去补卡，0天表示只能当天补卡)</td></tr>  
+                        `);
+                    } else {
+                        setup_attendance_patch.find("tbody").html(`
+                            <tr><td style="width:100px;"><b>补卡规则</b></td><td>禁用</td></tr>
+                        `);
+                    }
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    }
 
 });//预加载结尾
 </script>

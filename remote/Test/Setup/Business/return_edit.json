@@ -2,10 +2,10 @@
     "result" : true,
     "message": "获取成功",
     "status" : 1,
-    "data"   : [
-    	{"level":"A","days":10},
-    	{ 			 "days":20},
-    	{"level":"C","days":30},
-    	{"level":"D","days":40}
-    ]
+    "data"   : {
+    	"provider": [1,2,3,4,5],
+    	"tracked" : [1],
+    	"business": [1,2,3,4,5],
+    	"designer": [1,2,3,4,5]
+    }
 }   
