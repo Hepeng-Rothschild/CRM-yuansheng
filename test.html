@@ -47,9 +47,9 @@ window.COMMON = {
     user_id    : 2,
     logAllow   : 0, //跟进允许 1为允许跟进 0为不允许跟进
 }
-var page = "setup_business_return";
+var page = "/shelve/design_admin";
 $("#common_tabs").tabs({tabs:[{
-    id    : page,
+    id    : "test",
     type  : "ajax",
     title : "测试单页",
     url   : "./page/"+ page +".html",
@@ -68,5 +68,16 @@ $("#common_tabs").tabs({tabs:[{
 #bug记录
     1)假期余额-修改面板：tab面板显示不出来(css强制显示-需多测试)
     2)日历隐藏触发hide.zui.modal事件(上传和日历的冲突)
+
+#设计管理
+    design_list
+    design_assign
+    design_admin
+    design_measure
+    design_mapping
+    design_budget
+    design_failure
+    design_overdue
+    design_unbelong
 */
 </script>
