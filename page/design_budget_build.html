@@ -1,0 +1,766 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="budget_build">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="budget_build_datagrid">
+
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <div class="tool-search">
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" id="budget_build_tool_keys">
+                            <option value="1">项目编号</option>
+                            <option value="2">项目名称</option>
+                            <option value="3">设计师</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="budget_build_tool_search">
+                    </div>
+                </div>
+                <label>
+                    <span>报价状态：</span>
+                    <select class="form-control" id="budget_build_tool_select1">
+                        <option value="0">全部</option>
+                        <option value="1">制作中</option>
+                        <option value="2">设计经理审核中</option>
+                        <option value="3">审计审核中</option>
+                    </select>
+                </label>
+                <label>
+                    <span>空间类型：</span>
+                    <select class="form-control" id="budget_build_tool_select2"><!--JS推进--></select>
+                </label>
+                <label><button class="btn btn-primary" id="budget_build_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </div>
+            <div class="tool-deal">
+            	<label><button class="btn btn-primary" id="budget_build_add_btn"> <i class="icon icon-plus"></i> 新建报价</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 新建报价盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="budget_build_add_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">新建报价</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">报价名称</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="budget_build_add_item">项目选择</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" id="budget_build_add_item"><!--JS推进--></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目联系人</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="">联系人电话</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目设计师</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="">设计师电话</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目面积</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="">空间类型</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目地址</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">建筑情况</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2 required" style="text-align:right">
+                                    <input type="checkbox" id="">
+                                </div>
+                                <label class="col-sm-10" for="" style="text-align:left">隐藏验收标准</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="budget_build_add_submit">提交</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <!-- budget_build_add_box -->
+ 
+    <!-- 报价修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="budget_build_edit_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">报价修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">报价名称</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="">项目选择</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" id=""><!--JS推进--></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目联系人</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="">联系人电话</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目设计师</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="">设计师电话</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目面积</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="">空间类型</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目地址</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">建筑情况</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2 required" style="text-align:right">
+                                    <input type="checkbox" id="">
+                                </div>
+                                <label class="col-sm-10" for="" style="text-align:left">隐藏验收标准</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- budget_build_edit_box -->
+
+    <!-- 报价设置盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" data-keyboard="false" id="budget_build_budget_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">报价设置</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        <!-- 切换面板 -->
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-tab="" href="#budget_build_edit_table1">预算书</a></li>
+                            <li><a data-tab="" href="#budget_build_edit_table2">特殊项管理</a></li>
+                            <li><a data-tab="" href="#budget_build_edit_table3">费用折扣</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <!-- 工程概况 -->
+                            <form class="with-padding form-horizontal tab-pane active" id="budget_build_edit_table1">
+                                1
+                            </form>
+                            <!-- budget_build_edit_table1 -->
+                            <form class="tab-pane" id="budget_build_edit_table2">
+                                2
+                            </form>
+                            <form class="tab-pane" id="budget_build_edit_table3">
+                                3
+                            </form>
+                        </div>
+                        <!-- 切换面板 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- budget_build_budget_box -->
+
+    <!-- 报价导出盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="budget_build_export_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">报价导出</h4>
+                </div>
+                <div class="modal-body">
+                    报价导出
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- budget_build_export_box -->
+
+    <!-- 提交初审盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="budget_build_approval_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">提交初审</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        提交初审？
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="budget_build_approval_submit">提交</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <!-- budget_build_approval_box -->
+
+    <!-- 复制报价盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="budget_build_copy_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">复制报价</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">报价名称</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="">项目选择</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" id=""><!--JS推进--></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目联系人</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="">联系人电话</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目设计师</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="">设计师电话</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目面积</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <label class="col-sm-2 required" for="">空间类型</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">项目地址</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="">建筑情况</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2 required" style="text-align:right">
+                                    <input type="checkbox" id="">
+                                </div>
+                                <label class="col-sm-10" for="" style="text-align:left">隐藏验收标准</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="budget_build_copy_submit">提交</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <!-- budget_build_copy_box -->
+
+</div>
+<!-- page-wrapper -->
+<script>
+$(function(){
+
+    // $("#budget_build_edit_box").modal("show");
+    
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    budget_build                = $("#budget_build"),                   //页面ID
+    budget_build_datagrid       = $("#budget_build_datagrid"),          //数据表格
+    //搜索
+    budget_build_tool_keys      = $("#budget_build_tool_keys"),         //搜索类别
+    budget_build_tool_search    = $("#budget_build_tool_search"),       //搜索字段
+    budget_build_tool_select1   = $("#budget_build_tool_select1"),      //下拉选择1
+    budget_build_tool_select2   = $("#budget_build_tool_select2"),      //下拉选择2    
+    budget_build_search_btn     = $("#budget_build_search_btn"),        //搜索按钮
+    //新建报价
+    budget_build_add_box        = $("#budget_build_add_box"),           //新建盒子
+    budget_build_add_btn        = $("#budget_build_add_btn"),           //新建按钮
+    budget_build_add_submit     = $("#budget_build_add_submit"),        //新建按钮
+    budget_build_add_item       = $("#budget_build_add_item"),          //新建项目
+    //修改
+    budget_build_edit_box       = $("#budget_build_edit_box"),          //修改盒子
+    budget_build_edit_submit    = $("#budget_build_edit_submit"),       //修改提交
+    //报价设置
+    budget_build_budget_box     = $("#budget_build_budget_box"),        //报价盒子
+    budget_build_budget_submit  = $("#budget_build_budget_submit"),     //报价提交
+    //导出
+    budget_build_export_box     = $("#budget_build_export_box"),        //导出盒子
+    budget_build_export_submit  = $("#budget_build_export_submit"),     //导出提交
+    //提交初审
+    budget_build_approval_box   = $("#budget_build_approval_box"),      //初审盒子
+    budget_build_approval_submit= $("#budget_build_approval_submit"),   //初审提交
+    //复制报价
+    budget_build_copy_box       = $("#budget_build_copy_box"),          //复制盒子
+    budget_build_copy_btn       = $("#budget_build_copy_btn"),          //复制按钮
+    budget_build_copy_submit    = $("#budget_build_copy_submit"),       //复制按钮
+    budget_build_copy_item      = $("#budget_build_copy_item");         //复制项目
+
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var budget_build_api = {
+            datagrid            : LOCAL + "Budget/build_datagrid.json",         //数据表格
+            select              : LOCAL + "Test/test_select.json",              //下拉选择
+            select_item         : LOCAL + "Budget/build_select_item.json",      //报价项目
+            modal_show          : LOCAL + "Test/Business/provider_edit.json",   //修改盒子
+            topic               : LOCAL + "Test/Business/provider_topic.json",  //日志查看
+        }
+
+    } else if ( window.STATE == "route" ){
+ 
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    budget_build_datagrid.datagrid({
+        height      : zui_datagrid_height(budget_build_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",  label:"ID",  width:49},
+                {name:"budgetname",     label:"报价名称",  width:150},
+                {name:"itemname",       label:"项目名称",  width:150},                
+                {name:"itemnumber",     label:"项目编号",  width:80},
+                {name:"designer",       label:"设计师",    width:80},
+                {name:"costengine",     label:"工程直接费",width:90},
+                {name:"costadmin",      label:"管理费用",  width:80},
+                {name:"costtax",        label:"税金",      width:80},
+                {name:"costtotal",      label:"工程总造价",width:100},
+                {name:"discountshow",   label:"显性折扣",  width:80},
+                {name:"discounthide",   label:"隐性折扣",  width:80},                
+                {name:"discount",       label:"综合折扣",  width:80},
+                {name:"costdiscount",   label:"折扣总金额",width:100},
+                {name:"spacetype",      label:"空间类型",  width:80},
+                {name:"itemstatename",  label:"项目状态",  width:80},
+                {name:"budgetstatename",label:"报价状态",  width:80},
+                {name:"operate",        label:"操作",      width:150,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            return `
+                            <a class="budget_build_edit_btn"   rowIndex="${cell.rowIndex}">修改</a>
+                            <a class="budget_build_budget_btn" rowIndex="${cell.rowIndex}">报价设置</a>
+                            <a class="budget_build_export_btn" rowIndex="${cell.rowIndex}">导出</a>`;
+                        }
+                    }
+                },
+                {name:"operate",        label:"操作",      width:150,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            return `
+                            <a class="budget_build_approval_btn" rowIndex="${cell.rowIndex}">提交初审</a>
+                            <a class="budget_build_copy_btn" rowIndex="${cell.rowIndex}">复制</a>`;
+                        }
+                    }
+                }                
+            ],
+            remote : function(){
+                return {
+                    url     : budget_build_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    budget_build_datagrid_obj     = budget_build_datagrid.data("zui.datagrid"),       //表格对象
+    budget_build_edit_btn         = ".budget_build_edit_btn",                         //修改按钮
+    budget_build_budget_btn       = ".budget_build_budget_btn",                       //报价设置
+    budget_build_export_btn       = ".budget_build_export_btn",                       //导出按钮
+    budget_build_approval_btn     = ".budget_build_approval_btn",                     //提交初审
+    budget_build_copy_btn         = ".budget_build_copy_btn";                         //复制
+
+    //下拉选项-----------------------------------------------------------------------------------------------
+    //空间类型
+    $.ajax({
+        url     : budget_build_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "<option value='0'>全部</option>";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                budget_build_tool_select2.html(option);
+            }
+        }
+    });
+
+    //搜索按钮-----------------------------------------------------------------------------------------------
+    budget_build_search_btn.click(function(){
+
+        //字段整理
+        var keyword
+        = "?sid="         + budget_build_tool_keys.val()
+        + "&search="      + budget_build_tool_search.val()
+        + "&budgetstate=" + budget_build_tool_select1.val()
+        + "&spacetype="   + budget_build_tool_select2.val();
+
+        //GET提交
+        zui_datagrid_render(budget_build_datagrid_obj,budget_build_api.datagrid+keyword);
+
+    });
+
+
+    //新建报价按钮-----------------------------------------------------------------------------------------------
+    budget_build_add_btn.click(function(){
+
+        //远程请求
+        $.ajax({
+            url     : budget_build_api.select_item,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                if( data.status>0 ){
+                    var data = data.data;
+                    var option = "";
+                    for(var i=0;i<data.length;i++){
+                        option += "<option value='"+data[i].id+"'>"+data[i].itemnumber +"--"+ data[i].itemname+"</option>"
+                    }
+                    //项目选择
+                    budget_build_add_item.html(option);
+
+                    //面板显示
+                    budget_build_add_box.modal("show");
+
+                }
+            }
+        });
+
+    });
+    //新建报价提交
+    budget_build_add_submit.click(function(){
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+ 
+
+    //报价修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",budget_build_edit_btn,function(){
+
+        //面板显示
+        budget_build_edit_box.modal("show");
+
+    });
+    //报价修改提交
+    budget_build_edit_submit.click(function(){
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //报价设置按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",budget_build_budget_btn,function(){
+
+        //面板显示
+        budget_build_budget_box.modal("show");
+
+    });
+    //报价设置提交
+    budget_build_budget_submit.click(function(){
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+
+    //报价导出按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",budget_build_export_btn,function(){
+
+        //面板显示
+        budget_build_export_box.modal("show");
+
+    });
+    //报价导出提交
+    budget_build_export_submit.click(function(){
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+
+
+    //提交初审按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",budget_build_approval_btn,function(){
+
+        //ID传值
+        budget_build_approval_submit.attr("dataId",$(this).attr("rowIndex"));
+
+        //面板显示
+        budget_build_approval_box.modal("show");
+
+    });
+    //提交初审提交
+    budget_build_approval_submit.click(function(){
+
+        //ID取值
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id : data_id
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    //复制按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",budget_build_copy_btn,function(){
+
+        //ID传值
+        budget_build_copy_submit.attr("dataId",$(this).attr("rowIndex"));
+
+        //远程请求
+        $.ajax({
+            url     : budget_build_api.select_item,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                if( data.status>0 ){
+                    var data = data.data;
+                    var option = "";
+                    for(var i=0;i<data.length;i++){
+                        option += "<option value='"+data[i].id+"'>"+data[i].itemnumber +"--"+ data[i].itemname+"</option>"
+                    }
+                    //项目选择
+                    budget_build_copy_item.html(option);
+
+                    //面板显示
+                    budget_build_copy_box.modal("show");
+
+                }
+            }
+        });
+
+    });
+    //复制提交
+    budget_build_copy_submit.click(function(){
+
+        //ID取值
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { 
+                id : data_id
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+});//预加载结尾
+</script>

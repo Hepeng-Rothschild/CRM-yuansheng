@@ -107,15 +107,21 @@
         "icon"      : "list-alt",
         "title"     : "设计管理",
         "children"  : [
-            { "title":"设计列表","icon":"design_list","url":"blank" },
-            { "title":"项目分单","icon":"design_assign","url":"blank" },
+            { "title":"设计列表","icon":"","url":"design_list" },
+            { "title":"项目分单","icon":"","url":"design_assign" },
             { "title":"项目管理","icon":"design_admin","url":"blank" },
             { "title":"量房列表","icon":"design_measure","url":"blank" },
             { "title":"绘图列表","icon":"design_mapping","url":"blank" },
-            { "title":"项目预算","icon":"design_budget","url":"blank" },
             { "title":"失败审批","icon":"design_failure","url":"blank" },
             { "title":"过期审批","icon":"design_overdue","url":"blank" },
-            { "title":"未隶属",  "icon":"design_unbelong","url":"blank" }
+            { "title":"未隶属",  "icon":"design_unbelong","url":"blank"},
+            { "title":"项目预算","icon":"",
+                "children"  :[
+                    { "title":"新建预算","icon":"","url":"design_budget_build"},
+                    { "title":"预算初审","icon":"","url":"design_budget_approval1"},
+                    { "title":"预算复审","icon":"","url":"design_budget_approval2"}
+                ]
+            }
         ]
     },
     {

@@ -1,0 +1,10 @@
+{
+	"status" : 1,
+	"message": "提示信息",
+	"data"   : [
+	    {"id":"1","itemnumber":"51489","itemname":"长安区办公室"},
+	    {"id":"2","itemnumber":"51490","itemname":"裕华区办公室"},
+	    {"id":"3","itemnumber":"51491","itemname":"新华区办公室"},
+	    {"id":"4","itemnumber":"51492","itemname":"桥西区办公室"}
+	]
+}
