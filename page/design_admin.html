@@ -12,7 +12,7 @@
 							<option value="1">项目编号</option>
 							<option value="2">项目名称</option>
 							<option value="3">商务专员</option>
-							</select>
+						</select>
 						<span class="input-group-addon fix-border fix-padding"></span>
 						<input type="text" class="form-control" id="design_admin_tool_search">
 					</div>
@@ -29,26 +29,28 @@
 						<option value="6">未签已归库</option>
 					</select>
 				</label>
-				<label>
-					<span>洽谈级别：</span>
-					<select class="form-control" id="design_admin_scts">
-						<option value="0">A</option>
-						<option value="1">B</option>
-						<option value="2">C</option>
-						<option value="3">D</option>
-						<option value="4">E</option>
-						<option value="5">F</option>
-					</select>
-				</label>
-				<div class="im-label" id="design_admin_tool_date1"><!--JS推进--></div>
-				<div class="im-label" id="design_admin_tool_date2"><!--JS推进--></div>
+				<div class="modal-body">
+				    <form class="container form-horizontal">
+				        <div class="form-group">
+				            <label class="col-sm-2 required" for="design_list_level_select">洽谈级别</label>
+				            <div class="col-sm-8">
+				            	<select class="form-control" id="design_list_level_select"><!--JS推进--></select>
+				            </div>
+				        </div>
+				    </form>
+				</div>
+				<div class="im-label" id="design_admin_tool_date1">
+					<!--JS推进-->
+				</div>
+				<div class="im-label" id="design_admin_tool_date2">
+					<!--JS推进-->
+				</div>
 				<label><button class="btn btn-primary" id="design_admin_search_btn"><i class="icon icon-search"></i> 查询</button></label>
 				<div class="clearfix"></div>
 			</div>
 			<div class="tool-deal">
-				<label><button class="btn btn-primary" id="design_admin_turnSalesman_btn"> <i class="icon icon-exchange"></i> 转移客户</button></label>
-				<label><button class="btn btn-primary" id="design_admin_aban_btn">   <i class="icon icon-inbox"></i> 放弃客户</button></label>
-				<label><button class="btn btn-primary" id="design_admin_change_btn"> <i class="icon icon-signin"></i> 客户交接</button></label>
+				<label><button class="btn btn-primary" id="design_admin_turnSalesman_btn"> <i class="icon icon-exchange"></i> 转移项目</button></label>
+				<label><button class="btn btn-primary" id="design_admin_change_btn"> <i class="icon icon-signin"></i> 项目交接</button></label>
 				<label><button class="btn btn-primary" id="design_admin_export_btn"> <i class="icon icon-external-link"></i> 导出项目单</button></label>
 				<div class="clearfix"></div>
 			</div>
@@ -60,63 +62,31 @@
 	</div>
 	<!-- datagrid -->
 
-	<!-- 放弃用户 -->
-	<div class="modal modal-for-page fade" aria-hidden="false" id="design_admin_aban_box">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-					<h4 class="modal-title">放弃客户</h4>
-				</div>
-				<div class="modal-body">
-					<form class="container form-horizontal">
-						<div class="form-group">
-							<label class="col-sm-2 required" for="design_admin_aban_type">放弃理由</label>
-							<div class="col-sm-8">
-								<select class="form-control" id="design_admin_aban_type">
-									<option value="1">有价值</option>
-									<option value="2">无价值</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 required" for="design_admin_aban_reason">理由详情</label>
-							<div class="col-sm-8">
-								<textarea class="form-control" id="design_admin_aban_reason"></textarea>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-danger" id="design_admin_aban_submit">提交</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- design_admin_aban_box -->
-
 	<!-- 用户交接盒子 -->
 	<div class="modal modal-for-page fade" aria-hidden="false" id="design_admin_change_box">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-					<h4 class="modal-title">客户交接</h4>
+					<h4 class="modal-title">项目交接</h4>
 				</div>
 				<div class="modal-body">
 					<form class="container form-horizontal">
 						<div class="form-group">
-							<label class="col-sm-2 required">离职人员</label>
-							<div class="col-sm-8"><input type="text" class="form-control salesman_person_btn" id="design_admin_turn_quit" readonly></div>
+							<label class="col-sm-2 required" for="design_admin_quit">离职人员</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="design_admin_quit"><!-- JS推进 --></select>
+							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 required">目标人员</label>
-							<div class="col-sm-8"><input type="text" class="form-control salesman_person_btn" id="design_admin_turn_target" readonly></div>
-						</div>
+						                            <label class="col-sm-2 required" for="design_admin_target">目标人员</label>
+						                            <div class="col-sm-8">
+						                                <select class="form-control" id="design_admin_target"><!-- JS推进 --></select>
+						                            </div>
+						                        </div>       
 						<div class="form-group">
 							<label class="col-sm-2"></label>
-							<div class="col-sm-8 form-control-static">注：业务人员客户交接。是指将“离职人员”名下所有“正跟踪”和“在谈”客户转到“目标人员”名下</div>
+							<div class="col-sm-8 form-control-static">注：业务人员项目交接。是指将“离职人员”名下所有“正跟踪”和“在谈”项目转到“目标人员”名下</div>
 						</div>
 					</form>
 				</div>
@@ -135,36 +105,54 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-					<h4 class="modal-title">项目资料查看</h4>
+					<h4 class="modal-title">项目查看</h4>
 				</div>
 				<div class="modal-body modal-scroll">
 					<div class="container">
 
 						<!-- 用户项目进度 -->
 						<table class="table table-bordered" id="design_admin_show_t_prog">
-							<thead><tr><th>项目进度</th></tr></thead>
-							<tbody><!-- JS推进 --></tbody>
+							<thead>
+								<tr>
+									<th>项目进度</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- JS推进 -->
+							</tbody>
 						</table>
 
 						<!-- 用户项目信息 -->
 						<table class="table table-bordered" id="design_admin_show_t_case">
-							<thead><tr><th colspan="2">项目信息
-								<button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
-							</th></tr></thead>
-							<tbody><!-- JS推进 --></tbody>
+							<thead>
+								<tr>
+									<th colspan="2">项目信息
+										<button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- JS推进 -->
+							</tbody>
 						</table>
 
 						<!-- 用户负责人信息 -->
 						<table class="table table-bordered" id="design_admin_show_t_user">
-							<thead><tr><th colspan="2">负责人信息
-								<button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
-							</th></tr></thead>
-							<tbody><!-- JS推进 --></tbody>
+							<thead>
+								<tr>
+									<th colspan="2">负责人信息
+										<button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- JS推进 -->
+							</tbody>
 						</table>
 
 						<!-- 用户切换面板 -->
 						<ul class="nav nav-tabs">
-							<li class="active"><a data-tab="" href="#design_admin_show_filelist">客户附件</a></li>
+							<li class="active"><a data-tab="" href="#design_admin_show_filelist">项目附件</a></li>
 							<li><a data-tab="" href="#design_admin_show_record">操作记录</a></li>
 						</ul>
 						<div class="tab-content">
@@ -199,13 +187,13 @@
 	</div>
 	<!-- design_admin_show_box -->
 
-	<!-- 用户转移客户盒子 -->
+	<!-- 用户转移项目盒子 -->
 	<div class="modal modal-for-page fade" aria-hidden="false" id="design_admin_turnSalesman_box">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-					<h4 class="modal-title">转移客户的商务专员</h4>
+					<h4 class="modal-title">转移项目的商务专员</h4>
 				</div>
 				<div class="modal-body">
 					<form class="container form-horizontal">
@@ -218,8 +206,15 @@
 							<div class="col-sm-8"><input type="text" class="form-control" id="design_admin_turnSalesman_pre" readonly></div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 required">新商务专员</label>
-							<div class="col-sm-8"><input type="text" class="form-control salesman_person_btn" id="design_admin_turnSalesman_now" readonly></div>
+							<!-- <label class="col-sm-2 required">新商务专员</label>
+							<div class="col-sm-8"><input type="text" class="form-control salesman_person_btn" id="design_admin_turnSalesman_now"
+								 readonly></div> -->
+							<div class="form-group">
+								<label class="col-sm-2 required" for="design_list_logAdd_date">下次跟踪</label>
+								<div class="col-sm-8">
+									<select class="form-control" id="design_list_logAdd_date"><!-- JS推进 --></select>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -238,7 +233,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-					<h4 class="modal-title">转移客户的信息员</h4>
+					<h4 class="modal-title">转移项目的信息员</h4>
 				</div>
 				<div class="modal-body">
 					<form class="container form-horizontal">
@@ -248,11 +243,12 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 required">原信息员</label>
-							<div class="col-sm-8"><input type="text" class="form-control" id="design_admin_turnProvider_pre"  readonly></div>
+							<div class="col-sm-8"><input type="text" class="form-control" id="design_admin_turnProvider_pre" readonly></div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 required">新信息员</label>
-							<div class="col-sm-8"><input type="text" class="form-control provider_person_btn" id="design_admin_turnProvider_now" readonly></div>
+							<div class="col-sm-8"><input type="text" class="form-control provider_person_btn" id="design_admin_turnProvider_now"
+								 readonly></div>
 						</div>
 					</form>
 				</div>
@@ -275,7 +271,7 @@
 				</div>
 				<div class="modal-body">
 					<form class="container form-horizontal">
-						<p>您确定要转为信息员吗？转为后将不能看见此客户记录！</p>
+						<p>您确定要转为信息员吗？转为后将不能看见此项目记录！</p>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -335,7 +331,8 @@
 						<div class="form-group require">
 							<label class="col-sm-2 required" for="design_admin_greater_depart">部门选择</label>
 							<div class="col-sm-8">
-								<select class="form-control" id="design_admin_greater_depart"><!--JS推进--></select>
+								<select class="form-control" id="design_admin_greater_depart">
+									<!--JS推进--></select>
 							</div>
 						</div>
 					</form>
@@ -386,7 +383,9 @@
 							<div class="col-sm-8">
 								<!-- 组队上传 -->
 								<div class="uploader" id="design_admin_logAdd_file" path="">
-									<div class="uploader-message text-center"><div class="content"></div></div>
+									<div class="uploader-message text-center">
+										<div class="content"></div>
+									</div>
 									<div class="uploader-files file-list"></div>
 									<button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
 								</div>
@@ -396,7 +395,8 @@
 						<div class="form-group">
 							<label class="col-sm-2 required" for="design_admin_logAdd_date">下次跟踪</label>
 							<div class="col-sm-8">
-								<select class="form-control" id="design_admin_logAdd_date"><!-- JS推进 --></select>
+								<select class="form-control" id="design_admin_logAdd_date">
+									<!-- JS推进 --></select>
 							</div>
 						</div>
 					</form>
@@ -432,7 +432,8 @@
 								</label>
 								<label>
 									<span>部门：</span>
-									<select class="form-control" id="design_admin_salesman_depart"><!-- JS推进 --></select>
+									<select class="form-control" id="design_admin_salesman_depart">
+										<!-- JS推进 --></select>
 								</label>
 								<label><button class="btn btn-primary" id="design_admin_salesman_search_btn">搜索</button></label>
 								<div class="clearfix"></div>
@@ -498,174 +499,257 @@
 <!-- page-wrapper -->
 
 <script>
-	$(function(){
+	$(function() {
 
 
-//变量声明-----------------------------------------------------------------------------------------------
+		//变量声明-----------------------------------------------------------------------------------------------
 		var
-				design_admin                     = $("#design_admin"),                      //页面ID
-				design_admin_datagrid            = $("#design_admin_datagrid"),             //数据表格
-				//admin搜索
-				design_admin_tool_keys           = $("#design_admin_tool_keys"),            //搜索类别
-				design_admin_tool_search         = $("#design_admin_tool_search"),          //搜索字段
-				design_admin_tool_select1        = $("#design_admin_tool_select1"),         //下拉选择1
-				design_admin_tool_date1 		 = $("#design_admin_tool_date1"), 			//起止时间1
-				design_admin_tool_date2 		 = $("#design_admin_tool_date2"), 			//起止时间2
-				design_admin_scts                = $("#design_admin_scts"),         		//洽谈级别
-				design_admin_search_btn          = $("#design_admin_search_btn"),           //搜索按钮
-				//admin批量-放弃
-				design_admin_aban_box            = $("#design_admin_aban_box"),             //放弃盒子
-				design_admin_aban_btn            = $("#design_admin_aban_btn"),             //放弃按钮
-				design_admin_aban_submit         = $("#design_admin_aban_submit"),          //放弃提交
-				design_admin_aban_type           = $("#design_admin_aban_type"),            //放弃类型
-				design_admin_aban_reason         = $("#design_admin_aban_reason"),          //放弃理由
-				//admin批量-客户交接
-				design_admin_change_box          = $("#design_admin_change_box"),           //交接盒子
-				design_admin_change_btn          = $("#design_admin_change_btn"),           //交接按钮
-				design_admin_change_submit       = $("#design_admin_change_submit"),        //交接提交
-				design_admin_turn_quit           = $("#design_admin_turn_quit"),            //离职人员
-				design_admin_turn_target         = $("#design_admin_turn_target"),          //目标人员
-				//admin导出项目单
-				design_admin_export_btn          = $("#design_admin_export_btn"),           //导出按钮
-				//admin查看
-				design_admin_show_box            = $("#design_admin_show_box"),             //查看盒子
-				design_admin_show_t_prog         = $("#design_admin_show_t_prog"),          //项目进度
-				design_admin_show_t_case         = $("#design_admin_show_t_case"),          //项目信息
-				design_admin_show_t_user         = $("#design_admin_show_t_user"),          //负责人信息
-				design_admin_show_filelist       = $("#design_admin_show_filelist"),        //客户附件
-				design_admin_show_filelist_type  = $("#design_admin_show_filelist_type"),   //客户附件类型
-				design_admin_show_record         = $("#design_admin_show_record"),          //操作记录
-				//admin批量-转移客户
-				design_admin_turnSalesman_btn    = $("#design_admin_turnSalesman_btn"),     //转移商务按钮
-				design_admin_turnSalesman_box    = $("#design_admin_turnSalesman_box"),     //转移商务盒子
-				design_admin_turnSalesman_submit = $("#design_admin_turnSalesman_submit"),  //转移商务提交
-				design_admin_turnSalesman_item   = $("#design_admin_turnSalesman_item"),    //转移商务项目
-				design_admin_turnSalesman_pre    = $("#design_admin_turnSalesman_pre"),     //转移商务原来
-				design_admin_turnSalesman_now    = $("#design_admin_turnSalesman_now"),     //转移商务现在
-				//操作-转移信息员
-				design_admin_turnProvider_box    = $("#design_admin_turnProvider_box"),     //转移信息员盒子
-				design_admin_turnProvider_submit = $("#design_admin_turnProvider_submit"),  //转移信息员提交
-				design_admin_turnProvider_item   = $("#design_admin_turnProvider_item"),    //转移信息员项目
-				design_admin_turnProvider_pre    = $("#design_admin_turnProvider_pre"),     //转移信息员原来
-				design_admin_turnProvider_now    = $("#design_admin_turnProvider_now"),     //转移信息员现在
-				//操作-打回
-				design_admin_back_box            = $("#design_admin_back_box"),             //打回盒子
-				design_admin_back_submit         = $("#design_admin_back_submit"),          //打回提交
-				design_admin_back_target         = $("#design_admin_back_target"),          //打回目标
-				design_admin_back_reason         = $("#design_admin_back_reason"),          //打回理由
-				//操作-归库
-				design_admin_sink_box            = $("#design_admin_sink_box"),             //同意盒子
-				design_admin_sink_submit         = $("#design_admin_sink_submit"),          //同意提交
-				design_admin_sink_type           = $("#design_admin_sink_type"),            //归库类型
-				design_admin_sink_reason         = $("#design_admin_sink_reason"),          //归库理由
-				//操作-提交设计部
-				design_admin_great_box        = $("#design_admin_great_box"),         //洽谈等级外围
-				design_admin_great_submit     = $("#design_admin_great_submit"),      //洽谈等级提交
-				design_admin_greater_depart   = $("#design_admin_greater_depart"),    //洽谈等级
-				//跟踪日志
-				design_admin_logShow_box         = $("#design_admin_logShow_box"),          //日志查看盒子
-				design_admin_logAdd_box          = $("#design_admin_logAdd_box"),           //日志添加盒子
-				design_admin_logAdd_submit       = $("#design_admin_logAdd_submit"),        //日志添加提交
-				design_admin_logAdd_text         = $("#design_admin_logAdd_text"),          //日志添加内容
-				design_admin_logAdd_file         = $("#design_admin_logAdd_file"),          //日志添加附件
-				design_admin_logAdd_date         = $("#design_admin_logAdd_date"),          //添加下次跟踪
-				//人员选择-商务专员
-				design_admin_salesman_box        = $("#design_admin_salesman_box"),         //人员选择盒子
-				design_admin_salesman_submit     = $("#design_admin_salesman_submit"),      //人员选择提交
-				design_admin_salesman_datagrid   = $("#design_admin_salesman_datagrid"),    //人员选择表格
-				design_admin_salesman_user       = $("#design_admin_salesman_user"),        //人员选择姓名
-				design_admin_salesman_depart     = $("#design_admin_salesman_depart"),      //人员选择部门
-				design_admin_salesman_search_btn = $("#design_admin_salesman_search_btn"),  //人员选择搜索
-				//人员选择-信息员
-				design_admin_provider_box        = $("#design_admin_provider_box"),         //人员选择盒子
-				design_admin_provider_submit     = $("#design_admin_provider_submit"),      //人员选择提交
-				design_admin_provider_datagrid   = $("#design_admin_provider_datagrid"),    //人员选择表格
-				design_admin_provider_user       = $("#design_admin_provider_user"),        //人员选择姓名
-				design_admin_provider_search_btn = $("#design_admin_provider_search_btn");  //人员选择搜索
+			design_admin = $("#design_admin"), //页面ID
+			design_admin_datagrid = $("#design_admin_datagrid"), //数据表格
+			//admin搜索
+			design_admin_tool_keys = $("#design_admin_tool_keys"), //搜索类别
+			design_admin_tool_search = $("#design_admin_tool_search"), //搜索字段
+			design_admin_tool_select1 = $("#design_admin_tool_select1"), //下拉选择1
+			design_admin_tool_date1 = $("#design_admin_tool_date1"), //起止时间1
+			design_admin_tool_date2 = $("#design_admin_tool_date2"), //起止时间2
+			design_admin_scts = $("#design_admin_scts"), //洽谈级别
+			design_admin_search_btn = $("#design_admin_search_btn"), //搜索按钮
+			//admin批量-项目交接
+			design_admin_change_box = $("#design_admin_change_box"), //交接盒子
+			design_admin_change_btn = $("#design_admin_change_btn"), //交接按钮
+			design_admin_change_submit = $("#design_admin_change_submit"), //交接提交
+			design_admin_turn_quit = $("#design_admin_turn_quit"), //离职人员
+			design_admin_turn_target = $("#design_admin_turn_target"), //目标人员
+			//admin导出项目单
+			design_admin_export_btn = $("#design_admin_export_btn"), //导出按钮
+			//admin查看
+			design_admin_show_box = $("#design_admin_show_box"), //查看盒子
+			design_admin_show_t_prog = $("#design_admin_show_t_prog"), //项目进度
+			design_admin_show_t_case = $("#design_admin_show_t_case"), //项目信息
+			design_admin_show_t_user = $("#design_admin_show_t_user"), //负责人信息
+			design_admin_show_filelist = $("#design_admin_show_filelist"), //项目附件
+			design_admin_show_filelist_type = $("#design_admin_show_filelist_type"), //项目附件类型
+			design_admin_show_record = $("#design_admin_show_record"), //操作记录
+			//admin批量-转移项目
+			design_admin_turnSalesman_btn = $("#design_admin_turnSalesman_btn"), //转移商务按钮
+			design_admin_turnSalesman_box = $("#design_admin_turnSalesman_box"), //转移商务盒子
+			design_admin_turnSalesman_submit = $("#design_admin_turnSalesman_submit"), //转移商务提交
+			design_admin_turnSalesman_item = $("#design_admin_turnSalesman_item"), //转移商务项目
+			design_admin_turnSalesman_pre = $("#design_admin_turnSalesman_pre"), //转移商务原来
+			design_admin_turnSalesman_now = $("#design_admin_turnSalesman_now"), //转移商务现在
+			//操作-转移信息员
+			design_admin_turnProvider_box = $("#design_admin_turnProvider_box"), //转移信息员盒子
+			design_admin_turnProvider_submit = $("#design_admin_turnProvider_submit"), //转移信息员提交
+			design_admin_turnProvider_item = $("#design_admin_turnProvider_item"), //转移信息员项目
+			design_admin_turnProvider_pre = $("#design_admin_turnProvider_pre"), //转移信息员原来
+			design_admin_turnProvider_now = $("#design_admin_turnProvider_now"), //转移信息员现在
+			//操作-打回
+			design_admin_back_box = $("#design_admin_back_box"), //打回盒子
+			design_admin_back_submit = $("#design_admin_back_submit"), //打回提交
+			design_admin_back_target = $("#design_admin_back_target"), //打回目标
+			design_admin_back_reason = $("#design_admin_back_reason"), //打回理由
+			//操作-归库
+			design_admin_sink_box = $("#design_admin_sink_box"), //同意盒子
+			design_admin_sink_submit = $("#design_admin_sink_submit"), //同意提交
+			design_admin_sink_type = $("#design_admin_sink_type"), //归库类型
+			design_admin_sink_reason = $("#design_admin_sink_reason"), //归库理由
+			//操作-提交设计部
+			design_admin_great_box = $("#design_admin_great_box"), //洽谈等级外围
+			design_admin_great_submit = $("#design_admin_great_submit"), //洽谈等级提交
+			design_admin_greater_depart = $("#design_admin_greater_depart"), //洽谈等级
+			//跟踪日志
+			design_admin_logShow_box = $("#design_admin_logShow_box"), //日志查看盒子
+			design_admin_logAdd_box = $("#design_admin_logAdd_box"), //日志添加盒子
+			design_admin_logAdd_submit = $("#design_admin_logAdd_submit"), //日志添加提交
+			design_admin_logAdd_text = $("#design_admin_logAdd_text"), //日志添加内容
+			design_admin_logAdd_file = $("#design_admin_logAdd_file"), //日志添加附件
+			design_admin_logAdd_date = $("#design_admin_logAdd_date"), //添加下次跟踪
+			//人员选择-商务专员
+			design_admin_salesman_box = $("#design_admin_salesman_box"), //人员选择盒子
+			design_admin_salesman_submit = $("#design_admin_salesman_submit"), //人员选择提交
+			design_admin_salesman_datagrid = $("#design_admin_salesman_datagrid"), //人员选择表格
+			design_admin_salesman_user = $("#design_admin_salesman_user"), //人员选择姓名
+			design_admin_salesman_depart = $("#design_admin_salesman_depart"), //人员选择部门
+			design_admin_salesman_search_btn = $("#design_admin_salesman_search_btn"), //人员选择搜索
+			// 目标人物
+			design_admin_target        = $("#design_admin_target"),      //添加下次跟踪
+			// 离职人员
+			design_admin_quit               = $("#design_admin_quit"),       //离职人员
+			// 新商务专员
+			design_list_logAdd_date        = $("#design_list_logAdd_date"),       //
+			//人员选择-信息员
+			design_admin_provider_box = $("#design_admin_provider_box"), //人员选择盒子
+			design_admin_provider_submit = $("#design_admin_provider_submit"), //人员选择提交
+			design_admin_provider_datagrid = $("#design_admin_provider_datagrid"), //人员选择表格
+			design_admin_provider_user = $("#design_admin_provider_user"), //人员选择姓名
+			design_admin_provider_search_btn = $("#design_admin_provider_search_btn"), //人员选择搜索
+			design_list_level_select 		= $("#design_list_level_select"), 		//级别下拉
+			
+			a;
 
 		//接口对象-----------------------------------------------------------------------------------------------
-		if( window.STATE == "local" ){
+		if (window.STATE == "local") {
 
 			//本地接口
 			var design_admin_api = {
-				datagrid            : LOCAL + "Test/test_datagrid.json",                                  //数据表格
-				datagrid_filelist   : LOCAL + "Test/Business/customer_filelist.json",                     //客户附件表格
-				datagrid_record     : LOCAL + "Test/test_datagrid.json",                                  //操作记录表格
-				datagrid_salesman   : LOCAL + "Test/test_datagrid.json",                                  //人员选择表格-商务专员
-				datagrid_provider   : LOCAL + "Test/test_datagrid.json",                                  //人员选择表格-信息员
-				select              : LOCAL + "Test/test_select.json",                                    //下拉选择
-				select_level        : LOCAL + "Test/Design/admin_level.json", 						      //下拉选择(等级)
-				modal_show          : LOCAL + "Test/Business/customer_edit.json",                         //查看盒子
-				topic               : LOCAL + "Test/Business/provider_topic.json",                        //日志查看
+				datagrid: LOCAL + "Test/test_datagrid.json", //数据表格
+				datagrid_filelist: LOCAL + "Test/Business/customer_filelist.json", //项目附件表格
+				datagrid_record: LOCAL + "Test/test_datagrid.json", //操作记录表格
+				datagrid_salesman: LOCAL + "Test/test_datagrid.json", //人员选择表格-商务专员
+				datagrid_provider: LOCAL + "Test/test_datagrid.json", //人员选择表格-信息员
+				select: LOCAL + "Test/test_select.json", //下拉选择
+				select_level: LOCAL + "Test/Design/admin_level.json", //下拉选择(等级)
+				modal_show: LOCAL + "Test/Business/customer_edit.json", //查看盒子
+				topic: LOCAL + "Test/Business/provider_topic.json", //日志查看
 			}
 
-		} else if ( window.STATE == "route" ){
-		}
+		} else if (window.STATE == "route") {}
 
 		//数据表格-----------------------------------------------------------------------------------------------
 		design_admin_datagrid.datagrid({
-			height      : zui_datagrid_height(design_admin_datagrid),
-			sortable    : false,
-			cache       : false,
+			height: zui_datagrid_height(design_admin_datagrid),
+			sortable: false,
+			cache: false,
 			showRowIndex: true,
-			checkable   : true,
-			checkByClickRow:false,
-			selectable  : false,
-			configs     : {
-				R0:{className:"text-center"},
-				C1:{className:"cell-hidden"}
-			},
-			states      : {
-				pager           : {
-					page        : 1,
-					recPerPage  : window.REC_PER_PAGE,
+			checkable: true,
+			checkByClickRow: false,
+			selectable: false,
+			configs: {
+				R0: {
+					className: "text-center"
+				},
+				C1: {
+					className: "cell-hidden"
 				}
 			},
-			dataSource : {
-				cols   : [
-					{name:"id",      label:"ID",      width:49},
-					{name:"username",label:"项目编号",width:100},
-					{name:"text8",   label:"项目名称",width:150,html:true,
-						valueOperator : {
-							getter : function(dataValue,cell){
+			states: {
+				pager: {
+					page: 1,
+					recPerPage: window.REC_PER_PAGE,
+				}
+			},
+			dataSource: {
+				cols: [{
+						name: "id",
+						label: "ID",
+						width: 49
+					},
+					{
+						name: "username",
+						label: "项目编号",
+						width: 100
+					},
+					{
+						name: "text8",
+						label: "项目名称",
+						width: 150,
+						html: true,
+						valueOperator: {
+							getter: function(dataValue, cell) {
 								return `<a class="design_admin_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
 							}
 						}
 					},
-					{name:"tex10",  label:"项目状态",    width:150},
-					{name:"name",   label:"项目联系人",  width:100},
-					{name:"text2",  label:"面积",        width:100},
-					{name:"text6",  label:"项目地址",     width:100},
-					{name:"name",   label:"量房",         width:100},
-					{name:"name",   label:"设计进度",      width:100},
-					{name:"name",   label:"设计进度",      width:100},
-					{name:"level",    label:"洽谈等级",    width:80,
-						html:true,
-						valueOperator : {
-							getter : function(dataValue,cell){
+					{
+						name: "tex10",
+						label: "项目状态",
+						width: 150
+					},
+					{
+						name: "name",
+						label: "项目联系人",
+						width: 100
+					},
+					{
+						name: "text2",
+						label: "面积",
+						width: 100
+					},
+					{
+						name: "text6",
+						label: "项目地址",
+						width: 100
+					},
+					{
+						name: "name",
+						label: "量房",
+						width: 100
+					},
+					{
+						name: "name",
+						label: "设计进度",
+						width: 100
+					},
+					{
+						name: "name",
+						label: "设计进度",
+						width: 100
+					},
+					{
+						name: "level",
+						label: "洽谈等级",
+						width: 80,
+						html: true,
+						valueOperator: {
+							getter: function(dataValue, cell) {
 								var level = "";
 								switch (dataValue) {
-									case 1:level="A";break;
-									case 2:level="B";break;
-									case 3:level="C";break;
-									case 4:level="D";break;
-									case 5:level="E";break;
-									case 6:level="F";break;
+									case 1:
+										level = "A";
+										break;
+									case 2:
+										level = "B";
+										break;
+									case 3:
+										level = "C";
+										break;
+									case 4:
+										level = "D";
+										break;
+									case 5:
+										level = "E";
+										break;
+									case 6:
+										level = "F";
+										break;
 								}
 								return `<a class="design_admin_great_btn" rowIndex="${cell.rowIndex}" rowLevel="${dataValue}">${level}</a>
 					       `;
 							}
 						}
 					},
-					{name:"name",   label:"量房",      width:100},
-					{name:"name",   label:"项目预算",      width:100},
-					{name:"name",   label:"业务员",      width:100},
-					{name:"name",   label:"设计师",      width:100},
-					{name:"date",  label:"剩余回访时间",     width:100},
-					{name:"log",    label:"跟踪日志",    width:80,
-						html:true,
-						valueOperator : {
-							getter : function(dataValue,cell){
+					{
+						name: "name",
+						label: "量房",
+						width: 100
+					},
+					{
+						name: "name",
+						label: "项目预算",
+						width: 100
+					},
+					{
+						name: "name",
+						label: "业务员",
+						width: 100
+					},
+					{
+						name: "name",
+						label: "设计师",
+						width: 100
+					},
+					{
+						name: "date",
+						label: "剩余回访时间",
+						width: 100
+					},
+					{
+						name: "log",
+						label: "跟踪日志",
+						width: 80,
+						html: true,
+						valueOperator: {
+							getter: function(dataValue, cell) {
 								return `
                             <a class="design_admin_logShow_btn" rowIndex="${cell.rowIndex}">查看</a>
                             <a class="design_admin_logAdd_btn"  rowIndex="${cell.rowIndex}">添加</a>`;
@@ -673,44 +757,56 @@
 						}
 					}
 				],
-				remote : function(){
+				remote: function() {
 					return {
-						url     : design_admin_api.datagrid,
-						type    : "POST",
+						url: design_admin_api.datagrid,
+						type: "POST",
 						dataType: "json",
 					}
 				}
 			}
 		});
-		//查看表格-客户附件
+		//查看表格-项目附件
 		design_admin_show_filelist.datagrid({
-			height      : "page",
-			rowDefaultHeight    : 72,
-			sortable    : false,
-			cache       : false,
+			height: "page",
+			rowDefaultHeight: 72,
+			sortable: false,
+			cache: false,
 			showRowIndex: true,
-			configs     : {
-				R0:{className:"text-center"},
-				C1:{className:"cell-hidden"},
-				C7:{className:"text-center"},
+			configs: {
+				R0: {
+					className: "text-center"
+				},
+				C1: {
+					className: "cell-hidden"
+				},
+				C7: {
+					className: "text-center"
+				},
 			},
-			states      : {
-				pager           : {
-					page        : 1,
-					recPerPage  : 10,
+			states: {
+				pager: {
+					page: 1,
+					recPerPage: 10,
 				}
 			},
-			dataSource : {
-				cols   : [
-					{name:"id",     label:"ID",         width:49 },
-					{name:"thumb",  label:"缩略图",     width:70,
-						html:true,
-						valueOperator : {
-							getter : function(dataValue,cell){
+			dataSource: {
+				cols: [{
+						name: "id",
+						label: "ID",
+						width: 49
+					},
+					{
+						name: "thumb",
+						label: "缩略图",
+						width: 70,
+						html: true,
+						valueOperator: {
+							getter: function(dataValue, cell) {
 								var file_thumb = "";
-								if( dataValue.thumb_icon=="image" ){
+								if (dataValue.thumb_icon == "image") {
 									file_thumb = `<img src="${dataValue.thumb_path}">`
-								} else if( dataValue.thumb_icon=="file") {
+								} else if (dataValue.thumb_icon == "file") {
 									file_thumb = `<i style="font-size:50px!important;" class="icon icon-file-o"></i>`;
 								} else {
 									file_thumb = `<i style="font-size:50px!important;" class="icon icon-file-${dataValue.thumb_icon}"></i>`;
@@ -719,23 +815,42 @@
 							}
 						}
 					},
-					{name:"name",    label:"附件名称",   width:300},
-					{name:"type",    label:"类型",       width:80 },
-					{name:"uploader",label:"上传者",     width:80 },
-					{name:"date",    label:"上传时间",   width:140},
-					{name:"path",    label:"导出/下载",  width:80,
-						html:true,
-						valueOperator : {
-							getter : function(dataValue,cell){
+					{
+						name: "name",
+						label: "附件名称",
+						width: 300
+					},
+					{
+						name: "type",
+						label: "类型",
+						width: 80
+					},
+					{
+						name: "uploader",
+						label: "上传者",
+						width: 80
+					},
+					{
+						name: "date",
+						label: "上传时间",
+						width: 140
+					},
+					{
+						name: "path",
+						label: "导出/下载",
+						width: 80,
+						html: true,
+						valueOperator: {
+							getter: function(dataValue, cell) {
 								return `<a target="_blank" href="${dataValue}"><i class="icon icon-download-alt"></i></a>`;
 							}
 						}
 					}
 				],
-				remote : function(){
+				remote: function() {
 					return {
-						url     : design_admin_api.datagrid_filelist,
-						type    : "POST",
+						url: design_admin_api.datagrid_filelist,
+						type: "POST",
 						dataType: "json",
 					}
 				}
@@ -743,30 +858,44 @@
 		});
 		//查看表格-操作记录
 		design_admin_show_record.datagrid({
-			height      : "page",
-			sortable    : false,
-			cache       : false,
+			height: "page",
+			sortable: false,
+			cache: false,
 			showRowIndex: true,
-			configs     : {
-				R0:{className:"text-center"},
-				C1:{className:"cell-hidden"}
-			},
-			states      : {
-				pager           : {
-					page        : 1,
-					recPerPage  : window.REC_PER_PAGE,
+			configs: {
+				R0: {
+					className: "text-center"
+				},
+				C1: {
+					className: "cell-hidden"
 				}
 			},
-			dataSource : {
-				cols   : [
-					{name:"id",      label:"ID",    width:49 },
-					{name:"name",    label:"操作人",width:80 },
-					{name:"object",  label:"日志",  width:240,
-						html:true,
-						valueOperator : {
-							getter : function(dataValue,cell,datagrid){
+			states: {
+				pager: {
+					page: 1,
+					recPerPage: window.REC_PER_PAGE,
+				}
+			},
+			dataSource: {
+				cols: [{
+						name: "id",
+						label: "ID",
+						width: 49
+					},
+					{
+						name: "name",
+						label: "操作人",
+						width: 80
+					},
+					{
+						name: "object",
+						label: "日志",
+						width: 240,
+						html: true,
+						valueOperator: {
+							getter: function(dataValue, cell, datagrid) {
 								var temp = "";
-								if( dataValue.state==1 ){
+								if (dataValue.state == 1) {
 									temp = `<span class="text-danger">${dataValue.text}</span>`;
 								} else {
 									temp = `<span class="text-success">${dataValue.text}</span>`;
@@ -775,12 +904,16 @@
 							}
 						}
 					},
-					{name:"date",    label:"时间",  width:140},
+					{
+						name: "date",
+						label: "时间",
+						width: 140
+					},
 				],
-				remote : function(){
+				remote: function() {
 					return {
-						url     : design_admin_api.datagrid_record,
-						type    : "POST",
+						url: design_admin_api.datagrid_record,
+						type: "POST",
 						dataType: "json",
 					}
 				}
@@ -789,26 +922,30 @@
 
 		//变量声明-----------------------------------------------------------------------------------------------
 		var
-				design_admin_datagrid_obj     = design_admin_datagrid.data("zui.datagrid"),       //表格对象
-				design_admin_show_filelist_obj= design_admin_show_filelist.data("zui.datagrid"),  //查看表格1
-				design_admin_show_record_obj  = design_admin_show_record.data("zui.datagrid"),    //查看表格2
-				design_admin_show_btn         = ".design_admin_show_btn",                         //查看按钮
-				//操作
-				design_admin_turnProvider_btn = ".design_admin_turnProvider_btn",                 //转移信息员
-				design_admin_tobeprovider_btn = ".design_admin_tobeprovider_btn",                 //转为信息员
-				design_admin_back_btn         = ".design_admin_back_btn",                         //打回
-				design_admin_great_btn     = ".design_admin_great_btn",                     //提交设计部
-				design_admin_sink_btn         = ".design_admin_sink_btn",                         //归库
-				//日志
-				design_admin_logShow_btn      = ".design_admin_logShow_btn",                      //日志查看
-				design_admin_logAdd_btn       = ".design_admin_logAdd_btn";                       //日志添加
+			design_admin_datagrid_obj = design_admin_datagrid.data("zui.datagrid"), //表格对象
+			design_admin_show_filelist_obj = design_admin_show_filelist.data("zui.datagrid"), //查看表格1
+			design_admin_show_record_obj = design_admin_show_record.data("zui.datagrid"), //查看表格2
+			design_admin_show_btn = ".design_admin_show_btn", //查看按钮
+			//操作
+			design_admin_turnProvider_btn = ".design_admin_turnProvider_btn", //转移信息员
+			design_admin_tobeprovider_btn = ".design_admin_tobeprovider_btn", //转为信息员
+			design_admin_back_btn = ".design_admin_back_btn", //打回
+			design_admin_great_btn = ".design_admin_great_btn", //提交设计部
+			design_admin_sink_btn = ".design_admin_sink_btn", //归库
+			//日志
+			design_admin_logShow_btn = ".design_admin_logShow_btn", //日志查看
+			design_admin_logAdd_btn = ".design_admin_logAdd_btn"; //日志添加
 
 		//上传创建-----------------------------------------------------------------------------------------------
-		zui_upload_group({upid:"design_admin_logAdd_file",type:"img",maxSize:"10mb"});
+		zui_upload_group({
+			upid: "design_admin_logAdd_file",
+			type: "img",
+			maxSize: "10mb"
+		});
 
 		//时间组件-----------------------------------------------------------------------------------------------
-		common_date_duration( design_admin_tool_date1, "分单时间" );
-		common_date_duration( design_admin_tool_date2, "签单时间" );
+		common_date_duration(design_admin_tool_date1, "分单时间");
+		common_date_duration(design_admin_tool_date2, "签单时间");
 		design_admin_tool_date1.find(".start").datetimepicker(option_date);
 		design_admin_tool_date1.find(".end").datetimepicker(option_date);
 		design_admin_tool_date2.find(".start").datetimepicker(option_date);
@@ -817,34 +954,72 @@
 		//下拉选项-----------------------------------------------------------------------------------------------
 		//提交设计部-部门
 		$.ajax({
-			url     : design_admin_api.select_level,
-			type    : "post",
+			url: design_admin_api.select_level,
+			type: "post",
 			dataType: "json",
-			data    : {},
-			success : function(data){
-				if( data.status>0 ){
+			data: {},
+			success: function(data) {
+				if (data.status > 0) {
 					var data = data.data;
 					var option = "";
-					for(var i=0;i<data.length;i++){
-						option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+					for (var i = 0; i < data.length; i++) {
+						option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
 					}
 					design_admin_greater_depart.html(option);
 
 				}
 			}
 		});
+		// 离职人员///////////////
+		////////////////////////////////////////////////////
+		$.ajax({
+			url: design_admin_api.select,
+			type: "post",
+			dataType: "json",
+			data: {},
+			success: function(data) {
+				if (data.status > 0) {
+					var data = data.data;
+					var option = "";
+					for (var i = 0; i < data.length; i++) {
+						option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
+					}
+					design_admin_quit.html(option);
+
+				}
+			}
+		});
+		//		、、、、、、、、
+		// 目标人物
+		 $.ajax({
+        url     : design_admin_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                design_admin_target.html(option);
+            }
+        }
+    });
+	
 		//人员选择-商务专员-部门
 		$.ajax({
-			url     : design_admin_api.select_level,
-			type    : "post",
+			url: design_admin_api.select_level,
+			type: "post",
 			dataType: "json",
-			data    : {},
-			success : function(data){
-				if( data.status>0 ){
+			data: {},
+			success: function(data) {
+				if (data.status > 0) {
 					var data = data.data;
 					var option = "<option value='0'>全部</option>";
-					for(var i=0;i<data.length;i++){
-						option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+					for (var i = 0; i < data.length; i++) {
+						option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
 					}
 					design_admin_salesman_depart.html(option);
 				}
@@ -852,16 +1027,16 @@
 		});
 		//日志时间
 		$.ajax({
-			url     : design_admin_api.select_level,
-			type    : "post",
+			url: design_admin_api.select_level,
+			type: "post",
 			dataType: "json",
-			data    : {},
-			success : function(data){
-				if( data.status>0 ){
+			data: {},
+			success: function(data) {
+				if (data.status > 0) {
 					var data = data.data;
 					var option = "";
-					for(var i=0;i<data.length;i++){
-						option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+					for (var i = 0; i < data.length; i++) {
+						option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
 					}
 					design_admin_logAdd_date.html(option);
 				}
@@ -869,198 +1044,146 @@
 		});
 
 		//搜索按钮-----------------------------------------------------------------------------------------------
-		design_admin_search_btn.click(function(){
+		design_admin_search_btn.click(function() {
 
 			//字段整理
-			var keyword
-			= "?sid="    + design_admin_tool_keys.val()
-			+ "&search=" + design_admin_tool_search.val()
-			+ "&state="  + design_admin_tool_select1.val()
-			+ "&level="  + design_admin_scts.val()
-			+ "&date1="  + design_admin_tool_date1.find(".start").val()
-			+ "&date2="  + design_admin_tool_date1.find(".end").val()
-			+ "&date3="  + design_admin_tool_date2.find(".start").val()
-			+ "&date4="  + design_admin_tool_date2.find(".end").val()
+			var keyword = "?sid=" + design_admin_tool_keys.val() +
+				"&search=" + design_admin_tool_search.val() +
+				"&state=" + design_admin_tool_select1.val() +
+				"&level=" + design_admin_scts.val() +
+				"&date1=" + design_admin_tool_date1.find(".start").val() +
+				"&date2=" + design_admin_tool_date1.find(".end").val() +
+				"&date3=" + design_admin_tool_date2.find(".start").val() +
+				"&date4=" + design_admin_tool_date2.find(".end").val()
 			//GET提交
-			zui_datagrid_render(design_admin_datagrid_obj,design_admin_api.datagrid+keyword);
+			zui_datagrid_render(design_admin_datagrid_obj, design_admin_api.datagrid + keyword);
 
 		});
 
-		//批量转移客户按钮-----------------------------------------------------------------------------------------------
-		design_admin_turnSalesman_btn.click(function(){
+		//批量转移项目按钮-----------------------------------------------------------------------------------------------
+		design_admin_turnSalesman_btn.click(function() {
 
 			//数据复原
-			design_admin_turnSalesman_now.attr("dataId","");
+			design_admin_turnSalesman_now.attr("dataId", "");
 			common_form_reset();
 
 			//批量取值
-			var data_arr = design_admin_datagrid_obj.getCheckItems().filter(function(e){return e});
-			if( data_arr.length>0 ){
+			var data_arr = design_admin_datagrid_obj.getCheckItems().filter(function(e) {
+				return e
+			});
+			if (data_arr.length > 0) {
 
 				//ID获取
 				var data_id = [];
-				for(var i=0;i<data_arr.length;i++){
+				for (var i = 0; i < data_arr.length; i++) {
 					data_id.push(data_arr[i].id);
 				}
 
 				//项目编号获取
 				var data_item = [];
-				for(var x=0;x<data_id.length;x++){
+				for (var x = 0; x < data_id.length; x++) {
 					data_item.push(data_arr[x].username);
 				}
 
 				//原商务专员获取
 				var data_pre = [];
-				for(var p=0;p<data_id.length;p++){
+				for (var p = 0; p < data_id.length; p++) {
 					data_pre.push(data_arr[p].name);
 				}
 
 				//数据赋值
 				design_admin_turnSalesman_item.val(data_item.join(","));
 				design_admin_turnSalesman_pre.val(data_pre.join(","));
-				design_admin_turnSalesman_submit.attr("dataId",data_id.join(","));
+				design_admin_turnSalesman_submit.attr("dataId", data_id.join(","));
 
 				//面板显示
 				design_admin_turnSalesman_box.modal("show");
 
 			} else {
-				um_tip("至少选择一条数据","1000","text-danger");
+				um_tip("至少选择一条数据", "1000", "text-danger");
 			}
 
 		});
-		//批量转移客户提交
-		design_admin_turnSalesman_submit.click(function(){
+		//批量转移项目提交
+		design_admin_turnSalesman_submit.click(function() {
 
 			//ID取值
 			var data_id = $(this).attr("dataId");
 
 			//远程提交
 			$.ajax({
-				url     : API.test_response,
-				type    : "post",
+				url: API.test_response,
+				type: "post",
 				dataType: "json",
-				data    : {
-					id   : data_id,
-					now  : design_admin_turnSalesman_now.attr("dataId")
+				data: {
+					id: data_id,
+					now: design_admin_turnSalesman_now.attr("dataId")
 				},
-				success : function(data){
-					if( data.status>0 ){
+				success: function(data) {
+					if (data.status > 0) {
 						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj,design_admin_api.datagrid,"clear");
+						zui_datagrid_reset(design_admin_datagrid_obj, design_admin_api.datagrid, "clear");
 					} else {
-						um_tip(data.message,"1500","text-danger");
+						um_tip(data.message, "1500", "text-danger");
 					}
 				}
 			});
 
 		});
 
-		//批量放弃按钮-----------------------------------------------------------------------------------------------
-		design_admin_aban_btn.click(function(){
+		//批量项目交接按钮-----------------------------------------------------------------------------------------------
+		design_admin_change_btn.click(function() {
 
 			//数据复原
+			design_admin_turn_quit.attr("dataId", "");
+			design_admin_turn_target.attr("dataId", "");
 			common_form_reset();
 
 			//批量取值
-			var data_arr = design_admin_datagrid_obj.getCheckItems().filter(function(e){return e});
-			if( data_arr.length>0 ){
-
-				//ID获取
-				var data_id = [];
-				for(var i=0;i<data_arr.length;i++){
-					data_id.push(data_arr[i].id);
-				}
-
-				//数据赋值
-				design_admin_aban_submit.attr("dataId",data_id.join(","));
-
-				//面板显示
-				design_admin_aban_box.modal("show");
-
-			} else {
-				um_tip("至少选择一条数据","1000","text-danger");
-			}
-
-		});
-		//批量放弃提交
-		design_admin_aban_submit.click(function(){
-
-			//ID取值
-			var data_id = $(this).attr("dataId");
-
-			//远程提交
-			$.ajax({
-				url     : API.test_response,
-				type    : "post",
-				dataType: "json",
-				data    : {
-					id : data_id,
-					type : design_admin_aban_type.val(),
-					reason : design_admin_aban_reason.val(),
-				},
-				success : function(data){
-					if( data.status>0 ){
-						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj,design_admin_api.datagrid,"clear");
-					} else {
-						um_tip(data.message,"1500","text-danger");
-					}
-				}
+			var data_arr = design_admin_datagrid_obj.getCheckItems().filter(function(e) {
+				return e
 			});
-
-		});
-
-		//批量客户交接按钮-----------------------------------------------------------------------------------------------
-		design_admin_change_btn.click(function(){
-
-			//数据复原
-			design_admin_turn_quit.attr("dataId","");
-			design_admin_turn_target.attr("dataId","");
-			common_form_reset();
-
-			//批量取值
-			var data_arr = design_admin_datagrid_obj.getCheckItems().filter(function(e){return e});
-			if( data_arr.length>0 ){
+			if (data_arr.length > 0) {
 
 				//ID获取
 				var data_id = [];
-				for(var i=0;i<data_arr.length;i++){
+				for (var i = 0; i < data_arr.length; i++) {
 					data_id.push(data_arr[i].id);
 				}
 
 				//数据赋值
-				design_admin_change_submit.attr("dataId",data_id.join(","));
+				design_admin_change_submit.attr("dataId", data_id.join(","));
 
 				//面板显示
 				design_admin_change_box.modal("show");
 
 			} else {
-				um_tip("至少选择一条数据","1000","text-danger");
+				um_tip("至少选择一条数据", "1000", "text-danger");
 			}
 
 		});
-		//批量客户交接提交
-		design_admin_change_submit.click(function(){
+		//批量项目交接提交
+		design_admin_change_submit.click(function() {
 
 			//ID取值
 			var data_id = $(this).attr("dataId");
 
 			//远程提交
 			$.ajax({
-				url     : API.test_response,
-				type    : "post",
+				url: API.test_response,
+				type: "post",
 				dataType: "json",
-				data    : {
-					id : data_id,
-					quit : design_admin_turn_quit.attr("dataId"),
-					target : design_admin_turn_target.attr("dataId")
+				data: {
+					id: data_id,
+					quit: design_admin_turn_quit.attr("dataId"),
+					target: design_admin_turn_target.attr("dataId")
 				},
-				success : function(data){
-					if( data.status>0 ){
+				success: function(data) {
+					if (data.status > 0) {
 						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj,design_admin_api.datagrid,"clear");
+						zui_datagrid_reset(design_admin_datagrid_obj, design_admin_api.datagrid, "clear");
 					} else {
-						um_tip(data.message,"1500","text-danger");
+						um_tip(data.message, "1500", "text-danger");
 					}
 				}
 			});
@@ -1068,62 +1191,66 @@
 		});
 
 		//导出按钮
-		design_admin_export_btn.click(function(){
+		design_admin_export_btn.click(function() {
 
 			//批量取值
-			var data_arr = design_admin_datagrid_obj.getCheckItems().filter(function(e){return e});
-			if( data_arr.length>0 ){
+			var data_arr = design_admin_datagrid_obj.getCheckItems().filter(function(e) {
+				return e
+			});
+			if (data_arr.length > 0) {
 
 				//ID获取
 				var data_id = [];
-				for(var i=0;i<data_arr.length;i++){
+				for (var i = 0; i < data_arr.length; i++) {
 					data_id.push(data_arr[i].id);
 				}
 
 				//远程提交
 				$.ajax({
-					url     : API.test_response,
-					type    : "post",
+					url: API.test_response,
+					type: "post",
 					dataType: "json",
-					data    : {
-						id      : data_id.join(","),
-						keys    : design_admin_tool_keys.val(),
-						search  : design_admin_tool_search.val(),
-						state   : design_admin_tool_select1.val(),
-						tel  : design_admin_scts.val(),
+					data: {
+						id: data_id.join(","),
+						keys: design_admin_tool_keys.val(),
+						search: design_admin_tool_search.val(),
+						state: design_admin_tool_select1.val(),
+						tel: design_admin_scts.val(),
 					},
-					beforesend : function(){
+					beforesend: function() {
 						um_tip("导出中…");
 					},
-					success : function(data){
-						if( data.status>0 ){
+					success: function(data) {
+						if (data.status > 0) {
 							window.open(API.test_export);
 						} else {
-							um_tip(data.message,"1500","text-danger");
+							um_tip(data.message, "1500", "text-danger");
 						}
 					}
 				});
 
 			} else {
-				um_tip("至少选择一条数据","1000","text-danger");
+				um_tip("至少选择一条数据", "1000", "text-danger");
 			}
 
 		});
 
 		//查看按钮-----------------------------------------------------------------------------------------------
-		$(document).on("click",design_admin_show_btn,function(){
+		$(document).on("click", design_admin_show_btn, function() {
 
 			//数据ID
-			var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
+			var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
 
 			//远程提交
 			$.ajax({
-				url     : design_admin_api.modal_show,
-				type    : "post",
+				url: design_admin_api.modal_show,
+				type: "post",
 				dataType: "json",
-				data    : { id:data_id },
-				success : function(data){
-					if( data.status>0 ){
+				data: {
+					id: data_id
+				},
+				success: function(data) {
+					if (data.status > 0) {
 
 						//查看模板
 						var data = data.data;
@@ -1131,9 +1258,12 @@
 						//项目进度
 						var temp_prog = `<tr><td><ul class="bussiness-prog-group flex-box">`;
 						var temp_prog_state_class = "bg-primary";
-						for( var i=0;i<data.prog.length;i++){
-							if( data.prog[i].state==0 ){ temp_prog_state_class = "bg-grey" }
-							temp_prog +=`
+						for (var i = 0; i < data.prog.length; i++) {
+							if (data.prog[i].state == 0) {
+								temp_prog_state_class = "bg-grey"
+							}
+							temp_prog +=
+								`
                             <li class="flex-son text-center">
                                 <b class="${temp_prog_state_class}">${i+1}</b>
                                 <div class="small">${data.prog[i].name}</div>
@@ -1141,10 +1271,11 @@
                             </li>
                         `;
 						}
-						design_admin_show_t_prog.find("tbody").html(temp_prog+"</ul></td></tr>");
+						design_admin_show_t_prog.find("tbody").html(temp_prog + "</ul></td></tr>");
 
 						//项目信息
-						var temp_case = `
+						var temp_case =
+							`
                         <tr><td style="width:120px;">项目编号</td><td>${data.number}</td></tr>
                         <tr><td>项目名称  </td><td>${data.case}         </td></tr>
                         <tr><td>项目状态  </td><td>${data.state}        </td></tr>
@@ -1171,7 +1302,8 @@
 						design_admin_show_t_case.find("tbody").html(temp_case);
 
 						//负责人信息
-						var temp_user = `
+						var temp_user =
+							`
                         <tr><td style="width:120px;">业务员</td><td>${data.salesman}</td></tr>
                         <tr><td>设计师      </td><td>${data.designer}   </td></tr>
                         <tr><td>效果图绘图员</td><td>${data.sketcher}   </td></tr>
@@ -1183,45 +1315,45 @@
 						design_admin_show_t_user.find("tbody").html(temp_user);
 
 						//数据表格
-						zui_datagrid_render(design_admin_show_filelist_obj,design_admin_api.datagrid_filelist+"?id="+data_id+"&type=1");
-						zui_datagrid_render(design_admin_show_record_obj,design_admin_api.datagrid_record+"?id="+data_id);
+						zui_datagrid_render(design_admin_show_filelist_obj, design_admin_api.datagrid_filelist + "?id=" + data_id +
+							"&type=1");
+						zui_datagrid_render(design_admin_show_record_obj, design_admin_api.datagrid_record + "?id=" + data_id);
 
-						design_admin_show_filelist_type.attr("rowIndex",data_id);      //ID赋值
-						design_admin_show_box.modal("show");                           //盒子显示
+						design_admin_show_filelist_type.attr("rowIndex", data_id); //ID赋值
+						design_admin_show_box.modal("show"); //盒子显示
 					} else {
-						um_tip(data.message,"1500","text-danger");
+						um_tip(data.message, "1500", "text-danger");
 					}
 				}
 			});
 
 		});
-		//客户附件筛选
-		design_admin_show_filelist_type.find(".btn").click(function(){
+		//项目附件筛选
+		design_admin_show_filelist_type.find(".btn").click(function() {
 
 			//字段整理
-			var keyword
-					= "?id="   + design_admin_show_filelist_type.attr("rowIndex")
-					+ "&type=" + $(this).find("input").val();
-			        + "&state="  + design_admin_tool_select1.val();
-			        + "&tel="  + design_admin_scts.val();
+			var keyword = "?id=" + design_admin_show_filelist_type.attr("rowIndex") +
+				"&type=" + $(this).find("input").val(); +
+			"&state=" + design_admin_tool_select1.val(); +
+			"&tel=" + design_admin_scts.val();
 
-			zui_datagrid_render(design_admin_show_filelist_obj,design_admin_api.datagrid_filelist+keyword);
+			zui_datagrid_render(design_admin_show_filelist_obj, design_admin_api.datagrid_filelist + keyword);
 		});
 
 		//转移信息员-----------------------------------------------------------------------------------------
-		$(document).on("click",design_admin_turnProvider_btn,function(){
+		$(document).on("click", design_admin_turnProvider_btn, function() {
 
 			//数据复原
-			design_admin_turnProvider_now.attr("dataId","");
+			design_admin_turnProvider_now.attr("dataId", "");
 			common_form_reset();
 
 			//数据取值
 			var data_id = $(this).attr("rowIndex");
 			var rowItem = $(this).attr("rowItem");
-			var rowPre  = $(this).attr("rowPre");
+			var rowPre = $(this).attr("rowPre");
 
 			//数据赋值
-			design_admin_turnProvider_submit.attr("dataId",data_id);
+			design_admin_turnProvider_submit.attr("dataId", data_id);
 			design_admin_turnProvider_item.val(rowItem);
 			design_admin_turnProvider_pre.val(rowPre);
 
@@ -1230,26 +1362,26 @@
 
 		});
 		//转移信息员提交
-		design_admin_turnProvider_submit.click(function(){
+		design_admin_turnProvider_submit.click(function() {
 
 			//数据ID
 			var data_id = $(this).attr("dataId");
 
 			//远程提交
 			$.ajax({
-				url     : API.test_response,
-				type    : "post",
+				url: API.test_response,
+				type: "post",
 				dataType: "json",
-				data    : {
-					id  : data_id,
-					now : design_admin_turnProvider_now.attr("dataId")
+				data: {
+					id: data_id,
+					now: design_admin_turnProvider_now.attr("dataId")
 				},
-				success : function(data){
-					if( data.status>0 ){
+				success: function(data) {
+					if (data.status > 0) {
 						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj,design_admin_api.datagrid);
+						zui_datagrid_reset(design_admin_datagrid_obj, design_admin_api.datagrid);
 					} else {
-						um_tip(data.message,"1500","text-danger");
+						um_tip(data.message, "1500", "text-danger");
 					}
 				}
 			});
@@ -1257,7 +1389,7 @@
 		});
 
 		//转为信息员-----------------------------------------------------------------------------------------
-		$(document).on("click",design_admin_tobeprovider_btn,function(){
+		$(document).on("click", design_admin_tobeprovider_btn, function() {
 
 			//数据复原
 			common_form_reset();
@@ -1266,32 +1398,32 @@
 			var data_id = $(this).attr("rowIndex");
 
 			//数据赋值
-			design_admin_tobeprovider_submit.attr("dataId",data_id);
+			design_admin_tobeprovider_submit.attr("dataId", data_id);
 
 			//面板显示
 			design_admin_tobeprovider_box.modal("show");
 
 		});
 		//转为信息员提交
-		design_admin_tobeprovider_submit.click(function(){
+		design_admin_tobeprovider_submit.click(function() {
 
 			//数据ID
 			var data_id = $(this).attr("dataId");
 
 			//远程提交
 			$.ajax({
-				url     : API.test_response,
-				type    : "post",
+				url: API.test_response,
+				type: "post",
 				dataType: "json",
-				data    : {
-					id   : data_id,
+				data: {
+					id: data_id,
 				},
-				success : function(data){
-					if( data.status>0 ){
+				success: function(data) {
+					if (data.status > 0) {
 						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj,design_admin_api.datagrid);
+						zui_datagrid_reset(design_admin_datagrid_obj, design_admin_api.datagrid);
 					} else {
-						um_tip(data.message,"1500","text-danger");
+						um_tip(data.message, "1500", "text-danger");
 					}
 				}
 			});
@@ -1299,53 +1431,53 @@
 		});
 
 		//打回-----------------------------------------------------------------------------------------------
-		$(document).on("click",design_admin_back_btn,function(){
+		$(document).on("click", design_admin_back_btn, function() {
 
 			//数据复原
 			common_form_reset();
 
 			//数据取值
 			var data_id = $(this).attr("rowIndex");
-			var state   = $(this).attr("rowState");
+			var state = $(this).attr("rowState");
 
 			//状态判断
-			if (state == 1) {   //已提交(商务经理未审批)
+			if (state == 1) { //已提交(商务经理未审批)
 				design_admin_back_target.val(2);
-				design_admin_back_target.attr("disabled","disabled");
-			} else {            //不准申请中 | 未签申请中
+				design_admin_back_target.attr("disabled", "disabled");
+			} else { //不准申请中 | 未签申请中
 				design_admin_back_target.val(1);
 				design_admin_back_target.removeAttr("disabled");
 			}
 
 			//数据赋值
-			design_admin_back_submit.attr("dataId",data_id);
+			design_admin_back_submit.attr("dataId", data_id);
 
 			//面板显示
 			design_admin_back_box.modal("show");
 
 		});
 		//打回提交
-		design_admin_back_submit.click(function(){
+		design_admin_back_submit.click(function() {
 
 			//数据ID
 			var data_id = $(this).attr("dataId");
 
 			//远程提交
 			$.ajax({
-				url     : API.test_response,
-				type    : "post",
+				url: API.test_response,
+				type: "post",
 				dataType: "json",
-				data    : {
-					id   : data_id,
-					target : design_admin_back_target.val(),
-					reason : design_admin_back_reason.val()
+				data: {
+					id: data_id,
+					target: design_admin_back_target.val(),
+					reason: design_admin_back_reason.val()
 				},
-				success : function(data){
-					if( data.status>0 ){
+				success: function(data) {
+					if (data.status > 0) {
 						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj,design_admin_api.datagrid);
+						zui_datagrid_reset(design_admin_datagrid_obj, design_admin_api.datagrid);
 					} else {
-						um_tip(data.message,"1500","text-danger");
+						um_tip(data.message, "1500", "text-danger");
 					}
 				}
 			});
@@ -1353,7 +1485,7 @@
 		});
 
 		//归库-------------------------------------------------------------------------------------------
-		$(document).on("click",design_admin_sink_btn,function(){
+		$(document).on("click", design_admin_sink_btn, function() {
 
 			//数据复原
 			common_form_reset();
@@ -1362,34 +1494,34 @@
 			var data_id = $(this).attr("rowIndex");
 
 			//数据赋值
-			design_admin_sink_submit.attr("dataId",data_id);
+			design_admin_sink_submit.attr("dataId", data_id);
 
 			//面板显示
 			design_admin_sink_box.modal("show");
 
 		});
 		//归库提交
-		design_admin_sink_submit.click(function(){
+		design_admin_sink_submit.click(function() {
 
 			//数据ID
 			var data_id = $(this).attr("dataId");
 
 			//远程提交
 			$.ajax({
-				url     : API.test_response,
-				type    : "post",
+				url: API.test_response,
+				type: "post",
 				dataType: "json",
-				data    : {
-					id   : data_id,
-					type : design_admin_sink_type.val(),
-					reason : design_admin_sink_reason.val()
+				data: {
+					id: data_id,
+					type: design_admin_sink_type.val(),
+					reason: design_admin_sink_reason.val()
 				},
-				success : function(data){
-					if( data.status>0 ){
+				success: function(data) {
+					if (data.status > 0) {
 						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj,design_admin_api.datagrid);
+						zui_datagrid_reset(design_admin_datagrid_obj, design_admin_api.datagrid);
 					} else {
-						um_tip(data.message,"1500","text-danger");
+						um_tip(data.message, "1500", "text-danger");
 					}
 				}
 			});
@@ -1397,7 +1529,7 @@
 		});
 
 		//洽谈等级-----------------------------------------------------------------------------------------
-		$(document).on("click",design_admin_great_btn,function(){
+		$(document).on("click", design_admin_great_btn, function() {
 
 
 			//数据取值
@@ -1405,7 +1537,7 @@
 			var rowLevel = $(this).attr("rowLevel");
 
 			//数据赋值
-			design_admin_great_submit.attr("dataId",data_id);
+			design_admin_great_submit.attr("dataId", data_id);
 			design_admin_greater_depart.val(rowLevel);
 
 			//面板显示
@@ -1413,25 +1545,25 @@
 
 		});
 		//洽谈等级-提交
-		design_admin_great_submit.click(function(){
+		design_admin_great_submit.click(function() {
 			//数据ID
 			var data_id = $(this).attr("dataId");
 			//远程提交
 			$.ajax({
-				url     : API.test_response,
-				type    : "post",
+				url: API.test_response,
+				type: "post",
 				dataType: "json",
-				data    : {
-					id   : data_id,
-					level : design_admin_greater_depart.val()
+				data: {
+					id: data_id,
+					level: design_admin_greater_depart.val()
 				},
-				success : function(data){
-					if( data.status>0 ){
+				success: function(data) {
+					if (data.status > 0) {
 						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj,design_admin_api.datagrid);
+						zui_datagrid_reset(design_admin_datagrid_obj, design_admin_api.datagrid);
 
 					} else {
-						um_tip(data.message,"1500","text-danger");
+						um_tip(data.message, "1500", "text-danger");
 						console.log(data.message)
 					}
 				}
@@ -1440,7 +1572,7 @@
 		});
 
 		//日志查看-----------------------------------------------------------------------------------------------
-		$(document).on("click",design_admin_logShow_btn,function(){
+		$(document).on("click", design_admin_logShow_btn, function() {
 
 			//数据复原
 			common_topic_answer_reset();
@@ -1450,23 +1582,24 @@
 
 			//远程提交
 			$.ajax({
-				url     : design_admin_api.topic,
-				type    : "post",
+				url: design_admin_api.topic,
+				type: "post",
 				dataType: "json",
-				data    : {
-					id : data_id,
+				data: {
+					id: data_id,
 				},
-				success : function(data){
+				success: function(data) {
 
-					if( data.status>0 ){
+					if (data.status > 0) {
 
 						//变量赋值
 						var data = data.data;
 						var temp = "";
 
 						//一级话题
-						for(var i=0;i<data.length;i++){
-							temp+=`
+						for (var i = 0; i < data.length; i++) {
+							temp +=
+								`
                             <div class="comments-list">
                                 <div class="comment">
                                     <div class="avatar text-center">
@@ -1475,22 +1608,25 @@
                                     </div>
                                     <div class="content">
                                         <div class="pull-right text-muted">${data[i].date}</div>
+                                        <div class="text"><span class="label label-outline label-primary design-log-prog">${data[i].prog}</span> ${data[i].text}</div>
                                         <div class="text">${data[i].text}</div>
                                         <div class="actions common_topic_imgs_wrap">
                                             <a class="common_topic_imgs_btn">图片[${data[i].imgs.length}]</a>
                                             <div class="common_topic_imgs_box hide">`;
 
 							//图片循环
-							for(var m=0;m<data[i].imgs.length;m++){
-								temp+=`<a class="ov1" target="_blank" href=${FILE_PATH}${data[i].imgs[m].path}>${data[i].imgs[m].name}</a>`;
+							for (var m = 0; m < data[i].imgs.length; m++) {
+								temp +=
+									`<a class="ov1" target="_blank" href=${FILE_PATH}${data[i].imgs[m].path}>${data[i].imgs[m].name}</a>`;
 							}
 
 							//标签收尾
-							temp+=`</div></div></div>`;
+							temp += `</div></div></div>`;
 
 							//评论嵌套
-							for(var j=0;j<data[i].childTopic.length;j++){
-								temp+=`
+							for (var j = 0; j < data[i].childTopic.length; j++) {
+								temp +=
+									`
                                 <div class="comments-list">
                                     <div class="comment">
                                         <div class="content">
@@ -1503,7 +1639,8 @@
 							}
 
 							//标签收尾
-							temp+=`
+							temp +=
+								`
                         <div class="comments-list comments-list-for-answer">
                             <div class="actions">
                                 <a class="common_topic_answer_btn">回复</a>
@@ -1521,47 +1658,64 @@
 						design_admin_logShow_box.find(".comments").html(temp);
 
 						//ID赋值
-						design_admin_logShow_box.attr("rowIndex",data_id);
+						design_admin_logShow_box.attr("rowIndex", data_id);
 
 						//面板显示
 						design_admin_logShow_box.modal("show");
 
 					} else {
-						um_tip(data.message,"1500","text-danger");
+						um_tip(data.message, "1500", "text-danger");
 					}
 				}
 			});
 
 		});
 		//日志回复
-		$(document).on("click",".design_admin_logShow_submit",function(){
+		$(document).on("click", ".design_admin_logShow_submit", function() {
 			//变量声明
 			var data_id = design_admin_logShow_box.attr("rowIndex");
-			var tid     = $(this).attr("data-tid");
-			var text    = $(this).parent().find(".common_topic_answer_text").val();
+			var tid = $(this).attr("data-tid");
+			var text = $(this).parent().find(".common_topic_answer_text").val();
 			//远程提交
 			$.ajax({
-				url     : API.test_response,
-				type    : "post",
+				url: API.test_response,
+				type: "post",
 				dataType: "json",
-				data    : {
-					id  : data_id,
-					tid : tid,
+				data: {
+					id: data_id,
+					tid: tid,
 					text: text
 				},
-				success : function(data){
-					if( data.status>0 ){
+				success: function(data) {
+					if (data.status > 0) {
 						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj,design_admin_api.datagrid);
+						zui_datagrid_reset(design_admin_datagrid_obj, design_admin_api.datagrid);
 					} else {
-						um_tip(data.message,"1500","text-danger");
+						um_tip(data.message, "1500", "text-danger");
 					}
 				}
 			});
 		});
-
+// 新商务专员
+ $.ajax({
+        url     : design_admin_api.select,
+        type    : "post",
+        dataType: "json",
+        data    : {},
+        success : function(data){
+            if( data.status>0 ){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+               design_list_logAdd_date.html(option);
+            }
+        }
+    });
+ 	
 		//日志添加-----------------------------------------------------------------------------------------------
-		$(document).on("click",".design_admin_logAdd_btn",function(){
+		$(document).on("click", ".design_admin_logAdd_btn", function() {
 
 			//数据复原
 			common_form_reset();
@@ -1570,41 +1724,41 @@
 			var rowIndex = $(this).attr("rowIndex");
 
 			//ID赋值
-			design_admin_logAdd_submit.attr("rowIndex",rowIndex);
+			design_admin_logAdd_submit.attr("rowIndex", rowIndex);
 
 			//面板显示
 			design_admin_logAdd_box.modal("show");
 
 		});
 		//日志提交
-		design_admin_logAdd_submit.click(function(){
+		design_admin_logAdd_submit.click(function() {
 
 			//ID取值
 			var data_id = $(this).attr("rowIndex");
 
 			//远程提交
 			$.ajax({
-				url     : API.test_response,
-				type    : "post",
+				url: API.test_response,
+				type: "post",
 				dataType: "json",
-				data    : {
-					id   : data_id,
-					text : design_admin_logAdd_text.val(),
-					file : design_admin_logAdd_file.attr("path"),
-					date : design_admin_logAdd_date.val(),
+				data: {
+					id: data_id,
+					text: design_admin_logAdd_text.val(),
+					file: design_admin_logAdd_file.attr("path"),
+					date: design_admin_logAdd_date.val(),
 				},
-				success : function(data){
-					if( data.status>0 ){
+				success: function(data) {
+					if (data.status > 0) {
 						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj,design_admin_api.datagrid);
+						zui_datagrid_reset(design_admin_datagrid_obj, design_admin_api.datagrid);
 					} else {
-						um_tip(data.message,"1500","text-danger");
+						um_tip(data.message, "1500", "text-danger");
 					}
 				}
 			});
 		});
 		//日志关闭
-		design_admin_logAdd_box.on("hide.zui.modal",function(){
+		design_admin_logAdd_box.on("hide.zui.modal", function() {
 			//上传重置
 			zui_upload_reset([design_admin_logAdd_file]);
 		});
@@ -1612,33 +1766,51 @@
 		//人员选择-商务专员------------------------------------------------------------------------------------------
 		//数据列表
 		design_admin_salesman_datagrid.datagrid({
-			height      : 400,
-			sortable    : false,
-			cache       : false,
+			height: 400,
+			sortable: false,
+			cache: false,
 			showRowIndex: true,
-			checkable   : true,
-			selectable  : false,
-			configs     : {
-				R0:{className:"text-center"},
-				C1:{className:"cell-hidden"}
-			},
-			states      : {
-				pager           : {
-					page        : 1,
-					recPerPage  : window.REC_PER_PAGE,
+			checkable: true,
+			selectable: false,
+			configs: {
+				R0: {
+					className: "text-center"
+				},
+				C1: {
+					className: "cell-hidden"
 				}
 			},
-			dataSource : {
-				cols   : [
-					{name:"id",label:"ID",  width:1 },
-					{name:"name",label:"姓名",width:80 },
-					{name:"departname",label:"部门",width:100},
-					{name:"positionname",label:"职务"}
+			states: {
+				pager: {
+					page: 1,
+					recPerPage: window.REC_PER_PAGE,
+				}
+			},
+			dataSource: {
+				cols: [{
+						name: "id",
+						label: "ID",
+						width: 1
+					},
+					{
+						name: "name",
+						label: "姓名",
+						width: 80
+					},
+					{
+						name: "departname",
+						label: "部门",
+						width: 100
+					},
+					{
+						name: "positionname",
+						label: "职务"
+					}
 				],
-				remote : function(){
+				remote: function() {
 					return {
-						url     : design_admin_api.datagrid_salesman,
-						type    : "POST",
+						url: design_admin_api.datagrid_salesman,
+						type: "POST",
 						dataType: "json",
 					}
 				}
@@ -1647,27 +1819,28 @@
 		var design_admin_salesman_datagrid_obj = design_admin_salesman_datagrid.data("zui.datagrid");
 
 		//搜索按钮
-		design_admin_salesman_search_btn.click(function(){
+		design_admin_salesman_search_btn.click(function() {
 
 			//字段整理
-			var keyword
-					= "?search=" + design_admin_salesman_user.val()
-					+ "&depart=" + design_admin_salesman_depart.val();
+			var keyword = "?search=" + design_admin_salesman_user.val() +
+				"&depart=" + design_admin_salesman_depart.val();
 
 			//GET提交
-			zui_datagrid_render(design_admin_salesman_datagrid_obj,design_admin_api.datagrid_salesman+keyword);
+			zui_datagrid_render(design_admin_salesman_datagrid_obj, design_admin_api.datagrid_salesman + keyword);
 
 		});
 		//点击显示
-		$(".salesman_person_btn").click(function(){
+		$(".salesman_person_btn").click(function() {
 
 			//按钮ID获取
 			COMMON_PERSON_BTNID = $(this).attr("id");
 
 			//批量勾选去除
-			var data_arr = design_admin_salesman_datagrid_obj.getCheckItems().filter(function(e){return e});
-			for(var i=0;i<data_arr.length;i++){
-				design_admin_salesman_datagrid_obj.checkRow(i,false);
+			var data_arr = design_admin_salesman_datagrid_obj.getCheckItems().filter(function(e) {
+				return e
+			});
+			for (var i = 0; i < data_arr.length; i++) {
+				design_admin_salesman_datagrid_obj.checkRow(i, false);
 			}
 
 			//面板显示
@@ -1675,22 +1848,24 @@
 
 		});
 		//提交按钮
-		design_admin_salesman_submit.click(function(){
+		design_admin_salesman_submit.click(function() {
 
 			//批量取值
-			var data_arr = design_admin_salesman_datagrid_obj.getCheckItems().filter(function(e){return e});
+			var data_arr = design_admin_salesman_datagrid_obj.getCheckItems().filter(function(e) {
+				return e
+			});
 
-			if( data_arr.length==1 ){
+			if (data_arr.length == 1) {
 
 				//数据赋值
-				$("#"+COMMON_PERSON_BTNID).val(data_arr[0].name);
-				$("#"+COMMON_PERSON_BTNID).attr("dataId",data_arr[0].id);
+				$("#" + COMMON_PERSON_BTNID).val(data_arr[0].name);
+				$("#" + COMMON_PERSON_BTNID).attr("dataId", data_arr[0].id);
 
 				//面板显示
 				design_admin_salesman_box.modal("hide");
 
 			} else {
-				um_tip("请选择一条数据","1000","text-danger");
+				um_tip("请选择一条数据", "1000", "text-danger");
 			}
 
 		});
@@ -1698,34 +1873,56 @@
 		//人员选择-信息员------------------------------------------------------------------------------------------
 		//数据列表
 		design_admin_provider_datagrid.datagrid({
-			height      : 400,
-			sortable    : false,
-			cache       : false,
+			height: 400,
+			sortable: false,
+			cache: false,
 			showRowIndex: true,
-			checkable   : true,
-			selectable  : false,
-			configs     : {
-				R0:{className:"text-center"},
-				C1:{className:"cell-hidden"}
-			},
-			states      : {
-				pager           : {
-					page        : 1,
-					recPerPage  : window.REC_PER_PAGE,
+			checkable: true,
+			selectable: false,
+			configs: {
+				R0: {
+					className: "text-center"
+				},
+				C1: {
+					className: "cell-hidden"
 				}
 			},
-			dataSource : {
-				cols   : [
-					{name:"id",   label:"ID",  width:1  },
-					{name:"name", label:"姓名",width:80 },
-					{name:"tex10",label:"公司",width:150},
-					{name:"name", label:"商务专员",width:100},
-					{name:"text1",label:"级别"}
+			states: {
+				pager: {
+					page: 1,
+					recPerPage: window.REC_PER_PAGE,
+				}
+			},
+			dataSource: {
+				cols: [{
+						name: "id",
+						label: "ID",
+						width: 1
+					},
+					{
+						name: "name",
+						label: "姓名",
+						width: 80
+					},
+					{
+						name: "tex10",
+						label: "公司",
+						width: 150
+					},
+					{
+						name: "name",
+						label: "商务专员",
+						width: 100
+					},
+					{
+						name: "text1",
+						label: "级别"
+					}
 				],
-				remote : function(){
+				remote: function() {
 					return {
-						url     : design_admin_api.datagrid_provider,
-						type    : "POST",
+						url: design_admin_api.datagrid_provider,
+						type: "POST",
 						dataType: "json",
 					}
 				}
@@ -1734,25 +1931,27 @@
 		var design_admin_provider_datagrid_obj = design_admin_provider_datagrid.data("zui.datagrid");
 
 		//搜索按钮
-		design_admin_provider_search_btn.click(function(){
+		design_admin_provider_search_btn.click(function() {
 
 			//字段整理
 			var keyword = "?search=" + design_admin_provider_user.val();
 
 			//GET提交
-			zui_datagrid_render(design_admin_provider_datagrid_obj,design_admin_api.datagrid_provider+keyword);
+			zui_datagrid_render(design_admin_provider_datagrid_obj, design_admin_api.datagrid_provider + keyword);
 
 		});
 		//点击显示
-		$(".provider_person_btn").click(function(){
+		$(".provider_person_btn").click(function() {
 
 			//按钮ID获取
 			COMMON_PERSON_BTNID = $(this).attr("id");
 
 			//批量勾选去除
-			var data_arr = design_admin_provider_datagrid_obj.getCheckItems().filter(function(e){return e});
-			for(var i=0;i<data_arr.length;i++){
-				design_admin_provider_datagrid_obj.checkRow(i,false);
+			var data_arr = design_admin_provider_datagrid_obj.getCheckItems().filter(function(e) {
+				return e
+			});
+			for (var i = 0; i < data_arr.length; i++) {
+				design_admin_provider_datagrid_obj.checkRow(i, false);
 			}
 
 			//面板显示
@@ -1760,31 +1959,33 @@
 
 		});
 		//提交按钮
-		design_admin_provider_submit.click(function(){
+		design_admin_provider_submit.click(function() {
 
 			//批量取值
-			var data_arr = design_admin_provider_datagrid_obj.getCheckItems().filter(function(e){return e});
+			var data_arr = design_admin_provider_datagrid_obj.getCheckItems().filter(function(e) {
+				return e
+			});
 
-			if( data_arr.length==1 ){
+			if (data_arr.length == 1) {
 
 				//数据赋值
-				$("#"+COMMON_PERSON_BTNID).val(data_arr[0].name);
-				$("#"+COMMON_PERSON_BTNID).attr("dataId",data_arr[0].id);
+				$("#" + COMMON_PERSON_BTNID).val(data_arr[0].name);
+				$("#" + COMMON_PERSON_BTNID).attr("dataId", data_arr[0].id);
 
 				//面板显示
 				design_admin_provider_box.modal("hide");
 
 			} else {
-				um_tip("请选择一条数据","1000","text-danger");
+				um_tip("请选择一条数据", "1000", "text-danger");
 			}
 
 		});
 
-	});//预加载结尾
+	}); //预加载结尾
 </script>
 
 <style>
-	#design_admin .tool-group input[readonly]{
+	#design_admin .tool-group input[readonly] {
 		width: 85px !important;
 	}
 </style>

@@ -1,5 +1,5 @@
 <!-- 页面外套 -->
-<div class="page-wrapper" id="">
+<div class="page-wrapper" id="design_assign">
 
     <!-- 数据网格 -->
     <div class="datagrid datagrid-striped" id="design_assign_datagrid">
@@ -21,7 +21,6 @@
                 <label><button class="btn btn-primary" id="design_assign_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
             </div>
-           
         </div>
         <!-- tool-group -->
 
@@ -30,7 +29,7 @@
     </div>
     <!-- datagrid -->
 
-    <!-- 客户查看盒子 -->
+    <!-- 项目查看盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="design_assign_show_box">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
@@ -100,63 +99,35 @@
     </div>
     <!-- design_assign_show_box -->
 
-    <!-- 转移客户盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="design_assign_turnSalesman_box">
+    <!-- 分单盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="design_assign_assign_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">项目客户的商务专员</h4>
+                    <h4 class="modal-title">分单</h4>
                 </div>
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 required">项目编号</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="design_assign_turnSalesman_item" readonly></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 required" for="design_assign_assign_user">设计师</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="design_assign_assign_user"><!-- JS推进 --></select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 required">原商务专员</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="design_assign_turnSalesman_pre" readonly></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 required">新商务专员</label>
-                            <div class="col-sm-8"><input type="text" class="form-control salesman_person_btn" id="design_assign_turnSalesman_now" readonly></div>
-                        </div>                      
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="design_assign_turnSalesman_submit">提交</button>
-                </div>                
+                    <button type="button" class="btn btn-primary" id="design_assign_assign_submit">提交</button>
+                </div>
             </div>
         </div>
     </div>
-    <!-- design_assign_turnSalesman_box -->
+    <!-- design_assign_assign_box -->
 
-    <!-- 转移信息员盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="design_assign_turnProvider_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">查看客户的信息员</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="container form-horizontal">
-                        <div class="form-group">
-                            <label class="col-sm-2 required">新信息员</label>
-                            <div class="col-sm-8"><input type="text" class="form-control provider_person_btn" id="design_assign_turnProvider_now" readonly></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="design_assign_turnProvider_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- design_assign_turnProvider_box -->
     <!-- 打回盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="design_assign_back_box">
            <div class="modal-dialog">
@@ -175,10 +146,7 @@
                </div>
            </div>
        </div>
-    
     <!-- design_assign_back_box -->
-
-
 
     <!-- 日志查看盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="design_assign_logShow_box">
@@ -197,97 +165,12 @@
         </div>
     </div>
     <!-- design_assign_logShow_box -->
-    <!-- 人员选择盒子-商务专员 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="design_assign_salesman_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">商务专员选择</h4>
-                </div>
-                <div class="modal-body no-padding">
-
-                    <!-- 数据网格 -->
-                    <div class="datagrid datagrid-striped" id="design_assign_salesman_datagrid">
-
-                        <!-- 工具条组 -->
-                        <div class="tool-group no-padding">
-                            <div class="tool-deal" style="border:none;">
-                                <label>
-                                    <span>姓名：</span>
-                                    <input type="text" class="form-control" id="design_assign_salesman_user">
-                                </label>
-                                <label>
-                                    <span>部门：</span>
-                                    <select class="form-control" id="design_assign_salesman_depart"><!-- JS推进 --></select>
-                                </label>
-                                <label><button class="btn btn-primary" id="design_assign_salesman_search_btn">搜索</button></label>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <!-- tool-group -->
-                        <div class="datagrid-container"></div>
-                        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
-                    </div>
-                    <!-- datagrid -->
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="design_assign_salesman_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- design_assign_salesman_box -->
-
-    <!-- 人员选择盒子-信息员 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="design_assign_provider_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">信息员选择</h4>
-                </div>
-                <div class="modal-body no-padding">
-
-                    <!-- 数据网格 -->
-                    <div class="datagrid datagrid-striped" id="design_assign_provider_datagrid">
-
-                        <!-- 工具条组 -->
-                        <div class="tool-group no-padding">
-                            <div class="tool-deal" style="border:none;">
-                                <label>
-                                    <span>姓名：</span>
-                                    <input type="text" class="form-control" id="design_assign_provider_user">
-                                </label>
-                                <label><button class="btn btn-primary" id="design_assign_provider_search_btn">搜索</button></label>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <!-- tool-group -->
-                        <div class="datagrid-container"></div>
-                        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
-                    </div>
-                    <!-- datagrid -->
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="design_assign_provider_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- design_assign_provider_box -->
 
 </div>
 <!-- page-wrapper -->
 
 <script>
 $(function(){
-
-
 //变量声明-----------------------------------------------------------------------------------------------
     var 
     design_assign                     = $("#design_assign"),                      //页面ID
@@ -295,7 +178,6 @@ $(function(){
     //搜索
     design_assign_tool_keys           = $("#design_assign_tool_keys"),            //搜索类别
     design_assign_tool_search         = $("#design_assign_tool_search"),          //搜索字段
-    design_assign_tool_select1        = $("#design_assign_tool_select1"),         //下拉选择1
     design_assign_search_btn          = $("#design_assign_search_btn"),           //搜索按钮
     //查看
     design_assign_show_box            = $("#design_assign_show_box"),             //查看盒子
@@ -305,39 +187,20 @@ $(function(){
     design_assign_show_filelist       = $("#design_assign_show_filelist"),        //客户附件
     design_assign_show_filelist_type  = $("#design_assign_show_filelist_type"),   //客户附件类型
     design_assign_show_record         = $("#design_assign_show_record"),          //操作记录
-
-    //操作-转移信息员
-    design_assign_turnProvider_box    = $("#design_assign_turnProvider_box"),     //转移信息员盒子
-    design_assign_turnProvider_submit = $("#design_assign_turnProvider_submit"),  //转移信息员提交
-    design_assign_turnProvider_item   = $("#design_assign_turnProvider_item"),    //转移信息员项目
-    design_assign_turnProvider_pre    = $("#design_assign_turnProvider_pre"),     //转移信息员原来
-    design_assign_turnProvider_now    = $("#design_assign_turnProvider_now"),     //转移信息员现在
-
-    //操作-打回
+    //分单
+    design_assign_assign_box          = $("#design_assign_assign_box"),           //分单盒子
+    design_assign_assign_submit       = $("#design_assign_assign_submit"),        //分单提交
+    design_assign_assign_user         = $("#design_assign_assign_user"),          //分单设计师
+    //打回
     design_assign_back_box            = $("#design_assign_back_box"),             //打回盒子
     design_assign_back_submit         = $("#design_assign_back_submit"),          //打回提交
-    design_assign_back_target         = $("#design_assign_back_target"),          //打回目标
-    design_assign_back_reason         = $("#design_assign_back_reason"),          //打回理由
     //跟踪日志
     design_assign_logShow_box         = $("#design_assign_logShow_box"),          //日志查看盒子
     design_assign_logAdd_box          = $("#design_assign_logAdd_box"),           //日志添加盒子
     design_assign_logAdd_submit       = $("#design_assign_logAdd_submit"),        //日志添加提交
     design_assign_logAdd_text         = $("#design_assign_logAdd_text"),          //日志添加内容
     design_assign_logAdd_file         = $("#design_assign_logAdd_file"),          //日志添加附件
-    design_assign_logAdd_date         = $("#design_assign_logAdd_date"),          //添加下次跟踪
-    //人员选择-商务专员
-    design_assign_salesman_box        = $("#design_assign_salesman_box"),         //人员选择盒子
-    design_assign_salesman_submit     = $("#design_assign_salesman_submit"),      //人员选择提交
-    design_assign_salesman_datagrid   = $("#design_assign_salesman_datagrid"),    //人员选择表格
-    design_assign_salesman_user       = $("#design_assign_salesman_user"),        //人员选择姓名
-    design_assign_salesman_depart     = $("#design_assign_salesman_depart"),      //人员选择部门
-    design_assign_salesman_search_btn = $("#design_assign_salesman_search_btn"),  //人员选择搜索
-    //人员选择-信息员
-    design_assign_provider_box        = $("#design_assign_provider_box"),         //人员选择盒子
-    design_assign_provider_submit     = $("#design_assign_provider_submit"),      //人员选择提交
-    design_assign_provider_datagrid   = $("#design_assign_provider_datagrid"),    //人员选择表格
-    design_assign_provider_user       = $("#design_assign_provider_user"),        //人员选择姓名
-    design_assign_provider_search_btn = $("#design_assign_provider_search_btn");  //人员选择搜索
+    design_assign_logAdd_date         = $("#design_assign_logAdd_date");          //添加下次跟踪
 
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
@@ -347,27 +210,12 @@ $(function(){
             datagrid            : LOCAL + "Test/test_datagrid.json",                                  //数据表格
             datagrid_filelist   : LOCAL + "Test/Business/customer_filelist.json",                     //客户附件表格
             datagrid_record     : LOCAL + "Test/test_datagrid.json",                                  //操作记录表格
-            datagrid_salesman   : LOCAL + "Test/test_datagrid.json",                                  //人员选择表格-商务专员
-            datagrid_provider   : LOCAL + "Test/test_datagrid.json",                                  //人员选择表格-信息员
             select              : LOCAL + "Test/test_select.json",                                    //下拉选择
             modal_show          : LOCAL + "Test/Business/customer_edit.json",                         //查看盒子
             topic               : LOCAL + "Test/Business/provider_topic.json",                        //日志查看
         }
 
     } else if ( window.STATE == "route" ){
-
-        //本地接口
-        var design_assign_api = {
-            datagrid            : LOCAL + "Test/test_datagrid.json",                                  //数据表格
-            datagrid_filelist   : LOCAL + "Test/Business/customer_filelist.json",                     //客户附件表格
-            datagrid_record     : LOCAL + "Test/test_datagrid.json",                                  //操作记录表格
-            datagrid_salesman   : LOCAL + "Test/test_datagrid.json",                                  //人员选择表格-商务专员
-            datagrid_provider   : LOCAL + "Test/test_datagrid.json",                                  //人员选择表格-信息员
-            select              : LOCAL + "Test/test_select.json",                                    //下拉选择
-            modal_show          : LOCAL + "Test/Business/customer_edit.json",                         //查看盒子
-            topic               : LOCAL + "Test/Business/provider_topic.json",                        //日志查看
-        }
-
     }
 
     //数据表格-----------------------------------------------------------------------------------------------
@@ -420,8 +268,8 @@ $(function(){
                         getter : function(dataValue,cell){
                             var data = cell.config.data;
                             return `
-                             <a class="design_assign_turnProvider_btn" rowIndex="${cell.rowIndex}" rowItem="${data.username}" rowPre="${data.name}">分单</a>
-                                                        <a class="design_assign_back_btn" rowIndex="${cell.rowIndex}" rowState="${dataValue}">打回</a>
+                             <a class="design_assign_assign_btn" rowIndex="${cell.rowIndex}">分单</a>
+                             <a class="design_assign_back_btn"   rowIndex="${cell.rowIndex}">打回</a>
                             `;
                         }
                     }
@@ -548,39 +396,12 @@ $(function(){
     design_assign_show_filelist_obj= design_assign_show_filelist.data("zui.datagrid"),  //查看表格1
     design_assign_show_record_obj  = design_assign_show_record.data("zui.datagrid"),    //查看表格2
     design_assign_show_btn         = ".design_assign_show_btn",                         //查看按钮
-    //操作
-    design_assign_turnProvider_btn = ".design_assign_turnProvider_btn",                 //转移信息员
-    design_assign_tobeprovider_btn = ".design_assign_tobeprovider_btn",                 //转为信息员
-    design_assign_back_btn         = ".design_assign_back_btn",                         //打回
-    design_assign_todesign_btn     = ".design_assign_todesign_btn",                     //提交设计部
-    design_assign_sink_btn         = ".design_assign_sink_btn",                         //归库
-    //日志
-    design_assign_logShow_btn      = ".design_assign_logShow_btn",                      //日志查看
-    design_assign_logAdd_btn       = ".design_assign_logAdd_btn";                       //日志添加
-
-    //上传创建-----------------------------------------------------------------------------------------------
-    zui_upload_group({upid:"design_assign_logAdd_file",type:"img",maxSize:"10mb"});
+    design_assign_assign_btn       = ".design_assign_assign_btn",                       //分单按钮
+    design_assign_back_btn         = ".design_assign_back_btn",                         //打回按钮
+    design_assign_logShow_btn      = ".design_assign_logShow_btn";                      //日志查看
 
     //下拉选项-----------------------------------------------------------------------------------------------
-
-    //人员选择-商务专员-部门
-    $.ajax({
-        url     : design_assign_api.select,
-        type    : "post",
-        dataType: "json",
-        data    : {},
-        success : function(data){
-            if( data.status>0 ){
-                var data = data.data;
-                var option = "<option value='0'>全部</option>";
-                for(var i=0;i<data.length;i++){
-                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-                }
-                design_assign_salesman_depart.html(option);
-            }
-        }
-    });
-    //日志时间
+    //分单
     $.ajax({
         url     : design_assign_api.select,
         type    : "post",
@@ -593,7 +414,7 @@ $(function(){
                 for(var i=0;i<data.length;i++){
                     option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
-                design_assign_logAdd_date.html(option);
+                design_assign_assign_user.html(option);
             }
         }
     });
@@ -706,29 +527,24 @@ $(function(){
         zui_datagrid_render(design_assign_show_filelist_obj,design_assign_api.datagrid_filelist+keyword);
     });
 
-    //转移信息员-----------------------------------------------------------------------------------------
-    $(document).on("click",design_assign_turnProvider_btn,function(){
+    //分单按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",design_assign_assign_btn,function(){
 
         //数据复原
-        design_assign_turnProvider_now.attr("dataId","");
         common_form_reset();
 
         //数据取值
         var data_id = $(this).attr("rowIndex");
-        var rowItem = $(this).attr("rowItem");
-        var rowPre  = $(this).attr("rowPre");
 
         //数据赋值
-        design_assign_turnProvider_submit.attr("dataId",data_id);
-        design_assign_turnProvider_item.val(rowItem);
-        design_assign_turnProvider_pre.val(rowPre);
+        design_assign_assign_submit.attr("dataId",data_id);
 
         //面板显示
-        design_assign_turnProvider_box.modal("show");
+        design_assign_assign_box.modal("show");
 
     });
-    //转移信息员提交
-    design_assign_turnProvider_submit.click(function(){
+    //分单提交
+    design_assign_assign_submit.click(function(){
 
         //数据ID
         var data_id = $(this).attr("dataId");
@@ -739,8 +555,8 @@ $(function(){
             type    : "post",
             dataType: "json",
             data    : {
-                id  : data_id,
-                now : design_assign_turnProvider_now.attr("dataId")
+                id   : data_id,
+                user  : design_assign_assign_user.val()
             },
             success : function(data){
                 if( data.status>0 ){
@@ -754,25 +570,11 @@ $(function(){
 
     });
 
-
-    //打回-----------------------------------------------------------------------------------------------
+    //打回按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",design_assign_back_btn,function(){
-
-        //数据复原
-        common_form_reset();
 
         //数据取值
         var data_id = $(this).attr("rowIndex");
-        var state   = $(this).attr("rowState");
-
-        //状态判断
-        if (state == 1) {   //已提交(商务经理未审批)
-            design_assign_back_target.val(2);
-            design_assign_back_target.attr("disabled","disabled");
-        } else {            //不准申请中 | 未签申请中
-            design_assign_back_target.val(1);
-            design_assign_back_target.removeAttr("disabled");
-        }
 
         //数据赋值
         design_assign_back_submit.attr("dataId",data_id);
@@ -792,13 +594,8 @@ $(function(){
             url     : API.test_response,
             type    : "post",
             dataType: "json",
-            data    : { 
-                id   : data_id,
-                target : design_assign_back_target.val(),
-                reason : design_assign_back_reason.val()                
-            },
+            data    : { id: data_id },
             success : function(data){
-            	console.log(data)
                 if( data.status>0 ){
                     um_tip(data.message);
                     zui_datagrid_reset(design_assign_datagrid_obj,design_assign_api.datagrid);
@@ -807,9 +604,7 @@ $(function(){
                 }
             }
         });
-
     });
-
 
     //日志查看-----------------------------------------------------------------------------------------------
     $(document).on("click",design_assign_logShow_btn,function(){
@@ -847,7 +642,7 @@ $(function(){
                                     </div>
                                     <div class="content">
                                         <div class="pull-right text-muted">${data[i].date}</div>
-                                        <div class="text">${data[i].text}</div>
+                                        <div class="text"><span class="label label-outline label-primary design-log-prog">${data[i].prog}</span> ${data[i].text}</div>
                                         <div class="actions common_topic_imgs_wrap">
                                             <a class="common_topic_imgs_btn">图片[${data[i].imgs.length}]</a>
                                             <div class="common_topic_imgs_box hide">`;
@@ -930,227 +725,6 @@ $(function(){
                 }
             }
         });
-    });
-
-    //日志添加-----------------------------------------------------------------------------------------------
-    $(document).on("click",".design_assign_logAdd_btn",function(){
-
-        //数据复原
-        common_form_reset();
-
-        //ID取值
-        var rowIndex = $(this).attr("rowIndex");
-
-        //ID赋值
-        design_assign_logAdd_submit.attr("rowIndex",rowIndex);
-
-        //面板显示
-        design_assign_logAdd_box.modal("show");
-
-    });
-    //日志提交
-    design_assign_logAdd_submit.click(function(){
-
-        //ID取值
-        var data_id = $(this).attr("rowIndex");
-
-        //远程提交
-        $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : {
-                id   : data_id,
-                text : design_assign_logAdd_text.val(),
-                file : design_assign_logAdd_file.attr("path"),
-                date : design_assign_logAdd_date.val(),
-            },
-            success : function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    zui_datagrid_reset(design_assign_datagrid_obj,design_assign_api.datagrid);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-    });
-    //日志关闭
-    design_assign_logAdd_box.on("hide.zui.modal",function(){
-        //上传重置
-        zui_upload_reset([design_assign_logAdd_file]);
-    });
-
-    //人员选择-商务专员------------------------------------------------------------------------------------------
-    //数据列表
-    design_assign_salesman_datagrid.datagrid({
-               height      : 400,
-               sortable    : false,
-               cache       : false,
-               showRowIndex: true,
-               checkable   : true,
-               checkByClickRow:false,
-               selectable  : false,
-        configs     : {
-            R0:{className:"text-center"},
-            C1:{className:"cell-hidden"}
-        },
-        states      : {
-            pager           : {
-                page        : 1,
-                recPerPage  : window.REC_PER_PAGE,
-            }
-        },
-        dataSource : {
-            cols   : [
-                {name:"id",label:"ID",  width:1 },
-                {name:"name",label:"姓名",width:80 },
-                {name:"departname",label:"部门",width:100},
-                {name:"positionname",label:"职务"}
-            ],
-            remote : function(){
-                return {
-                    url     : design_assign_api.datagrid_salesman,
-                    type    : "POST",
-                    dataType: "json",
-                }
-            }
-        }
-    });
-    var design_assign_salesman_datagrid_obj = design_assign_salesman_datagrid.data("zui.datagrid");
-
-    //搜索按钮
-    design_assign_salesman_search_btn.click(function(){
-
-        //字段整理
-        var keyword
-        = "?search=" + design_assign_salesman_user.val()
-        + "&depart=" + design_assign_salesman_depart.val();
-
-        //GET提交
-        zui_datagrid_render(design_assign_salesman_datagrid_obj,design_assign_api.datagrid_salesman+keyword);
-
-    });
-    //点击显示
-    $(".salesman_person_btn").click(function(){
-
-        //按钮ID获取
-        COMMON_PERSON_BTNID = $(this).attr("id");
-
-        //批量勾选去除
-        var data_arr = design_assign_salesman_datagrid_obj.getCheckItems().filter(function(e){return e});
-        for(var i=0;i<data_arr.length;i++){
-            design_assign_salesman_datagrid_obj.checkRow(i,false);
-        }
-
-        //面板显示
-        design_assign_salesman_box.modal("show");
-
-    });
-    //提交按钮
-    design_assign_salesman_submit.click(function(){
-        
-        //批量取值
-        var data_arr = design_assign_salesman_datagrid_obj.getCheckItems().filter(function(e){return e});
-       
-        if( data_arr.length==1 ){
-            
-            //数据赋值
-            $("#"+COMMON_PERSON_BTNID).val(data_arr[0].name);
-            $("#"+COMMON_PERSON_BTNID).attr("dataId",data_arr[0].id);
-
-            //面板显示
-            design_assign_salesman_box.modal("hide");
-
-        } else {
-            um_tip("请选择一条数据","1000","text-danger");
-        }
-
-    });
-
-    //人员选择-信息员------------------------------------------------------------------------------------------
-    //数据列表
-    design_assign_provider_datagrid.datagrid({
-        height      : 400,
-        sortable    : false,
-        cache       : false,
-        showRowIndex: true,
-        checkable   : true,
-        selectable  : false,
-        configs     : {
-            R0:{className:"text-center"},
-            C1:{className:"cell-hidden"}
-        },
-        states      : {
-            pager           : {
-                page        : 1,
-                recPerPage  : window.REC_PER_PAGE,
-            }
-        },
-        dataSource : {
-            cols   : [
-                {name:"id",   label:"ID",  width:1  },
-                {name:"name", label:"姓名",width:80 },
-                {name:"tex10",label:"公司",width:150},
-                {name:"name", label:"商务专员",width:100},
-                {name:"text1",label:"级别"}
-            ],
-            remote : function(){
-                return {
-                    url     : design_assign_api.datagrid_provider,
-                    type    : "POST",
-                    dataType: "json",
-                }
-            }
-        }
-    });
-    var design_assign_provider_datagrid_obj = design_assign_provider_datagrid.data("zui.datagrid");
-
-    //搜索按钮
-    design_assign_provider_search_btn.click(function(){
-
-        //字段整理
-        var keyword = "?search=" + design_assign_provider_user.val();
-
-        //GET提交
-        zui_datagrid_render(design_assign_provider_datagrid_obj,design_assign_api.datagrid_provider+keyword);
-
-    });
-    //点击显示
-    $(".provider_person_btn").click(function(){
-
-        //按钮ID获取
-        COMMON_PERSON_BTNID = $(this).attr("id");
-
-        //批量勾选去除
-        var data_arr = design_assign_provider_datagrid_obj.getCheckItems().filter(function(e){return e});
-        for(var i=0;i<data_arr.length;i++){
-            design_assign_provider_datagrid_obj.checkRow(i,false);
-        }
-
-        //面板显示
-        design_assign_provider_box.modal("show");
-
-    });
-    //提交按钮
-    design_assign_provider_submit.click(function(){
-        
-        //批量取值
-        var data_arr = design_assign_provider_datagrid_obj.getCheckItems().filter(function(e){return e});
-       
-        if( data_arr.length==1 ){
-            
-            //数据赋值
-            $("#"+COMMON_PERSON_BTNID).val(data_arr[0].name);
-            $("#"+COMMON_PERSON_BTNID).attr("dataId",data_arr[0].id);
-
-            //面板显示
-            design_assign_provider_box.modal("hide");
-
-        } else {
-            um_tip("请选择一条数据","1000","text-danger");
-        }
-
     });
 
 });//预加载结尾
