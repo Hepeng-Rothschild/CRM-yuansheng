@@ -1,26 +1,26 @@
 <!-- 页面外套 -->
-<div class="page-wrapper" id="budget_build">
+<div class="page-wrapper" id="design_budget_build">
 
     <!-- 数据网格 -->
-    <div class="datagrid datagrid-striped" id="budget_build_datagrid">
+    <div class="datagrid datagrid-striped" id="design_budget_build_datagrid">
 
         <!-- 工具条组 -->
         <div class="tool-group">
             <div class="tool-search">
                 <div class="im-label">
                     <div class="input-group">
-                        <select class="form-control" id="budget_build_tool_keys">
+                        <select class="form-control" id="design_budget_build_tool_keys">
                             <option value="1">项目编号</option>
                             <option value="2">项目名称</option>
                             <option value="3">设计师</option>
                         </select>
                         <span class="input-group-addon fix-border fix-padding"></span>
-                        <input type="text" class="form-control" id="budget_build_tool_search">
+                        <input type="text" class="form-control" id="design_budget_build_tool_search">
                     </div>
                 </div>
                 <label>
-                    <span>报价状态：</span>
-                    <select class="form-control" id="budget_build_tool_select1">
+                    <span>预算状态：</span>
+                    <select class="form-control" id="design_budget_build_tool_select1">
                         <option value="0">全部</option>
                         <option value="1">制作中</option>
                         <option value="2">设计经理审核中</option>
@@ -29,13 +29,13 @@
                 </label>
                 <label>
                     <span>空间类型：</span>
-                    <select class="form-control" id="budget_build_tool_select2"><!--JS推进--></select>
+                    <select class="form-control" id="design_budget_build_tool_select2"><!--JS推进--></select>
                 </label>
-                <label><button class="btn btn-primary" id="budget_build_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <label><button class="btn btn-primary" id="design_budget_build_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
             </div>
             <div class="tool-deal">
-            	<label><button class="btn btn-primary" id="budget_build_add_btn"> <i class="icon icon-plus"></i> 新建报价</button></label>
+            	<label><button class="btn btn-primary" id="design_budget_build_add_btn"> <i class="icon icon-plus"></i> 新建预算</button></label>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -46,25 +46,25 @@
     </div>
     <!-- datagrid -->
 
-    <!-- 新建报价盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="budget_build_add_box">
+    <!-- 新建预算盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="design_budget_build_add_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">新建报价</h4>
+                    <h4 class="modal-title">新建预算</h4>
                 </div>
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group">
                             <div class="form-group">
-                                <label class="col-sm-2 required" for="">报价名称</label>
+                                <label class="col-sm-2 required" for="">预算名称</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" id="">
                                 </div>
-                                <label class="col-sm-2 required" for="budget_build_add_item">项目选择</label>
+                                <label class="col-sm-2 required" for="design_budget_build_add_item">项目选择</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control" id="budget_build_add_item"><!--JS推进--></select>
+                                    <select class="form-control" id="design_budget_build_add_item"><!--JS推进--></select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -120,26 +120,45 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="budget_build_add_submit">提交</button>
+                    <button type="button" class="btn btn-primary" id="design_budget_build_add_submit">提交</button>
                 </div>                
             </div>
         </div>
     </div>
-    <!-- budget_build_add_box -->
- 
-    <!-- 报价修改盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="budget_build_edit_box">
+    <!-- design_budget_build_add_box -->
+
+
+    <!-- 预算查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="design_budget_build_show_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">预算查看</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        预算查看
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- design_budget_build_show_box -->
+
+    <!-- 预算修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="design_budget_build_edit_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">报价修改</h4>
+                    <h4 class="modal-title">预算修改</h4>
                 </div>
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group">
                             <div class="form-group">
-                                <label class="col-sm-2 required" for="">报价名称</label>
+                                <label class="col-sm-2 required" for="">预算名称</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" id="">
                                 </div>
@@ -202,63 +221,362 @@
             </div>
         </div>
     </div>
-    <!-- budget_build_edit_box -->
+    <!-- design_budget_build_edit_box -->
 
-    <!-- 报价设置盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" data-keyboard="false" id="budget_build_budget_box">
+    <!-- 预算设置盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" data-keyboard="false" id="design_budget_build_setup_box">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">报价设置</h4>
+                <div class="modal-header flex-box">
+                    <h4 class="modal-title">预算设置</h4>
+                    <span class="text-center flex-son">
+                        <a href="#a1">预算书制作 <i class="icon icon-level-down"></i></a> | 
+                        <a href="#a2">费用折扣 <i class="icon icon-level-down"></i></a>
+                    </span>
+                    <button class="btn btn-primary btn-mini" data-dismiss="modal">保存</button>
                 </div>
                 <div class="modal-body modal-scroll">
-                    <div class="container">
-                        <!-- 切换面板 -->
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-tab="" href="#budget_build_edit_table1">预算书</a></li>
-                            <li><a data-tab="" href="#budget_build_edit_table2">特殊项管理</a></li>
-                            <li><a data-tab="" href="#budget_build_edit_table3">费用折扣</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <!-- 工程概况 -->
-                            <form class="with-padding form-horizontal tab-pane active" id="budget_build_edit_table1">
-                                1
-                            </form>
-                            <!-- budget_build_edit_table1 -->
-                            <form class="tab-pane" id="budget_build_edit_table2">
-                                2
-                            </form>
-                            <form class="tab-pane" id="budget_build_edit_table3">
-                                3
-                            </form>
+                <!--<ul class="nav nav-tabs">
+                        <li class="active"><a data-tab="" href="#design_budget_build_edit_table1">预算书</a></li>
+                        <li><a data-tab="" href="#design_budget_build_edit_table2">特殊项管理</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <form class="with-padding form-horizontal tab-pane active" id="design_budget_build_edit_table1">
+                        </form>
+                        <form class="tab-pane" id="design_budget_build_edit_table2">
+                            2
+                        </form>
+                    </div> -->
+                    <div class="flex-box" id="a1">
+                        <ul class="tree tree-lines with-padding" id="test"></ul>
+                        <div class="flex-son" id="right">
+                            <!-- <table class="table table-bordered table-condensed">
+                                <thead>
+                                <tr>
+                                    <th><i class="icon icon-move"></i> 工艺A</th>
+                                    <th data-type="number" class="flex-col" data-width="200">中间可变</th>
+                                    <th data-type="date" data-col-class="text-primary"  class="table-toggle">右侧固定</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>小杰</td>
+                                    <td>12</td>
+                                    <td>
+                                        <div>XX</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>- - -</td>
+                                    <td>- - -</td>
+                                    <td>- - -</td>
+                                </tr>
+                                <tr>
+                                    <td>酷拉皮卡</td>
+                                    <td>17</td>
+                                    <td>404</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered table-condensed">
+                                <thead>
+                                <tr>
+                                    <th><i class="icon icon-move"></i> 工艺B</th>
+                                    <th data-type="number" class="flex-col" data-width="200">中间可变</th>
+                                    <th data-type="date" data-col-class="text-primary"  class="table-toggle">右侧固定</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>小杰</td>
+                                    <td>12</td>
+                                    <td>
+                                        <div>XX</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>- - -</td>
+                                    <td>- - -</td>
+                                    <td>- - -</td>
+                                </tr>
+                                <tr>
+                                    <td>酷拉皮卡</td>
+                                    <td>17</td>
+                                    <td>404</td>
+                                </tr>
+                                </tbody>
+                            </table> -->
+
+
+                            <table class="table table-bordered table-condensed">
+                                <!-- 标题 -->
+                                <thead>
+                                <tr>
+                                    <th>标题</th>
+                                    <th>/</th>
+                                </tr>
+                                </thead>
+                                <!-- 标题 -->
+
+                                <tbody>
+                                    <tr class="gongyi">
+                                        <td><i class="icon icon-move"></i>工艺1</td>
+                                        <td><div class="table-toggle">XX</div></td>
+                                    </tr>
+                                    <tr class="zhucai">
+                                        <td>主材1</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="zhucai">
+                                        <td>辅材1</td>
+                                        <td></td>
+                                    </tr>                                    
+                                </tbody>
+
+                                <tbody>
+                                    <tr class="gongyi">
+                                        <td><i class="icon icon-move"></i>工艺2</td>
+                                        <td><div class="table-toggle">XX</div></td>
+                                    </tr>
+                                    <tr class="zhucai">
+                                        <td>主材2</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="zhucai">
+                                        <td>辅材2</td>
+                                        <td></td>
+                                    </tr>                                    
+                                </tbody>
+                            </table>
+
                         </div>
-                        <!-- 切换面板 -->
                     </div>
+                    <style>
+                        #test{
+                            margin-right:20px;
+                        }
+                        #test li{
+                            display: block;
+                        }
+                        #test li .tttt{
+                            display: block;
+                        }
+                        .icon-move{
+                            cursor: pointer;
+                        }
+                        #right tbody{
+                            background: #fff;
+                        }
+                        #right tbody .gongyi{
+                            background: #f5f5f5;
+                        }
+/*                        .invisible{
+                            background: red;
+                        }
+                        .drop-to{
+                            background: blue;
+                        }*/
+                    </style>
+                    <script>
+
+                        $.ajax({
+                            url     : LOCAL + "Budget/build_setup_tree.json",
+                            type    : "post",
+                            success : function(data){
+                                var data = um_json(data);
+                                $("#test").tree({
+                                    data        : data,
+                                    itemCreator : function($li,item){
+                                        $li.addClass("open");
+                                        $li.append( $("<a>",{class:'tttt'}).html( "<span class='pull-left'>"+item.title +"</span> &nbsp; <span class='pull-right'>"+ item.count+"元 </span>" ) );
+                                    },
+                                });
+
+                            }
+                        });
+                        setTimeout(function () {
+                            var tttt = $(".tttt");
+                            for(var i=0;i<tttt.length;i++){
+                                var aaa = tttt.eq(i);
+                                // aaa.css('border','1px solid red');
+                                var type3 = [
+                                    {label:"type3",onClick:function(){ alert("回调函数");}},
+                                    {type :"divider"},
+                                    {label:"复制"},
+                                ];
+                                aaa.contextmenu({ items:type3})
+
+                               tttt.eq(i).parent("li").sortable();
+                            }
+                        },10)
+                        
+                        $(".table-toggle").click(function () {
+                            var son = $(this).parent().parent().siblings(".zhucai");
+                            son.is(':visible') ? son.hide() : son.show();
+                        });
+
+
+                        //var
+                        // var move = $(".table-move");
+                        // move.css('border','1px solid red');
+                        // move.sortable();
+
+
+                        $("#right").sortable({
+                            selector :"tbody",
+                            trigger  :".icon",
+                            dragCssClass    :"invisible",       //类名添加(子级影子)
+                            dropToClass     :"drop-to",         //类名添加(子级影子)                            
+                        });
+                        // for(var i=0;i<move.length;i++){
+                        //     var dom = move.eq(i);
+                        //     dom.sortable();     // { handle : ".icon" }
+                        // }
+                    </script>
+                        <div style="height:600px;"></div>
+                    <hr>
+                    <h2 id="a2">费用折扣</h2>
+                    <h4>管理费率</h4>
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>左侧固定</th>
+                            <th data-type="number" class="flex-col" data-width="200">中间可变</th>
+                            <th data-type="date" data-col-class="text-primary">右侧固定</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>小杰</td>
+                            <td>12</td>
+                            <td>
+                                <div>XX</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                        </tr>
+                        <tr>
+                            <td>酷拉皮卡</td>
+                            <td>17</td>
+                            <td>404</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4>其他费率</h4>
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>左侧固定</th>
+                            <th data-type="number" class="flex-col" data-width="200">中间可变</th>
+                            <th data-type="date" data-col-class="text-primary">右侧固定</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>小杰</td>
+                            <td>12</td>
+                            <td>
+                                <div>XX</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                        </tr>
+                        <tr>
+                            <td>酷拉皮卡</td>
+                            <td>17</td>
+                            <td>404</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>折扣设置</h4>
+                    <div class="form-group">
+                        <label class="col-sm-2 required" for="">隐性折扣</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-short">
+                                <span class="input-group-addon">￥</span>
+                                <input class="form-control" type="number">
+                                <span class="input-group-addon">折</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 required" for="">隐性折扣</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-short">
+                                <span class="input-group-addon">￥</span>
+                                <input class="form-control" type="number">
+                                <span class="input-group-addon">折</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 required" for="">优惠金额</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-short">
+                                <span class="input-group-addon">￥</span>
+                                <input class="form-control" type="number">
+                                <span class="input-group-addon">折</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <!-- budget_build_budget_box -->
+    <!-- design_budget_build_setup_box -->
 
-    <!-- 报价导出盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="budget_build_export_box">
+    <!-- 预算导出盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="design_budget_build_export_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">报价导出</h4>
+                    <h4 class="modal-title">预算导出</h4>
                 </div>
                 <div class="modal-body">
-                    报价导出
+<!--                     <div class="form-group">
+                        <div class="col-sm-2 required" style="text-align:right"><input type="checkbox" id=""></div>
+                        <label class="col-sm-10" for="" style="text-align:left">隐藏验收标准</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 required" style="text-align:right"><input type="checkbox" id=""></div>
+                        <label class="col-sm-10" for="" style="text-align:left">隐藏验收标准</label>
+                    </div>    
+                     -->
+                    <form class="container form-horizontal">
+                        <div class="form-group"><label><input type="checkbox" id=""> 工程说明</label></div>
+                        <div class="form-group"><label><input type="checkbox" id=""> 综合取费表目录</label></div>
+                        <div class="form-group"><label><input type="checkbox" id=""> 综合取费表</label></div>
+                        <div class="form-group"><label><input type="checkbox" id=""> 工程量清单目录</label></div>
+                        <div class="form-group"><label><input type="checkbox" id=""> 工程量清单</label></div>
+                        <div class="form-group"><label><input type="checkbox" id=""> 主材清单目录</label></div>
+                        <div class="form-group"><label><input type="checkbox" id=""> 主材清单</label></div>
+                        <div class="form-group"><label><input type="checkbox" id=""> 辅材清单目录</label></div>
+                        <div class="form-group"><label><input type="checkbox" id=""> 辅材清单</label></div>
+                        <div class="form-group"><label><input type="checkbox" id=""> 工艺清单目录</label></div>
+                        <div class="form-group"><label><input type="checkbox" id=""> 工艺清单</label></div>
+                    </form>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="design_budget_build_export_submit">提交</button>
+                </div>                    
             </div>
         </div>
     </div>
-    <!-- budget_build_export_box -->
+    <!-- design_budget_build_export_box -->
 
     <!-- 提交初审盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="budget_build_approval_box">
+    <div class="modal modal-for-page fade" aria-hidden="false" id="design_budget_build_approval_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -272,26 +590,26 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="budget_build_approval_submit">提交</button>
+                    <button type="button" class="btn btn-primary" id="design_budget_build_approval_submit">提交</button>
                 </div>                
             </div>
         </div>
     </div>
-    <!-- budget_build_approval_box -->
+    <!-- design_budget_build_approval_box -->
 
-    <!-- 复制报价盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="budget_build_copy_box">
+    <!-- 复制预算盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="design_budget_build_copy_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">复制报价</h4>
+                    <h4 class="modal-title">复制预算</h4>
                 </div>
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group">
                             <div class="form-group">
-                                <label class="col-sm-2 required" for="">报价名称</label>
+                                <label class="col-sm-2 required" for="">预算名称</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" id="">
                                 </div>
@@ -353,63 +671,65 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="budget_build_copy_submit">提交</button>
+                    <button type="button" class="btn btn-primary" id="design_budget_build_copy_submit">提交</button>
                 </div>                
             </div>
         </div>
     </div>
-    <!-- budget_build_copy_box -->
+    <!-- design_budget_build_copy_box -->
 
 </div>
 <!-- page-wrapper -->
 <script>
 $(function(){
 
-    // $("#budget_build_edit_box").modal("show");
+   $("#design_budget_build_setup_box").modal("show");
     
     //变量声明-----------------------------------------------------------------------------------------------
     var 
-    budget_build                = $("#budget_build"),                   //页面ID
-    budget_build_datagrid       = $("#budget_build_datagrid"),          //数据表格
+    design_budget_build                = $("#design_budget_build"),                   //页面ID
+    design_budget_build_datagrid       = $("#design_budget_build_datagrid"),          //数据表格
     //搜索
-    budget_build_tool_keys      = $("#budget_build_tool_keys"),         //搜索类别
-    budget_build_tool_search    = $("#budget_build_tool_search"),       //搜索字段
-    budget_build_tool_select1   = $("#budget_build_tool_select1"),      //下拉选择1
-    budget_build_tool_select2   = $("#budget_build_tool_select2"),      //下拉选择2    
-    budget_build_search_btn     = $("#budget_build_search_btn"),        //搜索按钮
-    //新建报价
-    budget_build_add_box        = $("#budget_build_add_box"),           //新建盒子
-    budget_build_add_btn        = $("#budget_build_add_btn"),           //新建按钮
-    budget_build_add_submit     = $("#budget_build_add_submit"),        //新建按钮
-    budget_build_add_item       = $("#budget_build_add_item"),          //新建项目
+    design_budget_build_tool_keys      = $("#design_budget_build_tool_keys"),         //搜索类别
+    design_budget_build_tool_search    = $("#design_budget_build_tool_search"),       //搜索字段
+    design_budget_build_tool_select1   = $("#design_budget_build_tool_select1"),      //下拉选择1
+    design_budget_build_tool_select2   = $("#design_budget_build_tool_select2"),      //下拉选择2    
+    design_budget_build_search_btn     = $("#design_budget_build_search_btn"),        //搜索按钮
+    //新建预算
+    design_budget_build_add_box        = $("#design_budget_build_add_box"),           //新建盒子
+    design_budget_build_add_btn        = $("#design_budget_build_add_btn"),           //新建按钮
+    design_budget_build_add_submit     = $("#design_budget_build_add_submit"),        //新建按钮
+    design_budget_build_add_item       = $("#design_budget_build_add_item"),          //新建项目
     //修改
-    budget_build_edit_box       = $("#budget_build_edit_box"),          //修改盒子
-    budget_build_edit_submit    = $("#budget_build_edit_submit"),       //修改提交
-    //报价设置
-    budget_build_budget_box     = $("#budget_build_budget_box"),        //报价盒子
-    budget_build_budget_submit  = $("#budget_build_budget_submit"),     //报价提交
-    //导出
-    budget_build_export_box     = $("#budget_build_export_box"),        //导出盒子
-    budget_build_export_submit  = $("#budget_build_export_submit"),     //导出提交
+    design_budget_build_edit_box       = $("#design_budget_build_edit_box"),          //修改盒子
+    design_budget_build_edit_submit    = $("#design_budget_build_edit_submit"),       //修改提交
+    //预算查看
+    design_budget_build_show_box       = $("#design_budget_build_show_box"),          //预算查看
+    //预算设置
+    design_budget_build_setup_box      = $("#design_budget_build_setup_box"),         //设置盒子
+    design_budget_build_setup_submit   = $("#design_budget_build_setup_submit"),      //设置提交
+    //预算导出
+    design_budget_build_export_box     = $("#design_budget_build_export_box"),        //导出盒子
+    design_budget_build_export_submit  = $("#design_budget_build_export_submit"),     //导出提交
     //提交初审
-    budget_build_approval_box   = $("#budget_build_approval_box"),      //初审盒子
-    budget_build_approval_submit= $("#budget_build_approval_submit"),   //初审提交
-    //复制报价
-    budget_build_copy_box       = $("#budget_build_copy_box"),          //复制盒子
-    budget_build_copy_btn       = $("#budget_build_copy_btn"),          //复制按钮
-    budget_build_copy_submit    = $("#budget_build_copy_submit"),       //复制按钮
-    budget_build_copy_item      = $("#budget_build_copy_item");         //复制项目
+    design_budget_build_approval_box   = $("#design_budget_build_approval_box"),      //初审盒子
+    design_budget_build_approval_submit= $("#design_budget_build_approval_submit"),   //初审提交
+    //复制预算
+    design_budget_build_copy_box       = $("#design_budget_build_copy_box"),          //复制盒子
+    design_budget_build_copy_btn       = $("#design_budget_build_copy_btn"),          //复制按钮
+    design_budget_build_copy_submit    = $("#design_budget_build_copy_submit"),       //复制按钮
+    design_budget_build_copy_item      = $("#design_budget_build_copy_item");         //复制项目
 
     //接口对象-----------------------------------------------------------------------------------------------
     if( window.STATE == "local" ){
 
         //本地接口
-        var budget_build_api = {
+        var design_budget_build_api = {
             datagrid            : LOCAL + "Budget/build_datagrid.json",         //数据表格
             select              : LOCAL + "Test/test_select.json",              //下拉选择
-            select_item         : LOCAL + "Budget/build_select_item.json",      //报价项目
+            select_item         : LOCAL + "Budget/build_select_item.json",      //预算项目
             modal_show          : LOCAL + "Test/Business/provider_edit.json",   //修改盒子
-            topic               : LOCAL + "Test/Business/provider_topic.json",  //日志查看
+            setup_tree          : LOCAL + "Budget/build_setup_tree.json",       //预算书树状图
         }
 
     } else if ( window.STATE == "route" ){
@@ -417,8 +737,8 @@ $(function(){
     }
 
     //数据表格-----------------------------------------------------------------------------------------------
-    budget_build_datagrid.datagrid({
-        height      : zui_datagrid_height(budget_build_datagrid),
+    design_budget_build_datagrid.datagrid({
+        height      : zui_datagrid_height(design_budget_build_datagrid),
         sortable    : false,
         cache       : false,
         showRowIndex: true,
@@ -435,7 +755,15 @@ $(function(){
         dataSource : {
             cols   : [
                 {name:"id",  label:"ID",  width:49},
-                {name:"budgetname",     label:"报价名称",  width:150},
+                {name:"budgetname",     label:"预算名称",  width:150,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            return `
+                            <a class="design_budget_build_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
+                        }
+                    }
+                },
                 {name:"itemname",       label:"项目名称",  width:150},                
                 {name:"itemnumber",     label:"项目编号",  width:80},
                 {name:"designer",       label:"设计师",    width:80},
@@ -449,32 +777,32 @@ $(function(){
                 {name:"costdiscount",   label:"折扣总金额",width:100},
                 {name:"spacetype",      label:"空间类型",  width:80},
                 {name:"itemstatename",  label:"项目状态",  width:80},
-                {name:"budgetstatename",label:"报价状态",  width:80},
-                {name:"operate",        label:"操作",      width:150,
+                {name:"budgetstatename",label:"预算状态",  width:80},
+                {name:"operate",        label:"预算操作",  width:150,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
                             return `
-                            <a class="budget_build_edit_btn"   rowIndex="${cell.rowIndex}">修改</a>
-                            <a class="budget_build_budget_btn" rowIndex="${cell.rowIndex}">报价设置</a>
-                            <a class="budget_build_export_btn" rowIndex="${cell.rowIndex}">导出</a>`;
+                            <a class="design_budget_build_setup_btn" rowIndex="${cell.rowIndex}">预算书制作</a>
+                            <a class="design_budget_build_approval_btn" rowIndex="${cell.rowIndex}">提交初审</a>`;
                         }
                     }
                 },
-                {name:"operate",        label:"操作",      width:150,
+                {name:"operate",        label:"基本操作",   width:150,
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
                             return `
-                            <a class="budget_build_approval_btn" rowIndex="${cell.rowIndex}">提交初审</a>
-                            <a class="budget_build_copy_btn" rowIndex="${cell.rowIndex}">复制</a>`;
+                            <a class="design_budget_build_edit_btn"   rowIndex="${cell.rowIndex}">修改</a>
+                            <a class="design_budget_build_copy_btn" rowIndex="${cell.rowIndex}">复制</a>
+                            <a class="design_budget_build_export_btn" rowIndex="${cell.rowIndex}">导出</a>`;
                         }
                     }
                 }                
             ],
             remote : function(){
                 return {
-                    url     : budget_build_api.datagrid,
+                    url     : design_budget_build_api.datagrid,
                     type    : "POST",
                     dataType: "json",
                 }
@@ -484,17 +812,18 @@ $(function(){
 
     //变量声明-----------------------------------------------------------------------------------------------
     var
-    budget_build_datagrid_obj     = budget_build_datagrid.data("zui.datagrid"),       //表格对象
-    budget_build_edit_btn         = ".budget_build_edit_btn",                         //修改按钮
-    budget_build_budget_btn       = ".budget_build_budget_btn",                       //报价设置
-    budget_build_export_btn       = ".budget_build_export_btn",                       //导出按钮
-    budget_build_approval_btn     = ".budget_build_approval_btn",                     //提交初审
-    budget_build_copy_btn         = ".budget_build_copy_btn";                         //复制
+    design_budget_build_datagrid_obj     = design_budget_build_datagrid.data("zui.datagrid"),       //表格对象
+    design_budget_build_show_btn         = ".design_budget_build_show_btn",                         //预算查看
+    design_budget_build_edit_btn         = ".design_budget_build_edit_btn",                         //修改按钮
+    design_budget_build_setup_btn       = ".design_budget_build_setup_btn",                         //预算设置
+    design_budget_build_export_btn       = ".design_budget_build_export_btn",                       //导出按钮
+    design_budget_build_approval_btn     = ".design_budget_build_approval_btn",                     //提交初审
+    design_budget_build_copy_btn         = ".design_budget_build_copy_btn";                         //复制
 
     //下拉选项-----------------------------------------------------------------------------------------------
     //空间类型
     $.ajax({
-        url     : budget_build_api.select,
+        url     : design_budget_build_api.select,
         type    : "post",
         dataType: "json",
         data    : {},
@@ -505,33 +834,33 @@ $(function(){
                 for(var i=0;i<data.length;i++){
                     option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
-                budget_build_tool_select2.html(option);
+                design_budget_build_tool_select2.html(option);
             }
         }
     });
 
     //搜索按钮-----------------------------------------------------------------------------------------------
-    budget_build_search_btn.click(function(){
+    design_budget_build_search_btn.click(function(){
 
         //字段整理
         var keyword
-        = "?sid="         + budget_build_tool_keys.val()
-        + "&search="      + budget_build_tool_search.val()
-        + "&budgetstate=" + budget_build_tool_select1.val()
-        + "&spacetype="   + budget_build_tool_select2.val();
+        = "?sid="         + design_budget_build_tool_keys.val()
+        + "&search="      + design_budget_build_tool_search.val()
+        + "&budgetstate=" + design_budget_build_tool_select1.val()
+        + "&spacetype="   + design_budget_build_tool_select2.val();
 
         //GET提交
-        zui_datagrid_render(budget_build_datagrid_obj,budget_build_api.datagrid+keyword);
+        zui_datagrid_render(design_budget_build_datagrid_obj,design_budget_build_api.datagrid+keyword);
 
     });
 
 
-    //新建报价按钮-----------------------------------------------------------------------------------------------
-    budget_build_add_btn.click(function(){
+    //新建预算按钮-----------------------------------------------------------------------------------------------
+    design_budget_build_add_btn.click(function(){
 
         //远程请求
         $.ajax({
-            url     : budget_build_api.select_item,
+            url     : design_budget_build_api.select_item,
             type    : "post",
             dataType: "json",
             data    : {},
@@ -543,18 +872,18 @@ $(function(){
                         option += "<option value='"+data[i].id+"'>"+data[i].itemnumber +"--"+ data[i].itemname+"</option>"
                     }
                     //项目选择
-                    budget_build_add_item.html(option);
+                    design_budget_build_add_item.html(option);
 
                     //面板显示
-                    budget_build_add_box.modal("show");
+                    design_budget_build_add_box.modal("show");
 
                 }
             }
         });
 
     });
-    //新建报价提交
-    budget_build_add_submit.click(function(){
+    //新建预算提交
+    design_budget_build_add_submit.click(function(){
 
         //远程提交
         $.ajax({
@@ -567,7 +896,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                    zui_datagrid_reset(design_budget_build_datagrid_obj,design_budget_build_api.datagrid,"clear");
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -577,15 +906,15 @@ $(function(){
     });
  
 
-    //报价修改按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",budget_build_edit_btn,function(){
+    //预算修改按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",design_budget_build_edit_btn,function(){
 
         //面板显示
-        budget_build_edit_box.modal("show");
+        design_budget_build_edit_box.modal("show");
 
     });
-    //报价修改提交
-    budget_build_edit_submit.click(function(){
+    //预算修改提交
+    design_budget_build_edit_submit.click(function(){
 
         //远程提交
         $.ajax({
@@ -598,7 +927,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                    zui_datagrid_reset(design_budget_build_datagrid_obj,design_budget_build_api.datagrid,"clear");
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -607,15 +936,23 @@ $(function(){
 
     });
 
-    //报价设置按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",budget_build_budget_btn,function(){
+    //预算查看
+    $(document).on("click",design_budget_build_show_btn,function(){
 
         //面板显示
-        budget_build_budget_box.modal("show");
+        design_budget_build_show_box.modal("show");
 
     });
-    //报价设置提交
-    budget_build_budget_submit.click(function(){
+
+    //预算设置按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",design_budget_build_setup_btn,function(){
+
+        //面板显示
+        design_budget_build_setup_box.modal("show");
+
+    });
+    //预算设置提交
+    design_budget_build_setup_submit.click(function(){
 
         //远程提交
         $.ajax({
@@ -628,7 +965,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                    zui_datagrid_reset(design_budget_build_datagrid_obj,design_budget_build_api.datagrid,"clear");
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -638,15 +975,15 @@ $(function(){
     });
 
 
-    //报价导出按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",budget_build_export_btn,function(){
+    //预算导出按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",design_budget_build_export_btn,function(){
 
         //面板显示
-        budget_build_export_box.modal("show");
+        design_budget_build_export_box.modal("show");
 
     });
-    //报价导出提交
-    budget_build_export_submit.click(function(){
+    //预算导出提交
+    design_budget_build_export_submit.click(function(){
 
         //远程提交
         $.ajax({
@@ -659,7 +996,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                    zui_datagrid_reset(design_budget_build_datagrid_obj,design_budget_build_api.datagrid,"clear");
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -667,21 +1004,19 @@ $(function(){
         });
 
     });
-
-
 
     //提交初审按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",budget_build_approval_btn,function(){
+    $(document).on("click",design_budget_build_approval_btn,function(){
 
         //ID传值
-        budget_build_approval_submit.attr("dataId",$(this).attr("rowIndex"));
+        design_budget_build_approval_submit.attr("dataId",$(this).attr("rowIndex"));
 
         //面板显示
-        budget_build_approval_box.modal("show");
+        design_budget_build_approval_box.modal("show");
 
     });
     //提交初审提交
-    budget_build_approval_submit.click(function(){
+    design_budget_build_approval_submit.click(function(){
 
         //ID取值
         var data_id = $(this).attr("dataId");
@@ -697,7 +1032,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                    zui_datagrid_reset(design_budget_build_datagrid_obj,design_budget_build_api.datagrid,"clear");
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -707,14 +1042,14 @@ $(function(){
     });
 
     //复制按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click",budget_build_copy_btn,function(){
+    $(document).on("click",design_budget_build_copy_btn,function(){
 
         //ID传值
-        budget_build_copy_submit.attr("dataId",$(this).attr("rowIndex"));
+        design_budget_build_copy_submit.attr("dataId",$(this).attr("rowIndex"));
 
         //远程请求
         $.ajax({
-            url     : budget_build_api.select_item,
+            url     : design_budget_build_api.select_item,
             type    : "post",
             dataType: "json",
             data    : {},
@@ -726,10 +1061,10 @@ $(function(){
                         option += "<option value='"+data[i].id+"'>"+data[i].itemnumber +"--"+ data[i].itemname+"</option>"
                     }
                     //项目选择
-                    budget_build_copy_item.html(option);
+                    design_budget_build_copy_item.html(option);
 
                     //面板显示
-                    budget_build_copy_box.modal("show");
+                    design_budget_build_copy_box.modal("show");
 
                 }
             }
@@ -737,7 +1072,7 @@ $(function(){
 
     });
     //复制提交
-    budget_build_copy_submit.click(function(){
+    design_budget_build_copy_submit.click(function(){
 
         //ID取值
         var data_id = $(this).attr("dataId");
@@ -753,7 +1088,7 @@ $(function(){
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    zui_datagrid_reset(budget_build_datagrid_obj,budget_build_api.datagrid,"clear");
+                    zui_datagrid_reset(design_budget_build_datagrid_obj,design_budget_build_api.datagrid,"clear");
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }

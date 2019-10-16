@@ -1,0 +1,64 @@
+[
+    {
+        "title" : "报价统计",
+        "icon"  : "home",
+        "url"   : "budget_count",
+        "off"   : "true",
+        "type"  : "skip",
+        "count" : "2000",
+        "children" : [
+            {
+                "title" : "家具项目",
+                "icon"  : "list-alt",
+                "url"   : "budget_list",
+                "off"   : "true",
+                "count" : "1000"
+            },
+            {
+                "title" : "水电项目",
+                "icon"  : "list-alt",
+                "url"   : "budget_list",
+                "off"   : "true",
+                "count" : "1000"
+            }            
+        ]
+    },
+    {
+        "title" : "报价明细",
+        "icon"  : "list-alt",
+        "url"   : "budget_list",
+        "off"   : "true",
+        "count" : "4000",
+        "children" : [
+            {
+                "title" : "序工工程",
+                "icon"  : "list-alt",
+                "url"   : "budget_list",
+                "off"   : "true",
+                "count" : "1000"
+            },
+            {
+                "title" : "拆出工程",
+                "icon"  : "list-alt",
+                "url"   : "budget_list",
+                "off"   : "true",
+                "count" : "1000"
+            },
+            {
+                "title" : "间隔工程",
+                "icon"  : "list-alt",
+                "url"   : "budget_list",
+                "off"   : "true",
+                "count" : "1000"
+            },
+            {
+                "title" : "顶面工程",
+                "icon"  : "list-alt",
+                "url"   : "budget_list",
+                "off"   : "true",
+                "count" : "1000"
+            }
+        ]
+
+    }
+]
