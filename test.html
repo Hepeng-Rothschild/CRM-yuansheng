@@ -27,7 +27,6 @@
 <script src="./lib/chart/zui.chart.min.js"></script>
 <script src="./lib/colorset.js/zui.colorset.min.js"></script>
 <link rel="stylesheet" href="./lib/datetimepicker/datetimepicker.min.css">
-<script src="./lib/sortable/zui.sortable.min.js"></script>
 <script src="./lib/datetimepicker/datetimepicker.js"></script>
 <link href="./css/page.css" rel="stylesheet">
 <script src="./js/config.js"></script>
@@ -48,7 +47,7 @@ window.COMMON = {
     user_id    : 2,
     logAllow   : 0, //跟进允许 1为允许跟进 0为不允许跟进
 }
-var page = "design_budget_build";
+var page = "design_failure";
 $("#common_tabs").tabs({tabs:[{
     id    : "test",
     type  : "ajax",
@@ -76,9 +75,9 @@ $("#common_tabs").tabs({tabs:[{
     design_admin
     design_measure
     design_mapping
-    design_failure
+    design_failure  失败审批发生过改变
     design_overdue
-    design_unbelong
+    design_unbelong  未隶属发生过改变
     design_budget_build
     design_budget_approval1
     design_budget_approval2
