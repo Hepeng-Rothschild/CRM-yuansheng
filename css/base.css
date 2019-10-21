@@ -674,3 +674,17 @@ label,
     position: relative;
     top: -2px;
 }
+/*模态框定位变化*/
+.page-wrapper{
+    position: relative!important;
+}
+.modal-backdrop.in{
+    opacity: 0!important;
+    display: none!important;
+}
+.modal{
+    top:50px!important;
+    left: 200px!important;
+    bottom:-50px!important;
+    background: rgba(0,0,0,.2);
+}

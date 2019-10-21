@@ -114,14 +114,7 @@
             { "title":"绘图列表","icon":"design_mapping","url":"blank" },
             { "title":"失败审批","icon":"","url":"design_failure" },
             { "title":"过期审批","icon":"design_overdue","url":"blank" },
-            { "title":"未隶属",  "icon":"","url":"design_unbelong"},
-            { "title":"项目预算","icon":"",
-                "children"  :[
-                    { "title":"新建预算","icon":"","url":"design_budget_build"},
-                    { "title":"预算初审","icon":"","url":"design_budget_approval1"},
-                    { "title":"预算复审","icon":"","url":"design_budget_approval2"}
-                ]
-            }
+            { "title":"未隶属",  "icon":"","url":"design_unbelong"}
         ]
     },
     {
