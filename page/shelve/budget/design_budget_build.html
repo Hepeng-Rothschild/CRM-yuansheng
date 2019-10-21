@@ -222,318 +222,7 @@
         </div>
     </div>
     <!-- design_budget_build_edit_box -->
-
-    <!-- 预算设置盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" data-keyboard="false" id="design_budget_build_setup_box">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header flex-box">
-                    <h4 class="modal-title">预算设置</h4>
-                    <span class="text-center flex-son">
-                        <a href="#a1">预算书制作 <i class="icon icon-level-down"></i></a> | 
-                        <a href="#a2">费用折扣 <i class="icon icon-level-down"></i></a>
-                    </span>
-                    <button class="btn btn-primary btn-mini" data-dismiss="modal">保存</button>
-                </div>
-                <div class="modal-body modal-scroll">
-                <!--<ul class="nav nav-tabs">
-                        <li class="active"><a data-tab="" href="#design_budget_build_edit_table1">预算书</a></li>
-                        <li><a data-tab="" href="#design_budget_build_edit_table2">特殊项管理</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <form class="with-padding form-horizontal tab-pane active" id="design_budget_build_edit_table1">
-                        </form>
-                        <form class="tab-pane" id="design_budget_build_edit_table2">
-                            2
-                        </form>
-                    </div> -->
-                    <div class="flex-box" id="a1">
-                        <ul class="tree tree-lines with-padding" id="test"></ul>
-                        <div class="flex-son" id="right">
-                            <!-- <table class="table table-bordered table-condensed">
-                                <thead>
-                                <tr>
-                                    <th><i class="icon icon-move"></i> 工艺A</th>
-                                    <th data-type="number" class="flex-col" data-width="200">中间可变</th>
-                                    <th data-type="date" data-col-class="text-primary"  class="table-toggle">右侧固定</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>小杰</td>
-                                    <td>12</td>
-                                    <td>
-                                        <div>XX</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>- - -</td>
-                                    <td>- - -</td>
-                                    <td>- - -</td>
-                                </tr>
-                                <tr>
-                                    <td>酷拉皮卡</td>
-                                    <td>17</td>
-                                    <td>404</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <table class="table table-bordered table-condensed">
-                                <thead>
-                                <tr>
-                                    <th><i class="icon icon-move"></i> 工艺B</th>
-                                    <th data-type="number" class="flex-col" data-width="200">中间可变</th>
-                                    <th data-type="date" data-col-class="text-primary"  class="table-toggle">右侧固定</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>小杰</td>
-                                    <td>12</td>
-                                    <td>
-                                        <div>XX</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>- - -</td>
-                                    <td>- - -</td>
-                                    <td>- - -</td>
-                                </tr>
-                                <tr>
-                                    <td>酷拉皮卡</td>
-                                    <td>17</td>
-                                    <td>404</td>
-                                </tr>
-                                </tbody>
-                            </table> -->
-
-
-                            <table class="table table-bordered table-condensed">
-                                <!-- 标题 -->
-                                <thead>
-                                <tr>
-                                    <th>标题</th>
-                                    <th>/</th>
-                                </tr>
-                                </thead>
-                                <!-- 标题 -->
-
-                                <tbody>
-                                    <tr class="gongyi">
-                                        <td><i class="icon icon-move"></i>工艺1</td>
-                                        <td><div class="table-toggle">XX</div></td>
-                                    </tr>
-                                    <tr class="zhucai">
-                                        <td>主材1</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="zhucai">
-                                        <td>辅材1</td>
-                                        <td></td>
-                                    </tr>                                    
-                                </tbody>
-
-                                <tbody>
-                                    <tr class="gongyi">
-                                        <td><i class="icon icon-move"></i>工艺2</td>
-                                        <td><div class="table-toggle">XX</div></td>
-                                    </tr>
-                                    <tr class="zhucai">
-                                        <td>主材2</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="zhucai">
-                                        <td>辅材2</td>
-                                        <td></td>
-                                    </tr>                                    
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                    <style>
-                        #test{
-                            margin-right:20px;
-                        }
-                        #test li{
-                            display: block;
-                        }
-                        #test li .tttt{
-                            display: block;
-                        }
-                        .icon-move{
-                            cursor: pointer;
-                        }
-                        #right tbody{
-                            background: #fff;
-                        }
-                        #right tbody .gongyi{
-                            background: #f5f5f5;
-                        }
-/*                        .invisible{
-                            background: red;
-                        }
-                        .drop-to{
-                            background: blue;
-                        }*/
-                    </style>
-                    <script>
-
-                        $.ajax({
-                            url     : LOCAL + "Budget/build_setup_tree.json",
-                            type    : "post",
-                            success : function(data){
-                                var data = um_json(data);
-                                $("#test").tree({
-                                    data        : data,
-                                    itemCreator : function($li,item){
-                                        $li.addClass("open");
-                                        $li.append( $("<a>",{class:'tttt'}).html( "<span class='pull-left'>"+item.title +"</span> &nbsp; <span class='pull-right'>"+ item.count+"元 </span>" ) );
-                                    },
-                                });
-
-                            }
-                        });
-                        setTimeout(function () {
-                            var tttt = $(".tttt");
-                            for(var i=0;i<tttt.length;i++){
-                                var aaa = tttt.eq(i);
-                                // aaa.css('border','1px solid red');
-                                var type3 = [
-                                    {label:"type3",onClick:function(){ alert("回调函数");}},
-                                    {type :"divider"},
-                                    {label:"复制"},
-                                ];
-                                aaa.contextmenu({ items:type3})
-
-                               tttt.eq(i).parent("li").sortable();
-                            }
-                        },10)
-                        
-                        $(".table-toggle").click(function () {
-                            var son = $(this).parent().parent().siblings(".zhucai");
-                            son.is(':visible') ? son.hide() : son.show();
-                        });
-
-
-                        //var
-                        // var move = $(".table-move");
-                        // move.css('border','1px solid red');
-                        // move.sortable();
-
-
-                        $("#right").sortable({
-                            selector :"tbody",
-                            trigger  :".icon",
-                            dragCssClass    :"invisible",       //类名添加(子级影子)
-                            dropToClass     :"drop-to",         //类名添加(子级影子)                            
-                        });
-                        // for(var i=0;i<move.length;i++){
-                        //     var dom = move.eq(i);
-                        //     dom.sortable();     // { handle : ".icon" }
-                        // }
-                    </script>
-                        <div style="height:600px;"></div>
-                    <hr>
-                    <h2 id="a2">费用折扣</h2>
-                    <h4>管理费率</h4>
-                    <table class="table table-bordered table-condensed">
-                        <thead>
-                        <tr>
-                            <th>左侧固定</th>
-                            <th data-type="number" class="flex-col" data-width="200">中间可变</th>
-                            <th data-type="date" data-col-class="text-primary">右侧固定</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>小杰</td>
-                            <td>12</td>
-                            <td>
-                                <div>XX</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                        </tr>
-                        <tr>
-                            <td>酷拉皮卡</td>
-                            <td>17</td>
-                            <td>404</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    
-                    <h4>其他费率</h4>
-                    <table class="table table-bordered table-condensed">
-                        <thead>
-                        <tr>
-                            <th>左侧固定</th>
-                            <th data-type="number" class="flex-col" data-width="200">中间可变</th>
-                            <th data-type="date" data-col-class="text-primary">右侧固定</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>小杰</td>
-                            <td>12</td>
-                            <td>
-                                <div>XX</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                        </tr>
-                        <tr>
-                            <td>酷拉皮卡</td>
-                            <td>17</td>
-                            <td>404</td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    <h4>折扣设置</h4>
-                    <div class="form-group">
-                        <label class="col-sm-2 required" for="">隐性折扣</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-short">
-                                <span class="input-group-addon">￥</span>
-                                <input class="form-control" type="number">
-                                <span class="input-group-addon">折</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 required" for="">隐性折扣</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-short">
-                                <span class="input-group-addon">￥</span>
-                                <input class="form-control" type="number">
-                                <span class="input-group-addon">折</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 required" for="">优惠金额</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-short">
-                                <span class="input-group-addon">￥</span>
-                                <input class="form-control" type="number">
-                                <span class="input-group-addon">折</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- design_budget_build_setup_box -->
-
+   
     <!-- 预算导出盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="design_budget_build_export_box">
         <div class="modal-dialog">
@@ -1099,3 +788,504 @@ $(function(){
 
 });//预加载结尾
 </script>
+
+
+
+ <!-- 预算设置盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" data-keyboard="false" id="design_budget_build_setup_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header flex-box">
+                    <h4 class="modal-title">预算设置</h4>
+                    <span class="text-center flex-son">
+                        <a href="#a1">预算书制作 <i class="icon icon-level-down"></i></a> | 
+                        <a href="#a2">费用折扣 <i class="icon icon-level-down"></i></a>
+                    </span>
+                    <button class="btn btn-primary btn-mini" data-dismiss="modal">保存</button>
+                </div>
+                <div class="modal-body modal-scroll">
+
+
+<!-- vue开发 -->
+
+
+<div id="design_budget_build_setup_vue">
+    <div class="flex-box">
+        <!-- 左侧树状图 -->
+        <ul class="tree" style="width:180px;">
+            <li v-for='type1 in budget' :key='type1.id' class='open'>
+                <div>
+                    <span class="pull-left">{{type1.title}}</span>
+                    <span class="pull-right">{{type1.count}}</span>
+                    <span class="clearfix"></span>
+                </div>
+                <ul v-if='type1.children'>
+                    <li v-for='type2 in type1.children' :key='type2.id' class='open'>
+                        <div>
+                            <span class="pull-left">{{type2.title}}</span>
+                            <span class="pull-right">{{type2.count}}</span>
+                            <span class="clearfix"></span>
+                        </div>
+                        <ul v-if='type2.children'>
+                            <li v-for='type3 in type2.children' :key='type3.id' class='open'>
+                                <div class="text-primary">
+                                    <span class="pull-left">{{type3.title}}</span>
+                                    <span class="pull-right">{{type3.count}}</span>
+                                    <span class="clearfix"></span>
+                                </div>
+                            </li>
+                        </ul>                        
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- tree -->
+        <!-- 右侧表格 -->
+        <div class="flex-son um_table" style="margin-left:20px;">
+            <ul class="um_thead">
+                <li>类型</li>
+                <li>项目编号</li>
+                <li>项目名称</li>
+                <li>数量</li>
+                <li>单位</li>
+                <li>人工单价</li>
+                <li>主材单价</li>
+                <li>综合单价</li>
+                <li>合计(元)</li>
+                <li>备注</li>
+                <li>工艺</li>
+                <li>位置</li>
+            </ul>
+            <ul class="">
+                <li><input type="text"></li>
+                <li>项目编号</li>
+                <li>项目名称</li>
+                <li>数量</li>
+                <li>单位</li>
+                <li>人工单价</li>
+                <li>主材单价</li>
+                <li>综合单价</li>
+                <li>合计(元)</li>
+                <li>备注</li>
+                <li>工艺</li>
+                <li>位置</li>
+            </ul>
+           <!--  
+            <table class='table table-bordered'>
+                <thead>
+                    <tr>
+                        <th>类型</th>
+                        <th>项目编号</th>
+                        <th>项目名称</th>
+                        <th>数量</th>
+                        <th>单位</th>
+                        <th>人工单价</th>
+                        <th>主材单价</th>
+                        <th>综合单价</th>
+                        <th>合计(元)</th>
+                        <th>备注</th>
+                        <th>工艺</th>
+                        <th>位置</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for='type2 in  budget[1]' :key="type2.id">
+                        <td colspan="12">{{type2.title}}</td>
+                    </tr>
+                </tbody> -->
+            </table>
+
+        </div>
+        <!-- flex-son -->
+    </div>
+</div>
+<style>
+.um_table{
+    overflow-x : scroll;
+    border: 1px solid #ddd;
+}
+.um_table ul{
+    display: block;
+    width: 1200px;
+    height: 30px;
+    overflow: hidden;
+    box-sizing:border-box;
+}
+.um_table ul li{
+    box-sizing:border-box;
+    display: inline-block;
+    padding: 5px;
+    width: 100px;
+    float: left;
+    border:1px solid #ddd;
+}
+.um_table .um_thead li{
+    text-align: center;
+    font-weight: bold;
+    background: #f5f5f5;
+}
+</style>
+
+<script>
+$(".tree-static").tree();
+
+setTimeout(function(){
+    $("#design_budget_build_setup_vue .tree").tree();
+    $("#design_budget_build_setup_vue .table").datatable();
+},200);
+
+new Vue({
+    el  : "#design_budget_build_setup_vue",
+    mounted : {
+        
+    },
+    data: {
+        "budget" : [
+            {
+                "id"    : "",
+                "title" : "预算统计",
+                "count" : "2000",
+                "type"  : 0,
+                "children" : [
+                    {"id":"","title":"家具项目","count":"1000","type":0},
+                    {"id":"","title":"水电项目","count":"1000","type":0}            
+                ]
+            },
+            {
+                "id"    : "",
+                "title" : "预算明细",
+                "count" : "6000",
+                "type"  : 1,
+                "children" : [
+                    {
+                        "id"    : "",
+                        "title" : "会议室",
+                        "count" : "4000",
+                        "type"  : 2,
+                        "children" : [
+                            {"id":1,"title":"序工工程","count":"1000","type":3},
+                            {"id":2,"title":"拆除工程","count":"1000","type":3},
+                            {"id":3,"title":"间隔工程","count":"1000","type":3},
+                            {"id":4,"title":"顶面工程","count":"1000","type":3}
+                        ]
+                    },
+                    {
+                        "title" : "前台",
+                        "count" : "2000",
+                        "type"  : 2,
+                        "children" : [
+                            {"id":1,"title":"序工工程","count":"1000","type":3},
+                            {"id":2,"title":"拆除工程","count":"1000","type":3}
+                        ]
+                    }            
+                ]
+
+            }
+        ],
+    }
+});
+
+// $.ajax({
+//     url     : LOCAL + "Budget/build_setup_tree.json",
+//     type    : "post",
+//     success : function(data){
+//         var data = um_json(data);
+//         $("#test").tree({
+//             data        : data,
+//             itemCreator : function($li,item){
+//                 $li.addClass("open");
+//                 $li.append( $("<span>",{
+//                         class: 'tree_items type'+item.type,
+//                         id: item.id 
+//                     }).html(`
+//                     <span class='pull-left'> ${item.title}</span> &nbsp;
+//                     <span class='pull-right'>${item.count}元</span>
+//                     `) 
+//                 );
+//             },
+//         });
+
+//     }
+// });
+
+</script>
+
+                    <!-- 传统开发
+                    <div class="flex-box" id="a1">
+                        <ul class="tree tree-lines with-padding" id="test"></ul>
+                        <div class="flex-son" id="right">
+                            <ol class="breadcrumb"></ol>
+                            <div id="right_table"></div>
+                        </div>
+                    </div>
+                    <style>
+                        #test{
+                            margin-right:20px;
+                        }
+                        #test li .tree_items{
+                            display: block;
+                        }
+                        #test li .tree_items:hover{
+                            background: #f5f5f5;
+                        }
+                        #test li{
+                            display: block;
+                        }
+                        #test li .tttt{
+                            display: block;
+                        }
+                        .icon-move{
+                            cursor: pointer;
+                        }
+                        #right tbody{
+                            background: #fff;
+                        }
+                        #right tbody td{
+                            width: auto;
+                        }
+                        #right tbody .gongyi{
+                            background: #f5f5f5;
+                        }
+                        #right input{
+                            border: 1px solid;
+                            border-color: transparent;
+                        }
+                        #right input:focus{
+                            border-color: #ddd;
+                        }
+                    </style>
+                    <script>
+
+                        $.ajax({
+                            url     : LOCAL + "Budget/build_setup_tree.json",
+                            type    : "post",
+                            success : function(data){
+                                var data = um_json(data);
+                                $("#test").tree({
+                                    data        : data,
+                                    itemCreator : function($li,item){
+                                        $li.addClass("open");
+                                        $li.append( $("<span>",{
+                                                class: 'tree_items type'+item.type,
+                                                id: item.id 
+                                            }).html(`
+                                            <span class='pull-left'> ${item.title}</span> &nbsp;
+                                            <span class='pull-right'>${item.count}元</span>
+                                            `) 
+                                        );
+                                    },
+                                });
+
+                            }
+                        });
+                        setTimeout(function () {
+
+                            //右击选择
+                            var tree_item1 = $(".tree_items.type1");
+                            for(var x=0;x<tree_item1.length;x++){
+                                tree_item1.eq(x).contextmenu({ 
+                                    items: [
+                                        {label:"添加区域",onClick:function(){ alert("添加区域");}}
+                                    ]
+                                })
+                            }
+                            var tree_item2 = $(".tree_items.type2");
+                            for(var y=0;y<tree_item2.length;y++){
+                                tree_item2.eq(y).contextmenu({ 
+                                    items: [
+                                        {label:"添加项目",onClick:function(){ alert("添加项目");}},
+                                        {label:"修改",onClick:function(){ alert("修改");}},
+                                        {label:"删除",onClick:function(){ alert("删除");}},
+                                        {label:"复制",onClick:function(){ alert("复制");}}
+                                    ]
+                                })
+                            }
+                            var tree_item3 = $(".tree_items.type3");
+                            for(var z=0;z<tree_item3.length;z++){
+                                tree_item3.eq(z).contextmenu({ 
+                                    items: [
+                                        {label:"删除",onClick:function(){ alert("删除");}}
+                                    ]
+                                })
+                            }
+                            //拖拽排序
+                            var sort_item = $(".type2").next("ul");
+                            sort_item.find("li").addClass("text-primary");
+                            for(var i=0;i<sort_item.length;i++){
+                                sort_item.eq(i).sortable({
+                                    selector :"li",
+                                });
+                            }
+                            var temps = `<table class="table table-bordered table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>####</th>
+                                        <th>/</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="table table-bordered">
+                                        <tr class="gongyi">
+                                            <td><i class="icon icon-move"></i>工艺1</td>
+                                            <td><div class="table-toggle">XX</div></td>
+                                        </tr>
+                                        <tr class="zhucai">
+                                            <td><input type="text" value="数据"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="zhucai">
+                                            <td><input type="text" value="数据"></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+
+                                    <tbody class="table table-bordered">
+                                        <tr class="gongyi">
+                                            <td><i class="icon icon-move"></i>工艺2</td>
+                                            <td><div class="table-toggle">XX</div></td>
+                                        </tr>
+                                        <tr class="zhucai">
+                                            <td><input type="text" value="数据"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="zhucai">
+                                            <td><input type="text" value="数据"></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                `;
+                            //点击更新数据
+                            tree_item2.click(function(){
+
+                                var text = $(this).find(".pull-left").text();
+                                $("#right .breadcrumb").html(`<li>${text}</li>`);
+                                $("#right #right_table").html(temps);
+                            });
+                            //点击更新数据
+
+                            tree_item3.click(function(){
+                                var dad = $(this).parent().parent().siblings("span").find(".pull-left").text();
+                                var text = $(this).find(".pull-left").text();
+                                $("#right .breadcrumb").html(`<li>${dad} > ${text}</li>`);
+
+                                $("#right #right_table").html(temps);
+                            });
+
+                        },10);
+                        
+                        $(document).on("click",".table-toggle",function () {
+                            var son = $(this).parent().parent().siblings(".zhucai");
+                            son.is(':visible') ? son.hide() : son.show();
+                        });
+ 
+                        $("#right").sortable({
+                            selector :"tbody",
+                            trigger  :".icon",
+                            dragCssClass    :"invisible",       //类名添加(子级影子)
+                            dropToClass     :"drop-to",         //类名添加(子级影子)
+                        });
+
+
+                    </script>
+                        <div style="height:600px;"></div>
+                    <hr>
+                -->
+                <!--
+                    <h2 id="a2">费用折扣</h2>
+                    <h4>管理费率</h4>
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>左侧固定</th>
+                            <th data-type="number" class="flex-col" data-width="200">中间可变</th>
+                            <th data-type="date" data-col-class="text-primary">右侧固定</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>小杰</td>
+                            <td>12</td>
+                            <td>
+                                <div>XX</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>酷拉皮卡</td>
+                            <td>17</td>
+                            <td>404</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4>其他费率</h4>
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>左侧固定</th>
+                            <th data-type="number" class="flex-col" data-width="200">中间可变</th>
+                            <th data-type="date" data-col-class="text-primary">右侧固定</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>小杰</td>
+                            <td>12</td>
+                            <td>
+                                <div>XX</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>酷拉皮卡</td>
+                            <td>17</td>
+                            <td>404</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>折扣设置</h4>
+                    <div class="form-group">
+                        <label class="col-sm-2 required" for="">隐性折扣</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-short">
+                                <span class="input-group-addon">￥</span>
+                                <input class="form-control" type="number">
+                                <span class="input-group-addon">折</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 required" for="">隐性折扣</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-short">
+                                <span class="input-group-addon">￥</span>
+                                <input class="form-control" type="number">
+                                <span class="input-group-addon">折</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 required" for="">优惠金额</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-short">
+                                <span class="input-group-addon">￥</span>
+                                <input class="form-control" type="number">
+                                <span class="input-group-addon">折</span>
+                            </div>
+                        </div>
+                    </div>
+-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- design_budget_build_setup_box -->

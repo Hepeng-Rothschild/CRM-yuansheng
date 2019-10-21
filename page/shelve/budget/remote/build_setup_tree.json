@@ -1,0 +1,82 @@
+[
+    {
+        "id"    : "",
+        "title" : "报价统计",
+        "count" : "2000",
+        "type"  : 0,
+        "children" : [
+            {
+                "id"    : "",
+                "title" : "家具项目",
+                "count" : "1000",
+                "type"  : 0
+            },
+            {
+                "id"    : "",
+                "title" : "水电项目",
+                "count" : "1000",
+                "type"  : 0
+            }            
+        ]
+    },
+    {
+        "id"    : "",
+        "title" : "报价明细",
+        "count" : "6000",
+        "type"  : 1,
+        "children" : [
+            {
+                "id"    : "",
+                "title" : "会议室",
+                "count" : "4000",
+                "type"  : 2,
+                "children" : [
+                    {
+                        "id"    : 1,
+                        "title" : "序工工程",
+                        "count" : "1000",
+                        "type"  : 3
+                    },
+                    {
+                        "id"    : 2,
+                        "title" : "拆除工程",
+                        "count" : "1000",
+                        "type"  : 3
+                    },
+                    {
+                        "id"    : 3,
+                        "title" : "间隔工程",
+                        "count" : "1000",
+                        "type"  : 3
+                    },
+                    {
+                        "id"    : 4,
+                        "title" : "顶面工程",
+                        "count" : "1000",
+                        "type"  : 3
+                    }
+                ]
+            },
+            {
+                "title" : "前台",
+                "count" : "2000",
+                "type"  : 2,
+                "children" : [
+                    {
+                        "id"    : 1,
+                        "title" : "序工工程",
+                        "count" : "1000",
+                        "type"  : 3
+                    },
+                    {
+                        "id"    : 2,
+                        "title" : "拆除工程",
+                        "count" : "1000",
+                        "type"  : 3
+                    }
+                ]
+            }            
+        ]
+
+    }
+]
