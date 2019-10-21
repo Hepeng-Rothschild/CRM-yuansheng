@@ -53,7 +53,7 @@ html,body{
     font-size:20px;
 }
 .main-header .navbar-brand .logo{
-    width:200px;
+    width:180px;
     height:30px;
     display:inline-block;
 }
@@ -102,7 +102,7 @@ html,body{
 }
 /*左部样式*/
 .main-sidebar{
-    width:220px;
+    width:200px;
     height:100%;
     /*background:#263238;*/
     color:rgba(163,175,183,.9);
@@ -167,14 +167,14 @@ html,body{
 /*内容部分*/
 .content-wrapper{
     height:100%;
-    padding:50px 0 0 220px;
+    padding:50px 0 0 200px;
     box-sizing:border-box;
 }
 .tabs-navbar{
     width:100%;
     background:#f5f5f5;
     position:fixed;
-    top:50px;left:220px;
+    top:50px;left:200px;
     z-index:99;
 }
 .tab-nav-link>.close{
@@ -256,7 +256,7 @@ html,body{
         text-align:center;
     }
     .main-sidebar{
-        transform:translate(-220px, 0);
+        transform:translate(-200px, 0);
     }
     .sidebar-open .main-sidebar{
         transform:translate(0, 0);
@@ -602,7 +602,7 @@ html,body{
 /*表单宽度*/
 select{ min-width: 100px!important; }
 .input-min-box input{ width: 120px; }
-.input-short{ max-width:220px; }
+.input-short{ max-width:200px; }
 .input-middle{ max-width:358px; }
 /*表单label*/
 a,
@@ -667,14 +667,13 @@ label,
 .bg-grey{
     background: #f5f5f5;
 }
-
 /*未整理样式*/
 .design-log-prog{
     padding:1px 3px 0;
     position: relative;
     top: -2px;
 }
-/*模态框定位变化*/
+/*模态框定位变化
 .page-wrapper{
     position: relative!important;
 }
@@ -687,4 +686,23 @@ label,
     left: 200px!important;
     bottom:-50px!important;
     background: rgba(0,0,0,.2);
+}*/
+/*主题样式更改*/
+.main-header .navbar{
+    background: #8cb9ed;
+}
+.main-sidebar{
+    background: #ebf2f9;
+}
+.main-sidebar .tree *{
+    color: #183152!important;
+}
+.main-sidebar .tree li>a.active *, .main-sidebar .tree li.active>a *, .main-sidebar .tree li>a:hover *{
+    color: #000!important;
+}
+.main-sidebar .tree li>ul, .main-sidebar .tree li.active>a{
+    background: rgba(255,255,255,.6)!important;
+}
+.tree-menu li>a:active, .tree-menu li>a:focus, .tree-menu li>a:hover{
+    background: #fff!important;
 }
