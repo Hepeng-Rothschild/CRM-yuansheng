@@ -667,3 +667,10 @@ label,
 .bg-grey{
     background: #f5f5f5;
 }
+
+/*未整理样式*/
+.design-log-prog{
+    padding:1px 3px 0;
+    position: relative;
+    top: -2px;
+}

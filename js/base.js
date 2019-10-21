@@ -573,9 +573,10 @@ function zui_upload_destroy(upobj){
 /* common_date_duration() 时间组件推进
  * @param selector object DOM对象
  */
-function common_date_duration(selector){
+function common_date_duration(selector, text){
+    var text = text || "时间";
     var common_tool_search_date_temp = `
-        <span>时间：</span>
+        <span>${text}：</span>
         <div class="input-group">
             <input type="text" class="form-control start" readonly> 
             <span class="input-group-addon fix-border fix-padding"></span>

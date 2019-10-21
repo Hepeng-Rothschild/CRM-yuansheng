@@ -6,6 +6,7 @@
 			"user"  : "薛之谦",
 			"text"  : "该信息员有很多资源,并打算长期与我们合作",
 			"date"  : "10-20 10:00",
+			"prog"  : "平面图",
 			"imgs"  : [
 				{"name":"跟踪日志图片1(文本过长可以省略).jpg","path":"./remote/Upload/test_upload.jpg"},
 				{"name":"跟踪日志图片2(文本过长可以省略).jpg","path":"./remote/Upload/test_upload.jpg"},
@@ -47,6 +48,7 @@
 			"user"  : "薛之谦",
 			"text"  : "我找到了一个好的唱片公司,该数据无图片",
 			"date"  : "11-20 10:00",
+			"prog"  : "效果图",
 			"imgs"  : [],
 			"childTopic" : [
 				{
