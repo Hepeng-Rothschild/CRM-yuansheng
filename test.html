@@ -42,7 +42,44 @@
 <a class="sidebar-toggle" data-toggle="push-menu"><i class="icon icon-bars"></i></a>
 <a class="navbar-brand" href="/zui-admin/" style="width:200px;"><span>测试单页</span></a></div></nav></header>
 <aside class="main-sidebar scrollbar-hover"></aside>
-<div class="content-wrapper scrollbar-hover"><div class="tabs" id="common_tabs"></div></div></div>
+<div class="content-wrapper scrollbar-hover">
+    <!-- 走马灯提示 -->
+    <div class="common-tips flex-box">
+       <i class="icon icon-bullhorn"></i>
+       <marquee class="flex-son" onmouseout="this.start()" onmouseover="this.stop()">滚动消息</marquee>
+    </div>
+    <div class="tabs" id="common_tabs"></div>
+</div></div>
+<style>
+    .common-tips{
+        width: 100%;
+        height: 30px;
+        position: relative;
+        z-index: 9999;
+        line-height: 30px;
+        background: #ebf2f9;
+    }
+    .common-tips .icon{
+        display: block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        font-size: large!important;
+    }
+    .common-tips .flex-son{
+        color: red;
+    }
+    .tabs-navbar{
+        top:80px;
+    }    
+/*    .tabs-navbar{
+        display: none;
+    }
+    .tabs-container{
+        top:-3px;
+    }*/
+</style>
 <script>
 //公共数据----------------------------------------------------------------
 window.COMMON = {
@@ -50,7 +87,7 @@ window.COMMON = {
     user_id    : 2,
     logAllow   : 0, //跟进允许 1为允许跟进 0为不允许跟进
 }
-var page = "shelve/test_validate";
+var page = "business_provider_list";
 $("#common_tabs").tabs({tabs:[{
     id    : "test",
     type  : "ajax",
@@ -72,7 +109,9 @@ $("#common_tabs").tabs({tabs:[{
     1)假期余额-修改面板：tab面板显示不出来(css强制显示-需多测试)
     2)日历隐藏触发hide.zui.modal事件(上传和日历的冲突)
     3)面板重置 function common_tabs_reset(){$("#common_tabs").data("zui.tabs").reload();}
-
+    datagrid : "http://localhost/zui_admin_api/index.php/index/test_datagrid",
+    datagrid : "http://sast.wentesjj.com/index/test_datagrid",
+    
  #设计管理
     design_list
     design_assign
