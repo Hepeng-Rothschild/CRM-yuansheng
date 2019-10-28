@@ -155,6 +155,11 @@ $(function(){
         var test_validate_rule_che2_val = [];
         test_validate_rule_che2.find("input[type='checkbox']:checked").each(function(){ test_validate_rule_che2_val.push($(this).val()) });
 
+        if( test_validate_rule_tree.attr("result")==undefined || test_validate_rule_tree.attr("result")==""){
+            um_tip("节点不能为空","1000","text-danger");
+            return;
+        }
+
         $.ajax({
             url     : API.test_response,
             type    : "post",
