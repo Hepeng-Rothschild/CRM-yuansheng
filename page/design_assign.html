@@ -7,6 +7,7 @@
         <!-- 工具条组 -->
         <div class="tool-group">
             <div class="tool-search">
+                <form id="formID" class="formular" method="post" action="">
                 <div class="im-label">
                     <div class="input-group">
                         <select class="form-control" id="design_assign_tool_keys">
@@ -18,8 +19,31 @@
                         <input type="text" class="form-control" id="design_assign_tool_search">
                     </div>
                 </div>
+                <!---->
+
+
+                    <fieldset>
+                        <label>
+                            <span>姓名 : </span>
+                            <input value="" class="validate[required] text-input" type="text" name="req" id="req" />
+                        </label>
+                        <label>
+                            <span>运动:</span>
+                            <select name="sport" id="sport" class="validate[required]">
+                                <option value="">Choose a sport</option>
+                                <option value="option1">Tennis</option>
+                                <option value="option2">Football</option>
+                                <option value="option3">Golf</option>
+                            </select>
+                        </label>
+                    </fieldset>
+                    <!--<input class="submit" id="submit" type="submit" value="提交"/><hr/>-->
+
+                <!--///////-->
+
                 <label><button class="btn btn-primary" id="design_assign_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
+                </form>
             </div>
         </div>
         <!-- tool-group -->
@@ -194,6 +218,8 @@ $(function(){
     //打回
     design_assign_back_box            = $("#design_assign_back_box"),             //打回盒子
     design_assign_back_submit         = $("#design_assign_back_submit"),          //打回提交
+            // 输入框验证
+            submit                           =$("#submit"),
     //跟踪日志
     design_assign_logShow_box         = $("#design_assign_logShow_box"),          //日志查看盒子
     design_assign_logAdd_box          = $("#design_assign_logAdd_box"),           //日志添加盒子
@@ -418,10 +444,53 @@ $(function(){
             }
         }
     });
+     //表单验证----------------------------------------------------------------------------------------------
 
+//-------------------------------------------------------------------------------------------------
     //搜索按钮-----------------------------------------------------------------------------------------------
-    design_assign_search_btn.click(function(){
+//    design_assign_search_btn.click(function(){
+//
+//        //字段整理
+//        var keyword
+//        = "?sid="    + design_assign_tool_keys.val()
+//        + "&search=" + design_assign_tool_search.val();
+//
+//        //GET提交
+//        zui_datagrid_render(design_assign_datagrid_obj,design_assign_api.datagrid+keyword);
+//
+//    });
 
+//    design_assign_search_btn.click(function () {
+//        alert(1)
+//        if (design_assign_tool_keys.val()=="" || design_assign_tool_search.val()=="" || $("#formID").val()=="") {
+//            $("#formID").validationEngine();
+//            $("#formID").bind("jqv.form.validating", function (event) {
+//            })
+//
+//            $("#formID").bind("jqv.form.result", function (event, errorFound) {
+//            })
+//
+//        } else if(){
+//                var keyword
+//                    = "?sid=" + design_assign_tool_keys.val()
+//                    + "&search=" + design_assign_tool_search.val();
+//
+//            //GET提交
+//            zui_datagrid_render(design_assign_datagrid_obj, design_assign_api.datagrid + keyword);
+//        }
+//    })
+
+
+    if (design_assign_tool_keys.val()=="" || design_assign_tool_search.val()=="" || $("#formID").val()=="") {
+        design_assign_search_btn.click(function(){
+                $("#formID").validationEngine();
+                $("#formID").bind("jqv.form.validating", function (event) {})
+
+                $("#formID").bind("jqv.form.result", function (event, errorFound){})
+
+            })
+    } else{
+        design_assign_search_btn.click(function(){
         //字段整理
         var keyword
         = "?sid="    + design_assign_tool_keys.val()
@@ -431,6 +500,11 @@ $(function(){
         zui_datagrid_render(design_assign_datagrid_obj,design_assign_api.datagrid+keyword);
 
     });
+    }
+
+/*
+
+ */
     //查看按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",design_assign_show_btn,function(){ 
 
