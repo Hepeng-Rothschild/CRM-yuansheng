@@ -1,0 +1,192 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="test_validate">
+
+    <!-- 数据网格 -->
+    <div class="datagrid">
+        <div class="tool-group">
+            <button class="btn btn-primary" id="test_validate_rule_btn">   <i class="icon icon-plus"></i>   表单验证</button>
+        </div>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 表单验证盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="test_validate_rule_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">表单验证</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <!-- 字段格式 -->                      
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="test_validate_rule_user">姓名</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_user"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="test_validate_rule_mobile">手机</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_mobile"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="test_validate_rule_phone">座机</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_phone"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="test_validate_rule_mail">邮箱</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_mail"></select></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="test_validate_rule_ip">IP地址</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_ip"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="test_validate_rule_idCard">身份证</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_idCard"></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="test_validate_rule_bankCard">银行卡</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_bankCard"></div>
+                        </div><hr>
+                        <!-- 表单类别(验证其下均为必填) -->
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="test_validate_rule_select">下拉框</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="test_validate_rule_select">
+                                    <option value="">--请选择--</option>
+                                    <option value="1">办公空间</option>
+                                    <option value="2">教育空间</option>
+                                    <option value="3">医美空间</option>
+                                    <option value="4">其他空间</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">复选框1</label>
+                            <div class="col-sm-8" id="test_validate_rule_che1">
+                                <label><input type="checkbox" name="test_validate_rule_che1" value="1">办公</label>&nbsp;&nbsp;
+                                <label><input type="checkbox" name="test_validate_rule_che1" value="2">教育</label>&nbsp;&nbsp;
+                                <label><input type="checkbox" name="test_validate_rule_che1" value="3">医美</label>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required">复选框2</label>
+                            <div class="col-sm-8">
+                                <div class="btn-group" data-toggle="buttons" id="test_validate_rule_che2">
+                                    <label class="btn"><input type="checkbox" name="test_validate_rule_che2" value="1">办公</label>
+                                    <label class="btn"><input type="checkbox" name="test_validate_rule_che2" value="2">教育</label>
+                                    <label class="btn"><input type="checkbox" name="test_validate_rule_che2" value="3">医美</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 表单自制(验证其下均为必填) -->
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="test_validate_rule_tree">节点</label>
+                            <div class="col-sm-8">
+                                <ul class="tree tree-lines tree-chevrons" id="test_validate_rule_tree"></ul>
+                            </div>
+                        </div> 
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="test_validate_rule_upload">上传</label>
+                            <div class="col-sm-8">
+                                <div class="uploader" id="test_validate_rule_upload" path="">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list"></div>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="test_validate_rule_submit">提交</button>
+                </div>                    
+            </div>
+        </div>
+    </div>
+    <!-- test_validate_rule_box -->
+
+<script>
+$(function(){
+
+    /*正则规则
+    var reg_ip   = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+    var reg_2_10 = /^.{2,10}$/;
+    var reg_tel  = /^[1][0-9]{10}$/;
+    */
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    test_validate_rule_btn = $("#test_validate_rule_btn"),
+    test_validate_rule_box = $("#test_validate_rule_box"),
+    test_validate_rule_submit = $("#test_validate_rule_submit"),
+    test_validate_rule_user = $("#test_validate_rule_user"),
+    test_validate_rule_mobile = $("#test_validate_rule_mobile"),
+    test_validate_rule_phone = $("#test_validate_rule_phone"),
+    test_validate_rule_mail = $("#test_validate_rule_mail"),
+    test_validate_rule_ip = $("#test_validate_rule_ip"),
+    test_validate_rule_idCard = $("#test_validate_rule_idCard"),
+    test_validate_rule_bankCard = $("#test_validate_rule_bankCard"),
+    test_validate_rule_select = $("#test_validate_rule_select"),
+    test_validate_rule_che1 = $("#test_validate_rule_che1"),
+    test_validate_rule_che2 = $("#test_validate_rule_che2"),
+    test_validate_rule_tree = $("#test_validate_rule_tree"),
+    test_validate_rule_upload = $("#test_validate_rule_upload");
+
+    //组件调用-----------------------------------------------------------------------------------------------
+    common_tree_staff(test_validate_rule_tree,false,true);
+    zui_upload_img({upid:"test_validate_rule_upload"});
+
+    //表单验证按钮-------------------------------------------------------------------------------------------
+    test_validate_rule_box.modal("show");                                    //默认显示
+    test_validate_rule_btn.click(function(){
+        common_form_reset();
+        common_tree_staff_reset( test_validate_rule_tree );
+        $(".btn-group .btn").removeClass("active");
+        test_validate_rule_box.modal("show");
+    });
+    //表单验证提交
+    test_validate_rule_submit.click(function(){
+
+        //复选框处理
+        var test_validate_rule_che1_val = [];
+        test_validate_rule_che1.find("input[type='checkbox']:checked").each(function(){ test_validate_rule_che1_val.push($(this).val()) });
+        var test_validate_rule_che2_val = [];
+        test_validate_rule_che2.find("input[type='checkbox']:checked").each(function(){ test_validate_rule_che2_val.push($(this).val()) });
+
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : {
+                user : test_validate_rule_user.val(),
+                mobile : test_validate_rule_mobile.val(),
+                phone : test_validate_rule_phone.val(),
+                mail : test_validate_rule_mail.val(),
+                ip : test_validate_rule_ip.val(),
+                idCard : test_validate_rule_idCard.val(),
+                bankCard : test_validate_rule_bankCard.val(),
+                select : test_validate_rule_select.val(),
+                che1 : test_validate_rule_che1_val.join(","),
+                che2 : test_validate_rule_che2_val.join(","),
+                tree : test_validate_rule_tree.attr("result"),
+                upload : test_validate_rule_upload.attr("path") || "",
+            },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        $(".modal:visible").modal("hide");
+                        var form = $(".modal form");
+                        for(var i=0;i<form.length;i++){ form[i].reset(); }
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+});//预加载结尾
+</script>
