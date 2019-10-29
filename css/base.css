@@ -391,6 +391,8 @@ html,body{
     left: 50%;
     margin:-26px 0 0 -60px;
     border-radius: 3px;
+
+    
 }
 /*欢迎文本*/
 .welcome-text{
@@ -705,4 +707,15 @@ label,
 }
 .tree-menu li>a:active, .tree-menu li>a:focus, .tree-menu li>a:hover{
     background: #fff!important;
+}
+/* 验证样式更改 */
+.formError .formErrorContent {
+    background: #8cb9ed;
+    border:none;
+    -webkit-box-shadow: 0 0 6px  #8cb9ed;
+}
+.formError .formErrorArrow div {
+    background: #8cb9ed;
+    border:none;
+    -webkit-box-shadow: 0 0 6px  #8cb9ed;
 }

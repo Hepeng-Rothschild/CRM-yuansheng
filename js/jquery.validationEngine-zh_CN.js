@@ -22,6 +22,7 @@
                     "alertText": "* 无效的 ",
                     "alertText2": " 日期范围"
                 },
+
                 "dateTimeRange": {
                     "regex": "none",
                     "alertText": "* 无效的 ",
@@ -196,7 +197,20 @@
 				"pwdContent": {
 				    "regex": /^(\d+(?=[a-zA-Z])[0-9a-zA-Z]*)|([a-zA-Z]+(?=\d)[0-9a-zA-Z]*)$/,
                     "alertText": "* 密码中字母和数字都至少有一位"
-				}
+				},
+                //验证新增
+                'ruleName': {
+                    'regex': /^[\u4e00-\u9fa5]{2,10}$/,
+                    'alertText': '姓名必须是2-10位'
+                },
+                'identity': {
+                    'regex':  /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
+                    'alertText': '身份证输入不合法'
+                },
+                "Landline": {
+                    "regex": /0\d{2,3}-\d{7,8}/,
+                    'alertText': '座机号码不合法请重新输入'
+                }
             };
             
         }
