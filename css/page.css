@@ -1,8 +1,64 @@
-/*样式引入*/
-@import url(zui.min.css);
-@import url(base.css);
-@import url(../fonts/iconfont.css);
-/*数据表头：合并单元格*/
+/*页面样式*/
+.page-container{
+    margin-top:30px;
+}
+.page-wrapper{
+    padding:0 10px;
+}
+/*欢迎文本*/
+.welcome-text{
+    line-height:500px;
+    color:#ccc;
+    font-size:4em;
+    font-weight:400;
+}
+/*工具条*/
+.tool-group{
+    padding:10px 0 0;
+    overflow: hidden;
+}
+.tool-group  label,
+.tool-group .im-label{
+    display: block;
+    float: left;
+    padding-right:10px;
+}
+.tool-group  label>span,
+.tool-group .im-label>span{
+    line-height: 33px;
+    padding:0 5px;
+    float: left;
+    font-weight: normal;
+    cursor: pointer;
+}
+.tool-group  label input,
+.tool-group  label select,
+.tool-group .im-label input,
+.tool-group .im-label select{
+    width: 120px!important;
+    float: left;
+}
+.tool-group label:first-child{
+    font-weight: normal;
+}
+.tool-group .im-label:first-child .input-group select{
+    width: 80px!important;
+    min-width: 80px!important;
+}
+.tool-group .tool-deal{
+    background: #f1f1f1;
+    padding:5px 0 0 5px;
+    border:1px solid #ddd;
+    border-bottom:0;
+}
+.tool-group div button{
+    margin-left:5px;
+}
+.tool-group div button:first-child{
+    margin-left:0;
+}
+/*数据表格-----------------------------*/
+/*表头合并*/
 .th-line-height{
     line-height: 50px;
 }
@@ -19,6 +75,15 @@
 .th-table tr:nth-child(2) td:nth-child(1){
     border-left: 0;
 }
+/*隐藏ID列*/
+.cell-hidden{
+    border:none;
+    opacity: 0.5;
+}
+/*表格分页*/
+.datagrid .pager{
+    margin:10px 0 0;
+}
 /*滚动面板：标题域*/
 .modal-scroll blockquote{
     background-color: #F4F8FA;
@@ -29,6 +94,74 @@
 .modal-scroll{
     overflow-y:scroll!important;
     padding-bottom: 100px;
+}
+/*表格棋盘布局*/
+.form-checker-board li label{
+    width: 100%;
+    height: 50px;
+    display: block!important;
+    display: -moz-box!important; 
+    display: -ms-flexbox!important;
+    display: -moz-flex!important; 
+    display: -ms-flex!important;
+    display: -webkit-flex!important;
+    display: -webkit-box!important; 
+    display: flex!important;
+    overflow: hidden;
+}
+.form-checker-board li label>span{
+    display: inline-block;
+    width:70px;
+    line-height:32px;
+    float: left;
+    font-weight: normal;
+    text-align: right;
+    margin-right:10px;
+    cursor: pointer;
+}
+.form-checker-board li label>span+*{
+    -moz-box-flex: 1;   
+    -webkit-flex: 1;  
+    -ms-flex: 1;  
+    -webkit-box-flex:1; 
+    flex:1;  
+    overflow:hidden; 
+}
+/*页面卡片*/
+.page-card-title{
+    border-color:#039be5;
+}
+.page-card-group{
+    margin-bottom:30px;
+}
+.page-card-group li{
+    padding:0!important;
+}
+.page-card-group li a{
+    display:block;
+    width:90%;
+    border:2px solid #eee;
+    border-radius:5px;
+    text-decoration:none;
+    margin-bottom:20px;
+    padding:20px;
+    box-sizing:border-box;
+    color:#333;
+}
+.page-card-group li a b.icon{
+    font-size:24px;
+    font-weight:bold;
+    position:relative;
+    top:2px;
+}
+.page-card-group li a i.icon{
+    line-height:27px;
+    color:#bbb;
+}
+.page-card-group li a:hover{
+    cursor:pointer;
+    background:#f5f5f5;
+    transition:all 0.2s ease-in 0s;
 }
 /*单图上传*/
 .zui-upload-img,
@@ -49,3 +182,146 @@
 .zui_upload_img .media-wrapper img{
     height:auto;
 }
+/*全局地图*/
+.common_map_mask{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.2);
+    position: fixed;
+    left: 0;top: 0;
+    z-index: 9999;
+    display: none;
+}
+#common_map_box{
+    padding:20px;
+    width:600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px  -300px;
+    z-index: 99999;
+    background: #fff;
+    box-shadow: 0 0 10px #999;
+    border-radius:2px;
+    box-sizing:border-box;
+}
+#common_map_box_main{
+    width: 100%;
+    height: 300px;
+    display: block;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+}
+#common_map_box_main img{
+    max-width:none;
+}
+.common_map_reset{
+    cursor:pointer;
+}
+/*全局跟踪日志-评论组件*/
+.comments-list .comment b{
+    color: #000;
+}
+.common_topic_imgs_wrap{
+    position: relative;
+}
+.common_topic_imgs_wrap 
+.common_topic_imgs_box{
+    position: absolute;
+    width: 200px;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius:2px;
+}
+.comments-list-for-answer{
+    padding-top: 0!important;
+}
+.comments-list-for-answer a{
+    color: grey;
+}
+.comment:hover a{
+    color: #3280fc;
+}
+.design-log-prog{
+    padding:1px 3px 0;
+    position: relative;
+    top: -2px;
+}
+/*权限表格*/
+#setup_auth_post_edit_table table td{
+    padding: 1px;
+}
+#setup_auth_post_edit_table table{
+    margin: 0px;
+}
+#setup_auth_post_edit_table table span,
+#setup_auth_post_edit_table table strong{
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+}
+/*加班规则+假期管理*/
+.setup_attendance_overtime_table dl dt,
+.setup_attendance_vacation_table dl dt{    
+    font-weight: normal;
+}
+.setup_attendance_overtime_table dl dd,
+.setup_attendance_vacation_table dl dd{    
+    padding: 10px 0 0 16px;
+}
+.setup_attendance_overtime_table dl dd .input-group,
+.setup_attendance_vacation_table dl dd .input-group{    
+    width:300px;
+}
+.setup_attendance_overtime_table dl dd .small,
+.setup_attendance_vacation_table dl dd .small{    
+    padding:7px;
+}
+.setup_attendance_overtime_table tr td,
+.setup_attendance_vacation_table tr td{    
+    position: relative;
+}
+.setup_attendance_overtime_table .table-disabled-mask,
+.setup_attendance_vacation_table .table-disabled-mask{    
+    width: 100%;
+    height: 100%;
+    background:rgba(255,255,255,.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:4;
+    display:none;
+}
+/*商务管理-项目进度*/
+.bussiness-prog-group{
+    margin-bottom:5px;
+}
+.bussiness-prog-group b{
+    font-size: 40px;
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 10px auto;
+    border-radius: 100%;
+    overflow: hidden;
+    line-height: 50px;
+}
+/*模态框定位变化
+.page-wrapper{
+    position: relative!important;
+}
+.modal-backdrop.in{
+    opacity: 0!important;
+    display: none!important;
+}
+.modal{
+    top:50px!important;
+    left: 200px!important;
+    bottom:-50px!important;
+    background: rgba(0,0,0,.2);
+}*/
+/*面板激活补丁
+.tab-content>.active{
+    display: block!important;
+}*/

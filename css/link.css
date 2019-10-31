@@ -1,0 +1,20 @@
+/*框架样式*/
+@import url(zui.min.css);
+@import url(../lib/tabs/zui.tabs.min.css);
+@import url(../lib/datagrid/zui.datagrid.min.css);
+@import url(../lib/chosen/chosen.min.css);
+@import url(../lib/treemap/zui.treemap.css);
+@import url(../lib/uploader/zui.uploader.css);
+@import url(../lib/dashboard/zui.dashboard.min.css);
+@import url(../lib/board/zui.board.min.css);
+@import url(../lib/colorpicker/zui.colorpicker.min.css);
+@import url(../lib/imgcutter/zui.imgcutter.min.css);
+@import url(../lib/datatable/zui.datatable.min.css);
+@import url(../lib/calendar/zui.calendar.css);
+@import url(../lib/datetimepicker/datetimepicker.min.css);
+@import url(validationEngine.jquery.css);
+/*自定义样式*/
+@import url(../fonts/iconfont.css);
+@import url(base.css);
+@import url(index.css);
+@import url(page.css);
