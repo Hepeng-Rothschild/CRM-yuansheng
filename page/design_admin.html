@@ -18,7 +18,7 @@
 					</div>
 				</div>
 				<label>
-					<span>状态：</span>
+					<span>项目状态：</span>
 					<select class="form-control" id="design_admin_tool_select1">
 						<option value="0">全部</option>
 						<option value="1">在谈</option>
@@ -35,15 +35,14 @@
 						<div class="col-sm-2"><select class="form-control" id="design_admin_tool_select2" style="margin-right: 40px;"><!-- JS推进 --></select></div> </div>
 				 </label>
 				      <div class="im-label" id="design_admin_tool_date1"><!--JS推进--></div>
-				      <div class="im-label" id="design_admin_tool_date2"><!--JS推进--></div>
 				<label>
 					<button class="btn btn-primary" id="design_admin_search_btn"><i class="icon icon-search"></i> 查询</button></label>
 				<div class="clearfix"></div>
 			</div>
 			<div class="tool-deal">
-				<label><button class="btn btn-primary" id="design_admin_turn_btn"> <i class="icon icon-exchange"></i> 转移项目</button></label>
-				<label><button class="btn btn-primary" id="design_admin_change_btn"> <i class="icon icon-signin"></i> 项目交接</button></label>
-				<label><button class="btn btn-primary" id="design_admin_export_btn"> <i class="icon icon-external-link"></i> 导出项目单</button></label>
+				<label><button class="btn btn-primary" id="design_admin_turn_btn"> <i class="icon icon-exchange"></i> 转移客户</button></label>
+				<label><button class="btn btn-primary" id="design_admin_change_btn"> <i class="icon icon-signin"></i> 客户交接</button></label>
+				<label><button class="btn btn-primary" id="design_admin_export_btn"> <i class="icon icon-external-link"></i> 导出在谈跟单情况</button></label>
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -227,24 +226,6 @@
 	</div>
 	<!-- design_admin_great_box -->
 
-	<!-- 日志查看盒子 -->
-	<div class="modal modal-for-page fade" aria-hidden="false" id="design_admin_logShow_box">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-					<h4 class="modal-title">日志查看</h4>
-				</div>
-				<div class="modal-body modal-scroll">
-					<div class="container comments">
-						<!-- JS推进 -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- design_admin_logShow_box -->
-
 	<!-- 日志添加盒子 -->
 	<div class="modal modal-for-page fade" aria-hidden="false" id="design_admin_logAdd_box">
 		<div class="modal-dialog">
@@ -311,7 +292,6 @@ $(function() {
 			design_admin_tool_select1 = $("#design_admin_tool_select1"), //下拉选择1
 			design_admin_tool_select2 =$("#design_admin_tool_select2"), //下拉选择2
 			design_admin_tool_date1 = $("#design_admin_tool_date1"), //起止时间1
-			design_admin_tool_date2 = $("#design_admin_tool_date2"), //起止时间2
 			design_admin_search_btn = $("#design_admin_search_btn"), //搜索按钮
             //项目转移
             design_admin_turn_btn = $("#design_admin_turn_btn"), //转移按钮
@@ -340,7 +320,7 @@ $(function() {
 			design_admin_great_box = $("#design_admin_great_box"), //洽谈盒子
 			design_admin_great_submit = $("#design_admin_great_submit"), //洽谈提交
 			design_admin_great_level = $("#design_admin_great_level"), //洽谈等级
-			//跟踪日志
+			//日志
 			design_admin_logShow_box = $("#design_admin_logShow_box"), //日志查看盒子
 			design_admin_logAdd_box = $("#design_admin_logAdd_box"), //日志添加盒子
 			design_admin_logAdd_submit = $("#design_admin_logAdd_submit"), //日志添加提交
@@ -398,6 +378,11 @@ $(function() {
 						width: 49
 					},
 					{
+						name: "date",
+						label: "时间",
+						width: 100
+					},
+					{
 						name: "username",
 						label: "项目编号",
 						width: 100
@@ -414,38 +399,33 @@ $(function() {
 						}
 					},
 					{
+						name: "name",
+						label: "联系人1",
+						width: 100
+					},
+					{
 						name: "tex10",
-						label: "项目状态",
+						label: "装修地址",
 						width: 150
 					},
 					{
 						name: "name",
-						label: "项目联系人",
+						label: "信息员",
 						width: 100
 					},
 					{
-						name: "text2",
-						label: "面积",
+						name: "name",
+						label: "业务员",
+						width: 100
+					},
+					{
+						name: "name",
+						label: "主案设计师",
 						width: 100
 					},
 					{
 						name: "text6",
-						label: "项目地址",
-						width: 100
-					},
-					{
-						name: "name",
-						label: "量房",
-						width: 100
-					},
-					{
-						name: "name",
-						label: "设计进度",
-						width: 100
-					},
-					{
-						name: "name",
-						label: "设计进度",
+						label: "房源状态",
 						width: 100
 					},
 					{
@@ -482,42 +462,14 @@ $(function() {
 						}
 					},
 					{
-						name: "name",
-						label: "量房",
-						width: 100
-					},
-					{
-						name: "name",
-						label: "项目预算",
-						width: 100
-					},
-					{
-						name: "name",
-						label: "业务员",
-						width: 100
-					},
-					{
-						name: "name",
-						label: "设计师",
+						name: "text6",
+						label: "状态",
 						width: 100
 					},
 					{
 						name: "date",
-						label: "剩余回访时间",
+						label: "回访过期",
 						width: 100
-					},
-					{
-						name: "log",
-						label: "跟踪日志",
-						width: 80,
-						html: true,
-						valueOperator: {
-							getter: function(dataValue, cell) {
-								return `
-                            <a class="design_admin_logShow_btn" rowIndex="${cell.rowIndex}">查看</a>
-                            <a class="design_admin_logAdd_btn"  rowIndex="${cell.rowIndex}">添加</a>`;
-							}
-						}
 					}
 				],
 				remote: function() {
@@ -689,9 +641,8 @@ $(function() {
 			design_admin_show_filelist_obj = design_admin_show_filelist.data("zui.datagrid"), //查看表格1
 			design_admin_show_record_obj = design_admin_show_record.data("zui.datagrid"), //查看表格2
 			design_admin_show_btn = ".design_admin_show_btn", //查看按钮
-			design_admin_great_btn = ".design_admin_great_btn", //洽谈等级按钮
-			design_admin_logShow_btn = ".design_admin_logShow_btn", //日志查看
-			design_admin_logAdd_btn = ".design_admin_logAdd_btn"; //日志添加
+			design_admin_great_btn = ".design_admin_great_btn"; //洽谈等级按钮
+
 
 		//上传创建-----------------------------------------------------------------------------------------------
 		zui_upload_group({
@@ -701,13 +652,9 @@ $(function() {
 		});
 
 		//时间组件-----------------------------------------------------------------------------------------------
-		common_date_duration(design_admin_tool_date1, "分单时间");
-		common_date_duration(design_admin_tool_date2, "签单时间");
+		common_date_duration(design_admin_tool_date1);
 		design_admin_tool_date1.find(".start").datetimepicker(option_date);
 		design_admin_tool_date1.find(".end").datetimepicker(option_date);
-		design_admin_tool_date2.find(".start").datetimepicker(option_date);
-		design_admin_tool_date2.find(".end").datetimepicker(option_date);
-
 		//下拉选项-----------------------------------------------------------------------------------------------
         //洽谈等级(工具条)
         $.ajax({
@@ -806,9 +753,7 @@ $(function() {
 				"&state=" + design_admin_tool_select1.val() +
 				"&level=" + design_admin_tool_select2.val() +
 				"&date1=" + design_admin_tool_date1.find(".start").val() +
-				"&date2=" + design_admin_tool_date1.find(".end").val() +
-				"&date3=" + design_admin_tool_date2.find(".start").val() +
-				"&date4=" + design_admin_tool_date2.find(".end").val()
+				"&date2=" + design_admin_tool_date1.find(".end").val() 
 			//GET提交
 			zui_datagrid_render(design_admin_datagrid_obj, design_admin_api.datagrid + keyword);
 
@@ -1168,182 +1113,6 @@ $(function() {
 			}
 		}
 	});
-	//日志查看-----------------------------------------------------------------------------------------------
-		$(document).on("click", design_admin_logShow_btn, function() {
-
-			//数据复原
-			common_topic_answer_reset();
-
-			//ID取值
-			var data_id = $(this).attr("rowIndex");
-
-			//远程提交
-			$.ajax({
-				url: design_admin_api.topic,
-				type: "post",
-				dataType: "json",
-				data: {
-					id: data_id,
-				},
-				success: function(data) {
-
-					if (data.status > 0) {
-
-						//变量赋值
-						var data = data.data;
-						var temp = "";
-
-						//一级话题
-						for (var i = 0; i < data.length; i++) {
-							temp +=
-								`
-                            <div class="comments-list">
-                                <div class="comment">
-                                    <div class="avatar text-center">
-                                        <i class="icon-user icon-2x text-primary"></i>
-                                        <div class="small text-primary">${data[i].user}</div>
-                                    </div>
-                                    <div class="content">
-                                        <div class="pull-right text-muted">${data[i].date}</div>
-                                        <div class="text"><span class="label label-outline label-primary design-log-prog">${data[i].prog}</span> ${data[i].text}</div>
-                                        <div class="text">${data[i].text}</div>
-                                        <div class="actions common_topic_imgs_wrap">
-                                            <a class="common_topic_imgs_btn">图片[${data[i].imgs.length}]</a>
-                                            <div class="common_topic_imgs_box hide">`;
-
-							//图片循环
-							for (var m = 0; m < data[i].imgs.length; m++) {
-								temp +=
-									`<a class="ov1" target="_blank" href=${FILE_PATH}${data[i].imgs[m].path}>${data[i].imgs[m].name}</a>`;
-							}
-
-							//标签收尾
-							temp += `</div></div></div>`;
-
-							//评论嵌套
-							for (var j = 0; j < data[i].childTopic.length; j++) {
-								temp +=
-									`
-                                <div class="comments-list">
-                                    <div class="comment">
-                                        <div class="content">
-                                            <div class="pull-right text-muted">10-20 11:00</div>
-                                            <div><b>${data[i].childTopic[j].user}</b></div>
-                                            <div class="text">${data[i].childTopic[j].text}</div>
-                                        </div>
-                                    </div>
-                                </div>`;
-							}
-
-							//标签收尾
-							temp +=
-								`
-                        <div class="comments-list comments-list-for-answer">
-                            <div class="actions">
-                                <a class="common_topic_answer_btn">回复</a>
-                                <div class="hide common_topic_answer_text_wrap">
-                                    <textarea class="form-control common_topic_answer_text"></textarea>
-                                    <button type="button" class="pull-right btn btn-mini btn-primary design_admin_logShow_submit" data-tid="${data[i].id}" style="margin-top:5px;">提交</button>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
-                        </div></div>`;
-						}
-
-						//文本推进
-						design_admin_logShow_box.find(".comments").html(temp);
-
-						//ID赋值
-						design_admin_logShow_box.attr("rowIndex", data_id);
-
-						//面板显示
-						design_admin_logShow_box.modal("show");
-
-					} else {
-						um_tip(data.message, "1500", "text-danger");
-					}
-				}
-			});
-
-		});
-		//日志回复
-		$(document).on("click", ".design_admin_logShow_submit", function() {
-			//变量声明
-			var data_id = design_admin_logShow_box.attr("rowIndex");
-			var tid = $(this).attr("data-tid");
-			var text = $(this).parent().find(".common_topic_answer_text").val();
-			//远程提交
-			$.ajax({
-				url: API.test_response,
-				type: "post",
-				dataType: "json",
-				data: {
-					id: data_id,
-					tid: tid,
-					text: text
-				},
-				success: function(data) {
-					if (data.status > 0) {
-						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj, design_admin_api.datagrid);
-					} else {
-						um_tip(data.message, "1500", "text-danger");
-					}
-				}
-			});
-		});
-
-		//日志添加-----------------------------------------------------------------------------------------------
-		$(document).on("click", ".design_admin_logAdd_btn", function() {
-
-			//数据复原
-			common_form_reset();
-
-			//ID取值
-			var rowIndex = $(this).attr("rowIndex");
-
-			//ID赋值
-			design_admin_logAdd_submit.attr("rowIndex", rowIndex);
-
-			//面板显示
-			design_admin_logAdd_box.modal("show");
-
-		});
-		//日志提交
-		design_admin_logAdd_submit.click(function() {
-
-			//ID取值
-			var data_id = $(this).attr("rowIndex");
-
-			//远程提交
-			$.ajax({
-				url: API.test_response,
-				type: "post",
-				dataType: "json",
-				data: {
-					id: data_id,
-					prog: design_admin_logAdd_prog.val(),
-					painter: design_admin_logAdd_painter.val(),
-					text: design_admin_logAdd_text.val(),
-					file: design_admin_logAdd_file.attr("path"),
-					date: design_admin_logAdd_date.val(),
-				},
-				success: function(data) {
-					if (data.status > 0) {
-						um_tip(data.message);
-						zui_datagrid_reset(design_admin_datagrid_obj, design_admin_api.datagrid);
-					} else {
-						um_tip(data.message, "1500", "text-danger");
-					}
-				}
-			});
-		});
-		//日志关闭
-		design_admin_logAdd_box.on("hide.zui.modal", function() {
-		//上传重置
-			zui_upload_reset([design_admin_logAdd_file]);
-		});
 
 }); //预加载结尾
 </script>
