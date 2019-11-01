@@ -1,0 +1,390 @@
+<style>
+.table-detail-template b{
+    display: inline-block;
+    min-width: 90px;
+}
+</style>
+<!-- 页面外套 -->
+<div class="page-wrapper" id="test_template">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="test_template_datagrid">
+        <br>
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="test_template_show_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">客户查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        
+                        <!-- <object data="./remote/temp.html"></object> -->
+
+                        <!-- 项目进度 -->
+                        <table class="table table-bordered" id="test_template_show_t_prog">
+                            <thead><tr><th>项目进度</th></tr></thead>
+                            <tbody><!-- JS推进 --></tbody>
+                        </table>
+
+                        <!-- 项目信息 -->
+                        <table class="table table-bordered table-detail-template" id="test_template_show_t_case">
+                            <thead><tr><th colspan="3">项目信息 
+                                <button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
+                            </th></tr></thead>
+                            <tbody><!-- JS推进 --></tbody>
+                        </table>
+
+                        <!-- 负责人信息 -->
+                        <table class="table table-bordered" id="test_template_show_t_user">
+                            <thead><tr><th colspan="3">负责人信息 
+                                <button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
+                            </th></tr></thead>
+                            <tbody><!-- JS推进 --></tbody>
+                        </table>
+ 
+                        <!-- 切换面板 -->
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-tab="" href="#test_template_show_filelist">客户附件</a></li>
+                            <li><a data-tab="" href="#test_template_show_record">操作记录</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="datagrid datagrid-striped tab-pane active" id="test_template_show_filelist">
+                                <!-- 工具条组 -->
+                                <div class="tool-group" style="padding:0;border-top:0">
+                                    <div class="tool-deal" style="padding:5px;">
+                                        <div class="btn-group" data-toggle="buttons" id="test_template_show_filelist_type">
+                                            <label class="btn btn-mini active"><input type="radio" name="filetype" value="1">商务附件</label>
+                                            <label class="btn btn-mini"><input type="radio" name="filetype" value="2">设计附件</label>
+                                            <label class="btn btn-mini"><input type="radio" name="filetype" value="3">施工图</label>
+                                            <label class="btn btn-mini"><input type="radio" name="filetype" value="4">效果图</label>
+                                            <label class="btn btn-mini"><input type="radio" name="filetype" value="5">报价附件</label>
+                                            <label class="btn btn-mini"><input type="radio" name="filetype" value="6">合同附件</label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <!-- tool-group -->
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+                            </div>
+                            <div class="datagrid datagrid-striped tab-pane" id="test_template_show_record">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- test_template_show_box -->
+
+</div>
+<!-- page-wrapper -->
+<script>
+$(function(){
+   
+    //变量声明-----------------------------------------------------------------------------------------------
+    var 
+    test_template                       = $("#test_template"),                      //页面ID
+    test_template_datagrid              = $("#test_template_datagrid"),             //数据表格
+    //查看
+    test_template_show_box              = $("#test_template_show_box"),             //查看盒子
+    test_template_show_t_prog           = $("#test_template_show_t_prog"),          //项目进度
+    test_template_show_t_case           = $("#test_template_show_t_case"),          //项目信息
+    test_template_show_t_user           = $("#test_template_show_t_user"),          //负责人信息
+    test_template_show_filelist         = $("#test_template_show_filelist"),        //客户附件
+    test_template_show_filelist_type    = $("#test_template_show_filelist_type"),   //客户附件类型
+    test_template_show_record           = $("#test_template_show_record");          //操作记录
+ 
+    //接口对象-----------------------------------------------------------------------------------------------
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var test_template_api = {
+            datagrid            : LOCAL + "Test/test_datagrid.json",                //数据表格
+            datagrid_filelist   : LOCAL + "Test/Business/customer_filelist.json",   //客户附件表格
+            datagrid_record     : LOCAL + "Test/test_datagrid.json",                //操作记录表格
+            modal_show          : LOCAL + "Test/Business/customer_edit.json",       //修改盒子
+            topic               : LOCAL + "Test/Business/provider_topic.json",      //日志查看
+            select              : LOCAL + "Test/test_select.json",                  //下拉选择
+        }
+
+    } else if ( window.STATE == "route" ){}
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    test_template_datagrid.datagrid({
+        height      : zui_datagrid_height(test_template_datagrid),
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        checkable   : true,
+        checkByClickRow:false,
+        selectable  : false,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",         width:49 },
+                {name:"username",label:"项目编号",   width:80},
+                {name:"tex10",   label:"项目名称",   width:160,html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            return `<a class="test_template_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
+                        }
+                    }
+                },
+                {name:"text2",  label:"项目状态",   width:80 },
+                {name:"name",   label:"项目联系人", width:100}               
+            ],
+            remote : function(){
+                return {
+                    url     : test_template_api.datagrid,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //查看表格-客户附件
+    test_template_show_filelist.datagrid({
+        height      : "page",
+        rowDefaultHeight    : 72, 
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"},
+            C7:{className:"text-center"},
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : 10,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",     label:"ID",         width:49 },
+                {name:"thumb",  label:"缩略图",     width:70,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var file_thumb = "";
+                            if( dataValue.thumb_icon=="image" ){
+                                file_thumb = `<img src="${dataValue.thumb_path}">`
+                            } else if( dataValue.thumb_icon=="file") {
+                                file_thumb = `<i style="font-size:50px!important;" class="icon icon-file-o"></i>`;
+                            } else {
+                                file_thumb = `<i style="font-size:50px!important;" class="icon icon-file-${dataValue.thumb_icon}"></i>`;
+                            }
+                            return file_thumb;
+                        }
+                    }
+                },
+                {name:"name",    label:"附件名称",   width:300},
+                {name:"type",    label:"类型",       width:80 },
+                {name:"uploader",label:"上传者",     width:80 },
+                {name:"date",    label:"上传时间",   width:140},
+                {name:"path",    label:"导出/下载",  width:80,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            return `<a target="_blank" href="${dataValue}"><i class="icon icon-download-alt"></i></a>`;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : test_template_api.datagrid_filelist,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+    //查看表格-操作记录
+    test_template_show_record.datagrid({
+        height      : "page",
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : window.REC_PER_PAGE,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",    width:49 },
+                {name:"name",    label:"操作人",width:80 },
+                {name:"object",  label:"日志",  width:240,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell,datagrid){
+                            var temp = "";
+                            if( dataValue.state==1 ){
+                                temp = `<span class="text-danger">${dataValue.text}</span>`;
+                            } else {
+                                temp = `<span class="text-success">${dataValue.text}</span>`;
+                            }
+                            return temp;
+                        }
+                    }
+                },
+                {name:"date",    label:"时间",  width:140},
+            ],
+            remote : function(){
+                return {
+                    url     : test_template_api.datagrid_record,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //变量声明-----------------------------------------------------------------------------------------------
+    var
+    test_template_datagrid_obj      = test_template_datagrid.data("zui.datagrid"),      //表格对象
+    test_template_show_filelist_obj = test_template_show_filelist.data("zui.datagrid"), //查看表格1
+    test_template_show_record_obj   = test_template_show_record.data("zui.datagrid"),   //查看表格2
+    test_template_show_btn          = ".test_template_show_btn",                        //查看按钮
+    test_template_reply_btn         = '.test_template_reply_btn',                       //过期批复按钮
+    test_template_logShow_btn       = ".test_template_logShow_btn",                     //日志查看
+    test_template_logAdd_btn        = ".test_template_logAdd_btn";                      //日志添加
+
+    //查看按钮-----------------------------------------------------------------------------------------------
+    $(document).on("click",test_template_show_btn,function(){ 
+
+        //数据ID
+        var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+        //远程提交
+        $.ajax({
+            url     : test_template_api.modal_show,
+            type    : "post",
+            dataType: "json",
+            data    : { id:data_id },
+            success : function(data){
+                if( data.status>0 ){
+
+                    //查看模板
+                    var data = data.data;
+
+                    //项目进度
+                    var temp_prog = `<tr><td><ul class="bussiness-prog-group flex-box">`;
+                    var temp_prog_state_class = "bg-primary";
+                    for( var i=0;i<data.prog.length;i++){
+                        if( data.prog[i].state==0 ){ temp_prog_state_class = "bg-grey" }
+                        temp_prog +=`
+                            <li class="flex-son text-center">
+                                <b class="${temp_prog_state_class}">${i+1}</b>
+                                <div class="small">${data.prog[i].name}</div>
+                                <div class="small">${data.prog[i].date}</div>
+                            </li>
+                        `;
+                    }
+                    test_template_show_t_prog.find("tbody").html(temp_prog+"</ul></td></tr>");
+
+                    //项目信息
+                    var temp_case = `
+                        <tr>
+                            <td><b>项目编号：</b>${data.number} </td>
+                            <td><b>项目名称：</b>${data.case}   </td>
+                            <td><b>项目状态：</b>${data.state}  </td>
+                        </tr>
+                        <tr>
+                            <td><b>申请理由：</b>${data.reason}       </td>
+                            <td><b>装修面积：</b>${data.decoarea} ㎡  </td>
+                            <td><b>房源状态：</b>${data.statename}    </td>
+                        </tr>
+                        <tr>
+                            <td><b>装修地址：</b>${data.decoaddr}     </td>
+                            <td><b>联系人1： </b>${data.user1}        </td>
+                            <td><b>手机1：   </b>${data.tel1}         </td>
+                        </tr>
+                        <tr>
+                            <td><b>联系人2： </b>${data.user2}        </td>
+                            <td><b>手机2：   </b>${data.tel2}         </td>
+                            <td><b>办公地址：</b>${data.addr}         </td>
+                        </tr>
+                        <tr>
+                            <td><b>办公电话：</b>${data.tel0}         </td>
+                            <td><b>信息员：  </b>${data.providername} </td>
+                            <td><b>房屋类型：</b>${data.housetypename}</td>
+                        </tr>
+                        <tr>
+                            <td><b>装修意向：</b>${data.housetodoname}</td>
+                            <td><b>装修服务：</b>${data.houseservname}</td>
+                            <td><b>交房日期：</b>${data.housedate1}   </td>
+                        </tr>
+                        <tr>
+                            <td><b>期望完工：</b>${data.housedate2}   </td>
+                            <td><b>对手数量：</b>${data.rivalnumb}    </td>
+                            <td><b>对手进展：</b>${data.rivalstepname}</td>
+                        </tr>
+                        <tr>   
+                            <td colspan="3"><b>备注：</b>${data.text}   </td>
+                        </tr>
+                    `;
+                    test_template_show_t_case.find("tbody").html(temp_case);
+
+                    //负责人信息
+                    var temp_user = `
+                        <tr>
+                            <td><b>业务员:       </b>${data.salesman}</td>
+                            <td><b>设计师：      </b>${data.designer}</td>
+                            <td><b>效果图绘图员：</b>${data.sketcher}</td>
+                        </tr>
+                        <tr>   
+                            <td><b>施工图绘图员：</b>${data.draftsman}   </td>
+                            <td><b>预算员：      </b> ${data.budgetor}   </td>
+                            <td><b>工程监理：    </b>${data.supervision} </td>
+                        </tr>
+                        <tr>   
+                            <td colspan="3"><b>项目经理：    </b>${data.manager}     </td>
+                        </tr>
+                    `;
+                    test_template_show_t_user.find("tbody").html(temp_user);
+                    
+                    //数据表格
+                    zui_datagrid_render(test_template_show_filelist_obj,test_template_api.datagrid_filelist+"?id="+data_id+"&type=1");
+                    zui_datagrid_render(test_template_show_record_obj,test_template_api.datagrid_record+"?id="+data_id);
+                    
+                    test_template_show_filelist_type.attr("rowIndex",data_id);      //ID赋值
+                    test_template_show_box.modal("show");                           //盒子显示
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+});//预加载结尾
+</script>
