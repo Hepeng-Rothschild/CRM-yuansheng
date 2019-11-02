@@ -108,9 +108,9 @@
         "title"     : "设计管理",
         "children"  : [
             { "title":"项目洽谈","icon":"","url":"design_list" },
-            { "title":"项目分单","icon":"","url":"design_assign" },
+            { "title":"项目分单","icon":"","url":"design_assign"},
             { "title":"项目管理","icon":"","url":"design_admin" },
-            { "title":"签单列表","icon":"","url":"design_assign" },
+            { "title":"签单列表","icon":"","url":"design_sign" },
             { "title":"量房列表","icon":"","url":"design_measure" },
             { "title":"绘图列表","icon":"","url":"design_mapping" },
             { "title":"失败审批","icon":"","url":"design_failure" },
