@@ -84,6 +84,9 @@
 .datagrid .pager{
     margin:10px 0 0;
 }
+.pager .icon{
+    line-height: 18px;
+}
 /*滚动面板：标题域*/
 .modal-scroll blockquote{
     background-color: #F4F8FA;
@@ -278,13 +281,9 @@
 .tabs-navbar,.alert-primary{
     background-color: rgba(234, 244, 255, 1);
 }
-.tab-nav-item {
-    width: 80px;
-}
 .main-header .navbar{
     background-image:linear-gradient(to right,#8ebaeb 20%, #5a97d9 80%,  #1266bf 90%);
 }
-
 .page-card-group dt{
     font-weight: normal;
 }
@@ -307,10 +306,7 @@
     text-decoration: none;
     color:red;
 }
-.tes{
-    position: absolute;
-}
-.scrcle {
+.page-card-group .label-dot {
     position: relative;
     left: 36px;
     top: -18px;
