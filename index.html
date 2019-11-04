@@ -57,7 +57,7 @@
                             <li><a data-toggle="push-menu"><i class="icon icon-bars"></i></a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right xi" style="display: flex;justify-content: space-around;">
-                            <li class="zz">帝森信息管理系统</li>
+                            <li class="zz">装企CRM管理系统</li>
                             <li class="hidden">
                                 <a>
                                     <span>
@@ -75,18 +75,18 @@
                                 </a>
                             </li>
                             <li class="dopdrown">
-                                <a data-toggle="dropdown"><i class="icon icon-bell-alt"></i>See <span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a id="common_logout_btn">查看</a></li>
-                                </ul>
+                                <a data-toggle="dropdown"><i class="icon icon-bell-alt"></i><!-- <span
+                                        class="caret"></span>--></a>
+                                <!--<ul class="dropdown-menu">-->
+                                    <!--<li><a id="common_logout_btn">查看</a></li>-->
+                                <!--</ul>-->
                             </li>
                             <li class="dopdrown">
-                                <a data-toggle="dropdown"><i class="icon icon-off"></i> admin <span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a id="common_cancellation_btn">注销</a></li>
-                                </ul>
+                                <a data-toggle="dropdown" id="common_cancellation_btn"><i class="icon icon-off"></i> admin <!--<span
+                                        class="caret"></span>--></a>
+                                <!--<ul class="dropdown-menu">-->
+                                    <!--<li><a id="common_cancellation_btn">注销</a></li>-->
+                                <!--</ul>-->
                             </li>
 
                         </ul>
@@ -427,8 +427,14 @@ $(function(){
     }
 
     .dropdown {
-        width: 8%;
+        width: 6%;
         float: right !important;
+    }
+    .dopdrown{
+        margin-left:20px;
+    }
+    #common_cancellation_btn{
+        margin-left:-72px;
     }
 </style>
 

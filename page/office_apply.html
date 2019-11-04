@@ -3,7 +3,8 @@
 
 	<!-- 页面卡片 -->
 <!-- 	<blockquote class="lead page-card-title"><b class="text-primary">考勤</b></blockquote> -->
-	<dl class="col-group page-card-group" id="tests">
+	<dl class="col-group page-card-group" id="tes">
+		<div id="tests"></div>
 	<div class="clearfix"></div>
 </div>
 <!-- container -->
@@ -26,7 +27,7 @@ $(function () {
 						temp += `<a href="${level1[x].url}">
 							${level1[x].title}`;
 							if( level1[x].tips>0 ){
-								temp += `<span class="label label-dot label-danger"></span>`;
+								temp += `<span class="label label-dot label-danger scrcle"></span>`;
 							}
 						temp += `</a>`;
 					}

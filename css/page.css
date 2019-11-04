@@ -307,7 +307,10 @@
     text-decoration: none;
     color:red;
 }
-.label-danger {
+.tes{
+    position: absolute;
+}
+.scrcle {
     position: relative;
     left: 36px;
     top: -18px;
