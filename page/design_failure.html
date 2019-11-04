@@ -1,114 +1,348 @@
 <!-- 页面外套 -->
-<div class="page-wrapper" id="design_failure">
+<div class="page-wrapper" id="design_failure_admin">
 
 	<!-- 数据网格 -->
-	<div class="datagrid datagrid-striped" id="design_failure_datagrid">
+	<div class="datagrid datagrid-striped" id="design_failure_admin_datagrid">
+
 		<!-- 工具条组 -->
 		<div class="tool-group">
 			<div class="tool-search">
 				<div class="im-label">
 					<div class="input-group">
-						<select class="form-control" id="design_failure_tool_keys">
+						<select class="form-control" id="design_failure_admin_tool_keys">
 							<option value="1">项目编号</option>
 							<option value="2">项目名称</option>
 							<option value="3">设计师</option>
 						</select>
 						<span class="input-group-addon fix-border fix-padding"></span>
-						<input type="text" class="form-control" id="design_failure_tool_search">
-
+						<input type="text" class="form-control" id="design_failure_admin_tool_search">
 					</div>
 				</div>
 				<label>
 					<span>项目状态：</span>
-					<select class="form-control" id="design_failure_tool_select1">
+					<select class="form-control" id="design_failure_admin_tool_select1" style="width:160px!important;">
 						<option value="0">全部</option>
 						<option value="1">未签申请中</option>
 						<option value="2">不准申请中</option>
 					</select>
 				</label>
-				<label>
-					<span>未签理由：</span>
-					<select class="form-control" id="design_failure_tool_select2">
-						<option value="0">全部</option>
-						<option value="1">未签</option>
-						<option value="2">客因未签</option>
-					</select>
-				</label>
-				<label><button class="btn btn-primary" id="design_failure_query_btn">查询</button></label>
+				<label><button class="btn btn-primary" id="design_failure_admin_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
 				<div class="clearfix"></div>
-	</div>
+			</div>
 		</div>
 		<!-- tool-group -->
-		 <div>
-		      <div class="datagrid-container"></div>
-		      <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
-	     </div>
+
+		<div class="datagrid-container"></div>
+		<ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+	</div>
 	<!-- datagrid -->
-	
-	
+	<!-- 客户查看盒子 -->
+	<div class="modal modal-for-page fade" aria-hidden="false" id="design_failure_admin_show_box">
+		<div class="modal-dialog modal-fullscreen">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+					<h4 class="modal-title">客户查看</h4>
+				</div>
+				<div class="modal-body modal-scroll">
+					<div class="container">
+
+						<!-- 项目进度 -->
+						<table class="table table-bordered" id="design_failure_admin_show_t_prog">
+							<thead><tr><th>项目进度</th></tr></thead>
+							<tbody><!-- JS推进 --></tbody>
+						</table>
+
+						<!-- 项目信息 -->
+						<table class="table table-bordered" id="design_failure_admin_show_t_case">
+							<thead><tr><th colspan="2">项目信息
+								<button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
+							</th></tr></thead>
+							<tbody><!-- JS推进 --></tbody>
+						</table>
+
+						<!-- 负责人信息 -->
+						<table class="table table-bordered" id="design_failure_admin_show_t_user">
+							<thead><tr><th colspan="2">负责人信息
+								<button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
+							</th></tr></thead>
+							<tbody><!-- JS推进 --></tbody>
+						</table>
+
+						<!-- 切换面板 -->
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-tab="" href="#design_failure_admin_show_filelist">客户附件</a></li>
+							<li><a data-tab="" href="#design_failure_admin_show_record">操作记录</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="datagrid datagrid-striped tab-pane active" id="design_failure_admin_show_filelist">
+								<!-- 工具条组 -->
+								<div class="tool-group" style="padding:0;border-top:0">
+									<div class="tool-deal" style="padding:5px;">
+										<div class="btn-group" data-toggle="buttons" id="design_failure_admin_show_filelist_type">
+											<label class="btn btn-mini active"><input type="radio" name="filetype" value="1">商务附件</label>
+											<label class="btn btn-mini"><input type="radio" name="filetype" value="2">设计附件</label>
+											<label class="btn btn-mini"><input type="radio" name="filetype" value="3">施工图</label>
+											<label class="btn btn-mini"><input type="radio" name="filetype" value="4">效果图</label>
+											<label class="btn btn-mini"><input type="radio" name="filetype" value="5">报价附件</label>
+											<label class="btn btn-mini"><input type="radio" name="filetype" value="6">合同附件</label>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+								<!-- tool-group -->
+								<div class="datagrid-container"></div>
+								<ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+							</div>
+							<div class="datagrid datagrid-striped tab-pane" id="design_failure_admin_show_record">
+								<div class="datagrid-container"></div>
+								<ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- design_failure_admin_show_box -->
+
+	<!-- 日志查看盒子 -->
+	<div class="modal modal-for-page fade" aria-hidden="false" id="design_failure_admin_logShow_box">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+					<h4 class="modal-title">日志查看</h4>
+				</div>
+				<div class="modal-body modal-scroll">
+					<div class="container comments">
+						<!-- JS推进 -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- design_failure_admin_logShow_box -->
+
+	<!-- 上传盒子 -->
+	<div class="modal modal-for-page fade" aria-hidden="false" id="design_failure_admin_logAdd_box">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+					<h4 class="modal-title">上传</h4>
+				</div>
+				<div class="modal-body">
+					<form class="container form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 required">图片添加</label>
+							<div class="col-sm-8">
+								<!-- 组队上传 -->
+								<div class="uploader" id="design_failure_admin_logAdd_file" path="">
+									<div class="uploader-message text-center"><div class="content"></div></div>
+									<div class="uploader-files file-list"></div>
+									<button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
+								</div>
+								<!-- uploader -->
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="design_failure_admin_logAdd_submit">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- design_failure_admin_logAdd_box -->
+
+	<!-- 人员选择盒子-商务专员 -->
+	<div class="modal modal-for-page fade" aria-hidden="false" id="design_failure_admin_salesman_box">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+					<h4 class="modal-title">商务专员选择</h4>
+				</div>
+				<div class="modal-body no-padding">
+
+					<!-- 数据网格 -->
+					<div class="datagrid datagrid-striped" id="design_failure_admin_salesman_datagrid">
+
+						<!-- 工具条组 -->
+						<div class="tool-group no-padding">
+							<div class="tool-deal" style="border:none;">
+								<label>
+									<span>姓名：</span>
+									<input type="text" class="form-control" id="design_failure_admin_salesman_user">
+								</label>
+								<label>
+									<span>部门：</span>
+									<select class="form-control" id="design_failure_admin_salesman_depart"><!-- JS推进 --></select>
+								</label>
+								<label><button class="btn btn-primary" id="design_failure_admin_salesman_search_btn">搜索</button></label>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						<!-- tool-group -->
+						<div class="datagrid-container"></div>
+						<ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+					</div>
+					<!-- datagrid -->
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="design_failure_admin_salesman_submit">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- design_failure_admin_salesman_box -->
+
+	<!-- 人员选择盒子-信息员 -->
+	<div class="modal modal-for-page fade" aria-hidden="false" id="design_failure_admin_provider_box">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+					<h4 class="modal-title">信息员选择</h4>
+				</div>
+				<div class="modal-body no-padding">
+
+					<!-- 数据网格 -->
+					<div class="datagrid datagrid-striped" id="design_failure_admin_provider_datagrid">
+
+						<!-- 工具条组 -->
+						<div class="tool-group no-padding">
+							<div class="tool-deal" style="border:none;">
+								<label>
+									<span>姓名：</span>
+									<input type="text" class="form-control" id="design_failure_admin_provider_user">
+								</label>
+								<label><button class="btn btn-primary" id="design_failure_admin_provider_search_btn">搜索</button></label>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						<!-- tool-group -->
+						<div class="datagrid-container"></div>
+						<ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+					</div>
+					<!-- datagrid -->
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="design_failure_admin_provider_submit">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- design_failure_admin_provider_box -->
 
 </div>
 <!-- page-wrapper -->
+
 <script>
-	$(function() {
-		//变量声明-----------------------------------------------------------------------------------------------
+	$(function(){
+
+
+//变量声明-----------------------------------------------------------------------------------------------
 		var
-				design_failure = $("#design_failure"), //页面ID
-				design_failure_datagrid = $("#design_failure_datagrid"), //数据表格
+				design_failure_admin                     = $("#design_failure_admin"),                      //页面ID
+				design_failure_admin_datagrid            = $("#design_failure_admin_datagrid"),             //数据表格
 				//搜索
-				design_failure_tool_keys = $("#design_failure_tool_keys"), //搜索类别
-				design_failure_tool_search = $("#design_failure_tool_search"), //搜索字段
-				design_failure_tool_select1 = $("#design_failure_tool_select1"), //下拉选择1
-				design_failure_tool_select2 = $("#design_failure_tool_select2"), //下拉选择1
-				design_failure_query_btn     = $("#design_failure_query_btn"), //查找按钮
+				design_failure_admin_tool_keys           = $("#design_failure_admin_tool_keys"),            //搜索类别
+				design_failure_admin_tool_search         = $("#design_failure_admin_tool_search"),          //搜索字段
+				design_failure_admin_tool_select1        = $("#design_failure_admin_tool_select1"),         //下拉选择1
+				design_failure_admin_search_btn          = $("#design_failure_admin_search_btn"),           //搜索按钮
+				//批量-放弃
+				design_failure_admin_aban_box            = $("#design_failure_admin_aban_box"),             //放弃盒子
+				design_failure_admin_aban_btn            = $("#design_failure_admin_aban_btn"),             //放弃按钮
+				design_failure_admin_aban_submit         = $("#design_failure_admin_aban_submit"),          //放弃提交
+				design_failure_admin_aban_type           = $("#design_failure_admin_aban_type"),            //放弃类型
+				design_failure_admin_aban_reason         = $("#design_failure_admin_aban_reason"),          //放弃理由
+				design_failure_admin_turn_target         = $("#design_failure_admin_turn_target"),          //目标人员
+				//查看
+				design_failure_admin_show_box            = $("#design_failure_admin_show_box"),             //查看盒子
+				design_failure_admin_show_t_prog         = $("#design_failure_admin_show_t_prog"),          //项目进度
+				design_failure_admin_show_t_case         = $("#design_failure_admin_show_t_case"),          //项目信息
+				design_failure_admin_show_t_user         = $("#design_failure_admin_show_t_user"),          //负责人信息
+				design_failure_admin_show_filelist       = $("#design_failure_admin_show_filelist"),        //客户附件
+				design_failure_admin_show_filelist_type  = $("#design_failure_admin_show_filelist_type"),   //客户附件类型
+				design_failure_admin_show_record         = $("#design_failure_admin_show_record"),          //操作记录
+				//上传
+				design_failure_admin_logAdd_box          = $("#design_failure_admin_logAdd_box"),           //上传盒子
+				design_failure_admin_logAdd_submit       = $("#design_failure_admin_logAdd_submit"),        //上传提交
+				design_failure_admin_logAdd_text         = $("#design_failure_admin_logAdd_text"),          //上传内容
+				design_failure_admin_logAdd_file         = $("#design_failure_admin_logAdd_file"),          //上传附件
+				design_failure_admin_logAdd_date         = $("#design_failure_admin_logAdd_date"),          //添加下次跟
+				//人员选择-信息员
+				design_failure_admin_provider_box        = $("#design_failure_admin_provider_box"),         //人员选择盒子
+				design_failure_admin_provider_submit     = $("#design_failure_admin_provider_submit"),      //人员选择提交
+				design_failure_admin_provider_datagrid   = $("#design_failure_admin_provider_datagrid"),    //人员选择表格
+				design_failure_admin_provider_user       = $("#design_failure_admin_provider_user"),        //人员选择姓名
+				design_failure_admin_provider_search_btn = $("#design_failure_admin_provider_search_btn");  //人员选择搜索
+
 		//接口对象-----------------------------------------------------------------------------------------------
-		if (window.STATE == "local") {
+		if( window.STATE == "local" ){
+
 			//本地接口
-			var design_failure_api = {
-				datagrid: LOCAL + "Test/test_datagrid.json", //数据表格
-				datagrid_filelist: LOCAL + "Test/Business/customer_filelist.json", //项目附件表格
-				datagrid_record: LOCAL + "Test/test_datagrid.json", //操作记录表格
-				select: LOCAL + "Test/test_select.json", //下拉选择
-				select_level: LOCAL + "Test/Design/admin_level.json", //下拉选择(等级)
-				modal_show: LOCAL + "Test/Business/customer_edit.json", //查看盒子
-				topic: LOCAL + "Test/Business/provider_topic.json", //日志查看
-				design: LOCAL + "Test/Design/admin_design.json", //日志查看
+			var design_failure_admin_api = {
+				datagrid            : LOCAL + "Test/test_datagrid.json",                                  //数据表格
+				datagrid_filelist   : LOCAL + "Test/Business/customer_filelist.json",                     //客户附件表格
+				datagrid_record     : LOCAL + "Test/test_datagrid.json",                                  //操作记录表格
+				datagrid_salesman   : LOCAL + "Test/test_datagrid.json",                                  //人员选择表格-商务专员
+				datagrid_provider   : LOCAL + "Test/test_datagrid.json",                                  //人员选择表格-信息员
+				select              : LOCAL + "Test/test_select.json",                                    //下拉选择
+				modal_show          : LOCAL + "Test/Business/customer_edit.json",                         //查看盒子
+				topic               : LOCAL + "Test/Business/provider_topic.json",                        //日志查看
 			}
 
+		} else if ( window.STATE == "route" ){
 
-		} else if (window.STATE == "route") {}
+			//本地接口
+			var design_failure_admin_api = {
+				datagrid            : LOCAL + "Test/test_datagrid.json",                                  //数据表格
+				datagrid_filelist   : LOCAL + "Test/Business/customer_filelist.json",                     //客户附件表格
+				datagrid_record     : LOCAL + "Test/test_datagrid.json",                                  //操作记录表格
+				datagrid_salesman   : LOCAL + "Test/test_datagrid.json",                                  //人员选择表格-商务专员
+				datagrid_provider   : LOCAL + "Test/test_datagrid.json",                                  //人员选择表格-信息员
+				select              : LOCAL + "Test/test_select.json",                                    //下拉选择
+				modal_show          : LOCAL + "Test/Business/customer_edit.json",                         //查看盒子
+				topic               : LOCAL + "Test/Business/provider_topic.json",                        //日志查看
+			}
+
+		}
 
 		//数据表格-----------------------------------------------------------------------------------------------
-		design_failure_datagrid.datagrid({
-			height: zui_datagrid_height(design_failure_datagrid),
-			sortable: false,
-			cache: false,
+		design_failure_admin_datagrid.datagrid({
+			height      : zui_datagrid_height(design_failure_admin_datagrid),
+			sortable    : false,
+			cache       : false,
 			showRowIndex: true,
-			checkable: false,
-			checkByClickRow: false,
-			selectable: false,
-			configs: {
-				R0: {
-					className: "text-center"
-				},
-				C1: {
-					className: "cell-hidden"
+			checkable   : false,
+			checkByClickRow:false,
+			selectable  : false,
+			configs     : {
+				R0:{className:"text-center"},
+				C1:{className:"cell-hidden"}
+			},
+			states      : {
+				pager           : {
+					page        : 1,
+					recPerPage  : window.REC_PER_PAGE,
 				}
 			},
-			states: {
-				pager: {
-					page: 1,
-					recPerPage: window.REC_PER_PAGE,
-				}
-			},
-			dataSource: {
-				cols: [{name: "id",label: "ID",width: 49},
-					{name: "username",label: "项目编号",width: 100},
-					{name: "text8",label: "项目名称",width: 150,
-					html: true,
-						valueOperator: {
-							getter: function(dataValue, cell) {
-								return `<a class="design_failure_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
+			dataSource : {
+				cols   : [
+					{name:"id",      label:"ID",      width:49},
+					{name:"username",label:"项目编号",width:100},
+					{name:"text8",   label:"项目名称",width:150,html:true,
+						valueOperator : {
+							getter : function(dataValue,cell){
+								return `<a class="design_failure_admin_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
 							}
 						}
 					},
@@ -119,35 +353,477 @@
 					{name: "name",label: "主案设计师",width: 100},
 					{name: "name",label: "房源状态",width: 100},
 					{name: "text8",label: "项目状态",width: 150}
-					
 				],
-				remote: function() {
+				remote : function(){
 					return {
-						url: design_failure_api.datagrid,
-						type: "POST",
+						url     : design_failure_admin_api.datagrid,
+						type    : "POST",
 						dataType: "json",
 					}
 				}
 			}
 		});
+		//查看表格-客户附件
+		design_failure_admin_show_filelist.datagrid({
+			height      : "page",
+			rowDefaultHeight    : 72,
+			sortable    : false,
+			cache       : false,
+			showRowIndex: true,
+			configs     : {
+				R0:{className:"text-center"},
+				C1:{className:"cell-hidden"},
+				C7:{className:"text-center"},
+			},
+			states      : {
+				pager           : {
+					page        : 1,
+					recPerPage  : 10,
+				}
+			},
+			dataSource : {
+				cols   : [
+					{name:"id",     label:"ID",         width:49 },
+					{name:"thumb",  label:"缩略图",     width:70,
+						html:true,
+						valueOperator : {
+							getter : function(dataValue,cell){
+								var file_thumb = "";
+								if( dataValue.thumb_icon=="image" ){
+									file_thumb = `<img src="${dataValue.thumb_path}">`
+								} else if( dataValue.thumb_icon=="file") {
+									file_thumb = `<i style="font-size:50px!important;" class="icon icon-file-o"></i>`;
+								} else {
+									file_thumb = `<i style="font-size:50px!important;" class="icon icon-file-${dataValue.thumb_icon}"></i>`;
+								}
+								return file_thumb;
+							}
+						}
+					},
+					{name:"name",    label:"附件名称",   width:300},
+					{name:"type",    label:"类型",       width:80 },
+					{name:"uploader",label:"上传者",     width:80 },
+					{name:"date",    label:"上传时间",   width:140},
+					{name:"path",    label:"导出/下载",  width:80,
+						html:true,
+						valueOperator : {
+							getter : function(dataValue,cell){
+								return `<a target="_blank" href="${dataValue}"><i class="icon icon-download-alt"></i></a>`;
+							}
+						}
+					}
+				],
+				remote : function(){
+					return {
+						url     : design_failure_admin_api.datagrid_filelist,
+						type    : "POST",
+						dataType: "json",
+					}
+				}
+			}
+		});
+		//查看表格-操作记录
+		design_failure_admin_show_record.datagrid({
+			height      : "page",
+			sortable    : false,
+			cache       : false,
+			showRowIndex: true,
+			configs     : {
+				R0:{className:"text-center"},
+				C1:{className:"cell-hidden"}
+			},
+			states      : {
+				pager           : {
+					page        : 1,
+					recPerPage  : window.REC_PER_PAGE,
+				}
+			},
+			dataSource : {
+				cols   : [
+					{name:"id",      label:"ID",    width:49 },
+					{name:"name",    label:"操作人",width:80 },
+					{name:"object",  label:"日志",  width:240,
+						html:true,
+						valueOperator : {
+							getter : function(dataValue,cell,datagrid){
+								var temp = "";
+								if( dataValue.state==1 ){
+									temp = `<span class="text-danger">${dataValue.text}</span>`;
+								} else {
+									temp = `<span class="text-success">${dataValue.text}</span>`;
+								}
+								return temp;
+							}
+						}
+					},
+					{name:"date",    label:"时间",  width:140},
+				],
+				remote : function(){
+					return {
+						url     : design_failure_admin_api.datagrid_record,
+						type    : "POST",
+						dataType: "json",
+					}
+				}
+			}
+		});
+
+		//变量声明-----------------------------------------------------------------------------------------------
+		var
+				design_failure_admin_datagrid_obj     = design_failure_admin_datagrid.data("zui.datagrid"),       //表格对象
+				design_failure_admin_show_filelist_obj= design_failure_admin_show_filelist.data("zui.datagrid"),  //查看表格1
+				design_failure_admin_show_record_obj  = design_failure_admin_show_record.data("zui.datagrid"),    //查看表格2
+				design_failure_admin_show_btn         = ".design_failure_admin_show_btn",                         //查看按钮
+				//日志
+				design_failure_admin_logAdd_btn       = ".design_failure_admin_logAdd_btn";                       //上传
+
+		//上传创建-----------------------------------------------------------------------------------------------
+		zui_upload_group({upid:"design_failure_admin_logAdd_file",type:"img",maxSize:"10mb"});
+
+		//下拉选项-----------------------------------------------------------------------------------------------
+		//日志时间
+		$.ajax({
+			url     : design_failure_admin_api.select,
+			type    : "post",
+			dataType: "json",
+			data    : {},
+			success : function(data){
+				if( data.status>0 ){
+					var data = data.data;
+					var option = "";
+					for(var i=0;i<data.length;i++){
+						option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+					}
+					design_failure_admin_logAdd_date.html(option);
+				}
+			}
+		});
+
 		//搜索按钮-----------------------------------------------------------------------------------------------
-		design_failure_query_btn.click(function() {
+		design_failure_admin_search_btn.click(function(){
 
 			//字段整理
-			var keyword = "?sid=" + design_failure_tool_keys.val() +
-					"&search=" + design_failure_tool_search.val() +
-					"&state=" + design_failure_tool_select1.val()+
-					"&state2=" + design_failure_tool_select2.val()
-					
+			var keyword
+					= "?sid="    + design_failure_admin_tool_keys.val()
+					+ "&search=" + design_failure_admin_tool_search.val()
+					+ "&state="  + design_failure_admin_tool_select1.val();
+
 			//GET提交
-			zui_datagrid_render(design_failure_datagrid_obj, design_failure_api.datagrid + keyword);
+			zui_datagrid_render(design_failure_admin_datagrid_obj,design_failure_admin_api.datagrid+keyword);
 
-		});		
-	}); //预加载结尾
+		});
+		//查看按钮-----------------------------------------------------------------------------------------------
+		$(document).on("click",design_failure_admin_show_btn,function(){
+
+			//数据ID
+			var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+			//远程提交
+			$.ajax({
+				url     : design_failure_admin_api.modal_show,
+				type    : "post",
+				dataType: "json",
+				data    : { id:data_id },
+				success : function(data){
+					if( data.status>0 ){
+
+						//查看模板
+						var data = data.data;
+
+						//项目进度
+						var temp_prog = `<tr><td><ul class="bussiness-prog-group flex-box">`;
+						var temp_prog_state_class = "bg-primary";
+						for( var i=0;i<data.prog.length;i++){
+							if( data.prog[i].state==0 ){ temp_prog_state_class = "bg-grey" }
+							temp_prog +=`
+                            <li class="flex-son text-center">
+                                <b class="${temp_prog_state_class}">${i+1}</b>
+                                <div class="small">${data.prog[i].name}</div>
+                                <div class="small">${data.prog[i].date}</div>
+                            </li>
+                        `;
+						}
+						design_failure_admin_show_t_prog.find("tbody").html(temp_prog+"</ul></td></tr>");
+
+						//项目信息
+						var temp_case = `
+                        <tr><td style="width:120px;">项目编号</td><td>${data.number}</td></tr>
+                        <tr><td>项目名称  </td><td>${data.case}         </td></tr>
+                        <tr><td>项目状态  </td><td>${data.state}        </td></tr>
+                        <tr><td>申请理由  </td><td>${data.reason}       </td></tr>
+                        <tr><td>装修面积  </td><td>${data.decoarea} ㎡  </td></tr>
+                        <tr><td>房源状态  </td><td>${data.statename}    </td></tr>
+                        <tr><td>装修地址  </td><td>${data.decoaddr}     </td></tr>
+                        <tr><td>联系人1   </td><td>${data.user1}        </td></tr>
+                        <tr><td>手机1     </td><td>${data.tel1}         </td></tr>
+                        <tr><td>联系人2   </td><td>${data.user2}        </td></tr>
+                        <tr><td>手机2     </td><td>${data.tel2}         </td></tr>
+                        <tr><td>办公地址  </td><td>${data.addr}         </td></tr>
+                        <tr><td>办公电话  </td><td>${data.tel0}         </td></tr>
+                        <tr><td>信息员    </td><td>${data.providername} </td></tr>
+                        <tr><td>房屋类型  </td><td>${data.housetypename}</td></tr>
+                        <tr><td>装修意向  </td><td>${data.housetodoname}</td></tr>
+                        <tr><td>装修服务  </td><td>${data.houseservname}</td></tr>
+                        <tr><td>交房日期  </td><td>${data.housedate1}   </td></tr>
+                        <tr><td>期望完工  </td><td>${data.housedate2}   </td></tr>
+                        <tr><td>对手数量  </td><td>${data.rivalnumb}    </td></tr>
+                        <tr><td>对手进展  </td><td>${data.rivalstepname}</td></tr>
+                        <tr><td>备注      </td><td>${data.text}         </td></tr>
+                    `;
+						design_failure_admin_show_t_case.find("tbody").html(temp_case);
+
+						//负责人信息
+						var temp_user = `
+                        <tr><td style="width:120px;">业务员</td><td>${data.salesman}</td></tr>
+                        <tr><td>设计师      </td><td>${data.designer}   </td></tr>
+                        <tr><td>效果图绘图员</td><td>${data.sketcher}   </td></tr>
+                        <tr><td>施工图绘图员</td><td>${data.draftsman}  </td></tr>
+                        <tr><td>预算员      </td><td>${data.budgetor}   </td></tr>
+                        <tr><td>工程监理    </td><td>${data.supervision}</td></tr>
+                        <tr><td>项目经理    </td><td>${data.manager}    </td></tr>
+                    `;
+						design_failure_admin_show_t_user.find("tbody").html(temp_user);
+
+						//数据表格
+						zui_datagrid_render(design_failure_admin_show_filelist_obj,design_failure_admin_api.datagrid_filelist+"?id="+data_id+"&type=1");
+						zui_datagrid_render(design_failure_admin_show_record_obj,design_failure_admin_api.datagrid_record+"?id="+data_id);
+
+						design_failure_admin_show_filelist_type.attr("rowIndex",data_id);      //ID赋值
+						design_failure_admin_show_box.modal("show");                           //盒子显示
+					} else {
+						um_tip(data.message,"1500","text-danger");
+					}
+				}
+			});
+
+		});
+		//客户附件筛选
+		design_failure_admin_show_filelist_type.find(".btn").click(function(){
+
+			//字段整理
+			var keyword
+					= "?id="   + design_failure_admin_show_filelist_type.attr("rowIndex")
+					+ "&type=" + $(this).find("input").val();
+
+			zui_datagrid_render(design_failure_admin_show_filelist_obj,design_failure_admin_api.datagrid_filelist+keyword);
+		});
+		//上传-----------------------------------------------------------------------------------------------
+		$(document).on("click",".design_failure_admin_logAdd_btn",function(){
+
+			//数据复原
+			common_form_reset();
+
+			//ID取值
+			var rowIndex = $(this).attr("rowIndex");
+
+			//ID赋值
+			design_failure_admin_logAdd_submit.attr("rowIndex",rowIndex);
+
+			//面板显示
+			design_failure_admin_logAdd_box.modal("show");
+
+		});
+		//日志提交
+		design_failure_admin_logAdd_submit.click(function(){
+
+			//ID取值
+			var data_id = $(this).attr("rowIndex");
+
+			//远程提交
+			$.ajax({
+				url     : API.test_response,
+				type    : "post",
+				dataType: "json",
+				data    : {
+					id   : data_id,
+					file : design_failure_admin_logAdd_file.attr("path")
+				},
+				success : function(data){
+					if( data.status>0 ){
+						um_tip(data.message);
+						zui_datagrid_reset(design_failure_admin_datagrid_obj,design_failure_admin_api.datagrid);
+					} else {
+						um_tip(data.message,"1500","text-danger");
+					}
+				}
+			});
+		});
+		//日志关闭
+		design_failure_admin_logAdd_box.on("hide.zui.modal",function(){
+			//上传重置
+			zui_upload_reset([design_failure_admin_logAdd_file]);
+		});
+
+		//人员选择-商务专员------------------------------------------------------------------------------------------
+		//数据列表
+		// design_failure_admin_salesman_datagrid.datagrid({
+		//     height      : 400,
+		//     sortable    : false,
+		//     cache       : false,
+		//     showRowIndex: true,
+		//     checkable   : true,
+		//     selectable  : false,
+		//     configs     : {
+		//         R0:{className:"text-center"},
+		//         C1:{className:"cell-hidden"}
+		//     },
+		//     states      : {
+		//         pager           : {
+		//             page        : 1,
+		//             recPerPage  : window.REC_PER_PAGE,
+		//         }
+		//     },
+		//     dataSource : {
+		//         cols   : [
+		//             {name:"id",label:"ID",  width:1 },
+		//             {name:"name",label:"姓名",width:80 },
+		//             {name:"departname",label:"部门",width:100},
+		//             {name:"positionname",label:"职务"}
+		//         ],
+		//         remote : function(){
+		//             return {
+		//                 url     : design_failure_admin_api.datagrid_salesman,
+		//                 type    : "POST",
+		//                 dataType: "json",
+		//             }
+		//         }
+		//     }
+		// });
+		// var design_failure_admin_salesman_datagrid_obj = design_failure_admin_salesman_datagrid.data("zui.datagrid");
+
+		//搜索按钮
+		design_failure_admin_salesman_search_btn.click(function(){
+
+			//字段整理
+			var keyword
+					= "?search=" + design_failure_admin_salesman_user.val()
+					+ "&depart=" + design_failure_admin_salesman_depart.val();
+
+			//GET提交
+			zui_datagrid_render(design_failure_admin_salesman_datagrid_obj,design_failure_admin_api.datagrid_salesman+keyword);
+
+		});
+		//点击显示
+		$(".salesman_person_btn").click(function(){
+
+			//按钮ID获取
+			COMMON_PERSON_BTNID = $(this).attr("id");
+
+			//批量勾选去除
+			var data_arr = design_failure_admin_salesman_datagrid_obj.getCheckItems().filter(function(e){return e});
+			for(var i=0;i<data_arr.length;i++){
+				design_failure_admin_salesman_datagrid_obj.checkRow(i,false);
+			}
+
+			//面板显示
+			design_failure_admin_salesman_box.modal("show");
+
+		});
+		//提交按钮
+		design_failure_admin_salesman_submit.click(function(){
+
+			//批量取值
+			var data_arr = design_failure_admin_salesman_datagrid_obj.getCheckItems().filter(function(e){return e});
+
+			if( data_arr.length==1 ){
+
+				//数据赋值
+				$("#"+COMMON_PERSON_BTNID).val(data_arr[0].name);
+				$("#"+COMMON_PERSON_BTNID).attr("dataId",data_arr[0].id);
+
+				//面板显示
+				design_failure_admin_salesman_box.modal("hide");
+
+			} else {
+				um_tip("请选择一条数据","1000","text-danger");
+			}
+
+		});
+
+		//人员选择-信息员------------------------------------------------------------------------------------------
+		//数据列表
+		design_failure_admin_provider_datagrid.datagrid({
+			height      : 400,
+			sortable    : false,
+			cache       : false,
+			showRowIndex: true,
+			checkable   : true,
+			selectable  : false,
+			configs     : {
+				R0:{className:"text-center"},
+				C1:{className:"cell-hidden"}
+			},
+			states      : {
+				pager           : {
+					page        : 1,
+					recPerPage  : window.REC_PER_PAGE,
+				}
+			},
+			dataSource : {
+				cols   : [
+					{name:"id",   label:"ID",  width:1  },
+					{name:"name", label:"姓名",width:80 },
+					{name:"tex10",label:"公司",width:150},
+					{name:"name", label:"商务专员",width:100},
+					{name:"text1",label:"级别"}
+				],
+				remote : function(){
+					return {
+						url     : design_failure_admin_api.datagrid_provider,
+						type    : "POST",
+						dataType: "json",
+					}
+				}
+			}
+		});
+		var design_failure_admin_provider_datagrid_obj = design_failure_admin_provider_datagrid.data("zui.datagrid");
+
+		//搜索按钮
+		design_failure_admin_provider_search_btn.click(function(){
+
+			//字段整理
+			var keyword = "?search=" + design_failure_admin_provider_user.val();
+
+			//GET提交
+			zui_datagrid_render(design_failure_admin_provider_datagrid_obj,design_failure_admin_api.datagrid_provider+keyword);
+
+		});
+		//点击显示
+		$(".provider_person_btn").click(function(){
+
+			//按钮ID获取
+			COMMON_PERSON_BTNID = $(this).attr("id");
+
+			//批量勾选去除
+			var data_arr = design_failure_admin_provider_datagrid_obj.getCheckItems().filter(function(e){return e});
+			for(var i=0;i<data_arr.length;i++){
+				design_failure_admin_provider_datagrid_obj.checkRow(i,false);
+			}
+
+			//面板显示
+			design_failure_admin_provider_box.modal("show");
+
+		});
+		//提交按钮
+		design_failure_admin_provider_submit.click(function(){
+
+			//批量取值
+			var data_arr = design_failure_admin_provider_datagrid_obj.getCheckItems().filter(function(e){return e});
+
+			if( data_arr.length==1 ){
+
+				//数据赋值
+				$("#"+COMMON_PERSON_BTNID).val(data_arr[0].name);
+				$("#"+COMMON_PERSON_BTNID).attr("dataId",data_arr[0].id);
+
+				//面板显示
+				design_failure_admin_provider_box.modal("hide");
+
+			} else {
+				um_tip("请选择一条数据","1000","text-danger");
+			}
+
+		});
+
+	});//预加载结尾
 </script>
-
-<style>
-	#design_failure .tool-group input[readonly] {
-		width: 67px !important;
-	}
-</style>
