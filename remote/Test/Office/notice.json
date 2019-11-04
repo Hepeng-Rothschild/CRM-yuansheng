@@ -1,0 +1,38 @@
+ {
+    "title"     : "我的申请",
+    "children"  : [
+        {   
+            "title"      :"抄送通知-考勤",
+            "children":[
+                { "title":"请假","url":"blank","tips":1},
+                { "title":"出勤","url":"blank","tips":0},
+                { "title":"加班","url":"blank","tips":0},
+                { "title":"补卡","url":"blank","tips":0},
+                { "title":"外出","url":"blank","tips":0}
+            ]
+        },
+        { 
+            "title"     :"人事",
+            "children"  :[
+                { "title":"招聘","url":"blank","tips":1},
+                { "title":"入职","url":"blank","tips":0},
+                { "title":"转正","url":"blank","tips":0},
+                { "title":"调岗","url":"blank","tips":0},
+                { "title":"调薪","url":"blank","tips":0},
+                { "title":"离职申请","url":"blank","tips":0}
+            ]
+        },
+        { 
+            "title"     :"行政",
+            "children"  :[
+                { "title":"采购申请","url":"blank","tips":0},
+                { "title":"物品领用","url":"blank","tips":0},
+                { "title":"用车申请","url":"blank","tips":0},
+                { "title":"名片印制","url":"blank","tips":0},
+                { "title":"盖章申请","url":"blank","tips":0},
+                { "title":"通用审批","url":"blank","tips":0}
+            ]
+        }
+    ]
+}
+

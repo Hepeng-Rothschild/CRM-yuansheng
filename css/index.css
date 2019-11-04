@@ -196,6 +196,9 @@
 .sidebar-collapse .tree-menu ul{
     display:none!important;
 }
+.sidebar-collapse .modal{
+    left: 50px!important;
+}
 /*节点样式*/
 .main-sidebar .tree-menu{
     border:none;
@@ -263,6 +266,9 @@
     .page-login  .login-header .logo,
     .main-header .navbar-brand .logo{
         background-position: center!important;
+    }
+    body .modal{
+        left: 0px!important;
     }
 }
 /*主题样式更改*/

@@ -1,18 +1,18 @@
 <!-- 页面外套 -->
 <div class="container page-container">
-	<dl class="col-group page-card-group" id="office_apply_list">
+	<dl class="col-group page-card-group" id="office_approval_list">
 	<div class="clearfix"></div>
 </div>
 <!-- container -->
 <script>
 $(function () {
- 
+
  	//接口对象
 	if (window.STATE == "local") {
 
 		//本地接口
-		var office_apply_api = {
-			list: LOCAL + "Test/Office/apply.json",
+		var office_approval_api = {
+			list: LOCAL + "Test/Office/approval.json",
 		}
 
 	} else if (window.STATE == "route") {}
@@ -20,7 +20,7 @@ $(function () {
 	//远程请求
 	$.ajax({      
 	     type:'post',      
-	     url :office_apply_api.list,
+	     url :office_approval_api.list,
 	     dataType:'json',  
 		 data:{name:1,old:2},
 	     success:function(data){
@@ -40,7 +40,7 @@ $(function () {
 					}
 				temp += `</dd></li>`;
 			}
-			$('#office_apply_list').html(temp);
+			$('#office_approval_list').html(temp);
 	      }    
 	});
     	
