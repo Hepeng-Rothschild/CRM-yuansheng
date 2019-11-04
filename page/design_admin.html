@@ -32,7 +32,12 @@
 				<label>
 					<span>等级洽谈</span>
 					<div class="form-group">
-						<div class="col-sm-2"><select class="form-control" id="design_admin_tool_select2" style="margin-right: 40px;"><!-- JS推进 --></select></div> </div>
+						<div class="col-sm-2"><select class="form-control" id="design_admin_tool_select2" style="margin-right: 40px;">
+							<option value="0">A</option>
+							<option value="1">B</option>
+							<option value="2">C</option>
+							<option value="3">D</option>
+						</select></div> </div>
 				 </label>
 				      <div class="im-label" id="design_admin_tool_date1"></div>
 				<label>
@@ -657,22 +662,22 @@ $(function() {
 		design_admin_tool_date1.find(".end").datetimepicker(option_date);
 		//下拉选项-----------------------------------------------------------------------------------------------
         //洽谈等级(工具条)
-        $.ajax({
-            url     : design_admin_api.select,
-            type    : "post",
-            dataType: "json",
-            data    : {},
-            success : function(data){
-                if( data.status>0 ){
-                    var data = data.data;
-                    var option = "<option value='0'>全部</option>";
-                    for(var i=0;i<data.length;i++){
-                        option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-                    }
-                    design_admin_tool_select2.html(option);
-                }
-            }
-        });
+//        $.ajax({
+//            url     : design_admin_api.select,
+//            type    : "post",
+//            dataType: "json",
+//            data    : {},
+//            success : function(data){
+//                if( data.status>0 ){
+//                    var data = data.data;
+//                    var option = "<option value='0'>全部</option>";
+//                    for(var i=0;i<data.length;i++){
+//                        option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+//                    }
+//                    design_admin_tool_select2.html(option);
+//                }
+//            }
+//        });
 		//洽谈等级(面板)
 		$.ajax({
 			url: design_admin_api.select_level,

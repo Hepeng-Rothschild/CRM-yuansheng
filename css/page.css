@@ -303,8 +303,12 @@
     margin:0 20px 20px 0;
     overflow: hidden;
 }
+.page-card-group dd a:hover{
+    text-decoration: none;
+    color:red;
+}
 .label-danger {
     position: relative;
-    left: 31px;
+    left: 36px;
     top: -18px;
 }
