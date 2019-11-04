@@ -7,8 +7,25 @@
 .nav.navbar-nav.navbar-right>li>a{
     color: #fff;
 }
+.main-header .navbar,
+.main-header .navbar-nav>li>a,
+.main-header .navbar-brand{
+    height:70px;
+    line-height: 48px;
+}
+.main-sidebar{
+    top:80px;
+}
+.tabs-navbar{
+    top:98px;
+}
+.content-wrapper{
+    height:100%;
+    padding:70px 0 0 200px;
+    box-sizing:border-box;
+}
+/*正式样式*/
 .main-header .navbar{
-    min-height:50px;
     border:none;
     border-radius:0;
 }
@@ -17,10 +34,9 @@
     background:rgba(0,0,0,0.07);
 }
 .main-header .navbar-brand{
-    height:50px;
-    line-height:30px;
-    padding:10px;
+    padding:20px 10px;
     font-size:20px;
+    box-sizing:border-box;
 }
 .main-header .navbar-brand .logo{
     width:180px;
@@ -37,10 +53,6 @@
 }
 .sidebar-collapse .navbar-brand .logo-mini{
     display:block;
-}
-.main-header .navbar-nav>li>a{
-    height:50px;
-    line-height:30px;
 }
 .main-header .nav .open>a{
     background:transparent;
@@ -74,10 +86,9 @@
 .main-sidebar{
     width:200px;
     height:100%;
-    /*background:#263238;*/
     color:rgba(163,175,183,.9);
     position:fixed;
-    top:50px;left:0;
+    left:0;
     z-index:1000;
     overflow-y:scroll;
     transition:transform .3s ease-in-out, width .3s ease-in-out;  
@@ -137,7 +148,6 @@
 /*内容部分*/
 .content-wrapper{
     height:100%;
-    padding:50px 0 0 200px;
     box-sizing:border-box;
 }
 .tabs-navbar{
@@ -156,8 +166,8 @@
 }
 .sidebar-collapse .main-sidebar .user-panel>.info,
 .sidebar-collapse .sidebar-form,
-.sidebar-collapse .tree li>a>span,
-.sidebar-collapse .tree li>.list-toggle,
+.sidebar-collapse .tree-menu li>a>span,
+.sidebar-collapse .tree-menu li>.list-toggle,
 .sidebar-collapse .sidebar-menu li.header{
     display:none!important;
 }
@@ -183,34 +193,34 @@
     padding-left: 50px;
     transition:all 0.2s ease-in 0s;
 }
-.sidebar-collapse .tree ul{
+.sidebar-collapse .tree-menu ul{
     display:none!important;
 }
 /*节点样式*/
-.main-sidebar .tree{
+.main-sidebar .tree-menu{
     border:none;
     font-size:12px;
 }
-.main-sidebar .tree *{ 
+.main-sidebar .tree-menu *{ 
     color:rgba(163,175,183,.9)!important;
 }
-.main-sidebar .tree li>ul,
-.main-sidebar .tree li.active>a{
+.main-sidebar .tree-menu li>ul,
+.main-sidebar .tree-menu li.active>a{
     background-color:rgba(0,0,0,.2);
 }
-.main-sidebar .tree.tree-menu li .list-toggle{
+.main-sidebar .tree-menu.tree-menu-menu li .list-toggle{
     position: absolute;
     z-index: -1;
 }
-.main-sidebar .tree li>a{
+.main-sidebar .tree-menu li>a{
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
     border:none;
 }
-.main-sidebar .tree li>a.active *,
-.main-sidebar .tree li.active>a *,
-.main-sidebar .tree li>a:hover  *{ 
+.main-sidebar .tree-menu li>a.active *,
+.main-sidebar .tree-menu li.active>a *,
+.main-sidebar .tree-menu li>a:hover  *{ 
     color:#fff!important;
     transition:all 0.2s ease-in 0s;
 }
@@ -262,16 +272,16 @@
 .main-sidebar{
     background: #ebf2f9;
 }
-.main-sidebar .tree *{
+.main-sidebar .tree-menu *{
     color: #183152!important;
 }
-.main-sidebar .tree li>a.active *, .main-sidebar .tree li.active>a *, .main-sidebar .tree li>a:hover *{
+.main-sidebar .tree-menu li>a.active *, .main-sidebar .tree-menu li.active>a *, .main-sidebar .tree-menu li>a:hover *{
     color: #000!important;
 }
-.main-sidebar .tree li>ul, .main-sidebar .tree li.active>a{
+.main-sidebar .tree-menu li>ul, .main-sidebar .tree-menu li.active>a{
     background: rgba(255,255,255,.6)!important;
 }
-.tree-menu li>a:active, .tree-menu li>a:focus, .tree-menu li>a:hover{
+.tree-menu-menu li>a:active, .tree-menu-menu li>a:focus, .tree-menu-menu li>a:hover{
     background: rgba(255,255,255,0.5)!important;
 }
 /*全局走马灯*/
@@ -299,12 +309,6 @@
     text-align: center;
     font-size: large!important;
 }
-.common-marquee .flex-son{
-    color: red;
-}
-.tabs-navbar{
-    top:78px;
-}
 .tabs-container{
     top: 60px;
 }
@@ -317,9 +321,9 @@
     display: none!important;
 }
 .modal{
-    top:50px!important;
+    top:70px!important;
     left: 200px!important;
-    bottom:-50px!important;
+    bottom:-70px!important;
     background: rgba(0,0,0,.2);
 }
 .modal-dialog.modal-fullscreen{
