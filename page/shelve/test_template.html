@@ -278,7 +278,7 @@ $(function(){
     test_template_logShow_btn       = ".test_template_logShow_btn",                     //日志查看
     test_template_logAdd_btn        = ".test_template_logAdd_btn";                      //日志添加
 
-    //查看按钮-----------------------------------------------------------------------------------------------
+    /*查看按钮-----------------------------------------------------------------------------------------------
     $(document).on("click",test_template_show_btn,function(){ 
 
         //数据ID
@@ -380,6 +380,36 @@ $(function(){
                     test_template_show_box.modal("show");                           //盒子显示
                 } else {
                     um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });*/
+    
+    //tabs对象
+    window.COMMON_TABS = $("#common_tabs");
+    window.COMMON_TABS_OBJ = $("#common_tabs").data("zui.tabs");
+    window.PROGRESS_DETAIL = "progress_detail"; //项目详情( tabs_id | filename | page-wrapper_id )
+    window.DETAIL_SOURCE = {};  //$(this).parents(".page-wrapper").attr("id")
+
+    //打开新面板
+    $(document).on("click",test_template_show_btn,function(){ 
+
+        //数据接收
+        var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+        var page_id = $(this).parents(".page-wrapper").attr("id");
+        var page_tit= COMMON_TABS_OBJ.getTab(page_id).title;
+        console.log(page_id);
+        //指定面板打开
+        COMMON_TABS_OBJ.open({
+            title       : page_tit+"详情",
+            id          : PROGRESS_DETAIL,
+            type        : "ajax",
+            url         : './page/shelve/template/' + PROGRESS_DETAIL + '.html',
+            onOpen  : function(){
+                DETAIL_SOURCE = {
+                    data_id,
+                    page_id
                 }
             }
         });
