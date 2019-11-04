@@ -344,14 +344,13 @@ $(function(){
             cols   : [
                 {name:"id",      label:"ID",      width:49},
 				  {name:"date",   label:"转入日期",    width:100},
-                {name:"username",label:"项目编号",width:100},
-                {name:"text8",   label:"项目名称",width:150,html:true,
+                {name:"username",label:"项目编号",width:100,html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
                             return `<a class="design_mapping_admin_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
                         }
-                    }
-                },
+                    }},
+                {name:"text8",   label:"项目名称",width:150},
                 {name:"tex10",  label:"绘图类型",    width:150},
                 {name:"name",   label:"绘图员",      width:100},
                 {name:"name",   label:"主案设计师",   width:100},    

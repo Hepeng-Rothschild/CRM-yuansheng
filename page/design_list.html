@@ -38,6 +38,30 @@
 		<ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
 	</div>
 	<!-- datagrid -->
+<!--洽谈等级盒子 -->
+	<div class="modal modal-for-page fade" aria-hidden="false" id="design_list_great_box">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+					<h4 class="modal-title">洽谈等级</h4>
+				</div>
+				<div class="modal-body">
+					<form class="container form-horizontal">
+						<div class="form-group require">
+							<label class="col-sm-2 required" for="design_list_great_level">洽谈等级</label>
+							<div class="col-sm-8"><select class="form-control" id="design_list_great_level"><!--JS推进--></select></div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="design_list_great_submit">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--design_list_great_box -->
 
 	<!-- 创建量房盒子 -->
 	<div class="modal modal-for-page fade" aria-hidden="false" id="design_list_measure_box">
@@ -77,35 +101,6 @@
 		</div>
 	</div>
 	<!-- design_list_measure_box -->
-
-	<!-- 洽谈级别盒子 -->
-	<div class="modal modal-for-page fade" aria-hidden="false" id="design_list_level_box">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-					<h4 class="modal-title">洽谈级别</h4>
-				</div>
-				<div class="modal-body">
-					<form class="container form-horizontal">
-						<div class="form-group">
-							<label class="col-sm-2 required" for="design_list_level_select">洽谈级别</label>
-							<div class="col-sm-8">
-								<select class="form-control" id="design_list_level_select">
-									<!--JS推进--></select>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" id="design_list_level_submit">提交</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- design_list_level_box -->
-	<!-- 设计进度盒子 -->
 	<div class="modal modal-for-page fade" aria-hidden="false" id="design_list_progress_btn">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -336,16 +331,14 @@
 			design_list_show_filelist = $("#design_list_show_filelist"), //客户附件
 			design_list_show_filelist_type = $("#design_list_show_filelist_type"), //客户附件类型
 			design_list_show_record = $("#design_list_show_record"), //操作记录
-			//洽谈级别
-			design_list_level_box = $("#design_list_level_box"), //级别盒子
-			design_list_level_submit = $("#design_list_level_submit"), //级别提交
-			design_list_level_select = $("#design_list_level_select"), //级别下拉
-			/*  */
 			//分单
 			design_list_assign_box          = $("#design_list_assign_box"),           //分单盒子
 			design_list_assign_submit       = $("#design_list_assign_submit"),        //分单提交
 			design_list_cycle               = $("#design_list_cycle"),          //分单设计师
-			/*  */
+			//洽谈等级
+			design_list_great_box = $("#design_list_great_box"), //洽谈盒子
+			design_list_great_submit = $("#design_list_great_submit"), //洽谈提交
+			design_list_great_level = $("#design_list_great_level"), //洽谈等级
 			//跟踪日志
 			design_list_logShow_box = $("#design_list_logShow_box"), //日志查看盒子
 			design_list_logAdd_box = $("#design_list_logAdd_box"), //design_list盒子
@@ -370,6 +363,7 @@
 				modal_show: LOCAL + "Test/Business/customer_edit.json", //查看盒子
 				topic: LOCAL + "Test/Business/provider_topic.json", //日志查看
 				select: LOCAL + "Test/test_select.json", //下拉选择
+				select_level: LOCAL + "Test/Design/admin_level.json", //下拉选择(等级)
 			}
 
 		} else if (window.STATE == "route") {
@@ -423,15 +417,15 @@
 					{
 						name: "username",
 						label: "项目编号",
-						width: 100
+						width: 100,
+						html:true,
+						    valueOperator : {
+						        getter : function(dataValue,cell){
+						            return `<a class="design_list_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
+						        }
+						    }
 					},
-					{name:"text8",   label:"项目名称",width:150,html:true,
-					    valueOperator : {
-					        getter : function(dataValue,cell){
-					            return `<a class="design_list_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
-					        }
-					    }
-					},
+					{name:"text8",   label:"项目名称",width:150},
 					{
 						name: "date",
 						label: "分单时间",
@@ -464,13 +458,35 @@
 						width: 100
 					},
 					{
-						name: "state",
-						label: "洽谈级别",
-						width: 100,
+						name: "level",
+						label: "洽谈等级",
+						width: 80,
 						html: true,
 						valueOperator: {
 							getter: function(dataValue, cell) {
-								return `<a class="design_list_level_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
+								var level = "";
+								switch (dataValue) {
+									case 1:
+										level = "A";
+										break;
+									case 2:
+										level = "B";
+										break;
+									case 3:
+										level = "C";
+										break;
+									case 4:
+										level = "D";
+										break;
+									case 5:
+										level = "E";
+										break;
+									case 6:
+										level = "F";
+										break;
+								}
+								return `<a class="design_list_great_btn" rowIndex="${cell.rowIndex}" rowLevel="${dataValue}">${level}</a>
+					       `;
 							}
 						}
 					},
@@ -681,8 +697,10 @@
 			design_list_show_filelist_obj = design_list_show_filelist.data("zui.datagrid"), //查看表格1
 			design_list_show_record_obj = design_list_show_record.data("zui.datagrid"), //查看表格2	
 			design_list_level_btn = ".design_list_level_btn", //级别按钮
-			design_list_show_btn  = ".design_list_show_btn",                         //查看按钮
+			design_list_show_btn  = ".design_list_show_btn",    //查看按钮
 			design_list_logAdd_btn = ".design_list_logAdd_btn"; //回访按钮
+			design_list_great_btn = ".design_list_great_btn"; //洽谈等级按钮
+			
 		    
 
 		//上传创建-----------------------------------------------------------------------------------------------
@@ -725,9 +743,26 @@
 					for (var i = 0; i < data.length; i++) {
 						option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
 					}
-					design_list_level_select.html(option);
 					design_list_cycle.html(option);
 					design_list_visit.html(option);
+				  
+				}
+			}
+		});
+		$.ajax({
+			url: design_list_api.select_level,
+			type: "post",
+			dataType: "json",
+			data: {},
+			success: function(data) {
+				if (data.status > 0) {
+					var data = data.data;
+					var option = "";
+					for (var i = 0; i < data.length; i++) {
+						option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
+					}
+					design_list_great_level.html(option);
+		
 				}
 			}
 		});
@@ -807,6 +842,47 @@
 				}
 			});
 
+		});
+		//洽谈等级-----------------------------------------------------------------------------------------
+		$(document).on("click",design_list_great_btn, function() {
+		
+			//数据取值
+			var data_id = $(this).attr("rowIndex");
+			var rowLevel = $(this).attr("rowLevel");
+		
+			//数据赋值
+			design_list_great_submit.attr("dataId", data_id);
+			design_list_great_level.val(rowLevel);
+		
+			//面板显示
+			design_list_great_box.modal("show");
+		
+		});
+		//洽谈等级-提交
+		design_list_great_submit.click(function() {
+			//数据ID
+			var data_id = $(this).attr("dataId");
+			//远程提交
+			$.ajax({
+				url: API.test_response,
+				type: "post",
+				dataType: "json",
+				data: {
+					id: data_id,
+					level:design_list_great_level.val()
+				},
+				success: function(data) {
+					if (data.status > 0) {
+						um_tip(data.message);
+						zui_datagrid_reset(design_list_datagrid_obj,design_list_api.datagrid);
+		
+					} else {
+						um_tip(data.message, "1500", "text-danger");
+						console.log(data.message)
+					}
+				}
+			});
+		
 		});
           //查看按钮-----------------------------------------------------------------------------------------------
           $(document).on("click",design_list_show_btn,function(){ 
@@ -893,104 +969,7 @@
               });
           
           });
-		//洽谈级别按钮-------------------------------------------------------------------------------------------
-		$(document).on("click", design_list_level_btn, function() {
-
-			//ID取值
-			var data_id = $(this).attr("rowIndex");
-
-			//ID赋值
-			design_list_level_submit.attr("dataId", data_id);
-
-			//下拉赋值
-			design_list_level_select.val($(this).text());
-
-			//面板显示
-			design_list_level_box.modal("show");
-
-		});
-		//洽谈级别提交
-		design_list_level_submit.click(function() {
-
-			//ID取值
-			var data_id = $(this).attr("dataId");
-
-			//远程提交
-			$.ajax({
-				url: API.test_response,
-				type: "post",
-				dataType: "json",
-				data: {
-					id: data_id,
-					level: design_list_level_select.val()
-				},
-				success: function(data) {
-					if (data.status > 0) {
-						um_tip(data.message);
-						zui_datagrid_reset(design_list_datagrid_obj, design_list_api.datagrid, "clear");
-					} else {
-						um_tip(data.message, "1500", "text-danger");
-					}
-				}
-			});
-
-		});
-		//design_list-----------------------------------------------------------------------------------------------
-		$(document).on("click", ".design_list_logAdd_btn", function() {
-
-			//数据复原
-			common_form_reset();
-
-			//ID取值
-			var rowIndex = $(this).attr("rowIndex");
-
-			//ID赋值
-			design_list_logAdd_submit.attr("rowIndex", rowIndex);
-
-			//面板显示
-			design_list_logAdd_box.modal("show");
-
-		});
-		//日志提交
-		design_list_logAdd_submit.click(function() {
-
-			//ID取值
-			var data_id = $(this).attr("rowIndex");
-
-			//远程提交
-			$.ajax({
-				url: API.test_response,
-				type: "post",
-				dataType: "json",
-				data: {
-					id: data_id,
-					text:       design_list_logAdd_text.val(),
-					file:       design_list_logAdd_file.attr("path"),
-					date:       design_list_logAdd_date.val(),
-					radio:      $("input[name='radio1']:checked").val(),
-					follow:     design_list_follow_up.val(),
-					difficulty: design_list_difficulty.val(),
-					radio2:     $("input[name='radio2']:checked").val(),
-					estimate:   design_list_estimate.val(),
-					cycle:      design_list_cycle.val(),
-					visit:      design_list_visit.val()
-				},
-				success: function(data) {
-					if (data.status > 0) {
-						um_tip(data.message);
-						zui_datagrid_reset(design_list_datagrid_obj, design_list_api.datagrid);
-					} else {
-						um_tip(data.message, "1500", "text-danger");
-					}
-				}
-			});
-		});
-		//日志关闭
-		design_list_logAdd_box.on("hide.zui.modal", function() {
-			//上传重置
-			zui_upload_reset([design_list_logAdd_file]);
-		});
-
+		 
 
 	}); //预加载结尾
 </script>

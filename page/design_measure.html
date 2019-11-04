@@ -83,14 +83,14 @@
 			dataSource : {
 				cols   : [
 					{name:"id",      label:"ID",      width:49},
-					{name:"username",label:"项目编号",width:100},
-					{name:"text8",   label:"项目名称",width:150,html:true,
+					{name:"username",label:"项目编号",width:100,html:true,
 						valueOperator : {
 							getter : function(dataValue,cell){
 								return `<a class="design_measure_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
 							}
 						}
 					},
+					{name:"text8",   label:"项目名称",width:150},
 					{name:"name",   label:"项目联系人",  width:100},
 					{name:"adree",   label:"项目地址",  width:100},
 					{name:"name",   label:"业务员",      width:100},

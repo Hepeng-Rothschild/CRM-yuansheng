@@ -353,20 +353,25 @@
 			dataSource: {
 				cols: [
 					{
-						name: "username",
-						label: "项目编号",
-						width: 80
+						name: "id",
+						label: "ID",
+						width: 50
 					},
 					{
-						name: "tex10",
-						label: "项目名称",
-						width: 160,
+						name: "username",
+						label: "项目编号",
+						width: 80,
 						html: true,
 						valueOperator: {
 							getter: function(dataValue, cell) {
 								return `<a class="design_overdue_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
 							}
 						}
+					},
+					{
+						name: "tex10",
+						label: "项目名称",
+						width: 160
 					},
 					{
 						name: "name",

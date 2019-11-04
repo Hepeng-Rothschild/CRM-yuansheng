@@ -395,18 +395,18 @@ $(function() {
 					{
 						name: "username",
 						label: "项目编号",
-						width: 100
-					},
-					{
-						name: "text8",
-						label: "项目名称",
-						width: 150,
+						width: 100,
 						html: true,
 						valueOperator: {
 							getter: function(dataValue, cell) {
 								return `<a class="design_sign_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
 							}
 						}
+					},
+					{
+						name: "text8",
+						label: "项目名称",
+						width: 150,
 					},
 					{
 						name: "text6",

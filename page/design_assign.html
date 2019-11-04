@@ -339,14 +339,15 @@ $(function(){
         dataSource : {
             cols   : [
                 {name:"id",      label:"ID",      width:49},
-                {name:"username",label:"项目编号",width:100},
-                {name:"text8",   label:"项目名称",width:150,html:true,
-                    valueOperator : {
-                        getter : function(dataValue,cell){
-                            return `<a class="design_assgin_admin_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
-                        }
-                    }
-                },
+				
+				{name:"username",label:"项目编号",width:100,html:true,
+				    valueOperator : {
+				        getter : function(dataValue,cell){
+				            return `<a class="design_assgin_admin_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
+				        }
+				    }
+				},
+                {name:"text8",   label:"项目名称",width:150},
                 {name:"name",   label:"联系人1",  width:100},
                 {name:"tex10",  label:"装修地址",    width:150},
                 {name:"name",   label:"信息员",      width:100},
