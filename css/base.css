@@ -60,7 +60,7 @@ html,body{
     flex:1;  
     overflow:hidden; 
 } 
-.flex-son *,
+.flex-son>*,
 .flex-one{
     -moz-box-flex: 1;
     -webkit-flex: 1;
