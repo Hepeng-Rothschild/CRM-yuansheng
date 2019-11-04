@@ -1,19 +1,14 @@
-<style>
-.table-detail-template b{
-    display: inline-block;
-    min-width: 90px;
-}
-.pager .icon{
-    line-height: 18px;
-}
-</style>
-<!-- 页面外套 -->
-<div class="page-wrapper" id="progress_detail">
-    <br>
-				
-					<button id="btn_deal" type="button"class="btn btn-primary">操作按钮</button>
+        <style>
+        .table-detail-template b{
+            display: inline-block;
+            min-width: 90px;
+        }
+        </style>
+                <!-- 页面外套 -->
+                <div class="page-wrapper" id="progress_detail">
+					<br><button id="btn_deal" type="button"class="btn btn-primary">返回</button><br><br>
                     <!-- 项目进度 -->
-                    <table class="table" id="progress_detail_show_t_prog">
+                    <table class="table hide" id="progress_detail_show_t_prog">
                         <thead><tr><th>项目进度</th></tr></thead>
                         <tbody></tbody>
                     </table>
@@ -243,8 +238,8 @@ $(function(){
                 //项目信息
                 var temp_case = `
                     <tr>
-                        <td><b>项目编号：</b>${data.number} </td>
-                        <td><b>项目名称：</b>${data.case}   </td>
+                        <td style="width:400px;"><b>项目编号：</b>${data.number} </td>
+                        <td style="width:400px;"><b>项目名称：</b>${data.case}   </td>
                         <td><b>项目状态：</b>${data.state}  </td>
                     </tr>
                     <tr>
@@ -286,8 +281,8 @@ $(function(){
                 //负责人信息
                 var temp_user = `
                     <tr>
-                        <td><b>业务员:       </b>${data.salesman}</td>
-                        <td><b>设计师：      </b>${data.designer}</td>
+                        <td style="width:400px;"><b>业务员:       </b>${data.salesman}</td>
+                        <td style="width:400px;"><b>设计师：      </b>${data.designer}</td>
                         <td><b>效果图绘图员：</b>${data.sketcher}</td>
                     </tr>
                     <tr>   

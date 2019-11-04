@@ -116,6 +116,7 @@ $(function(){
             modal_show          : LOCAL + "Test/Business/customer_edit.json",       //修改盒子
             topic               : LOCAL + "Test/Business/provider_topic.json",      //日志查看
             select              : LOCAL + "Test/test_select.json",                  //下拉选择
+            datagrid            : "http://sast.wentesjj.com/index.php/index/test_datagrid",
         }
 
     } else if ( window.STATE == "route" ){}
@@ -405,7 +406,7 @@ $(function(){
             title       : page_tit+"详情",
             id          : PROGRESS_DETAIL,
             type        : "ajax",
-            url         : './page/shelve/template/' + PROGRESS_DETAIL + '.html',
+            url         : './page/template/' + PROGRESS_DETAIL + '.html',
             onOpen  : function(){
                 DETAIL_SOURCE = {
                     data_id,
