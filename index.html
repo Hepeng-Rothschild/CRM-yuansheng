@@ -188,11 +188,11 @@
 
         //变量声明----------------------------------------------------------------
         var
-                common_tree = $("#common_tree"), //左侧导航
-                common_tabs = $("#common_tabs"), //切换面板
-                common_cancellation_btn = $("#common_cancellation_btn"), //注销按钮
-                common_cancellation_box = $("#common_cancellation_box"), //注销盒子
-                common_cancellation_submit = $("#common_cancellation_submit"); //注销提交
+        common_tree = $("#common_tree"), //左侧导航
+        common_tabs = $("#common_tabs"), //切换面板
+        common_cancellation_btn = $("#common_cancellation_btn"), //注销按钮
+        common_cancellation_box = $("#common_cancellation_box"), //注销盒子
+        common_cancellation_submit = $("#common_cancellation_submit"); //注销提交
         //导航加载----------------------------------------------------------------
         $.ajax({
             url: window.API.common_tree,
@@ -220,6 +220,7 @@
 
             }
         });
+
 
         //导航点击
         common_tree.on("click", "a", function () {
@@ -264,6 +265,8 @@
                 forbidClose: true,
             }]
         });
+        window.COMMON_TABS_OBJ = common_tabs.data("zui.tabs");
+        window.DETAIL_SOURCE = {};  //$(this).parents(".page-wrapper").attr("id")
 
         //切换面板-新建
         $(document).on("click", "ul.tree-menu a,.page-card-group li a,#tabs_open a", function (e) {

@@ -304,8 +304,8 @@ var option_editor = {
  * @param fmt string 格式化参数
  * @return    string 时间字符串
  */
-function um_date(fmt){
-    var now = new Date();
+function um_date(fmt,date){
+    var now = date || new Date();
     var o = {
         "M+": now.getMonth() + 1,                  //月
         "d+": now.getDate(),                       //日
@@ -835,4 +835,23 @@ function common_topic_answer_reset(){
     $(".common_topic_answer_text_wrap").hide();
     $(".common_topic_answer_text").val("");
     $(".common_topic_answer_submit").attr("tid","");
+}
+
+/*模板页面打开
+ * @param template_page 模板页面名
+ * @param _this $(this)指向
+ * @example onclick=template_page_open('provider_show',$(this))
+ */
+function template_page_open(template_page,_this){
+    var data_id = zui_datagrid_get_id(_this.attr("rowIndex"));
+    var page_id = _this.parents(".page-wrapper").attr("id");
+    COMMON_TABS_OBJ.open({
+        title  : COMMON_TABS_OBJ.getTab(page_id).title +"详情",
+        id     : template_page,
+        type   : "ajax",
+        url    : './page/template/' + template_page + '.html',
+        onOpen : function(){
+            DETAIL_SOURCE = { data_id, page_id }
+        }
+    });
 }

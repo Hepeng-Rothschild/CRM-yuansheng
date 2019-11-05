@@ -16,10 +16,10 @@ if( STATE == "local" ){
     window.API = {
         common_view     : "./page/welcome.html",                        //welcome
         test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
+        test_datagrid   : "http://sast.wentesjj.com/index.php/index/test_datagrid",
         test_response   : LOCAL+"Test/test_response.json",              //数据响应
         test_editor     : LOCAL+"Test/test_editor.php",                 //富文本编辑器
         test_export     : LOCAL+"Upload/test_export.pdf",               //导出文件
-
         common_tree     : LOCAL+"User/GetUserPageInfo.json",            //左侧导航
         common_upload   : LOCAL+"Test/test_upload.php",                 //上传路径
         common_depart   : LOCAL+"Company/getDeparment.json",            //部门
@@ -33,6 +33,7 @@ if( STATE == "local" ){
     window.API = {
         common_view     : "./page/welcome.html",                        //welcome
         test_datagrid   : LOCAL+"Test/test_datagrid.json",              //数据表格
+        test_datagrid   : "http://sast.wentesjj.com/index.php/index/test_datagrid",        
         test_response   : LOCAL+"Test/test_response.json",              //数据响应
         test_editor     : LOCAL+"Test/test_editor.php",                 //富文本编辑器
         test_export     : LOCAL+"Upload/test_export.pdf",               //导出文件
