@@ -855,3 +855,13 @@ function template_page_open(template_page,_this){
         }
     });
 }
+
+/* 表单序列化(form内元素须有name属性)
+ * param form_dom 表单DOM
+ * return json */
+function um_data(form_dom){
+    var data = {};
+    var json = form_dom.serializeArray();
+    var result = $(json).each(function(i){ data[this.name]=this.value });
+    return result;
+}
