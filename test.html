@@ -37,7 +37,7 @@
 <aside class="main-sidebar scrollbar-hover"></aside>
 <div class="content-wrapper scrollbar-hover">
     <div class="common-marquee flex-box"><i class="icon icon-bullhorn"></i>
-        <marquee class="flex-son" onmouseout="this.start()" onmouseover="this.stop()">滚动消息</marquee>
+        <marquee class="flex-son" onmouseout="this.start()" onmouseover="this.stop()"><span class="text-danger">滚动消息</span></marquee>
     </div>
     <div class="tabs" id="common_tabs"></div>
 </div>
@@ -49,13 +49,15 @@ window.COMMON = {
     user_id    : 2,
     logAllow   : 0, //跟进允许 1为允许跟进 0为不允许跟进
 }
-var page = "design_list";
-$("#common_tabs").tabs({tabs:[{
-    id    : "test",
+var page = "business_public_provider_get";
+var common_tabs = $("#common_tabs");
+common_tabs.tabs({tabs:[{
+    id    : "business_public_provider_get",
     type  : "ajax",
     title : "测试单页",
     url   : "./page/"+ page +".html",
 }]});
+window.COMMON_TABS_OBJ = common_tabs.data("zui.tabs");
 /*设计管理
     design_list
     design_assign

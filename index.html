@@ -192,9 +192,7 @@
                 common_tabs = $("#common_tabs"), //切换面板
                 common_cancellation_btn = $("#common_cancellation_btn"), //注销按钮
                 common_cancellation_box = $("#common_cancellation_box"), //注销盒子
-                common_cancellation_submit = $("#common_cancellation_submit"), //注销提交
-                common_notice_btn           =$('#common_notice_btn'),     //重要消息提示
-                common_notice_box           =$('.common-notice-box');     //右侧盒子
+                common_cancellation_submit = $("#common_cancellation_submit"); //注销提交
         //导航加载----------------------------------------------------------------
         $.ajax({
             url: window.API.common_tree,
@@ -341,21 +339,21 @@
         });
 
         //公共提示按钮
-        common_notice_btn.click(function (e) {
+        $('#common_notice_btn').click(function (e) {
             e.stopPropagation();
-            var bool = parseInt( common_notice_box.css("right"));
+            var bool = parseInt($('.common-notice-box').css("right"));
             console.log( bool );
             if( bool > 0 ){
-                common_notice_box.animate({right:'0'})
+                $('.common-notice-box').animate({right:'0'})
             } else {
-                common_notice_box.animate({right:'385px'})
+                $('.common-notice-box').animate({right:'385px'})
             }
         });
-        common_notice_box.click(function (e) {
+        $('.common-notice-box').click(function (e) {
             e.stopPropagation();
         });
         $(document).click(function (e) {
-            common_notice_box.animate({
+            $('.common-notice-box').animate({
                 right:'0'
             })
         })
