@@ -121,10 +121,10 @@
             <!-- 数据循环 -->
             <li>
                 <div class="flex-box">
-                    <span class="text-primary flex-son ov1">审核通知文字过长可以省略审核通知文字过长可以省略</span>
+                    <span class="text-primary flex-son ov1"><a>审核通知文字过长可以省略审核通知文字过长可以省略</a></span>
                     <span>2019-10-10</span>
                 </div>
-                <p>刘德华向您发起怀特项目的审核请求！刘德华向您发起怀特项目的审核请求！刘德华向您发起怀特项目的审核请求！刘德华向您发起怀特项目的审核请求！刘德华向您发起怀特项目的审核请求！</p>
+                <p>刘德华向您发起怀特项目的审核请求</p>
             </li>
             <!-- li -->
             <li><div class="flex-box"><span class="text-primary flex-son ov1">审核通知</span><span>2019-10-10</span></div><p>审核文本</p></li>
@@ -440,4 +440,14 @@ common_map_box.click(function(e){ e.stopPropagation(); });                      
 });
 </script> -->
 </body>
+<style>
+    .common-notice-box .flex-box .ov1:hover{
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .common-notice-box .flex-box  a:hover{
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
 </html>

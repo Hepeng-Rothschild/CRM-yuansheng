@@ -4,19 +4,11 @@
         {   
             "title"      :"出勤休息",
             "children":[
-<<<<<<< HEAD
                 { "title":"请假","url":"office_apply_attend_leave","tips":1},
                 { "title":"出差","url":"office_apply_attend_travel","tips":0},
                 { "title":"加班","url":"office_apply_attend_overtime","tips":0},
                 { "title":"补卡","url":"office_apply_attend_punch","tips":0},
                 { "title":"外出","url":"office_apply_attend_goout","tips":0}
-=======
-                { "title":"请假","url":"blank","tips":1},
-                { "title":"出差","url":"blank","tips":0},
-                { "title":"加班","url":"blank","tips":0},
-                { "title":"补卡","url":"blank","tips":0},
-                { "title":"外出","url":"blank","tips":0}
->>>>>>> 5544636080d5fd2dac334d0ddaf91d3046e3d87c
             ]
         },
         { 
@@ -33,22 +25,13 @@
         { 
             "title"     :"行政",
             "children"  :[
-<<<<<<< HEAD
                 { "title":"采购申请","url":"office_apply_admin_buy","tips":0},
                 { "title":"物品领用","url":"office_apply_admin_gooods","tips":0},
                 { "title":"用车申请","url":"office_apply_admin_car","tips":0},
-                { "title":"名片印制","url":"office_apply_admin_card","tips":0},
-                { "title":"盖章申请","url":"office_apply_admin_seal","tips":0},
-                { "title":"通用审批","url":"office_apply_admin_approval","tips":0}
-=======
-                { "title":"采购申请","url":"blank","tips":0},
-                { "title":"物品领用","url":"blank","tips":0},
-                { "title":"用车申请","url":"blank","tips":0},
                 { "title":"名片印制申请","url":"blank","tips":0},
-                { "title":"盖章申请","url":"blank","tips":0},
+                { "title":"盖章申请","url":"office_apply_admin_seal","tips":0},
                 { "title":"证件申请","url":"blank","tips":0},
-                { "title":"通用审批","url":"blank","tips":0}
->>>>>>> 5544636080d5fd2dac334d0ddaf91d3046e3d87c
+                { "title":"通用审批","url":"office_apply_admin_approval","tips":0}
             ]
         },
         {
