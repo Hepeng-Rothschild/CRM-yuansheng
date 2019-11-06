@@ -1,0 +1,74 @@
+<br>
+<form class="form-horizontal" id="test_form">                   
+    <div class="form-group require">
+        <label class="col-sm-2 required">姓名</label>
+        <div class="col-sm-8"><input type="text" class="form-control" name="name"></div>
+    </div>
+    <div class="form-group require">
+        <label class="col-sm-2 required">手机</label>
+        <div class="col-sm-8"><input type="text" class="form-control" name="tel"></div>
+    </div>
+    <div class="form-group require">
+        <label class="col-sm-2 required">状态</label>
+        <div class="col-sm-8">
+        	<select name="state" class="form-control" name="state">
+        		<option value="1">面试</option>
+        		<option value="2">入职</option>
+        		<option value="3">转正</option>
+        		<option value="4">离职</option>
+        	</select>
+        </div>
+    </div>    
+    <div class="form-group require">
+        <label class="col-sm-2 required">留言</label>
+        <div class="col-sm-8"><textarea class="form-control" name="tex10"></textarea></div>
+    </div>
+    <div class="form-group require">
+        <label class="col-sm-2"></label>
+        <div class="col-sm-8"><button type="button" class="btn btn-primary" id="test_form_submit">提交</button></div>
+    </div>
+</form>
+<script>
+$(function(){
+
+	//变量声明
+	var test_form = $("#test_form"),
+	test_form_submit = $("#test_form_submit");
+
+	//数据赋值
+	$.ajax({
+		url: API.test_datagrid,
+		type: "post",
+		data:{
+			page:1,
+			recPerPage:10
+		},
+		success : function(data){
+			var data = um_json(data);
+		    um_data_set(test_form,data.data[2]); //函数调用
+		}
+	});
+
+	//数据取值
+	test_form_submit.click(function(){
+
+		$.ajax({
+			url 	: API.test_response,
+			type 	: "post",
+			data 	: um_data_get(test_form), 	//函数调用
+			success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                    	common_form_reset();
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+			}
+		});
+
+	});
+
+});
+</script>

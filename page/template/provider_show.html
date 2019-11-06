@@ -418,7 +418,7 @@ $(function(){
             url     : API.test_response,
             type    : "post",
             dataType: "json",
-            data    : um_data(provider_show_form),
+            data    : um_data_get(provider_show_form),
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
