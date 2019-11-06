@@ -17,6 +17,7 @@
     font-size: small;
     font-weight: normal;
     color:#666;
+    line-height:22px;
 }
 .template-wrapper table b{
     color: #000;
@@ -28,40 +29,68 @@
 .template-wrapper table b:after{
     content: '：';
 }
+/*模式样式*/
+.template-wrapper table td input,
+.template-wrapper table td select,
+.template-wrapper table td textarea{
+    padding:2px!important;
+    height: 22px!important;
+    border-radius: 0!important;
+    max-width: 150px;
+    position: relative;
+    top: 0px;
+    left: -3px;
+}
+.template-wrapper table td span+textarea{
+    max-width: 710px;
+    top: -3px;
+}
+/*模式-显示*/
+.template-wrapper.mode-show table td span{
+    display: inline-block;
+}
+.template-wrapper.mode-show table td input,
+.template-wrapper.mode-show table td select,
+.template-wrapper.mode-show table td textarea{
+    display: none;
+}
+.template-wrapper.mode-show #provider_show_edit_btn{
+    display: inline-block;
+}
+.template-wrapper.mode-show #provider_show_edit_submit{
+    display: none;
+}
+/*模式-修改*/
+.template-wrapper.mode-edit table td span{
+    display: none;
+}
+.template-wrapper.mode-edit table td input,
+.template-wrapper.mode-edit table td select,
+.template-wrapper.mode-edit table td textarea{
+    display: flex;
+}
+.template-wrapper.mode-edit #provider_show_edit_btn{
+    display: none;
+}
+.template-wrapper.mode-edit #provider_show_edit_submit{
+    display: inline-block;
+}
 </style>
 <!-- 模板外套 -->
-<div class="template-wrapper table-responsive" id="provider_show">
+<div class="template-wrapper table-responsive mode-show" id="provider_show">
     
     <!-- 模板工具条 -->
     <div class="template-tool-group">
         <button class="btn" id="provider_show_back_btn"><i class="icon icon-arrow-left"></i> 返回</button>
+        <button class="btn btn-primary" id="provider_show_edit_btn"><i class="icon icon-edit"></i> 修改</button>
+        <button class="btn btn-primary" id="provider_show_edit_submit"><i class="icon icon-save"></i> 保存</button>
         <button class="btn btn-primary" data-toggle="modal" id="provider_show_belong_btn" data-target="#provider_show_belong_box"><i class="icon icon-flag"></i> 隶属于我</button>
     </div>
     <!-- template-tool-group -->
 
-    <!-- 客户记录-提交商务经理 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="provider_show_belong_box">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">隶属于我</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="container">您确定隶属于自己名下吗？</div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="provider_show_belong_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- provider_show_belong_box -->
-
-    <!-- 基础表格 -->
-    <table class="table" id="provider_show_base"></table>
-    <!-- provider_show_base -->
+    <!-- 修改表单 -->
+    <form id="provider_show_form"><table class="table" id="provider_show_base"></table></form>
+    <!-- provider_show_form -->
 
     <!-- 切换面板 -->
     <ul class="nav nav-tabs">
@@ -104,6 +133,26 @@
         </div>
     </div>
     <!-- nav-tabs -->
+
+    <!-- 模板工具条-隶属于我 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="provider_show_belong_box">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">隶属于我</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">您确定隶属于自己名下吗？</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="provider_show_belong_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- provider_show_belong_box -->
 
     <!-- 客户记录-回访 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="provider_show_record2_return_box">
@@ -205,17 +254,19 @@ $(function(){
 
     /*必传参数
     window.DETAIL_SOURCE = window.DETAIL_SOURCE || {
-        page_id : 'business_public_provider_get',
+        page_id : 'business_provider_list',
         data_id : 500
-    }
-    console.log(DETAIL_SOURCE);
-    */
+    }*/
 
     //变量声明
     var
+    provider_show = $("#provider_show"), //页面ID
     provider_show_back_btn = $("#provider_show_back_btn") , //返回按钮
-    provider_show_belong_btn = $("#provider_show_belong_btn"), //隶属按钮
+    provider_show_form = $("#provider_show_form"), //修改表单    
+    provider_show_edit_btn = $("#provider_show_edit_btn"), //修改按钮
+    provider_show_edit_submit = $("#provider_show_edit_submit"), //修改提交
     provider_show_belong_box = $("#provider_show_belong_box"), //隶属盒子
+    provider_show_belong_btn = $("#provider_show_belong_btn"), //隶属按钮
     provider_show_belong_submit = $("#provider_show_belong_submit"), //隶属提交
     provider_show_base = $("#provider_show_base"), //基础表格
     provider_show_record1 = $("#provider_show_record1"), //回访记录
@@ -287,6 +338,11 @@ $(function(){
                 //数据转接
                 var data = data.data;
 
+                //修改按钮-移除(不是'信息员列表'页面 )
+                if( DETAIL_SOURCE.page_id != "business_provider_list" ){
+                    provider_show_edit_btn.remove();
+                }
+
                 //隶属于我-移除(不是'可抢信息员'页面 | 曾经过期过)
                 if( DETAIL_SOURCE.page_id != "business_public_provider_get" || data.overdue>0 ){
                     provider_show_belong_btn.remove();
@@ -297,41 +353,84 @@ $(function(){
                 <thead><tr><td colspan="3"><b>业务员</b>${data.salesman}</td></tr></thead>
                 <tbody>
                     <tr>
-                        <td><b>姓名</b>${data.user1}</td>
-                        <td><b>姓名2</b>${data.user2}</td>
-                        <td><b>手机1</b>${data.tel1}</td>
+                        <td><div class="flex-box"><b>姓名 </b><span>${data.user1}</span><input class="form-control flex-son" value="${data.user1}" readonly></div></td>
+                        <td><div class="flex-box"><b>姓名2</b><span>${data.user2}</span><input class="form-control flex-son" value="${data.user2}" readonly></div></td>
+                        <td><div class="flex-box"><b>手机1</b><span>${data.tel1}</span><input class="form-control flex-son" value="${data.tel1}" readonly> </div></td>
                     </tr>
                     <tr>
-                        <td><b>手机2</b>${data.tel2}</td>
-                        <td><b>手机3</b>${data.tel3}</td>
-                        <td><b>手机4</b>${data.tel4}</td>
+                        <td><div class="flex-box"><b>手机2</b><span>${data.tel2}</span><input class="form-control flex-son" value="${data.tel2}" readonly></div></td>
+                        <td><div class="flex-box"><b>手机3</b><span>${data.tel3}</span><input class="form-control flex-son" value="${data.tel3}" readonly></div></td>
+                        <td><div class="flex-box"><b>手机4</b><span>${data.tel4}</span><input class="form-control flex-son" value="${data.tel4}" readonly></div></td>
                     </tr>
                     <tr>
-                        <td><b>银行名称</b>${data.bankname}</td>
-                        <td><b>开户人</b>${data.bankuser}</td>
-                        <td><b>银行卡号</b>${data.bankcard}</td>
+                        <td><div class="flex-box"><b>银行名称</b><span>${data.bankname}</span><input class="form-control flex-son" name="bankname" value="${data.bankname}"></div></td>
+                        <td><div class="flex-box"><b>开户人</b><span>${data.bankuser}</span><input class="form-control flex-son" name="bankuser" value="${data.bankuser}"></div></td>
+                        <td><div class="flex-box"><b>银行卡号</b><span>${data.bankcard}</span><input class="form-control flex-son" name="bankcard" value="${data.bankcard}"></div></td>
                     </tr>
                     <tr>
-                        <td><b>公司名称</b>${data.company}</td>
-                        <td><b>服务区域</b>${data.area}</td>
-                        <td><b>身份证号</b>${data.idcard}</td>
+                        <td><div class="flex-box"><b>公司名称</b><span>${data.company}</span><input class="form-control flex-son" name="company" value="${data.company}"></div></td>
+                        <td><div class="flex-box"><b>服务区域</b><span>${data.area}</span><input class="form-control flex-son" name="area" value="${data.area}"></div></td>
+                        <td><div class="flex-box"><b>身份证号</b><span>${data.idcard}</span><input class="form-control flex-son" name="idcard" value="${data.idcard}"></div></td>
                     </tr>
                     <tr>
-                        <td><b>生日</b>${data.birthday}</td>
-                        <td><b>级别</b>${data.levelname}</td>
-                        <td><b>工作性质</b>${data.typename}</td>
+                        <td><div class="flex-box"><b>生日</b><span>${data.birthday}</span><input class="form-control flex-son" name="birthday" value="${data.birthday}"></div></td>
+                        <td><div class="flex-box"><b>级别</b><span>${data.levelname}</span><select class="form-control flex-son" name="levelname">
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                            <option value="4">D</option>
+                            <option value="5">E</option>
+                        </select></div></td>
+                        <td><div class="flex-box"><b>工作性质</b><span>${data.typename}</span><select class="form-control flex-son" name="typename">
+                            <option value="1">开发商</option>
+                            <option value="2">物业</option>
+                            <option value="3">自由经纪人</option>
+                            <option value="4">租赁</option>
+                            <option value="5">招商</option>
+                            <option value="6">售楼</option>
+                        </select></div></td>
                     </tr>
-                    <tr>
-                        <td colspan="3"><b>备注信息</b>${data.text}</td>
-                    </tr>
+                    <tr><td colspan="3"><div class="flex-box" style="height:35px;"><b>备注信息</b><span>${data.text}</span><textarea class="form-control flex-son" name="text">${data.text}</textarea></div></td></tr>
                 </tbody>
                 `;
                 provider_show_base.html(temp_base);
+
+                //select选中
+                provider_show_base.find("select[name='levelname']").val(data.levelnumb);
+                provider_show_base.find("select[name='typename']").val(data.typenumb);
+
+                //验证调用
+                //provider_show_form.validationEngine({scroll:false});
 
             } else {
                 um_tip(data.message,"1500","text-danger");
             }
         }
+    });
+
+    //基础表格-修改
+    provider_show_edit_btn.click(function(){
+        provider_show.addClass("mode-edit").removeClass("mode-show");
+    });
+    provider_show_edit_submit.click(function(){
+        //if( provider_show_form.validationEngine("validate") === false ){ return; }
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : um_data_get(provider_show_form),
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.reload(provider_show.attr("id"));
+                        //provider_show.addClass("mode-show").removeClass("mode-edit");
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
     });
 
     //回访记录

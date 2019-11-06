@@ -345,6 +345,29 @@ function um_json(data){
     return data;
 }
 
+/* 表单取值(form内元素须有name属性)
+ * param form_dom 表单DOM
+ * return json */
+function um_data_get(form_dom){
+    var data = {};
+    var json = form_dom.serializeArray();
+    var result = $(json).each(function(i){ data[this.name]=this.value });
+    return result;
+}
+
+/* 表单赋值(form内元素须有name属性)
+ * param form_dom 表单DOM
+ * param json JSON数据
+ */
+function um_data_set(form_dom,json){
+    var item = form_dom.find("[name]");
+    $.each(json, function(key,val){
+        $.each(item, function(i){
+            $("[name=" + key + "]").val(val);
+        });
+    });
+}
+
 /* um_tip() 信息提示
  * @param text string 提示文本
  * @param time string 持续时间 (default:1500|0为不消失)

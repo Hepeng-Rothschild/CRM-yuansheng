@@ -585,13 +585,12 @@ $(function(){
                         getter : function(dataValue,cell){
                             var temp = `<span>${dataValue}</span>`;
                             if ( COMMON.logAllow ){
-                                temp = `<a class="business_provider_list_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
+                                temp = `<a rowIndex="${cell.rowIndex}" onclick=template_page_open('provider_show',$(this))>${dataValue}</a>`;
                             }
                             return temp;
                         }
                     }
                 },
-                {name:"tel",    label:"手机",        width:100},
                 {name:"text8",  label:"公司名称",    width:150},
                 {name:"text5",  label:"工作性质",    width:100},
                 {name:"text5",  label:"级别",        width:100},
