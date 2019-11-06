@@ -230,7 +230,7 @@ $(function(){
         //本地接口
         var provider_show_api = {
             select  : LOCAL + "Test/Template/provider_days.json",
-            base    : LOCAL + "Test/Template/provider.json" + "?id=" + DETAIL_SOURCE.data_id,
+            base    : LOCAL + "Test/Template/provider.json" + "?id=" + DETAIL_SOURCE.data_id + "&page_id=" + DETAIL_SOURCE.page_id,
             record1 : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
             record2 : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
             record3 : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
