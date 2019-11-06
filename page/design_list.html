@@ -28,10 +28,6 @@
 				<label><button class="btn btn-primary" id="design_list_search_btn"><i class="icon icon-search"></i> 查询</button></label>
 				<div class="clearfix"></div>
 			</div>
-			<div class="tool-deal">
-				<label><button class="btn btn-primary" id="design_list_measure_btn"> <i class="icon icon-edit-sign"></i> 创建量房</button></label>
-				<div class="clearfix"></div>
-			</div>
 		</div>
 		<!-- tool-group -->
 		<div class="datagrid-container"></div>
@@ -62,45 +58,6 @@
 		</div>
 	</div>
 	<!--design_list_great_box -->
-
-	<!-- 创建量房盒子 -->
-	<div class="modal modal-for-page fade" aria-hidden="false" id="design_list_measure_box">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-					<h4 class="modal-title">创建量房</h4>
-				</div>
-				<div class="modal-body">
-					<form class="container form-horizontal">
-						<div class="form-group">
-							<label class="col-sm-2 required" for="design_list_measure_date">测量日期</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" id="design_list_measure_date">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 required" for="design_list_measure_staff">测量人</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" id="design_list_measure_staff">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 required" for="design_list_measure_text">备注信息</label>
-							<div class="col-sm-8">
-								<textarea class="form-control" id="design_list_measure_text"></textarea>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" id="design_list_measure_submit">提交</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- design_list_measure_box -->
 	<div class="modal modal-for-page fade" aria-hidden="false" id="design_list_progress_btn">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -316,13 +273,6 @@
 			design_list_tool_select1 = $("#design_list_tool_select1"), //下拉选项
 			design_list_tool_select2 = $("#design_list_tool_select2"), //下拉选项
 			design_list_tool_select3 = $("#design_list_tool_select3"), //下拉选项
-			//创建量房
-			design_list_measure_box = $("#design_list_measure_box"), //量房盒子
-			design_list_measure_btn = $("#design_list_measure_btn"), //量房按钮
-			design_list_measure_submit = $("#design_list_measure_submit"), //量房按钮
-			design_list_measure_date = $("#design_list_measure_date"), //量房日期
-			design_list_measure_staff = $("#design_list_measure_staff"), //量房人员
-			design_list_measure_text = $("#design_list_measure_text"), //量房备注
 			//查看
 			design_list_show_box = $("#design_list_show_box"), //查看盒子
 			design_list_show_t_prog = $("#design_list_show_t_prog"), //项目进度
@@ -807,41 +757,6 @@
 				"&type=" + $(this).find("input").val();
 
 			zui_datagrid_render(design_list_show_filelist_obj, design_list_api.datagrid_filelist + keyword);
-		});
-
-		//创建量房按钮-----------------------------------------------------------------------------------------------
-		design_list_measure_btn.click(function() {
-
-			//数据复原
-			common_form_reset();
-
-			//面板显示
-			design_list_measure_box.modal("show");
-
-		});
-		//创建量房提交
-		design_list_measure_submit.click(function() {
-
-			//远程提交
-			$.ajax({
-				url: API.test_response,
-				type: "post",
-				dataType: "json",
-				data: {
-					date: design_list_measure_date.val(),
-					staff: design_list_measure_staff.val(),
-					text: design_list_measure_text.val(),
-				},
-				success: function(data) {
-					if (data.status > 0) {
-						um_tip(data.message);
-						zui_datagrid_reset(design_list_datagrid_obj, design_list_api.datagrid, "clear");
-					} else {
-						um_tip(data.message, "1500", "text-danger");
-					}
-				}
-			});
-
 		});
 		//洽谈等级-----------------------------------------------------------------------------------------
 		$(document).on("click",design_list_great_btn, function() {
