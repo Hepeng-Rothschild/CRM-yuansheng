@@ -83,13 +83,14 @@
 			</div>
 		</div>
 	</div>
-	<!--design_list_progress_btn -->
 	<!-- 回访记录盒子 -->
-	<div class="modal modal-for-page fade" aria-hidden="false" id="design_list_logAdd_box">
+	<div class="modal modal-for-page fade" aria-hidden="false"
+		 id="design_list_logAdd_box">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+					<button class="close" data-dismiss="modal"><span
+							aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
 					<h4 class="modal-title">添加回访记录</h4>
 				</div>
 				<div class="modal-body">
@@ -99,165 +100,129 @@
 							<div class="col-sm-8"><textarea class="form-control" id="design_list_logAdd_text"></textarea></div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 required" for="design_list_logAdd_text">对手进展</label>
+							<label class="col-sm-2 required"
+								   for="design_list_logAdd_text">对手进展</label>
 							<div class="col-sm-8">
-									<div class="col">
-										<div class="opt">
-											<input class="magic-radio" type="radio" name="radio1" id="r1" value="1">
-											<label for="r1" class="r1"><span>无</span></label>
-										</div>
-										<div class="opt">
-											<input class="magic-radio" type="radio" name="radio1" id="r2" value="2" checked>
-											<label for="r2" class="r2">方案</label>
-										</div>
-										<div class="opt">
-											<input class="magic-radio" type="radio" name="radio1" id="r3" value="3" checked>
-											<label for="r3" class="r3">效果图</label>
-										</div>
-										<div class="opt">
-											<input class="magic-radio" type="radio" name="radio1" id="r4" value="4" checked>
-											<label for="r4" class="r4">报价</label>
-										</div>
-										<div class="opt">
-											<input class="magic-radio" type="radio" name="radio1" id="r5" value="5" checked>
-											<label for="r4" class="r5">合同</label>
-										</div>
+								<div class="col">
+									<div class="opt">
+										<input
+												class="magic-radio" type="radio" name="radio1" id="r1" value="1">
+										<label
+												for="r1" class="r1"><span>无</span></label>
 									</div>
+									<div class="opt">
+										<input
+												class="magic-radio" type="radio" name="radio1" id="r2" value="2" checked>
+										<label
+												for="r2" class="r2">方案</label>
+									</div>
+									<div class="opt">
+										<input
+												class="magic-radio" type="radio" name="radio1" id="r3" value="3" checked>
+										<label
+												for="r3" class="r3">效果图</label>
+									</div>
+									<div class="opt">
+										<input
+												class="magic-radio" type="radio" name="radio1" id="r4" value="4" checked>
+										<label
+												for="r4" class="r4">报价</label>
+									</div>
+									<div class="opt">
+										<input
+												class="magic-radio" type="radio" name="radio1" id="r5" value="5" checked>
+										<label
+												for="r4" class="r5">合同</label>
+									</div>
+								</div>
 							</div>
-                            </div>
-							<div class="form-group">
-								<label class="col-sm-2 required" for="design_list_follow_up">跟进情况</label>
-								<div class="col-sm-8"><textarea class="form-control" id="design_list_follow_up"></textarea></div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 required"
+								   for="design_list_follow_up">跟进情况</label>
+							<div class="col-sm-8"><textarea
+									class="form-control" id="design_list_follow_up"></textarea></div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 required"
+								   for="design_list_difficulty">现阶段困难</label>
+							<div class="col-sm-8"><textarea
+									class="form-control" id="design_list_difficulty"></textarea></div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2"
+								   for="design_list_external">外协情况</label>
+							<div class="col-sm-8">
+								<div class="col">
+									<div class="opt">
+										<input
+												class="magic-radio" type="radio" name="radio2" id="w1" value="1">
+										<label
+												for="w1" class="r1"><span>无</span></label>
+									</div>
+									<div class="opt">
+										<input
+												class="magic-radio" type="radio" name="radio2" id="w2" value="2" checked>
+										<label
+												for="w2" class="r2">空调</label>
+									</div>
+									<div class="opt">
+										<input
+												class="magic-radio" type="radio" name="radio2" id="w3" value="3" checked>
+										<label
+												for="w3" class="r3">消防</label>
+									</div>
+									<div class="opt">
+										<input
+												class="magic-radio" type="radio" name="radio2" id="w4" value="4" checked>
+										<label
+												for="w4" class="r4">家具</label>
+									</div>
+									<div class="opt">
+										<input
+												class="magic-radio" type="radio" name="radio2" id="w5" value="5" checked>
+										<label
+												for="w4" class="r5">弱电</label>
+									</div>
+								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 required" for="design_list_difficulty">现阶段困难</label>
-								<div class="col-sm-8"><textarea class="form-control" id="design_list_difficulty"></textarea></div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2
+for="design_list_estimate">预估单值</label>
+							<div class="col-sm-8"><input
+									type="text" name="inp" id="design_list_estimate" class="form-control"/></div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2"
+								   for="design_list_cycle">回访周期</label>
+							<div class="col-sm-8">
+								<select class="form-
+control" id="design_list_cycle"><!-- JS推进 --></select>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2" for="design_list_external">外协情况</label>
-								    <div class="col-sm-8">
-										<div class="col">
-											<div class="opt">
-												<input class="magic-radio" type="radio" name="radio2" id="w1" value="1">
-												<label for="w1" class="r1"><span>无</span></label>
-											</div>
-											<div class="opt">
-												<input class="magic-radio" type="radio" name="radio2" id="w2" value="2" checked>
-												<label for="w2" class="r2">空调</label>
-											</div>
-											<div class="opt">
-												<input class="magic-radio" type="radio" name="radio2" id="w3" value="3" checked>
-												<label for="w3" class="r3">消防</label>
-											</div>
-											<div class="opt">
-												<input class="magic-radio" type="radio" name="radio2" id="w4" value="4" checked>
-												<label for="w4" class="r4">家具</label>
-											</div>
-											<div class="opt">
-												<input class="magic-radio" type="radio" name="radio2" id="w5" value="5" checked>
-												<label for="w4" class="r5">弱电</label>
-											</div>
-										</div>
-								  </div>
-							    </div>
-							<div class="form-group">
-								<label class="col-sm-2 for="design_list_estimate">预估单值</label>
-								<div class="col-sm-8"><input type="text" name="inp" id="design_list_estimate" class="form-control"/></div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2"
+								   for="design_list_visit">下次回访</label>
+							<div class="col-sm-8">
+								<select class="form-
+control" id="design_list_visit"><!-- JS推进 --></select>
 							</div>
-							  <div class="form-group">
-							      <label class="col-sm-2" for="design_list_cycle">回访周期</label>
-							      <div class="col-sm-8">
-							          <select class="form-control" id="design_list_cycle"><!-- JS推进 --></select>
-							      </div>
-							  </div>
-						     <div class="form-group">
-						       <label class="col-sm-2" for="design_list_visit">下次回访</label>
-						         <div class="col-sm-8">
-						           <select class="form-control" id="design_list_visit"><!-- JS推进 --></select>
-						         </div>
-						     </div> 
-							
-							
+						</div>
+
+
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" id="design_list_logAdd_submit">提交</button>
+					<button type="button" class="btn btn-default"
+							data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary"
+							id="design_list_logAdd_submit">提交</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!--design_list_logAdd_box -->
-	<!-- 项目查看盒子 -->
-	<div class="modal modal-for-page fade" aria-hidden="false" id="design_list_show_box">
-	    <div class="modal-dialog modal-fullscreen">
-	        <div class="modal-content">
-	            <div class="modal-header">
-	                <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-	                <h4 class="modal-title">项目查看</h4>
-	            </div>
-	            <div class="modal-body modal-scroll">
-	                <div class="container">
-	
-	                    <!-- 项目进度 -->
-	                    <table class="table table-bordered" id="design_list_show_t_prog">
-	                        <thead><tr><th>项目进度</th></tr></thead>
-	                        <tbody><!-- JS推进 --></tbody>
-	                    </table>
-	
-	                    <!-- 项目信息 -->
-	                    <table class="table table-bordered" id="design_list_show_t_case">
-	                        <thead><tr><th colspan="2">项目信息
-	                            <button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
-	                        </th></tr></thead>
-	                        <tbody><!-- JS推进 --></tbody>
-	                    </table>
-	
-	                    <!-- 负责人信息 -->
-	                    <table class="table table-bordered" id="design_list_show_t_user">
-	                        <thead><tr><th colspan="2">负责人信息
-	                            <button class="btn btn-default btn-mini pull-right um_btn_collapse"><i class="icon icon-angle-up"></i></button>
-	                        </th></tr></thead>
-	                        <tbody><!-- JS推进 --></tbody>
-	                    </table>
-	
-	                    <!-- 切换面板 -->
-	                    <ul class="nav nav-tabs">
-	                        <li class="active"><a data-tab="" href="#design_list_show_filelist">客户附件</a></li>
-	                        <li><a data-tab="" href="#design_list_show_record">操作记录</a></li>
-	                    </ul>
-	                    <div class="tab-content">
-	                        <div class="datagrid datagrid-striped tab-pane active" id="design_list_show_filelist">
-	                            <!-- 工具条组 -->
-	                            <div class="tool-group" style="padding:0;border-top:0">
-	                                <div class="tool-deal" style="padding:5px;">
-	                                    <div class="btn-group" data-toggle="buttons" id="design_list_show_filelist_type">
-	                                        <label class="btn btn-mini active"><input type="radio" name="filetype" value="1">商务附件</label>
-	                                        <label class="btn btn-mini"><input type="radio" name="filetype" value="2">设计附件</label>
-	                                        <label class="btn btn-mini"><input type="radio" name="filetype" value="3">施工图</label>
-	                                        <label class="btn btn-mini"><input type="radio" name="filetype" value="4">效果图</label>
-	                                        <label class="btn btn-mini"><input type="radio" name="filetype" value="5">报价附件</label>
-	                                        <label class="btn btn-mini"><input type="radio" name="filetype" value="6">合同附件</label>
-	                                    </div>
-	                                    <div class="clearfix"></div>
-	                                </div>
-	                            </div>
-	                            <!-- tool-group -->
-	                            <div class="datagrid-container"></div>
-	                            <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
-	                        </div>
-	                        <div class="datagrid datagrid-striped tab-pane" id="design_list_show_record">
-	                            <div class="datagrid-container"></div>
-	                            <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
-	<!-- design_list_show_box -->
-</div>
 <!-- page-wrapper -->
 <script>
 	$(function() {
@@ -291,16 +256,17 @@
 			design_list_great_level = $("#design_list_great_level"), //洽谈等级
 			//跟踪日志
 			design_list_logShow_box = $("#design_list_logShow_box"), //日志查看盒子
-			design_list_logAdd_box = $("#design_list_logAdd_box"), //design_list盒子
-			design_list_logAdd_submit = $("#design_list_logAdd_submit"), //design_list提交
-			design_list_logAdd_text = $("#design_list_logAdd_text"), //design_list内容
+			design_list_logAdd_box = $("#design_list_logAdd_box"), //日志回访盒子
+		    design_list_logAdd_submit = $("#design_list_logAdd_submit"), //日志回访提交
+			design_list_logAdd_text = $("#design_list_logAdd_text"), //日志回访内容
+			design_list_logAdd_file = $("#design_list_logAdd_file"), //日志回访附件
+			design_list_logAdd_date = $("#design_list_logAdd_date"),//添加下次跟踪
 			design_list_follow_up   = $("#design_list_follow_up"),  //跟进情况
 			design_list_difficulty  = $("#design_list_difficulty"),  //现阶段困难
 			design_list_logAdd_file = $("#design_list_logAdd_file"), //design_list附件
-			design_list_estimate    =$("#design_list_estimate"),     //预估单值  
+			design_list_estimate    =$("#design_list_estimate"),     //预估单值
 			design_list_visit       =$("#design_list_visit"),        //下次回访
-			design_list_cycle       =$("#design_list_cycle"),        //回访周期
-			design_list_logAdd_date = $("#design_list_logAdd_date"); //添加下次跟踪
+			design_list_cycle       =$("#design_list_cycle");        //回访周期
 
 		//接口对象-----------------------------------------------------------------------------------------------
 		if (window.STATE == "local") {
@@ -381,7 +347,7 @@
 						label: "分单时间",
 						width: 160
 					},
-					
+
 					{
 						name: "name",
 						label: "联系人1",
@@ -467,15 +433,16 @@
 					},
 					{
 						name: "log",
-						label: "操作",
+						label: "项目状态",
 						width: 80,
 						html: true,
 						valueOperator: {
 							getter: function(dataValue, cell) {
-								return `<a class="design_list_logAdd_btn"  rowIndex="${cell.rowIndex}">回访</a>`;
+								return `
+							<a class="design_list_logAdd_btn"  rowIndex="${cell.rowIndex}">回访</a>`;
 							}
 						}
-					}
+					},
 				],
 				remote: function() {
 					return {
@@ -645,13 +612,12 @@
 		var
 			design_list_datagrid_obj = design_list_datagrid.data("zui.datagrid"), //表格对象
 			design_list_show_filelist_obj = design_list_show_filelist.data("zui.datagrid"), //查看表格1
-			design_list_show_record_obj = design_list_show_record.data("zui.datagrid"), //查看表格2	
+			design_list_show_record_obj = design_list_show_record.data("zui.datagrid"), //查看表格2
 			design_list_level_btn = ".design_list_level_btn", //级别按钮
 			design_list_show_btn  = ".design_list_show_btn",    //查看按钮
-			design_list_logAdd_btn = ".design_list_logAdd_btn"; //回访按钮
 			design_list_great_btn = ".design_list_great_btn"; //洽谈等级按钮
-			
-		    
+
+
 
 		//上传创建-----------------------------------------------------------------------------------------------
 		zui_upload_group({
@@ -695,7 +661,7 @@
 					}
 					design_list_cycle.html(option);
 					design_list_visit.html(option);
-				  
+
 				}
 			}
 		});
@@ -712,7 +678,7 @@
 						option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
 					}
 					design_list_great_level.html(option);
-		
+
 				}
 			}
 		});
@@ -760,18 +726,18 @@
 		});
 		//洽谈等级-----------------------------------------------------------------------------------------
 		$(document).on("click",design_list_great_btn, function() {
-		
+
 			//数据取值
 			var data_id = $(this).attr("rowIndex");
 			var rowLevel = $(this).attr("rowLevel");
-		
+
 			//数据赋值
 			design_list_great_submit.attr("dataId", data_id);
 			design_list_great_level.val(rowLevel);
-		
+
 			//面板显示
 			design_list_great_box.modal("show");
-		
+
 		});
 		//洽谈等级-提交
 		design_list_great_submit.click(function() {
@@ -790,21 +756,21 @@
 					if (data.status > 0) {
 						um_tip(data.message);
 						zui_datagrid_reset(design_list_datagrid_obj,design_list_api.datagrid);
-		
+
 					} else {
 						um_tip(data.message, "1500", "text-danger");
 						console.log(data.message)
 					}
 				}
 			});
-		
+
 		});
           //查看按钮-----------------------------------------------------------------------------------------------
-          $(document).on("click",design_list_show_btn,function(){ 
-          
+          $(document).on("click",design_list_show_btn,function(){
+
               //数据ID
               var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
-          
+
               //远程提交
               $.ajax({
                   url     : design_list_api.modal_show,
@@ -813,10 +779,10 @@
                   data    : { id:data_id },
                   success : function(data){
                       if( data.status>0 ){
-          
+
                           //查看模板
                           var data = data.data;
-          
+
                           //项目进度
                           var temp_prog = `<tr><td><ul class="bussiness-prog-group flex-box">`;
                           var temp_prog_state_class = "bg-primary";
@@ -831,7 +797,7 @@
                               `;
                           }
                           design_list_show_t_prog.find("tbody").html(temp_prog+"</ul></td></tr>");
-          
+
                           //项目信息
                           var temp_case = `
                               <tr><td style="width:120px;">项目编号</td><td>${data.number}</td></tr>
@@ -858,7 +824,7 @@
                               <tr><td>备注      </td><td>${data.text}         </td></tr>
                           `;
                           design_list_show_t_case.find("tbody").html(temp_case);
-          
+
                           //负责人信息
                           var temp_user = `
                               <tr><td style="width:120px;">业务员</td><td>${data.salesman}</td></tr>
@@ -870,11 +836,11 @@
                               <tr><td>项目经理    </td><td>${data.manager}    </td></tr>
                           `;
                           design_list_show_t_user.find("tbody").html(temp_user);
-                          
+
                           //数据表格
                           zui_datagrid_render(design_list_show_filelist_obj,design_list_api.datagrid_filelist+"?id="+data_id+"&type=1");
                           zui_datagrid_render(design_list_show_record_obj,design_list_api.datagrid_record+"?id="+data_id);
-                          
+
                           design_list_show_filelist_type.attr("rowIndex",data_id);      //ID赋值
                           design_list_show_box.modal("show");                           //盒子显示
                       } else {
@@ -882,9 +848,60 @@
                       }
                   }
               });
-          
+
           });
-		 
+		//日志添加-----------------------------------------------------------------------------------------------
+		$(document).on("click", ".design_list_logAdd_btn", function() {
+
+			//数据复原
+			common_form_reset();
+
+			//ID取值
+			var rowIndex = $(this).attr("rowIndex");
+
+			//ID赋值
+			design_list_logAdd_submit.attr("rowIndex", rowIndex);
+
+			//面板显示
+			design_list_logAdd_box.modal("show");
+
+		});
+		//日志提交
+		design_list_logAdd_submit.click(function() {
+
+			//ID取值
+			var data_id = $(this).attr("rowIndex");
+
+			//远程提交
+			$.ajax({
+				url: API.test_response,
+				type: "post",
+				dataType: "json",
+				data: {
+					id: data_id,
+					dio1:$("input[name='radio1']:checked").val(),
+					tex1:design_list_follow_up.val(),
+					tex2:design_list_difficulty.val(),
+					dio2:$("input[name='radio2']:checked").val(),
+					tex3:design_list_estimate.val(),
+					sele1:design_list_cycle.val(),
+					swle2:design_list_visit.val(),
+				},
+				success: function(data) {
+					if (data.status > 0) {
+						um_tip(data.message);
+						zui_datagrid_reset(design_list_datagrid_obj, design_list_api.datagrid);
+					} else {
+						um_tip(data.message, "1500", "text-danger");
+					}
+				}
+			});
+		});
+		//日志关闭
+		design_list_logAdd_box.on("hide.zui.modal", function() {
+			//上传重置
+			zui_upload_reset([design_list_logAdd_file]);
+		});
 
 	}); //预加载结尾
 </script>
