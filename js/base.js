@@ -321,6 +321,22 @@ function um_date(fmt,date){
     return fmt;
 }
 
+/* um_date_duration() 时间差获取
+ * @param timeStart string 开始时间
+ * @param timeEnd   string 结束时间
+ * @return string 时间结果
+ */
+function um_date_duration(timeStart, timeEnd){
+    if( timeStart!="" && timeEnd!="" ){
+        var difValue = new Date(timeEnd).getTime() - new Date(timeStart).getTime();
+        //if ( difValue > 0 ){} else { um_tip("时间不合法","1500","text-danger"); }
+        var day = Math.floor(difValue / 1000 / 60 / 60 / 24);
+        difValue = difValue % (1000 * 60 * 60 * 24);
+        var hour = Math.floor(difValue / 1000 / 60 / 60);
+        return day + "天" + hour + "小时";
+    }
+}
+
 /* um_isinarray()  元素是否存在于数组中
  * @param arr      array         数组
  * @param value    string/number 元素
