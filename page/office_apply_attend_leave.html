@@ -8,24 +8,13 @@
             <div class="tool-search">
                 <div class="im-label">
                     <div class="input-group">
-                    <select class="form-control" id="office_apply_attend_leave_tool_keys">
-                        <option value="1">流水号</option>
-                    </select>
+                    <select class="form-control" id="office_apply_attend_leave_tool_keys"><option value="1">流水号</option></select>
                     <span class="input-group-addon fix-border fix-padding"></span>
                     <input type="text" class="form-control" id="office_apply_attend_leave_tool_search">
                     </div>
                 </div>
                 <div class="im-label" id="office_apply_attend_leave_tool_date1"></div>
-                <label>
-                    <span>请假类型：</span>
-                    <select class="form-control" id="office_apply_attend_leave_tool_select1">
-                        <option value="0">全部</option>
-                        <option value="1">病假</option>
-                        <option value="2">婚假</option>
-                        <option value="3">丧假</option>
-                        <option value="4">调休</option>
-                    </select>
-                </label>
+                <label><span>请假类型：</span><select class="form-control" id="office_apply_attend_leave_tool_select1"></select></label>
                 <label>
                     <span>审批状态</span>
                     <select class="form-control" id="office_apply_attend_leave_tool_select2">
@@ -50,33 +39,16 @@
         <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
     </div>
     <!-- datagrid -->
-    <!-- 查看盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="office_apply_attend_leave_show_box">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">查看</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <!--  -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- office_apply_attend_leave_show_box -->
 
-    <!-- 新增按钮盒子 -->
+    <!-- 新增盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="office_apply_attend_leave_add_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">新增按钮</h4>
+                    <h4 class="modal-title">新增</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body modal-scroll">
                     <form class="container form-horizontal">
                         <div class="form-group">
                             <label class="col-sm-2" for="office_apply_attend_leave_add_type">请假类型</label>
@@ -102,9 +74,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2" for="office_apply_attend_leave_add_long">请假时长</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="office_apply_attend_leave_add_long">
-                            </div>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="office_apply_attend_leave_add_long" readonly></div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2" for="office_apply_attend_leave_add_reason">请假事由</label>
@@ -115,9 +85,7 @@
                             <div class="col-sm-8">
                                 <!-- 组队上传 -->
                                 <div class="uploader" id="office_apply_attend_leave_add_file" path="">
-                                    <div class="uploader-message text-center">
-                                        <div class="content"></div>
-                                    </div>
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list"></div>
                                     <button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
                                 </div>
@@ -125,13 +93,20 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="office_apply_attend_leave_add_user1">发起人</label>
-                            <div class="col-sm-8">暂无</div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 required" for="office_apply_attend_leave_add_user2">抄送人</label>
-                            <div class="col-sm-8">暂无</div>
+                            <div class="col-sm-6">
+                                <div><label>抄送人</label></div>
+                                <div class="office-border">
+                                    <ul class="tree tree-lines tree-chevrons" id="office_apply_attend_leave_add_tree"></ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div><label>审批人</label></div>
+                                <div class="office-border">
+                                    <div class="office-approval" id="office_approval">
+                                        <dl class="process finish"><dt>第0步</dt><dd><b>【流程开始】</b><p>流程开始</p></dd></dl><!-- JS推进 -->
+                                    </div>
+                                </div>
+                           </div>
                         </div>
                     </form>
                 </div>
@@ -143,6 +118,30 @@
         </div>
     </div>
     <!-- office_apply_attend_leave_add_box -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="office_apply_attend_leave_show_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        <div class="container-serial-number"></div>
+                        <div class="office-border">
+                            <div class="office-approval" id="office_approval1">
+                                <dl class="process finish"><dt>第0步</dt><dd><b>【流程开始】</b><p>流程开始</p></dd></dl><!-- JS推进 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- office_apply_attend_leave_show_box -->
+
     <!-- 撤销盒子 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="office_apply_attend_leave_back_box">
         <div class="modal-dialog">
@@ -162,13 +161,33 @@
         </div>
     </div>
     <!-- office_apply_attend_leave_back_box -->
+
+    <!-- 催办盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="office_apply_attend_leave_urge_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">催办</h4>
+                </div>
+                <div class="modal-body">
+                    <p>催办成功</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="office_apply_attend_leave_urge_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- office_apply_attend_leave_urge_box -->
+
 </div>
 <!-- page-wrapper -->
+
 <script>
-
-$("#office_apply_attend_leave_add_box").modal("show");
-
 $(function() {
+
     //变量声明-----------------------------------------------------------------------------------------------
     var
     office_apply_attend_leave = $("#office_apply_attend_leave"), //页面ID
@@ -177,11 +196,11 @@ $(function() {
     office_apply_attend_leave_tool_keys = $("#office_apply_attend_leave_tool_keys"), //搜索类别
     office_apply_attend_leave_tool_search = $("#office_apply_attend_leave_tool_search"), //搜索字段
     office_apply_attend_leave_tool_select1 = $("#office_apply_attend_leave_tool_select1"), //下拉选择1
-    office_apply_attend_leave_tool_select2 =$("#office_apply_attend_leave_tool_select2"), //审批状态
+    office_apply_attend_leave_tool_select2 = $("#office_apply_attend_leave_tool_select2"), //审批状态
     office_apply_attend_leave_tool_date1 = $("#office_apply_attend_leave_tool_date1"), //起止时间1
     office_apply_attend_leave_search_btn = $("#office_apply_attend_leave_search_btn"), //搜索按钮
     //新增
-    office_apply_attend_leave_add_btn  =$("#office_apply_attend_leave_add_btn"),  //新增按钮
+    office_apply_attend_leave_add_btn = $("#office_apply_attend_leave_add_btn"), //新增按钮
     office_apply_attend_leave_add_box = $("#office_apply_attend_leave_add_box"), //新增盒子
     office_apply_attend_leave_add_submit = $("#office_apply_attend_leave_add_submit"), //新增提交
     office_apply_attend_leave_add_type = $("#office_apply_attend_leave_add_type"), //新增类型
@@ -198,6 +217,11 @@ $(function() {
     office_apply_attend_leave_back_box = $("#office_apply_attend_leave_back_box"), //撤销盒子
     office_apply_attend_leave_back_submit = $("#office_apply_attend_leave_back_submit"), //撤销提交
     //催办
+    office_apply_attend_leave_urge_box  = $("#office_apply_attend_leave_urge_box"), //催办盒子
+    office_apply_attend_leave_urge_submit = $("#office_apply_attend_leave_urge_submit"), //催办按钮
+    office_apply_attend_leave_urge_btn  = $("#office_apply_attend_leave_urge_btn"), //催办提交按钮
+    // 抄送人
+    office_apply_attend_leave_add_tree = $("#office_apply_attend_leave_add_tree"), //送抄人分配
     a = "";
 
     //接口对象-----------------------------------------------------------------------------------------------
@@ -206,13 +230,11 @@ $(function() {
         //本地接口
         var office_apply_attend_leave_api = {
             datagrid: LOCAL + "Test/test_datagrid.json", //数据表格
-            datagrid_filelist: LOCAL + "Test/Business/customer_filelist.json", //项目附件表格
-            datagrid_record: LOCAL + "Test/test_datagrid.json", //操作记录表格
             select: LOCAL + "Test/test_select.json", //下拉选择
             select_level: LOCAL + "Test/Design/admin_level.json", //下拉选择(等级)
             modal_show: LOCAL + "Test/Business/customer_edit.json", //查看盒子
-            topic: LOCAL + "Test/Business/provider_topic.json", //日志查看
-            design: LOCAL + "Test/Design/admin_design.json", //日志查看
+            approval :LOCAL + "Test/Office/approval.json",   //进度查看
+            approval_details :LOCAL + "Test/Office/approval_details.json",  //流水号详情
         }
 
     } else if (window.STATE == "route") {}
@@ -227,12 +249,8 @@ $(function() {
         checkByClickRow: false,
         selectable: false,
         configs: {
-            R0: {
-                className: "text-center"
-            },
-            C1: {
-                className: "cell-hidden"
-            }
+            R0: {className: "text-center"},
+            C1: {className: "cell-hidden"}
         },
         states: {
             pager: {
@@ -241,58 +259,22 @@ $(function() {
             }
         },
         dataSource: {
-            cols: [{
-                name: "id",
-                label: "ID",
-                width: 49
-            },
-                {
-                    name: "date",
-                    label: "申请时间",
-                    width: 100
-                },
-                {
-                    name: "username",
-                    label: "流水账号",
-                    width: 100,
-                    html: true,
+            cols: [
+                {name: "id",label: "ID",width: 49},
+                {name: "datetime",label: "申请时间",width: 150},
+                {name: "username",label: "流水账号",width: 100,html: true,
                     valueOperator: {
                         getter: function(dataValue, cell) {
                             return `<a class="office_apply_attend_leave_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
                         }
                     }
                 },
-                {
-                    name: "text2",
-                    label: "请假类型",
-                    width: 100
-                },
-                {
-                    name: "date",
-                    label: "开始时间",
-                    width: 100
-                },
-                {
-                    name: "date",
-                    label: "结束时间",
-                    width: 150
-                },
-                {
-                    name: "text2",
-                    label: "时长",
-                    width: 100
-                },
-                {
-                    name: "text6",
-                    label: "审批状态",
-                    width: 100
-                },
-                {
-                    name: "text6",
-                    label: "操作",
-                    width: 100
-                },
-
+                {name: "text2",label: "请假类型",width: 100 },
+                {name: "datetime",label: "开始时间",width: 150 },
+                {name: "datetime",label: "结束时间",width: 150 },
+                {name: "datetime",label: "时长",width: 150 },
+                {name: "text6",label: "审批状态",width: 100 },
+                {name: "text6",label: "操作",width: 100 },
                 {name:"state",  label:"操作",width:180,
                     html:true,
                     valueOperator : {
@@ -300,7 +282,7 @@ $(function() {
                             var data = cell.config.data;
                             return `
 				             <a class="office_apply_attend_leave_back_btn"   rowIndex="${cell.rowIndex}">撤销</a>
-							  <a class="office_apply_attend_leave_assign_btn" rowIndex="${cell.rowIndex}">催办</a>
+							 <a class="office_apply_attend_leave_urge_btn" rowIndex="${cell.rowIndex}">催办</a>
 				            `;
                         }
                     }
@@ -315,31 +297,31 @@ $(function() {
             }
         }
     });
+
     //变量声明-----------------------------------------------------------------------------------------------
     var
     office_apply_attend_leave_datagrid_obj = office_apply_attend_leave_datagrid.data("zui.datagrid"), //表格对象
     office_apply_attend_leave_show_btn = ".office_apply_attend_leave_show_btn", //查看按钮
-    office_apply_attend_leave_back_btn         = ".office_apply_attend_leave_back_btn",//撤销按钮
-    a;
+    office_apply_attend_leave_back_btn = ".office_apply_attend_leave_back_btn", //撤销按钮
+    office_apply_attend_leave_urge_btn   =".office_apply_attend_leave_urge_btn"; //催办按钮
 
     //上传创建-----------------------------------------------------------------------------------------------
-    zui_upload_group({
-        upid: "office_apply_attend_leave_add_file",
-        type: "img",
-        maxSize: "10mb"
-    });
+    zui_upload_group({upid: "office_apply_attend_leave_add_file",type: "img",maxSize: "10mb"});
 
     //时间组件-----------------------------------------------------------------------------------------------
     common_date_duration(office_apply_attend_leave_tool_date1);
     office_apply_attend_leave_tool_date1.find(".start").datetimepicker(option_date);
     office_apply_attend_leave_tool_date1.find(".end").datetimepicker(option_date);
-    office_apply_attend_leave_add_date1.datetimepicker(option_date);
-    office_apply_attend_leave_add_date2.datetimepicker(option_date);
+    office_apply_attend_leave_add_date1.datetimepicker(option_hour);
+    office_apply_attend_leave_add_date2.datetimepicker(option_hour);
+
+    //节点树-------------------------------------------------------------------------------------------------
+    common_tree_staff($("#office_apply_attend_leave_add_tree"),true,true);
 
     //下拉选项-----------------------------------------------------------------------------------------------
-    //洽谈等级(面板)
+    //洽谈等级
     $.ajax({
-        url: office_apply_attend_leave_api.select_level,
+        url: office_apply_attend_leave_api.select,
         type: "post",
         dataType: "json",
         data: {},
@@ -350,55 +332,103 @@ $(function() {
                 for (var i = 0; i < data.length; i++) {
                     option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
                 }
-                //office_apply_attend_leave_great_level.html(option);
+                office_apply_attend_leave_tool_select1.html(option);
             }
         }
     });
+
     //搜索按钮-----------------------------------------------------------------------------------------------
     office_apply_attend_leave_search_btn.click(function() {
 
         //字段整理
-        var keyword = "?sid=" + office_apply_attend_leave_tool_keys.val() +
-                "&search=" + office_apply_attend_leave_tool_search.val() +
-                "&state=" + office_apply_attend_leave_tool_select1.val() +
-                "&level=" + office_apply_attend_leave_tool_select2.val() +
-                "&date1=" + office_apply_attend_leave_tool_date1.find(".start").val() +
-                "&date2=" + office_apply_attend_leave_tool_date1.find(".end").val()
+        var keyword = 
+        "?sid=" + office_apply_attend_leave_tool_keys.val() +
+        "&search=" + office_apply_attend_leave_tool_search.val() +
+        "&state=" + office_apply_attend_leave_tool_select1.val() +
+        "&approval=" + office_apply_attend_leave_tool_select2.val() +
+        "&date1=" + office_apply_attend_leave_tool_date1.find(".start").val() +
+        "&date2=" + office_apply_attend_leave_tool_date1.find(".end").val();
+
         //GET提交
         zui_datagrid_render(office_apply_attend_leave_datagrid_obj, office_apply_attend_leave_api.datagrid + keyword);
 
     });
+
     //查看按钮-----------------------------------------------------------------------------------------------
-    $(document).on("click", office_apply_attend_leave_show_btn, function() {
+    $(document).on("click",office_apply_attend_leave_show_btn, function() {
 
         //数据ID
         var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
 
-        //远程提交
+        //远程请求
         $.ajax({
-            url: office_apply_attend_leave_api.modal_show,
-            type: "post",
-            dataType: "json",
-            data: {
-                id: data_id
-            },
-            success: function(data) {
-                if (data.status > 0) {
-                    var data = data.data;
-                    office_apply_attend_leave_show_box.modal("show");
-                } else {
-                    um_tip(data.message, "1500", "text-danger");
-                }
+            type:'post',
+            url :office_apply_attend_leave_api.approval_details,
+            dataType:'json',
+            data:{name:1,old:2},
+            success:function(data){
+                var data = data.data;
+                var temp = `
+                   <br>流水号:${data.serialnumber}
+                    <br>请假类型:${data.typename}
+                    <br>申请时间:${data.approvaltime}
+                    <br>开始时间:${data.time1}
+                    <br>结束时间:${data.time2}
+                    <br>时长:${data.duration}
+                    <br>审批状态:${data.statename}
+                    <br><textarea value="">${data.text}</textarea>
+                `;
+                $('.container-serial-number').html(temp);
             }
         });
 
-    });
+        //审批进度
+        $.ajax({
+            type:'post',
+            url :office_apply_attend_leave_api.approval,
+            dataType:'json',
+            data:{name:1,old:2},
+            success:function(data){
+                var temp = "";
+                var dat= data.data;
+                for(var i=0;i<dat.length;i++){
+                    temp+= dat[i].statenumber ? `<dl class="finish">` : `<dl>`;
+                    temp+=`<dt>第${i+1}步</dt><dd><b>【${ dat[i].user}】</b><p>${ dat[i].statename}</p></dd></dl>`;
+                }
+                $('#office_approval1').append(temp);
+            }
+        });
 
+        //盒子显示
+        office_apply_attend_leave_show_box.modal("show");
+
+    });
+ 
     //新增按钮-----------------------------------------------------------------------------------------------
     office_apply_attend_leave_add_btn.click(function() {
 
         //数据复原
         common_form_reset();
+
+        //树形图
+        common_tree_staff_reset(office_apply_attend_leave_add_tree);
+
+        //审批进度
+        $.ajax({
+            type:'post',
+            url :office_apply_attend_leave_api.approval,
+            dataType:'json',
+            data:{name:1,old:2},
+            success:function(data){
+                var temp = "";
+                var dat= data.data;
+                for(var i=0;i<dat.length;i++){
+                    temp+= dat[i].statenumber ? `<dl class="finish">` : `<dl>`;
+                    temp+=`<dt>第${i+1}步</dt><dd><b>【${ dat[i].user}】</b><p>${ dat[i].statename}</p></dd></dl>`;
+                }
+                $('#office_approval').append(temp);
+            }
+        });
 
         //ID取值
         var rowIndex = $(this).attr("rowIndex");
@@ -412,7 +442,7 @@ $(function() {
     });
     //新增提交
     office_apply_attend_leave_add_submit.click(function() {
-
+       
         //ID取值
         var data_id = $(this).attr("rowIndex");
 
@@ -431,6 +461,7 @@ $(function() {
                 file : office_apply_attend_leave_add_file.attr("path"),
                 user1 : office_apply_attend_leave_add_user1.val(),
                 user2 : office_apply_attend_leave_add_user2.val(),
+                tree  : office_apply_attend_leave_add_tree.attr("result"),
             },
             success: function(data) {
                 if (data.status > 0) {
@@ -441,6 +472,11 @@ $(function() {
                 }
             }
         });
+    });
+    //新增-时长
+    $("#office_apply_attend_leave_add_date1,#office_apply_attend_leave_add_date2").change(function(){
+        var duration = um_date_duration(office_apply_attend_leave_add_date1.val(),office_apply_attend_leave_add_date2.val());
+        office_apply_attend_leave_add_long.val(duration);
     });
 
     //撤销按钮-----------------------------------------------------------------------------------------------
@@ -479,11 +515,96 @@ $(function() {
         });
     });
 
+    //催办按钮----------------------------------------------------------------
+    $(document).on("click",office_apply_attend_leave_urge_btn,function(){
+        var data_id = $(this).attr("rowIndex");
+        //数据赋值
+        office_apply_attend_leave_urge_submit.attr("dataId",data_id);
+
+        //面板显示
+        office_apply_attend_leave_urge_box.modal("show");
+    });
+    //催办提交
+    office_apply_attend_leave_urge_submit.click(function(){
+
+        //数据ID
+        var data_id = $(this).attr("dataId");
+
+        //远程提交
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : { id: data_id },
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(office_apply_attend_leave_datagrid_obj,office_apply_attend_leave_api.datagrid);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
 }); //预加载结尾
 </script>
 
 <style>
-    #office_apply_attend_leave .tool-group input[readonly] {
-        width: 87px !important;
-    }
+#office_apply_attend_leave .tool-group input[readonly] {
+    width: 87px !important;
+}
+.office-border{
+    width:100%;
+    height: auto;
+    padding:20px;
+    border:1px solid #ddd;
+}
+.office-approval{
+    width: auto;
+    height: auto;
+}
+.office-approval dl{
+    margin:0 !important;
+    width: auto;
+    height:60px;
+    overflow: hidden;
+}
+.office-approval dl>*{
+    width:50%;
+    height: 100%;
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+}
+.office-approval dl dt{
+    border-right: 1px solid #ddd;
+    text-align: right;
+    padding-right: 25px;
+}
+.office-approval dl dd *{
+    display: block;
+    padding-left: 25px;
+    font-weight: normal;
+}
+.office-approval dl dd b{
+    padding-left:18px;
+}
+.office-approval dl dd:before{
+    content: '●';
+    color: #ddd;
+    font-size: 34px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-left:-11px;
+    line-height: 11px;
+}
+.office-approval .finish *,
+.office-approval .finish *:before{
+    color: #3280fc!important;
+}
+.office-approval .finish dt{
+    border-right: 1px solid #3280fc;
+}
 </style>
