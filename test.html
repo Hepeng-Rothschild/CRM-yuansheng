@@ -31,13 +31,13 @@
 <div class="common-marquee flex-box text-danger"><i class="icon icon-bullhorn"></i> 滚动消息</div><div class="tabs" id="common_tabs"></div></div>
 <!-- test_code -->
 <script>
-var page = "business_provider_list";
+var page = "customer";
 var common_tabs = $("#common_tabs");
 common_tabs.tabs({tabs:[{
     id    : page,
     type  : "ajax",
     title : "测试页面",
-    url   : "./page/"+ page +".html", //template
+    url   : "./page/template/"+ page +".html", //template
 }]});
 window.COMMON_TABS_OBJ = common_tabs.data("zui.tabs");
 window.DETAIL_SOURCE;

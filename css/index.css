@@ -356,9 +356,10 @@
 .modal{
     top:70px!important;
     left: 200px!important;
-    bottom:-70px!important;
+    bottom:0px!important;
     background: rgba(0,0,0,.2);
 }
 .modal-dialog.modal-fullscreen{
     border: none;
+    top: 0!important;
 }

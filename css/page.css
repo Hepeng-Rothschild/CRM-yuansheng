@@ -87,16 +87,20 @@
 .pager .icon{
     line-height: 18px;
 }
-/*滚动面板：标题域*/
-.modal-scroll blockquote{
+/*模态框*/
+.modal-dialog .modal-body{
+    max-height: 400px!important;
+    overflow-y:scroll!important;
+}
+.modal-dialog.modal-fullscreen .modal-body{
+    max-height:initial!important;
+}
+/*模态框-标题域*/
+.modal-dialog .modal-body blockquote{
     background-color: #F4F8FA;
     border-color: #BCE8F1;
     margin-top:20px;
     padding: 20px;
-}
-.modal-scroll{
-    overflow-y:scroll!important;
-    padding-bottom: 100px;
 }
 /*表格棋盘布局*/
 .form-checker-board li label{

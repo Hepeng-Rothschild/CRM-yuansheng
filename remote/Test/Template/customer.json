@@ -1,0 +1,48 @@
+{
+	"status"  : 1,
+	"data" 	  : {
+		"itemstatename" : "该字段需要'状态类别','状态详情','打回原因','打回时间'字符串拼接",
+		"number" 		: "000001",
+		"case"    		: "项目名称",
+		"typenumb" 		: 3,
+		"typename" 		: "酒店",
+
+		"salesman" 		: "李连杰",
+		"provider" 		: 3,
+		"providername" 	: "郑少秋",	
+		"designer" 		: "谢霆锋",
+
+		"user1" 		: "张学友",
+		"user2" 		: "李连杰",
+		"tel0" 			: "031158470845",
+		"tel1" 	 		: "18332367556",
+		"tel2" 			: "15684575425",
+		"tel3" 			: "15684575427",
+
+		"sourcestatenumb": 1,
+		"sourcestatename": "已定房源",
+		"housestatenumb" : 3,
+		"housestatename" : "已买",
+		"housetypenumb"  : 3,
+		"housetypename"  : "局部改造",
+
+		"decoarea"     	: 100,
+		"decotodonumb" 	: 3,
+		"decotodoname" 	: "自用",
+		"decoservnumb" 	: 3,
+		"decoservname" 	: "设计+施工",
+
+		"housedate1"    : "2019-10-10",
+		"housedate2"    : "2019-10-10",
+		"decoaddr" 	 	: "广东省深圳市宝安区光华路960号",
+
+ 		"rivalnumb" 	: 5,
+		"rivalstepnumb" : 3,
+		"rivalstepname" : "效果图",
+
+		"busline"  		: "乘坐572",
+		"addr" 			: "广州省深圳市宝安区",
+		
+		"text"  		: "这里是备注信息"
+	}
+}
