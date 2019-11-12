@@ -81,18 +81,18 @@
     <!-- 模板工具条 -->
     <div class="template-tool-group">
         <button class="btn" id="detail_customer_back_btn"><i class="icon icon-arrow-left"></i> 返回</button>
-        <button class="btn btn-primary" id="detail_customer_edit_btn"><i class="icon icon-edit"></i> 修改</button>
+        <button class="btn btn-primary hidden" id="detail_customer_edit_btn"><i class="icon icon-edit"></i> 修改</button>
         <button class="btn btn-primary" id="detail_customer_edit_submit"><i class="icon icon-save"></i> 保存</button>
-        <button class="btn btn-primary" id="detail_customer_abandon_btn"><i class="icon icon-inbox"></i> 放弃</button>
+        <button class="btn btn-primary hidden" id="detail_customer_abandon_btn"><i class="icon icon-inbox"></i> 放弃客户</button>
 
-        <button class="btn btn-primary" id="">打回业务继续跟踪</button>
-        <button class="btn btn-primary" id="">打回主案经理</button>
-        <button class="btn btn-primary" id="">同意归库</button>
+        <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_backToSalesman_btn" data-target="#detail_customer_backToSalesman_box">打回商务继续跟踪</button>
+        <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_backToDesign_btn" data-target="#detail_customer_backToDesign_box">打回主案经理</button>
+        <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_submitToBusiness_btn" data-target="#detail_customer_submitToBusiness_box">提交商务经理</button>
+        <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_submitToDesign_btn" data-target="#detail_customer_submitToDesign_box">提交主案经理</button>
 
-        <button class="btn btn-primary" id="">提交商务经理</button>        
-        <button class="btn btn-primary" id="">提交主案部</button>
-
-        <button class="btn btn-primary" id="">转为正跟踪</button>
+        <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_sink_btn" data-target="#detail_customer_sink_box">同意归库</button>
+        <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_turn_btn" data-target="#detail_customer_turn_box">转为正跟踪</button>
+        <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_belong_btn" data-target="#detail_customer_belong_box">隶属于我</button>        
         <!-- JS推进 -->
     </div>
     <!-- template-tool-group -->
@@ -136,13 +136,13 @@
     </div>
     <!-- nav-tabs -->
 
-    <!-- 模板工具条-放弃信息员 -->
+    <!-- 模板工具条-放弃客户 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_abandon_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">放弃信息员</h4>
+                    <h4 class="modal-title">放弃客户</h4>
                 </div>
                 <div class="modal-body">
                     <form class="container form-horizontal">
@@ -170,19 +170,125 @@
             </div>
         </div>
     </div>
-    <!-- detail_customer_record2_abandon_box -->
+    <!-- detail_customer_abandon_box -->
+
+    <!-- 模板工具条-打回商务继续跟踪 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_backToSalesman_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">打回商务继续跟踪</h4>
+                </div>
+                <div class="modal-body"><div class="container">确定打回商务继续跟踪吗？</div></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="detail_customer_backToSalesman_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_customer_backToSalesman_box -->
+
+    <!-- 模板工具条-打回主案经理 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_backToDesign_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">打回主案经理</h4>
+                </div>
+                <div class="modal-body"><div class="container">确定打回主案经理吗？</div></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="detail_customer_backToDesign_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_customer_backToDesign_box -->
+
+    <!-- 模板工具条-提交商务经理 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_submitToBusiness_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">提交商务经理</h4>
+                </div>
+                <div class="modal-body"><div class="container">确定提交商务经理吗？</div></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="detail_customer_submitToBusiness_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_customer_submitToBusiness_box -->
+
+    <!-- 模板工具条-提交主案经理 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_submitToDesign_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">提交主案经理</h4>
+                </div>
+                <div class="modal-body"><div class="container">确定提交主案经理吗？</div></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="detail_customer_submitToDesign_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_customer_submitToDesign_box -->
+
+    <!-- 模板工具条-同意归库 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_sink_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">同意归库</h4>
+                </div>
+                <div class="modal-body"><div class="container">确定同意归库吗？</div></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="detail_customer_sink_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_customer_sink_box -->
+
+    <!-- 模板工具条-转为正跟踪 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_turn_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">转为正跟踪</h4>
+                </div>
+                <div class="modal-body"><div class="container">确定转为正跟踪吗？</div></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="detail_customer_turn_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_customer_turn_box -->
 
     <!-- 模板工具条-隶属于我 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_belong_box">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                     <h4 class="modal-title">隶属于我</h4>
                 </div>
-                <div class="modal-body">
-                    <div class="container">您确定隶属于自己名下吗？</div>
-                </div>
+                <div class="modal-body"><div class="container">您确定隶属于自己名下吗？</div></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-primary" id="detail_customer_belong_submit">提交</button>
@@ -192,132 +298,66 @@
     </div>
     <!-- detail_customer_belong_box -->
 
-    <!-- 客户记录-回访 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_record2_return_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">回访</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal">
-                        <div class="form-group require">
-                            <label class="col-sm-2 required" for="detail_customer_record2_return_text">回访内容</label>
-                            <div class="col-sm-8"><textarea class="form-control" id="detail_customer_record2_return_text"></textarea></div>
-                        </div>
-                        <div class="form-group require">
-                            <label class="col-sm-2 required" for="detail_customer_record2_return_days">回访时间</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="detail_customer_record2_return_days"><!-- JS推进 --></select>
-                            </div>
-                        </div>
-                        <div class="form-group require">
-                            <label class="col-sm-2 required" for="detail_customer_record2_return_date">回访时间</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="detail_customer_record2_return_date" readonly>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="detail_customer_record2_return_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- detail_customer_record2_return_box -->
-
-    <!-- 客户记录-提交商务经理 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_record2_toBussiness_box">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">提交商务经理</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="container">确定提交商务经理吗?</div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="detail_customer_record2_toBussiness_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- detail_customer_record2_toBussiness_box -->
-
-    <!-- 客户记录-放弃客户 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_record2_abandon_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">放弃客户</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="container form-horizontal">
-                        <div class="form-group">
-                            <label class="col-sm-2 required" for="detail_customer_record2_abandon_type">放弃理由</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="detail_customer_record2_abandon_type">
-                                    <option value="1">有价值</option>
-                                    <option value="2">无价值</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 required" for="detail_customer_record2_abandon_text">理由详情</label>
-                            <div class="col-sm-8">
-                                <textarea class="form-control" id="detail_customer_record2_abandon_text"></textarea>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-danger" id="detail_customer_record2_abandon_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- detail_customer_record2_abandon_box -->
-
 <div>
 <!-- template-wrapper -->
 <script>
 $(function(){
 
-    //$("#detail_customer_abandon_box").modal("show");
-
-    /*必传参数*/
+    /*必传参数
     window.DETAIL_SOURCE = window.DETAIL_SOURCE || {
-        page_id : 'business_provider_list',
+        page_id : 'business_customer_tracked',
         data_id : 500
-    }
+    }*/
 
     //变量声明
     var
     detail_customer = $("#detail_customer"), //页面ID
-    detail_customer_back_btn = "#detail_customer_back_btn", //返回按钮
-    detail_customer_edit_btn = "#detail_customer_edit_btn", //修改按钮
-    detail_customer_edit_submit = "#detail_customer_edit_submit", //修改提交
-    detail_customer_abandon_btn = "#detail_customer_abandon_btn", //放弃按钮
-    detail_customer_belong_btn = "#detail_customer_belong_btn", //隶属按钮
-    detail_customer_abandon_box = $("#detail_customer_abandon_box"), //放弃盒子
-    detail_customer_abandon_submit = $("#detail_customer_abandon_submit"), //放弃提交
-    detail_customer_abandon_type = $("#detail_customer_abandon_type"), //放弃理由
-    detail_customer_abandon_text = $("#detail_customer_abandon_text"), //放弃详情
-    detail_customer_belong_box = $("#detail_customer_belong_box"), //隶属盒子
-    detail_customer_belong_submit = $("#detail_customer_belong_submit"), //隶属提交
+    //数据表格
     detail_customer_form = $("#detail_customer_form"), //修改表单
     detail_customer_base = $("#detail_customer_base"), //基础表格
-    detail_customer_record1 = $("#detail_customer_record1"), //回访记录
-    detail_customer_record2 = $("#detail_customer_record2"), //客户记录
-    detail_customer_record3 = $("#detail_customer_record3"), //信息费记录
-    detail_customer_record4 = $("#detail_customer_record4"); //失败记录
+    detail_customer_record1 = $("#detail_customer_record1"), //业务回访
+    detail_customer_record2 = $("#detail_customer_record2"), //设计回访
+    detail_customer_record3 = $("#detail_customer_record3"), //过程记录
+    detail_customer_record4 = $("#detail_customer_record4"), //失败记录
+    //返回
+    detail_customer_back_btn = $("#detail_customer_back_btn"),
+    //修改
+    detail_customer_edit_btn = $("#detail_customer_edit_btn"),
+    detail_customer_edit_submit = $("#detail_customer_edit_submit"),
+    //放弃客户
+    detail_customer_abandon_btn = $("#detail_customer_abandon_btn"), 
+    detail_customer_abandon_box = $("#detail_customer_abandon_box"),
+    detail_customer_abandon_type = $("#detail_customer_abandon_type"),
+    detail_customer_abandon_text = $("#detail_customer_abandon_text"),
+    detail_customer_abandon_submit = $("#detail_customer_abandon_submit"),
+    //打回商务继续跟踪
+    detail_customer_backToSalesman_btn = $("#detail_customer_backToSalesman_btn"),
+    detail_customer_backToSalesman_box = $("#detail_customer_backToSalesman_box"),
+    detail_customer_backToSalesman_submit = $("#detail_customer_backToSalesman_submit"),
+    //打回主案经理
+    detail_customer_backToDesign_btn = $("#detail_customer_backToDesign_btn"),
+    detail_customer_backToDesign_box = $("#detail_customer_backToDesign_box"),
+    detail_customer_backToDesign_submit = $("#detail_customer_backToDesign_submit"),
+    //提交商务经理
+    detail_customer_submitToBusiness_btn = $("#detail_customer_submitToBusiness_btn"),
+    detail_customer_submitToBusiness_box = $("#detail_customer_submitToBusiness_box"),
+    detail_customer_submitToBusiness_submit = $("#detail_customer_submitToBusiness_submit"),
+    //提交主案经理
+    detail_customer_submitToDesign_btn = $("#detail_customer_submitToDesign_btn"),
+    detail_customer_submitToDesign_box = $("#detail_customer_submitToDesign_box"),
+    detail_customer_submitToDesign_submit = $("#detail_customer_submitToDesign_submit"),
+    //同意归库
+    detail_customer_sink_btn = $("#detail_customer_sink_btn"),
+    detail_customer_sink_box = $("#detail_customer_sink_box"),
+    detail_customer_sink_submit = $("#detail_customer_sink_submit"),
+    //转为正跟踪
+    detail_customer_turn_btn = $("#detail_customer_turn_btn"),
+    detail_customer_turn_box = $("#detail_customer_turn_box"),
+    detail_customer_turn_submit = $("#detail_customer_turn_submit"),
+    //隶属于我
+    detail_customer_belong_btn = $("#detail_customer_belong_btn"),
+    detail_customer_belong_box = $("#detail_customer_belong_box"),
+    detail_customer_belong_submit = $("#detail_customer_belong_submit");
 
     //接口对象
     if( window.STATE == "local" ){
@@ -325,7 +365,7 @@ $(function(){
         //本地接口
         var detail_customer_api = {
             return_days : LOCAL + "Test/test_select_return_days.json", //回访天数
-            base        : LOCAL + "Test/Template/detail_customer.json" + "?id=" + DETAIL_SOURCE.data_id + "&page_id=" + DETAIL_SOURCE.page_id,
+            base        : LOCAL + "Test/Template/customer.json" + "?id=" + DETAIL_SOURCE.data_id + "&page_id=" + DETAIL_SOURCE.page_id,
             record1     : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
             record2     : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
             record3     : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
@@ -342,60 +382,9 @@ $(function(){
     });
 
     //模板工具条-返回
-    $(document).on("click",detail_customer_back_btn,function(){
+    detail_customer_back_btn.click(function(){
         COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
         COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
-    });
-
-    //模板工具条-放弃
-    $(document).on("click",detail_customer_abandon_btn,function(){
-        common_form_reset();
-        detail_customer_abandon_submit.attr("rowIndex",$(this).attr("rowIndex"));
-        detail_customer_abandon_box.modal("show");
-    });
-    detail_customer_abandon_submit.click(function(){
-        $.ajax({
-            url: API.test_response,
-            type:"post",
-            data: { 
-                id : DETAIL_SOURCE.data_id,
-                type : detail_customer_abandon_type.val(),
-                text : detail_customer_abandon_text.val(),
-            },
-            success: function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    setTimeout(function(){
-                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
-                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
-                    },1500);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-    });
-
-    //模板工具条-隶属于我
-    detail_customer_belong_submit.click(function(){
-        $.ajax({
-            url: API.test_response,
-            type:"post",
-            data: { 
-                id : DETAIL_SOURCE.data_id
-            },
-            success: function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    setTimeout(function(){
-                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
-                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
-                    },1500);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
     });
 
     //基础表格
@@ -410,20 +399,25 @@ $(function(){
                 //数据转接
                 var data = data.data;
 
-                /*模板工具条
-                var template_tool_group = `<button class="btn" id="detail_customer_back_btn"><i class="icon icon-arrow-left"></i> 返回</button>`;
-                if ( DETAIL_SOURCE.page_id == "business_provider_list" ){ // 信息员列表
-                    template_tool_group+= `
-                        <button class="btn btn-primary" id="detail_customer_edit_btn"><i class="icon icon-edit"></i> 修改</button>
-                        <button class="btn btn-primary" id="detail_customer_edit_submit"><i class="icon icon-save"></i> 保存</button>
-                        <button class="btn btn-primary" id="detail_customer_abandon_btn"><i class="icon icon-inbox"></i> 放弃</button>
-                    `;
-                } else if ( DETAIL_SOURCE.page_id == "business_public_provider_get" && data.overdue==0 ){ // '可抢信息员'页面 && 未过期
-                    template_tool_group+=`
-                        <button class="btn btn-primary" data-toggle="modal" id="detail_customer_belong_btn" data-target="#detail_customer_belong_box"><i class="icon icon-flag"></i> 隶属于我</button>
-                    `;
+                //模板工具条
+                if( DETAIL_SOURCE.page_id == "business_customer_tracked" ){ //客户跟踪
+                    detail_customer_edit_btn.removeClass("hidden"); //修改
+                    detail_customer_abandon_btn.removeClass("hidden"); //放弃客户
+                    detail_customer_submitToBusiness_btn.removeClass("hidden"); //提交商务经理
+                    if( data.state==0 ){ //状态值处于放弃时
+                        detail_customer_turn_btn.removeClass("hidden"); //转为正跟踪
+                    }
+                } else if( DETAIL_SOURCE.page_id == "business_customer_approval" ){ //客户审批
+                    detail_customer_backToSalesman_btn.removeClass("hidden"); //打回商务继续跟踪
+                    detail_customer_submitToDesign_btn.removeClass("hidden"); //提交主案经理
+                } else if( DETAIL_SOURCE.page_id == "business_customer_failure" ){ //失败审批
+                    detail_customer_backToSalesman_btn.removeClass("hidden"); //打回商务继续跟踪
+                    detail_customer_backToDesign_btn.removeClass("hidden"); //打回主案经理
+                    detail_customer_sink_btn.removeClass("hidden"); //同意归库
+                } else if( DETAIL_SOURCE.page_id == "business_public_customer_get" ){ //可抢客户
+                    detail_customer_belong_btn.removeClass("hidden"); //隶属于我
                 }
-                detail_customer.find(".template-tool-group").html(template_tool_group);*/
+                //客户管理 过期审批 客户资源 - 无操作按钮
 
                //基础表格
                 var temp_base = `
@@ -532,10 +526,10 @@ $(function(){
     });
 
     //模板工具条-修改
-    $(document).on("click",detail_customer_edit_btn,function(){
+    detail_customer_edit_btn.click(function(){
         detail_customer.addClass("mode-edit").removeClass("mode-show");
     });
-    $(document).on("click",detail_customer_edit_submit,function(){
+    detail_customer_edit_submit.click(function(){
         //if( detail_customer_form.validationEngine("validate") === false ){ return; }
         $.ajax({
             url     : API.test_response,
@@ -690,70 +684,28 @@ $(function(){
         }
     });
  
-    //客户记录-操作变量
-    detail_customer_record2_obj = detail_customer_record2.data("zui.datagrid"),
-    detail_customer_record2_return_btn = ".detail_customer_record2_return_btn",
-    detail_customer_record2_return_box = $("#detail_customer_record2_return_box"),
-    detail_customer_record2_return_text = $("#detail_customer_record2_return_text"),
-    detail_customer_record2_return_days = $("#detail_customer_record2_return_days"),
-    detail_customer_record2_return_date = $("#detail_customer_record2_return_date"),
-    detail_customer_record2_return_submit = $("#detail_customer_record2_return_submit"),
-    detail_customer_record2_toBussiness_btn = ".detail_customer_record2_toBussiness_btn",
-    detail_customer_record2_toBussiness_box = $("#detail_customer_record2_toBussiness_box"),
-    detail_customer_record2_toBussiness_submit = $("#detail_customer_record2_toBussiness_submit"),
-    detail_customer_record2_abandon_btn = ".detail_customer_record2_abandon_btn",
-    detail_customer_record2_abandon_box = $("#detail_customer_record2_abandon_box"),
-    detail_customer_record2_abandon_type = $("#detail_customer_record2_abandon_type"),
-    detail_customer_record2_abandon_text = $("#detail_customer_record2_abandon_text"),
-    detail_customer_record2_abandon_submit = $("#detail_customer_record2_abandon_submit");
-
-    //客户记录-回访
-    $(document).on("click",detail_customer_record2_return_btn,function(){
+    //模板工具条-放弃客户
+    detail_customer_abandon_btn.click(function(){
         common_form_reset();
-        $.ajax({
-            url     : detail_customer_api.return_days,
-            type    : "post",
-            dataType: "json",
-            data    : {},
-            success : function(data){
-                var data = data.data;
-                var option = "";
-                for(var i=0;i<data.length;i++){
-                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-                }
-                detail_customer_record2_return_days.html(option);
-                detail_customer_record2_return_date.val( 
-                    um_date( 'yyyy-MM-dd HH:mm:ss', new Date( new Date().getTime() + 
-                        detail_customer_record2_return_days.val() 
-                    * 24 * 3600 * 1000 ) ) 
-                );
-            }
-        });
-        detail_customer_record2_return_submit.attr("rowIndex",$(this).attr("rowIndex"));
-        detail_customer_record2_return_box.modal("show");
+        detail_customer_abandon_submit.attr("rowIndex",$(this).attr("rowIndex"));
+        detail_customer_abandon_box.modal("show");
     });
-    detail_customer_record2_return_days.change(function(){
-        detail_customer_record2_return_date.val( 
-            um_date( 'yyyy-MM-dd HH:mm:ss', new Date( new Date().getTime() + 
-                detail_customer_record2_return_days.val() 
-            * 24 * 3600 * 1000 ) ) 
-        );
-    });    
-    detail_customer_record2_return_submit.click(function(){
-        var data_id = detail_customer_record2_obj.getCell($(this).attr("rowIndex"),1).value;
+    detail_customer_abandon_submit.click(function(){
         $.ajax({
             url: API.test_response,
             type:"post",
             data: { 
-                id : data_id,
-                text : detail_customer_record2_return_text.val(),
-                days : detail_customer_record2_return_days.val(),
-                date : detail_customer_record2_return_date.val(),
+                id : DETAIL_SOURCE.data_id,
+                type : detail_customer_abandon_type.val(),
+                text : detail_customer_abandon_text.val(),
             },
             success: function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    zui_datagrid_reset(detail_customer_record2_obj,detail_customer_api.record2);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+                    },1500);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -761,54 +713,159 @@ $(function(){
         });
     });
 
-    //客户记录-提交商务经理
-    $(document).on("click",detail_customer_record2_toBussiness_btn,function(){
-        detail_customer_record2_toBussiness_submit.attr("rowIndex",$(this).attr("rowIndex"));
-        detail_customer_record2_toBussiness_box.modal("show");
-    });
-    detail_customer_record2_toBussiness_submit.click(function(){
-        var data_id = detail_customer_record2_obj.getCell($(this).attr("rowIndex"),1).value;
-        $.ajax({
-            url: API.test_response,
-            type:"post",
-            data: { id:data_id },
-            success: function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    zui_datagrid_reset(detail_customer_record2_obj,detail_customer_api.record2);
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-    });
-
-    //客户记录-放弃
-    $(document).on("click",detail_customer_record2_abandon_btn,function(){
-        common_form_reset();
-        detail_customer_record2_abandon_submit.attr("rowIndex",$(this).attr("rowIndex"));
-        detail_customer_record2_abandon_box.modal("show");
-    });
-    detail_customer_record2_abandon_submit.click(function(){
-        var data_id = detail_customer_record2_obj.getCell($(this).attr("rowIndex"),1).value;
+    //模板工具条-打回商务继续跟踪
+    detail_customer_backToSalesman_submit.click(function(){
         $.ajax({
             url: API.test_response,
             type:"post",
             data: { 
-                id : data_id,
-                type : detail_customer_record2_abandon_type.val(),
-                text : detail_customer_record2_abandon_text.val(),
+                id : DETAIL_SOURCE.data_id
             },
             success: function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    zui_datagrid_reset(detail_customer_record2_obj,detail_customer_api.record2);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+                    },1500);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
             }
         });
     });
+
+    //模板工具条-打回主案经理
+    detail_customer_backToDesign_submit.click(function(){
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { 
+                id : DETAIL_SOURCE.data_id
+            },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //模板工具条-提交商务经理
+    detail_customer_submitToBusiness_submit.click(function(){
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { 
+                id : DETAIL_SOURCE.data_id
+            },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //模板工具条-提交主案经理
+    detail_customer_submitToDesign_submit.click(function(){
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { 
+                id : DETAIL_SOURCE.data_id
+            },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //模板工具条-同意归库
+    detail_customer_sink_submit.click(function(){
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { 
+                id : DETAIL_SOURCE.data_id
+            },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //模板工具条-转为正跟踪
+    detail_customer_turn_submit.click(function(){
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { 
+                id : DETAIL_SOURCE.data_id
+            },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //模板工具条-隶属于我
+    detail_customer_belong_submit.click(function(){
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { 
+                id : DETAIL_SOURCE.data_id
+            },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    }); 
 
 });//预加载结尾
 </script>
