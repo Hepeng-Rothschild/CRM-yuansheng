@@ -376,7 +376,7 @@ $(function(){
                         getter : function(dataValue,cell){
                             var temp = `<span>${dataValue}</span>`;
                             if ( COMMON.logAllow ){
-                                temp = `<a rowIndex="${cell.rowIndex}" onclick=template_page_open('provider_show',$(this))>${dataValue}</a>`;
+                                temp = `<a rowIndex="${cell.rowIndex}" onclick=template_page_open('detail_provider',$(this))>${dataValue}</a>`;
                             }
                             return temp;
                         }

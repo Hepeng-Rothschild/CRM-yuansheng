@@ -53,10 +53,10 @@
 .template-wrapper.mode-show table td textarea{
     display: none;
 }
-.template-wrapper.mode-show #provider_show_edit_btn{
+.template-wrapper.mode-show #detail_provider_edit_btn{
     display: inline-block;
 }
-.template-wrapper.mode-show #provider_show_edit_submit{
+.template-wrapper.mode-show #detail_provider_edit_submit{
     display: none;
 }
 /*模式-修改*/
@@ -68,15 +68,15 @@
 .template-wrapper.mode-edit table td textarea{
     display: flex;
 }
-.template-wrapper.mode-edit #provider_show_edit_btn{
+.template-wrapper.mode-edit #detail_provider_edit_btn{
     display: none;
 }
-.template-wrapper.mode-edit #provider_show_edit_submit{
+.template-wrapper.mode-edit #detail_provider_edit_submit{
     display: inline-block;
 }
 </style>
 <!-- 模板外套 -->
-<div class="template-wrapper table-responsive mode-show" id="provider_show">
+<div class="template-wrapper table-responsive mode-show" id="detail_provider">
     
     <!-- 模板工具条 -->
     <div class="template-tool-group">
@@ -85,43 +85,43 @@
     <!-- template-tool-group -->
 
     <!-- 修改表单 -->
-    <form id="provider_show_form"><table class="table" id="provider_show_base"></table></form>
-    <!-- provider_show_form -->
+    <form id="detail_provider_form"><table class="table" id="detail_provider_base"></table></form>
+    <!-- detail_provider_form -->
 
     <!-- 切换面板 -->
     <ul class="nav nav-tabs">
-        <li class="active"><a data-tab="" href="#provider_show_record1">回访记录</a></li>
-        <li><a data-tab="" href="#provider_show_record2">客户记录</a></li>
-        <li><a data-tab="" href="#provider_show_record3">信息费记录</a></li>
-        <li><a data-tab="" href="#provider_show_record4">提成记录</a></li>
-        <li><a data-tab="" href="#provider_show_record5">过程记录</a></li>
+        <li class="active"><a data-tab="" href="#detail_provider_record1">回访记录</a></li>
+        <li><a data-tab="" href="#detail_provider_record2">客户记录</a></li>
+        <li><a data-tab="" href="#detail_provider_record3">信息费记录</a></li>
+        <li><a data-tab="" href="#detail_provider_record4">提成记录</a></li>
+        <li><a data-tab="" href="#detail_provider_record5">过程记录</a></li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane active" id="provider_show_record1">
+        <div class="tab-pane active" id="detail_provider_record1">
             <div class="datagrid datagrid-striped">
                 <div class="datagrid-container"></div>
                 <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
             </div>
         </div>
-        <div class="tab-pane" id="provider_show_record2">
+        <div class="tab-pane" id="detail_provider_record2">
             <div class="datagrid datagrid-striped">
                 <div class="datagrid-container"></div>
                 <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
             </div>
         </div>
-        <div class="tab-pane" id="provider_show_record3">
+        <div class="tab-pane" id="detail_provider_record3">
             <div class="datagrid datagrid-striped">
                 <div class="datagrid-container"></div>
                 <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
             </div>
         </div>
-        <div class="tab-pane" id="provider_show_record4">
+        <div class="tab-pane" id="detail_provider_record4">
             <div class="datagrid datagrid-striped">
                 <div class="datagrid-container"></div>
                 <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
             </div>
         </div>
-        <div class="tab-pane" id="provider_show_record5">
+        <div class="tab-pane" id="detail_provider_record5">
             <div class="datagrid datagrid-striped">
                 <div class="datagrid-container"></div>
                 <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
@@ -131,7 +131,7 @@
     <!-- nav-tabs -->
 
     <!-- 模板工具条-放弃信息员 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="provider_show_abandon_box">
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_provider_abandon_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -141,33 +141,33 @@
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="provider_show_abandon_type">放弃理由</label>
+                            <label class="col-sm-2 required" for="detail_provider_abandon_type">放弃理由</label>
                             <div class="col-sm-8">
-                                <select class="form-control" id="provider_show_abandon_type">
+                                <select class="form-control" id="detail_provider_abandon_type">
                                     <option value="1">有价值</option>
                                     <option value="2">无价值</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="provider_show_abandon_text">理由详情</label>
+                            <label class="col-sm-2 required" for="detail_provider_abandon_text">理由详情</label>
                             <div class="col-sm-8">
-                                <textarea class="form-control" id="provider_show_abandon_text"></textarea>
+                                <textarea class="form-control" id="detail_provider_abandon_text"></textarea>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-danger" id="provider_show_abandon_submit">提交</button>
+                    <button type="button" class="btn btn-danger" id="detail_provider_abandon_submit">提交</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- provider_show_record2_abandon_box -->
+    <!-- detail_provider_record2_abandon_box -->
 
     <!-- 模板工具条-隶属于我 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="provider_show_belong_box">
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_provider_belong_box">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
@@ -179,15 +179,15 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="provider_show_belong_submit">提交</button>
+                    <button type="button" class="btn btn-primary" id="detail_provider_belong_submit">提交</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- provider_show_belong_box -->
+    <!-- detail_provider_belong_box -->
 
     <!-- 客户记录-回访 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="provider_show_record2_return_box">
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_provider_record2_return_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -197,34 +197,34 @@
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="provider_show_record2_return_text">回访内容</label>
-                            <div class="col-sm-8"><textarea class="form-control" id="provider_show_record2_return_text"></textarea></div>
+                            <label class="col-sm-2 required" for="detail_provider_record2_return_text">回访内容</label>
+                            <div class="col-sm-8"><textarea class="form-control" id="detail_provider_record2_return_text"></textarea></div>
                         </div>
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="provider_show_record2_return_days">回访时间</label>
+                            <label class="col-sm-2 required" for="detail_provider_record2_return_days">回访时间</label>
                             <div class="col-sm-8">
-                                <select class="form-control" id="provider_show_record2_return_days"><!-- JS推进 --></select>
+                                <select class="form-control" id="detail_provider_record2_return_days"><!-- JS推进 --></select>
                             </div>
                         </div>
                         <div class="form-group require">
-                            <label class="col-sm-2 required" for="provider_show_record2_return_date">回访时间</label>
+                            <label class="col-sm-2 required" for="detail_provider_record2_return_date">回访时间</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="provider_show_record2_return_date" readonly>
+                                <input type="text" class="form-control" id="detail_provider_record2_return_date" readonly>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="provider_show_record2_return_submit">提交</button>
+                    <button type="button" class="btn btn-primary" id="detail_provider_record2_return_submit">提交</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- provider_show_record2_return_box -->
+    <!-- detail_provider_record2_return_box -->
 
     <!-- 客户记录-提交商务经理 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="provider_show_record2_toBussiness_box">
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_provider_record2_toBussiness_box">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
@@ -236,15 +236,15 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="provider_show_record2_toBussiness_submit">提交</button>
+                    <button type="button" class="btn btn-primary" id="detail_provider_record2_toBussiness_submit">提交</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- provider_show_record2_toBussiness_box -->
+    <!-- detail_provider_record2_toBussiness_box -->
 
     <!-- 客户记录-放弃客户 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="provider_show_record2_abandon_box">
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_provider_record2_abandon_box">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -254,30 +254,30 @@
                 <div class="modal-body">
                     <form class="container form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="provider_show_record2_abandon_type">放弃理由</label>
+                            <label class="col-sm-2 required" for="detail_provider_record2_abandon_type">放弃理由</label>
                             <div class="col-sm-8">
-                                <select class="form-control" id="provider_show_record2_abandon_type">
+                                <select class="form-control" id="detail_provider_record2_abandon_type">
                                     <option value="1">有价值</option>
                                     <option value="2">无价值</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 required" for="provider_show_record2_abandon_text">理由详情</label>
+                            <label class="col-sm-2 required" for="detail_provider_record2_abandon_text">理由详情</label>
                             <div class="col-sm-8">
-                                <textarea class="form-control" id="provider_show_record2_abandon_text"></textarea>
+                                <textarea class="form-control" id="detail_provider_record2_abandon_text"></textarea>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-danger" id="provider_show_record2_abandon_submit">提交</button>
+                    <button type="button" class="btn btn-danger" id="detail_provider_record2_abandon_submit">提交</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- provider_show_record2_abandon_box -->
+    <!-- detail_provider_record2_abandon_box -->
 
 <div>
 <!-- template-wrapper -->
@@ -292,31 +292,31 @@ $(function(){
 
     //变量声明
     var
-    provider_show = $("#provider_show"), //页面ID
-    provider_show_back_btn = "#provider_show_back_btn", //返回按钮
-    provider_show_edit_btn = "#provider_show_edit_btn", //修改按钮
-    provider_show_edit_submit = "#provider_show_edit_submit", //修改提交
-    provider_show_abandon_btn = "#provider_show_abandon_btn", //放弃按钮
-    provider_show_belong_btn = "#provider_show_belong_btn", //隶属按钮
-    provider_show_abandon_box = $("#provider_show_abandon_box"), //放弃盒子
-    provider_show_abandon_submit = $("#provider_show_abandon_submit"), //放弃提交
-    provider_show_abandon_type = $("#provider_show_abandon_type"), //放弃理由
-    provider_show_abandon_text = $("#provider_show_abandon_text"), //放弃详情
-    provider_show_belong_box = $("#provider_show_belong_box"), //隶属盒子
-    provider_show_belong_submit = $("#provider_show_belong_submit"), //隶属提交
-    provider_show_form = $("#provider_show_form"), //修改表单
-    provider_show_base = $("#provider_show_base"), //基础表格
-    provider_show_record1 = $("#provider_show_record1"), //回访记录
-    provider_show_record2 = $("#provider_show_record2"), //客户记录
-    provider_show_record3 = $("#provider_show_record3"), //信息费记录
-    provider_show_record4 = $("#provider_show_record4"), //提成记录
-    provider_show_record5 = $("#provider_show_record5"); //过程记录
+    detail_provider = $("#detail_provider"), //页面ID
+    detail_provider_back_btn = "#detail_provider_back_btn", //返回按钮
+    detail_provider_edit_btn = "#detail_provider_edit_btn", //修改按钮
+    detail_provider_edit_submit = "#detail_provider_edit_submit", //修改提交
+    detail_provider_abandon_btn = "#detail_provider_abandon_btn", //放弃按钮
+    detail_provider_belong_btn = "#detail_provider_belong_btn", //隶属按钮
+    detail_provider_abandon_box = $("#detail_provider_abandon_box"), //放弃盒子
+    detail_provider_abandon_submit = $("#detail_provider_abandon_submit"), //放弃提交
+    detail_provider_abandon_type = $("#detail_provider_abandon_type"), //放弃理由
+    detail_provider_abandon_text = $("#detail_provider_abandon_text"), //放弃详情
+    detail_provider_belong_box = $("#detail_provider_belong_box"), //隶属盒子
+    detail_provider_belong_submit = $("#detail_provider_belong_submit"), //隶属提交
+    detail_provider_form = $("#detail_provider_form"), //修改表单
+    detail_provider_base = $("#detail_provider_base"), //基础表格
+    detail_provider_record1 = $("#detail_provider_record1"), //回访记录
+    detail_provider_record2 = $("#detail_provider_record2"), //客户记录
+    detail_provider_record3 = $("#detail_provider_record3"), //信息费记录
+    detail_provider_record4 = $("#detail_provider_record4"), //提成记录
+    detail_provider_record5 = $("#detail_provider_record5"); //过程记录
 
     //接口对象
     if( window.STATE == "local" ){
 
         //本地接口
-        var provider_show_api = {
+        var detail_provider_api = {
             return_days : LOCAL + "Test/test_select_return_days.json", //回访天数
             base        : LOCAL + "Test/Template/provider.json" + "?id=" + DETAIL_SOURCE.data_id + "&page_id=" + DETAIL_SOURCE.page_id,
             record1     : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
@@ -330,31 +330,31 @@ $(function(){
 
     //模板页面-关闭
     $("#common_tabs").on("onClose",function(event,tab){
-        if( tab.id == "provider_show" ){
+        if( tab.id == "detail_provider" ){
             COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
         }
     });
 
     //模板工具条-返回
-    $(document).on("click",provider_show_back_btn,function(){
+    $(document).on("click",detail_provider_back_btn,function(){
         COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
         COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
     });
 
     //模板工具条-放弃
-    $(document).on("click",provider_show_abandon_btn,function(){
+    $(document).on("click",detail_provider_abandon_btn,function(){
         common_form_reset();
-        provider_show_abandon_submit.attr("rowIndex",$(this).attr("rowIndex"));
-        provider_show_abandon_box.modal("show");
+        detail_provider_abandon_submit.attr("rowIndex",$(this).attr("rowIndex"));
+        detail_provider_abandon_box.modal("show");
     });
-    provider_show_abandon_submit.click(function(){
+    detail_provider_abandon_submit.click(function(){
         $.ajax({
             url: API.test_response,
             type:"post",
             data: { 
                 id : DETAIL_SOURCE.data_id,
-                type : provider_show_abandon_type.val(),
-                text : provider_show_abandon_text.val(),
+                type : detail_provider_abandon_type.val(),
+                text : detail_provider_abandon_text.val(),
             },
             success: function(data){
                 if( data.status>0 ){
@@ -371,7 +371,7 @@ $(function(){
     });
 
     //模板工具条-隶属于我
-    provider_show_belong_submit.click(function(){
+    detail_provider_belong_submit.click(function(){
         $.ajax({
             url: API.test_response,
             type:"post",
@@ -394,7 +394,7 @@ $(function(){
 
     //基础表格
     $.ajax({
-        url     : provider_show_api.base,
+        url     : detail_provider_api.base,
         type    : "post",
         dataType: "json",
         data    : { id:DETAIL_SOURCE.data_id },
@@ -405,19 +405,19 @@ $(function(){
                 var data = data.data;
 
                 //模板工具条
-                var template_tool_group = `<button class="btn" id="provider_show_back_btn"><i class="icon icon-arrow-left"></i> 返回</button>`;
+                var template_tool_group = `<button class="btn" id="detail_provider_back_btn"><i class="icon icon-arrow-left"></i> 返回</button>`;
                 if ( DETAIL_SOURCE.page_id == "business_provider_list" ){ // 信息员列表
                     template_tool_group+= `
-                        <button class="btn btn-primary" id="provider_show_edit_btn"><i class="icon icon-edit"></i> 修改</button>
-                        <button class="btn btn-primary" id="provider_show_edit_submit"><i class="icon icon-save"></i> 保存</button>
-                        <button class="btn btn-primary" id="provider_show_abandon_btn"><i class="icon icon-inbox"></i> 放弃</button>
+                        <button class="btn btn-primary" id="detail_provider_edit_btn"><i class="icon icon-edit"></i> 修改</button>
+                        <button class="btn btn-primary" id="detail_provider_edit_submit"><i class="icon icon-save"></i> 保存</button>
+                        <button class="btn btn-primary" id="detail_provider_abandon_btn"><i class="icon icon-inbox"></i> 放弃</button>
                     `;
                 } else if ( DETAIL_SOURCE.page_id == "business_public_provider_get" && data.overdue==0 ){ // '可抢信息员'页面 && 未过期
                     template_tool_group+=`
-                        <button class="btn btn-primary" data-toggle="modal" id="provider_show_belong_btn" data-target="#provider_show_belong_box"><i class="icon icon-flag"></i> 隶属于我</button>
+                        <button class="btn btn-primary" data-toggle="modal" id="detail_provider_belong_btn" data-target="#detail_provider_belong_box"><i class="icon icon-flag"></i> 隶属于我</button>
                     `;
                 }
-                provider_show.find(".template-tool-group").html(template_tool_group);
+                detail_provider.find(".template-tool-group").html(template_tool_group);
 
                 //基础表格
                 var temp_base = `
@@ -464,14 +464,14 @@ $(function(){
                     <tr><td colspan="3"><div class="flex-box" style="height:35px;"><b>备注信息</b><span>${data.text}</span><textarea class="form-control flex-son" name="text">${data.text}</textarea></div></td></tr>
                 </tbody>
                 `;
-                provider_show_base.html(temp_base);
+                detail_provider_base.html(temp_base);
 
                 //select选中
-                provider_show_base.find("select[name='levelname']").val(data.levelnumb);
-                provider_show_base.find("select[name='typename']").val(data.typenumb);
+                detail_provider_base.find("select[name='levelname']").val(data.levelnumb);
+                detail_provider_base.find("select[name='typename']").val(data.typenumb);
 
                 //验证调用
-                //provider_show_form.validationEngine({scroll:false});
+                //detail_provider_form.validationEngine({scroll:false});
 
             } else {
                 um_tip(data.message,"1500","text-danger");
@@ -480,22 +480,22 @@ $(function(){
     });
 
     //模板工具条-修改
-    $(document).on("click",provider_show_edit_btn,function(){
-        provider_show.addClass("mode-edit").removeClass("mode-show");
+    $(document).on("click",detail_provider_edit_btn,function(){
+        detail_provider.addClass("mode-edit").removeClass("mode-show");
     });
-    $(document).on("click",provider_show_edit_submit,function(){
-        //if( provider_show_form.validationEngine("validate") === false ){ return; }
+    $(document).on("click",detail_provider_edit_submit,function(){
+        //if( detail_provider_form.validationEngine("validate") === false ){ return; }
         $.ajax({
             url     : API.test_response,
             type    : "post",
             dataType: "json",
-            data    : um_data_get(provider_show_form),
+            data    : um_data_get(detail_provider_form),
             success : function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
                     setTimeout(function(){
-                        COMMON_TABS_OBJ.reload(provider_show.attr("id"));
-                        //provider_show.addClass("mode-show").removeClass("mode-edit");
+                        COMMON_TABS_OBJ.reload(detail_provider.attr("id"));
+                        //detail_provider.addClass("mode-show").removeClass("mode-edit");
                     },1500);
                 } else {
                     um_tip(data.message,"1500","text-danger");
@@ -505,7 +505,7 @@ $(function(){
     });
 
     //回访记录
-    provider_show_record1.datagrid({
+    detail_provider_record1.datagrid({
         height      : "page",
         sortable    : false,
         cache       : false,
@@ -531,7 +531,7 @@ $(function(){
             ],
             remote : function(){
                 return {
-                    url     : provider_show_api.record1,
+                    url     : detail_provider_api.record1,
                     type    : "POST",
                     dataType: "json",
                 }
@@ -540,7 +540,7 @@ $(function(){
     });
 
     //客户记录
-    provider_show_record2.datagrid({
+    detail_provider_record2.datagrid({
         height      : "page",
         sortable    : false,
         cache       : false,
@@ -573,11 +573,11 @@ $(function(){
                     html:true,
                     valueOperator : {
                         getter : function(dataValue,cell){
-                            var temp = `<a class="provider_show_record2_return_btn" rowIndex="${cell.rowIndex}">回访</a>`;
+                            var temp = `<a class="detail_provider_record2_return_btn" rowIndex="${cell.rowIndex}">回访</a>`;
                             if( dataValue == 1 ) {  //状态-正跟踪
                                 temp+= `
-                                <a class="provider_show_record2_toBussiness_btn" rowIndex="${cell.rowIndex}">提交商务经理</a>
-                                <a class="provider_show_record2_abandon_btn" rowIndex="${cell.rowIndex}">放弃</a>
+                                <a class="detail_provider_record2_toBussiness_btn" rowIndex="${cell.rowIndex}">提交商务经理</a>
+                                <a class="detail_provider_record2_abandon_btn" rowIndex="${cell.rowIndex}">放弃</a>
                                 `;
                             }
                             return temp;
@@ -587,7 +587,7 @@ $(function(){
             ],
             remote : function(){
                 return {
-                    url     : provider_show_api.record2,
+                    url     : detail_provider_api.record2,
                     type    : "POST",
                     dataType: "json",
                 }
@@ -596,7 +596,7 @@ $(function(){
     });
 
     //信息费记录
-    provider_show_record3.datagrid({
+    detail_provider_record3.datagrid({
         height      : "page",
         sortable    : false,
         cache       : false,
@@ -625,7 +625,7 @@ $(function(){
             ],
             remote : function(){
                 return {
-                    url     : provider_show_api.record3,
+                    url     : detail_provider_api.record3,
                     type    : "POST",
                     dataType: "json",
                 }
@@ -634,7 +634,7 @@ $(function(){
     });
 
     //提成记录
-    provider_show_record4.datagrid({
+    detail_provider_record4.datagrid({
         height      : "page",
         sortable    : false,
         cache       : false,
@@ -665,7 +665,7 @@ $(function(){
             ],
             remote : function(){
                 return {
-                    url     : provider_show_api.record4,
+                    url     : detail_provider_api.record4,
                     type    : "POST",
                     dataType: "json",
                 }
@@ -674,7 +674,7 @@ $(function(){
     });
 
     //过程记录
-    provider_show_record5.datagrid({
+    detail_provider_record5.datagrid({
         height      : "page",
         sortable    : false,
         cache       : false,
@@ -698,7 +698,7 @@ $(function(){
             ],
             remote : function(){
                 return {
-                    url     : provider_show_api.record5,
+                    url     : detail_provider_api.record5,
                     type    : "POST",
                     dataType: "json",
                 }
@@ -707,27 +707,27 @@ $(function(){
     });
 
     //客户记录-操作变量
-    provider_show_record2_obj = provider_show_record2.data("zui.datagrid"),
-    provider_show_record2_return_btn = ".provider_show_record2_return_btn",
-    provider_show_record2_return_box = $("#provider_show_record2_return_box"),
-    provider_show_record2_return_text = $("#provider_show_record2_return_text"),
-    provider_show_record2_return_days = $("#provider_show_record2_return_days"),
-    provider_show_record2_return_date = $("#provider_show_record2_return_date"),
-    provider_show_record2_return_submit = $("#provider_show_record2_return_submit"),
-    provider_show_record2_toBussiness_btn = ".provider_show_record2_toBussiness_btn",
-    provider_show_record2_toBussiness_box = $("#provider_show_record2_toBussiness_box"),
-    provider_show_record2_toBussiness_submit = $("#provider_show_record2_toBussiness_submit"),
-    provider_show_record2_abandon_btn = ".provider_show_record2_abandon_btn",
-    provider_show_record2_abandon_box = $("#provider_show_record2_abandon_box"),
-    provider_show_record2_abandon_type = $("#provider_show_record2_abandon_type"),
-    provider_show_record2_abandon_text = $("#provider_show_record2_abandon_text"),
-    provider_show_record2_abandon_submit = $("#provider_show_record2_abandon_submit");
+    detail_provider_record2_obj = detail_provider_record2.data("zui.datagrid"),
+    detail_provider_record2_return_btn = ".detail_provider_record2_return_btn",
+    detail_provider_record2_return_box = $("#detail_provider_record2_return_box"),
+    detail_provider_record2_return_text = $("#detail_provider_record2_return_text"),
+    detail_provider_record2_return_days = $("#detail_provider_record2_return_days"),
+    detail_provider_record2_return_date = $("#detail_provider_record2_return_date"),
+    detail_provider_record2_return_submit = $("#detail_provider_record2_return_submit"),
+    detail_provider_record2_toBussiness_btn = ".detail_provider_record2_toBussiness_btn",
+    detail_provider_record2_toBussiness_box = $("#detail_provider_record2_toBussiness_box"),
+    detail_provider_record2_toBussiness_submit = $("#detail_provider_record2_toBussiness_submit"),
+    detail_provider_record2_abandon_btn = ".detail_provider_record2_abandon_btn",
+    detail_provider_record2_abandon_box = $("#detail_provider_record2_abandon_box"),
+    detail_provider_record2_abandon_type = $("#detail_provider_record2_abandon_type"),
+    detail_provider_record2_abandon_text = $("#detail_provider_record2_abandon_text"),
+    detail_provider_record2_abandon_submit = $("#detail_provider_record2_abandon_submit");
 
     //客户记录-回访
-    $(document).on("click",provider_show_record2_return_btn,function(){
+    $(document).on("click",detail_provider_record2_return_btn,function(){
         common_form_reset();
         $.ajax({
-            url     : provider_show_api.return_days,
+            url     : detail_provider_api.return_days,
             type    : "post",
             dataType: "json",
             data    : {},
@@ -737,39 +737,39 @@ $(function(){
                 for(var i=0;i<data.length;i++){
                     option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                 }
-                provider_show_record2_return_days.html(option);
-                provider_show_record2_return_date.val( 
+                detail_provider_record2_return_days.html(option);
+                detail_provider_record2_return_date.val( 
                     um_date( 'yyyy-MM-dd HH:mm:ss', new Date( new Date().getTime() + 
-                        provider_show_record2_return_days.val() 
+                        detail_provider_record2_return_days.val() 
                     * 24 * 3600 * 1000 ) ) 
                 );
             }
         });
-        provider_show_record2_return_submit.attr("rowIndex",$(this).attr("rowIndex"));
-        provider_show_record2_return_box.modal("show");
+        detail_provider_record2_return_submit.attr("rowIndex",$(this).attr("rowIndex"));
+        detail_provider_record2_return_box.modal("show");
     });
-    provider_show_record2_return_days.change(function(){
-        provider_show_record2_return_date.val( 
+    detail_provider_record2_return_days.change(function(){
+        detail_provider_record2_return_date.val( 
             um_date( 'yyyy-MM-dd HH:mm:ss', new Date( new Date().getTime() + 
-                provider_show_record2_return_days.val() 
+                detail_provider_record2_return_days.val() 
             * 24 * 3600 * 1000 ) ) 
         );
     });    
-    provider_show_record2_return_submit.click(function(){
-        var data_id = provider_show_record2_obj.getCell($(this).attr("rowIndex"),1).value;
+    detail_provider_record2_return_submit.click(function(){
+        var data_id = detail_provider_record2_obj.getCell($(this).attr("rowIndex"),1).value;
         $.ajax({
             url: API.test_response,
             type:"post",
             data: { 
                 id : data_id,
-                text : provider_show_record2_return_text.val(),
-                days : provider_show_record2_return_days.val(),
-                date : provider_show_record2_return_date.val(),
+                text : detail_provider_record2_return_text.val(),
+                days : detail_provider_record2_return_days.val(),
+                date : detail_provider_record2_return_date.val(),
             },
             success: function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    zui_datagrid_reset(provider_show_record2_obj,provider_show_api.record2);
+                    zui_datagrid_reset(detail_provider_record2_obj,detail_provider_api.record2);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -778,12 +778,12 @@ $(function(){
     });
 
     //客户记录-提交商务经理
-    $(document).on("click",provider_show_record2_toBussiness_btn,function(){
-        provider_show_record2_toBussiness_submit.attr("rowIndex",$(this).attr("rowIndex"));
-        provider_show_record2_toBussiness_box.modal("show");
+    $(document).on("click",detail_provider_record2_toBussiness_btn,function(){
+        detail_provider_record2_toBussiness_submit.attr("rowIndex",$(this).attr("rowIndex"));
+        detail_provider_record2_toBussiness_box.modal("show");
     });
-    provider_show_record2_toBussiness_submit.click(function(){
-        var data_id = provider_show_record2_obj.getCell($(this).attr("rowIndex"),1).value;
+    detail_provider_record2_toBussiness_submit.click(function(){
+        var data_id = detail_provider_record2_obj.getCell($(this).attr("rowIndex"),1).value;
         $.ajax({
             url: API.test_response,
             type:"post",
@@ -791,7 +791,7 @@ $(function(){
             success: function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    zui_datagrid_reset(provider_show_record2_obj,provider_show_api.record2);
+                    zui_datagrid_reset(detail_provider_record2_obj,detail_provider_api.record2);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -800,25 +800,25 @@ $(function(){
     });
 
     //客户记录-放弃
-    $(document).on("click",provider_show_record2_abandon_btn,function(){
+    $(document).on("click",detail_provider_record2_abandon_btn,function(){
         common_form_reset();
-        provider_show_record2_abandon_submit.attr("rowIndex",$(this).attr("rowIndex"));
-        provider_show_record2_abandon_box.modal("show");
+        detail_provider_record2_abandon_submit.attr("rowIndex",$(this).attr("rowIndex"));
+        detail_provider_record2_abandon_box.modal("show");
     });
-    provider_show_record2_abandon_submit.click(function(){
-        var data_id = provider_show_record2_obj.getCell($(this).attr("rowIndex"),1).value;
+    detail_provider_record2_abandon_submit.click(function(){
+        var data_id = detail_provider_record2_obj.getCell($(this).attr("rowIndex"),1).value;
         $.ajax({
             url: API.test_response,
             type:"post",
             data: { 
                 id : data_id,
-                type : provider_show_record2_abandon_type.val(),
-                text : provider_show_record2_abandon_text.val(),
+                type : detail_provider_record2_abandon_type.val(),
+                text : detail_provider_record2_abandon_text.val(),
             },
             success: function(data){
                 if( data.status>0 ){
                     um_tip(data.message);
-                    zui_datagrid_reset(provider_show_record2_obj,provider_show_api.record2);
+                    zui_datagrid_reset(detail_provider_record2_obj,detail_provider_api.record2);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
