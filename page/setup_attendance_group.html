@@ -345,7 +345,7 @@ $(function(){
         var setup_attendance_group_api = {
             datagrid   : LOCAL + "Test/test_datagrid.json",                                 //数据表格
             select     : LOCAL + "Test/test_select.json",                                   //下拉选项
-            modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修改盒子
+            modal_edit : LOCAL + "Test/Setup/Attendance/group_edit.json",                   //修
         }
 
     }
@@ -448,11 +448,7 @@ $(function(){
         //数据重置
         common_form_reset();
         common_tree_staff_reset( setup_attendance_group_add_tree );
-        setup_attendance_group_add_week.attr("result","1,2,3,4,5").find(".btn").removeClass("active");
-        for( var i=0;i<5;i++ ){ setup_attendance_group_add_week.find(".btn").eq(i).addClass("active"); }
-        setup_attendance_group_add_vaca.find(".btn").eq(0).trigger("click");
-        common_for_label_toggle_reset( setup_attendance_group_add_table3 );
-
+        // 
         //面板显示
         setup_attendance_group_add_box.modal("show");
         
@@ -505,6 +501,7 @@ $(function(){
             dataType: "json",
             data    : { id:data_id },
             success : function(data){
+                console.log(data)
                 if( data.status>0 ){
                     var data = data.data;
 

@@ -315,3 +315,58 @@
     left: 50px;
     top: -18px;
 }
+/*智能办公-边框*/
+.office-border{
+    width:100%;
+    height: auto;
+    padding:20px;
+    border:1px solid #ddd;
+}
+/*审批流程*/
+.office-approval{
+    width: 200px;
+    height: auto;
+}
+.office-approval dl{
+    margin:0 !important;
+    width: auto;
+    height:60px;
+    overflow: hidden;
+}
+.office-approval dl>*{
+    width:50%;
+    height: 100%;
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+}
+.office-approval dl dt{
+    border-right: 1px solid #ddd;
+    text-align: right;
+    padding-right: 25px;
+}
+.office-approval dl dd *{
+    display: block;
+    padding-left: 25px;
+    font-weight: normal;
+}
+.office-approval dl dd b{
+    padding-left:18px;
+}
+.office-approval dl dd:before{
+    content: '●';
+    color: #ddd;
+    font-size: 34px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-left:-11px;
+    line-height: 11px;
+}
+.office-approval .finish *,
+.office-approval .finish *:before{
+    color: #3280fc!important;
+}
+.office-approval .finish dt{
+    border-right: 1px solid #3280fc;
+}

@@ -894,3 +894,26 @@ function template_page_open(template_page,_this){
         }
     });
 }
+
+/* common_approval_tree() 公共审批节点
+ * @param dom     object 节点对象
+ * @param url     string 接口路径
+ * @param data_id number 数据ID
+ */
+function common_approval_tree( dom,url,data_id ){
+    $.ajax({
+        type:'post',
+        url : url,
+        dataType:'json',
+        data:{ id : data_id },
+        success:function(data){
+            var data = data.data;
+            var temp = `<dl class="finish"><dt>第0步</dt><dd><b>【流程开始】</b><p>流程开始</p></dd></dl>`;
+            for(var i=0;i<data.length;i++){
+                temp+= data[i].statenumber ? `<dl class="finish">` : `<dl>`;
+                temp+=`<dt>第${i+1}步</dt><dd><b>【${ data[i].user}】</b><p>${ data[i].statename}</p></dd></dl>`;
+            }
+            dom.html(temp);
+        }
+    });
+}
