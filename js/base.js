@@ -879,7 +879,7 @@ function common_topic_answer_reset(){
 /*模板页面打开
  * @param template_page 模板页面名
  * @param _this $(this)指向
- * @example onclick=template_page_open('provider_show',$(this))
+ * @example onclick=template_page_open('detail_provider',$(this))
  */
 function template_page_open(template_page,_this){
     var data_id = zui_datagrid_get_id(_this.attr("rowIndex"));
