@@ -104,9 +104,9 @@
     <!-- 切换面板 -->
     <ul class="nav nav-tabs">
         <li class="active"><a data-tab="" href="#detail_customer_record1">业务回访</a></li>
-        <li><a data-tab="" href="#detail_customer_record2">设计回访</a></li>
-        <li><a data-tab="" href="#detail_customer_record3">过程记录</a></li>
-        <li><a data-tab="" href="#detail_customer_record4">失败记录</a></li>
+        <li ><a data-tab="" href="#detail_customer_record2">设计回访</a></li>
+        <li ><a data-tab="" href="#detail_customer_record3">过程记录</a></li>
+        <li class="hidden"><a data-tab="" href="#detail_customer_record4">失败记录</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="detail_customer_record1">
@@ -399,12 +399,44 @@ $(function(){
                 //数据转接
                 var data = data.data;
 
-                //模板工具条
+                /*
+                #客户跟踪 business_customer_tracked
+                if( COMMON.returnAllow ){
+                    修改
+                    if( state="跟踪" ) 提交至经理 放弃
+                    if( state="转正" ) 转为正跟踪
+                }
+
+                #客户管理 business_customer_admin
+                打回
+                if( state="已提交(商务经理未审批)" ) 提交设计部
+                if( state="不准申请中|未签申请中 " ) 归库
+
+                #客户审批 business_customer_approval
+                提交设计部
+                打回
+
+                #过期审批 business_customer_overdue
+                过期批复
+
+                #失败审批 business_customer_failure
+                归库
+                打回
+
+                #可抢客户 business_public_customer_get
+                无操作
+
+                #客户资源 business_public_customer_source
+                无操作
+                */
+
+                //模板工具条(客户管理|过期审批|客户资源=>无操作按钮)
                 if( DETAIL_SOURCE.page_id == "business_customer_tracked" ){ //客户跟踪
                     detail_customer_edit_btn.removeClass("hidden"); //修改
                     detail_customer_abandon_btn.removeClass("hidden"); //放弃客户
                     detail_customer_submitToBusiness_btn.removeClass("hidden"); //提交商务经理
-                    if( data.state==0 ){ //状态值处于放弃时
+                    //状态值处于放弃时
+                    if( data.state==0 ){ 
                         detail_customer_turn_btn.removeClass("hidden"); //转为正跟踪
                     }
                 } else if( DETAIL_SOURCE.page_id == "business_customer_approval" ){ //客户审批
@@ -417,9 +449,17 @@ $(function(){
                 } else if( DETAIL_SOURCE.page_id == "business_public_customer_get" ){ //可抢客户
                     detail_customer_belong_btn.removeClass("hidden"); //隶属于我
                 }
-                //客户管理 过期审批 客户资源 - 无操作按钮
 
-               //基础表格
+                //切换按钮(客户跟踪|客户管理|过期审批|客户资源|可抢客户=>显示前三个)
+                if( DETAIL_SOURCE.page_id == "business_customer_approval" ){ //客户审批(业务回访)
+                    detail_customer.find(".nav-tabs li").eq(1).addClass("hidden");
+                    detail_customer.find(".nav-tabs li").eq(2).addClass("hidden");
+                } else if( DETAIL_SOURCE.page_id == "business_customer_failure" ){ //失败审批(业务回访|设计回访|失败记录)
+                    detail_customer.find(".nav-tabs li").eq(2).addClass("hidden");
+                    detail_customer.find(".nav-tabs li").eq(3).removeClass("hidden");
+                }
+                
+                //基础表格
                 var temp_base = `
                 <thead><tr><td colspan="3"><div class="flex-box"><b>项目状态</b>${data.itemstatename}</div></td></tr></thead>
                 <tbody>

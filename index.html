@@ -146,7 +146,7 @@
 <!-- 隐藏文本域 -->
 <input type="hidden" id="common_positionid" value="1" title="权限ID">
 <input type="hidden" id="common_userid" value="1" title="用户ID">
-<input type="hidden" id="common_logAllow" value="1" title="回访允许">
+<input type="hidden" id="common_returnAllow" value="1" title="回访允许">
 <script>
 $(function () {
 
@@ -154,7 +154,7 @@ $(function () {
     window.COMMON = {
         position_id: $("#common_positionid").val(),
         user_id: $("#common_userid").val(),
-        logAllow: $("#common_logAllow").val(), //回访允许 1为允许回访 0为不允许回访
+        returnAllow: $("#common_returnAllow").val(), //回访允许 1为允许回访 0为不允许回访
     }
 
     //变量声明----------------------------------------------------------------
