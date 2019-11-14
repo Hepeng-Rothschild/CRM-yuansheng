@@ -2,8 +2,8 @@
   "result" : true,
   "message": "获取成功",
   "status" : 1,
+  "serialnumber" : "10014",
   "data"  : [{
-    "serialnumber" : "10014",
          "typenumb" : 3,
          "typename" : "飞机",
          "statenumb" : 2,
@@ -21,7 +21,6 @@
          "treavl" :"5天",
          "text" : "留言"
        },{
-      "serialnumber" : "10015",
          "typenumb" : 3,
          "typename" : "飞机",
          "statenumb" : 2,
