@@ -1,6 +1,9 @@
 {
 	"status"  : 1,
 	"data" 	  : {
+		"state"         : 1,
+		"returnAllow" 	: 1,
+
 		"itemstatename" : "该字段需要'状态类别','状态详情','打回原因','打回时间'字符串拼接",
 		"number" 		: "000001",
 		"case"    		: "项目名称",
