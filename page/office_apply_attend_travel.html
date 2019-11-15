@@ -160,52 +160,6 @@
                             <button type="button" class="btn btn-mini" id="office_apply_attend_travel_edit_trip">添加行程</button><br><br>
                         </div>
                         <hr />
-                        <!-- <div class="form-group">
-                            <label class="col-sm-2" for="">交通工具</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="office_apply_attend_travel_edit_type">
-                                    <option value="1">飞机</option>
-                                    <option value="2">火车</option>
-                                    <option value="3">汽车</option>
-                                    <option value="4">其他</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2" for="office_apply_attend_travel_edit_single">单程往返</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="office_apply_attend_travel_edit_single">
-                                    <option value="1">单程</option>
-                                    <option value="2">往返</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2" for="office_apply_attend_travel_add_departure">出发城市</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="office_apply_attend_travel_edit_departure"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2" for="office_apply_attend_travel_add_destination">目的城市</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="office_apply_attend_travel_edit_destination"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2" for="office_apply_attend_travel_edit_date1">起始时间</label>
-                            <div class="col-sm-8">
-                                <div class="input-group" >
-                                    <input type="text" class="form-control" id="office_apply_attend_travel_edit_date1" readonly>
-                                    <span class="input-group-addon fix-border fix-padding"></span>
-                                    <input type="text" class="form-control" id="office_apply_attend_travel_edit_date2" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2" for="office_apply_attend_travel_edit_long">时长</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="office_apply_attend_travel_edit_long" readonly></div>
-                        </div> -->
                         <div class="form-group">
                             <div class="col-sm-6">
                                 <div><label>抄送人</label></div>
@@ -261,9 +215,7 @@
                 office_apply_attend_travel_add_tree = $("#office_apply_attend_travel_add_tree"), //抄送人
                 office_apply_attend_travel_add_approval = $('#office_apply_attend_travel_add_approval'), //审批人
                 office_apply_attend_travel_add_trip = $('#office_apply_attend_travel_add_trip'), //添加行程
-                office_apply_attend_travel_add_step = $("#office_apply_attend_travel_add_step"),   //t添加盒子
-                office_apply_attend_travel_add_flag = 0,
-//                forms= $("#forms"),
+                office_apply_attend_travel_add_step = $("#office_apply_attend_travel_add_step"),   //t添加盒子,
                //查看
                office_apply_attend_travel_show_box = $("#office_apply_attend_travel_show_box"), //查看盒子
                 office_apply_attend_travel_show_approval = $('#office_apply_attend_travel_show_approval'), //审批人
@@ -300,7 +252,7 @@
                 datagrid    : API.test_datagrid, //数据表格
                 select      : LOCAL + "Test/test_select.json", //下拉选择
                 uploader    : LOCAL + "Test/test_upload.php", //上传路径
-                approval    : LOCAL + "Test/Office/applyl/approval.json", //审批人进度
+                approval    : LOCAL + "Test/Office/approval.json", //审批人进度
                 modal_show  : LOCAL + "Test/Office/apply/office_apply_attend_travel_edit.json", //查看盒子
                 edit        : LOCAL + "Test/Office/apply/office_apply_attend_travel.json", //修改盒子
             }
@@ -383,8 +335,6 @@
         common_date_duration(office_apply_attend_travel_tool_date);
         office_apply_attend_travel_tool_date.find(".start").datetimepicker(option_date);
         office_apply_attend_travel_tool_date.find(".end").datetimepicker(option_date);
-        // office_apply_attend_travel_edit_date1.datetimepicker(option_hour);
-        // office_apply_attend_travel_edit_date2.datetimepicker(option_hour);
         //下拉选项-----------------------------------------------------------------------------------------------
         //洽谈等级
         $.ajax({
@@ -518,24 +468,24 @@
                 <label class="col-sm-2">出发城市</label>
                 <div class="col-sm-4">
                     <select class="form-control" name="citystart${office_apply_attend_travel_add_flag}"><!-- JS推进 --></select>
-                    </div>
+                </div>
                     <label class="col-sm-2">目的城市</label>
-                    <div class="col-sm-4">
-                    <select class="form-control" name="cityend${office_apply_attend_travel_add_flag}"><!-- JS推进 --></select>
-                    </div>
+                        <div class="col-sm-4">
+                           <select class="form-control" name="cityend${office_apply_attend_travel_add_flag}"><!-- JS推进 --></select>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                    <label class="col-sm-2">起始时间</label>
-                    <div class="col-sm-4">
-                    <div class="input-group" >
-                    <input type="text" class="form-control" name="datestart${office_apply_attend_travel_add_flag}" readonly>
-                    <span class="input-group-addon fix-border fix-padding"></span>
-                    <input type="text" class="form-control" name="dateend${office_apply_attend_travel_add_flag}" readonly>
-                    </div>
+                        <label class="col-sm-2">起始时间</label>
+                          <div class="col-sm-4">
+                             <div class="input-group" >
+                                 <input type="text" class="form-control" name="datestart${office_apply_attend_travel_add_flag}" readonly>
+                                 <span class="input-group-addon fix-border fix-padding"></span>
+                                 <input type="text" class="form-control" name="dateend${office_apply_attend_travel_add_flag}" readonly>
+                         </div>
                     </div>
                     <label class="col-sm-2">时长</label>
-                    <div class="col-sm-4"><input type="text" class="form-control" name="duration${office_apply_attend_travel_add_flag}" readonly></div>
+                         <div class="col-sm-4"><input type="text" class="form-control" name="duration${office_apply_attend_travel_add_flag}" readonly></div>
                     </div>
                     <div class="form-group">
                     </div><hr>
@@ -605,53 +555,53 @@
                     var step = "";
                     for(var s=0;s<data.stepflag;s++){
                         step += `
-                    <div class="form-group">
-                    <h3 class="col-sm-12 text-primary">行程${s+1}</h3>
-                    </div>
-                    <div class="form-group">
-                    <label class="col-sm-2">交通工具</label>
-                    <div class="col-sm-4">
-                    <select class="form-control" name="tool${s+1}">
-                    <option value="1">飞机</option>
-                    <option value="2">火车</option>
-                    <option value="3">汽车</option>
-                    <option value="4">其他</option>
-                    </select>
-                    </div>
+                         <div class="form-group">
+                             <h3 class="col-sm-12 text-primary">行程${s+1}</h3>
+                         </div>
+                        <div class="form-group">
+                             <label class="col-sm-2">交通工具</label>
+                             <div class="col-sm-4">
+                                 <select class="form-control" name="tool${s+1}">
+                                     <option value="1">飞机</option>
+                                     <option value="2">火车</option>
+                                     <option value="3">汽车</option>
+                                     <option value="4">其他</option>
+                                  </select>
+                          </div>
                     <label class="col-sm-2">单程往返</label>
-                    <div class="col-sm-4">
-                    <select class="form-control" name="once${s+1}">
-                    <option value="1">单程</option>
-                    <option value="2">往返</option>
-                    </select>
-                    </div>
-                    </div>
-
-                    <div class="form-group">
-                    <label class="col-sm-2">出发城市</label>
-                    <div class="col-sm-4">
-                    <select class="form-control" name="citystart${s+1}"><!-- JS推进 --></select>
-                    </div>
-                    <label class="col-sm-2">目的城市</label>
-                    <div class="col-sm-4">
-                    <select class="form-control" name="cityend${s+1}"><!-- JS推进 --></select>
-                    </div>
+                         <div class="col-sm-4">
+                            <select class="form-control" name="once${s+1}">
+                                <option value="1">单程</option>
+                                <option value="2">往返</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                    <label class="col-sm-2">起始时间</label>
-                    <div class="col-sm-4">
-                    <div class="input-group" >
-                    <input type="text" class="form-control start" name="datestart${s+1}" readonly>
-                    <span class="input-group-addon fix-border fix-padding"></span>
-                    <input type="text" class="form-control end" name="dateend${s+1}" readonly>
+                         <label class="col-sm-2">出发城市</label>
+                         <div class="col-sm-4">
+                            <select class="form-control" name="citystart${s+1}"><!-- JS推进 --></select>
+                        </div>
+                        <label class="col-sm-2">目的城市</label>
+                         <div class="col-sm-4">
+                             <select class="form-control" name="cityend${s+1}"><!-- JS推进 --></select>
+                        </div>
                     </div>
-                    </div>
-                    <label class="col-sm-2">时长</label>
-                    <div class="col-sm-4"><input type="text" class="form-control event-val" name="duration${s+1}" readonly></div>
-                    </div>
+
                     <div class="form-group">
-                    </div><hr>
+                         <label class="col-sm-2">起始时间</label>
+                         <div class="col-sm-4">
+                           <div class="input-group" >
+                               <input type="text" class="form-control start" name="datestart${s+1}" readonly>
+                               <span class="input-group-addon fix-border fix-padding"></span>
+                               <input type="text" class="form-control end" name="dateend${s+1}" readonly>
+                         </div>
+                    </div>
+                         <label class="col-sm-2">时长</label>
+                               <div class="col-sm-4"><input type="text" class="form-control event-val" name="duration${s+1}" readonly></div>
+                         </div>
+                         <div class="form-group">
+                        </div><hr>
                     `;
                     }
                     office_apply_attend_travel_edit_step.html(step);
@@ -699,14 +649,14 @@
     });
     
     //时间差
-    $(document).on("change",".start,.end",function(){
-        var dad = $(this).parent().parent().parent();
-        var start = dad.find(".start").val();
-        var end = dad.find(".end").val();
-        var val = dad.find(".event-val");
-        var result = um_date_duration(start,end);
-        val.val(result);
-    });
+            $(document).on("change",".start,.end",function(){
+                var dad = $(this).parent().parent().parent();
+                var start = dad.find(".start").val();
+                var end = dad.find(".end").val();
+                var val = dad.find(".event-val");
+                var result = um_date_duration(start,end);
+                val.val(result);
+            });
 
     //修改盒子添加行程-------------------------------------------------------------------------------------------------
      office_apply_attend_travel_edit_trip.click(function(){
@@ -899,7 +849,7 @@
 </script>
 
 <style>
-    /*#office_apply_attend_travel .tool-group input[readonly] {*/
-        /*width: 86px !important;*/
-    /*}*/
+    #office_apply_attend_travel .tool-group input[readonly] {
+        width: 86px !important;
+    }
 <style>
