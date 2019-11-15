@@ -3,6 +3,7 @@
   "message": "获取成功",
   "status" : 1,
   "serialnumber" : "10014",
+  "name" :"刘",
   "data"  : [{
          "typenumb" : 3,
          "typename" : "飞机",

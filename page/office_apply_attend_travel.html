@@ -156,9 +156,7 @@
                         <div id="office_apply_attend_travel_edit_step">
                             <!-- JS推进 -->
                         </div>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-mini" id="office_apply_attend_travel_edit_trip">添加行程</button><br><br>
-                        </div>
+                        
                         <hr />
                         <div class="form-group">
                             <div class="col-sm-6">
@@ -187,61 +185,52 @@
 <script>
     $(function() {
 
-
-
         //变量声明-----------------------------------------------------------------------------------------------
         var
-                office_apply_attend_travel = $("#office_apply_attend_travel"), //页面ID
-                office_apply_attend_travel_datagrid = $("#office_apply_attend_travel_datagrid"), //数据表格
-                //搜索
-                office_apply_attend_travel_tool_keys = $("#office_apply_attend_travel_tool_keys"), //搜索类别
-                office_apply_attend_travel_tool_search = $("#office_apply_attend_travel_tool_search"), //搜索字段
-                office_apply_attend_travel_tool_date = $("#office_apply_attend_travel_tool_date"), //起止时间
-                office_apply_attend_travel_tool_select1 = $("#office_apply_attend_travel_tool_select1"), //请假类型
-                office_apply_attend_travel_tool_select2 = $("#office_apply_attend_travel_tool_select2"), //审批状态
-                office_apply_attend_travel_search_btn = $("#office_apply_attend_travel_search_btn"), //搜索按钮
-                //添加
-                office_apply_attend_travel_add_btn = $("#office_apply_attend_travel_add_btn"), //添加按钮
-                office_apply_attend_travel_add_box = $("#office_apply_attend_travel_add_box"), //添加盒子
-                office_apply_attend_travel_add_submit = $("#office_apply_attend_travel_add_submit"), //添加提交
-                office_apply_attend_travel_add_type = $("#office_apply_attend_travel_add_type"), //添加类型
-                office_apply_attend_travel_add_departure = $("#office_apply_attend_travel_add_departure"), //出发城市
-                office_apply_attend_travel_add_destination = $("#office_apply_attend_travel_add_destination"), //目的城市
-                office_apply_attend_travel_add_single = $("#office_apply_attend_travel_add_single"), //单程往返
-                office_apply_attend_travel_add_date1 = $("#office_apply_attend_travel_add_date1"), //添加时间1
-                office_apply_attend_travel_add_date2 = $("#office_apply_attend_travel_add_date2"), //添加时间2
-                office_apply_attend_travel_add_long = $("#office_apply_attend_travel_add_long"), //添加时长
-                office_apply_attend_travel_add_reason = $("#office_apply_attend_travel_add_reason"), //添加理由
-                office_apply_attend_travel_add_tree = $("#office_apply_attend_travel_add_tree"), //抄送人
-                office_apply_attend_travel_add_approval = $('#office_apply_attend_travel_add_approval'), //审批人
-                office_apply_attend_travel_add_trip = $('#office_apply_attend_travel_add_trip'), //添加行程
-                office_apply_attend_travel_add_step = $("#office_apply_attend_travel_add_step"),   //t添加盒子,
-               //查看
-               office_apply_attend_travel_show_box = $("#office_apply_attend_travel_show_box"), //查看盒子
-                office_apply_attend_travel_show_approval = $('#office_apply_attend_travel_show_approval'), //审批人
-                //撤销
-                office_apply_attend_travel_back_box = $("#office_apply_attend_travel_back_box"), //撤销盒子
-                office_apply_attend_travel_back_submit = $("#office_apply_attend_travel_back_submit"), //撤销提交
-                //催办
-                office_apply_attend_travel_urge_box  = $("#office_apply_attend_travel_urge_box"), //催办盒子
-                office_apply_attend_travel_urge_submit = $("#office_apply_attend_travel_urge_submit"), //催办按钮
-                //修改
-                office_apply_attend_travel_edit_btn = $("#office_apply_attend_travel_edit_btn"), //修改按钮
-                office_apply_attend_travel_edit_box = $("#office_apply_attend_travel_edit_box"), //修改盒子
-                office_apply_attend_travel_edit_submit = $("#office_apply_attend_travel_edit_submit"), //修改提交
-                office_apply_attend_travel_edit_type = $("#office_apply_attend_travel_edit_type"), //修改类型
-                office_apply_attend_travel_edit_date1 = $("#office_apply_attend_travel_edit_date1"), //修改时间1
-                office_apply_attend_travel_edit_date2 = $("#office_apply_attend_travel_edit_date2"), //修改时间2
-                office_apply_attend_travel_edit_long = $("#office_apply_attend_travel_edit_long"), //修改时长
-                office_apply_attend_travel_edit_reason = $("#office_apply_attend_travel_edit_reason"), //修改事由
-                office_apply_attend_travel_edit_tree = $("#office_apply_attend_travel_edit_tree"), //抄送人
-                office_apply_attend_travel_edit_departure = $("#office_apply_attend_travel_edit_departure"), //出发城市
-                office_apply_attend_travel_edit_destination = $("#office_apply_attend_travel_edit_destination"), //目的城市
-                office_apply_attend_travel_edit_single = $("#office_apply_attend_travel_edit_single"), //单程往返
-                office_apply_attend_travel_edit_step = $("#office_apply_attend_travel_edit_step"),   //添加盒子
-                office_apply_attend_travel_edit_flag = 0,
-                office_apply_attend_travel_edit_trip = $('#office_apply_attend_travel_edit_trip'), //添加行程
-                office_apply_attend_travel_edit_approval = $('#office_apply_attend_travel_edit_approval'); //审批人
+            office_apply_attend_travel = $("#office_apply_attend_travel"), //页面ID
+            office_apply_attend_travel_datagrid = $("#office_apply_attend_travel_datagrid"), //数据表格
+            //搜索
+            office_apply_attend_travel_tool_keys = $("#office_apply_attend_travel_tool_keys"), //搜索类别
+            office_apply_attend_travel_tool_search = $("#office_apply_attend_travel_tool_search"), //搜索字段
+            office_apply_attend_travel_tool_date = $("#office_apply_attend_travel_tool_date"), //起止时间
+            office_apply_attend_travel_tool_select1 = $("#office_apply_attend_travel_tool_select1"), //请假类型
+            office_apply_attend_travel_tool_select2 = $("#office_apply_attend_travel_tool_select2"), //审批状态
+            office_apply_attend_travel_search_btn = $("#office_apply_attend_travel_search_btn"), //搜索按钮
+            //添加
+            office_apply_attend_travel_add_btn = $("#office_apply_attend_travel_add_btn"), //添加按钮
+            office_apply_attend_travel_add_box = $("#office_apply_attend_travel_add_box"), //添加盒子
+            office_apply_attend_travel_add_submit = $("#office_apply_attend_travel_add_submit"), //添加提交
+            office_apply_attend_travel_add_tree = $("#office_apply_attend_travel_add_tree"), //抄送人
+            office_apply_attend_travel_add_approval = $('#office_apply_attend_travel_add_approval'), //审批人
+            office_apply_attend_travel_add_trip = $('#office_apply_attend_travel_add_trip'), //添加行程
+            office_apply_attend_travel_add_step = $("#office_apply_attend_travel_add_step"),   //添加盒子,
+    		office_apply_attend_travel_add_flag = 0,
+           //查看
+           office_apply_attend_travel_show_box = $("#office_apply_attend_travel_show_box"), //查看盒子
+            office_apply_attend_travel_show_approval = $('#office_apply_attend_travel_show_approval'), //审批人
+    		office_apply_attend_travel_edit_trip =$("#office_apply_attend_travel_edit_trip"),
+            //撤销
+            office_apply_attend_travel_back_box = $("#office_apply_attend_travel_back_box"), //撤销盒子
+            office_apply_attend_travel_back_submit = $("#office_apply_attend_travel_back_submit"), //撤销提交
+            //催办
+            office_apply_attend_travel_urge_box  = $("#office_apply_attend_travel_urge_box"), //催办盒子
+            office_apply_attend_travel_urge_submit = $("#office_apply_attend_travel_urge_submit"), //催办按钮
+            //修改
+            office_apply_attend_travel_edit_btn = $("#office_apply_attend_travel_edit_btn"), //修改按钮
+            office_apply_attend_travel_edit_box = $("#office_apply_attend_travel_edit_box"), //修改盒子
+            office_apply_attend_travel_edit_submit = $("#office_apply_attend_travel_edit_submit"), //修改提交
+            office_apply_attend_travel_edit_type = $("#office_apply_attend_travel_edit_type"), //修改类型
+            office_apply_attend_travel_edit_date1 = $("#office_apply_attend_travel_edit_date1"), //修改时间1
+            office_apply_attend_travel_edit_date2 = $("#office_apply_attend_travel_edit_date2"), //修改时间2
+            office_apply_attend_travel_edit_long = $("#office_apply_attend_travel_edit_long"), //修改时长
+            office_apply_attend_travel_edit_reason = $("#office_apply_attend_travel_edit_reason"), //修改事由
+            office_apply_attend_travel_edit_tree = $("#office_apply_attend_travel_edit_tree"), //抄送人
+            office_apply_attend_travel_edit_departure = $("#office_apply_attend_travel_edit_departure"), //出发城市
+            office_apply_attend_travel_edit_destination = $("#office_apply_attend_travel_edit_destination"), //目的城市
+            office_apply_attend_travel_edit_single = $("#office_apply_attend_travel_edit_single"), //单程往返
+            office_apply_attend_travel_edit_step = $("#office_apply_attend_travel_edit_step"),   //添加盒子
+            office_apply_attend_travel_edit_flag = 0,
+            office_apply_attend_travel_edit_approval = $('#office_apply_attend_travel_edit_approval'); //审批人
 
 
         //接口对象-----------------------------------------------------------------------------------------------
@@ -252,7 +241,7 @@
                 datagrid    : API.test_datagrid, //数据表格
                 select      : LOCAL + "Test/test_select.json", //下拉选择
                 uploader    : LOCAL + "Test/test_upload.php", //上传路径
-                approval    : LOCAL + "Test/Office/approval.json", //审批人进度
+                approval    : LOCAL + "Test/Office/apply/attend_approval.json", //审批人进度
                 modal_show  : LOCAL + "Test/Office/apply/office_apply_attend_travel_edit.json", //查看盒子
                 edit        : LOCAL + "Test/Office/apply/office_apply_attend_travel.json", //修改盒子
             }
@@ -321,11 +310,11 @@
 
         //变量声明-----------------------------------------------------------------------------------------------
         var
-                office_apply_attend_travel_datagrid_obj = office_apply_attend_travel_datagrid.data("zui.datagrid"), //表格对象
-                office_apply_attend_travel_show_btn = ".office_apply_attend_travel_show_btn", //查看按钮
-                office_apply_attend_travel_back_btn = ".office_apply_attend_travel_back_btn", //撤销按钮
-                office_apply_attend_travel_urge_btn = ".office_apply_attend_travel_urge_btn", //催办按钮
-                office_apply_attend_travel_edit_btn = ".office_apply_attend_travel_edit_btn"; //修改按钮
+        office_apply_attend_travel_datagrid_obj = office_apply_attend_travel_datagrid.data("zui.datagrid"), //表格对象
+        office_apply_attend_travel_show_btn = ".office_apply_attend_travel_show_btn", //查看按钮
+        office_apply_attend_travel_back_btn = ".office_apply_attend_travel_back_btn", //撤销按钮
+        office_apply_attend_travel_urge_btn = ".office_apply_attend_travel_urge_btn", //催办按钮
+        office_apply_attend_travel_edit_btn = ".office_apply_attend_travel_edit_btn"; //修改按钮
 
         //节点树-------------------------------------------------------------------------------------------------
         common_tree_staff($("#office_apply_attend_travel_add_tree"),true,true);   //添加
@@ -353,25 +342,6 @@
                 }
             }
         });
-        //添加城市出发及目的地下拉
-        $.ajax({
-            url: office_apply_attend_travel_api.select,
-            type: "post",
-            dataType: "json",
-            data: {},
-            success: function(data) {
-                if (data.status > 0) {
-                    var data = data.data;
-                    var option = "";
-                    for (var i = 0; i < data.length; i++) {
-                        option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
-                    }
-                    office_apply_attend_travel_edit_departure.html(option);
-                    office_apply_attend_travel_edit_destination.html(option);
-                }
-            }
-        });
-
         //搜索按钮-----------------------------------------------------------------------------------------------
         office_apply_attend_travel_search_btn.click(function() {
             //字段整理
@@ -388,13 +358,14 @@
 
         //添加按钮-----------------------------------------------------------------------------------------------
         office_apply_attend_travel_add_btn.click(function() {
+            office_apply_attend_travel_add_step.html("");
 
             //ID取值
             var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
 
+
             //数据复原
             common_form_reset();
-
             //抄送人-重置
             common_tree_staff_reset(office_apply_attend_travel_add_tree);
 
@@ -413,7 +384,6 @@
 
             //ID取值
             var data_id = $(this).attr("dataId");
-
             //数据处理
             var data = um_data_get( office_apply_attend_travel_add_box.find("form") );
             data.push({
@@ -548,9 +518,9 @@
             dataType: "json",
             data,
             success : function(data){
-                console.log(data)
                 if(data.status > 0){
                     var data = data.data;
+                 common_tree_staff_read(office_apply_attend_travel_edit_tree,data.tree);
                     //行程
                     var step = "";
                     for(var s=0;s<data.stepflag;s++){
@@ -692,24 +662,18 @@
 
         //ID取值
         var data_id = $(this).attr("rowIndex");
+         var data = um_data_get(office_apply_attend_travel_edit_box.find("form") );
+            data.push({
+                name : "tree",
+                value : office_apply_attend_travel_edit_tree.attr("result") || ""
+            });
 
         //远程提交
         $.ajax({
             url: API.test_response,
             type: "post",
             dataType: "json",
-            data: {
-                 id          : data_id,
-                 type        : office_apply_attend_travel_edit_type.val(),
-                 single      : office_apply_attend_travel_edit_single.val(),
-                 departure   : office_apply_attend_travel_edit_departure.val(),
-                 destination : office_apply_attend_travel_edit_destination.val(),
-                 date1       : office_apply_attend_travel_edit_date1.val(),
-                 date2       : office_apply_attend_travel_edit_date2.val(),
-                 longs       : office_apply_attend_travel_edit_long.val(),
-                 reason      : office_apply_attend_travel_edit_reason.val(),
-                 tree        : office_apply_attend_travel_edit_tree.attr("result") || "",
-            },
+            data,
             success: function(data) {
                 if (data.status > 0) {
                     um_tip(data.message);
@@ -741,13 +705,12 @@
             dataType:'json',
             data:{ id:data_id },
             success:function(date){
-                console.log(date.serialnumber)
                 var data = date.data;
                 var temp = "";
-                var temp=`<table class="table table-bordered"><thead><tr><th colspan="2">流水号:${date.serialnumber}</th></tr></thead></table>`
-                for(var i=0;i<data.length;i++){
+                var temp=`<table class="table table-bordered" style="margin:0;"><thead><tr><th colspan="2">流水号:${date.serialnumber}</th></tr></thead></table>`
+				for(var i=0;i<data.length;i++){
                     temp+=`
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" style="margin:0;">
                     <tbody>
                     <tr><td colspan="2"><b>${i+1}</td></tr>
                     <tr><td colspan="2">留言:${data[i].text}</td></tr>
@@ -757,8 +720,9 @@
                     <tr><td>时长:${data[i].duration}</td><td>出差:${data[i].treavl}</td></tr>
                     <tr><td colspan="2">审批状态:${data[i].statename}</td></tr>
                     </tbody>
-                    </table><hr/>`;
-                  };
+                    </table> `;
+                  }; 
+				   temp+=`<hr><div><label>抄送人</label>: ${date.name}</div> `;
                 office_apply_attend_travel_show_box.find(".container span").html(temp);
 
                 //数据赋值

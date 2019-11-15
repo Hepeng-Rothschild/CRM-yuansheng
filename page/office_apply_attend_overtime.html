@@ -1,0 +1,674 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="office_apply_attend_overtime">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped" id="office_apply_attend_overtime_datagrid">
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <div class="tool-search">
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" id="office_apply_attend_overtime_tool_keys"><option value="1">流水号</option></select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" id="office_apply_attend_overtime_tool_search">
+                    </div>
+                </div>
+                <div class="im-label" id="office_apply_attend_overtime_tool_date"></div>
+                <label><span>加班状态：</span><select class="form-control" id="office_apply_attend_overtime_tool_select1"></select></label>
+                <label>
+                    <span>审批状态</span>
+                    <select class="form-control" id="office_apply_attend_overtime_tool_select2">
+                        <option value="0">全部</option>
+                        <option value="1">审批中</option>
+                        <option value="2">审批完成</option>
+                        <option value="3">打回</option>
+                        <option value="4">已撤销</option>
+                    </select>
+                </label>
+                <label><button class="btn btn-primary" id="office_apply_attend_overtime_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </div>
+            <div class="tool-deal">
+                <label><button class="btn btn-primary" id="office_apply_attend_overtime_add_btn"><i class="icon icon-plus"></i>添加</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="office_apply_attend_overtime_add_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="container form-horizontal">
+						<div class="form-group">
+						    <label class="col-sm-2" for="office_apply_attend_overtime_add_date1">起始时间</label>
+						    <div class="col-sm-8">
+						        <div class="input-group" >
+						            <input type="text" class="form-control" id="office_apply_attend_overtime_add_date1" readonly>
+						            <span class="input-group-addon fix-border fix-padding"></span>
+						            <input type="text" class="form-control" id="office_apply_attend_overtime_add_date2" readonly>
+						        </div>
+						    </div>
+						</div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="office_apply_attend_overtime_add_type">加班类型</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="office_apply_attend_overtime_add_type"><!--js推荐--></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="office_apply_attend_overtime_add_long">加班时长</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="office_apply_attend_overtime_add_long" readonly></div>
+                        </div>
+						<div class="form-group">
+						    <label class="col-sm-2" for="office_apply_attend_overtime_add_compensate">加班补偿</label>
+						    <div class="col-sm-8">
+						        <select class="form-control" id="office_apply_attend_overtime_add_compensate"><!--js推荐--></select>
+						    </div>
+						</div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="office_apply_attend_overtime_add_reason">加班原因</label>
+                            <div class="col-sm-8"><textarea class="form-control" id="office_apply_attend_overtime_add_reason"></textarea></div>
+                        </div>
+						<hr>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <div><label>抄送人</label></div>
+                                <div class="office-border"><ul class="tree tree-lines tree-chevrons" id="office_apply_attend_overtime_add_tree"></ul></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div><label>审批人</label></div>
+                                <div class="office-border"><div class="office-approval" id="office_apply_attend_overtime_add_approval">><!-- JS推进 --></div></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="office_apply_attend_overtime_add_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- office_apply_attend_overtime_add_box -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="office_apply_attend_overtime_show_box">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        <span><!-- JS推进 --></span>
+                        <div class="office-approval" id="office_apply_attend_overtime_show_approval"><!-- JS推进 --></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- office_apply_attend_overtime_show_box -->
+
+    <!-- 撤销盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="office_apply_attend_overtime_back_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">撤销</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否撤销？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger" id="office_apply_attend_overtime_back_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- office_apply_attend_overtime_back_box -->
+
+    <!-- 催办盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="office_apply_attend_overtime_urge_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">催办</h4>
+                </div>
+                <div class="modal-body"><p>是否提交催办？</p></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="office_apply_attend_overtime_urge_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- office_apply_attend_overtime_urge_box -->
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="office_apply_attend_overtime_edit_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">再次申请</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="container form-horizontal">
+						<div class="form-group">
+						    <label class="col-sm-2" for="office_apply_attend_overtime_edit_date1">起始时间</label>
+						    <div class="col-sm-8">
+						        <div class="input-group" >
+						            <input type="text" class="form-control" id="office_apply_attend_overtime_edit_date1" readonly>
+						            <span class="input-group-addon fix-border fix-padding"></span>
+						            <input type="text" class="form-control" id="office_apply_attend_overtime_edit_date2" readonly>
+						        </div>
+						    </div>
+						</div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="office_apply_attend_overtime_edit_type">请假类型</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="office_apply_attend_overtime_edit_type"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="office_apply_attend_overtime_edit_long">请假时长</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" id="office_apply_attend_overtime_edit_long" readonly></div>
+                        </div>
+						<div class="form-group">
+						    <label class="col-sm-2" for="office_apply_attend_overtime_edit_compensate">加班补偿</label>
+						    <div class="col-sm-8">
+						        <select class="form-control" id="office_apply_attend_overtime_edit_compensate"><!--js推荐--></select>
+						    </div>
+						</div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="office_apply_attend_overtime_edit_reason">请假事由</label>
+                            <div class="col-sm-8"><textarea class="form-control" id="office_apply_attend_overtime_edit_reason"></textarea></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <div><label>抄送人</label></div>
+                                <div class="office-border"><ul class="tree tree-lines tree-chevrons" id="office_apply_attend_overtime_edit_tree"></ul></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div><label>审批人</label></div>
+                                <div class="office-border"><div class="office-approval" id="office_apply_attend_overtime_edit_approval"></div></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="office_apply_attend_overtime_edit_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- office_apply_attend_overtime_edit_box -->
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+    $(function() {
+        //变量声明-----------------------------------------------------------------------------------------------
+        var
+                office_apply_attend_overtime = $("#office_apply_attend_overtime"), //页面ID
+                office_apply_attend_overtime_datagrid = $("#office_apply_attend_overtime_datagrid"), //数据表格
+                //搜索
+                office_apply_attend_overtime_tool_keys = $("#office_apply_attend_overtime_tool_keys"), //搜索类别
+                office_apply_attend_overtime_tool_search = $("#office_apply_attend_overtime_tool_search"), //搜索字段
+                office_apply_attend_overtime_tool_date = $("#office_apply_attend_overtime_tool_date"), //起止时间
+                office_apply_attend_overtime_tool_select1 = $("#office_apply_attend_overtime_tool_select1"), //请假类型
+                office_apply_attend_overtime_tool_select2 = $("#office_apply_attend_overtime_tool_select2"), //审批状态
+                office_apply_attend_overtime_search_btn = $("#office_apply_attend_overtime_search_btn"), //搜索按钮
+                //添加
+                office_apply_attend_overtime_add_btn = $("#office_apply_attend_overtime_add_btn"), //添加按钮
+                office_apply_attend_overtime_add_box = $("#office_apply_attend_overtime_add_box"), //添加盒子
+                office_apply_attend_overtime_add_submit = $("#office_apply_attend_overtime_add_submit"), //添加提交
+                office_apply_attend_overtime_add_type = $("#office_apply_attend_overtime_add_type"), //添加类型
+                office_apply_attend_overtime_add_date1 = $("#office_apply_attend_overtime_add_date1"), //添加时间1
+                office_apply_attend_overtime_add_date2 = $("#office_apply_attend_overtime_add_date2"), //添加时间2
+                office_apply_attend_overtime_add_long = $("#office_apply_attend_overtime_add_long"), //添加时长
+				office_apply_attend_overtime_add_compensate = $("#office_apply_attend_overtime_add_compensate"), //添加补偿
+                office_apply_attend_overtime_add_reason = $("#office_apply_attend_overtime_add_reason"), //添加理由
+                office_apply_attend_overtime_add_tree = $("#office_apply_attend_overtime_add_tree"), //抄送人
+                office_apply_attend_overtime_add_approval = $('#office_apply_attend_overtime_add_approval'), //审批人
+                //查看
+                office_apply_attend_overtime_show_box = $("#office_apply_attend_overtime_show_box"), //查看盒子
+                office_apply_attend_overtime_show_approval = $('#office_apply_attend_overtime_show_approval'), //审批人
+                //撤销
+                office_apply_attend_overtime_back_box = $("#office_apply_attend_overtime_back_box"), //撤销盒子
+                office_apply_attend_overtime_back_submit = $("#office_apply_attend_overtime_back_submit"), //撤销提交
+                //催办
+                office_apply_attend_overtime_urge_box  = $("#office_apply_attend_overtime_urge_box"), //催办盒子
+                office_apply_attend_overtime_urge_submit = $("#office_apply_attend_overtime_urge_submit"), //催办按钮
+                //修改
+                office_apply_attend_overtime_edit_btn = $("#office_apply_attend_overtime_edit_btn"), //修改按钮
+                office_apply_attend_overtime_edit_box = $("#office_apply_attend_overtime_edit_box"), //修改盒子
+                office_apply_attend_overtime_edit_submit = $("#office_apply_attend_overtime_edit_submit"), //修改提交
+                office_apply_attend_overtime_edit_type = $("#office_apply_attend_overtime_edit_type"), //修改类型
+                office_apply_attend_overtime_edit_date1 = $("#office_apply_attend_overtime_edit_date1"), //修改时间1
+                office_apply_attend_overtime_edit_date2 = $("#office_apply_attend_overtime_edit_date2"), //修改时间2
+                office_apply_attend_overtime_edit_long = $("#office_apply_attend_overtime_edit_long"), //修改时长
+				office_apply_attend_overtime_edit_compensate = $("#office_apply_attend_overtime_edit_compensate"), //修改补偿
+                office_apply_attend_overtime_edit_reason = $("#office_apply_attend_overtime_edit_reason"), //修改事由
+                office_apply_attend_overtime_edit_tree = $("#office_apply_attend_overtime_edit_tree"), //抄送人
+                office_apply_attend_overtime_edit_approval = $('#office_apply_attend_overtime_edit_approval'); //审批人
+
+        //接口对象-----------------------------------------------------------------------------------------------
+        if (window.STATE == "local") {
+
+            //本地接口
+            var office_apply_attend_overtime_api = {
+                datagrid    : API.test_datagrid, //数据表格
+                select      : LOCAL + "Test/test_select.json", //下拉选择
+                approval    : LOCAL + "Test/Office/apply/attend_approval.json", //审批人进度
+                modal_show  : LOCAL + "Test/Office/apply/office_apply_attend_overtime_edit.json", //查看盒子
+                edit        : LOCAL + "Test/Office/apply/office_apply_attend_overtime.json", //修改盒子
+            }
+
+        } else if (window.STATE == "route") {}
+
+        //数据表格-----------------------------------------------------------------------------------------------
+        office_apply_attend_overtime_datagrid.datagrid({
+            height: zui_datagrid_height(office_apply_attend_overtime_datagrid),
+            sortable: false,
+            cache: false,
+            showRowIndex: true,
+            checkable: false,
+            checkByClickRow: false,
+            selectable: false,
+            configs: {
+                R0: {className: "text-center"},
+                C1: {className: "cell-hidden"}
+            },
+            states: {
+                pager: {
+                    page: 1,
+                    recPerPage: window.REC_PER_PAGE,
+                }
+            },
+            dataSource: {
+                cols: [
+                    {name: "id",label: "ID",width: 49},
+                    {name: "datetime",label: "申请时间",width: 150},
+                    {name: "username",label: "流水账号",width: 100,html: true,
+                        valueOperator: {
+                            getter: function(dataValue, cell) {
+                                return `<a class="office_apply_attend_overtime_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
+                            }
+                        }
+                    },
+                    {name: "datetime",label: "开始时间",width: 140 },
+                    {name: "datetime",label: "结束时间",width: 140 },
+					{name: "text2",label: "加班类型",width: 100 },
+					{name: "text4",label: "加班补偿",width: 100 },
+                    {name: "text4",label:"审批状态",  width:100},
+                    {name:"statenumb",  label:"操作",width:180,html:true,
+                        valueOperator : {
+                            getter : function(dataValue,cell){
+                                var temp="";
+                                if( cell.rowIndex==1 ){
+                                    temp = `
+                                <a class="office_apply_attend_overtime_back_btn"   rowIndex="${cell.rowIndex}">撤销</a>
+                                <a class="office_apply_attend_overtime_urge_btn" rowIndex="${cell.rowIndex}">催办</a>`;
+                                } else if ( cell.rowIndex==2 ){
+                                    temp =`<a class="office_apply_attend_overtime_edit_btn" rowIndex="${cell.rowIndex}">再次申请</a>`;
+                                }
+                                return  temp;
+                            }
+                        }
+                    }
+                ],
+                remote: function() {
+                    return {
+                        url: office_apply_attend_overtime_api.datagrid,
+                        type: "POST",
+                        dataType: "json",
+                    }
+                }
+            }
+        });
+
+        //变量声明-----------------------------------------------------------------------------------------------
+        var
+                office_apply_attend_overtime_datagrid_obj = office_apply_attend_overtime_datagrid.data("zui.datagrid"), //表格对象
+                office_apply_attend_overtime_show_btn = ".office_apply_attend_overtime_show_btn", //查看按钮
+                office_apply_attend_overtime_back_btn = ".office_apply_attend_overtime_back_btn", //撤销按钮
+                office_apply_attend_overtime_urge_btn = ".office_apply_attend_overtime_urge_btn", //催办按钮
+                office_apply_attend_overtime_edit_btn = ".office_apply_attend_overtime_edit_btn"; //修改按钮
+       
+
+        //节点树-------------------------------------------------------------------------------------------------
+        common_tree_staff($("#office_apply_attend_overtime_add_tree"),true,true);   //添加
+        common_tree_staff($("#office_apply_attend_overtime_edit_tree"),true,true);  //修改
+
+        //时间组件-----------------------------------------------------------------------------------------------
+        common_date_duration(office_apply_attend_overtime_tool_date);
+        office_apply_attend_overtime_tool_date.find(".start").datetimepicker(option_date);
+        office_apply_attend_overtime_tool_date.find(".end").datetimepicker(option_date);
+        office_apply_attend_overtime_add_date1.datetimepicker(option_hour);
+        office_apply_attend_overtime_add_date2.datetimepicker(option_hour);
+        office_apply_attend_overtime_edit_date1.datetimepicker(option_hour);
+        office_apply_attend_overtime_edit_date2.datetimepicker(option_hour);
+
+        //下拉选项-----------------------------------------------------------------------------------------------
+        //洽谈等级
+        $.ajax({
+            url: office_apply_attend_overtime_api.select,
+            type: "post",
+            dataType: "json",
+            data: {},
+            success: function(data) {
+                if (data.status > 0) {
+                    var data = data.data;
+                    var option = "";
+                    for (var i = 0; i < data.length; i++) {
+                        option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
+                    }
+                    office_apply_attend_overtime_tool_select1.html(option);
+					office_apply_attend_overtime_add_type.html(option);
+					office_apply_attend_overtime_add_compensate.html(option);
+					office_apply_attend_overtime_edit_type.html(option);
+					office_apply_attend_overtime_edit_compensate.html(option);
+                }
+            }
+        });
+        //搜索按钮-----------------------------------------------------------------------------------------------
+        office_apply_attend_overtime_search_btn.click(function() {
+            //字段整理
+            var keyword =
+                    "?sid="   + office_apply_attend_overtime_tool_keys.val() +
+                    "&search="+ office_apply_attend_overtime_tool_search.val() +
+                    "&overtime="  + office_apply_attend_overtime_tool_select1.val() +
+                    "&state=" + office_apply_attend_overtime_tool_select2.val() +
+                    "&date1=" + office_apply_attend_overtime_tool_date.find(".start").val() +
+                    "&date2=" + office_apply_attend_overtime_tool_date.find(".end").val();
+            //GET提交
+            zui_datagrid_render(office_apply_attend_overtime_datagrid_obj, office_apply_attend_overtime_api.datagrid + keyword);
+
+        });
+
+        //添加按钮-----------------------------------------------------------------------------------------------
+        office_apply_attend_overtime_add_btn.click(function() {
+
+            //ID取值
+            var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+            //数据复原
+            common_form_reset();
+
+            //抄送人-重置
+            common_tree_staff_reset(office_apply_attend_overtime_add_tree);
+
+            //审批进度
+            common_approval_tree(office_apply_attend_overtime_add_approval,office_apply_attend_overtime_api.approval,data_id);
+
+            //ID赋值
+            office_apply_attend_overtime_add_submit.attr("dataId", data_id);
+
+            //面板显示
+            office_apply_attend_overtime_add_box.modal("show");
+
+        });
+        //添加提交
+        office_apply_attend_overtime_add_submit.click(function() {
+
+            //ID取值
+            var data_id = $(this).attr("dataId");
+
+            //远程提交
+            $.ajax({
+                url: API.test_response,
+                type: "post",
+                dataType:"json",
+                data: {
+                    id      : data_id,
+                    type    : office_apply_attend_overtime_add_type.val(),
+                    date1   : office_apply_attend_overtime_add_date1.val(),
+                    date2   : office_apply_attend_overtime_add_date2.val(),
+                    longs   : office_apply_attend_overtime_add_long.val(),
+                    reason  : office_apply_attend_overtime_add_reason.val(),
+					overtime: office_apply_attend_overtime_add_compensate.val(),
+                    tree    : office_apply_attend_overtime_add_tree.attr("result") || "",
+                },
+                success: function(data) {
+                    if (data.status > 0) {
+                        um_tip(data.message);
+                        zui_datagrid_reset(office_apply_attend_overtime_datagrid_obj, office_apply_attend_overtime_api.datagrid);
+                    } else {
+                        um_tip(data.message, "1500", "text-danger");
+                    }
+                }
+            });
+        });
+        //添加-时间差赋值
+        $("#office_apply_attend_overtime_add_date1,#office_apply_attend_overtime_add_date2").change(function(){
+            var duration = um_date_duration(office_apply_attend_overtime_add_date1.val(),office_apply_attend_overtime_add_date2.val());
+            office_apply_attend_overtime_add_long.val(duration);
+        });
+
+        //修改按钮-----------------------------------------------------------------------------------------------
+        $(document).on("click",office_apply_attend_overtime_edit_btn,function(){
+
+            //ID取值
+            var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+            //数据复原
+            common_form_reset();
+
+            //抄送人-重置
+            common_tree_staff_reset(office_apply_attend_overtime_edit_tree);
+
+            //审批进度
+            common_approval_tree(office_apply_attend_overtime_edit_approval,office_apply_attend_overtime_api.approval,data_id);
+
+            //远程请求
+            $.ajax({
+                url     :office_apply_attend_overtime_api.edit,
+                type    : "post",
+                dataType: "json",
+                data    : { id:data_id },
+                success : function(data){
+                    if(data.status > 0){
+
+                        //数据赋值
+                        var data = data.data;
+                        office_apply_attend_overtime_edit_type.val(data.select);
+                        office_apply_attend_overtime_edit_date1.val(data.starttime);
+                        office_apply_attend_overtime_edit_date2.val(data.endtime);
+                        office_apply_attend_overtime_edit_long.val(data.cause);
+						office_apply_attend_overtime_edit_compensate.val(data.overtime),
+                        office_apply_attend_overtime_edit_reason.val(data.reson);
+                        
+                        common_tree_staff_read(office_apply_attend_overtime_edit_tree,data.tree);
+
+                        //ID赋值
+                        office_apply_attend_overtime_edit_submit.attr("dataId", data_id);
+                        //面板显示
+                        office_apply_attend_overtime_edit_box.modal("show");
+
+                    } else {
+                        um_tip(data.message, "1500", "text-danger");
+                    }
+                }
+
+            })
+
+        });
+        //修改提交
+        office_apply_attend_overtime_edit_submit.click(function() {
+
+            //ID取值
+            var data_id = $(this).attr("rowIndex");
+
+            //远程提交
+            $.ajax({
+                url: API.test_response,
+                type: "post",
+                dataType: "json",
+                data: {
+                    id      : data_id,
+                    type    : office_apply_attend_overtime_edit_type.val(),
+                    date1   : office_apply_attend_overtime_edit_date1.val(),
+                    date2   : office_apply_attend_overtime_edit_date2.val(),
+                    longs   : office_apply_attend_overtime_edit_long.val(),
+                    reason  : office_apply_attend_overtime_edit_reason.val(),
+					overtime:office_apply_attend_overtime_edit_compensate.val(),
+                    tree    : office_apply_attend_overtime_edit_tree.attr("result") || "",
+                },
+                success: function(data) {
+                    if (data.status > 0) {
+                        um_tip(data.message);
+                        zui_datagrid_reset(office_apply_attend_overtime_datagrid_obj, office_apply_attend_overtime_api.datagrid);
+                    } else {
+                        um_tip(data.message, "1500", "text-danger");
+                    }
+                }
+            });
+        });
+        //修改-时间差
+        $("#office_apply_attend_overtime_edit_date1,#office_apply_attend_overtime_edit_date2").change(function(){
+            var duration2 = um_date_duration(office_apply_attend_overtime_edit_date1.val(),office_apply_attend_overtime_edit_date2.val());
+            office_apply_attend_overtime_edit_long.val(duration2);
+        });
+
+        //查看按钮-----------------------------------------------------------------------------------------------
+        $(document).on("click",office_apply_attend_overtime_show_btn, function() {
+
+            //数据取值
+            var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+            //审批流程
+            common_approval_tree(office_apply_attend_overtime_show_approval, office_apply_attend_overtime_api.approval,data_id );
+
+            //远程请求
+            $.ajax({
+                type:'post',
+                url :office_apply_attend_overtime_api.modal_show,
+                dataType:'json',
+                data:{ id:data_id },
+                success:function(data){
+
+                    //数据赋值
+                    var data = data.data;
+                    var temp = `
+                <table class="table table-bordered">
+                    <thead><tr><th colspan="2">流水号:${data.serialnumber}</th></tr></thead>
+                    <tbody>
+                        <tr><td>开始时间:${data.time1}</td><td>结束时间:${data.time2}</td></tr>
+                        <tr><td>时长:${data.duration}</td><td>加班类型:${data.typename}</td></tr>
+                        <tr><td>加班补偿:${data.text}</td><td>审批状态:${data.statename}</td></tr>
+                   </tbody>
+                </table>
+                <hr><div><label>抄送人</label>: ${data.name}</div>`;
+                    office_apply_attend_overtime_show_box.find(".container span").html(temp);
+
+                    //数据赋值
+                    office_apply_attend_overtime_back_submit.attr("dataId",data_id);
+
+                    //面板显示
+                    office_apply_attend_overtime_show_box.modal("show");
+
+                }
+            });
+
+        });
+
+        //撤销按钮-----------------------------------------------------------------------------------------------
+        $(document).on("click",office_apply_attend_overtime_back_btn,function(){
+
+            //数据取值
+            var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+            //数据赋值
+            office_apply_attend_overtime_back_submit.attr("dataId",data_id);
+
+            //面板显示
+            office_apply_attend_overtime_back_box.modal("show");
+
+        });
+        //撤销提交
+        office_apply_attend_overtime_back_submit.click(function(){
+
+            //数据ID
+            var data_id = $(this).attr("dataId");
+
+            //远程提交
+            $.ajax({
+                url     : API.test_response,
+                type    : "post",
+                dataType: "json",
+                data    : { id: data_id },
+                success : function(data){
+                    if( data.status>0 ){
+                        um_tip(data.message);
+                        zui_datagrid_reset(office_apply_attend_overtime_datagrid_obj,office_apply_attend_overtime_api.datagrid);
+                    } else {
+                        um_tip(data.message,"1500","text-danger");
+                    }
+                }
+            });
+        });
+
+        //催办按钮----------------------------------------------------------------
+        $(document).on("click",office_apply_attend_overtime_urge_btn,function(){
+
+            //数据取值
+            var data_id = zui_datagrid_get_id($(this).attr("rowIndex"));
+
+            //数据赋值
+            office_apply_attend_overtime_urge_submit.attr("dataId",data_id);
+
+            //面板显示
+            office_apply_attend_overtime_urge_box.modal("show");
+
+        });
+        //催办提交
+        office_apply_attend_overtime_urge_submit.click(function(){
+
+            //数据ID
+            var data_id = $(this).attr("dataId");
+
+            //远程提交
+            $.ajax({
+                url     : API.test_response,
+                type    : "post",
+                dataType: "json",
+                data    : { id: data_id },
+                success : function(data){
+                    if( data.status>0 ){
+                        um_tip(data.message);
+                        zui_datagrid_reset(office_apply_attend_overtime_datagrid_obj,office_apply_attend_overtime_api.datagrid);
+                    } else {
+                        um_tip(data.message,"1500","text-danger");
+                    }
+                }
+            });
+
+        });
+
+    }); //预加载结尾
+
+</script>
+
+<style>
+    #office_apply_attend_overtime .tool-group input[readonly] {
+        width: 86px !important;
+    }
+</style>

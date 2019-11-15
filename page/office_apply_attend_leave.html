@@ -123,7 +123,7 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <div class="container">
-                        <p><!-- JS推进 --></p>
+                        <span><!-- JS推进 --></span>
                         <div class="office-approval" id="office_apply_attend_leave_show_approval"><!-- JS推进 --></div>
                     </div>
                 </div>
@@ -301,7 +301,7 @@ $(function() {
             datagrid    : API.test_datagrid, //数据表格
             select      : LOCAL + "Test/test_select.json", //下拉选择
             uploader    : LOCAL + "Test/test_upload.php", //上传路径
-            approval    : LOCAL + "Test/Office/approval.json", //审批人进度
+            approval    : LOCAL + "Test/Office/apply/attend_approval.json", //审批人进度
             modal_show  : LOCAL + "Test/Office/apply/attend_leave_show.json", //查看盒子
             edit        : LOCAL + "Test/Office/apply/attend_leave_edit.json", //修改盒子
         }
@@ -610,11 +610,11 @@ $(function() {
                     <tbody>
                         <tr><td>请假类型:${data.typename}</td><td>申请时间:${data.approvaltime}</td></tr>
                         <tr><td>时长:${data.duration}</td><td>审批状态:${data.statename}</td></tr>
-                        <tr><td colspan="4">留言:${data.text}</td></tr>
+                        <tr><td colspan="2">留言:${data.text}</td></tr>
                    </tbody>
                 </table>
-                <hr>`;
-                office_apply_attend_leave_show_box.find(".modal-body p").html(temp);
+                <hr><div><label>抄送人</label>: ${data.name}</div>`;
+                office_apply_attend_leave_show_box.find(".container span").html(temp);
 
                 //数据赋值
                 office_apply_attend_leave_back_submit.attr("dataId",data_id);
