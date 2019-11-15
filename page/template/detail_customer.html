@@ -92,7 +92,8 @@
 
         <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_sink_btn" data-target="#detail_customer_sink_box">同意归库</button>
         <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_turn_btn" data-target="#detail_customer_turn_box">转为正跟踪</button>
-        <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_belong_btn" data-target="#detail_customer_belong_box">隶属于我</button>        
+        <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_overdue_btn" data-target="#detail_customer_overdue_box">过期批复</button> 
+        <button class="btn btn-primary hidden" data-toggle="modal" id="detail_customer_belong_btn" data-target="#detail_customer_belong_box">隶属于我</button>       
         <!-- JS推进 -->
     </div>
     <!-- template-tool-group -->
@@ -280,6 +281,24 @@
     </div>
     <!-- detail_customer_turn_box -->
 
+    <!-- 模板工具条-过期批复 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_overdue_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">过期批复</h4>
+                </div>
+                <div class="modal-body"><div class="container">您确定要批复该过期客户吗？</div></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="detail_customer_overdue_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_customer_belong_box -->
+
     <!-- 模板工具条-隶属于我 -->
     <div class="modal modal-for-page fade" aria-hidden="false" id="detail_customer_belong_box">
         <div class="modal-dialog">
@@ -354,6 +373,10 @@ $(function(){
     detail_customer_turn_btn = $("#detail_customer_turn_btn"),
     detail_customer_turn_box = $("#detail_customer_turn_box"),
     detail_customer_turn_submit = $("#detail_customer_turn_submit"),
+    //过期批复
+    detail_customer_overdue_btn = $("#detail_customer_overdue_btn"),
+    detail_customer_overdue_box = $("#detail_customer_overdue_box"),
+    detail_customer_overdue_submit = $("#detail_customer_overdue_submit"),
     //隶属于我
     detail_customer_belong_btn = $("#detail_customer_belong_btn"),
     detail_customer_belong_box = $("#detail_customer_belong_box"),
@@ -398,47 +421,37 @@ $(function(){
 
                 //数据转接
                 var data = data.data;
-
+                
                 /*
-                #客户跟踪 business_customer_tracked
-                if( COMMON.returnAllow ){
-                    修改
-                    if( state="跟踪" ) 提交至经理 放弃
-                    if( state="转正" ) 转为正跟踪
-                }
+                #data.returnAllow 回访未过期
+                    bool
+                #data.state 客户状态
+                    1 跟踪
+                    2 放弃
+                    3 已提交(商务经理未审批)
+                    4 不准申请中
+                    5 未签申请中*/ 
 
-                #客户管理 business_customer_admin
-                打回
-                if( state="已提交(商务经理未审批)" ) 提交设计部
-                if( state="不准申请中|未签申请中 " ) 归库
-
-                #客户审批 business_customer_approval
-                提交设计部
-                打回
-
-                #过期审批 business_customer_overdue
-                过期批复
-
-                #失败审批 business_customer_failure
-                归库
-                打回
-
-                #可抢客户 business_public_customer_get
-                无操作
-
-                #客户资源 business_public_customer_source
-                无操作
-                */
-
-                //模板工具条(客户管理|过期审批|客户资源=>无操作按钮)
-                if( DETAIL_SOURCE.page_id == "business_customer_tracked" ){ //客户跟踪
+                //模板工具条
+                if( DETAIL_SOURCE.page_id == "business_customer_tracked" && data.returnAllow ){ //客户跟踪 && 回访未过期
                     detail_customer_edit_btn.removeClass("hidden"); //修改
-                    detail_customer_abandon_btn.removeClass("hidden"); //放弃客户
-                    detail_customer_submitToBusiness_btn.removeClass("hidden"); //提交商务经理
-                    //状态值处于放弃时
-                    if( data.state==0 ){ 
+                    if ( data.state==1 ) { //状态=跟踪
+                        detail_customer_submitToBusiness_btn.removeClass("hidden"); //提交商务经理
+                        detail_customer_abandon_btn.removeClass("hidden"); //放弃客户
+                    } else if ( data.state==2 ){ //状态=放弃
                         detail_customer_turn_btn.removeClass("hidden"); //转为正跟踪
                     }
+                } else if( DETAIL_SOURCE.page_id == "business_customer_admin" ){ //客户管理
+                    if ( data.state==3 ) { //状态=已提交(商务经理未审批)
+                        detail_customer_backToSalesman_btn.removeClass("hidden"); //打回商务继续跟踪
+                        detail_customer_submitToDesign_btn.removeClass("hidden"); //提交主案经理
+                    } else if ( data.state==4 || data.state==5 ){ //状态=不准申请中|未签申请中
+                        detail_customer_backToSalesman_btn.removeClass("hidden"); //打回商务继续跟踪
+                        detail_customer_backToDesign_btn.removeClass("hidden"); //打回主案经理                        
+                        detail_customer_sink_btn.removeClass("hidden"); //同意归库                        
+                    }
+                } else if( DETAIL_SOURCE.page_id == "business_customer_overdue" ){ //过期审批
+                    detail_customer_overdue_btn.removeClass("hidden"); //过期批复
                 } else if( DETAIL_SOURCE.page_id == "business_customer_approval" ){ //客户审批
                     detail_customer_backToSalesman_btn.removeClass("hidden"); //打回商务继续跟踪
                     detail_customer_submitToDesign_btn.removeClass("hidden"); //提交主案经理
@@ -449,6 +462,7 @@ $(function(){
                 } else if( DETAIL_SOURCE.page_id == "business_public_customer_get" ){ //可抢客户
                     detail_customer_belong_btn.removeClass("hidden"); //隶属于我
                 }
+                //客户资源 business_public_customer_source 无操作
 
                 //切换按钮(客户跟踪|客户管理|过期审批|客户资源|可抢客户=>显示前三个)
                 if( DETAIL_SOURCE.page_id == "business_customer_approval" ){ //客户审批(业务回访)
@@ -884,6 +898,28 @@ $(function(){
             }
         });
     });
+
+    //模板工具条-过期批复
+    detail_customer_overdue_submit.click(function(){
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { 
+                id : DETAIL_SOURCE.data_id
+            },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    }); 
 
     //模板工具条-隶属于我
     detail_customer_belong_submit.click(function(){
