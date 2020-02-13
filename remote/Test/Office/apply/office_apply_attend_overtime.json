@@ -1,0 +1,102 @@
+{
+  "result" : true,
+  "message": "获取成功",
+  "status" : 1,
+  "data"   : {
+    "reson"          : "病假",
+    "starttime"     : "2019-11-13 14:00",
+    "endtime"       : "2019-11-14 14:00",
+    "cause"         : "1天0小时",
+    "pics"          : [
+            {
+                "id"                : 3,
+                "name"              : "3.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg?id=3"
+            },
+            {
+                "id"                : 4,
+                "name"              : "4.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg?id=4"
+            },
+            {
+                "id"                : 5,
+                "name"              : "5.jpg",
+                "type"              : "image/jpeg",
+                "origSize"          : 256,
+                "size"              : 128,
+                "lastModifiedDate"  : "10:20",
+                "url"               : "./remote/Upload/test_upload.jpg?id=5"
+            }
+        ],
+    "tree" : [
+      {
+        "text"      : "总经办",
+        "icon"      : "check-empty",
+        "type"      : "0",
+        "children"  : [
+          {
+            "text": "网络部",
+            "icon": "checked",
+            "type"  : "0",
+            "children": [
+              { "text":"刘德华","icon":"checked","userid":"10010","type":"1" },
+              { "text":"张学友","icon":"checked","userid":"10011","type":"1" },
+              { "text":"郑中基","icon":"checked","userid":"10012","type":"1" },
+              { "text":"李连杰","icon":"checked","userid":"10013","type":"1" },
+              { "text":"甄子丹","icon":"checked","userid":"","type":"1" }
+            ]
+          },{
+            "text": "主案部",
+            "icon": "check-empty",
+            "type"  : "0",
+            "children": [{
+              "text": "主案1部",
+              "icon": "check-empty",
+              "type"  : "0",
+              "children": [
+                { "text":"吴青峰","icon":"check-empty","userid":"10015","type":"1" },
+                { "text":"陈嘉桦","icon":"check-empty","userid":"10016","type":"1" },
+                { "text":"林宥嘉","icon":"check-empty","userid":"10017","type":"1" }
+              ]
+            }]
+          },{
+            "text": "工程部",
+            "icon": "check-empty",
+            "type"  : "0",
+            "children": [{
+              "text": "工程1部",
+              "icon": "check-empty",
+              "type"  : "0",
+              "children": [
+                { "text":"孟美岐","icon":"check-empty","userid":"10018","type":"1" },
+                { "text":"吴宣仪","icon":"check-empty","userid":"10019","type":"1" },
+                { "text":"杨超越","icon":"check-empty","userid":"10020","type":"1" }
+              ]
+            },{
+              "text"  : "工程2部",
+              "icon"  : "check-empty",
+              "type"  : "0",
+              "children": [
+                { "text":"言承旭","icon":"check-empty","userid":"10021","type":"1" },
+                { "text":"周渝民","icon":"check-empty","userid":"10022","type":"1" },
+                { "text":"吴建豪","icon":"check-empty","userid":"10023","type":"1" },
+                { "text":"朱孝天","icon":"check-empty","userid":"10024","type":"1" }
+                         ]
+                 }
+            ]
+          }
+        ]
+      }
+    ],
+    "select":3,
+	"overtime":2
+  }
+}

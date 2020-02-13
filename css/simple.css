@@ -1,7 +1,7 @@
 /*样式引入*/
 @import url(zui.min.css);
+@import url(validationEngine.jquery.css);
 @import url(base.css);
-@import url(../fonts/iconfont.css);
 /*登录页面*/
 .page-login{
     background:url(../img/login_bg.jpg);

@@ -22,27 +22,27 @@
                         <!-- 字段格式 -->                      
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="test_validate_rule_user">姓名</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_user"></div>
+                            <div class="col-sm-8"><input type="text" class="form-control validate[required,custom[ruleName]]" id="test_validate_rule_user"></div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="test_validate_rule_mobile">手机</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_mobile"></div>
+                            <div class="col-sm-8"><input type="text" class="form-control validate[required,custom[mobile]]" id="test_validate_rule_mobile"></div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="test_validate_rule_phone">座机</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_phone"></div>
+                            <div class="col-sm-8"><input type="text" class="form-control validate[required,custom[Landline]]" id="test_validate_rule_phone"></div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="test_validate_rule_mail">邮箱</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_mail"></select></div>
+                            <div class="col-sm-8"><input type="text" class="form-control validate[required,custom[email]] " id="test_validate_rule_mail"></div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="test_validate_rule_ip">IP地址</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_ip"></div>
+                            <div class="col-sm-8"><input type="text" class="form-control  validate[required,custom[ipv4]]" id="test_validate_rule_ip"></div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="test_validate_rule_idCard">身份证</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" id="test_validate_rule_idCard"></div>
+                            <div class="col-sm-8"><input type="text" class="form-control validate[required,custom[identity]]" id="test_validate_rule_idCard"></div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="test_validate_rule_bankCard">银行卡</label>
@@ -52,7 +52,7 @@
                         <div class="form-group require">
                             <label class="col-sm-2 required" for="test_validate_rule_select">下拉框</label>
                             <div class="col-sm-8">
-                                <select class="form-control" id="test_validate_rule_select">
+                                <select class="form-control validate[required]" id="test_validate_rule_select">
                                     <option value="">--请选择--</option>
                                     <option value="1">办公空间</option>
                                     <option value="2">教育空间</option>
@@ -64,18 +64,18 @@
                         <div class="form-group require">
                             <label class="col-sm-2 required">复选框1</label>
                             <div class="col-sm-8" id="test_validate_rule_che1">
-                                <label><input type="checkbox" name="test_validate_rule_che1" value="1">办公</label>&nbsp;&nbsp;
-                                <label><input type="checkbox" name="test_validate_rule_che1" value="2">教育</label>&nbsp;&nbsp;
-                                <label><input type="checkbox" name="test_validate_rule_che1" value="3">医美</label>&nbsp;&nbsp;
+                                <label><input type="checkbox" name="test_validate_rule_che1" value="1" class="validate[required,minCheckbox[2]]">办公</label>&nbsp;&nbsp;
+                                <label><input type="checkbox" name="test_validate_rule_che1" value="2" class="validate[required,minCheckbox[2]]">教育</label>&nbsp;&nbsp;
+                                <label><input type="checkbox" name="test_validate_rule_che1" value="3" class="validate[required,minCheckbox[2]]">医美</label>&nbsp;&nbsp;
                             </div>
                         </div>
                         <div class="form-group require">
                             <label class="col-sm-2 required">复选框2</label>
                             <div class="col-sm-8">
                                 <div class="btn-group" data-toggle="buttons" id="test_validate_rule_che2">
-                                    <label class="btn"><input type="checkbox" name="test_validate_rule_che2" value="1">办公</label>
-                                    <label class="btn"><input type="checkbox" name="test_validate_rule_che2" value="2">教育</label>
-                                    <label class="btn"><input type="checkbox" name="test_validate_rule_che2" value="3">医美</label>
+                                    <label class="btn"><input type="checkbox" name="test_validate_rule_che2" value="1" class="validate[required,minCheckbox[2]]]">办公</label>
+                                    <label class="btn"><input type="checkbox" name="test_validate_rule_che2" value="2" class="validate[required,minCheckbox[2]]]">教育</label>
+                                    <label class="btn"><input type="checkbox" name="test_validate_rule_che2" value="3" class="validate[required,minCheckbox[2]]]">医美</label>
                                 </div>
                             </div>
                         </div>
@@ -110,12 +110,6 @@
 <script>
 $(function(){
 
-    /*正则规则
-    var reg_ip   = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
-    var reg_2_10 = /^.{2,10}$/;
-    var reg_tel  = /^[1][0-9]{10}$/;
-    */
-
     //变量声明-----------------------------------------------------------------------------------------------
     var
     test_validate_rule_btn = $("#test_validate_rule_btn"),
@@ -138,8 +132,12 @@ $(function(){
     common_tree_staff(test_validate_rule_tree,false,true);
     zui_upload_img({upid:"test_validate_rule_upload"});
 
+    //表单验证-------------------------------------------------------------------------------------------
+    $('#test_validate_rule_box form').validationEngine({
+        showOneMessage: false
+    });
+
     //表单验证按钮-------------------------------------------------------------------------------------------
-    test_validate_rule_box.modal("show");                                    //默认显示
     test_validate_rule_btn.click(function(){
         common_form_reset();
         common_tree_staff_reset( test_validate_rule_tree );
@@ -155,6 +153,23 @@ $(function(){
         var test_validate_rule_che2_val = [];
         test_validate_rule_che2.find("input[type='checkbox']:checked").each(function(){ test_validate_rule_che2_val.push($(this).val()) });
 
+        //表单验证
+        if( $('#test_validate_rule_box form').validationEngine("validate") === false ){
+            return;
+        }
+
+        //节点勾选
+        if( test_validate_rule_tree.attr("result")==undefined || test_validate_rule_tree.attr("result")==""){
+            um_tip("节点不能为空","1000","text-danger");
+            return;
+        }
+        //文件上传
+        if( test_validate_rule_upload.attr("path")==undefined || test_validate_rule_upload.attr("path")==""){
+             um_tip("文件不能为空","1000","text-danger");
+             return;
+        }
+
+        //远程提交
         $.ajax({
             url     : API.test_response,
             type    : "post",

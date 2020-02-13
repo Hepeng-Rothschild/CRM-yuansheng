@@ -2,127 +2,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <script src="./lib/jquery/jquery.js"></script>
+<script src="./js/jquery.validationEngine-zh_CN.js"></script>
+<script src="./js/jquery.validationEngine.js"></script>
 <script src="./js/zui.js"></script>
-<link  href="./lib/tabs/zui.tabs.min.css" rel="stylesheet">
 <script src="./lib/tabs/zui.tabs.min.js"></script>
-<link  href="./lib/datagrid/zui.datagrid.min.css" rel="stylesheet">
 <script src="./lib/datagrid/zui.datagrid.js"></script>
-<link  href="./lib/chosen/chosen.min.css" rel="stylesheet">
 <script src="./lib/chosen/chosen.min.js"></script>
-<link href="./lib/treemap/zui.treemap.css" rel="stylesheet">
 <script src="./lib/treemap/zui.treemap.js"></script>
-<link  href="./lib/uploader/zui.uploader.css" rel="stylesheet">
 <script src="./lib/uploader/zui.uploader.js"></script>
-<link  href="./lib/dashboard/zui.dashboard.min.css" rel="stylesheet">
 <script src="./lib/dashboard/zui.dashboard.min.js"></script>
-<link  href="./lib/board/zui.board.min.css" rel="stylesheet">
 <script src="./lib/board/zui.board.min.js"></script>
-<link  href="./lib/colorpicker/zui.colorpicker.min.css" rel="stylesheet">
 <script src="./lib/colorpicker/zui.colorpicker.min.js"></script>
-<link  href="./lib/imgcutter/zui.imgcutter.min.css" rel="stylesheet">
 <script src="./lib/imgcutter/zui.imgcutter.min.js"></script>
-<link  href="./lib/datatable/zui.datatable.min.css" rel="stylesheet">
 <script src="./lib/datatable/zui.datatable.min.js"></script>
-<link  href="./lib/calendar/zui.calendar.css" rel="stylesheet">
 <script src="./lib/calendar/zui.calendar.js"></script>
 <script src="./lib/selectable/zui.selectable.min.js"></script>
 <script src="./lib/kindeditor/kindeditor.min.js"></script>
 <script src="./lib/chart/zui.chart.min.js"></script>
 <script src="./lib/colorset.js/zui.colorset.min.js"></script>
-<link rel="stylesheet" href="./lib/datetimepicker/datetimepicker.min.css">
 <script src="./lib/datetimepicker/datetimepicker.js"></script>
-<link href="./css/page.css" rel="stylesheet">
+<link href="./css/link.css" rel="stylesheet">
 <script src="./js/config.js"></script>
 <script src="./js/base.js"></script>
-<div class="wrapper">
-<header class="main-header">
-<nav class="navbar navbar-fixed-top">
-<div class="navbar-header">
-<a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="icon icon-th-large"></i></a>
-<a class="sidebar-toggle" data-toggle="push-menu"><i class="icon icon-bars"></i></a>
-<a class="navbar-brand" href="/zui-admin/" style="width:200px;"><span>测试单页</span></a></div></nav></header>
-<aside class="main-sidebar scrollbar-hover"></aside>
-<div class="content-wrapper scrollbar-hover">
-    <!-- 走马灯提示 -->
-    <div class="common-tips flex-box">
-       <i class="icon icon-bullhorn"></i>
-       <marquee class="flex-son" onmouseout="this.start()" onmouseover="this.stop()">滚动消息</marquee>
-    </div>
-    <div class="tabs" id="common_tabs"></div>
-</div></div>
-<style>
-    .common-tips{
-        width: 100%;
-        height: 30px;
-        position: relative;
-        z-index: 9999;
-        line-height: 30px;
-        background: #ebf2f9;
-    }
-    .common-tips .icon{
-        display: block;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-        text-align: center;
-        font-size: large!important;
-    }
-    .common-tips .flex-son{
-        color: red;
-    }
-    .tabs-navbar{
-        top:80px;
-    }    
-/*    .tabs-navbar{
-        display: none;
-    }
-    .tabs-container{
-        top:-3px;
-    }*/
-</style>
+<!-- 测试代码 -->
+<div class="wrapper"><header class="main-header"><nav class="navbar navbar-fixed-top"><div class="collapse navbar-collapse"><div class="container-fluid flex-box">
+<div class="flex-son"><ul class="nav navbar-nav navbar-right flex-box"><li class="flex-son lead">测试页面</li></ul></div></div></div></nav></header>
+<aside class="main-sidebar scrollbar-hover"></aside><div class="content-wrapper scrollbar-hover">
+<div class="common-marquee flex-box text-danger"><i class="icon icon-bullhorn"></i> 滚动消息</div><div class="tabs" id="common_tabs"></div></div>
+<!-- test_code -->
 <script>
-//公共数据----------------------------------------------------------------
-window.COMMON = {
-    position_id: 1,
-    user_id    : 2,
-    logAllow   : 0, //跟进允许 1为允许跟进 0为不允许跟进
-}
-var page = "business_provider_list";
-$("#common_tabs").tabs({tabs:[{
-    id    : "test",
+var page = "office_apply_attend_leave";
+var common_tabs = $("#common_tabs");
+common_tabs.tabs({tabs:[{
+    id    : page,
     type  : "ajax",
-    title : "测试单页",
-    url   : "./page/"+ page +".html",
+    title : "测试页面",
+    url   : "./page/"+ page +".html", //template
 }]});
-/*
-#工作搁置
-1)行政管理-物品管理：页面制作
-2)全局页面-数据表格：宽度标准
-    id      50
-    sexy    50
-    default 80
-    tels    100
-    full    .1
-    operate 180
-
-#bug记录
-    1)假期余额-修改面板：tab面板显示不出来(css强制显示-需多测试)
-    2)日历隐藏触发hide.zui.modal事件(上传和日历的冲突)
-    3)面板重置 function common_tabs_reset(){$("#common_tabs").data("zui.tabs").reload();}
-    datagrid : "http://localhost/zui_admin_api/index.php/index/test_datagrid",
-    datagrid : "http://sast.wentesjj.com/index/test_datagrid",
-    
- #设计管理
-    design_list
-    design_assign
-    design_admin
-    design_measure
-    design_mapping
-    design_failure   失败审批发生过改变
-    design_overdue
-    design_unbelong  未隶属发生过改变
-    design_budget_build
-    design_budget_approval1
-    design_budget_approval2
-*/
+window.COMMON_TABS_OBJ = common_tabs.data("zui.tabs");
+window.DETAIL_SOURCE;
+window.COMMON = { position_id:1,user_id:2,logAllow:1 }
 </script>

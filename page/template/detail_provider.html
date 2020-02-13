@@ -1,0 +1,828 @@
+<style>
+.template-wrapper{
+    padding: 0 10px 10px;
+}
+.template-wrapper .template-tool-group{
+    padding: 15px 0 10px;
+}
+.template-wrapper .template-tool-group button{
+    margin:0 5px;
+}
+.template-wrapper table tbody tr:nth-child(1) td:nth-child(1),
+.template-wrapper table tbody tr:nth-child(1) td:nth-child(2){
+    width: 280px;
+}
+.template-wrapper table *{
+    font-size: small;
+    font-weight: normal;
+    color:#666;
+    line-height:22px;
+}
+.template-wrapper table b{
+    color: #000;
+    display: inline-block;
+    min-width: 70px;
+    text-align: justify;
+    text-align-last: justify;
+}
+.template-wrapper table b:after{
+    content: '：';
+}
+/*模式样式*/
+.template-wrapper table td input,
+.template-wrapper table td select,
+.template-wrapper table td textarea{
+    padding:2px!important;
+    height: 22px!important;
+    border-radius: 0!important;
+    max-width: 150px;
+    position: relative;
+    top: 0px;
+    left: -3px;
+}
+.template-wrapper table td span+textarea{
+    max-width: 710px;
+    top: -3px;
+}
+/*模式-显示*/
+.template-wrapper.mode-show table td span{
+    display: inline-block;
+}
+.template-wrapper.mode-show table td input,
+.template-wrapper.mode-show table td select,
+.template-wrapper.mode-show table td textarea{
+    display: none;
+}
+.template-wrapper.mode-show #detail_provider_edit_btn{
+    display: inline-block;
+}
+.template-wrapper.mode-show #detail_provider_edit_submit{
+    display: none;
+}
+/*模式-修改*/
+.template-wrapper.mode-edit table td span{
+    display: none;
+}
+.template-wrapper.mode-edit table td input,
+.template-wrapper.mode-edit table td select,
+.template-wrapper.mode-edit table td textarea{
+    display: flex;
+}
+.template-wrapper.mode-edit #detail_provider_edit_btn{
+    display: none;
+}
+.template-wrapper.mode-edit #detail_provider_edit_submit{
+    display: inline-block;
+}
+</style>
+<!-- 模板外套 -->
+<div class="template-wrapper table-responsive mode-show" id="detail_provider">
+    
+    <!-- 模板工具条 -->
+    <div class="template-tool-group">
+        <!-- JS推进 -->
+    </div>
+    <!-- template-tool-group -->
+
+    <!-- 修改表单 -->
+    <form id="detail_provider_form"><table class="table" id="detail_provider_base"></table></form>
+    <!-- detail_provider_form -->
+
+    <!-- 切换面板 -->
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-tab="" href="#detail_provider_record1">回访记录</a></li>
+        <li><a data-tab="" href="#detail_provider_record2">客户记录</a></li>
+        <li><a data-tab="" href="#detail_provider_record3">信息费记录</a></li>
+        <li><a data-tab="" href="#detail_provider_record4">提成记录</a></li>
+        <li><a data-tab="" href="#detail_provider_record5">过程记录</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="detail_provider_record1">
+            <div class="datagrid datagrid-striped">
+                <div class="datagrid-container"></div>
+                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+            </div>
+        </div>
+        <div class="tab-pane" id="detail_provider_record2">
+            <div class="datagrid datagrid-striped">
+                <div class="datagrid-container"></div>
+                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+            </div>
+        </div>
+        <div class="tab-pane" id="detail_provider_record3">
+            <div class="datagrid datagrid-striped">
+                <div class="datagrid-container"></div>
+                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+            </div>
+        </div>
+        <div class="tab-pane" id="detail_provider_record4">
+            <div class="datagrid datagrid-striped">
+                <div class="datagrid-container"></div>
+                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+            </div>
+        </div>
+        <div class="tab-pane" id="detail_provider_record5">
+            <div class="datagrid datagrid-striped">
+                <div class="datagrid-container"></div>
+                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+            </div>
+        </div>
+    </div>
+    <!-- nav-tabs -->
+
+    <!-- 模板工具条-放弃信息员 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_provider_abandon_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">放弃信息员</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="detail_provider_abandon_type">放弃理由</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="detail_provider_abandon_type">
+                                    <option value="1">有价值</option>
+                                    <option value="2">无价值</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="detail_provider_abandon_text">理由详情</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="detail_provider_abandon_text"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger" id="detail_provider_abandon_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_provider_record2_abandon_box -->
+
+    <!-- 模板工具条-隶属于我 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_provider_belong_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">隶属于我</h4>
+                </div>
+                <div class="modal-body"><div class="container">您确定隶属于自己名下吗？</div></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="detail_provider_belong_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_provider_belong_box -->
+
+    <!-- 客户记录-回访 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_provider_record2_return_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">回访</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="detail_provider_record2_return_text">回访内容</label>
+                            <div class="col-sm-8"><textarea class="form-control" id="detail_provider_record2_return_text"></textarea></div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="detail_provider_record2_return_days">回访天数</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="detail_provider_record2_return_days"><!-- JS推进 --></select>
+                            </div>
+                        </div>
+                        <div class="form-group require">
+                            <label class="col-sm-2 required" for="detail_provider_record2_return_date">回访时间</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="detail_provider_record2_return_date" readonly>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="detail_provider_record2_return_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_provider_record2_return_box -->
+
+    <!-- 客户记录-提交商务经理 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_provider_record2_toBussiness_box">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">提交商务经理</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">确定提交商务经理吗?</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="detail_provider_record2_toBussiness_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_provider_record2_toBussiness_box -->
+
+    <!-- 客户记录-放弃客户 -->
+    <div class="modal modal-for-page fade" aria-hidden="false" id="detail_provider_record2_abandon_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">放弃客户</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="detail_provider_record2_abandon_type">放弃理由</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="detail_provider_record2_abandon_type">
+                                    <option value="1">有价值</option>
+                                    <option value="2">无价值</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required" for="detail_provider_record2_abandon_text">理由详情</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="detail_provider_record2_abandon_text"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger" id="detail_provider_record2_abandon_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detail_provider_record2_abandon_box -->
+
+<div>
+<!-- template-wrapper -->
+<script>
+$(function(){
+
+    /*必传参数
+    window.DETAIL_SOURCE = window.DETAIL_SOURCE || {
+        page_id : 'business_provider_list',
+        data_id : 500
+    }*/
+
+    //变量声明
+    var
+    detail_provider = $("#detail_provider"), //页面ID
+    detail_provider_back_btn = "#detail_provider_back_btn", //返回按钮
+    detail_provider_edit_btn = "#detail_provider_edit_btn", //修改按钮
+    detail_provider_edit_submit = "#detail_provider_edit_submit", //修改提交
+    detail_provider_abandon_btn = "#detail_provider_abandon_btn", //放弃按钮
+    detail_provider_belong_btn = "#detail_provider_belong_btn", //隶属按钮
+    detail_provider_abandon_box = $("#detail_provider_abandon_box"), //放弃盒子
+    detail_provider_abandon_submit = $("#detail_provider_abandon_submit"), //放弃提交
+    detail_provider_abandon_type = $("#detail_provider_abandon_type"), //放弃理由
+    detail_provider_abandon_text = $("#detail_provider_abandon_text"), //放弃详情
+    detail_provider_belong_box = $("#detail_provider_belong_box"), //隶属盒子
+    detail_provider_belong_submit = $("#detail_provider_belong_submit"), //隶属提交
+    detail_provider_form = $("#detail_provider_form"), //修改表单
+    detail_provider_base = $("#detail_provider_base"), //基础表格
+    detail_provider_record1 = $("#detail_provider_record1"), //回访记录
+    detail_provider_record2 = $("#detail_provider_record2"), //客户记录
+    detail_provider_record3 = $("#detail_provider_record3"), //信息费记录
+    detail_provider_record4 = $("#detail_provider_record4"), //提成记录
+    detail_provider_record5 = $("#detail_provider_record5"); //过程记录
+
+    //接口对象
+    if( window.STATE == "local" ){
+
+        //本地接口
+        var detail_provider_api = {
+            return_days : LOCAL + "Test/test_select_return_days.json", //回访天数
+            base        : LOCAL + "Test/Template/provider.json" + "?id=" + DETAIL_SOURCE.data_id + "&page_id=" + DETAIL_SOURCE.page_id,
+            record1     : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
+            record2     : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
+            record3     : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
+            record4     : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
+            record5     : API.test_datagrid + "?id=" + DETAIL_SOURCE.data_id,
+        }
+
+    } else if ( window.STATE == "route" ){}
+
+    //模板页面-关闭
+    $("#common_tabs").on("onClose",function(event,tab){
+        if( tab.id == "detail_provider" ){
+            COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+        }
+    });
+
+    //模板工具条-返回
+    $(document).on("click",detail_provider_back_btn,function(){
+        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+    });
+
+    //模板工具条-放弃
+    $(document).on("click",detail_provider_abandon_btn,function(){
+        common_form_reset();
+        detail_provider_abandon_submit.attr("rowIndex",$(this).attr("rowIndex"));
+        detail_provider_abandon_box.modal("show");
+    });
+    detail_provider_abandon_submit.click(function(){
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { 
+                id : DETAIL_SOURCE.data_id,
+                type : detail_provider_abandon_type.val(),
+                text : detail_provider_abandon_text.val(),
+            },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //模板工具条-隶属于我
+    detail_provider_belong_submit.click(function(){
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { 
+                id : DETAIL_SOURCE.data_id
+            },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.close($(this).parents(".template-wrapper").attr("id"));
+                        COMMON_TABS_OBJ.reload(DETAIL_SOURCE.page_id);
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //基础表格
+    $.ajax({
+        url     : detail_provider_api.base,
+        type    : "post",
+        dataType: "json",
+        data    : { id:DETAIL_SOURCE.data_id },
+        success : function(data){
+            if( data.status>0 ){
+
+                //数据转接
+                var data = data.data;
+
+                //模板工具条
+                var template_tool_group = `<button class="btn" id="detail_provider_back_btn"><i class="icon icon-arrow-left"></i> 返回</button>`;
+                if ( DETAIL_SOURCE.page_id == "business_provider_list" ){ // 信息员列表
+                    template_tool_group+= `
+                        <button class="btn btn-primary" id="detail_provider_edit_btn"><i class="icon icon-edit"></i> 修改</button>
+                        <button class="btn btn-primary" id="detail_provider_edit_submit"><i class="icon icon-save"></i> 保存</button>
+                        <button class="btn btn-primary" id="detail_provider_abandon_btn"><i class="icon icon-inbox"></i> 放弃</button>
+                    `;
+                } else if ( DETAIL_SOURCE.page_id == "business_public_provider_get" && data.overdue==0 ){ // '可抢信息员'页面 && 未过期
+                    template_tool_group+=`
+                        <button class="btn btn-primary" data-toggle="modal" id="detail_provider_belong_btn" data-target="#detail_provider_belong_box"><i class="icon icon-flag"></i> 隶属于我</button>
+                    `;
+                }
+                detail_provider.find(".template-tool-group").html(template_tool_group);
+
+                //基础表格
+                var temp_base = `
+                <thead><tr><td colspan="3"><b>业务员</b>${data.salesman}</td></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><div class="flex-box"><b>姓名 </b><span>${data.user1}</span><input class="form-control flex-son" value="${data.user1}" readonly></div></td>
+                        <td><div class="flex-box"><b>姓名2</b><span>${data.user2}</span><input class="form-control flex-son" value="${data.user2}" readonly></div></td>
+                        <td><div class="flex-box"><b>手机1</b><span>${data.tel1}</span><input class="form-control flex-son" value="${data.tel1}" readonly> </div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="flex-box"><b>手机2</b><span>${data.tel2}</span><input class="form-control flex-son" value="${data.tel2}" readonly></div></td>
+                        <td><div class="flex-box"><b>手机3</b><span>${data.tel3}</span><input class="form-control flex-son" value="${data.tel3}" readonly></div></td>
+                        <td><div class="flex-box"><b>手机4</b><span>${data.tel4}</span><input class="form-control flex-son" value="${data.tel4}" readonly></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="flex-box"><b>银行名称</b><span>${data.bankname}</span><input class="form-control flex-son" name="bankname" value="${data.bankname}"></div></td>
+                        <td><div class="flex-box"><b>开户人</b><span>${data.bankuser}</span><input class="form-control flex-son" name="bankuser" value="${data.bankuser}"></div></td>
+                        <td><div class="flex-box"><b>银行卡号</b><span>${data.bankcard}</span><input class="form-control flex-son" name="bankcard" value="${data.bankcard}"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="flex-box"><b>公司名称</b><span>${data.company}</span><input class="form-control flex-son" name="company" value="${data.company}"></div></td>
+                        <td><div class="flex-box"><b>服务区域</b><span>${data.area}</span><input class="form-control flex-son" name="area" value="${data.area}"></div></td>
+                        <td><div class="flex-box"><b>身份证号</b><span>${data.idcard}</span><input class="form-control flex-son" name="idcard" value="${data.idcard}"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="flex-box"><b>生日</b><span>${data.birthday}</span><input class="form-control flex-son" name="birthday" value="${data.birthday}"></div></td>
+                        <td><div class="flex-box"><b>级别</b><span>${data.levelname}</span><select class="form-control flex-son" name="levelname">
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                            <option value="4">D</option>
+                            <option value="5">E</option>
+                        </select></div></td>
+                        <td><div class="flex-box"><b>工作性质</b><span>${data.typename}</span><select class="form-control flex-son" name="typename">
+                            <option value="1">开发商</option>
+                            <option value="2">物业</option>
+                            <option value="3">自由经纪人</option>
+                            <option value="4">租赁</option>
+                            <option value="5">招商</option>
+                            <option value="6">售楼</option>
+                        </select></div></td>
+                    </tr>
+                    <tr><td colspan="3"><div class="flex-box" style="height:35px;"><b>备注信息</b><span>${data.text}</span><textarea class="form-control flex-son" name="text">${data.text}</textarea></div></td></tr>
+                </tbody>
+                `;
+                detail_provider_base.html(temp_base);
+
+                //select选中
+                detail_provider_base.find("select[name='levelname']").val(data.levelnumb);
+                detail_provider_base.find("select[name='typename']").val(data.typenumb);
+
+                //验证调用
+                //detail_provider_form.validationEngine({scroll:false});
+
+            } else {
+                um_tip(data.message,"1500","text-danger");
+            }
+        }
+    });
+
+    //模板工具条-修改
+    $(document).on("click",detail_provider_edit_btn,function(){
+        detail_provider.addClass("mode-edit").removeClass("mode-show");
+    });
+    $(document).on("click",detail_provider_edit_submit,function(){
+        //if( detail_provider_form.validationEngine("validate") === false ){ return; }
+        $.ajax({
+            url     : API.test_response,
+            type    : "post",
+            dataType: "json",
+            data    : um_data_get(detail_provider_form),
+            success : function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        COMMON_TABS_OBJ.reload(detail_provider.attr("id"));
+                        //detail_provider.addClass("mode-show").removeClass("mode-edit");
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //回访记录
+    detail_provider_record1.datagrid({
+        height      : "page",
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : 10,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",          width:49 },
+                {name:"name",    label:"回访人",      width:80 },
+                {name:"tex10",   label:"回访内容",    width:200},
+                {name:"datetime",label:"回访时间",    width:140},
+                {name:"datetime",label:"下次回访时间",width:140},
+                {name:"text2",   label:"是否有效",    width:80 },
+            ],
+            remote : function(){
+                return {
+                    url     : detail_provider_api.record1,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //客户记录
+    detail_provider_record2.datagrid({
+        height      : "page",
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : 10,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",          width:49 },
+                {name:"username",label:"项目编号",    width:80 },
+                {name:"text5",   label:"客户名称",    width:140},
+                {name:"name",    label:"联系人1",     width:80 },
+                {name:"name",    label:"业务员",      width:80 },
+                {name:"name",    label:"主案设计师",  width:90 },
+                {name:"text2",   label:"房源状态",    width:80 },
+                {name:"text2",   label:"面积",        width:80 },
+                {name:"datetime",label:"上次回访时间",width:140},
+                {name:"tex10",   label:"上次回访内容",width:200},
+                {name:"text2",   label:"回访剩余",    width:80 },
+                {name:"text2",   label:"状态",        width:80 },
+                {name:"state",   label:"操作",        width:180,
+                    html:true,
+                    valueOperator : {
+                        getter : function(dataValue,cell){
+                            var temp = `<a class="detail_provider_record2_return_btn" rowIndex="${cell.rowIndex}">回访</a>`;
+                            if( dataValue == 1 ) {  //状态-正跟踪
+                                temp+= `
+                                <a class="detail_provider_record2_toBussiness_btn" rowIndex="${cell.rowIndex}">提交商务经理</a>
+                                <a class="detail_provider_record2_abandon_btn" rowIndex="${cell.rowIndex}">放弃</a>
+                                `;
+                            }
+                            return temp;
+                        }
+                    }
+                }
+            ],
+            remote : function(){
+                return {
+                    url     : detail_provider_api.record2,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //信息费记录
+    detail_provider_record3.datagrid({
+        height      : "page",
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : 10,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",          width:49 },
+                {name:"username",label:"项目编号",    width:80 },
+                {name:"text5",   label:"客户名称",    width:140},
+                {name:"name",    label:"信息员",      width:80 },
+                {name:"name",    label:"业务员",      width:80 },
+                {name:"name",    label:"主案设计师",  width:90 },
+                {name:"datetime",label:"申请时间",    width:140},
+                {name:"text2",   label:"申请金额",    width:80 },
+                {name:"text2",   label:"状态",        width:80 }
+            ],
+            remote : function(){
+                return {
+                    url     : detail_provider_api.record3,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //提成记录
+    detail_provider_record4.datagrid({
+        height      : "page",
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : 10,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",          width:49 },
+                {name:"username",label:"项目编号",    width:80 },
+                {name:"text5",   label:"客户名称",    width:140},
+                {name:"name",    label:"业务员",      width:80 },
+                {name:"name",    label:"主案设计师",  width:90 },
+                {name:"text2",   label:"签单金额",    width:80 },
+                {name:"datetime",label:"申请时间",    width:140},
+                {name:"text2",   label:"申请提点",    width:80 },
+                {name:"text2",   label:"应发提成",    width:80 },
+                {name:"text2",   label:"实发提成",    width:80 },
+                {name:"text2",   label:"状态",        width:80 }
+            ],
+            remote : function(){
+                return {
+                    url     : detail_provider_api.record4,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //过程记录
+    detail_provider_record5.datagrid({
+        height      : "page",
+        sortable    : false,
+        cache       : false,
+        showRowIndex: true,
+        configs     : {
+            R0:{className:"text-center"},
+            C1:{className:"cell-hidden"}
+        },
+        states      : {
+            pager           : {
+                page        : 1,
+                recPerPage  : 10,
+            }
+        },
+        dataSource : {
+            cols   : [
+                {name:"id",      label:"ID",      width:49 },
+                {name:"name",    label:"操作人",  width:80 },
+                {name:"datetime",label:"操作时间",width:140},
+                {name:"tex10",   label:"过程说明",width:200},
+            ],
+            remote : function(){
+                return {
+                    url     : detail_provider_api.record5,
+                    type    : "POST",
+                    dataType: "json",
+                }
+            }
+        }
+    });
+
+    //客户记录-操作变量
+    detail_provider_record2_obj = detail_provider_record2.data("zui.datagrid"),
+    detail_provider_record2_return_btn = ".detail_provider_record2_return_btn",
+    detail_provider_record2_return_box = $("#detail_provider_record2_return_box"),
+    detail_provider_record2_return_text = $("#detail_provider_record2_return_text"),
+    detail_provider_record2_return_days = $("#detail_provider_record2_return_days"),
+    detail_provider_record2_return_date = $("#detail_provider_record2_return_date"),
+    detail_provider_record2_return_submit = $("#detail_provider_record2_return_submit"),
+    detail_provider_record2_toBussiness_btn = ".detail_provider_record2_toBussiness_btn",
+    detail_provider_record2_toBussiness_box = $("#detail_provider_record2_toBussiness_box"),
+    detail_provider_record2_toBussiness_submit = $("#detail_provider_record2_toBussiness_submit"),
+    detail_provider_record2_abandon_btn = ".detail_provider_record2_abandon_btn",
+    detail_provider_record2_abandon_box = $("#detail_provider_record2_abandon_box"),
+    detail_provider_record2_abandon_type = $("#detail_provider_record2_abandon_type"),
+    detail_provider_record2_abandon_text = $("#detail_provider_record2_abandon_text"),
+    detail_provider_record2_abandon_submit = $("#detail_provider_record2_abandon_submit");
+
+    //客户记录-回访
+    $(document).on("click",detail_provider_record2_return_btn,function(){
+        common_form_reset();
+        $.ajax({
+            url     : detail_provider_api.return_days,
+            type    : "post",
+            dataType: "json",
+            data    : {},
+            success : function(data){
+                var data = data.data;
+                var option = "";
+                for(var i=0;i<data.length;i++){
+                    option += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                detail_provider_record2_return_days.html(option);
+                detail_provider_record2_return_date.val( 
+                    um_date( 'yyyy-MM-dd HH:mm:ss', new Date( new Date().getTime() + 
+                        detail_provider_record2_return_days.val() 
+                    * 24 * 3600 * 1000 ) ) 
+                );
+            }
+        });
+        detail_provider_record2_return_submit.attr("rowIndex",$(this).attr("rowIndex"));
+        detail_provider_record2_return_box.modal("show");
+    });
+    detail_provider_record2_return_days.change(function(){
+        detail_provider_record2_return_date.val( 
+            um_date( 'yyyy-MM-dd HH:mm:ss', new Date( new Date().getTime() + 
+                detail_provider_record2_return_days.val() 
+            * 24 * 3600 * 1000 ) ) 
+        );
+    });    
+    detail_provider_record2_return_submit.click(function(){
+        var data_id = detail_provider_record2_obj.getCell($(this).attr("rowIndex"),1).value;
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { 
+                id : data_id,
+                text : detail_provider_record2_return_text.val(),
+                days : detail_provider_record2_return_days.val(),
+                date : detail_provider_record2_return_date.val(),
+            },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(detail_provider_record2_obj,detail_provider_api.record2);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //客户记录-提交商务经理
+    $(document).on("click",detail_provider_record2_toBussiness_btn,function(){
+        detail_provider_record2_toBussiness_submit.attr("rowIndex",$(this).attr("rowIndex"));
+        detail_provider_record2_toBussiness_box.modal("show");
+    });
+    detail_provider_record2_toBussiness_submit.click(function(){
+        var data_id = detail_provider_record2_obj.getCell($(this).attr("rowIndex"),1).value;
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { id:data_id },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(detail_provider_record2_obj,detail_provider_api.record2);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //客户记录-放弃
+    $(document).on("click",detail_provider_record2_abandon_btn,function(){
+        common_form_reset();
+        detail_provider_record2_abandon_submit.attr("rowIndex",$(this).attr("rowIndex"));
+        detail_provider_record2_abandon_box.modal("show");
+    });
+    detail_provider_record2_abandon_submit.click(function(){
+        var data_id = detail_provider_record2_obj.getCell($(this).attr("rowIndex"),1).value;
+        $.ajax({
+            url: API.test_response,
+            type:"post",
+            data: { 
+                id : data_id,
+                type : detail_provider_record2_abandon_type.val(),
+                text : detail_provider_record2_abandon_text.val(),
+            },
+            success: function(data){
+                if( data.status>0 ){
+                    um_tip(data.message);
+                    zui_datagrid_reset(detail_provider_record2_obj,detail_provider_api.record2);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+});//预加载结尾
+</script>

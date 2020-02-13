@@ -10,9 +10,9 @@
         "title"     : "智能办公",
         "children"  : [
             { "title":"我的申请","icon":"","url":"office_apply"},
-            { "title":"我的审批","icon":"","url":"blank"},
-            { "title":"我的考试","icon":"","url":"blank"},
-            { "title":"抄送通知","icon":"","url":"blank"}
+            { "title":"我的审批","icon":"","url":"office_approval"},
+            { "title":"我的考试","icon":"","url":"office_exam"},
+            { "title":"抄送通知","icon":"","url":"office_notice"}
         ]
     },
     {
@@ -107,13 +107,12 @@
         "icon"      : "list-alt",
         "title"     : "设计管理",
         "children"  : [
-            { "title":"设计列表","icon":"","url":"design_list" },
-            { "title":"项目分单","icon":"","url":"design_assign" },
+            { "title":"项目洽谈","icon":"","url":"design_list" },
+            { "title":"项目分单","icon":"","url":"design_assign"},
             { "title":"项目管理","icon":"","url":"design_admin" },
-            { "title":"量房列表","icon":"","url":"design_measure" },
-            { "title":"绘图列表","icon":"design_mapping","url":"blank" },
+            { "title":"签单列表","icon":"","url":"design_sign" },
             { "title":"失败审批","icon":"","url":"design_failure" },
-            { "title":"过期审批","icon":"design_overdue","url":"blank" },
+            { "title":"过期审批","icon":"","url":"design_overdue" },
             { "title":"未隶属",  "icon":"","url":"design_unbelong"}
         ]
     },
@@ -285,7 +284,11 @@
                     { "title":"审批列表","icon":"setup_approval","url":"blank"}
                 ]
             }
-            
         ]
+    },
+    {   
+        "title":"测试页面",
+        "icon":"window",
+        "url":"test_template"
     }
 ]

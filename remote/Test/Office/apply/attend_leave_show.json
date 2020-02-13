@@ -1,0 +1,18 @@
+{
+  "result" : true,
+  "message": "获取成功",
+  "status" : 1,
+  "data"   : {
+    "serialnumber" : "10015",
+    "typenumb" : 3,
+    "typename" : "病假",
+    "statenumb" : 2,
+    "statename" : "审批中",
+    "approvaltime" : "2019-10-10",
+    "time1" : "2019-10-10",
+    "time2" : "2019-10-10",
+    "duration": "10天",
+    "text" : "留言",
+	"name" :"刘"
+  }
+}

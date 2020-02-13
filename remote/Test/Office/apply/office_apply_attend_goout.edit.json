@@ -1,0 +1,13 @@
+{
+  "result" : true,
+  "message": "获取成功",
+  "status" : 1,
+  "data"   : {
+    "statename" : "审批中",
+    "time1" : "2019-10-10",
+    "time2" : "2019-10-10",
+    "duration": "10天",
+    "text" : "留言",
+	"name" :"刘"
+  }
+}

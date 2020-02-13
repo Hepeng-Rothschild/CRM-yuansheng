@@ -242,12 +242,6 @@ $(function(){
 var reg_ip   = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
 var reg_2_10 = /^.{2,10}$/;
 var reg_tel  = /^[1][0-9]{10}$/;
-/*正则使用
-if (!reg_2_10.test(setup_base_add_comp.val())){ um_tip("公司名称格式错误","1500"   ,"text-danger"); return; }
-if (!reg_2_10.test(setup_base_add_user.val())){ um_tip("企业管理人格式错误","1500" ,"text-danger"); return; }
-if (!reg_2_10.test(setup_base_add_addr.val())){ um_tip("地区称格式错误","1500"     ,"text-danger"); return; }
-if (!reg_ip.test(setup_base_add_ip.val()))    { um_tip("IP格式错误","1500"         ,"text-danger"); return; }
-*/
 
 //时间格式化配置
 //年月
@@ -310,8 +304,8 @@ var option_editor = {
  * @param fmt string 格式化参数
  * @return    string 时间字符串
  */
-function um_date(fmt){
-    var now = new Date();
+function um_date(fmt,date){
+    var now = date || new Date();
     var o = {
         "M+": now.getMonth() + 1,                  //月
         "d+": now.getDate(),                       //日
@@ -325,6 +319,22 @@ function um_date(fmt){
     for (var k in o)
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
+}
+
+/* um_date_duration() 时间差获取
+ * @param timeStart string 开始时间
+ * @param timeEnd   string 结束时间
+ * @return string 时间结果
+ */
+function um_date_duration(timeStart, timeEnd){
+    if( timeStart!="" && timeEnd!="" ){
+        var difValue = new Date(timeEnd).getTime() - new Date(timeStart).getTime();
+        //if ( difValue > 0 ){} else { um_tip("时间不合法","1500","text-danger"); }
+        var day = Math.floor(difValue / 1000 / 60 / 60 / 24);
+        difValue = difValue % (1000 * 60 * 60 * 24);
+        var hour = Math.floor(difValue / 1000 / 60 / 60);
+        return day + "天" + hour + "小时";
+    }
 }
 
 /* um_isinarray()  元素是否存在于数组中
@@ -349,6 +359,29 @@ function um_json(data){
         data = JSON.parse(data);
     }
     return data;
+}
+
+/* 表单取值(form内元素须有name属性)
+ * param form_dom 表单DOM
+ * return json */
+function um_data_get(form_dom){
+    var data = {};
+    var json = form_dom.serializeArray();
+    var result = $(json).each(function(i){ data[this.name]=this.value });
+    return result;
+}
+
+/* 表单赋值(form内元素须有name属性)
+ * param form_dom 表单DOM
+ * param json JSON数据
+ */
+function um_data_set(form_dom,json){
+    var item = form_dom.find("[name]");
+    $.each(json, function(key,val){
+        $.each(item, function(i){
+            $("[name=" + key + "]").val(val);
+        });
+    });
 }
 
 /* um_tip() 信息提示
@@ -841,4 +874,46 @@ function common_topic_answer_reset(){
     $(".common_topic_answer_text_wrap").hide();
     $(".common_topic_answer_text").val("");
     $(".common_topic_answer_submit").attr("tid","");
+}
+
+/*模板页面打开
+ * @param template_page 模板页面名
+ * @param _this $(this)指向
+ * @example onclick=template_page_open('detail_provider',$(this))
+ */
+function template_page_open(template_page,_this){
+    var data_id = zui_datagrid_get_id(_this.attr("rowIndex"));
+    var page_id = _this.parents(".page-wrapper").attr("id");
+    COMMON_TABS_OBJ.open({
+        title  : COMMON_TABS_OBJ.getTab(page_id).title +"详情",
+        id     : template_page,
+        type   : "ajax",
+        url    : './page/template/' + template_page + '.html',
+        onOpen : function(){
+            DETAIL_SOURCE = { data_id, page_id }
+        }
+    });
+}
+
+/* common_approval_tree() 公共审批节点
+ * @param dom     object 节点对象
+ * @param url     string 接口路径
+ * @param data_id number 数据ID
+ */
+function common_approval_tree( dom,url,data_id ){
+    $.ajax({
+        type:'post',
+        url : url,
+        dataType:'json',
+        data:{ id : data_id },
+        success:function(data){
+            var data = data.data;
+            var temp = `<dl class="finish"><dt>第0步</dt><dd><b>【流程开始】</b><p>流程开始</p></dd></dl>`;
+            for(var i=0;i<data.length;i++){
+                temp+= data[i].statenumber ? `<dl class="finish">` : `<dl>`;
+                temp+=`<dt>第${i+1}步</dt><dd><b>【${ data[i].user}】</b><p>${ data[i].statename}</p></dd></dl>`;
+            }
+            dom.html(temp);
+        }
+    });
 }
