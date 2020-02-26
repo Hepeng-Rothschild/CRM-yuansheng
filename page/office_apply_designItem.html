@@ -1,0 +1,478 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="office_apply_designItem">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped">
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <form class="tool-search">
+                <input type="hidden" name='page'>
+                <input type="hidden" name='recPerPage'>
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" name="sid">
+                            <option value="1">流水号  </option>
+                            <option value="1">合同编号</option>
+                            <option value="1">合同名称</option>
+                            <option value="1">项目编号</option>
+                            <option value="1">项目名称</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="search">
+                    </div>
+                </div>
+                <div class="im-label">
+                    <span>时间：</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="starttime" readonly> 
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="endtime"readonly>
+                    </div>
+                </div>
+                <label>
+                    <span>项目类型：</span>
+                    <select class="form-control" name="type">
+                        <option value="0">全部</option>
+                        <option value="1">设计</option>
+                        <option value="2">施工</option>
+                    </select>
+                </label>
+                <label>
+                    <span>审批状态：</span>
+                    <select class="form-control" name="state">
+                        <option value="0">全部</option>
+                        <option value="1">审批中</option>
+                        <option value="2">审批完成</option>
+                        <option value="3">打回</option>
+                        <option value="4">已撤销</option>
+                    </select>
+                </label>
+                <label><button type="button" class="btn btn-primary tool_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </form>
+            <div class="tool-deal">
+                <label><button type="button" class="btn btn-primary tool_add_btn"><i class="icon icon-plus"></i>添加</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade tool_add_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="container form-horizontal">
+
+                        <!-- 项目选择 -->
+                        <button type="button" class="btn btn-primary tool_add_box_select_btn">选择项目</button>
+                        <input type="text" name="itemId" placeholder="项目ID">
+                        <br><br>
+                        <div class="form-group">
+                            <label class="col-sm-1">项目编号</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
+                            <label class="col-sm-1">合同编号</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
+                            <label class="col-sm-1">项目名称</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">合同名称</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
+                            <label class="col-sm-1">设计师</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
+                            <label class="col-sm-1">合同总金额</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" field="text4" readonly>
+                                <div class="text-small text-gray">(含增减项)</div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <!-- 申请金额 -->
+                        <div class="form-group">
+                            <label class="col-sm-1">申请金额</label><div class="col-sm-3"><input type="text" class="form-control" name="sqje"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">申请理由</label><div class="col-sm-3"><textarea class="form-control" name="sqly"></textarea></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">上传附件</label>
+                            <div class="col-sm-3">
+                                <!-- 组队上传 -->
+                                <div class="uploader tool_add_box_uploader" path="">
+                                    <input type="hidden" class='uploader_path' name='files'>
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list"></div>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
+                                </div>
+                                <!-- uploader -->
+                            </div>
+                        </div>
+                        <hr>
+
+                        <!-- 发起人 -->
+                        <div class="form-group">
+                            <label class="col-sm-1">发起人</label><div class="col-sm-3"><input type="text" class="form-control" readonly></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">抄送人</label>
+                            <div class="col-sm-5">
+                                <div class="office-border">
+                                    <ul class="tree tree-lines tree-chevrons tool_add_box_csr"></ul>
+                                    <input type="hidden" class="tree_result" name="csr">
+                                </div>
+                            </div>
+                            <label class="col-sm-1">审批人</label>
+                            <div class="col-sm-5">
+                                <div class="office-border"><div class="office-approval tool_add_box_spr"><!-- JS推进 --></div></div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <!-- 提交 -->
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary tool_add_submit">提交</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade line_show_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        
+                        <table class="table table-bordered">
+                            <tbody><!-- JS推进 --></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan='3'>
+                                        <b>抄送人</b>
+                                        <div class="office-border"><ul class="tree tree-lines tree-chevrons tool_add_box_csr"></ul></div>
+                                    </td>
+                                    <td colspan='3'>
+                                        <b>审批人</b>
+                                        <div class="office-border"><div class="office-approval tool_add_box_spr"><!-- JS推进 --></div></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 撤销盒子 -->
+    <div class="modal modal-for-page fade line_back_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">撤销</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否撤销？</p>
+                </div>
+                <form class="modal-footer">
+                    <input type="hidden" name="dataId">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger line_back_submit">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 催办盒子 -->
+    <div class="modal modal-for-page fade line_urge_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">催办</h4>
+                </div>
+                <div class="modal-body"><p>是否提交催办？</p></div>
+                <form class="modal-footer">
+                    <input type="hidden" name="dataId">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger line_urge_submit">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- page-wrapper -->
+
+<!-- 页面外套 -->
+<div class="page-wrapper" id="office_apply_designItem2">
+
+    <!-- 项目选择 -->
+    <div class="modal modal-for-page fade tool_add_box_select_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">项目选择</h4>
+                </div>
+                <div class="modal-body no-padding">
+                    <div class="datagrid datagrid-striped form-condensed">
+                        <form class="input-control with-padding tool-search" style='margin-bottom:0'>
+                            <input type="hidden" name='page'>
+                            <input type="hidden" name='recPerPage'>
+                            <input type="hidden" name='sid' value='1'>
+                            <!-- <input type="text" class="form-control input-short pull-left" name='words' placeholder='请输入客户名称'>
+                            <button type="button" class="btn btn-primary pull-left search_btn" style="margin-left:5px;">搜索</button> -->
+                            <div class="clearfix"></div>
+                        </form>
+                        <div class="datagrid-container datagrid-condensed"></div>
+                        <ul class="pager btn-mini" data-elements="size_menu,goto,page_of_total_text" data-menu-direction="dropup" style="margin:5px 0 0 5px;"></ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary tool_add_box_select_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function() {
+    //变量声明-----------------------------------------------------------------------------------------------
+    var office_apply_designItem = $("#office_apply_designItem"); //页面ID
+    var office_apply_designItem_api = {
+        datagrid    : API.test_datagrid,    //数据表格
+        show        : API.test_response,    //详情查看
+        approval    : LOCAL + "Test/Office/apply/attend_approval.json", //审批人进度
+    }
+
+    //组件实例化---------------------------------------------------------------------------------------------
+    office_apply_designItem.find('[name="starttime"]').datetimepicker(option_date);
+    office_apply_designItem.find('[name="endtime"]').datetimepicker(option_date);
+    common_tree_staff(office_apply_designItem.find('.tool_add_box .tool_add_box_csr'), true, true);
+    common_tree_staff(office_apply_designItem.find('.line_show_box .tool_add_box_csr'), true, false);
+    zui_upload_group({updom: office_apply_designItem.find('.tool_add_box_uploader'), type:"img"});
+    
+    //数据表格-----------------------------------------------------------------------------------------------
+    //数据源
+    var office_apply_designItem_dataSource = {
+        cols   : [
+            {name: "text4",label: "申请时间",width: 90},
+            {name: "username",label: "流水号",width: 100,html: true,
+                valueOperator: {
+                    getter: function(dataValue, cell) {
+                        return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;
+                    }
+                }
+            },
+            {name: "text4",label: "项目编号",width: 90},
+            {name: "name",label: "项目名称",width: 90},
+            {name: "text4",label: "合同编号",width: 90},
+            {name: "text4",label: "项目类型",width: 90},
+            {name: "text4",label: "合同总金额(含增减项)",width: 150},
+            {name: "text4",label: "申请金额",width: 90},
+            {name: "text4",label: "审批状态",width: 90},
+            {name:"statenumb",  label:"操作",width:180,html:true,
+                valueOperator : {
+                    getter : function(dataValue,cell){
+                        return `
+                        <a class="line_back_btn" dataId="${cell.config.data.id}">撤销</a>
+                        <a class="line_urge_btn" dataId="${cell.config.data.id}">催办</a>`;
+                    }
+                }
+            }
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : office_apply_designItem, 
+                url      : office_apply_designItem_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : office_apply_designItem,
+                data     : data
+            });
+        }
+    };
+    //实例化
+    office_apply_designItem.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : office_apply_designItem.find('.datagrid'),
+            dataSource : office_apply_designItem_dataSource
+        })
+    );
+    //搜索
+    office_apply_designItem.find('.tool_search_btn').click(function(){ 
+        zui_datagrid_render({
+            datagrid_obj : office_apply_designItem.find('.datagrid').data("zui.datagrid"),
+            dataSource   : office_apply_designItem_dataSource
+        }); 
+    });
+
+    //添加-----------------------------------------------------------------------------------------------
+    //添加打开
+    office_apply_designItem.find('.tool_add_btn').click(function() {
+        common_form_reset();
+        common_tree_staff_reset(office_apply_designItem.find('.tool_add_box .tool_add_box_csr'));
+        common_approval_tree(
+            office_apply_designItem.find('.tool_add_box .tool_add_box_spr'),
+            office_apply_designItem_api.approval
+        ); 
+        office_apply_designItem.find('.tool_add_box').modal('show');
+    });
+    //添加提交
+    office_apply_designItem.find('.tool_add_submit').click(function() {
+        um_data_submit({
+            url: API.test_response,
+            form: $(this).parents('form'),
+            dataSource: office_apply_designItem_dataSource,
+        });
+    });
+
+    //查看-----------------------------------------------------------------------------------------------
+    office_apply_designItem.on("click", '.line_show_btn', function() {
+        $.ajax({
+            url     : office_apply_designItem_api.show,
+            data    : { id: $(this).attr('dataId') },
+            type    : "post",
+            dataType: "json",
+            success : function(data){
+                if(data.status == 1){
+                var temp = `
+                    <tr>
+                        <td colspan='2'>项目编号 ${data.message}</td>
+                        <td colspan='2'>合同编号 ${data.message}</td>
+                        <td colspan='2'>项目名称 ${data.message}</td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>合同名称 ${data.message}</td>
+                        <td colspan='2'>设计师   ${data.message}</td>
+                        <td colspan='2'>合同总金额(含增减项)  ${data.message}</td>
+                    </tr>
+                    <tr><td colspan='6'>申请金额 </td></tr>
+                    <tr><td colspan='6'>申请理由 </td></tr>
+                    <tr><td colspan='6'>申请附件 </td></tr>
+                    <tr><td colspan='6'>发起人   </td></tr>
+                    `;
+                    office_apply_designItem.find('.line_show_box tbody').html(temp);
+                    office_apply_designItem.find('.line_show_box').modal('show');
+
+                    //抄送人 审批人
+                    common_tree_staff_reset(office_apply_designItem.find('.line_show_box .tool_add_box_csr'));
+                    common_approval_tree(
+                        office_apply_designItem.find('.line_show_box .tool_add_box_spr'),
+                        office_apply_designItem_api.approval
+                    ); 
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //撤销-----------------------------------------------------------------------------------------------
+    office_apply_designItem.on("click", '.line_back_btn', function() {
+        office_apply_designItem.find('.line_back_box [name="dataId"]').val( $(this).attr('dataId') );
+        office_apply_designItem.find('.line_back_box').modal('show');
+    });
+    office_apply_designItem.on("click", '.line_back_submit', function() {
+        um_data_submit({
+            url: API.test_response,
+            form: $(this).parents('form'),
+            dataSource: office_apply_designItem_dataSource,
+        });
+    });
+
+    //催办-----------------------------------------------------------------------------------------------
+    office_apply_designItem.on("click", '.line_urge_btn', function() {
+        office_apply_designItem.find('.line_urge_box [name="dataId"]').val( $(this).attr('dataId') );
+        office_apply_designItem.find('.line_urge_box').modal('show');
+    });
+    office_apply_designItem.on("click", '.line_urge_submit', function() {
+        um_data_submit({
+            url: API.test_response,
+            form: $(this).parents('form'),
+            dataSource: office_apply_designItem_dataSource,
+        });
+    });
+
+    //项目选择------------------------------------------------------------------------------------------
+    var office_apply_designItem2 = $("#office_apply_designItem2"); //页面ID
+    //实例化
+    var office_apply_designItem2_dataSource = {
+        cols   : [
+            {name: "text4",label: "项目编号",width: 90},
+            {name: "name", label: "项目名称",width: 90},
+            {name: "text4",label: "合同编号",width: 90},
+            {name: "text4",label: "合同名称",width: 90},
+            {name: "text4",label: "合同总金额(含增减项)",width: 150},
+            {name: "text4",label: "设计师",width: 90}
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : office_apply_designItem2, 
+                url      : office_apply_designItem_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : office_apply_designItem2,
+                data     : data
+            });
+        }
+    };
+    //实例化
+    office_apply_designItem2.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : office_apply_designItem2.find('.datagrid'),
+            dataSource : office_apply_designItem2_dataSource,
+            height     : 350,
+            checkable  : true
+        })
+    );
+
+    //打开
+    office_apply_designItem.on("click", '.tool_add_box_select_btn', function() {
+        office_apply_designItem2.find('.tool_add_box_select_box').modal('show');
+    });
+    //提交
+    office_apply_designItem2.on("click", '.tool_add_box_select_submit', function() {
+        var data_arr = office_apply_designItem2.find('.datagrid').data("zui.datagrid").getCheckItems().filter(function(e){return e});
+        if( data_arr.length==1 ){
+            var box1 = office_apply_designItem.find('.tool_add_box');
+            var box2 = office_apply_designItem2.find('.tool_add_box_select_box');
+            box1.find('[name="itemId"]').val(data_arr[0].id);
+            $.each(data_arr[0], function(key, value){
+                box1.find('[field="'+ key +'"]').val(value);
+            });
+            box2.modal('hide');
+        } else {
+            um_tip("请选择一条数据","1000","text-danger");
+        }
+    });
+
+    //…
+
+}); //预加载结尾
+
+</script>

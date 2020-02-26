@@ -276,6 +276,9 @@
     body .modal{
         left: 0px!important;
     }
+    .common-marquee, .tabs-navbar{
+        padding-left: 0!important;
+    }
 }
 /*主题样式更改*/
 .main-header .navbar{

@@ -40,8 +40,8 @@
                 { "title":"其他收款","url":"blank","tips":0},
                 { "title":"报销","url":"blank","tips":0},
                 { "title":"备用金","url":"blank","tips":0},
-                { "title":"信息费","url":"blank","tips":0},
-                { "title":"信息提成","url":"blank","tips":0},
+                { "title":"信息费","url":"office_notice_agencyFree","tips":1},
+                { "title":"信息提成","url":"office_notice_agencyPercent","tips":1},
                 { "title":"协调费","url":"blank","tips":0},
                 { "title":"做图费","url":"blank","tips":0},
                 { "title":"其他支款","url":"blank","tips":0},
@@ -53,8 +53,8 @@
         {
             "title"     :"设计",
             "children"  :[
-                { "title":"设计单坏账","url":"blank","tips":0},
-                { "title":"设计增选项","url":"blank","tips":0}
+                { "title":"设计单坏账","url":"office_notice_designBad","tips":1},
+                { "title":"设计增减项","url":"office_notice_designItem","tips":1}
             ]
         },
         {

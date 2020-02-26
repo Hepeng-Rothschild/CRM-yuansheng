@@ -182,6 +182,13 @@ $(function(){
         $(this).parent(".im-label").find("input").eq(0).focus();
     });
 
+    //模拟label触发 radio checkbox 的checked
+    $(document).on("click",".im-che>i",function(){
+        console.log('input');
+        $(this).siblings('input').trigger('click');
+    });
+
+
     //遮罩隐藏
     $(".modal-backdrop").click(function(){
         var mask = $(this);
@@ -516,8 +523,8 @@ function zui_upload_group(object){
     var maxSize = object.maxSize || "1mb";                              //大小限制
     var count = object.count || 50;                                     //个数限制
     var staticFiles = object.list || [];                                //数据读取
-    //上传DOM
-    var updom = $("#"+upid);
+    var updom = object.updom || $("#"+upid);                            //上传DOM(tool)
+
     //数据赋值
     if( staticFiles && staticFiles!="" ){
         var staticFiles_result = "";
@@ -556,6 +563,7 @@ function zui_upload_group(object){
                 upload_result = upload_result.substring(1);
             }
             updom.attr("path",upload_result);
+            updom.find('.uploader_path').val(upload_result);            //结果赋值(tool)
         },
         staticFiles         : staticFiles,                              //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
@@ -563,6 +571,7 @@ function zui_upload_group(object){
             var pathArr = updom.attr("path").split(",");                //字符串转数组
             pathArr.splice($.inArray(file.url,pathArr),1);              //据值移除元素
             updom.attr("path",pathArr);                                 //结果赋值
+            updom.find('.uploader_path').val(pathArr);                  //结果赋值(tool)
         }
     });
     return upobj;                                                       //实例对象
@@ -801,7 +810,7 @@ function common_tree_staff(selector,is_open,is_check){
             }
             result = result.substr(0,result.length-1);
             selector.attr("result",result);
-
+            selector.siblings('.tree_result').val(result);  //结果赋值(tool)
         });
 
     }

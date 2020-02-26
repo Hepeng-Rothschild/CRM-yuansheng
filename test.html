@@ -24,6 +24,7 @@
 <link href="./css/link.css" rel="stylesheet">
 <script src="./js/config.js"></script>
 <script src="./js/base.js"></script>
+<script src="./js/tool.js"></script>
 <!-- 测试代码 -->
 <div class="wrapper"><header class="main-header"><nav class="navbar navbar-fixed-top"><div class="collapse navbar-collapse"><div class="container-fluid flex-box">
 <div class="flex-son"><ul class="nav navbar-nav navbar-right flex-box"><li class="flex-son lead">测试页面</li></ul></div></div></div></nav></header>
@@ -31,15 +32,15 @@
 <div class="common-marquee flex-box text-danger"><i class="icon icon-bullhorn"></i> 滚动消息</div><div class="tabs" id="common_tabs"></div></div>
 <!-- test_code -->
 <script>
-var page = "office_apply_attend_leave";
+var page = "template/detail_design"; //  
 var common_tabs = $("#common_tabs");
 common_tabs.tabs({tabs:[{
-    id    : page,
+    id    : 'page',
     type  : "ajax",
     title : "测试页面",
     url   : "./page/"+ page +".html", //template
 }]});
 window.COMMON_TABS_OBJ = common_tabs.data("zui.tabs");
-window.DETAIL_SOURCE;
+window.DETAIL_SOURCE = 'A';
 window.COMMON = { position_id:1,user_id:2,logAllow:1 }
 </script>

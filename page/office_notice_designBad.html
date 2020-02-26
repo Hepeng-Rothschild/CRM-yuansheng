@@ -1,0 +1,211 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="office_notice_designBad">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped">
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <form class="tool-search">
+                <input type="hidden" name='page'>
+                <input type="hidden" name='recPerPage'>
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" name="sid">
+                            <option value="1">流水号  </option>
+                            <option value="1">合同编号</option>
+                            <option value="1">合同名称</option>
+                            <option value="1">项目编号</option>
+                            <option value="1">项目名称</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="search">
+                    </div>
+                </div>
+                <div class="im-label">
+                    <span>时间：</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="starttime" readonly> 
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="endtime"readonly>
+                    </div>
+                </div>
+                <label>
+                    <span>项目类型：</span>
+                    <select class="form-control" name="type">
+                        <option value="0">全部</option>
+                        <option value="1">设计</option>
+                        <option value="2">施工</option>
+                    </select>
+                </label>
+                <label>
+                    <span>审批状态：</span>
+                    <select class="form-control" name="state">
+                        <option value="0">全部</option>
+                        <option value="1">审批中</option>
+                        <option value="2">审批完成</option>
+                        <option value="3">打回</option>
+                        <option value="4">已同意</option>
+                    </select>
+                </label>
+                <label><button type="button" class="btn btn-primary tool_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade line_show_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        
+                        <table class="table table-bordered">
+                            <tbody><!-- JS推进 --></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan='3'>
+                                        <b>抄送人</b>
+                                        <div class="office-border"><ul class="tree tree-lines tree-chevrons line_show_box_csr"></ul></div>
+                                    </td>
+                                    <td colspan='3'>
+                                        <b>审批人</b>
+                                        <div class="office-border"><div class="office-approval line_show_box_spr"><!-- JS推进 --></div></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function() {
+    //变量声明-----------------------------------------------------------------------------------------------
+    var office_notice_designBad = $("#office_notice_designBad"); //页面ID
+    var office_notice_designBad_api = {
+        datagrid    : API.test_datagrid,    //数据表格
+        show        : API.test_response,    //详情查看
+        approval    : LOCAL + "Test/Office/apply/attend_approval.json", //审批人进度
+    }
+
+    //组件实例化---------------------------------------------------------------------------------------------
+    office_notice_designBad.find('[name="starttime"]').datetimepicker(option_date);
+    office_notice_designBad.find('[name="endtime"]').datetimepicker(option_date);
+    common_tree_staff(office_notice_designBad.find('.line_show_box .line_show_box_csr'), true, false);
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    //数据源
+    var office_notice_designBad_dataSource = {
+        cols   : [
+            {name: "text4",label: "申请时间",width: 90},
+            {name: "username",label: "流水号",width: 100,html: true,
+                valueOperator: {
+                    getter: function(dataValue, cell) {
+                        return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;
+                    }
+                }
+            },
+            {name: "text4",label: "申请人",width: 90},
+            {name: "text4",label: "用户名",width: 90},
+            {name: "text4",label: "部门",  width: 90},
+            {name: "text4",label: "项目编号",width: 90},
+            {name: "name", label: "项目名称",width: 90},
+            {name: "text4",label: "合同编号",width: 90},
+            {name: "text4",label: "合同名称",width: 90},
+            {name: "text4",label: "合同总金额(含增减项)",width: 150},
+            {name: "text4",label: "已收金额",width: 90},
+            {name: "text4",label: "未收金额",width: 90},
+            {name: "text4",label: "申请金额",width: 90},
+            {name: "text4",label: "审批状态",width: 90}
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : office_notice_designBad, 
+                url      : office_notice_designBad_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : office_notice_designBad,
+                data     : data
+            });
+        }
+    };
+    //实例化
+    office_notice_designBad.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : office_notice_designBad.find('.datagrid'),
+            dataSource : office_notice_designBad_dataSource
+        })
+    );
+    //搜索
+    office_notice_designBad.find('.tool_search_btn').click(function(){ 
+        zui_datagrid_render({
+            datagrid_obj : office_notice_designBad.find('.datagrid').data("zui.datagrid"),
+            dataSource   : office_notice_designBad_dataSource
+        }); 
+    });
+
+    //查看-----------------------------------------------------------------------------------------------
+    office_notice_designBad.on("click", '.line_show_btn', function() {
+        $.ajax({
+            url     : office_notice_designBad_api.show,
+            data    : { id: $(this).attr('dataId') },
+            type    : "post",
+            dataType: "json",
+            success : function(data){
+                if(data.status == 1){
+                var temp = `
+                    <tr>
+                        <td colspan='2'>项目编号 ${data.message}</td>
+                        <td colspan='2'>合同编号 ${data.message}</td>
+                        <td colspan='2'>项目名称 ${data.message}</td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>合同名称 ${data.message}</td>
+                        <td colspan='2'>已收金额 ${data.message}</td>
+                        <td colspan='2'>未收金额 ${data.message}</td>
+                    </tr>
+                    <tr>
+                        <td colspan='6'>合同总金额(含增减项) ${data.message}</td>
+                    </tr>
+                    <tr><td colspan='6'>申请金额 </td></tr>
+                    <tr><td colspan='6'>申请理由 </td></tr>
+                    <tr><td colspan='6'>申请附件 </td></tr>
+                    <tr><td colspan='6'>发起人   </td></tr>
+                    `;
+                    office_notice_designBad.find('.line_show_box tbody').html(temp);
+                    office_notice_designBad.find('.line_show_box').modal('show');
+
+                    //抄送人 审批人
+                    common_tree_staff_reset(office_notice_designBad.find('.line_show_box .line_show_box_csr'));
+                    common_approval_tree(
+                        office_notice_designBad.find('.line_show_box .line_show_box_spr'),
+                        office_notice_designBad_api.approval
+                    ); 
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+}); //预加载结尾
+</script>

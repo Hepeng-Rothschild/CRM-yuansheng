@@ -5,16 +5,16 @@
             "title"      :"出勤休息",
             "children":[
                 { "title":"请假","url":"office_apply_attend_leave","tips":1},
-                { "title":"出差","url":"office_apply_attend_travel","tips":0},
-                { "title":"加班","url":"office_apply_attend_overtime","tips":0},
-                { "title":"补卡","url":"office_apply_attend_punch","tips":0},
-                { "title":"外出","url":"office_apply_attend_goout","tips":0}
+                { "title":"出差","url":"office_apply_attend_travel","tips":1},
+                { "title":"加班","url":"office_apply_attend_overtime","tips":1},
+                { "title":"补卡","url":"office_apply_attend_punch","tips":1},
+                { "title":"外出","url":"office_apply_attend_goout","tips":1}
             ]
         },
         { 
             "title"     :"人事",
             "children"  :[
-                { "title":"招聘","url":"office_apply_personnel_recruit","tips":1},
+                { "title":"招聘","url":"office_apply_personnel_recruit","tips":0},
                 { "title":"入职","url":"office_apply_personnel_entry","tips":0},
                 { "title":"转正","url":"office_apply_personnel_formal","tips":0},
                 { "title":"调岗","url":"office_apply_personnel_post","tips":0},
@@ -40,8 +40,8 @@
                 { "title":"其他收款","url":"blank","tips":0},
                 { "title":"报销","url":"blank","tips":0},
                 { "title":"备用金","url":"blank","tips":0},
-                { "title":"信息费","url":"blank","tips":0},
-                { "title":"信息提成","url":"blank","tips":0},
+                { "title":"信息费","url":"office_apply_agencyFree","tips":1},
+                { "title":"信息提成","url":"office_apply_agencyPercent","tips":1},
                 { "title":"协调费","url":"blank","tips":0},
                 { "title":"做图费","url":"blank","tips":0},
                 { "title":"其他支款","url":"blank","tips":0},
@@ -53,8 +53,9 @@
         {
             "title"     :"设计",
             "children"  :[
-                { "title":"设计单坏账","url":"blank","tips":0},
-                { "title":"设计增选项","url":"blank","tips":0}
+                { "title":"设计单坏账","url":"office_apply_designBad","tips":1},
+                { "title":"设计增减项","url":"office_apply_designItem","tips":1},
+                { "title":"设计单收款","url":"office_apply_designGet","tips":1}
             ]
         },
         {
@@ -71,7 +72,6 @@
                 { "title":"退发包质保金","url":"blank","tips":0},
                 { "title":"物业押金","url":"blank","tips":0},
                 { "title":"项目推单","url":"blank","tips":0}
-
             ]
         }
     ]

@@ -1,10 +1,10 @@
 {
-    "title"     : "我的申请",
+    "title"     : "我的审批",
     "children"  : [
         {   
-            "title"      :"我的审批-考勤",
+            "title"      :"出勤休息",
             "children":[
-                { "title":"请假","url":"blank","tips":1},
+                { "title":"请假","url":"blank","tips":0},
                 { "title":"出勤","url":"blank","tips":0},
                 { "title":"加班","url":"blank","tips":0},
                 { "title":"补卡","url":"blank","tips":0},
@@ -14,7 +14,7 @@
         { 
             "title"     :"人事",
             "children"  :[
-                { "title":"招聘","url":"blank","tips":1},
+                { "title":"招聘","url":"blank","tips":0},
                 { "title":"入职","url":"blank","tips":0},
                 { "title":"转正","url":"blank","tips":0},
                 { "title":"调岗","url":"blank","tips":0},
@@ -32,7 +32,52 @@
                 { "title":"盖章申请","url":"blank","tips":0},
                 { "title":"通用审批","url":"blank","tips":0}
             ]
+        },
+        { 
+            "title"     :"财务",
+            "children"  :[
+                { "title":"其他收款","url":"blank","tips":0},
+                { "title":"报销","url":"blank","tips":0},
+                { "title":"备用金","url":"blank","tips":0},
+                { "title":"信息费","url":"office_approval_agencyFree","tips":1},
+                { "title":"信息提成","url":"office_approval_agencyPercent","tips":1},
+                { "title":"协调费","url":"blank","tips":0},
+                { "title":"做图费","url":"blank","tips":0},
+                { "title":"合同审批","url":"blank","tips":0},
+                { "title":"其他支款","url":"blank","tips":0},
+                { "title":"工资","url":"blank","tips":0}
+            ]
+        },
+        {
+            "title"     :"设计",
+            "children"  :[
+                { "title":"设计单坏账","url":"office_approval_designBad","tips":1},
+                { "title":"设计增减项","url":"office_approval_designItem","tips":1}
+            ]
+        },
+        {
+            "title"     :"工程",
+            "children"  :[
+                { "title":"项目收款","url":"","tips":0},
+                { "title":"工长支款","url":"","tips":0},
+                { "title":"人工费支款","url":"","tips":0},
+                { "title":"材料支款","url":"","tips":0},
+                { "title":"施工增减项","url":"","tips":0},
+                { "title":"施工单坏账","url":"","tips":0},
+                { "title":"尾款转嫁","url":"","tips":0},
+                { "title":"项目结算","url":"","tips":0},
+                { "title":"退发包质保金","url":"","tips":0},
+                { "title":"物业押金","url":"","tips":0},
+                { "title":"项目退单","url":"","tips":0}
+            ]
         }
     ]
 }
+
+
+
+
+
+
+
 

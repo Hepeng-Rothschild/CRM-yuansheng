@@ -1,0 +1,301 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="office_approval_agencyPercent">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped">
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <form class="tool-search">
+                <input type="hidden" name='page'>
+                <input type="hidden" name='recPerPage'>
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" name="sid">
+                            <option value="1">流水号  </option>
+                            <option value="1">合同编号</option>
+                            <option value="1">合同名称</option>
+                            <option value="1">项目编号</option>
+                            <option value="1">项目名称</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="search">
+                    </div>
+                </div>
+                <div class="im-label">
+                    <span>时间：</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="starttime" readonly> 
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="endtime"readonly>
+                    </div>
+                </div>
+                <label>
+                    <span>审批状态：</span>
+                    <select class="form-control" name="state">
+                        <option value="0">全部</option>
+                        <option value="1">审批中</option>
+                        <option value="2">审批完成</option>
+                        <option value="3">打回</option>
+                        <option value="4">已同意</option>
+                    </select>
+                </label>
+                <label><button type="button" class="btn btn-primary tool_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade line_show_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        
+                        <table class="table table-bordered">
+                            <tbody><!-- JS推进 --></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan='3'>
+                                        <b>抄送人</b>
+                                        <div class="office-border"><ul class="tree tree-lines tree-chevrons line_show_box_csr"></ul></div>
+                                    </td>
+                                    <td colspan='3'>
+                                        <b>审批人</b>
+                                        <div class="office-border"><div class="office-approval tool_add_box_spr"><!-- JS推进 --></div></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 同意盒子 -->
+    <div class="modal modal-for-page fade line_agree_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">同意</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-primary">是否同意？</p>
+                </div>
+                <form class="modal-footer">
+                    <input type="hidden" name="dataId">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary line_agree_submit">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 拒绝盒子 -->
+    <div class="modal modal-for-page fade line_reject_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">拒绝</h4>
+                </div>
+                <div class="modal-body"><p>是否拒绝？</p></div>
+                <form class="modal-footer">
+                    <input type="hidden" name="dataId">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger line_reject_submit">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function() {
+    //变量声明-----------------------------------------------------------------------------------------------
+    var office_approval_agencyPercent = $("#office_approval_agencyPercent"); //页面ID
+    var office_approval_agencyPercent_api = {
+        datagrid    : API.test_datagrid,    //数据表格
+        show        : API.test_response,    //详情查看
+        approval    : LOCAL + "Test/Office/apply/attend_approval.json", //审批人进度
+    }
+
+    //组件实例化---------------------------------------------------------------------------------------------
+    office_approval_agencyPercent.find('[name="starttime"]').datetimepicker(option_date);
+    office_approval_agencyPercent.find('[name="endtime"]').datetimepicker(option_date);
+    common_tree_staff(office_approval_agencyPercent.find('.line_show_box .line_show_box_csr'), true, false);
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    //数据源
+    var office_approval_agencyPercent_dataSource = {
+        cols   : [
+            {name: "text4",label: "申请时间",width: 90},
+            {name: "username",label: "流水号",width: 100,html: true,
+                valueOperator: {
+                    getter: function(dataValue, cell) {
+                        return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;
+                    }
+                }
+            },
+            {name: "text4",label: "申请人",  width: 90},
+            {name: "text4",label: "用户名",  width: 90},
+            {name: "text4",label: "部门",    width: 90},
+            {name: "text4",label: "项目编号",width: 90},
+            {name: "name", label: "项目名称",width: 90},
+            {name: "text4",label: "合同编号",width: 90},
+            {name: "text4",label: "合同名称",width: 90},
+            {name: "text4",label: "信息员",  width: 90},
+            {name: "name", label: "应付金额",width: 90},
+            {name: "text4",label: "已付金额",width: 90},
+            {name: "text4",label: "申请金额",width: 90},
+            {name: "text4",label: "审批状态",width: 90},
+            {name:"statenumb",  label:"操作",width:180,html:true,
+                valueOperator : {
+                    getter : function(dataValue,cell){
+                        return `
+                        <a class="line_agree_btn" dataId="${cell.config.data.id}">同意</a>
+                        <a class="line_reject_btn" dataId="${cell.config.data.id}">拒绝</a>`;
+                    }
+                }
+            }
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : office_approval_agencyPercent, 
+                url      : office_approval_agencyPercent_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : office_approval_agencyPercent,
+                data     : data
+            });
+        }
+    };
+    //实例化
+    office_approval_agencyPercent.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : office_approval_agencyPercent.find('.datagrid'),
+            dataSource : office_approval_agencyPercent_dataSource
+        })
+    );
+    //搜索
+    office_approval_agencyPercent.find('.tool_search_btn').click(function(){ 
+        zui_datagrid_render({
+            datagrid_obj : office_approval_agencyPercent.find('.datagrid').data("zui.datagrid"),
+            dataSource   : office_approval_agencyPercent_dataSource
+        }); 
+    });
+
+    //查看-----------------------------------------------------------------------------------------------
+    office_approval_agencyPercent.on("click", '.line_show_btn', function() {
+        $.ajax({
+            url     : office_approval_agencyPercent_api.show,
+            data    : { id: $(this).attr('dataId') },
+            type    : "post",
+            dataType: "json",
+            success : function(data){
+                if(data.status == 1){
+                var temp = `
+                    <tr>
+                        <td colspan='2'>项目编号 ${data.message}</td>
+                        <td colspan='2'>项目名称 ${data.message}</td>
+                        <td colspan='2'></td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>信息员   ${data.message}</td>
+                        <td colspan='2'>联系电话 ${data.message}</td>
+                        <td colspan='2'>签单日期 ${data.message}</td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>持卡人   ${data.message}</td>
+                        <td colspan='2'>银行名称 ${data.message}</td>
+                        <td colspan='2'>银行卡号 ${data.message}</td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>装修合同 ${data.message}</td>
+                        <td colspan='2'>空调合同 ${data.message}</td>
+                        <td colspan='2'>消防合同 ${data.message}</td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>家具合同 ${data.message}</td>
+                        <td colspan='2'>弱电合同 ${data.message}</td>
+                        <td colspan='2'>管理费   ${data.message}</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan='2'>****费用 ${data.message}</td>
+                        <td colspan='2'>总税金   ${data.message}</td>
+                        <td colspan='2'>合同总金额 ${data.message}</td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>应付金额 ${data.message}</td>
+                        <td colspan='2'>已付金额 ${data.message}</td>
+                        <td colspan='2'>申请金额 ${data.message}</td>
+                    </tr>
+                    <tr><td colspan='6'>申请理由 </td></tr>
+                    <tr><td colspan='6'>申请附件 </td></tr>
+                    <tr><td colspan='6'>发起人   </td></tr>
+                    `;
+                    office_approval_agencyPercent.find('.line_show_box tbody').html(temp);
+                    office_approval_agencyPercent.find('.line_show_box').modal('show');
+
+                    //抄送人 审批人
+                    common_tree_staff_reset(office_approval_agencyPercent.find('.line_show_box .line_show_box_csr'));
+                    common_approval_tree(
+                        office_approval_agencyPercent.find('.line_show_box .tool_add_box_spr'),
+                        office_approval_agencyPercent_api.approval
+                    ); 
+
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+
+    //同意-----------------------------------------------------------------------------------------------
+    office_approval_agencyPercent.on("click", '.line_agree_btn', function() {
+        office_approval_agencyPercent.find('.line_agree_box [name="dataId"]').val( $(this).attr('dataId') );
+        office_approval_agencyPercent.find('.line_agree_box').modal('show');
+    });
+    office_approval_agencyPercent.on("click", '.line_agree_submit', function() {
+        um_data_submit({
+            url: API.test_response,
+            form: $(this).parents('form'),
+            dataSource: office_approval_agencyPercent_dataSource,
+        });
+    });
+
+    //拒绝-----------------------------------------------------------------------------------------------
+    office_approval_agencyPercent.on("click", '.line_reject_btn', function() {
+        office_approval_agencyPercent.find('.line_reject_box [name="dataId"]').val( $(this).attr('dataId') );
+        office_approval_agencyPercent.find('.line_reject_box').modal('show');
+    });
+    office_approval_agencyPercent.on("click", '.line_reject_submit', function() {
+        um_data_submit({
+            url: API.test_response,
+            form: $(this).parents('form'),
+            dataSource: office_approval_agencyPercent_dataSource,
+        });
+    });
+
+    //…
+
+}); //预加载结尾
+
+</script>
