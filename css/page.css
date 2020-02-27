@@ -380,3 +380,70 @@
 .office-approval .finish dt{
     border-right: 1px solid #3280fc;
 }
+/*详情样式*/
+.detail-wrapper table tbody tr:nth-child(1) td:nth-child(1),
+.detail-wrapper table tbody tr:nth-child(1) td:nth-child(2){
+    width: 280px;
+}
+.detail-wrapper table *{
+    font-size: small;
+    font-weight: normal;
+    color:#666;
+    line-height:22px;
+}
+.detail-wrapper table b{
+    color: #000;
+    display: inline-block;
+    min-width: 70px;
+    text-align: justify;
+    text-align-last: justify;
+}
+.detail-wrapper table b:after{
+    content: '：';
+}
+/*模式样式*/
+.detail-wrapper table td input,
+.detail-wrapper table td select,
+.detail-wrapper table td textarea{
+    padding:2px!important;
+    height: 22px!important;
+    border-radius: 0!important;
+    max-width: 150px;
+    position: relative;
+    top: 0px;
+    left: -3px;
+}
+.detail-wrapper table td span+textarea{
+    max-width: 710px;
+    top: -3px;
+}
+/*模式-显示*/
+.detail-wrapper.mode-show table td span{
+    display: inline-block;
+}
+.detail-wrapper.mode-show table td input,
+.detail-wrapper.mode-show table td select,
+.detail-wrapper.mode-show table td textarea{
+    display: none;
+}
+.detail-wrapper.mode-show .detail_edit_btn{
+    display: inline-block;
+}
+.detail-wrapper.mode-show .detail_save_btn{
+    display: none;
+}
+/*模式-修改*/
+.detail-wrapper.mode-edit table td span{
+    display: none;
+}
+.detail-wrapper.mode-edit table td input,
+.detail-wrapper.mode-edit table td select,
+.detail-wrapper.mode-edit table td textarea{
+    display: flex;
+}
+.detail-wrapper.mode-edit .detail_edit_btn{
+    display: none;
+}
+.detail-wrapper.mode-edit .detail_save_btn{
+    display: inline-block;
+}

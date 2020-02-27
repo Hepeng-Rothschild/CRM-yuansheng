@@ -21,13 +21,13 @@ function um_select_option(object){
         field: object.field || 'name',  //字段名称
         use  : object.use   || '',      //使用用途
         data : object.data  || {        //请求参数
-            "posttype": object.type,
-            "postdata": [
-                {
-                    "pageCount":"1",
-                    "pageSize" :"20"
-                }
-            ]
+            // "posttype": object.type,
+            // "postdata": [
+            //     {
+            //         "pageCount":"1",
+            //         "pageSize" :"20"
+            //     }
+            // ]
         }
     }
     //远程请求
@@ -115,10 +115,12 @@ function um_data_submit(object){
         url         : object.url  || '',                        //接口url
         type        : object.type || '',                        //接口type
         form        : object.form || '',                        //操作表单
+        datagridDom : object.datagridDom || object.form.parents('.page-wrapper').find('.datagrid'), //表格DOM
         dataSource  : object.dataSource  || '',                 //表格数据源对象
         checkClear  : object.checkClear  || false,              //表格复选框清理
         close_modal : object.close_modal || $(".modal:visible") //应关闭模态框
     }
+
     $.ajax({
         url     : object.url,
         data    : um_data_get(object.form),
@@ -130,7 +132,7 @@ function um_data_submit(object){
                 setTimeout(function(){
                     object.close_modal.modal("hide");
                     for(var i=0;i<object.form.length;i++){ object.form[i].reset(); }
-                    var datagrid_obj = object.form.parents('.page-wrapper').find('.datagrid').data("zui.datagrid");
+                    var datagrid_obj = object.datagridDom.data("zui.datagrid");
                     if( object.checkClear ){
                         for(var i=0;i<datagrid_obj.getCheckItems().filter(function(e){return e}).length;i++){
                             datagrid_obj.checkRow(i,false);
@@ -211,7 +213,7 @@ function zui_datagrid_remote(object){
         url     : object.url,
         type    : "POST",
         dataType: "json",
-        data    : um_data_get(object.page_dom.find(".tool-search"), object.type)
+        data    : um_data_get(object.page_dom.find(".tool-search"))
     }
     return remote;
 }
