@@ -115,14 +115,14 @@
                 </div>
                 <div class="modal-body">
                     <form class="container form-horizontal">
+                        <input type="hidden" name="ids">
                         <div class="form-group">
                             <label class="col-sm-2 required">离职人员</label>
-                            <div class="col-sm-8"><select class="form-control tool_change_box_selectQuit"><!-- JS推进 --></select></div>
+                            <div class="col-sm-8"><select class="form-control tool_change_box_selectQuit"   name="quit"><!-- JS推进 --></select></div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 required">目标人员</label>
-                            <div class="col-sm-8">
-                                <select class="form-control tool_change_box_selectTarget"><!-- JS推进 --></select>
+                            <div class="col-sm-8"><select class="form-control tool_change_box_selectTarget" name="target"><!-- JS推进 --></select>
                                 <span class="text-gray">注：业务人员项目交接。是指将“离职人员”名下所有“正跟踪”和“在谈”项目转到“目标人员”名下</span>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">项目分单详情</h4>
+                    <h4 class="modal-title">项目管理详情</h4>
                 </div>
                 <div class="modal-body modal-scroll">
 
@@ -218,8 +218,13 @@
                     <h4 class="modal-title">经理批复</h4>
                 </div>
                 <div class="modal-body">
-                    <form><input type="hidden" name="detailId"></form>
-                    <div class="container">确定经理批复吗？</div>
+                    <form class="container form-horizontal">
+                        <input type="hidden" name="detailId">
+                        <div class="form-group">
+                            <label class="col-sm-2">经理批复</label>
+                            <div class="col-sm-8"><textarea class="form-control" name="text"></textarea></div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -275,7 +280,7 @@ $(function() {
             {name: "text4",label: "主案设计师",width: 90},
             {name: "text4",label: "房源状态",width: 90},
             {name: "text4",label: "洽谈级别",width: 90},
-            {name: "text4",label: "状态",width: 90},
+            {name: "text4",label: "项目状态",width: 90},
             {name: "text4",label: "回访过期",width: 100}
         ],
         remote : function(){
@@ -353,20 +358,27 @@ $(function() {
     design_admin.on('click', '.tool_turn_submit', function(){
         um_data_submit({
             url : design_admin_api.turn,
-            form : design_admin_detail.find('.tool_turn_box form'),
+            form : design_admin.find('.tool_turn_box form'),
             dataSource : design_admin_dataSource,
-            checkClear : false
+            checkClear : true
         });
     });
 
     //工具条-客户交接
     design_admin.on('click', '.tool_change_btn', function(){
+        common_form_reset();
+        //ID获取
         var data_arr = design_admin.find('.datagrid').data("zui.datagrid").getCheckItems().filter(function(e){return e});
-        var data_id = [];
-        for (var i = 0; i < data_arr.length; i++) {
-            data_id.push(data_arr[i].id);
-        }
         if (data_arr.length > 0) {
+
+            //ID获取
+            var data_id = [];
+            for (var i = 0; i < data_arr.length; i++) {
+                data_id.push(data_arr[i].id);
+            }
+
+            //数据赋值
+            design_admin.find('.tool_change_box [name="ids"]').val(data_id.join(","));
 
             //下拉获取
             um_select_option({
@@ -391,7 +403,9 @@ $(function() {
     design_admin.on('click', '.tool_change_submit', function(){
         um_data_submit({
             url : design_admin_api.change,
-            form: design_admin_detail.find('.tool_change_box form')
+            form: design_admin.find('.tool_change_box form'),
+            dataSource : design_admin_dataSource,
+            checkClear : true
         });
     });
 
@@ -501,7 +515,7 @@ $(function() {
     //详情弹框
     design_admin.on("click", '.line_show_btn', function() {
         var dataId = $(this).attr('dataId');
-        design_admin_detail.find('[name="detailId"]').val(dataId); // 修改保存 + 其他操作按钮 + 切换表格
+        design_admin_detail.find('[name="detailId"]').val(dataId); // 详情ID赋值(多个)
         //远程请求
         $.ajax({
             url     : design_admin_api.show,
@@ -612,7 +626,7 @@ $(function() {
 
     //切换表格-设计回访-经理批复
     design_admin_detail.on("click", '.detail_reply_btn', function() {
-        //…
+        common_form_reset();
         design_admin_detail.find('.detail_reply_box').modal('show');
     });
     //提交

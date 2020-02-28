@@ -111,7 +111,7 @@
             { "title":"项目洽谈","icon":"","url":"design_list" },
             { "title":"项目管理","icon":"","url":"design_admin" },
             { "title":"签单列表","icon":"","url":"design_sign" },
-            { "title":"失败审批","icon":"","url":"design_failure" },
+            { "title":"失败审批","icon":"","url":"design_fail" },
             { "title":"过期审批","icon":"","url":"design_overdue" },
             { "title":"未隶属",  "icon":"","url":"design_unbelong"}
         ]

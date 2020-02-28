@@ -1,5 +1,5 @@
 <!-- 页面外套 -->
-<div class="page-wrapper" id="design_overdue">
+<div class="page-wrapper" id="design_fail">
 
     <!-- 数据网格 -->
     <div class="datagrid datagrid-striped">
@@ -11,12 +11,12 @@
                 <div class="im-label">
                     <div class="input-group">
                         <select class="form-control" name="sid">
-                            <option value="1">项目编号</option>
-                            <option value="1">项目名称</option>
-                            <option value="1">装修地址</option>
-                            <option value="1">信息员  </option>
-                            <option value="1">业务员  </option>
-                            <option value="1">项目联系人</option>
+							<option value="1">项目编号</option>
+							<option value="1">项目名称</option>
+							<option value="1">信息员  </option>
+							<option value="1">业务员  </option>
+							<option value="1">项目联系人</option>
+							<option value="1">主案设计师</option>
                         </select>
                         <span class="input-group-addon fix-border fix-padding"></span>
                         <input type="text" class="form-control" name="search">
@@ -26,27 +26,21 @@
                     <span>项目状态：</span>
                     <select class="form-control" name="state">
                         <option value="0">全部</option>
-                        <option value="1">在谈</option>
-                        <option value="2">正跟踪</option>
+                        <option value="1">未签申请中</option>
+                        <option value="2">不准申请中</option>
                     </select>
                 </label>
                 <label>
-                    <span>房源状态：</span>
+                    <span>未签理由：</span>
                     <select class="form-control" name="state2">
                         <option value="0">全部</option>
-                        <option value="1">已定房源</option>
-                        <option value="2">未定房源</option>
+                        <option value="1">未签</option>
+                        <option value="2">客因未签</option>
                     </select>
                 </label>
                 <label><button type="button" class="btn btn-primary tool_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
             </form>
-            <div class="tool-deal">
-                <label><button class="btn btn-primary tool_turn_btn">  <i class="icon icon-exchange"></i>    转移客户</button></label>
-                <label><button class="btn btn-primary tool_approveMore_btn"><i class="icon icon-pencil"></i> 过期批复</button></label>
-                <label><button class="btn btn-primary tool_approveFast_btn"><i class="icon icon-pencil"></i> 一键过期批复</button></label>
-                <div class="clearfix"></div>
-            </div>
         </div>
         <!-- tool-group -->
 
@@ -54,84 +48,12 @@
         <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
     </div>
     <!-- datagrid -->
- 
-    <!-- 转移客户 -->
-    <div class="modal modal-for-page fade tool_turn_box" aria-hidden="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">转移客户</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="container form-horizontal">
-                        <input type="hidden" name="ids">
-                        <div class="form-group">
-                            <label class="col-sm-2 required">项目编号</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" readonly name="item"></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 required">原设计师</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" readonly name="pre"></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 required">新设计师</label>
-                            <div class="col-sm-8"><select class="form-control tool_turn_box_newDesigner" name="new"><!--JS推进--></select></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary tool_turn_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 过期批复 -->
-    <div class="modal modal-for-page fade tool_approveMore_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">过期批复</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="container">您确定要批复选中的过期客户吗？<input type="hidden" name="ids"></form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary tool_approveMore_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 一键过期批复 -->
-    <div class="modal modal-for-page fade tool_approveFast_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">一键过期批复</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="container">您确定要一键过期批复所有过期客户吗？</form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary tool_approveFast_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
 <!-- page-wrapper -->
 
-
 <!-- 项目分单详情 -->
-<div class="detail-wrapper mode-show" id="design_overdue_detail">
+<div class="detail-wrapper mode-show" id="design_fail_detail">
     
     <!-- 详情弹框 -->
     <div class="modal modal-for-page fade detail_box" aria-hidden="false">
@@ -139,12 +61,15 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">过期审批详情</h4>
+                    <h4 class="modal-title">失败审批详情</h4>
                 </div>
                 <div class="modal-body modal-scroll">
 
                     <!-- 操作按钮 -->
-                    <button class="btn" data-dismiss="modal"><i class="icon icon-arrow-left"></i> 返回</button>
+                    <button class="btn" data-dismiss="modal"><i class="icon icon-arrow-left"></i>  返回</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target=".detail_backDesign_box">打回设计师</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target=".detail_backBusiness_box">打回商务</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target=".detail_library_box">同意归库</button>
 
                     <!-- 数据表单 -->
                     <form class="detail_box_form">
@@ -198,33 +123,88 @@
             </div>
         </div>
     </div>
+    
+    <!-- 打回设计师 -->
+    <div class="modal modal-for-page fade detail_backDesign_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">打回设计师</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">确定打回失败项目到设计师继续在谈吗？</div>
+                    <form><input type="hidden" name="detailId"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary detail_backDesign_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 打回商务 -->
+    <div class="modal modal-for-page fade detail_backBusiness_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">打回商务</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">确定打回失败项目到商务继续跟踪吗？</div>
+                    <form><input type="hidden" name="detailId"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary detail_backBusiness_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 同意归库 -->
+    <div class="modal modal-for-page fade detail_library_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">同意归库</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">确定打回失败项目归库吗？</div>
+                    <form><input type="hidden" name="detailId"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary detail_library_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
 <script>
 $(function() {
     //变量声明-----------------------------------------------------------------------------------------------
-    var design_overdue = $("#design_overdue"); //页面ID
-    var design_overdue_api = {
+    var design_fail = $("#design_fail"); //页面ID
+    var design_fail_api = {
         datagrid : API.test_datagrid, // 数据表格
-        turn : API.test_response, // 转移客户
-        approveMore : API.test_response, // 过期批复
-        approveFast : API.test_response, // 一键过期批复
-        designer : LOCAL + "Test/test_select.json", //转移客户-新设计师
         show : LOCAL + "Test/Template/customer.json", // 详情查看
         save : API.test_response, // 详情保存
+        backDesign : API.test_response, // 打回设计师
+        backBusiness : API.test_response, // 打回商务
+        library : API.test_response, // 同意归库
         tab1 : API.test_datagrid, // 切换表格1
         tab2 : API.test_datagrid, // 切换表格2
         tab3 : API.test_datagrid, // 切换表格3
     }
 
-    //组件实例化---------------------------------------------------------------------------------------------
-    design_overdue.find('[name="starttime"]').datetimepicker(option_date);
-    design_overdue.find('[name="endtime"]').datetimepicker(option_date);
-
     //数据表格-----------------------------------------------------------------------------------------------
     //数据源
-    var design_overdue_dataSource = {
+    var design_fail_dataSource = {
         cols   : [
             {name: "name", label: "项目编号",width: 90,html: true,
                 valueOperator: {
@@ -232,7 +212,7 @@ $(function() {
                         return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;
                     }
                 }
-            },
+        	},
             {name: "text4",label: "项目名称",width: 90},
             {name: "text4",label: "联系人1",width: 90},
             {name: "text4",label: "装修地址",width: 90},
@@ -240,141 +220,40 @@ $(function() {
             {name: "text4",label: "业务员",width: 90},
             {name: "text4",label: "主案设计师",width: 90},
             {name: "text4",label: "房源状态",width: 90},
-            {name: "text4",label: "项目状态",width: 90},
-            {name: "text4",label: "回访过期",width: 100}
+            {name: "text4",label: "项目状态",width: 90}
         ],
         remote : function(){
             return zui_datagrid_remote({
-                page_dom : design_overdue, 
-                url      : design_overdue_api.datagrid
+                page_dom : design_fail, 
+                url      : design_fail_api.datagrid
             });
         },
         remoteConverter : function(data){ 
             return zui_datagrid_filter({
-                page_dom : design_overdue,
+                page_dom : design_fail,
                 data     : data
             });
         }
     };
     //实例化
-    design_overdue.find('.datagrid').datagrid(
+    design_fail.find('.datagrid').datagrid(
         zui_datagrid_option({
-            checkable  : true,
-            datagrid   : design_overdue.find('.datagrid'),
-            dataSource : design_overdue_dataSource
+            datagrid   : design_fail.find('.datagrid'),
+            dataSource : design_fail_dataSource
         })
     );
     //搜索
-    design_overdue.find('.tool_search_btn').click(function(){ 
+    design_fail.find('.tool_search_btn').click(function(){ 
         zui_datagrid_render({
-            datagrid_obj : design_overdue.find('.datagrid').data("zui.datagrid"),
-            dataSource   : design_overdue_dataSource
+            datagrid_obj : design_fail.find('.datagrid').data("zui.datagrid"),
+            dataSource   : design_fail_dataSource
         }); 
-    });
-
-    //工具条-转移客户
-    design_overdue.on('click', '.tool_turn_btn', function(){
-        common_form_reset();
-        //ID获取
-        var data_arr = design_overdue.find('.datagrid').data("zui.datagrid").getCheckItems().filter(function(e){return e});
-        if (data_arr.length > 0) {
-
-            //ID获取
-            var data_id = [];
-            for (var i = 0; i < data_arr.length; i++) {
-                data_id.push(data_arr[i].id);
-            }
-
-            //项目编号获取
-            var data_item = [];
-            for (var x = 0; x < data_id.length; x++) {
-                data_item.push(data_arr[x].username);
-            }
-
-            //原商务专员获取
-            var data_pre = [];
-            for (var p = 0; p < data_id.length; p++) {
-                data_pre.push(data_arr[p].name);
-            }
-
-            //数据赋值
-            design_overdue.find('.tool_turn_box [name="item"]').val(data_item.join(","));
-            design_overdue.find('.tool_turn_box [name="pre"]').val(data_pre.join(","));
-            design_overdue.find('.tool_turn_box [name="ids"]').val(data_id.join(","));
-
-            //下拉获取
-            um_select_option({
-                dom : design_overdue.find('.tool_turn_box_newDesigner'),
-                url : design_overdue_api.designer,
-            });
-
-            //面板显示
-            design_overdue.find('.tool_turn_box').modal('show');
-        } else {
-            um_tip("至少选择一条数据", "1000", "text-danger");
-        }
-    });
-    //提交
-    design_overdue.on('click', '.tool_turn_submit', function(){
-        um_data_submit({
-            url : design_overdue_api.turn,
-            form : design_overdue.find('.tool_turn_box form'),
-            dataSource : design_overdue_dataSource,
-            checkClear : true
-        });
-    });
-
-    //工具条-过期批复
-    design_overdue.on('click', '.tool_approveMore_btn', function(){
-        common_form_reset();
-        //ID获取
-        var data_arr = design_overdue.find('.datagrid').data("zui.datagrid").getCheckItems().filter(function(e){return e});
-        if (data_arr.length > 0) {
-
-            //ID获取
-            var data_id = [];
-            for (var i = 0; i < data_arr.length; i++) {
-                data_id.push(data_arr[i].id);
-            }
-
-            //数据赋值
-            design_overdue.find('.tool_approveMore_box [name="ids"]').val(data_id.join(","));
-
-            //面板显示
-            design_overdue.find('.tool_approveMore_box').modal('show');
-
-        } else {
-            um_tip("至少选择一条数据", "1000", "text-danger");
-        }
-    });
-    //提交
-    design_overdue.on('click', '.tool_approveMore_submit', function(){
-        um_data_submit({
-            url : design_overdue_api.approveMore,
-            form: design_overdue.find('.tool_approveMore_box form'),
-            dataSource : design_overdue_dataSource,
-            checkClear : true
-        });
-    });
-
-    //工具条-一键过期批复
-    design_overdue.on('click', '.tool_approveFast_btn', function(){
-        design_overdue.find('.tool_approveFast_box').modal('show');
-    });
-    //提交
-    design_overdue.on('click', '.tool_approveFast_submit', function(){
-        um_data_submit({
-            url : design_overdue_api.approveFast,
-            form: design_overdue.find('.tool_approveFast_box form'),
-            dataSource : design_overdue_dataSource,
-            checkClear : true
-        });
     });
 
     //详情部分---------------------------------------------------------------------------
     //变量声明
-    var design_overdue_detail = $("#design_overdue_detail");
-    var design_overdue_detail_dataSource_tab1 = {
+    var design_fail_detail = $("#design_fail_detail");
+    var design_fail_detail_dataSource_tab1 = {
         cols   : [
             {name:"name",    label:"回访人",      width:80 },
             {name:"tex10",   label:"回访内容",    width:200},
@@ -383,18 +262,18 @@ $(function() {
         ],
         remote : function(){
             return zui_datagrid_remote({
-                page_dom : design_overdue_detail.find('.detail_tab1'), 
-                url      : design_overdue_api.tab1
+                page_dom : design_fail_detail.find('.detail_tab1'), 
+                url      : design_fail_api.tab1
             });
         },
         remoteConverter : function(data){ 
             return zui_datagrid_filter({
-                page_dom : design_overdue_detail.find('.detail_tab1'),
+                page_dom : design_fail_detail.find('.detail_tab1'),
                 data     : data
             });
         }
     }
-    var design_overdue_detail_dataSource_tab2 = {
+    var design_fail_detail_dataSource_tab2 = {
         cols   : [
             {name:"username",label:"回访人",      width:80 },
             {name:"datetime",label:"回访时间",    width:140},
@@ -404,22 +283,22 @@ $(function() {
             {name:"text2",   label:"跟进情况",    width:80 },
             {name:"state",   label:"现阶段困难",  width:180},
             {name:"text2",   label:"外协情况",    width:80 },
-            {name:"text2",   label:"经理批复",    width:180}
+            {name:"state",   label:"经理批复",    width:180}
         ],
         remote : function(){
             return zui_datagrid_remote({
-                page_dom : design_overdue_detail.find('.detail_tab2'), 
-                url      : design_overdue_api.tab2
+                page_dom : design_fail_detail.find('.detail_tab2'), 
+                url      : design_fail_api.tab2
             });
         },
         remoteConverter : function(data){ 
             return zui_datagrid_filter({
-                page_dom : design_overdue_detail.find('.detail_tab2'),
+                page_dom : design_fail_detail.find('.detail_tab2'),
                 data     : data
             });
         }
     }
-    var design_overdue_detail_dataSource_tab3 = {
+    var design_fail_detail_dataSource_tab3 = {
         cols   : [
             {name:"username",label:"操作人",  width:80 },
             {name:"datetime",label:"操作时间",width:140},
@@ -427,25 +306,25 @@ $(function() {
         ],
         remote : function(){
             return zui_datagrid_remote({
-                page_dom : design_overdue_detail.find('.detail_tab3'), 
-                url      : design_overdue_api.tab3
+                page_dom : design_fail_detail.find('.detail_tab3'), 
+                url      : design_fail_api.tab3
             });
         },
         remoteConverter : function(data){ 
             return zui_datagrid_filter({
-                page_dom : design_overdue_detail.find('.detail_tab3'),
+                page_dom : design_fail_detail.find('.detail_tab3'),
                 data     : data
             });
         }
     }
 
     //详情弹框
-    design_overdue.on("click", '.line_show_btn', function() {
+    design_fail.on("click", '.line_show_btn', function() {
         var dataId = $(this).attr('dataId');
-        design_overdue_detail.find('[name="detailId"]').val(dataId); // 详情ID赋值(多个)
+        design_fail_detail.find('[name="detailId"]').val(dataId); // 详情ID赋值(多个)
         //远程请求
         $.ajax({
-            url     : design_overdue_api.show,
+            url     : design_fail_api.show,
             type    : "post",
             dataType: "json",
             data    : { id: dataId },
@@ -503,21 +382,21 @@ $(function() {
                         <tr><td colspan="3"><div class="flex-box" style="height:35px;"><b>备注信息</b>${data.text}</div></td></tr>
                     </tbody>
                     `;
-                    design_overdue_detail.find('.detail_box .detail_box_form table').html(temp); // DOM填充
+                    design_fail_detail.find('.detail_box .detail_box_form table').html(temp); // DOM填充
                     //切换表格刷新
                     zui_datagrid_render({
-                        datagrid_obj : design_overdue_detail.find('.detail_tab1 .datagrid').data("zui.datagrid"),
-                        dataSource   : design_overdue_detail_dataSource_tab1
+                        datagrid_obj : design_fail_detail.find('.detail_tab1 .datagrid').data("zui.datagrid"),
+                        dataSource   : design_fail_detail_dataSource_tab1
                     });
                     zui_datagrid_render({
-                        datagrid_obj : design_overdue_detail.find('.detail_tab2 .datagrid').data("zui.datagrid"),
-                        dataSource   : design_overdue_detail_dataSource_tab2
+                        datagrid_obj : design_fail_detail.find('.detail_tab2 .datagrid').data("zui.datagrid"),
+                        dataSource   : design_fail_detail_dataSource_tab2
                     });
                     zui_datagrid_render({
-                        datagrid_obj : design_overdue_detail.find('.detail_tab3 .datagrid').data("zui.datagrid"),
-                        dataSource   : design_overdue_detail_dataSource_tab3
+                        datagrid_obj : design_fail_detail.find('.detail_tab3 .datagrid').data("zui.datagrid"),
+                        dataSource   : design_fail_detail_dataSource_tab3
                     });
-                    design_overdue_detail.find('.detail_box').modal('show'); // 弹框显示
+                    design_fail_detail.find('.detail_box').modal('show'); // 弹框显示
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
@@ -525,29 +404,59 @@ $(function() {
         });
  
     });
+ 
+    //操作按钮-打回设计师
+    design_fail_detail.on("click", '.detail_backDesign_submit', function() {
+        um_data_submit({
+            url         : design_fail_api.backDesign,
+            form        : design_fail_detail.find('.detail_backDesign_box form'),
+            datagridDom : design_fail.find('.datagrid'),
+            dataSource  : design_fail_dataSource,
+        });
+    });
+
+    //操作按钮-打回商务
+    design_fail_detail.on("click", '.detail_backBusiness_submit', function() {
+        um_data_submit({
+            url         : design_fail_api.backBusiness,
+            form        : design_fail_detail.find('.detail_backBusiness_box form'),
+            datagridDom : design_fail.find('.datagrid'),
+            dataSource  : design_fail_dataSource,
+        });
+    });
+
+    //操作按钮-同意归库
+    design_fail_detail.on("click", '.detail_library_submit', function() {
+        um_data_submit({
+            url         : design_fail_api.library,
+            form        : design_fail_detail.find('.detail_library_box form'),
+            datagridDom : design_fail.find('.datagrid'),
+            dataSource  : design_fail_dataSource,
+        });
+    });
 
     //切换表格-业务回访
-    design_overdue_detail.find('.detail_tab1 .datagrid').datagrid(
+    design_fail_detail.find('.detail_tab1 .datagrid').datagrid(
         zui_datagrid_option({
             height     : 400,
-            datagrid   : design_overdue_detail.find('.detail_tab1 .datagrid'),
-            dataSource : design_overdue_detail_dataSource_tab1
+            datagrid   : design_fail_detail.find('.detail_tab1 .datagrid'),
+            dataSource : design_fail_detail_dataSource_tab1
         })
     );
     //切换表格-设计回访
-    design_overdue_detail.find('.detail_tab2 .datagrid').datagrid(
+    design_fail_detail.find('.detail_tab2 .datagrid').datagrid(
         zui_datagrid_option({
             height     : 400,
-            datagrid   : design_overdue_detail.find('.detail_tab2 .datagrid'),
-            dataSource : design_overdue_detail_dataSource_tab2
+            datagrid   : design_fail_detail.find('.detail_tab2 .datagrid'),
+            dataSource : design_fail_detail_dataSource_tab2
         })
     );
     //切换表格-过程记录
-    design_overdue_detail.find('.detail_tab3 .datagrid').datagrid(
+    design_fail_detail.find('.detail_tab3 .datagrid').datagrid(
         zui_datagrid_option({
             height     : 400,
-            datagrid   : design_overdue_detail.find('.detail_tab3 .datagrid'),
-            dataSource : design_overdue_detail_dataSource_tab3
+            datagrid   : design_fail_detail.find('.detail_tab3 .datagrid'),
+            dataSource : design_fail_detail_dataSource_tab3
         })
     );
 

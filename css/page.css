@@ -392,7 +392,8 @@
     line-height:22px;
 }
 .detail-wrapper table b{
-    color: #000;
+    color: #333!important;
+    font-weight: normal!important;
     display: inline-block;
     min-width: 70px;
     text-align: justify;
@@ -416,6 +417,11 @@
 .detail-wrapper table td span+textarea{
     max-width: 710px;
     top: -3px;
+}
+.detail-wrapper table td em.text-danger{
+    font-style: normal;
+    color: #ea644a!important;
+    margin-left: 5px;
 }
 /*模式-显示*/
 .detail-wrapper.mode-show table td span{

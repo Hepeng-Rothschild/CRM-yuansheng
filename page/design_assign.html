@@ -60,8 +60,8 @@
 
                     <!-- 操作按钮 -->
                     <button class="btn" data-dismiss="modal"><i class="icon icon-arrow-left"></i>  返回</button>
-                    <button class="btn btn-primary detail_edit_btn"><i class="icon icon-edit"></i> 修改</button>
-                    <button class="btn btn-primary detail_save_btn"><i class="icon icon-save"></i> 保存</button>
+                    <button class="btn btn-primary detail_edit_btn"><i class="icon icon-edit"></i> 设计师分配</button>
+                    <button class="btn btn-primary detail_save_btn"><i class="icon icon-save"></i> 设计师保存</button>
                     <button class="btn btn-primary" data-toggle="modal" data-target=".detail_backBusiness_box">打回商务</button>
 
                     <!-- 数据表单 -->
@@ -102,8 +102,8 @@
                     <h4 class="modal-title">打回商务</h4>
                 </div>
                 <div class="modal-body">
-                    <form><input type="hidden" name="detailId"></form>
                     <div class="container">确定打回商务经理吗？</div>
+                    <form><input type="hidden" name="detailId"></form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -122,6 +122,7 @@ $(function() {
     var design_assign = $("#design_assign"); // 页面ID
     var design_assign_api = {
         datagrid : API.test_datagrid, // 数据表格
+        designer : LOCAL + "Test/test_select.json", // 详情查看-设计师下拉
         show : LOCAL + "Test/Template/customer.json", // 详情查看
         save : API.test_response, // 详情保存
         backBusiness : API.test_response, // 打回商务
@@ -200,10 +201,25 @@ $(function() {
         }
     }
 
+    //下拉获取-设计师 
+    var design_assign_detail_selectDesigner = "";
+    $.ajax({
+        url     : design_assign_api.designer,
+        type    : "post",
+        dataType: "json",
+        success : function(data){
+            var data = data.data;
+            for(var i=0;i<data.length;i++){
+                design_assign_detail_selectDesigner += "<option value='"+data[i]['id']+"'>"+data[i]['name']+"</option>";
+            }
+        }
+    });
+
     //详情弹框
     design_assign.on("click", '.line_show_btn', function() {
         var dataId = $(this).attr('dataId');
-        design_assign_detail.find('[name="detailId"]').val(dataId); // 修改保存 + 其他操作按钮 + 切换表格
+        design_assign_detail.find('[name="detailId"]').val(dataId); // 详情ID赋值(多个)
+
         //远程请求
         $.ajax({
             url     : design_assign_api.show,
@@ -227,13 +243,7 @@ $(function() {
                             <td><div class="flex-box"><b>信息员</b>${data.providername}</div></td>
                             <td>
                                 <div class="flex-box"><b>设计师</b><span>${data.designer}</span>
-                                    <select class="form-control flex-son" name="designernumb">
-                                        <option value="1">李连杰</option>
-                                        <option value="2">刘德华</option>
-                                        <option value="3">谢霆锋</option>
-                                        <option value="4">郑中基</option>
-                                        <option value="5">方文山</option>
-                                    </select>
+                                    <select class="form-control flex-son" name="designernumb">${design_assign_detail_selectDesigner}</select>
                                 </div>
                             </td>
                         </tr>
