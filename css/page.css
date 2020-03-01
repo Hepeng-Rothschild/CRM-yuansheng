@@ -423,6 +423,14 @@
     color: #ea644a!important;
     margin-left: 5px;
 }
+.detail-wrapper table .detail-table-title{
+    display: block;
+    margin-top: 20px;
+    font-size: 15px!important;
+}
+.detail-wrapper table .detail-table-title.detail-table-title-top{
+    margin-top: 0;
+}
 /*模式-显示*/
 .detail-wrapper.mode-show table td span{
     display: inline-block;
@@ -452,4 +460,13 @@
 }
 .detail-wrapper.mode-edit .detail_save_btn{
     display: inline-block;
+}
+/*模式-强制*/
+.detail-wrapper table.mode-show-force td span{
+    display: none!important;
+}
+.detail-wrapper table.mode-show-force td input,
+.detail-wrapper table.mode-show-force td select,
+.detail-wrapper table.mode-show-force td textarea{
+    display: flex!important;
 }

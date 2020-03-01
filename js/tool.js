@@ -118,12 +118,22 @@ function um_data_submit(object){
         datagridDom : object.datagridDom || object.form.parents('.page-wrapper').find('.datagrid'), //表格DOM
         dataSource  : object.dataSource  || '',                 //表格数据源对象
         checkClear  : object.checkClear  || false,              //表格复选框清理
-        close_modal : object.close_modal || $(".modal:visible") //应关闭模态框
+        close_modal : object.close_modal || $(".modal:visible"),//应关闭模态框
+        stringify   : object.stringify   || false,              //代码格式化
     }
-
+    var data = um_data_get(object.form);
+    if( object.stringify === true ){
+        var stringifyData = {};
+        data.forEach(function(i){
+            stringifyData[i.name] = i.value;
+        });
+        data = {
+            requestJson: JSON.stringify(stringifyData)
+        }
+    }
     $.ajax({
         url     : object.url,
-        data    : um_data_get(object.form),
+        data    : data,
         type    : "post",
         dataType: "json",
         success : function(data){
@@ -206,18 +216,50 @@ function zui_datagrid_render(object){
  * return object   请求参数
  */
 function zui_datagrid_remote(object){
+    var object = {
+        page_dom : object.page_dom,
+        url      : object.url,
+        mode     : object.mode || false // false对接JSON true对接后台[###]
+    }
     var pager_state = object.page_dom.find('.pager').data('zui.pager').state;
     object.page_dom.find("[name='page']").val( pager_state.page );
     object.page_dom.find("[name='recPerPage']").val( pager_state.recPerPage );
-    var remote = {
-        url     : object.url,
-        type    : "POST",
-        dataType: "json",
-        data    : um_data_get(object.page_dom.find(".tool-search"))
+    var data = um_data_get(object.page_dom.find(".tool-search"));
+    var remote = {};
+    if(object.mode == false){
+        remote = {
+            url     : object.url,
+            type    : "POST",
+            dataType: "json",
+            data    : data
+        }
+    } else {
+        var searchObject = {};
+        data.forEach(function(i){
+            searchObject[i.name] = i.value;
+        });
+        //如搜索关键字为空 那么sid=0
+        if(searchObject.search == '' || searchObject.proname == ''){
+            searchObject.sid = 0;
+        }
+        delete searchObject.page;
+        delete searchObject.recPerPage;
+        remote = {
+            url     : object.url,
+            type    : "POST",
+            dataType: "json",
+            data    : {
+                requestjson: JSON.stringify({
+                    searchObject: searchObject,
+                    page: pager_state.page,
+                    recPerPage: pager_state.recPerPage
+                }) 
+            }
+        }
     }
     return remote;
 }
-
+ 
 /* 数据过滤
  * param  object   参数对象
  *        page_dom 页面对象

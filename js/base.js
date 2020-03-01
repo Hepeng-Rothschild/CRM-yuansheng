@@ -329,18 +329,24 @@ function um_date(fmt,date){
 }
 
 /* um_date_duration() 时间差获取
- * @param timeStart string 开始时间
- * @param timeEnd   string 结束时间
+ * @param startTime string 开始时间
+ * @param endTime   string 结束时间
  * @return string 时间结果
  */
-function um_date_duration(timeStart, timeEnd){
-    if( timeStart!="" && timeEnd!="" ){
-        var difValue = new Date(timeEnd).getTime() - new Date(timeStart).getTime();
-        //if ( difValue > 0 ){} else { um_tip("时间不合法","1500","text-danger"); }
-        var day = Math.floor(difValue / 1000 / 60 / 60 / 24);
-        difValue = difValue % (1000 * 60 * 60 * 24);
-        var hour = Math.floor(difValue / 1000 / 60 / 60);
-        return day + "天" + hour + "小时";
+function um_date_duration(startTime, endTime, mode='string'){
+    if( startTime!="" && endTime!="" ){
+        var duration = new Date(endTime).getTime() - new Date(startTime).getTime();
+        //if ( duration > 0 ){} else { um_tip("时间不合法","1500","text-danger"); }
+        var day = Math.floor(duration / 1000 / 60 / 60 / 24);
+        duration = duration % (1000 * 60 * 60 * 24);
+        var hour = Math.floor(duration / 1000 / 60 / 60);
+        var result = '';
+        if( mode =='string'){
+            result = day + "天" + hour + "小时";
+        } else if( mode == 'object'){
+            result = {day, hour};
+        }
+        return result;
     }
 }
 

@@ -1,0 +1,77 @@
+{
+	"status"  : 1,
+	"data" 	  : {
+		"notes" : "以下为 签单列表-详情(设计)所需字段-------------------------------------",
+
+		"itemstatename" : "该字段需要'状态类别','状态详情','打回原因','打回时间'字符串拼接",
+		
+		"number" 		: "000001",
+		"salesman" 		: "李连杰",
+		"designer" 		: "谢霆锋",
+
+		"user1" 		: "张学友",
+		"tel1" 	 		: "18332367556",
+		"tel2" 			: "15684575425",
+
+		"connumb" 		: "10086",
+		"conname" 		: "合同名称",
+		"condate" 		: "2019-12-31",
+
+		"conmoney" 		: 100,
+		"conmoneyitem" 	: 5,
+		"contypename" 	: "类型1",
+		"discount" 		: "0.00",
+
+		"taxpoint" 		: "5%",
+		"taxmoney" 		: 101,
+		"invoicename" 	: "是",
+
+		"moneyhelp" 	: 102,
+		"moneyother" 	: 103,
+
+		"moneygot" 		: 104,
+		"moneynot" 		: 105,
+		"moneybad" 		: 106,
+
+		"moneyinfo" 	: "这里是收款说明",
+
+		"text"  		: "这里是备注信息",
+
+		"notes" : "以下为 签单列表-详情(施工)所需字段 部分字段复用(设计字段)--------------",
+
+		"conmoneys" 	: 150,
+		"conmoney1" 	: 10,
+		"conmoney2" 	: 10,
+		"conmoney3" 	: 10,
+		"conmoney4" 	: 10,
+		"conmoney5" 	: 10,
+		"conmoneysitem" : "15%",
+		"conmoney1item" : "1%",
+		"conmoney2item" : "2%",
+		"conmoney3item" : "3%",
+		"conmoney4item" : "4%",
+		"conmoney5item" : "5%",
+
+		"conquality" 	: 100,
+		"moneyadmin"    : 50,
+
+		"starttime" 	: "2020-01-01",
+		"endtime" 		: "2020-03-01",
+		"duration" 		: "60天",
+
+		"englevel" 		: "等级1",
+		"engarea" 		: "100平米",
+		"engaddress" 	: "石家庄市裕华区富金大厦",
+
+		"engtype" 		: "类型1",
+		"engadmin" 		: "周杰伦",
+		"itemadmin" 	: "方文山",
+
+		"propname" 		: "金碧物业",
+		"proadmin" 		: "许家印",
+		"proptel" 		: "18332367000",
+
+		"budget" 		: "暂无",
+		"drawing" 		: "暂无"
+	}
+}

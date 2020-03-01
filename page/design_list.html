@@ -1,1072 +1,943 @@
 <!-- 页面外套 -->
 <div class="page-wrapper" id="design_list">
 
-	<!-- 数据网格 -->
-	<div class="datagrid datagrid-striped" id="design_list_datagrid">
-
-		<!-- 工具条组 -->
-		<div class="tool-group">
-			<div class="tool-search">
-				<div class="im-label">
-					<div class="input-group">
-						<select class="form-control" id="design_list_tool_keys">
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped">
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <form class="tool-search">
+                <input type="hidden" name='page'>
+                <input type="hidden" name='recPerPage'>
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" name="sid">
 							<option value="1">项目编号</option>
-							<option value="2">项目名称</option>
-							<option value="4">商务专员</option>
-							<option value="4">设计师</option>
-						</select>
-						<span class="input-group-addon fix-border fix-padding"></span>
-						<input type="text" class="form-control" id="design_list_tool_search">
-					</div>
-				</div>
-				<label><span>项目状态：</span><select class="form-control" id="design_list_tool_select1">
-						<!--JS推进--></select></label>
-				<label><span>房源状态：</span><select class="form-control" id="design_list_tool_select2">
-						<!--JS推进--></select></label>
-				<label><span>洽谈级别：</span><select class="form-control" id="design_list_tool_select3">
-						<!--JS推进--></select></label>
-				<label><button class="btn btn-primary" id="design_list_search_btn"><i class="icon icon-search"></i> 查询</button></label>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		<!-- tool-group -->
-		<div class="datagrid-container"></div>
-		<ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
-	</div>
-	<!-- datagrid -->
-<!--洽谈等级盒子 -->
-	<div class="modal modal-for-page fade" aria-hidden="false" id="design_list_great_box">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-					<h4 class="modal-title">洽谈等级</h4>
-				</div>
-				<div class="modal-body">
-					<form class="container form-horizontal">
-						<div class="form-group require">
-							<label class="col-sm-2 required" for="design_list_great_level">洽谈等级</label>
-							<div class="col-sm-8"><select class="form-control" id="design_list_great_level"><!--JS推进--></select></div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" id="design_list_great_submit">提交</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--design_list_great_box -->
-	<div class="modal modal-for-page fade" aria-hidden="false" id="design_list_progress_btn">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-					<h4 class="modal-title">设计进度</h4>
-				</div>
-				<div class="modal-body">
-					<form class="container form-horizontal">
-						<div class="form-group">
-							<label class="col-sm-2 required" for="design_list_progress_btn">设计进度</label>
-							<div class="col-sm-8">
-								<select class="form-control" id="design_list_progress_btn">
-									<!--JS推进--></select>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" id="design_list_level_submit">提交</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 回访记录盒子 -->
-	<div class="modal modal-for-page fade" aria-hidden="false"
-		 id="design_list_logAdd_box">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button class="close" data-dismiss="modal"><span
-							aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-					<h4 class="modal-title">添加回访记录</h4>
-				</div>
-				<div class="modal-body">
-					<form class="container form-horizontal">
-						<div class="form-group">
-							<label class="col-sm-2 required" for="design_list_logAdd_text">日志内容</label>
-							<div class="col-sm-8"><textarea class="form-control" id="design_list_logAdd_text"></textarea></div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 required"
-								   for="design_list_logAdd_text">对手进展</label>
-							<div class="col-sm-8">
-								<div class="col">
-									<div class="opt">
-										<input
-												class="magic-radio" type="radio" name="radio1" id="r1" value="1">
-										<label
-												for="r1" class="r1"><span>无</span></label>
-									</div>
-									<div class="opt">
-										<input
-												class="magic-radio" type="radio" name="radio1" id="r2" value="2" checked>
-										<label
-												for="r2" class="r2">方案</label>
-									</div>
-									<div class="opt">
-										<input
-												class="magic-radio" type="radio" name="radio1" id="r3" value="3" checked>
-										<label
-												for="r3" class="r3">效果图</label>
-									</div>
-									<div class="opt">
-										<input
-												class="magic-radio" type="radio" name="radio1" id="r4" value="4" checked>
-										<label
-												for="r4" class="r4">报价</label>
-									</div>
-									<div class="opt">
-										<input
-												class="magic-radio" type="radio" name="radio1" id="r5" value="5" checked>
-										<label
-												for="r4" class="r5">合同</label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 required"
-								   for="design_list_follow_up">跟进情况</label>
-							<div class="col-sm-8"><textarea
-									class="form-control" id="design_list_follow_up"></textarea></div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 required"
-								   for="design_list_difficulty">现阶段困难</label>
-							<div class="col-sm-8"><textarea
-									class="form-control" id="design_list_difficulty"></textarea></div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2"
-								   for="design_list_external">外协情况</label>
-							<div class="col-sm-8">
-								<div class="col">
-									<div class="opt">
-										<input
-												class="magic-radio" type="radio" name="radio2" id="w1" value="1">
-										<label
-												for="w1" class="r1"><span>无</span></label>
-									</div>
-									<div class="opt">
-										<input
-												class="magic-radio" type="radio" name="radio2" id="w2" value="2" checked>
-										<label
-												for="w2" class="r2">空调</label>
-									</div>
-									<div class="opt">
-										<input
-												class="magic-radio" type="radio" name="radio2" id="w3" value="3" checked>
-										<label
-												for="w3" class="r3">消防</label>
-									</div>
-									<div class="opt">
-										<input
-												class="magic-radio" type="radio" name="radio2" id="w4" value="4" checked>
-										<label
-												for="w4" class="r4">家具</label>
-									</div>
-									<div class="opt">
-										<input
-												class="magic-radio" type="radio" name="radio2" id="w5" value="5" checked>
-										<label
-												for="w4" class="r5">弱电</label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2
-for="design_list_estimate">预估单值</label>
-							<div class="col-sm-8"><input
-									type="text" name="inp" id="design_list_estimate" class="form-control"/></div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2"
-								   for="design_list_cycle">回访周期</label>
-							<div class="col-sm-8">
-								<select class="form-
-control" id="design_list_cycle"><!-- JS推进 --></select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2"
-								   for="design_list_visit">下次回访</label>
-							<div class="col-sm-8">
-								<select class="form-
-control" id="design_list_visit"><!-- JS推进 --></select>
-							</div>
-						</div>
+							<option value="1">项目名称</option>
+							<option value="1">装修地址</option>
+							<option value="1">信息员  </option>
+							<option value="1">业务员  </option>
+							<option value="1">项目联系人</option>
+							<option value="1">手机号码</option>
+							<option value="1">业务部门</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="search">
+                    </div>
+                </div>
+                <label>
+                    <span>项目状态：</span>
+                    <select class="form-control" name="state">
+                        <option value="0">全部</option>
+                        <option value="1">在谈</option>
+                        <option value="2">已签</option>
+                        <option value="3">未签申请中</option>
+                        <option value="4">未签已归库</option>
+                        <option value="5">不准申请中</option>
+                        <option value="6">不准已归库</option>
+                    </select>
+                </label>
+                <label>
+                    <span>房源状态：</span>
+                    <select class="form-control" name="state2">
+                        <option value="0">全部</option>
+                        <option value="1">已定房源</option>
+                        <option value="2">未定房源</option>
+                    </select>
+                </label>
+                <label>
+                    <span>洽谈级别：</span>
+                    <select class="form-control" name="level">
+                    	<option value="0">全部</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+						<option value="D">D</option>
+						<option value="E">E</option>
+						<option value="F">F</option>
+                    </select>
+                </label>
+                <label><button type="button" class="btn btn-primary tool_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+        <!-- tool-group -->
 
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+ 
+    <!-- 回访盒子 -->
+    <div class="modal modal-for-page fade line_back_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <form class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加回访记录</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="container form-horizontal">
+                  	<input type="hidden" name="dataId">
+                    <div class="form-group">
+                        <label class="col-sm-2">负责人情况</label>
+                        <div class="col-sm-8"><textarea class="form-control" name='admin'></textarea></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">对手进展</label>
+						<div class="col-sm-8">
+							<span class="im-che"><input type="radio" name='prog' value='1' checked><i>无</i></span>
+							<span class="im-che"><input type="radio" name='prog' value='2'><i>方案</i></span>
+							<span class="im-che"><input type="radio" name='prog' value='3'><i>效果图</i></span>
+							<span class="im-che"><input type="radio" name='prog' value='4'><i>报价</i></span>
+							<span class="im-che"><input type="radio" name='prog' value='5'><i>合同</i></span>
+						</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">跟进情况</label>
+                        <div class="col-sm-8"><textarea class="form-control" name='follow'></textarea></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">现阶段困难</label>
+                        <div class="col-sm-8"><textarea class="form-control" name='hard'></textarea></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">外协情况</label>
+						<div class="col-sm-8">
+							<span class="im-che"><input type="radio" name='help' value='1' checked><i>无</i></span>
+							<span class="im-che"><input type="radio" name='help' value='2'><i>空调</i></span>
+							<span class="im-che"><input type="radio" name='help' value='3'><i>消防</i></span>
+							<span class="im-che"><input type="radio" name='help' value='4'><i>家具</i></span>
+							<span class="im-che"><input type="radio" name='help' value='5'><i>弱电</i></span>
+						</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">预估单值</label>
+                        <div class="col-sm-8"><input type="text" class="form-control"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">回访周期</label>
+                        <div class="col-sm-8">
+	                        <select class="form-control" name="date">
+								<option value="1">1</option>
+								<option value="3">3</option>
+								<option value="5">5</option>
+	                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">下次回访时间</label>
+                        <div class="col-sm-8"><input type="text" class="form-control" readonly></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary line_back_submit">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default"
-							data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary"
-							id="design_list_logAdd_submit">提交</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--design_list_logAdd_box -->
+</div>
 <!-- page-wrapper -->
+
+<!-- 项目分单详情 -->
+<div class="detail-wrapper mode-show" id="design_list_detail">
+    
+    <!-- 详情弹框 -->
+    <div class="modal modal-for-page fade detail_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">项目洽谈详情</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+
+                    <!-- 操作按钮 -->
+                    <button class="btn" data-dismiss="modal"><i class="icon icon-arrow-left"></i>  返回</button>
+                    <button class="btn btn-primary detail_edit_btn"><i class="icon icon-edit"></i> 修改</button>
+                    <button class="btn btn-primary detail_save_btn"><i class="icon icon-save"></i> 保存</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target=".detail_signPause_box">申请未签</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target=".detail_signStop_box">申请不准</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target=".detail_signPlay_box">签单</button>
+
+                    <!-- 数据表单 -->
+                    <form class="detail_box_form">
+                        <input type="hidden" name="cid">
+                        <table class="table"><!--JS推进--></table>
+                    </form>
+
+                    <!-- 切换表格 -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-tab="" href=".detail_tab1">业务回访</a></li>
+                        <li><a data-tab="" href=".detail_tab2">设计回访</a></li>
+                        <li><a data-tab="" href=".detail_tab3">过程记录</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active detail_tab1">
+                            <form class="tool-search">
+                                <input type="hidden" name='page'>
+                                <input type="hidden" name='recPerPage'>
+                                <input type="hidden" name="cid" value="null">
+                            </form>
+                            <div class="datagrid datagrid-striped">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane detail_tab2">
+                            <form class="tool-search">
+                                <input type="hidden" name='page'>
+                                <input type="hidden" name='recPerPage'>
+                                <input type="hidden" name="cid" value="null">
+                            </form>
+                            <div class="datagrid datagrid-striped">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane detail_tab3">
+                            <form class="tool-search">
+                                <input type="hidden" name='page'>
+                                <input type="hidden" name='recPerPage'>
+                                <input type="hidden" name="cid" value="null">
+                            </form>
+                            <div class="datagrid datagrid-striped">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 申请未签 -->
+    <div class="modal modal-for-page fade detail_signPause_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">申请未签</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">确定申请未签失败吗？</div>
+                    <form><input type="hidden" name="cid"><input type="hidden" name="isstate" value="6"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary detail_signPause_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 申请不准 -->
+    <div class="modal modal-for-page fade detail_signStop_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">申请不准</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">确定申请不准失败吗？</div>
+                    <form><input type="hidden" name="cid"><input type="hidden" name="isstate" value="8"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary detail_signStop_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 签单 -->
+    <div class="modal modal-for-page fade detail_signPlay_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">签单</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <p>确定申请签单吗？</p>
+                        <p><a data-toggle="modal" data-target=".design_box">设计单</a></p>
+                        <p><a data-toggle="modal" data-target=".engine_box">施工单</a></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 设计合同签单 -->
+    <div class="modal modal-for-page fade design_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">设计合同签单</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+
+                    <!-- 操作按钮 -->
+                    <button class="btn" data-dismiss="modal"><i class="icon icon-arrow-left"></i> 取消</button>
+                    <!-- <button class="btn btn-primary design_save_btn">暂存</button> -->
+                    <button class="btn btn-primary design_submit_btn">提交项目合同</button>
+
+                    <!-- 数据表单 -->
+                    <form class="detail_box_form">
+                        <input type="hidden" name="cid">
+                        <table class="table mode-show-force"><tbody>
+    
+                            <!-- 设计合同信息 -->
+                            <tr><td><strong class="detail-table-title detail-table-title-top">设计合同信息</strong></td><td></td><td></td></tr>
+                            <tr>
+                                <td><div class="flex-box"><b>合同编号</b><input class="form-control flex-son" name="connumb"></div></td>
+                                <td><div class="flex-box"><b>合同名称</b><input class="form-control flex-son" name="conname"></div></td>
+                                <td><div class="flex-box"><b>合同日期</b><input class="form-control flex-son" name="condate" type="date"></div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="flex-box"><b>合同金额</b><input class="form-control flex-son money_total" name="conmoney" type="number">元</div></td>
+                                <td><div class="flex-box"><b>协调费用</b><input class="form-control flex-son" name="moneyhelp">元</div></td>
+                                <td><div class="flex-box"><b>其他费用</b><input class="form-control flex-son" name="moneyother">元</div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="flex-box"><b>税点</b><input class="form-control flex-son" name="taxpoint" type="number">%</div></td>
+                                <td><div class="flex-box"><b>税金</b><input class="form-control flex-son" name="taxmoney" type="number">元</div></td>
+                                <td><div class="flex-box"><b>是否开票</b><select class="form-control flex-son" name="invoicename">
+                                    <option value="1">否</option>
+                                    <option value="2">是</option>
+                                </select></div></td>
+                            </tr>
+                            
+                            <!-- 甲方信息 -->
+                            <tr><td><strong class="detail-table-title">甲方信息</strong></td><td></td><td></td></tr>
+                            <tr>
+                                <td><div class="flex-box"><b>甲方负责人</b><input class="form-control flex-son" name="user1"><div></td>
+                                <td><div class="flex-box"><b>手机号码1 </b><input class="form-control flex-son" name="tel1"></div></td>
+                                <td><div class="flex-box"><b>手机号码2 </b><input class="form-control flex-son" name="tel2"></div></td>
+                            </tr>
+                            
+                            <!-- 收款信息 -->
+                            <tr><td><strong class="detail-table-title">收款信息</strong></td><td></td><td></td></tr>
+                            <tr><td colspan="3">
+                                <div class="flex-box">
+                                    <b>第一次收款 &nbsp; 收款时间</b>
+                                    <input class="form-control" name="money1date" style="width:120px" type="date"> &nbsp;
+                                    <input class="form-control money_percent" name="money1percent" style="width:50px" type="number">% &nbsp;
+                                    <b>收款金额</b>
+                                    <input class="form-control" style="width:80px" type="number" readonly>元
+                                </div>
+                            </td></tr>
+                            <tr><td colspan="3">
+                                <div class="flex-box">
+                                    <b>第二次收款 &nbsp; 收款时间</b>
+                                    <input class="form-control" name="money2date" style="width:120px" type="date"> &nbsp;
+                                    <input class="form-control money_percent" name="money2percent" style="width:50px" type="number">% &nbsp;
+                                    <b>收款金额</b>
+                                    <input class="form-control" style="width:80px" type="number" readonly>元
+                                </div>
+                            </td></tr>
+                            <tr><td colspan="3">
+                                <div class="flex-box">
+                                    <b>第三次收款 &nbsp; 收款时间</b>
+                                    <input class="form-control" name="money3date" style="width:120px" type="date"> &nbsp;
+                                    <input class="form-control money_percent" name="money3percent" style="width:50px" type="number">% &nbsp;
+                                    <b>收款金额</b>
+                                    <input class="form-control" style="width:80px" type="number" readonly>元
+                                </div>
+                            </td></tr>
+
+                            <!-- 合同附件 -->
+                            <tr><td><strong class="detail-table-title">合同附件</strong></td><td></td><td></td></tr>
+                            <tr><td colspan="3">
+                                <div class="uploader design_box_budget_uploader" path="">
+                                    <input type="hidden" class='uploader_path' name="budget">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list"></div>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">报价单上传</button>
+                                </div>
+                                <div class="uploader design_box_drawing_uploader" path="">
+                                    <input type="hidden" class='uploader_path' name="drawing">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list"></div>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">图纸上传</button>
+                                </div>
+                            </td></tr>
+
+                            <!-- 备注信息 -->
+                            <tr><td><strong class="detail-table-title">备注信息</strong></td><td></td><td></td></tr>
+                            <tr><td colspan="3"><div class="flex-box" style="height:35px;"><b>备注信息</b><span></span><textarea class="form-control flex-son" name="text"></textarea></div></td></tr>
+                        </tbody></table>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 施工合同签单 -->
+    <div class="modal modal-for-page fade engine_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">施工合同签单</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+
+                    <!-- 操作按钮 -->
+                    <button class="btn" data-dismiss="modal"><i class="icon icon-arrow-left"></i> 取消</button>
+                    <!-- <button class="btn btn-primary engine_save_btn">暂存</button> -->
+                    <button class="btn btn-primary engine_submit_btn">提交项目合同</button>
+
+                    <!-- 数据表单 -->
+                    <form class="detail_box_form">
+                        <input type="hidden" name="cid">
+                        <table class="table mode-show-force"><tbody>
+                            
+                            <!-- 施工合同信息 -->
+                            <tr><td><strong class="detail-table-title detail-table-title-top">施工合同信息</strong></td><td></td><td></td></tr>
+                            <tr>
+                                <td><div class="flex-box"><b>合同编号</b><input class="form-control flex-son" name="connumb"></div></td>
+                                <td><div class="flex-box"><b>合同名称</b><input class="form-control flex-son" name="conname"></div></td>
+                                <td><div class="flex-box"><b>合同日期</b><input class="form-control flex-son" name="condate" type="date"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="flex-box"><b>计划开工</b><input class="form-control flex-son plan_starttime" name="starttime" type="date"></div></td>
+                                <td><div class="flex-box"><b>计划完工</b><input class="form-control flex-son plan_endtime"   name="endtime"   type="date"></div></td>
+                                <td><div class="flex-box"><b>计划工期</b><input class="form-control flex-son plan_duration"  name="duration"  type="number" readonly>天</div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="flex-box"><b>工程面积</b><input class="form-control flex-son" name="area" type="number"></div></td>
+                                <td><div class="flex-box"><b>工程地址</b><input class="form-control flex-son" name="address"></div></td>
+                                <td><div class="flex-box"><b>工程等级</b><input class="form-control flex-son" name="leval"></div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="flex-box"><b>是否包含外协</b><select class="form-control flex-son" name="hashelp" style="max-width:129px">
+                                    <option value="1">否</option>
+                                    <option value="2">是</option>
+                                    </select>(空调、消防、家具、弱电)</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><div class="flex-box"><b>装修合同</b><input class="form-control flex-son" name="money0" type="number">元</div></td>
+                                <td><div class="flex-box"><b>空调合同</b><input class="form-control flex-son" name="money1" type="number">元</div></td>
+                                <td><div class="flex-box"><b>消防合同</b><input class="form-control flex-son" name="money2" type="number">元</div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="flex-box"><b>弱电合同</b><input class="form-control flex-son" name="money3" type="number">元</div></td>
+                                <td><div class="flex-box"><b>家具合同</b><input class="form-control flex-son" name="money4" type="number">元</div></td>
+                                <td><div class="flex-box"><b>合同总额</b><input class="form-control flex-son money_total" name="moneys" type="number">元</div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="flex-box"><b>合同质保金</b><input class="form-control flex-son" name="conquality" type="number">元</div></td>
+                                <td><div class="flex-box"><b>折扣率    </b><input class="form-control flex-son" name="discount" type="number"></div></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><div class="flex-box"><b>管理费用</b><input class="form-control flex-son" name="moneyadmin" type="number">元</div></td>
+                                <td><div class="flex-box"><b>协调费用</b><input class="form-control flex-son" name="moneyhelp" type="number">元</div></td>
+                                <td><div class="flex-box"><b>其他费用</b><input class="form-control flex-son" name="moneyother" type="number"></div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="flex-box"><b>税点</b><input class="form-control flex-son" name="taxpoint" type="number">%</div></td>
+                                <td><div class="flex-box"><b>税金</b><input class="form-control flex-son" name="taxmoney" type="number">元</div></td>
+                                <td><div class="flex-box"><b>是否开票</b><select class="form-control flex-son" name="invoicename">
+                                    <option value="1">否</option>
+                                    <option value="2">是</option>
+                                </select></div></td>
+                            </tr>
+                            
+                            <!-- 甲方信息 -->
+                            <tr><td><strong class="detail-table-title">甲方信息</strong></td><td></td><td></td></tr>
+                            <tr>
+                                <td><div class="flex-box"><b>甲方负责人</b><input class="form-control flex-son" name="user1"><div></td>
+                                <td><div class="flex-box"><b>手机号码1 </b><input class="form-control flex-son" name="tel1"></div></td>
+                                <td><div class="flex-box"><b>手机号码2 </b><input class="form-control flex-son" name="tel2"></div></td>
+                            </tr>
+
+                            <!-- 物业信息 -->
+                            <tr><td><strong class="detail-table-title">物业信息</strong></td><td></td><td></td></tr>
+                            <tr>
+                                <td><div class="flex-box"><b>物业名称  </b><input class="form-control flex-son" name="propname"><div></td>
+                                <td><div class="flex-box"><b>物业负责人</b><input class="form-control flex-son" name="proadmin"></div></td>
+                                <td><div class="flex-box"><b>负责人电话</b><input class="form-control flex-son" name="proptel"></div></td>
+                            </tr>
+                            
+                            <!-- 收款信息 -->
+                            <tr><td><strong class="detail-table-title">收款信息</strong></td><td></td><td></td></tr>
+                            <tr><td colspan="3">
+                                <div class="flex-box">
+                                    <b>第一次收款 &nbsp; 收款时间</b>
+                                    <input class="form-control" name="money1date" style="width:120px" type="date"> &nbsp;
+                                    <input class="form-control money_percent" name="money1percent" style="width:50px" type="number">% &nbsp;
+                                    <b>收款金额</b>
+                                    <input class="form-control" style="width:80px" type="number" readonly>元
+                                </div>
+                            </td></tr>
+                            <tr><td colspan="3">
+                                <div class="flex-box">
+                                    <b>第二次收款 &nbsp; 收款时间</b>
+                                    <input class="form-control" name="money2date" style="width:120px" type="date"> &nbsp;
+                                    <input class="form-control money_percent" name="money2percent" style="width:50px" type="number">% &nbsp;
+                                    <b>收款金额</b>
+                                    <input class="form-control" style="width:80px" type="number" readonly>元
+                                </div>
+                            </td></tr>
+                            <tr><td colspan="3">
+                                <div class="flex-box">
+                                    <b>第三次收款 &nbsp; 收款时间</b>
+                                    <input class="form-control" name="money3date" style="width:120px" type="date"> &nbsp;
+                                    <input class="form-control money_percent" name="money3percent" style="width:50px" type="number">% &nbsp;
+                                    <b>收款金额</b>
+                                    <input class="form-control" style="width:80px" type="number" readonly>元
+                                </div>
+                            </td></tr>
+
+                            <!-- 合同附件 -->
+                            <tr><td><strong class="detail-table-title">合同附件</strong></td><td></td><td></td></tr>
+                            <tr><td colspan="3">
+                                <div class="uploader engine_box_file_uploader" path="">
+                                    <input type="hidden" class='uploader_path' name="budget">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list"></div>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">附件上传</button>
+                                </div>
+                            </td></tr>
+
+                            <!-- 备注信息 -->
+                            <tr><td><strong class="detail-table-title">备注信息</strong></td><td></td><td></td></tr>
+                            <tr><td colspan="3"><div class="flex-box" style="height:35px;"><b>备注信息</b><span></span><textarea class="form-control flex-son" name="text"></textarea></div></td></tr>
+                        </tbody></table>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <script>
-	$(function() {
+$(function() {
+    //变量声明-----------------------------------------------------------------------------------------------
+    var design_list = $("#design_list"); //页面ID
+    var design_list_api = {
+        datagrid : API.test_datagrid, // 数据表格
+        itemType : LOCAL + "Test/test_select.json", // 详情查看-项目类型下拉
+        show : LOCAL + "Test/Template/customer.json", // 详情查看
+        save : API.test_response, // 详情保存
+        approve : API.test_response, // 申请未签&不准
+        signDesignSubmit : API.test_response, // 签单设计提交
+        signEngineSubmit : API.test_response, // 签单施工提交
+        tab1 : API.test_datagrid, // 切换表格1
+        tab2 : API.test_datagrid, // 切换表格2
+        tab3 : API.test_datagrid, // 切换表格3
+    }
 
-		//变量声明-----------------------------------------------------------------------------------------------
-		var
-			design_list = $("#design_list"), //页面ID
-			design_list_datagrid = $("#design_list_datagrid"), //数据表格
-			//搜索
-			design_list_tool_keys = $("#design_list_tool_keys"), //搜索类别
-			design_list_tool_search = $("#design_list_tool_search"), //搜索字段
-			design_list_search_btn = $("#design_list_search_btn"), //搜索按钮
-			design_list_tool_select1 = $("#design_list_tool_select1"), //下拉选项
-			design_list_tool_select2 = $("#design_list_tool_select2"), //下拉选项
-			design_list_tool_select3 = $("#design_list_tool_select3"), //下拉选项
-			//查看
-			design_list_show_box = $("#design_list_show_box"), //查看盒子
-			design_list_show_t_prog = $("#design_list_show_t_prog"), //项目进度
-			design_list_show_t_case = $("#design_list_show_t_case"), //项目信息
-			design_list_show_t_user = $("#design_list_show_t_user"), //负责人信息
-			design_list_show_filelist = $("#design_list_show_filelist"), //客户附件
-			design_list_show_filelist_type = $("#design_list_show_filelist_type"), //客户附件类型
-			design_list_show_record = $("#design_list_show_record"), //操作记录
-			//分单
-			design_list_assign_box          = $("#design_list_assign_box"),           //分单盒子
-			design_list_assign_submit       = $("#design_list_assign_submit"),        //分单提交
-			design_list_cycle               = $("#design_list_cycle"),          //分单设计师
-			//洽谈等级
-			design_list_great_box = $("#design_list_great_box"), //洽谈盒子
-			design_list_great_submit = $("#design_list_great_submit"), //洽谈提交
-			design_list_great_level = $("#design_list_great_level"), //洽谈等级
-			//跟踪日志
-			design_list_logShow_box = $("#design_list_logShow_box"), //日志查看盒子
-			design_list_logAdd_box = $("#design_list_logAdd_box"), //日志回访盒子
-		    design_list_logAdd_submit = $("#design_list_logAdd_submit"), //日志回访提交
-			design_list_logAdd_text = $("#design_list_logAdd_text"), //日志回访内容
-			design_list_logAdd_file = $("#design_list_logAdd_file"), //日志回访附件
-			design_list_logAdd_date = $("#design_list_logAdd_date"),//添加下次跟踪
-			design_list_follow_up   = $("#design_list_follow_up"),  //跟进情况
-			design_list_difficulty  = $("#design_list_difficulty"),  //现阶段困难
-			design_list_logAdd_file = $("#design_list_logAdd_file"), //design_list附件
-			design_list_estimate    =$("#design_list_estimate"),     //预估单值
-			design_list_visit       =$("#design_list_visit"),        //下次回访
-			design_list_cycle       =$("#design_list_cycle");        //回访周期
+    //数据表格-----------------------------------------------------------------------------------------------
+    //数据源
+    var design_list_dataSource = {
+        cols   : [
+            {name: "text4",label: "所有状态时间",width: 100},
+            {name: "name", label: "项目编号",width: 90,html: true,
+                valueOperator: {
+                    getter: function(dataValue, cell) {
+                        return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;
+                    }
+                }
+        	},
+            {name: "text4",label: "项目名称",width: 90},
+            {name: "text4",label: "联系人1",width: 90},
+            {name: "text4",label: "信息员",width: 90},
+            {name: "text4",label: "业务员",width: 90},
+            {name: "text4",label: "主案设计师",width: 90},
+            {name: "text4",label: "房源状态",width: 90},
+            {name: "text4",label: "洽谈级别",width: 90},
+            {name: "text4",label: "面积",width: 90},
+            {name: "text4",label: "上次回访时间",width: 100},
+            {name: "text4",label: "上次回访内容",width: 100},
+            {name: "text4",label: "回访剩余时间",width: 100},
+            {name: "text4",label: "项目状态",width: 90},
+            {name: "statenumb",label:"操作",width:90,html:true,
+                valueOperator : {
+                    getter : function(dataValue,cell){
+                        return `<a class="line_back_btn" dataId="${cell.config.data.id}">回访</a>`;
+                    }
+                }
+            }
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : design_list, 
+                url      : design_list_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : design_list,
+                data     : data
+            });
+        }
+    };
+    //实例化
+    design_list.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : design_list.find('.datagrid'),
+            dataSource : design_list_dataSource
+        })
+    );
+    //搜索
+    design_list.find('.tool_search_btn').click(function(){ 
+        zui_datagrid_render({
+            datagrid_obj : design_list.find('.datagrid').data("zui.datagrid"),
+            dataSource   : design_list_dataSource
+        }); 
+    });
 
-		//接口对象-----------------------------------------------------------------------------------------------
-		if (window.STATE == "local") {
+    //回访-----------------------------------------------------------------------------------------------
+    design_list.on("click", '.line_back_btn', function() {
+        design_list.find('.line_back_box [name="dataId"]').val( $(this).attr('dataId') );
+        // um_data_set($('.line_back_box form'), {'dataId':10000, 'type':3, 'che':[1,2]});
+        design_list.find('.line_back_box').modal('show');
+    });
+    design_list.on("click", '.line_back_submit', function() {
+        um_data_submit({
+            url: API.test_response,
+            form: $(this).parents('form'),
+            dataSource: design_list_dataSource,
+        });
+    });
 
-			//本地接口
-			var design_list_api = {
-				datagrid: LOCAL + "Test/test_datagrid.json", //数据表格
-				datagrid_filelist: LOCAL + "Test/Business/customer_filelist.json", //客户附件表格
-				datagrid_record: LOCAL + "Test/test_datagrid.json", //操作记录表格
-				modal_show: LOCAL + "Test/Business/customer_edit.json", //查看盒子
-				topic: LOCAL + "Test/Business/provider_topic.json", //日志查看
-				select: LOCAL + "Test/test_select.json", //下拉选择
-				select_level: LOCAL + "Test/Design/admin_level.json", //下拉选择(等级)
-			}
+    //详情部分---------------------------------------------------------------------------
+    //变量声明
+    var design_list_detail = $("#design_list_detail");
+    var design_list_detail_dataSource_tab1 = {
+        cols   : [
+            {name:"name",    label:"回访人",      width:80 },
+            {name:"tex10",   label:"回访内容",    width:200},
+            {name:"datetime",label:"回访时间",    width:140},
+            {name:"datetime",label:"下次回访时间",width:140}
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : design_list_detail.find('.detail_tab1'), 
+                url      : design_list_api.tab1
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : design_list_detail.find('.detail_tab1'),
+                data     : data
+            });
+        }
+    }
+    var design_list_detail_dataSource_tab2 = {
+        cols   : [
+            {name:"username",label:"回访人",      width:80 },
+            {name:"datetime",label:"回访时间",    width:140},
+            {name:"datetime",label:"下次回访时间",width:140},
+            {name:"text5",   label:"负责人情况",  width:200},
+            {name:"text2",   label:"对手进展",    width:80 },
+            {name:"text2",   label:"跟进情况",    width:80 },
+            {name:"state",   label:"现阶段困难",  width:180},
+            {name:"text2",   label:"外协情况",    width:80 },
+            {name:"state",   label:"经理批复",    width:180}
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : design_list_detail.find('.detail_tab2'), 
+                url      : design_list_api.tab2
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : design_list_detail.find('.detail_tab2'),
+                data     : data
+            });
+        }
+    }
+    var design_list_detail_dataSource_tab3 = {
+        cols   : [
+            {name:"username",label:"操作人",  width:80 },
+            {name:"datetime",label:"操作时间",width:140},
+            {name:"text5",   label:"过程说明",width:140}
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : design_list_detail.find('.detail_tab3'), 
+                url      : design_list_api.tab3
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : design_list_detail.find('.detail_tab3'),
+                data     : data
+            });
+        }
+    }
 
-		} else if (window.STATE == "route") {
+    //下拉获取-项目类型 
+    var design_list_detail_selectItemType = "";
+    $.ajax({
+        url     : design_list_api.itemType,
+        type    : "post",
+        dataType: "json",
+        success : function(data){
+            var data = data.data;
+            for(var i=0;i<data.length;i++){
+                design_list_detail_selectItemType += "<option value='"+data[i]['id']+"'>"+data[i]['name']+"</option>";
+            }
+        }
+    });
 
-			//远程接口
-			var design_list_api = {
-				datagrid: LOCAL + "Test/test_datagrid.json", //数据表格
-				datagrid_filelist: LOCAL + "Test/Business/customer_filelist.json", //客户附件表格
-				datagrid_record: LOCAL + "Test/test_datagrid.json", //操作记录表格
-				modal_show: LOCAL + "Test/Business/customer_edit.json", //查看盒子
-				topic: LOCAL + "Test/Business/provider_topic.json", //日志查看
-				select: LOCAL + "Test/test_select.json", //下拉选择
-			}
+    //详情弹框
+    design_list.on("click", '.line_show_btn', function() {
+        var dataId = $(this).attr('dataId');
+        design_list_detail.find('[name="cid"]').val(dataId); // 详情ID赋值(多个)
+        //远程请求
+        $.ajax({
+            url     : design_list_api.show,
+            type    : "post",
+            dataType: "json",
+            data    : { id: dataId },
+            success : function(data){
+                if( data.status>0 ){
+                    var data = data.data;
+                    //基础表格
+                    var temp = `
+                    <thead><tr><td colspan="3"><div class="flex-box"><b>项目状态</b>${data.itemstatename}</div></td></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="flex-box"><b>项目编号</b>${data.number}</div></td>
+                            <td><div class="flex-box"><b>项目名称</b>${data.case}</div></td>
+                            <td><div class="flex-box"><b>项目类型</b><span>${data.typename}</span><select class="form-control flex-son" name="typenumb">
+                            ${design_list_detail_selectItemType}</select></div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>业务员</b>${data.salesman}</div></td>
+                            <td><div class="flex-box"><b>信息员</b>${data.providername}</div></td>
+                            <td><div class="flex-box"><b>设计师</b>${data.designer}</td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>联系人1</b><span>${data.user1}</span><input class="form-control flex-son" name="user1"></div></td>
+                            <td><div class="flex-box"><b>手机1</b><span>${data.tel1}</span><input class="form-control flex-son" name="tel1"></div></td>
+                            <td><div class="flex-box"><b>办公电话</b><span>${data.tel0}</span><input class="form-control flex-son" name="tel0"></div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>房源状态</b><span>${data.sourcestatename}</span><select class="form-control flex-son" name="sourcestatenumb">
+                                <option value="1">已定房源</option>
+                                <option value="2">未定房源</option>
+                            </select></div></td>
+                            <td><div class="flex-box"><b>房屋状态</b><span>${data.housestatename}</span><select class="form-control flex-son" name="housestatenumb">
+                                <option value="1">已租</option>
+                                <option value="2">未租</option>
+                                <option value="3">已买</option>
+                            </select></div></td>
+                            <td><div class="flex-box"><b>房屋类型</b><span>${data.housetypename}</span><select class="form-control flex-son" name="housetypenumb">
+                                <option value="1">毛坯</option>
+                                <option value="2">旧房改造</option>
+                                <option value="3">局部改造</option>
+                                <option value="4">其他</option>
+                            </select></div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>装修面积</b><span>${data.decoarea}</span><input class="form-control flex-son" name="decoarea"></div></td>
+                            <td><div class="flex-box"><b>装修意向</b><span>${data.decotodoname}</span><select class="form-control flex-son" name="decotodonumb">
+                                <option value="1">精装</option>
+                                <option value="2">简装</option>
+                                <option value="3">自用</option>
+                                <option value="4">出租</option>
+                            </select></div></td>
+                            <td><div class="flex-box"><b>装修服务</b><span>${data.decoservname}</span><select class="form-control flex-son" name="decoservnumb">
+                                <option value="1">设计</option>
+                                <option value="2">施工</option>
+                                <option value="3">设计+施工</option>
+                                <option value="4">直接参与报价</option>
+                            </select></div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>交房日期</b><span>${data.housedate1}</span><input type="date" class="form-control flex-son" name="housedate1"></div></td>
+                            <td><div class="flex-box"><b>期望工期</b><span>${data.housedate2}</span><input type="date" class="form-control flex-son" name="housedate2"></div></td>
+                            <td><div class="flex-box"><b>装修地址</b><span>${data.decoaddr}</span><input class="form-control flex-son" name="decoaddr"></div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>联系人2</b><span>${data.user2}</span><input class="form-control flex-son" name="user2"></div></td>
+                            <td><div class="flex-box"><b>手机2</b><span>${data.tel2}</span><input class="form-control flex-son" name="tel2"></div></td>
+                            <td><div class="flex-box"><b>手机3</b><span>${data.tel3}</span><input class="form-control flex-son" name="tel3"></div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>对手数量</b><span>${data.rivalnumb}</span><input class="form-control flex-son" name="rivalnumb"></div></td>
+                            <td><div class="flex-box"><b>对手进展</b><span>${data.rivalstepname}</span><select class="form-control flex-son" name="rivalstepnumb">
+                                <option value="1">无</option>
+                                <option value="2">方案</option>
+                                <option value="3">效果图</option>
+                                <option value="4">报价</option>
+                                <option value="5">合同</option>
+                            </select></div></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>乘车路线</b><span>${data.busline}</span><input class="form-control flex-son" name="busline" value="${data.busline}"></div></td>
+                            <td colspan="2"><div class="flex-box"><b>办公地址</b><span>${data.addr}</span><input class="form-control flex-son" name="addr" value="${data.addr}"></div></td>
+                        </tr>
+                        <tr><td colspan="3"><div class="flex-box" style="height:35px;"><b>备注信息</b><span>${data.text}</span><textarea class="form-control flex-son" name="text">${data.text}</textarea></div></td></tr>
+                    </tbody>
+                    `;
+                    design_list_detail.find('.detail_box .detail_box_form table').html(temp); // DOM填充
+                    um_data_set( design_list_detail.find('.detail_box .detail_box_form'), data ); //修改赋值
+                    design_list_detail.addClass("mode-show").removeClass("mode-edit"); // 样式初始化
+                    //切换表格刷新
+                    zui_datagrid_render({
+                        datagrid_obj : design_list_detail.find('.detail_tab1 .datagrid').data("zui.datagrid"),
+                        dataSource   : design_list_detail_dataSource_tab1
+                    });
+                    zui_datagrid_render({
+                        datagrid_obj : design_list_detail.find('.detail_tab2 .datagrid').data("zui.datagrid"),
+                        dataSource   : design_list_detail_dataSource_tab2
+                    });
+                    zui_datagrid_render({
+                        datagrid_obj : design_list_detail.find('.detail_tab3 .datagrid').data("zui.datagrid"),
+                        dataSource   : design_list_detail_dataSource_tab3
+                    });
+                    design_list_detail.find('.detail_box').modal('show'); // 弹框显示
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+ 
+    });
 
-		}
+    //操作按钮-修改
+    design_list_detail.on("click", '.detail_edit_btn', function() {
+        design_list_detail.addClass("mode-edit").removeClass("mode-show");
+    });
 
-		//数据表格-----------------------------------------------------------------------------------------------
-		design_list_datagrid.datagrid({
-			height: zui_datagrid_height(design_list_datagrid),
-			sortable: false,
-			cache: false,
-			showRowIndex: true,
-			// checkable   : true,
-			// checkByClickRow:false,
-			// selectable  : false,
-			configs: {
-				R0: {
-					className: "text-center"
-				},
-				C1: {
-					className: "cell-hidden"
-				}
-			},
-			states: {
-				pager: {
-					page: 1,
-					recPerPage: window.REC_PER_PAGE,
-				}
-			},
-			dataSource: {
-				cols: [{
-					name: "id",
-					label: "ID",
-					width: 40
-				     },
-						{
-						name: "date",
-						label: "所有状态时间",
-						width: 100
-					},
-					{
-						name: "username",
-						label: "项目编号",
-						width: 100,
-						html:true,
-						    valueOperator : {
-						        getter : function(dataValue,cell){
-						            return `<a class="design_list_show_btn" rowIndex="${cell.rowIndex}">${dataValue}</a>`;
-						        }
-						    }
-					},
-					{name:"text8",   label:"项目名称",width:150},
-					{
-						name: "date",
-						label: "分单时间",
-						width: 160
-					},
+    //操作按钮-保存
+    design_list_detail.on("click", '.detail_save_btn', function() {
+        um_data_submit({
+            url         : design_list_api.save,
+            form        : design_list_detail.find('.detail_box .detail_box_form'),
+            datagridDom : design_list.find('.datagrid'),
+            dataSource  : design_list_dataSource,
+            stringify   : true
+        });
+    });
 
-					{
-						name: "name",
-						label: "联系人1",
-						width: 100
-					},
-					{
-						name: "name",
-						label: "信息员",
-						width: 100
-					},
-					{
-						name: "name",
-						label: "业务员",
-						width: 100
-					},
-					{
-						name: "name",
-						label: "主案设计师",
-						width: 100
-					},
-					{
-						name: "text6",
-						label: "房源状态",
-						width: 100
-					},
-					{
-						name: "level",
-						label: "洽谈等级",
-						width: 80,
-						html: true,
-						valueOperator: {
-							getter: function(dataValue, cell) {
-								var level = "";
-								switch (dataValue) {
-									case 1:
-										level = "A";
-										break;
-									case 2:
-										level = "B";
-										break;
-									case 3:
-										level = "C";
-										break;
-									case 4:
-										level = "D";
-										break;
-									case 5:
-										level = "E";
-										break;
-									case 6:
-										level = "F";
-										break;
-								}
-								return `<a class="design_list_great_btn" rowIndex="${cell.rowIndex}" rowLevel="${dataValue}">${level}</a>
-					       `;
-							}
-						}
-					},
-					{
-						name: "text2",
-						label: "面积",
-						width: 100
-					},
-					{
-						name: "date",
-						label: "上次回访时间",
-						width: 100
-					},
-					{
-						name: "tex10",
-						label: "上次回访内容",
-						width: 150
-					},
-					{
-						name: "state",
-						label: "剩余回访天数",
-						width: 100
-					},
-					{
-						name: "tex10",
-						label: "项目状态",
-						width: 150
-					},
-					{
-						name: "log",
-						label: "项目状态",
-						width: 80,
-						html: true,
-						valueOperator: {
-							getter: function(dataValue, cell) {
-								return `
-							<a class="design_list_logAdd_btn"  rowIndex="${cell.rowIndex}">回访</a>`;
-							}
-						}
-					},
-				],
-				remote: function() {
-					return {
-						url: design_list_api.datagrid,
-						type: "POST",
-						dataType: "json",
-					}
-				}
-			}
-		});
+    //操作按钮-申请未签
+    design_list_detail.on("click", '.detail_signPause_submit', function() {
+        um_data_submit({
+            url         : design_list_api.approve,
+            form        : design_list_detail.find('.detail_signPause_box form'),
+            datagridDom : design_list.find('.datagrid'),
+            dataSource  : design_list_dataSource,
+        });
+    });
 
-		//查看表格-客户附件
-		design_list_show_filelist.datagrid({
-			height: "page",
-			rowDefaultHeight: 72,
-			sortable: false,
-			cache: false,
-			showRowIndex: true,
-			configs: {
-				R0: {
-					className: "text-center"
-				},
-				C1: {
-					className: "cell-hidden"
-				},
-				C7: {
-					className: "text-center"
-				},
-			},
-			states: {
-				pager: {
-					page: 1,
-					recPerPage: 10,
-				}
-			},
-			dataSource: {
-				cols: [{
-						name: "id",
-						label: "ID",
-						width: 49
-					},
-					{
-						name: "thumb",
-						label: "缩略图",
-						width: 70,
-						html: true,
-						valueOperator: {
-							getter: function(dataValue, cell) {
-								var file_thumb = "";
-								if (dataValue.thumb_icon == "image") {
-									file_thumb = `<img src="${dataValue.thumb_path}">`
-								} else if (dataValue.thumb_icon == "file") {
-									file_thumb = `<i style="font-size:50px!important;" class="icon icon-file-o"></i>`;
-								} else {
-									file_thumb = `<i style="font-size:50px!important;" class="icon icon-file-${dataValue.thumb_icon}"></i>`;
-								}
-								return file_thumb;
-							}
-						}
-					},
-					{
-						name: "name",
-						label: "附件名称",
-						width: 300
-					},
-					{
-						name: "type",
-						label: "类型",
-						width: 80
-					},
-					{
-						name: "uploader",
-						label: "上传者",
-						width: 80
-					},
-					{
-						name: "date",
-						label: "上传时间",
-						width: 140
-					},
-					{
-						name: "path",
-						label: "导出/下载",
-						width: 80,
-						html: true,
-						valueOperator: {
-							getter: function(dataValue, cell) {
-								return `<a target="_blank" href="${dataValue}"><i class="icon icon-download-alt"></i></a>`;
-							}
-						}
-					}
-				],
-				remote: function() {
-					return {
-						url: design_list_api.datagrid_filelist,
-						type: "POST",
-						dataType: "json",
-					}
-				}
-			}
-		});
-		//查看表格-操作记录
-		design_list_show_record.datagrid({
-			height: "page",
-			sortable: false,
-			cache: false,
-			showRowIndex: true,
-			configs: {
-				R0: {
-					className: "text-center"
-				},
-				C1: {
-					className: "cell-hidden"
-				}
-			},
-			states: {
-				pager: {
-					page: 1,
-					recPerPage: window.REC_PER_PAGE,
-				}
-			},
-			dataSource: {
-				cols: [{
-						name: "id",
-						label: "ID",
-						width: 49
-					},
-					{
-						name: "name",
-						label: "操作人",
-						width: 80
-					},
-					{
-						name: "object",
-						label: "日志",
-						width: 240,
-						html: true,
-						valueOperator: {
-							getter: function(dataValue, cell, datagrid) {
-								var temp = "";
-								if (dataValue.state == 1) {
-									temp = `<span class="text-danger">${dataValue.text}</span>`;
-								} else {
-									temp = `<span class="text-success">${dataValue.text}</span>`;
-								}
-								return temp;
-							}
-						}
-					},
-					{
-						name: "date",
-						label: "时间",
-						width: 140
-					},
-				],
-				remote: function() {
-					return {
-						url: design_list_api.datagrid_record,
-						type: "POST",
-						dataType: "json",
-					}
-				}
-			}
-		});
+    //操作按钮-申请不准
+    design_list_detail.on("click", '.detail_signStop_submit', function() {
+        um_data_submit({
+            url         : design_list_api.approve,
+            form        : design_list_detail.find('.detail_signStop_box form'),
+            datagridDom : design_list.find('.datagrid'),
+            dataSource  : design_list_dataSource,
+        });
+    });
 
-		//变量声明-----------------------------------------------------------------------------------------------
-		var
-			design_list_datagrid_obj = design_list_datagrid.data("zui.datagrid"), //表格对象
-			design_list_show_filelist_obj = design_list_show_filelist.data("zui.datagrid"), //查看表格1
-			design_list_show_record_obj = design_list_show_record.data("zui.datagrid"), //查看表格2
-			design_list_level_btn = ".design_list_level_btn", //级别按钮
-			design_list_show_btn  = ".design_list_show_btn",    //查看按钮
-			design_list_great_btn = ".design_list_great_btn"; //洽谈等级按钮
+    //切换表格-业务回访
+    design_list_detail.find('.detail_tab1 .datagrid').datagrid(
+        zui_datagrid_option({
+            height     : 400,
+            datagrid   : design_list_detail.find('.detail_tab1 .datagrid'),
+            dataSource : design_list_detail_dataSource_tab1
+        })
+    );
+    //切换表格-设计回访
+    design_list_detail.find('.detail_tab2 .datagrid').datagrid(
+        zui_datagrid_option({
+            height     : 400,
+            datagrid   : design_list_detail.find('.detail_tab2 .datagrid'),
+            dataSource : design_list_detail_dataSource_tab2
+        })
+    );
+    //切换表格-过程记录
+    design_list_detail.find('.detail_tab3 .datagrid').datagrid(
+        zui_datagrid_option({
+            height     : 400,
+            datagrid   : design_list_detail.find('.detail_tab3 .datagrid'),
+            dataSource : design_list_detail_dataSource_tab3
+        })
+    );
 
+    //签单部分---------------------------------------------------------------------------
 
+    //上传实例化
+    zui_upload_group({updom: design_list_detail.find(".design_box_budget_uploader"), count: 1});
+    zui_upload_group({updom: design_list_detail.find(".design_box_drawing_uploader"), count: 1, type: "img"});
+    zui_upload_group({updom: design_list_detail.find(".engine_box_file_uploader"), count: 5});
 
-		//上传创建-----------------------------------------------------------------------------------------------
-		zui_upload_group({
-			upid: "design_list_logAdd_file",
-			type: "img",
-			maxSize: "10mb"
-		});
+    //收款信息-自动计算
+    design_list_detail.on('keyup', '.money_percent', function(){
+        var percent= $(this).val() / 100;
+        var total  = $(this).parents('table').find('.money_total').val();
+        var money  = $(this).siblings('input[readonly]');
+        money.val( total * percent );
+    });
 
-		//下拉选项-----------------------------------------------------------------------------------------------
-		//洽谈级别-工具条组
-		$.ajax({
-			url: design_list_api.select,
-			type: "post",
-			dataType: "json",
-			data: {},
-			success: function(data) {
-				if (data.status > 0) {
-					var data = data.data;
-					var option = "<option value='0'>全部</option>";
-					for (var i = 0; i < data.length; i++) {
-						option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
-					}
-					design_list_tool_select1.html(option);
-					design_list_tool_select2.html(option);
-					design_list_tool_select3.html(option);
-				}
-			}
-		});
-		//洽谈级别-工具条组
-		$.ajax({
-			url: design_list_api.select,
-			type: "post",
-			dataType: "json",
-			data: {},
-			success: function(data) {
-				if (data.status > 0) {
-					var data = data.data;
-					var option = "";
-					for (var i = 0; i < data.length; i++) {
-						option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
-					}
-					design_list_cycle.html(option);
-					design_list_visit.html(option);
+    //计划工期-自动计算
+    design_list_detail.on('keyup', '.plan_starttime, .plan_endtime', function(){
+        design_list_sign_engine_plan_duration();
+    });
+    design_list_detail.on('change', '.plan_starttime, .plan_endtime', function(){
+        design_list_sign_engine_plan_duration();
+    });
+    function design_list_sign_engine_plan_duration(){
+        var plan_starttime= design_list_detail.find('.plan_starttime').val();
+        var plan_endtime  = design_list_detail.find('.plan_endtime').val();
+        var plan_duration = design_list_detail.find('.plan_duration');
+        var duration = 0;
+        if( plan_starttime!=='' && plan_endtime!==''){
+            duration = um_date_duration(plan_starttime, plan_endtime, 'object').day;
+        }
+        plan_duration.val( duration );
+    }
 
-				}
-			}
-		});
-		$.ajax({
-			url: design_list_api.select_level,
-			type: "post",
-			dataType: "json",
-			data: {},
-			success: function(data) {
-				if (data.status > 0) {
-					var data = data.data;
-					var option = "";
-					for (var i = 0; i < data.length; i++) {
-						option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
-					}
-					design_list_great_level.html(option);
+    //签单-设计合同
+    design_list_detail.find('.design_box .design_submit_btn').click(function(){
+        design_list_detail.find('.detail_signPlay_box').modal('hide');
+        um_data_submit({
+            url         : design_list_api.signDesignSubmit,
+            form        : design_list_detail.find('.design_box form'),
+            datagridDom : design_list.find('.datagrid'),
+            dataSource  : design_list_dataSource,
+            close_modal : design_list_detail.find('.design_box')
+        });
+    });
 
-				}
-			}
-		});
-		//日志时间
-		$.ajax({
-			url: design_list_api.select,
-			type: "post",
-			dataType: "json",
-			data: {},
-			success: function(data) {
-				if (data.status > 0) {
-					var data = data.data;
-					var option = "";
-					for (var i = 0; i < data.length; i++) {
-						option += "<option value='" + data[i].id + "'>" + data[i].name + "</option>"
-					}
-					   design_list_logAdd_date.html(option);
-				}
-			}
-		});
+    //签单-施工合同
+    design_list_detail.find('.engine_box .engine_submit_btn').click(function(){
+        design_list_detail.find('.detail_signPlay_box').modal('hide');
+        um_data_submit({
+            url         : design_list_api.signEngineSubmit,
+            form        : design_list_detail.find('.engine_box form'),
+            datagridDom : design_list.find('.datagrid'),
+            dataSource  : design_list_dataSource,
+            close_modal : design_list_detail.find('.engine_box')
+        });
+    });
 
-		//搜索按钮-----------------------------------------------------------------------------------------------
-		design_list_search_btn.click(function() {
-
-			//字段整理
-			var keyword = "?sid=" + design_list_tool_keys.val() +
-				"&search=" + design_list_tool_search.val() +
-				"&select1=" + design_list_tool_select1.val() +
-				"&select2=" + design_list_tool_select2.val() +
-				"&select3=" + design_list_tool_select3.val()
-
-			//GET提交
-			zui_datagrid_render(design_list_datagrid_obj, design_list_api.datagrid + keyword);
-
-		});
-
-		//客户附件筛选
-		design_list_show_filelist_type.find(".btn").click(function() {
-
-			//字段整理
-			var keyword = "?id=" + design_list_show_filelist_type.attr("rowIndex") +
-				"&type=" + $(this).find("input").val();
-
-			zui_datagrid_render(design_list_show_filelist_obj, design_list_api.datagrid_filelist + keyword);
-		});
-		//洽谈等级-----------------------------------------------------------------------------------------
-		$(document).on("click",design_list_great_btn, function() {
-
-			//数据取值
-			var data_id = $(this).attr("rowIndex");
-			var rowLevel = $(this).attr("rowLevel");
-
-			//数据赋值
-			design_list_great_submit.attr("dataId", data_id);
-			design_list_great_level.val(rowLevel);
-
-			//面板显示
-			design_list_great_box.modal("show");
-
-		});
-		//洽谈等级-提交
-		design_list_great_submit.click(function() {
-			//数据ID
-			var data_id = $(this).attr("dataId");
-			//远程提交
-			$.ajax({
-				url: API.test_response,
-				type: "post",
-				dataType: "json",
-				data: {
-					id: data_id,
-					level:design_list_great_level.val()
-				},
-				success: function(data) {
-					if (data.status > 0) {
-						um_tip(data.message);
-						zui_datagrid_reset(design_list_datagrid_obj,design_list_api.datagrid);
-
-					} else {
-						um_tip(data.message, "1500", "text-danger");
-						console.log(data.message)
-					}
-				}
-			});
-
-		});
-          //查看按钮-----------------------------------------------------------------------------------------------
-          $(document).on("click",design_list_show_btn,function(){
-
-              //数据ID
-              var data_id  = zui_datagrid_get_id($(this).attr("rowIndex"));
-
-              //远程提交
-              $.ajax({
-                  url     : design_list_api.modal_show,
-                  type    : "post",
-                  dataType: "json",
-                  data    : { id:data_id },
-                  success : function(data){
-                      if( data.status>0 ){
-
-                          //查看模板
-                          var data = data.data;
-
-                          //项目进度
-                          var temp_prog = `<tr><td><ul class="bussiness-prog-group flex-box">`;
-                          var temp_prog_state_class = "bg-primary";
-                          for( var i=0;i<data.prog.length;i++){
-                              if( data.prog[i].state==0 ){ temp_prog_state_class = "bg-grey" }
-                              temp_prog +=`
-                                  <li class="flex-son text-center">
-                                      <b class="${temp_prog_state_class}">${i+1}</b>
-                                      <div class="small">${data.prog[i].name}</div>
-                                      <div class="small">${data.prog[i].date}</div>
-                                  </li>
-                              `;
-                          }
-                          design_list_show_t_prog.find("tbody").html(temp_prog+"</ul></td></tr>");
-
-                          //项目信息
-                          var temp_case = `
-                              <tr><td style="width:120px;">项目编号</td><td>${data.number}</td></tr>
-                              <tr><td>项目名称  </td><td>${data.case}         </td></tr>
-                              <tr><td>项目状态  </td><td>${data.state}        </td></tr>
-                              <tr><td>申请理由  </td><td>${data.reason}       </td></tr>
-                              <tr><td>装修面积  </td><td>${data.decoarea} ㎡  </td></tr>
-                              <tr><td>房源状态  </td><td>${data.statename}    </td></tr>
-                              <tr><td>装修地址  </td><td>${data.decoaddr}     </td></tr>
-                              <tr><td>联系人1   </td><td>${data.user1}        </td></tr>
-                              <tr><td>手机1     </td><td>${data.tel1}         </td></tr>
-                              <tr><td>联系人2   </td><td>${data.user2}        </td></tr>
-                              <tr><td>手机2     </td><td>${data.tel2}         </td></tr>
-                              <tr><td>办公地址  </td><td>${data.addr}         </td></tr>
-                              <tr><td>办公电话  </td><td>${data.tel0}         </td></tr>
-                              <tr><td>信息员    </td><td>${data.providername} </td></tr>
-                              <tr><td>房屋类型  </td><td>${data.housetypename}</td></tr>
-                              <tr><td>装修意向  </td><td>${data.housetodoname}</td></tr>
-                              <tr><td>装修服务  </td><td>${data.houseservname}</td></tr>
-                              <tr><td>交房日期  </td><td>${data.housedate1}   </td></tr>
-                              <tr><td>期望完工  </td><td>${data.housedate2}   </td></tr>
-                              <tr><td>对手数量  </td><td>${data.rivalnumb}    </td></tr>
-                              <tr><td>对手进展  </td><td>${data.rivalstepname}</td></tr>
-                              <tr><td>备注      </td><td>${data.text}         </td></tr>
-                          `;
-                          design_list_show_t_case.find("tbody").html(temp_case);
-
-                          //负责人信息
-                          var temp_user = `
-                              <tr><td style="width:120px;">业务员</td><td>${data.salesman}</td></tr>
-                              <tr><td>设计师      </td><td>${data.designer}   </td></tr>
-                              <tr><td>效果图绘图员</td><td>${data.sketcher}   </td></tr>
-                              <tr><td>施工图绘图员</td><td>${data.draftsman}  </td></tr>
-                              <tr><td>预算员      </td><td>${data.budgetor}   </td></tr>
-                              <tr><td>工程监理    </td><td>${data.supervision}</td></tr>
-                              <tr><td>项目经理    </td><td>${data.manager}    </td></tr>
-                          `;
-                          design_list_show_t_user.find("tbody").html(temp_user);
-
-                          //数据表格
-                          zui_datagrid_render(design_list_show_filelist_obj,design_list_api.datagrid_filelist+"?id="+data_id+"&type=1");
-                          zui_datagrid_render(design_list_show_record_obj,design_list_api.datagrid_record+"?id="+data_id);
-
-                          design_list_show_filelist_type.attr("rowIndex",data_id);      //ID赋值
-                          design_list_show_box.modal("show");                           //盒子显示
-                      } else {
-                          um_tip(data.message,"1500","text-danger");
-                      }
-                  }
-              });
-
-          });
-		//日志添加-----------------------------------------------------------------------------------------------
-		$(document).on("click", ".design_list_logAdd_btn", function() {
-
-			//数据复原
-			common_form_reset();
-
-			//ID取值
-			var rowIndex = $(this).attr("rowIndex");
-
-			//ID赋值
-			design_list_logAdd_submit.attr("rowIndex", rowIndex);
-
-			//面板显示
-			design_list_logAdd_box.modal("show");
-
-		});
-		//日志提交
-		design_list_logAdd_submit.click(function() {
-
-			//ID取值
-			var data_id = $(this).attr("rowIndex");
-
-			//远程提交
-			$.ajax({
-				url: API.test_response,
-				type: "post",
-				dataType: "json",
-				data: {
-					id: data_id,
-					dio1:$("input[name='radio1']:checked").val(),
-					tex1:design_list_follow_up.val(),
-					tex2:design_list_difficulty.val(),
-					dio2:$("input[name='radio2']:checked").val(),
-					tex3:design_list_estimate.val(),
-					sele1:design_list_cycle.val(),
-					swle2:design_list_visit.val(),
-				},
-				success: function(data) {
-					if (data.status > 0) {
-						um_tip(data.message);
-						zui_datagrid_reset(design_list_datagrid_obj, design_list_api.datagrid);
-					} else {
-						um_tip(data.message, "1500", "text-danger");
-					}
-				}
-			});
-		});
-		//日志关闭
-		design_list_logAdd_box.on("hide.zui.modal", function() {
-			//上传重置
-			zui_upload_reset([design_list_logAdd_file]);
-		});
-
-	}); //预加载结尾
+}); //预加载结尾
 </script>
-<style>
-	/* 单选框样式更改 */
-	keyframes hover-color {
-		from {
-			border-color: #c0c0c0;
-		}
-
-		to {
-			border-color: #3e97eb;
-		}
-	}
-
-	.col {
-		display: flex;
-	}
-
-	.opt {
-		margin-left: 4px;
-	}
-
-	.r1,
-	.r2,.r3,
-	.r4,
-	.r5 {
-		margin-top: 9px;
-	}
-	.magic-radio,
-	.magic-checkbox {
-		position: absolute;
-		display: none;
-	}
-
-	.magic-radio[disabled],
-	.magic-checkbox[disabled] {
-		cursor: not-allowed;
-	}
-
-	.magic-radio+label,
-	.magic-checkbox+label {
-		position: relative;
-		display: block;
-		padding-left: 30px;
-		cursor: pointer;
-		vertical-align: middle;
-	}
-
-	.magic-radio+label:hover:before,
-	.magic-checkbox+label:hover:before {
-		animation-duration: 0.4s;
-		animation-fill-mode: both;
-		animation-name: hover-color;
-	}
-     /* 圆点样式修改 */
-	.magic-radio+label:before,
-	.magic-checkbox+label:before {
-		position: absolute;
-		top: 0;
-		left: 0;
-		/* display: inline-block; */
-		width: 12px;
-		height: 12px;
-		content: '';
-		border: 1px solid #c0c0c0;
-	    margin-top: 4px;
-		 margin-left: 10px
-	}
-
-	.magic-radio+label:after,
-	.magic-checkbox+label:after {
-		position: absolute;
-		display: none;
-		content: '';
-	}
-
-	.magic-radio[disabled]+label,
-	.magic-checkbox[disabled]+label {
-		cursor: not-allowed;
-		color: #e4e4e4;
-	}
-
-	.magic-radio[disabled]+label:hover,
-	.magic-radio[disabled]+label:before,
-	.magic-radio[disabled]+label:after,
-	.magic-checkbox[disabled]+label:hover,
-	.magic-checkbox[disabled]+label:before,
-	.magic-checkbox[disabled]+label:after {
-		cursor: not-allowed;
-	}
-
-	.magic-radio[disabled]+label:hover:before,
-	.magic-checkbox[disabled]+label:hover:before {
-		border: 1px solid #e4e4e4;
-		animation-name: none;
-	}
-
-	.magic-radio[disabled]+label:before,
-	.magic-checkbox[disabled]+label:before {
-		border-color: #e4e4e4;
-	}
-
-	.magic-radio:checked+label:before,
-	.magic-checkbox:checked+label:before {
-		animation-name: none;
-	}
-
-	.magic-radio:checked+label:after,
-	.magic-checkbox:checked+label:after {
-		display: block;
-	}
-
-	.magic-radio+label:before {
-		border-radius: 50%;
-	}
-
-	/* 点击之后的圆点样式更改 */
-	.magic-radio+label:after {
-		top: 7px;
-		left: 13px;
-		width: 6px;
-		height: 6px;
-		border-radius: 50%;
-		background: #d2e6fb;
-	}
-
-	/* 圆点边框样式更改 */
-	.magic-radio:checked+label:before {
-		border: 1px solid #d2e6fb;
-	}
-
-	.magic-radio:checked[disabled]+label:before {
-		border: 1px solid #c9e2f9;
-	}
-
-	.magic-radio:checked[disabled]+label:after {
-		background: #d2e6fb;
-	}
-
-	.magic-checkbox+label:before {
-		border-radius: 3px;
-	}
-
-	.magic-checkbox+label:after {
-		top: 2px;
-		left: 7px;
-		box-sizing: border-box;
-		width: 6px;
-		height: 12px;
-		transform: rotate(45deg);
-		border-width: 2px;
-		border-style: solid;
-		border-color: #fff;
-		border-top: 0;
-		border-left: 0;
-	}
-
-	.magic-checkbox:checked+label:before {
-		border: #3e97eb;
-		background: #3e97eb;
-	}
-
-	.magic-checkbox:checked[disabled]+label:before {
-		border: #c9e2f9;
-		background: #c9e2f9;
-	}
-</style>
