@@ -37,6 +37,17 @@
 
 		"text"  		: "这里是备注信息",
 
+		"files" 		: [{
+			"name" : "测试文件1.pdf",
+			"path" : "./remote/Upload/test_export.pdf"
+		}, {
+			"name" : "测试文件2.pdf",
+			"path" : "../upload/test_export.pdf"
+		}, {
+			"name" : "测试文件3.pdf",
+			"path" : "./remote/Upload/test_export.pdf"
+		}],
+
 		"notes" : "以下为 签单列表-详情(施工)所需字段 部分字段复用(设计字段)--------------",
 
 		"conmoneys" 	: 150,
@@ -71,7 +82,13 @@
 		"proadmin" 		: "许家印",
 		"proptel" 		: "18332367000",
 
-		"budget" 		: "暂无",
-		"drawing" 		: "暂无"
+		"budget" 		: [{
+			"name" : "测试文件.pdf",
+			"path" : "./remote/Upload/test_export.pdf"
+		}],
+		"drawing" 		: [{
+			"name" : "测试文件.pdf",
+			"path" : "./remote/Upload/test_export.pdf"
+		}]
 	}
 }

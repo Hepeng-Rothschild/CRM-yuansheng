@@ -431,6 +431,10 @@
 .detail-wrapper table .detail-table-title.detail-table-title-top{
     margin-top: 0;
 }
+.detail-wrapper table .detail-box-file-item {
+    margin-right: 5px;
+    color: #145ccd;
+}
 /*模式-显示*/
 .detail-wrapper.mode-show table td span{
     display: inline-block;

@@ -350,6 +350,19 @@ function um_date_duration(startTime, endTime, mode='string'){
     }
 }
 
+/* um_date_next_time() 下次时间获取
+ * @param startTime object 开始时间
+ * @param duration  number 指定天数
+ * @return          string 下次时间
+ */
+function um_date_next_time(duration, startTime){
+    var duration = parseInt(duration);
+    var startTime= startTime || new Date();
+    var nextTime = startTime;
+    startTime.setDate(startTime.getDate()+duration);
+    return um_date('yyyy-MM-dd', nextTime);
+}
+
 /* um_isinarray()  元素是否存在于数组中
  * @param arr      array         数组
  * @param value    string/number 元素
