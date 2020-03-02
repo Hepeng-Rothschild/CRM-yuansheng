@@ -117,7 +117,7 @@
                     <div class="form-group">
                         <label class="col-sm-2">回访周期</label>
                         <div class="col-sm-8">
-	                        <select class="form-control line_back_days" name="date"><!--JS--></select>
+	                        <select class="form-control line_back_days" name="date"><!--JS推进--></select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -356,17 +356,11 @@
                             <!-- 合同附件 -->
                             <tr><td><strong class="detail-table-title">合同附件</strong></td><td></td><td></td></tr>
                             <tr><td colspan="3">
-                                <div class="uploader design_box_budget_uploader" path="">
+                                <div class="uploader design_box_file_uploader" path="">
                                     <input type="hidden" class='uploader_path' name="budget">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list"></div>
-                                    <button type="button" class="btn btn-default uploader-btn-browse">报价单上传</button>
-                                </div>
-                                <div class="uploader design_box_drawing_uploader" path="">
-                                    <input type="hidden" class='uploader_path' name="drawing">
-                                    <div class="uploader-message text-center"><div class="content"></div></div>
-                                    <div class="uploader-files file-list"></div>
-                                    <button type="button" class="btn btn-default uploader-btn-browse">图纸上传</button>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">附件上传</button>
                                 </div>
                             </td></tr>
 
@@ -510,11 +504,17 @@
                             <!-- 合同附件 -->
                             <tr><td><strong class="detail-table-title">合同附件</strong></td><td></td><td></td></tr>
                             <tr><td colspan="3">
-                                <div class="uploader engine_box_file_uploader" path="">
+                                <div class="uploader engine_box_budget_uploader" path="">
                                     <input type="hidden" class='uploader_path' name="budget">
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list"></div>
-                                    <button type="button" class="btn btn-default uploader-btn-browse">附件上传</button>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">报价单上传</button>
+                                </div>
+                                <div class="uploader engine_box_drawing_uploader" path="">
+                                    <input type="hidden" class='uploader_path' name="drawing">
+                                    <div class="uploader-message text-center"><div class="content"></div></div>
+                                    <div class="uploader-files file-list"></div>
+                                    <button type="button" class="btn btn-default uploader-btn-browse">图纸上传</button>
                                 </div>
                             </td></tr>
 
@@ -897,9 +897,9 @@ $(function() {
     //签单部分---------------------------------------------------------------------------
 
     //上传实例化
-    zui_upload_group({updom: design_list_detail.find(".design_box_budget_uploader"), count: 1});
-    zui_upload_group({updom: design_list_detail.find(".design_box_drawing_uploader"), count: 1});
-    zui_upload_group({updom: design_list_detail.find(".engine_box_file_uploader"), count: 5});
+    zui_upload_group({updom: design_list_detail.find(".design_box_file_uploader"), count: 5});
+    zui_upload_group({updom: design_list_detail.find(".engine_box_budget_uploader"), count: 1});
+    zui_upload_group({updom: design_list_detail.find(".engine_box_drawing_uploader"), count: 1});
 
     //收款信息-自动计算
     design_list_detail.on('keyup', '.money_percent', function(){
