@@ -122,7 +122,6 @@
                 </div>
                 <div class="modal-body">
                     <form class="container form-horizontal">
-                        <input type="hidden" name="ids">
                         <div class="form-group">
                             <label class="col-sm-2 required">离职人员</label>
                             <div class="col-sm-8"><select class="form-control tool_change_box_selectQuit"   name="quit"><!-- JS推进 --></select></div>
@@ -346,38 +345,15 @@ $(function() {
 
     //工具条-客户交接
     design_unbelong.on('click', '.tool_change_btn', function(){
-        common_form_reset();
-        //ID获取
-        var data_arr = design_unbelong.find('.datagrid').data("zui.datagrid").getCheckItems().filter(function(e){return e});
-        if (data_arr.length > 0) {
-
-            //ID获取
-            var data_id = [];
-            for (var i = 0; i < data_arr.length; i++) {
-                data_id.push(data_arr[i].id);
-            }
-
-            //数据赋值
-            design_unbelong.find('.tool_change_box [name="ids"]').val(data_id.join(","));
-
-            //下拉获取
-            um_select_option({
-                dom : design_unbelong.find('.tool_change_box_selectQuit'),
-                url : design_unbelong_api.quit,
-            });
-
-            //下拉获取
-            um_select_option({
-                dom : design_unbelong.find('.tool_change_box_selectTarget'),
-                url : design_unbelong_api.target,
-            });
-
-            //面板显示
-            design_unbelong.find('.tool_change_box').modal('show');
-
-        } else {
-            um_tip("至少选择一条数据", "1000", "text-danger");
-        }
+        um_select_option({
+            dom : design_unbelong.find('.tool_change_box_selectQuit'),
+            url : design_unbelong_api.quit,
+        });
+        um_select_option({
+            dom : design_unbelong.find('.tool_change_box_selectTarget'),
+            url : design_unbelong_api.target,
+        });
+        design_unbelong.find('.tool_change_box').modal('show');
     });
     //提交
     design_unbelong.on('click', '.tool_change_submit', function(){

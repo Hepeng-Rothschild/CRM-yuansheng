@@ -24,27 +24,24 @@
                     </div>
                 </div>
                 <label>
-                    <span>项目状态：</span>
-                    <select class="form-control" name="state">
+                    <span>项目类型：</span>
+                    <select class="form-control" name="type">
                         <option value="0">全部</option>
-                        <option value="1">在谈</option>
-                        <option value="2">已签</option>
-                        <option value="3">未签申请中</option>
-                        <option value="4">未签已归库</option>
-                        <option value="5">不准申请中</option>
-                        <option value="6">不准已归库</option>
+                        <option value="1">设计单</option>
+                        <option value="2">施工单</option>
                     </select>
                 </label>
                 <label>
-                    <span>洽谈级别：</span>
-                    <select class="form-control" name="level">
+                    <span>项目状态：</span>
+                    <select class="form-control" name="state">
                         <option value="0">全部</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="E">E</option>
-                        <option value="F">F</option>
+                        <option value="1">待设计经理提交</option>
+                        <option value="2">待审计提交</option>
+                        <option value="3">待发包</option>
+                        <option value="4">待开工</option>
+                        <option value="5">在施工</option>
+                        <option value="6">已完工</option>
+                        <option value="7">已竣工</option>
                     </select>
                 </label>
                 <div class="im-label">
@@ -115,7 +112,6 @@
                 </div>
                 <div class="modal-body">
                     <form class="container form-horizontal">
-                        <input type="hidden" name="ids">
                         <div class="form-group">
                             <label class="col-sm-2 required">离职人员</label>
                             <div class="col-sm-8"><select class="form-control tool_change_box_selectQuit"   name="quit"><!-- JS推进 --></select></div>
@@ -153,16 +149,14 @@
                 </div>
                 <div class="modal-body modal-scroll">
 
-                    <!-- 操作按钮
-                    返回                                共有
-                    申请退单    detail_return_btn       共有
-                    提交工程部  detail_submitEngine_btn 施工单独有(JS根据.detail_engineBtn进行显示隐藏)
-                    打回设计师  detail_backDesign_btn   施工单独有(JS根据.detail_engineBtn进行显示隐藏)
-                    -->
+                    <!-- 按钮统计 (JS根据 detail_designBtn detail_engineBtn 进行显示隐藏)
+                    设计 返回 申请退单 打回设计师 设计完工
+                    施工 返回 申请退单 打回设计师 提交工程部 -->
                     <button class="btn" data-dismiss="modal"><i class="icon icon-arrow-left"></i> 返回</button>
 					<button class="btn btn-primary" data-toggle="modal" data-target=".detail_return_box">申请退单</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target=".detail_backDesign_box">打回设计师</button>
+                    <button class="btn btn-primary detail_designBtn" data-toggle="modal" data-target=".detail_compDesign_box">设计完工</button>
 					<button class="btn btn-primary detail_engineBtn" data-toggle="modal" data-target=".detail_submitEngine_box">提交工程部</button>
-					<button class="btn btn-primary detail_engineBtn" data-toggle="modal" data-target=".detail_backDesign_box"  >打回设计师</button>
  
                     <!-- 数据表单 -->
                     <form class="detail_box_form">
@@ -249,26 +243,6 @@
         </div>
     </div>
 
-    <!-- 提交工程部 -->
-    <div class="modal modal-for-page fade detail_submitEngine_box" aria-hidden="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">提交工程部</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="container">确定提交工程部吗？</div>
-                    <form><input type="hidden" name="detailId"></form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary detail_submitEngine_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- 打回设计师 -->
     <div class="modal modal-for-page fade detail_backDesign_box" aria-hidden="false">
         <div class="modal-dialog">
@@ -284,6 +258,46 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-primary detail_backDesign_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 设计完工 -->
+    <div class="modal modal-for-page fade detail_compDesign_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">设计完工</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">确定设计完工吗？</div>
+                    <form><input type="hidden" name="detailId"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary detail_compDesign_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提交工程部 -->
+    <div class="modal modal-for-page fade detail_submitEngine_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">提交工程部</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">确定提交工程部吗？</div>
+                    <form><input type="hidden" name="detailId"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary detail_submitEngine_submit">提交</button>
                 </div>
             </div>
         </div>
@@ -305,8 +319,9 @@ $(function() {
         target : LOCAL + "Test/test_select.json", //下拉选择
         show : LOCAL + "Test/Template/design_sign.json", // 详情查看
         return : API.test_response, // 申请退单
-        submitEngine : API.test_response, // 提交工程部
         backDesign : API.test_response, // 打回设计师
+        compDesign : API.test_response, // 设计完工
+        submitEngine : API.test_response, // 提交工程部
         tab1 : API.test_datagrid, // 切换表格1
         tab2 : API.test_datagrid, // 切换表格2
         tab3 : API.test_datagrid, // 切换表格3
@@ -426,38 +441,15 @@ $(function() {
 
     //工具条-客户交接
     design_sign.on('click', '.tool_change_btn', function(){
-        common_form_reset();
-        //ID获取
-        var data_arr = design_sign.find('.datagrid').data("zui.datagrid").getCheckItems().filter(function(e){return e});
-        if (data_arr.length > 0) {
-
-            //ID获取
-            var data_id = [];
-            for (var i = 0; i < data_arr.length; i++) {
-                data_id.push(data_arr[i].id);
-            }
-
-            //数据赋值
-            design_sign.find('.tool_change_box [name="ids"]').val(data_id.join(","));
-
-            //下拉获取
-            um_select_option({
-                dom : design_sign.find('.tool_change_box_selectQuit'),
-                url : design_sign_api.quit,
-            });
-
-            //下拉获取
-            um_select_option({
-                dom : design_sign.find('.tool_change_box_selectTarget'),
-                url : design_sign_api.target,
-            });
-
-            //面板显示
-            design_sign.find('.tool_change_box').modal('show');
-
-        } else {
-            um_tip("至少选择一条数据", "1000", "text-danger");
-        }
+        um_select_option({
+            dom : design_sign.find('.tool_change_box_selectQuit'),
+            url : design_sign_api.quit,
+        });
+        um_select_option({
+            dom : design_sign.find('.tool_change_box_selectTarget'),
+            url : design_sign_api.target,
+        });
+        design_sign.find('.tool_change_box').modal('show');
     });
     //提交
     design_sign.on('click', '.tool_change_submit', function(){
@@ -590,8 +582,10 @@ $(function() {
     design_sign.on("click", '.line_show_btn', function() {
         var dataId = $(this).attr('dataId');
         var dataType = $(this).attr('dataType');
+        var designBtn = design_sign_detail.find('.detail_designBtn');
         var engineBtn = design_sign_detail.find('.detail_engineBtn');
-        dataType === 'engine' ? engineBtn.show() : engineBtn.hide(); // 施工单独有按钮-显示隐藏
+        dataType === 'design' ? designBtn.show() : designBtn.hide(); // 设计按钮
+        dataType === 'engine' ? engineBtn.show() : engineBtn.hide(); // 施工按钮
         design_sign_detail.find('[name="detailId"]').val(dataId); // 详情ID赋值(多个)
         //远程请求
         $.ajax({
@@ -644,6 +638,15 @@ $(function() {
                             </tr>
                             <tr><td colspan="3"><div class="flex-box"><b>收款说明</b>${data.moneyinfo}</div></td></tr>
                             <tr><td colspan="3"><div class="flex-box"><b>备注信息</b>${data.text}</div></td></tr>
+                            <tr>
+                                <td colspan="3"><div class="flex-box"><b>附件</b>
+                                    `;
+                                    for(var i=0;i<data.files.length;i++){
+                                        temp+=`<a class="detail-box-file-item" target="blank" href="${FILE_PATH + data.files[i].path}">${data.files[i].name}</a>`;
+                                    }
+                            temp+=`
+                                </div></td>
+                            </tr>
                         </tbody>
                         `;
                     } else if (dataType === 'engine') { // 施工单模板
@@ -715,12 +718,26 @@ $(function() {
                                 <td><div class="flex-box"><b>物业负责人</b>${data.proadmin}</div></td>
                                 <td><div class="flex-box"><b>负责人电话</b>${data.proptel}</div></td>
                             </tr>
-                            <tr>
-                                <td><div class="flex-box"><b>报价单上传</b>${data.budget}</div></td>
-                                <td colspan="2"><div class="flex-box"><b>图纸上传</b>${data.drawing}</div></td>
-                            </tr>
                             <tr><td colspan="3"><div class="flex-box"><b>收款说明</b>${data.moneyinfo}</div></td></tr>
                             <tr><td colspan="3"><div class="flex-box"><b>备注信息</b>${data.text}</div></td></tr>
+                            <tr>
+                                <td colspan="3"><div class="flex-box"><b>报价单</b>
+                                    `;
+                                    for(var i=0;i<data.budget.length;i++){
+                                        temp+=`<a class="detail-box-file-item" target="blank" href="${FILE_PATH + data.budget[i].path}">${data.budget[i].name}</a>`;
+                                    }
+                            temp+=`
+                                </div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><div class="flex-box"><b>图纸</b>
+                                    `;
+                                    for(var n=0;n<data.drawing.length;n++){
+                                        temp+=`<a class="detail-box-file-item" target="blank" href="${FILE_PATH + data.drawing[n].path}">${data.drawing[n].name}</a>`;
+                                    }
+                            temp+=`
+                                </div></td>
+                            </tr>
                         </tbody>
                         `;
                     }
@@ -761,21 +778,31 @@ $(function() {
         });
     });
 
-    //操作按钮-提交工程部
-    design_sign_detail.on("click", '.detail_submitEngine_submit', function() {
-        um_data_submit({
-            url         : design_sign_api.submitEngine,
-            form        : design_sign_detail.find('.detail_submitEngine_box form'),
-            datagridDom : design_sign.find('.datagrid'),
-            dataSource  : design_sign_dataSource,
-        });
-    });
-
     //操作按钮-打回设计师
     design_sign_detail.on("click", '.detail_backDesign_submit', function() {
         um_data_submit({
             url         : design_sign_api.backDesign,
             form        : design_sign_detail.find('.detail_backDesign_box form'),
+            datagridDom : design_sign.find('.datagrid'),
+            dataSource  : design_sign_dataSource,
+        });
+    });
+
+    //操作按钮-设计完工
+    design_sign_detail.on("click", '.detail_compDesign_submit', function() {
+        um_data_submit({
+            url         : design_sign_api.compDesign,
+            form        : design_sign_detail.find('.detail_compDesign_box form'),
+            datagridDom : design_sign.find('.datagrid'),
+            dataSource  : design_sign_dataSource,
+        });
+    });
+
+    //操作按钮-提交工程部
+    design_sign_detail.on("click", '.detail_submitEngine_submit', function() {
+        um_data_submit({
+            url         : design_sign_api.submitEngine,
+            form        : design_sign_detail.find('.detail_submitEngine_box form'),
             datagridDom : design_sign.find('.datagrid'),
             dataSource  : design_sign_dataSource,
         });

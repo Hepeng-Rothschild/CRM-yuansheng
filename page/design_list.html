@@ -117,16 +117,12 @@
                     <div class="form-group">
                         <label class="col-sm-2">回访周期</label>
                         <div class="col-sm-8">
-	                        <select class="form-control" name="date">
-								<option value="1">1</option>
-								<option value="3">3</option>
-								<option value="5">5</option>
-	                        </select>
+	                        <select class="form-control line_back_days" name="date"><!--JS--></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2">下次回访时间</label>
-                        <div class="col-sm-8"><input type="text" class="form-control" readonly></div>
+                        <label class="col-sm-2 small">下次回访时间</label>
+                        <div class="col-sm-8"><input type="text" class="form-control line_back_next" readonly></div>
                     </div>
                   </div>
                 </div>
@@ -421,7 +417,12 @@
                             <tr>
                                 <td><div class="flex-box"><b>工程面积</b><input class="form-control flex-son" name="area" type="number"></div></td>
                                 <td><div class="flex-box"><b>工程地址</b><input class="form-control flex-son" name="address"></div></td>
-                                <td><div class="flex-box"><b>工程等级</b><input class="form-control flex-son" name="leval"></div></td>
+                                <td><div class="flex-box"><b>工程等级</b><select class="form-control flex-son" name="level">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                </select></div></td>
                             </tr>
                             <tr>
                                 <td colspan="3">
@@ -536,6 +537,8 @@ $(function() {
     var design_list = $("#design_list"); //页面ID
     var design_list_api = {
         datagrid : API.test_datagrid, // 数据表格
+        backDays : LOCAL + "Test/test_select.json", // 回访下拉
+        backSubmit : API.test_response, // 回访提交
         itemType : LOCAL + "Test/test_select.json", // 详情查看-项目类型下拉
         show : LOCAL + "Test/Template/customer.json", // 详情查看
         save : API.test_response, // 详情保存
@@ -609,16 +612,25 @@ $(function() {
 
     //回访-----------------------------------------------------------------------------------------------
     design_list.on("click", '.line_back_btn', function() {
+        um_select_option({
+            dom : design_list.find('.line_back_days'),
+            url : design_list_api.backDays,
+        });
         design_list.find('.line_back_box [name="dataId"]').val( $(this).attr('dataId') );
         // um_data_set($('.line_back_box form'), {'dataId':10000, 'type':3, 'che':[1,2]});
         design_list.find('.line_back_box').modal('show');
     });
     design_list.on("click", '.line_back_submit', function() {
         um_data_submit({
-            url: API.test_response,
+            url: design_list_api.backSubmit,
             form: $(this).parents('form'),
             dataSource: design_list_dataSource,
         });
+    });
+    //回访-时间联动
+    design_list.on('change', '.line_back_days', function(){
+        var backNextTime = um_date_next_time( $(this).val() );
+        design_list.find('.line_back_next').val(backNextTime);
     });
 
     //详情部分---------------------------------------------------------------------------
@@ -886,7 +898,7 @@ $(function() {
 
     //上传实例化
     zui_upload_group({updom: design_list_detail.find(".design_box_budget_uploader"), count: 1});
-    zui_upload_group({updom: design_list_detail.find(".design_box_drawing_uploader"), count: 1, type: "img"});
+    zui_upload_group({updom: design_list_detail.find(".design_box_drawing_uploader"), count: 1});
     zui_upload_group({updom: design_list_detail.find(".engine_box_file_uploader"), count: 5});
 
     //收款信息-自动计算
