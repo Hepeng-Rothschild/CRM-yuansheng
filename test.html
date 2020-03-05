@@ -32,7 +32,7 @@
 <div class="common-marquee flex-box text-danger"><i class="icon icon-bullhorn"></i> 滚动消息</div><div class="tabs" id="common_tabs"></div></div>
 <!-- test_code -->
 <script>
-var page = "design_sign";
+var page = "business_public_customer_source";
 var common_tabs = $("#common_tabs");
 common_tabs.tabs({tabs:[{
     id    : 'page',
@@ -40,21 +40,18 @@ common_tabs.tabs({tabs:[{
     title : "测试页面",
     url   : "./page/"+ page +".html", //template
 }]});
-window.COMMON_TABS_OBJ = common_tabs.data("zui.tabs");
-window.DETAIL_SOURCE = 'A';
-window.COMMON = { position_id:1,user_id:2,logAllow:1 }
+window.COMMON = { position_id:1,user_id:2,returnAllow:1 }
 </script>
 <!-- 
-项目分单 design_assign
-项目洽谈 design_list
-项目管理 design_admin
-失败审批 design_fail
-过期审批 design_overdue
-未隶属   design_unbelong
-签单列表 design_sign
-
-设计全局：表单元素 税金自动计算
-项目洽谈：两种签单 暂存
-项目洽谈：施工签单 收款时间 改为 施工阶段(动态数据)
-签单列表：两种签单 报价单/图纸/附件 //是不是改成纯下载更合适
+信息员列表  business_provider_list
+信息员管理  business_provider_admin
+客户跟踪    business_customer_tracked
+客户管理    business_customer_admin
+客户审批    business_customer_approval
+过期审批    business_customer_overdue
+失败审批    business_customer_failure
+可抢信息员  business_public_provider_get
+可抢客户    business_public_customer_get
+信息员资源  business_public_provider_source
+客户资源    business_public_customer_source
 -->

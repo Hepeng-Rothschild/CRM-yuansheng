@@ -904,25 +904,6 @@ function common_topic_answer_reset(){
     $(".common_topic_answer_submit").attr("tid","");
 }
 
-/*模板页面打开
- * @param template_page 模板页面名
- * @param _this $(this)指向
- * @example onclick=template_page_open('detail_provider',$(this))
- */
-function template_page_open(template_page,_this){
-    var data_id = zui_datagrid_get_id(_this.attr("rowIndex"));
-    var page_id = _this.parents(".page-wrapper").attr("id");
-    COMMON_TABS_OBJ.open({
-        title  : COMMON_TABS_OBJ.getTab(page_id).title +"详情",
-        id     : template_page,
-        type   : "ajax",
-        url    : './page/template/' + template_page + '.html',
-        onOpen : function(){
-            DETAIL_SOURCE = { data_id, page_id }
-        }
-    });
-}
-
 /* common_approval_tree() 公共审批节点
  * @param dom     object 节点对象
  * @param url     string 接口路径

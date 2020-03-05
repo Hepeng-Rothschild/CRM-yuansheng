@@ -281,14 +281,9 @@
             {   
                 "title"     :"审批设置",
                 "children"  :[
-                    { "title":"审批列表","icon":"setup_approval","url":"blank"}
+                    { "title":"审批列表","icon":"","url":"setup_approval"}
                 ]
             }
         ]
-    },
-    {   
-        "title":"测试页面",
-        "icon":"window",
-        "url":"test_template"
     }
 ]

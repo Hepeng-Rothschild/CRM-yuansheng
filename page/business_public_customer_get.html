@@ -2,14 +2,15 @@
 <div class="page-wrapper" id="business_public_customer_get">
 
     <!-- 数据网格 -->
-    <div class="datagrid datagrid-striped" id="business_public_customer_get_datagrid">
-
+    <div class="datagrid datagrid-striped">
         <!-- 工具条组 -->
         <div class="tool-group">
-            <div class="tool-search">
+            <form class="tool-search">
+                <input type="hidden" name='page'>
+                <input type="hidden" name='recPerPage'>
                 <div class="im-label">
                     <div class="input-group">
-                        <select class="form-control" id="business_public_customer_get_tool_keys">
+                        <select class="form-control" name="sid">
                             <option value="1">项目编号</option>
                             <option value="2">项目名称</option>
                             <option value="3">信息员</option>
@@ -18,26 +19,24 @@
                             <option value="6">联系电话</option>
                         </select>
                         <span class="input-group-addon fix-border fix-padding"></span>
-                        <input type="text" class="form-control" id="business_public_customer_get_tool_search">
+                        <input type="text" class="form-control" name="search">
                     </div>
                 </div>
-                <label><button class="btn btn-primary" id="business_public_customer_get_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <label><button type="button" class="btn btn-primary tool_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
                 <div class="clearfix"></div>
-            </div>
+            </form>
             <div class="tool-deal">
-                <label><button class="btn btn-primary" id="business_public_customer_get_occupy_btn"> <i class="icon icon-flag"></i> 隶属于我</button></label>
+                <label><button class="btn btn-primary tool_belongs_btn"> <i class="icon icon-flag"></i> 隶属于我</button></label>
                 <div class="clearfix"></div>
             </div>
         </div>
-        <!-- tool-group -->
 
         <div class="datagrid-container"></div>
         <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
     </div>
-    <!-- datagrid -->
 
-    <!-- 隶属于我盒子 -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="business_public_customer_get_occupy_box">
+    <!-- 隶属于我盒子(列表多个) -->
+    <div class="modal modal-for-page fade tool_belongs_box" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -45,164 +44,391 @@
                     <h4 class="modal-title">隶属于我</h4>
                 </div>
                 <div class="modal-body">
-                    <p>您确定要选中的客户隶属于自己名下吗？</p>
+                    <p>您确定要将选中的客户隶属于自己名下吗？</p>
+                    <form class="container form-horizontal"><input type="hidden" name="ids"></form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="business_public_customer_get_occupy_submit">提交</button>
+                    <button type="button" class="btn btn-primary tool_belongs_submit">提交</button>
                 </div>                
             </div>
         </div>
     </div>
-    <!-- business_public_customer_get_occupy_box -->
 
 </div>
 <!-- page-wrapper -->
 
-<script>
-$(function(){
+<!-- 详情外套 -->
+<div class="detail-wrapper mode-show" id="business_public_customer_get_detail">
     
+    <!-- 详情弹框 -->
+    <div class="modal modal-for-page fade detail_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">可抢客户详情</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+
+                    <!-- 操作按钮 -->
+                    <button class="btn" data-dismiss="modal"><i class="icon icon-arrow-left"></i>  返回</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target=".detail_belong_box">隶属于我</button>
+
+                    <!-- 数据表单 -->
+                    <form class="detail_box_form">
+                        <input type="hidden" name="cid">
+                        <table class="table"><!--JS推进--></table>
+                    </form>
+
+                    <!-- 切换表格 -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-tab="" href=".detail_tab1">业务回访</a></li>
+                        <li><a data-tab="" href=".detail_tab2">设计回访</a></li>
+                        <li><a data-tab="" href=".detail_tab3">过程记录</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active detail_tab1">
+                            <form class="tool-search">
+                                <input type="hidden" name='page'>
+                                <input type="hidden" name='recPerPage'>
+                                <input type="hidden" name="cid" value="null">
+                            </form>
+                            <div class="datagrid datagrid-striped">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane detail_tab2">
+                            <form class="tool-search">
+                                <input type="hidden" name='page'>
+                                <input type="hidden" name='recPerPage'>
+                                <input type="hidden" name="cid" value="null">
+                            </form>
+                            <div class="datagrid datagrid-striped">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane detail_tab3">
+                            <form class="tool-search">
+                                <input type="hidden" name='page'>
+                                <input type="hidden" name='recPerPage'>
+                                <input type="hidden" name="cid" value="null">
+                            </form>
+                            <div class="datagrid datagrid-striped">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 隶属于我盒子(详情单个) -->
+    <div class="modal modal-for-page fade detail_belong_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">隶属于我</h4>
+                </div>
+                <div class="modal-body">
+                    <p>您确定要将此客户隶属于自己名下吗？</p>
+                    <form class="container form-horizontal"><input type="hidden" name="cid"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary detail_belong_submit">提交</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+$(function() {
     //变量声明-----------------------------------------------------------------------------------------------
-    var 
-    business_public_customer_get                = $("#business_public_customer_get"),               //页面ID
-    business_public_customer_get_datagrid       = $("#business_public_customer_get_datagrid"),      //数据表格
-    //搜索
-    business_public_customer_get_tool_keys      = $("#business_public_customer_get_tool_keys"),     //搜索类别
-    business_public_customer_get_tool_search    = $("#business_public_customer_get_tool_search"),   //搜索字段
-    business_public_customer_get_search_btn     = $("#business_public_customer_get_search_btn"),    //搜索按钮
-    //隶属于我
-    business_public_customer_get_occupy_box     = $("#business_public_customer_get_occupy_box"),    //隶属于我盒子
-    business_public_customer_get_occupy_btn     = $("#business_public_customer_get_occupy_btn"),    //隶属于我按钮
-    business_public_customer_get_occupy_submit  = $("#business_public_customer_get_occupy_submit"); //隶属于我按钮    
-
-    //接口对象-----------------------------------------------------------------------------------------------
-    if( window.STATE == "local" ){
-
-        //本地接口
-        var business_public_customer_get_api = {
-            datagrid : LOCAL + "Test/test_datagrid.json", //数据表格
-        }
-
-    } else if ( window.STATE == "route" ){
+    var business_public_customer_get = $("#business_public_customer_get"); //页面ID
+    var business_public_customer_get_api = {
+        datagrid : API.test_datagrid, // 数据表格
+        belongs : API.test_response, // 工具条-隶属于我(列表多个)
+        belong : API.test_response, // 详情-隶属于我(详情单个)
+        show : LOCAL + "Test/Template/customer.json", // 详情查看
+        tab1 : API.test_datagrid, // 切换表格1
+        tab2 : API.test_datagrid, // 切换表格2
+        tab3 : API.test_datagrid, // 切换表格3
     }
 
     //数据表格-----------------------------------------------------------------------------------------------
-    business_public_customer_get_datagrid.datagrid({
-        height      : zui_datagrid_height(business_public_customer_get_datagrid),
-        sortable    : false,
-        cache       : false,
-        showRowIndex: true,
-        checkable   : true,
-        checkByClickRow:false,
-        selectable  : false,
-        configs     : {
-            R0:{className:"text-center"},
-            C1:{className:"cell-hidden"}
-        },
-        states      : {
-            pager           : {
-                page        : 1,
-                recPerPage  : window.REC_PER_PAGE,
-            }
-        },
-        dataSource : {
-            cols   : [
-                {name:"id",      label:"ID",      width:49},
-                {name:"username",label:"项目编号",width:100,html:true,
-                    valueOperator : {
-                        getter : function(dataValue,cell){
-                            return `<a rowIndex="${cell.rowIndex}" onclick=template_page_open('detail_customer',$(this))>${dataValue}</a>`;
-                        }
+    //数据源
+    var business_public_customer_get_dataSource = {
+        cols   : [
+            {name:"username",label:"项目编号",width:100,html:true,
+                valueOperator : {
+                    getter : function(dataValue,cell){
+                        return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;
                     }
-                },
-                {name:"text8",   label:"项目名称",    width:150},
-                {name:"name",    label:"联系人",      width:80 },
-                {name:"name",    label:"信息员",      width:80 },
-                {name:"name",    label:"业务员",      width:80 },
-                {name:"name",    label:"设计师",      width:80 },
-                {name:"tex10",   label:"项目状态",    width:150},
-                {name:"text2",   label:"房源状态",    width:80 },
-                {name:"text2",   label:"回访过期",    width:80 },
-                {name:"tex10",   label:"装修地址",    width:150},               
-            ],
-            remote : function(){
-                return {
-                    url     : business_public_customer_get_api.datagrid,
-                    type    : "POST",
-                    dataType: "json",
                 }
-            }
+            },
+            {name:"text8",   label:"项目名称",    width:150},
+            {name:"name",    label:"联系人",      width:80 },
+            {name:"name",    label:"信息员",      width:80 },
+            {name:"name",    label:"业务员",      width:80 },
+            {name:"name",    label:"设计师",      width:80 },
+            {name:"tex10",   label:"项目状态",    width:150},
+            {name:"text2",   label:"房源状态",    width:80 },
+            {name:"text2",   label:"回访过期",    width:80 },
+            {name:"tex10",   label:"装修地址",    width:150} 
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : business_public_customer_get, 
+                url      : business_public_customer_get_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : business_public_customer_get,
+                data     : data
+            });
         }
+    };
+    //实例化
+    business_public_customer_get.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : business_public_customer_get.find('.datagrid'),
+            dataSource : business_public_customer_get_dataSource,
+            checkable  : true
+        })
+    );
+    var business_public_customer_get_datagrid_obj =  business_public_customer_get.find('.datagrid').data("zui.datagrid");
+    //搜索
+    business_public_customer_get.find('.tool_search_btn').click(function(){ 
+        zui_datagrid_render({
+            datagrid_obj : business_public_customer_get_datagrid_obj,
+            dataSource   : business_public_customer_get_dataSource
+        }); 
     });
 
-    //变量声明-----------------------------------------------------------------------------------------------
-    var business_public_customer_get_datagrid_obj = business_public_customer_get_datagrid.data("zui.datagrid"); //表格对象
-
-    //搜索按钮-----------------------------------------------------------------------------------------------
-    business_public_customer_get_search_btn.click(function(){
-
-        //字段整理
-        var keyword
-        = "?sid="    + business_public_customer_get_tool_keys.val()
-        + "&search=" + business_public_customer_get_tool_search.val();
-
-        //GET提交
-        zui_datagrid_render(business_public_customer_get_datagrid_obj,business_public_customer_get_api.datagrid+keyword);
-
-    });
-    
-    //隶属于我按钮-----------------------------------------------------------------------------------------------
-    business_public_customer_get_occupy_btn.click(function(){
-        
-        //数据复原
+    //操作按钮-------------------------------------------------------------------------------------------
+    //工具条-隶属于我(列表多个)
+    var business_public_customer_get_reply_box = business_public_customer_get.find('.tool_belongs_box');
+    business_public_customer_get.on("click", '.tool_belongs_btn', function() {
         common_form_reset();
-
-        //批量取值
         var data_arr = business_public_customer_get_datagrid_obj.getCheckItems().filter(function(e){return e});
-        if( data_arr.length>0 ){
-            
-            //ID获取
+        if (data_arr.length > 0) {
             var data_id = [];
-            for(var i=0;i<data_arr.length;i++){
+            for (var i = 0; i < data_arr.length; i++) {
                 data_id.push(data_arr[i].id);
             }
-
-            //数据赋值
-            business_public_customer_get_occupy_submit.attr("dataId",data_id.join(","));
-
-            //面板显示
-            business_public_customer_get_occupy_box.modal("show");
-
+            business_public_customer_get_reply_box.find('[name="ids"]').val( data_id.join(",") );
+            business_public_customer_get_reply_box.modal('show');
         } else {
-            um_tip("至少选择一条数据","1000","text-danger");
+            um_tip("至少选择一条数据", "1000", "text-danger");
         }
-
     });
-    //隶属于我提交
-    business_public_customer_get_occupy_submit.click(function(){
+    business_public_customer_get.on("click", '.tool_belongs_submit', function() {
+        um_data_submit({
+            url: business_public_customer_get_api.belongs,
+            form: business_public_customer_get_reply_box.find('form'),
+            dataSource: business_public_customer_get_dataSource,
+        });
+    });
 
-        //ID取值
-        var data_id = $(this).attr("dataId");
 
-        //远程提交
+    //详情部分---------------------------------------------------------------------------
+    //变量声明
+    var business_public_customer_get_detail = $("#business_public_customer_get_detail");
+    var business_public_customer_get_detail_dataSource_tab1 = {
+        cols   : [
+            {name:"name",    label:"回访人",      width:80 },
+            {name:"tex10",   label:"回访内容",    width:200},
+            {name:"datetime",label:"回访时间",    width:140},
+            {name:"datetime",label:"下次回访时间",width:140},
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : business_public_customer_get_detail.find('.detail_tab1'), 
+                url      : business_public_customer_get_api.tab1
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : business_public_customer_get_detail.find('.detail_tab1'),
+                data     : data
+            });
+        }
+    }
+    var business_public_customer_get_detail_dataSource_tab2 = {
+        cols   : [
+            {name:"name",    label:"回访人",      width:80 },
+            {name:"tex10",   label:"回访内容",    width:200},
+            {name:"datetime",label:"回访时间",    width:140}, 
+            {name:"datetime",label:"下次回访时间",width:140}
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : business_public_customer_get_detail.find('.detail_tab2'), 
+                url      : business_public_customer_get_api.tab2
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : business_public_customer_get_detail.find('.detail_tab2'),
+                data     : data
+            });
+        }
+    }
+    var business_public_customer_get_detail_dataSource_tab3 = {
+        cols   : [
+            {name:"name",    label:"操作人",  width:80 },
+            {name:"datetime",label:"操作时间",width:140},
+            {name:"tex10",   label:"过程说明",width:200}
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : business_public_customer_get_detail.find('.detail_tab3'), 
+                url      : business_public_customer_get_api.tab3
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : business_public_customer_get_detail.find('.detail_tab3'),
+                data     : data
+            });
+        }
+    }
+
+    //详情弹框
+    business_public_customer_get.on("click", '.line_show_btn', function() {
+        common_form_reset();
+        var dataId = $(this).attr('dataId');
+        business_public_customer_get_detail.find('[name="cid"]').val(dataId); // 详情ID赋值(多个)
+        //远程请求
         $.ajax({
-            url     : API.test_response,
+            url     : business_public_customer_get_api.show,
             type    : "post",
             dataType: "json",
-            data    : { 
-                id      : data_id
-            },
+            data    : { id: dataId },
             success : function(data){
                 if( data.status>0 ){
-                    um_tip(data.message);
-                    zui_datagrid_reset(business_public_customer_get_datagrid_obj,business_public_customer_get_api.datagrid,"clear");
+                    var data = data.data;
+                    //基础表格
+                    var temp = `
+                    <thead><tr><td colspan="3"><div class="flex-box"><b>项目状态</b>${data.itemstatename}</div></td></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="flex-box"><b>项目编号</b>${data.number}</spa</div></td>
+                            <td><div class="flex-box"><b>项目名称</b>${data.case}</span></div></td>
+                            <td><div class="flex-box"><b>项目类型</b>${data.typename}   </div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>业务员</b>${data.salesman}    </div></td>
+                            <td><div class="flex-box"><b>信息员</b>${data.providername}</div></td>
+                            <td><div class="flex-box"><b>设计师</b>${data.designer}    </div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>联系人1 </b>${data.user1}</div></td>
+                            <td><div class="flex-box"><b>手机1   </b>${data.tel1} </div></td>
+                            <td><div class="flex-box"><b>办公电话</b>${data.tel0} </div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>房源状态</b>${data.sourcestatename}</div></td>
+                            <td><div class="flex-box"><b>房屋状态</b>${data.housestatename} </div></td>
+                            <td><div class="flex-box"><b>房屋类型</b>${data.housetypename}  </div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>装修面积</b>${data.decoarea}    </div></td>
+                            <td><div class="flex-box"><b>装修意向</b>${data.decotodoname}</div></td>
+                            <td><div class="flex-box"><b>装修服务</b>${data.decoservname}</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>交房日期</b>${data.housedate1}</div></td>
+                            <td><div class="flex-box"><b>期望工期</b>${data.housedate2}</div></td>
+                            <td><div class="flex-box"><b>装修地址</b>${data.decoaddr}  </div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>联系人2</b>${data.user2}</div></td>
+                            <td><div class="flex-box"><b>手机2  </b>${data.tel2} </div></td>
+                            <td><div class="flex-box"><b>手机3  </b>${data.tel3} </div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>对手数量</b>${data.rivalnumb}</div></td>
+                            <td><div class="flex-box"><b>对手进展</b>${data.rivalstepname}</div></td>                        
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>乘车路线</b>${data.busline}</div></td>
+                            <td colspan="2"><div class="flex-box"><b>办公地址</b>${data.addr}</div></td>
+                        </tr>
+                        <tr><td colspan="3"><div class="flex-box" style="height:35px;"><b>备注信息</b>${data.text}</div></td></tr>
+                    </tbody>
+                    `;
+                    business_public_customer_get_detail.find('.detail_box .detail_box_form table').html(temp); // DOM填充
+                    // um_data_set( business_public_customer_get_detail.find('.detail_box .detail_box_form'), data ); //修改赋值
+                    // business_public_customer_get_detail.addClass("mode-show").removeClass("mode-edit"); // 样式初始化
+                    //切换表格刷新
+                    zui_datagrid_render({
+                        datagrid_obj : business_public_customer_get_detail.find('.detail_tab1 .datagrid').data("zui.datagrid"),
+                        dataSource   : business_public_customer_get_detail_dataSource_tab1
+                    });
+                    zui_datagrid_render({
+                        datagrid_obj : business_public_customer_get_detail.find('.detail_tab2 .datagrid').data("zui.datagrid"),
+                        dataSource   : business_public_customer_get_detail_dataSource_tab2
+                    });
+                    zui_datagrid_render({
+                        datagrid_obj : business_public_customer_get_detail.find('.detail_tab3 .datagrid').data("zui.datagrid"),
+                        dataSource   : business_public_customer_get_detail_dataSource_tab3
+                    });
+                    business_public_customer_get_detail.find('.detail_box').modal('show'); // 弹框显示
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
             }
         });
-
+ 
     });
 
-});//预加载结尾
+    //操作按钮-隶属于我(详情单个)
+    business_public_customer_get_detail.on("click", '.detail_belong_submit', function() {
+        um_data_submit({
+            url         : business_public_customer_get_api.belong,
+            form        : business_public_customer_get_detail.find('.detail_belong_box form'),
+            datagridDom : business_public_customer_get.find('.datagrid'),
+            dataSource  : business_public_customer_get_dataSource,
+        });
+    });
+
+    //切换表格-业务回访------------------------------------------------------------------------
+    business_public_customer_get_detail.find('.detail_tab1 .datagrid').datagrid(
+        zui_datagrid_option({
+            height     : 400,
+            datagrid   : business_public_customer_get_detail.find('.detail_tab1 .datagrid'),
+            dataSource : business_public_customer_get_detail_dataSource_tab1
+        })
+    );
+    //切换表格-设计回访
+    business_public_customer_get_detail.find('.detail_tab2 .datagrid').datagrid(
+        zui_datagrid_option({
+            height     : 400,
+            datagrid   : business_public_customer_get_detail.find('.detail_tab2 .datagrid'),
+            dataSource : business_public_customer_get_detail_dataSource_tab2
+        })
+    );
+    //切换表格-过程记录
+    business_public_customer_get_detail.find('.detail_tab3 .datagrid').datagrid(
+        zui_datagrid_option({
+            height     : 400,
+            datagrid   : business_public_customer_get_detail.find('.detail_tab3 .datagrid'),
+            dataSource : business_public_customer_get_detail_dataSource_tab3
+        })
+    );
+
+}); //预加载结尾
 </script>

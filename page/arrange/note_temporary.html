@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="http://debug.wentesjj.com/arrange/00_source/base.css">
+<style>
+    .red{
+        color: #e24444;
+    }
+</style>
+<h2>新页面接口对接注意事项</h2>
+<pre>
+为提高工作效率，代码使用新的方式编写，主要是<span class="red">表单提交/赋值</span>
+#目前涉及页面
+    智能办公-设计相关
+    智能办公-商务相关
+    设计管理-所有
+</pre>
+
+<h2>原表单示例</h2>
+<pre>
+&lt;div id="page_id">
+    &lt;form>
+        &lt;input type="text" id="user">
+        &lt;input type="text" id="pass">
+        &lt;button type="button" id="submit">提交&lt;/button>
+    &lt;/form>
+&lt;/div>
+
+//表单提交
+$("#submit").click(function(){
+    $.ajax({
+        url : '',
+        type    : "post",
+        dataType: "json",
+        data: {
+            user: $("#user").val(),
+            pass: $("#pass").val(),
+            <span class="red">flag: true // 多余字段添加方式</span>
+        },
+        success: function(data){
+            console.log(data);
+        }
+    });
+});
+
+//表单赋值
+$.ajax({
+    url : '',
+    type    : "post",
+    dataType: "json",
+    data    : { id: dataId },
+    success: function(data){
+        $("#user").val(data.user),
+        $("#pass").val(data.pass),
+    }
+});
+</pre>
+
+<h2>新表单示例</h2>
+<pre>
+&lt;div id="page_id">
+    &lt;form>
+        &lt;input type="text"   name="user">
+        &lt;input type="text"   name="pass">
+        <span class="red">&lt;input type="hidden" name="flag" value='true' title="多余字段添加方式"></span>
+        &lt;button type="button submit">提交&lt;/button>
+    &lt;/form>
+&lt;/div>
+
+//表单提交
+$("#page_id .submit").click(function(){
+    <span class="red">um_data_submit</span>({
+        url  : '',
+        form : $("#page_id form"),
+    });
+});
+
+//表单赋值
+$.ajax({
+    url     : design_list_api.show,
+    type    : "post",
+    dataType: "json",
+    data    : { id: dataId },
+    success : function(data){
+        <span class="red">um_data_set</span>( $("#page_id form"), data );
+    }
+});
+</pre>
+
+<h2>新旧对比</h2>
+<pre>
+#技术对比
+    原表单：DOM元素获取 取值 赋值
+    新表单：表单序列化 反序列化
+
+#修改字段
+    原表单：修改ajax的data:{} 
+    新表单：修改&lt;input type="text">的name值 <span class="red">无须修改js</span>
+
+#添加字段
+    原表单：在ajax的data:{}添加
+    新表单：在&lt;form>中添加&lt;input type="hidden"> <span class="red">无须修改js</span>
+
+#对比总结
+    原表单：格式更灵活，但代码冗余，且产生大量dom_id
+    新表单：通过获取form-input的name值进行<span class="red">序列化/反序列化</span>，从而实现<span class="red">取值/赋值</span>
+            一个方法搞定，不用对每个变量进行取值/赋值
+            极少修改js代码，更多的修改html
+            *如数据格式与接口不符，我来修改相关方法代码，但<span class="red">数据格式须统一</span>
+</pre>

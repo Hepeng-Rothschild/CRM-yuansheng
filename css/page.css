@@ -41,7 +41,8 @@
 .tool-group label:first-child{
     font-weight: normal;
 }
-.tool-group .im-label:first-child .input-group select{
+.tool-group .im-label:first-child .input-group select,
+.tool-group select[name='sid']{
     width: 80px!important;
     min-width: 80px!important;
 }
@@ -110,6 +111,10 @@
     border-color: #BCE8F1;
     margin-top:20px;
     padding: 20px;
+}
+/*模态框-数据表格-工具条*/
+.modal-body .datagrid .tool-search{
+    padding: 5px 0 0 5px;
 }
 /*表格棋盘布局*/
 .form-checker-board li label{

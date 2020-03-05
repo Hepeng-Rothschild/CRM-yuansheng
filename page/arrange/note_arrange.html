@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="http://debug.wentesjj.com/arrange/00_source/base.css">
+<h2>工作遗留</h2>
+<pre>
+设计全局：表单元素 税金自动计算
+项目洽谈：两种签单 暂存
+项目洽谈：施工签单 收款时间 改为 施工阶段(动态数据)
+</pre>
+
+<h2>弃用JS</h2>
+<pre>
+/*模板页面打开
+ * @param template_page 模板页面名
+ * @param _this $(this)指向
+ * @example onclick=template_page_open('detail_provider',$(this))
+ */
+function template_page_open(template_page,_this){
+    var data_id = zui_datagrid_get_id(_this.attr("rowIndex"));
+    var page_id = _this.parents(".page-wrapper").attr("id");
+    COMMON_TABS_OBJ.open({
+        title  : COMMON_TABS_OBJ.getTab(page_id).title +"详情",
+        id     : template_page,
+        type   : "ajax",
+        url    : './page/template/' + template_page + '.html',
+        onOpen : function(){
+            DETAIL_SOURCE = { data_id, page_id }
+        }
+    });
+} 
+</pre>
