@@ -299,103 +299,6 @@
         </div>
     </div>
 
-    <!-- 切换表格 -->
-    <!-- 客户记录-回访 -->
-    <div class="modal modal-for-page fade detail_tab2_back_box" aria-hidden="false">
-        <div class="modal-dialog">
-            <form class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">添加回访记录</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="container form-horizontal">
-                    <input type="hidden" name="cid" title="详情ID">
-                    <input type="hidden" name="tabTableId" title="详情-切换表格ID">
-                    <div class="form-group">
-                        <label class="col-sm-2">回访内容</label>
-                        <div class="col-sm-8"><textarea class="form-control" name='text'></textarea></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2">回访周期</label>
-                        <div class="col-sm-8">
-                            <select class="form-control line_back_days" name="date"><!--JS推进--></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 small">下次回访时间</label>
-                        <div class="col-sm-8"><input type="text" class="form-control line_back_next" readonly></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary detail_tab2_back_submit">提交</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- 客户记录-提交商务经理 -->
-    <div class="modal modal-for-page fade detail_tab2_submitBusiness_box" aria-hidden="false">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">提交商务经理</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="container">确定提交商务经理吗?</div>
-                    <form>
-                        <input type="hidden" name="cid" title="详情ID">
-                        <input type="hidden" name="tabTableId" title="详情-切换表格ID">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary detail_tab2_submitBusiness_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 客户记录-放弃客户 -->
-    <div class="modal modal-for-page fade detail_tab2_abandonCustomer_box" aria-hidden="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">放弃客户</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="container form-horizontal">
-                        <input type="hidden" name="cid" title="详情ID">
-                        <input type="hidden" name="tabTableId" title="详情-切换表格ID">
-                        <div class="form-group">
-                            <label class="col-sm-2 required">放弃理由</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" name="reason">
-                                    <option value="1">有价值</option>
-                                    <option value="2">无价值</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 required">理由详情</label>
-                            <div class="col-sm-8">
-                                <textarea class="form-control" name="text"></textarea>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary detail_tab2_abandonCustomer_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 <script>
@@ -414,10 +317,6 @@ $(function() {
         tab3 : API.test_datagrid, // 切换表格3
         tab4 : API.test_datagrid, // 切换表格4
         tab5 : API.test_datagrid, // 切换表格5
-        backDays : LOCAL + "Test/test_select_return_days.json", // 回访下拉
-        tab2Back : API.test_response, // 回访
-        tab2SubmitBusiness : API.test_response, // 提交商务经理
-        tab2AbandonCustomer : API.test_response, // 放弃客户
     }
 
     //数据表格-----------------------------------------------------------------------------------------------
@@ -442,7 +341,7 @@ $(function() {
                 html:true,
                 valueOperator : {
                     getter : function(dataValue,cell){
-                        return `<a class="line_turnCustomer_btn" dataId="${cell.config.data.id}" dataId="${dataValue}">转为客户</a>`;
+                        return `<a class="line_turnCustomer_btn" dataId="${cell.config.data.id}">转为客户</a>`;
                     }
                 }
             }
@@ -605,21 +504,6 @@ $(function() {
             {name:"tex10",   label:"上次回访内容",width:200},
             {name:"text2",   label:"回访剩余",    width:80 },
             {name:"text2",   label:"状态",        width:80 },
-            {name:"state",   label:"操作",        width:180,
-                html:true,
-                valueOperator : {
-                    getter : function(dataValue,cell){
-                        var temp = `<a class="detail_tab2_back_btn" tabTableId="${cell.config.data.id}">回访</a>`;
-                        if( dataValue == 1 ) {  //状态-正跟踪
-                            temp+= `
-                            <a class="detail_tab2_submitBusiness_btn" tabTableId="${cell.config.data.id}">提交商务经理</a>
-                            <a class="detail_tab2_abandonCustomer_btn" tabTableId="${cell.config.data.id}">放弃客户</a>
-                            `;
-                        }
-                        return temp;
-                    }
-                }
-            }
         ],
         remote : function(){
             return zui_datagrid_remote({
@@ -821,60 +705,6 @@ $(function() {
             dataSource : business_provider_admin_detail_dataSource_tab5
         })
     );
-
-    //切换表格-客户记录-操作按钮--------------------------------------------------------
-    //详情ID已在详情盒子显示时已赋值
-
-    //切换表格-客户记录-回访
-    business_provider_admin_detail.on('click', '.detail_tab2_back_btn', function(){
-        um_select_option({
-            dom : business_provider_admin_detail.find('.line_back_days'),
-            url : business_provider_admin_api.backDays,
-        });
-        business_provider_admin_detail.find('.detail_tab2_back_box [name="tabTableId"]').val( $(this).attr('tabTableId') ); //切换表格ID
-        business_provider_admin_detail.find(".detail_tab2_back_box").modal('show');
-    });
-    business_provider_admin_detail.on('click', '.detail_tab2_back_submit', function(){
-        um_data_submit({
-            url         : business_provider_admin_api.tab2Back,
-            form        : business_provider_admin_detail.find('.detail_tab2_back_box form'),
-            datagridDom : business_provider_admin.find('.datagrid'),
-            dataSource  : business_provider_admin_dataSource,
-        });
-    });
-    //回访-时间联动
-    business_provider_admin_detail.on('change', '.line_back_days', function(){
-        var backNextTime = um_date_next_time( $(this).val() );
-        business_provider_admin_detail.find('.line_back_next').val(backNextTime);
-    });
-
-    //切换表格-客户记录-提交商务经理
-    business_provider_admin_detail.on('click', '.detail_tab2_submitBusiness_btn', function(){
-        business_provider_admin_detail.find('.detail_tab2_submitBusiness_box [name="tabTableId"]').val( $(this).attr('tabTableId') ); //切换表格ID
-        business_provider_admin_detail.find(".detail_tab2_submitBusiness_box").modal('show');
-    });
-    business_provider_admin_detail.on('click', '.detail_tab2_submitBusiness_submit', function(){
-        um_data_submit({
-            url         : business_provider_admin_api.tab2SubmitBusiness,
-            form        : business_provider_admin_detail.find('.detail_tab2_submitBusiness_box form'),
-            datagridDom : business_provider_admin.find('.datagrid'),
-            dataSource  : business_provider_admin_dataSource,
-        });
-    });
-    
-    //切换表格-客户记录-放弃客户
-    business_provider_admin_detail.on('click', '.detail_tab2_abandonCustomer_btn', function(){
-        business_provider_admin_detail.find('.detail_tab2_abandonCustomer_box [name="tabTableId"]').val( $(this).attr('tabTableId') ); //切换表格ID
-        business_provider_admin_detail.find(".detail_tab2_abandonCustomer_box").modal('show');
-    });
-    business_provider_admin_detail.on('click', '.detail_tab2_abandonCustomer_submit', function(){
-        um_data_submit({
-            url         : business_provider_admin_api.tab2AbandonCustomer,
-            form        : business_provider_admin_detail.find('.detail_tab2_abandonCustomer_box form'),
-            datagridDom : business_provider_admin.find('.datagrid'),
-            dataSource  : business_provider_admin_dataSource,
-        });
-    });
 
 }); //预加载结尾
 </script>

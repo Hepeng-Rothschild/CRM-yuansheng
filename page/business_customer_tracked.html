@@ -27,7 +27,7 @@
                     <span>项目状态：</span>
                     <select class="form-control" name="state">
                         <option value="0">全部</option>
-                        <option value="1">正跟琮</option>
+                        <option value="1">正跟踪</option>
                         <option value="2">已提交-商务经未审批</option>
                         <option value="3">已提交-设计经理未分单</option>
                         <option value="4">在谈</option>
@@ -95,9 +95,9 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2">联系人2</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" name="user1"></div>
+                            <div class="col-sm-3"><input type="text" class="form-control" name="user2"></div>
                             <label class="col-sm-2">手机2</label>
-                            <div class="col-sm-3"><input type="text" class="form-control" name="tel1"></div>
+                            <div class="col-sm-3"><input type="text" class="form-control" name="tel2"></div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2">办公地址</label>
@@ -543,10 +543,15 @@ $(function() {
     }
     var business_customer_tracked_detail_dataSource_tab2 = {
         cols   : [
-            {name:"name",    label:"回访人",      width:80 },
-            {name:"tex10",   label:"回访内容",    width:200},
-            {name:"datetime",label:"回访时间",    width:140}, 
-            {name:"datetime",label:"下次回访时间",width:140}
+            {name:"username",label:"回访人",      width:80 },
+            {name:"datetime",label:"回访时间",    width:140},
+            {name:"datetime",label:"下次回访时间",width:140},
+            {name:"text5",   label:"负责人情况",  width:200},
+            {name:"text2",   label:"对手进展",    width:80 },
+            {name:"text2",   label:"跟进情况",    width:80 },
+            {name:"state",   label:"现阶段困难",  width:180},
+            {name:"text2",   label:"外协情况",    width:80 },
+            {name:"state",   label:"经理批复",    width:180}
         ],
         remote : function(){
             return zui_datagrid_remote({
@@ -600,7 +605,7 @@ $(function() {
                     <thead><tr><td colspan="3"><div class="flex-box"><b>项目状态</b>${data.itemstatename}</div></td></tr></thead>
                     <tbody>
                         <tr>
-                            <td><div class="flex-box"><b>项目编号</b>${data.number}</spa</div></td>
+                            <td><div class="flex-box"><b>项目编号</b>${data.number}</span></div></td>
                             <td><div class="flex-box"><b>项目名称</b>${data.case}</span></div></td>
                             <td><div class="flex-box"><b>项目类型</b><span>${data.typename}</span><select class="form-control flex-son" name="typenumb">
                                 <option value="1">办公</option>

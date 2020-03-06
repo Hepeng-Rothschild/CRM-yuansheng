@@ -44,7 +44,7 @@
     </div>
  
     <!-- 添加信息员盒子 -->
-    <div class="modal modal-for-page fade tool_addProvider_box" aria-hidden="false" id>
+    <div class="modal modal-for-page fade tool_addProvider_box" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -607,7 +607,6 @@ $(function() {
     //工具条-添加信息员
     business_provider_list.on("click", '.tool_addProvider_btn', function() {
         common_form_reset();
-        tool_addProvider_box.find('[name="dataId"]').val( $(this).attr('dataId') );
         tool_addProvider_box.modal('show');
     });
     business_provider_list.on("click", '.tool_addProvider_submit', function() {

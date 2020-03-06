@@ -27,7 +27,7 @@
                     <span>项目状态：</span>
                     <select class="form-control" name="state">
                         <option value="0">全部</option>
-                        <option value="1">正跟琮</option>
+                        <option value="1">正跟踪</option>
                         <option value="2">已提交-商务经未审批</option>
                         <option value="3">已提交-设计经理未分单</option>
                         <option value="4">在谈</option>
@@ -382,14 +382,12 @@ $(function() {
     var business_customer_admin = $("#business_customer_admin"); //页面ID
     var business_customer_admin_api = {
         datagrid : API.test_datagrid, // 数据表格
-
         turnCustomerSubmit : API.test_response, // 工具条-转移客户
         abandonCustomer : API.test_response, // 工具条-放弃客户
         changeCustomer : API.test_response, // 工具条-客户交接
         export : API.test_response, // 工具条-导出项目单
         turnProvider: API.test_response, // 列操作-转移信息员
         tobeProvider: API.test_response, // 列操作-转为信息员
-
         show : LOCAL + "Test/Template/customer.json", // 详情查看
         tab1 : API.test_datagrid, // 切换表格1
         tab2 : API.test_datagrid, // 切换表格2
@@ -629,10 +627,15 @@ $(function() {
     }
     var business_customer_admin_detail_dataSource_tab2 = {
         cols   : [
-            {name:"name",    label:"回访人",      width:80 },
-            {name:"tex10",   label:"回访内容",    width:200},
-            {name:"datetime",label:"回访时间",    width:140}, 
-            {name:"datetime",label:"下次回访时间",width:140}
+            {name:"username",label:"回访人",      width:80 },
+            {name:"datetime",label:"回访时间",    width:140},
+            {name:"datetime",label:"下次回访时间",width:140},
+            {name:"text5",   label:"负责人情况",  width:200},
+            {name:"text2",   label:"对手进展",    width:80 },
+            {name:"text2",   label:"跟进情况",    width:80 },
+            {name:"state",   label:"现阶段困难",  width:180},
+            {name:"text2",   label:"外协情况",    width:80 },
+            {name:"state",   label:"经理批复",    width:180}
         ],
         remote : function(){
             return zui_datagrid_remote({
@@ -686,7 +689,7 @@ $(function() {
                     <thead><tr><td colspan="3"><div class="flex-box"><b>项目状态</b>${data.itemstatename}</div></td></tr></thead>
                     <tbody>
                         <tr>
-                            <td><div class="flex-box"><b>项目编号</b>${data.number}</spa</div></td>
+                            <td><div class="flex-box"><b>项目编号</b>${data.number}</span></div></td>
                             <td><div class="flex-box"><b>项目名称</b>${data.case}</span></div></td>
                             <td><div class="flex-box"><b>项目类型</b>${data.typename}   </div></td>
                         </tr>
