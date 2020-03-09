@@ -1,0 +1,37 @@
+{
+    "status"    : 1,
+    "message"   : "提示信息",
+    "data"      : {
+        "approvalPageName" : "请假",
+        "approvalPageUrl" : "blank",
+        "text" : "审批说明",
+        "promoter" : "张学友,刘德华",
+        "promoterId" : "1,2",
+        "copyer" : "李连杰,郑中基",
+        "copyerId" : "3,4",
+        "unique" : 2,
+        "notice" : 2,
+        "approver" : [
+            { 
+                "value" : "指定成员：李连杰,郑中基",
+                "other" : "{ \"tabBtn\": 1}"
+            },
+            { 
+                "value" : "上级：第2级上级",
+                "other" : "{ \"tabBtn\": 2}"
+            },
+            { 
+                "value" : "连续多级上级：从直接上级到第2级上级",
+                "other" : "{ \"tabBtn\": 3}"
+            },
+            { 
+                "value" : "职位：商务总监",
+                "other" : "{ \"tabBtn\": 4}"
+            },
+            { 
+                "value" : "表单中的交接人",
+                "other" : "{ \"tabBtn\": 5}"
+            }
+        ]
+    }
+}

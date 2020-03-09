@@ -14,11 +14,11 @@
                     <div class="col-sm-8">
                         <div class="input-group">
                             <select class="form-control">
-                                <option value="1">A</option>
-                                <option value="2">B</option>
-                                <option value="3">C</option>
-                                <option value="4">D</option>
-                                <option value="5">E</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
                             </select>
                             <span class="input-group-addon fix-border fix-padding"></span>
                             <ul>
@@ -38,7 +38,7 @@
                     <label class="col-sm-4">业务正跟踪</label>
                     <div class="col-sm-8">
                         <div class="input-group">
-                            <input type="number" class="form-control" name="businessTracked">
+                            <input type="number" class="form-control" name="trackedA">
                             <span class="input-group-addon">天</span>
                         </div>
                     </div>
@@ -50,11 +50,11 @@
                     <div class="col-sm-8">
                         <div class="input-group">
                             <select class="form-control">
-                                <option value="1">A</option>
-                                <option value="2">B</option>
-                                <option value="3">C</option>
-                                <option value="4">D</option>
-                                <option value="5">E</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
                             </select>
                             <span class="input-group-addon fix-border fix-padding"></span>
                             <ul>
@@ -75,11 +75,11 @@
                     <div class="col-sm-8">
                         <div class="input-group">
                             <select class="form-control">
-                                <option value="1">A</option>
-                                <option value="2">B</option>
-                                <option value="3">C</option>
-                                <option value="4">D</option>
-                                <option value="5">E</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
                             </select>
                             <span class="input-group-addon fix-border fix-padding"></span>
                             <ul>
@@ -123,11 +123,32 @@ $(function(){
 
     // 表单提交
     setup_business_return_form.find('button').click(function(){
-        var data = um_data_get( setup_business_return_form ); // 可在此调整数据格式
+        // var data = um_data_get( setup_business_return_form );
+        var data = JSON.stringify([
+            {   "vlx":0,
+                "mlevel": setup_business_return_form.find('.form-group').eq(0).find('select').val(),
+                "vmaxDay":setup_business_return_form.find('.form-group').eq(0).find('li:visible input').val()
+            },
+            {   "vlx":1,
+                "mlevel": "A",
+                "vmaxDay":setup_business_return_form.find('.form-group').eq(1).find('input').val()
+            },
+            {   "vlx":2,
+                "mlevel": setup_business_return_form.find('.form-group').eq(2).find('select').val(),
+                "vmaxDay":setup_business_return_form.find('.form-group').eq(2).find('li:visible input').val()
+            },
+            {   "vlx":3,
+                "mlevel": setup_business_return_form.find('.form-group').eq(3).find('select').val(),
+                "vmaxDay":setup_business_return_form.find('.form-group').eq(3).find('li:visible input').val()
+            }
+        ]);
+        // 远程提交
         $.ajax({
             url : setup_business_return_api.save,
             type : 'post',
-            data : data,
+            data : {
+                json : data
+            },
             success : function(data){
                 if( data.status==1 ){
                     um_tip(data.message);
@@ -144,8 +165,16 @@ $(function(){
 
     // select影响右侧input显示与隐藏
     setup_business_return_form.find('select').change(function(e){
+        var selectVal = 0;
+        switch( $(this).val() ){
+            case 'A': selectVal = 1; break;
+            case 'B': selectVal = 2; break;
+            case 'C': selectVal = 3; break;
+            case 'D': selectVal = 4; break;
+            case 'E': selectVal = 5; break;
+        }
         var allLi = $(this).siblings('ul').find('li');
-        var theLi = allLi.eq( $(this).val() -1 );
+        var theLi = allLi.eq( selectVal -1 );
         allLi.addClass('hide');
         theLi.removeClass('hide');
     });

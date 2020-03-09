@@ -27,3 +27,38 @@ function template_page_open(template_page,_this){
     });
 } 
 </pre>
+
+<h2>年前遗留问题</h2>
+<pre>
+#数据表格-宽度标准
+    id      50
+    sexy    50
+    default 80
+    tels    100
+    full    .1
+    operate 180
+
+#假期余额-修改面板
+    .tab-content>.active{
+        display: block!important;
+    }
+
+#分页代码
+    <ul class="pager btn-mini" 
+    data-elements="first_icon,prev_icon,pages,next_icon,last_icon,size_menu,goto,first,last,prev,next,page_of_total_text,items_range_text,total_text,space,page_size_text,total_page_text,page_text"
+    data-max-nav-count="3"
+    data-page-size-options='[1,2,3]'
+    data-menu-direction="dropup"
+    ></ul>
+
+#页面重置优化
+    整体刷新
+    function common_tabs_reset(){
+        $("#common_tabs").data("zui.tabs").reload();
+    }
+    面板提交关闭-tabs刷新
+    面板直接关闭-form刷新|属性重置|上传删除
+    
+    1-common_tabs.onClose 重复调用问题
+    2-日历面板和上传冲突问题
+</pre>
