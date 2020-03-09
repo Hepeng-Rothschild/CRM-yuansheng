@@ -1,155 +1,459 @@
 <!-- 页面外套 -->
-<div class="container page-container page-thin">
-<style>
-	.icon-long-arrow-down{
-		color: #ddd;
-		font-size: 5em;
-	}
-	.panel{
-		margin: 1em auto;
-	}
-	.list-group{
-		margin: 0;
-	}
-	.page-thin{
-		max-width:800px;
-	}
-</style>
+<div class="page-wrapper" id="setup_approval">
 
-    <ul class="nav nav-justified nav-primary nav-tabs">
-        <li class="active"><a data-tab="" href="#a1">基础设置</a></li>
-        <li><a data-tab="" href="#a2">流程设计</a></li>
-        <li><a data-tab="" href="#a3">高级设置</a></li>
-    </ul>
-    <div class="tab-content">
-    	<!-- 内容一 -->
-        <div id="a1" class="tab-pane active">
-			
-            <div class="form-horizontal">
-                <div class="form-group require">
-                    <label class="col-sm-2 required" for="add_company">审批名称</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" id="add_company" placeholder="2-10个字"></div>
-                </div>
-                <div class="form-group require">
-                    <label class="col-sm-2 required" for="add_manager">可见范围</label>
-                    <div class="col-sm-8">
-                    	<input type="text" class="form-control" id="add_manager" placeholder="2-10个字">
-                    	<div class="help-block">可进行修改，修改到部门或者个人</div>
-                	</div>
-                </div>
-                <div class="form-group require">
-                    <label class="col-sm-2 required" for="add_city">发起人</label>
-                    <div class="col-sm-8">
-                    	<input type="text" class="form-control" id="add_city"    placeholder="2-10个字">
-						<div class="help-block">谁可以发起这个审批，可选择多个部门，也可选择多个人</div>
-                    </div>
-                </div>
-                <div class="form-group require">
-                    <label class="col-sm-2 required" for="add_city">导出数据</label>
-                    <div class="col-sm-8">
-                    	<input type="text" class="form-control" id="add_city"    placeholder="2-10个字">
-						<div class="help-block">谁可以管理这个审批并且导出数据</div>
-                    </div>
-                </div>                
-                <div class="form-group require">
-                    <label class="col-sm-2 required" for="add_city">模版图标</label>
-                    <div class="col-sm-8">
-                    	<input type="text" class="form-control" id="add_city"    placeholder="2-10个字">
-						<div class="help-block">谁可以管理这个审批并且导出数据</div>
-                    </div>
-                </div>
-                <div class="form-group require">
-                    <label class="col-sm-2 required" for="add_ip">审批说明</label>
-                    <div class="col-sm-8"><textarea class="form-control"></textarea></div>
-                </div>
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped">
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <form class="tool-search">
+                <input type="hidden" name='page'>
+                <input type="hidden" name='recPerPage'>
+                <input type="hidden" name='sid' value=''>
+                <input type="hidden" name='search' value=''>
+            </form>
+            <div class="tool-deal">
+                <label><button class="btn btn-primary tool_add_btn"> <i class="icon icon-plus"></i> 添加</button></label>
+                <div class="clearfix"></div>
             </div>
-
-            <div class="text-center"><button class="btn">下一步</button></div>
-
         </div>
-        <!-- 内容二 -->
-        <div id="a2" class="tab-pane">
 
-			<div class="panel" data-id="pan2" id="panel2" style="width:300px">
-                <div class="panel-heading">发起人</div>
-                <div class="list-group">
-                	<a class="list-group-item">刘德华</a>
-                	<a class="list-group-item">张学友</a>
-                	<a class="list-group-item">李连杰</a>
-					<a class="list-group-item text-center" id="person_init_btn">
-						<i class="icon icon-plus text-primary"></i>
-					</a>
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade tool_add_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">审批添加</h4>
                 </div>
+                <div class="modal-body">
+
+                    <form class="container form-horizontal">
+                        
+                        <!-- 基础设置 -->
+                        <div class="panel">
+                            <div class="panel-heading">基础设置</div>
+                            <div class="panel-body">
+                                <div style="max-width:600px">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 required">审批名称</label>
+                                        <div class="col-sm-4"><input class="form-control" name=""></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 required">导出数据</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" name="">
+                                                <option value="1"></option>
+                                                <option value="2"></option>
+                                                <option value="3"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6"><span class="small text-gray">谁可以管理这个审批并且导出数据</span></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 required">审批说明</label>
+                                        <div class="col-sm-4"><textarea class="form-control" name=""></textarea></div>
+                                    </div>
+                                </div>
+                           </div>
+                        </div>
+                        
+                        <!-- 流程设置 -->
+                        <div class="panel">
+                            <div class="panel-heading">流程设置</div>
+                            <div class="panel-body">
+                                <div style="max-width:600px">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 required">发起人</label>
+                                        <div class="col-sm-4"><input class="form-control" name="" readonly></div>
+                                        <div class="col-sm-6"><span class="small text-gray">谁可以发起这个审批,可选择多个部门/多个人</span></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 required">审批人</label>
+                                        <div class="col-sm-4"><input class="form-control" name="approver" readonly></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 required">抄送人</label>
+                                        <div class="col-sm-4"><input class="form-control" name="" readonly></div>
+                                    </div>
+                                </div>
+                           </div>
+                        </div>
+                        
+                        <!-- 高级设置 -->
+                        <div class="panel">
+                            <div class="panel-heading">高级设置</div>
+                            <div class="panel-body">
+                                <div style="max-width:600px">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 required">审批人去重</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" name="">
+                                                <option value="1">同一审批人在流程中出现多次时,只保留第一次</option>
+                                                <option value="2">同一审批人仅在审批中连续出现时,自动去重</option>
+                                                <option value="3">不启用自动去重</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 required">通知抄送人</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" name="">
+                                                <option value="1">发起通知时</option>
+                                                <option value="2">全部同意后通知</option>
+                                                <option value="3">发起和全部同意都通知</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
+                        </div>
+                  
+                    </form>
+
+                    <hr>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary tool_add_submit">提交</button>
+                </div>          
             </div>
-			<div class="text-center"><i class="icon icon-long-arrow-down"></i></div>
-
-			<div class="panel" data-id="pan2" id="panel2" style="width:300px">
-                <div class="panel-heading">审批人</div>
-                <div class="list-group">
-					<a class="list-group-item text-center" id="person_init_btn">
-						<i class="icon icon-plus text-primary"></i>
-					</a>
-                </div>
-            </div>
-			<div class="text-center"><i class="icon icon-long-arrow-down"></i></div>
-
-			<div class="panel" data-id="pan2" id="panel2" style="width:300px">
-                <div class="panel-heading">抄送人</div>
-                <div class="list-group">
-					<a class="list-group-item text-center" id="person_init_btn">
-						<i class="icon icon-plus text-primary"></i>
-					</a>
-                </div>
-            </div>
-
-            <div class="text-center"><button class="btn">下一步</button></div>
-
-        </div>
-        <!-- 内容三 -->
-        <div id="a3" class="tab-pane">
-        	
-
-        	<div class="text-center"><button class="btn btn-primary">提交</button></div>
-
         </div>
     </div>
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade line_edit_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">审批修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label class="col-sm-2 required">1</label>
+                            <div class="col-sm-8"><input class="form-control" name=""></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required">2</label>
+                            <div class="col-sm-8"><input class="form-control" name=""></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 required">3</label>
+                            <div class="col-sm-8"><input class="form-control" name=""></div>
+                        </div>                      
+                    </form>
+                    <hr>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary line_edit_submit">提交</button>
+                </div>          
+            </div>
+        </div>
+    </div>
+
+    <!-- 删除盒子 -->
+    <div class="modal modal-for-page fade line_del_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">审批添加</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否删除？</p>
+                        <form><input type="hidden" name="id"></form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger line_del_submit">提交</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+    <!-- 设置审批人 -->
+    <div class="modal modal-for-page fade approver-setup tool_add_box_approver" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">设置审批人</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form>
+                            <ul>
+                                <li><label><input type="radio" name="tabBtn" value="1" checked>指定成员</label></li>
+                                <li><label><input type="radio" name="tabBtn" value="2">上级</label></li>
+                                <li><label><input type="radio" name="tabBtn" value="3">连续多级上级</label></li>
+                                <li><label><input type="radio" name="tabBtn" value="4">职位</label></li>
+                                <li><label><input type="radio" name="tabBtn" value="5">表单中的交接人作为审批</label></li>
+                            </ul>
+                            <hr>
+                            <ol>
+                                <!-- 指定成员 -->
+                                <li>
+                                    <dl>
+                                        <dt>多人审批时采用的审批方式</dt>
+                                        <dd><label class="thin"><input type="radio" name="tab1_crowd" value="1" checked>依次审批</label></dd>
+                                        <dd><label class="thin"><input type="radio" name="tab1_crowd" value="2">会签（须所有审批人同意）</label></dd>
+                                        <dd><label class="thin"><input type="radio" name="tab1_crowd" value="3">或签（一名审批人同意或拒绝即可）</label></dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>人员选择 <span class="thin text-gray small">最多可选择10人</span></dt>
+                                        <dd><span class="text-danger">待定-树结构组件</span></dd>
+                                    </dl>
+                                </li>
+                                <!-- 上级 -->
+                                <li class="hide">
+                                    <dl>
+                                        <dt>多人审批时采用的审批方式</dt>
+                                        <dd><label class="thin"><input type="radio" name="tab2_crowd" value="1" checked>依次审批</label></dd>
+                                        <dd><label class="thin"><input type="radio" name="tab2_crowd" value="2">会签（须所有审批人同意）</label></dd>
+                                        <dd><label class="thin"><input type="radio" name="tab2_crowd" value="3">或签（一名审批人同意或拒绝即可）</label></dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>审批人为空时</dt>
+                                        <dd><label class="thin"><input type="radio" name="tab2_blank" value="1" checked>自动通过</label></dd>
+                                        <dd><label class="thin"><input type="radio" name="tab2_blank" value="2">自动转交管理员</label></dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>发起人的</dt>
+                                        <dd>
+                                            <select name="tab2_sender">
+                                                <option value="1">直接上级  </option>
+                                                <option value="2">第二级上级</option>
+                                                <option value="3">第三级上级</option>
+                                                <option value="4">第四级上级</option>
+                                                <option value="5">第五级上级</option>
+                                                <option value="6">第六级上级</option>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <!-- 连续多级上级 -->
+                                <li class="hide">
+                                    <dl>
+                                        <dt>审批终点</dt>
+                                        <dd><label class="thin"><input type="radio" name="tab3_target" value="1" checked>指定职位（同时为上级线上的上级）</label></dd>
+                                        <dd>
+                                            <label class="thin"><input type="radio" name="tab3_target" value="2">通讯录中的</label>
+                                            <select name="tab2_sender">
+                                                <option value="1">直接上级  </option>
+                                                <option value="2">第二级上级</option>
+                                                <option value="3">第三级上级</option>
+                                                <option value="4">第四级上级</option>
+                                                <option value="5">第五级上级</option>
+                                                <option value="6">第六级上级</option>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>审批人为空时</dt>
+                                        <dd><label class="thin"><input type="radio" name="tab3_blank" value="1" checked>自动通过</label></dd>
+                                        <dd><label class="thin"><input type="radio" name="tab3_blank" value="2">自动转交管理员</label></dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>职位选择</dt>
+                                        <dd><span class="text-danger">待定-树结构组件</span></dd>
+                                    </dl>
+                                </li>
+                                <!-- 职位 -->
+                                <li class="hide">
+                                    <dl>
+                                        <dt>多人审批时采用的审批方式</dt>
+                                        <!-- <dd><label class="thin"><input type="radio" name="tab4_crowd" value="1" checked>依次审批</label></dd> -->
+                                        <dd><label class="thin"><input type="radio" name="tab4_crowd" value="2">会签（须所有审批人同意）</label></dd>
+                                        <dd><label class="thin"><input type="radio" name="tab4_crowd" value="3">或签（一名审批人同意或拒绝即可）</label></dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>审批人为空时</dt>
+                                        <dd><label class="thin"><input type="radio" name="tab4_blank" value="1" checked>自动通过</label></dd>
+                                        <dd><label class="thin"><input type="radio" name="tab4_blank" value="2">自动转交管理员</label></dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>职位选择</dt>
+                                        <dd><label class="thin"><input type="checkbox" name="tab4_join" value="1">是否参与申请项目</label>
+                                            <span class="text-gray small">如果审批过程中涉及到项目，勾选参与申请项目，才可以进行审批</span>
+                                        </dd>
+                                        <dd><span class="text-danger">待定-树结构组件</span></dd>
+                                    </dl>
+                                </li>
+                                <!-- 表单中的交接人作为审批 -->
+                                <li class="hide">
+                                    <dl>
+                                        <dt>多人审批时采用的审批方式</dt>
+                                        <dd><label class="thin"><input type="radio" name="tab5_crowd" value="1" checked>依次审批</label></dd>
+                                        <dd><label class="thin"><input type="radio" name="tab5_crowd" value="2">会签（须所有审批人同意）</label></dd>
+                                        <dd><label class="thin"><input type="radio" name="tab5_crowd" value="3">或签（一名审批人同意或拒绝即可）</label></dd>
+                                    </dl>
+                                    <div class="text-gray small">* 一般工作交接单中</div>
+                                </li>
+                            </ol>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary line_del_submit">提交</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+
 
 </div>
 <!-- page-wrapper -->
 
-
-<div class="modal modal-for-page fade" aria-hidden="false" id="person_init_box">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                <h4 class="modal-title">发起人添加</h4>
-            </div>
-            <div class="modal-body">
-
-				<div class="form-horizontal">
-				    <div class="form-group require">
-				        <label class="col-sm-2 required" for="add_manager">发起人</label>
-				        <div class="col-sm-8">
-				        	<input type="text" class="form-control" id="add_manager" placeholder="2-10个字">
-				        	<div class="help-block">谁可以发起这个审批，可选择多个部门，也可选择多个人</div>
-				    	</div>
-				    </div>
-				</div>
-
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary">提交</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
-$(function(){
-	$("#person_init_btn").click(function(){
-		$("#person_init_box").modal("show");
-	});
-});
+$(function() {
+    //变量声明-----------------------------------------------------------------------------------------------
+    var setup_approval = $("#setup_approval"); //页面ID
+    var setup_approval_api = {
+        datagrid : API.test_datagrid, // 数据表格
+        add : API.test_response, // 添加
+        show : LOCAL + "Test/Template/customer.json", // 详情查看
+        edit : API.test_response, // 修改
+        del : API.test_response, // 删除
+    }
+
+    //数据表格-----------------------------------------------------------------------------------------------
+    //数据源
+    var setup_approval_dataSource = {
+        cols   : [
+            {name:"username", label:"审批名称", width:100 },
+            {name:"datetime", label:"设置时间", width:150 },
+            {name:"name", label:"可见范围", width:80 },
+            {name:"name", label:"发起人", width:80 },
+            {name:"name", label:"审批人", width:80 },
+            {name:"name", label:"抄送人", width:80 },
+            {name:"", label:"操作", width:150,html:true,
+                valueOperator : {
+                    getter : function(dataValue,cell){
+                        return `
+                        <a class="line_edit_btn" dataId="${cell.config.data.id}">修改</a>
+                        <a class="line_del_btn"  dataId="${cell.config.data.id}">删除</a>
+                        `;
+                    }
+                }
+            }
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : setup_approval, 
+                url      : setup_approval_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : setup_approval,
+                data     : data
+            });
+        }
+    };
+    //实例化
+    setup_approval.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : setup_approval.find('.datagrid'),
+            dataSource : setup_approval_dataSource
+        })
+    );
+    var setup_approval_datagrid_obj =  setup_approval.find('.datagrid').data("zui.datagrid");
+    //搜索
+    setup_approval.find('.tool_search_btn').click(function(){ 
+        zui_datagrid_render({
+            datagrid_obj : setup_approval_datagrid_obj,
+            dataSource   : setup_approval_dataSource
+        }); 
+    });
+
+    //操作按钮-------------------------------------------------------------------------------------------
+    //变量声明 & 实例化
+    var setup_approval_add_box = setup_approval.find('.tool_add_box');
+    var setup_approval_turnProvider_box = setup_approval.find('.line_edit_box');
+    var setup_approval_tobeProvider_box = setup_approval.find('.line_del_box');
+
+    //工具条-添加
+    // setup_approval_add_box.modal('show');
+    // $('.tool_add_box_approver').modal('show');
+    setup_approval.on("click", '.tool_add_btn', function() {
+        common_form_reset();
+        setup_approval_add_box.modal('show');
+    });
+    setup_approval.on("click", '.tool_add_submit', function() {
+        um_data_submit({
+            url: setup_approval_api.add,
+            form: setup_approval_add_box.find('form'),
+            dataSource: setup_approval_dataSource,
+        });
+    });
+
+    //列操作-修改
+    setup_approval.on("click", '.line_edit_btn', function() {
+        common_form_reset();
+        setup_approval_turnProvider_box.find('[name="id"]').val( $(this).attr('dataId') );
+        setup_approval_turnProvider_box.find('[name="itemNumb"]').val( $(this).attr('itemNumb') );
+        setup_approval_turnProvider_box.find('[name="pre"]').val( $(this).attr('providerPre') );
+        setup_approval_turnProvider_box.modal('show');
+    });
+    setup_approval.on("click", '.line_edit_submit', function() {
+        um_data_submit({
+            url: setup_approval_api.edit,
+            form: setup_approval_turnProvider_box.find('form'),
+            dataSource: setup_approval_dataSource,
+        });
+    });
+
+    //列操作-删除  
+    setup_approval.on("click", '.line_del_btn', function() {
+        common_form_reset();
+        setup_approval_tobeProvider_box.find('[name="id"]').val( $(this).attr('dataId') );
+        setup_approval_tobeProvider_box.modal('show');
+    });
+    setup_approval.on("click", '.line_del_submit', function() {
+        um_data_submit({
+            url: setup_approval_api.del,
+            form: setup_approval_tobeProvider_box.find('form'),
+            dataSource: setup_approval_dataSource,
+        });
+    });
+
+    //审批人点击
+    setup_approval_add_box.find('[name="approver"]').click(function(){
+        $('.tool_add_box_approver').modal('show');
+    });
+
+    //审批人设置
+    $('.approver-setup ul li input[type="radio"]').change(function(){
+        var olLi = $(this).parent().parent().parent().siblings('ol').find('li');
+        olLi.hide();
+        olLi.eq( $(this).val() -1 ).show();
+    });
+
+}); //预加载结尾
 </script>
+
+
+<style>
+    .approver-setup ul li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .approver-setup input[type="radio"],
+    .approver-setup input[type="checkbox"] {
+        position: relative;
+        top: 2px;
+        margin-right: 2px;
+    }
+    .approver-setup select {
+        padding:0 5px;
+    }
+    .thin {
+        font-weight: normal!important;
+    }
+</style>

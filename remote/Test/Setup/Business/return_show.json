@@ -1,0 +1,26 @@
+{
+    "result" : true,
+    "message": "获取成功",
+    "status" : 1,
+    "data"   : {
+		"providerA": 1,
+		"providerB": 2,
+		"providerC": 3,
+		"providerD": 4,
+		"providerE": 5,
+
+    	"businessTracked" : 0,
+
+		"businessA": 1,
+		"businessB": 2,
+		"businessC": 3,
+		"businessD": 4,
+		"businessE": 5,
+
+		"designerA": 1,
+		"designerB": 2,
+		"designerC": 3,
+		"designerD": 4,
+		"designerE": 5
+    }
+}   

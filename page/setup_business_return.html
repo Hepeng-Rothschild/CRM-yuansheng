@@ -1,330 +1,164 @@
 <!-- 页面外套 -->
 <div class="page-wrapper" id="setup_business_return">
 
-    <!-- 工具条组 -->
-    <div class="tool-group">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th style="width:100px;">类型</th>
-                    <th style="width:100px;">等级</th>
-                    <th style="width:100px;">天数</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody><!-- JS推进 --></tbody>
-        </table>
-    </div>
-    <!-- tool-group -->
- 
-    <!-- 修改盒子(业务正跟踪) -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_business_return_edit1_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">修改</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="container form-horizontal">
-                        <div class="form-group require">
-                            <label class="col-sm-3"></label>
-                            <div class="col-sm-8">
-                                <div class="input-group input-short">
-                                    <input type="number" class="form-control" id="setup_business_return_edit1_day">
-                                    <span class="input-group-addon">天</span>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="setup_business_return_edit1_submit">提交</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- setup_business_return_edit1_box -->
+    <!-- 面板盒子 -->
+    <br><div class="panel">
+        <div class="panel-heading">回访最长周期设置</div>
+        <div class="panel-body">
 
-    <!-- 修改盒子(通用) -->
-    <div class="modal modal-for-page fade" aria-hidden="false" id="setup_business_return_edits_box">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h4 class="modal-title">信息员修改</h4>
+            <form class="form-horizontal" style="max-width:300px">
+
+                <!-- 信息员 -->
+                <div class="form-group">
+                    <label class="col-sm-4">信息员</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <select class="form-control">
+                                <option value="1">A</option>
+                                <option value="2">B</option>
+                                <option value="3">C</option>
+                                <option value="4">D</option>
+                                <option value="5">E</option>
+                            </select>
+                            <span class="input-group-addon fix-border fix-padding"></span>
+                            <ul>
+                                <li><input type="number" class="form-control" name="providerA"></li>
+                                <li class="hide"><input type="number" class="form-control" name="providerB"></li>
+                                <li class="hide"><input type="number" class="form-control" name="providerC"></li>
+                                <li class="hide"><input type="number" class="form-control" name="providerD"></li>
+                                <li class="hide"><input type="number" class="form-control" name="providerE"></li>
+                            </ul>
+                            <span class="input-group-addon">天</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form class="container form-horizontal">
-                        <div class="form-group require">
-                            <label class="col-sm-3">A</label>
-                            <div class="col-sm-8">
-                                <div class="input-group input-short">
-                                    <input type="number" class="form-control" id="setup_business_return_edits_daya">
-                                    <span class="input-group-addon">天</span>
-                                </div>
-                            </div>
+
+                <!-- 业务正跟踪 -->
+                <div class="form-group">
+                    <label class="col-sm-4">业务正跟踪</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <input type="number" class="form-control" name="businessTracked">
+                            <span class="input-group-addon">天</span>
                         </div>
-                        <div class="form-group require">
-                            <label class="col-sm-3">B</label>
-                            <div class="col-sm-8">
-                                <div class="input-group input-short">
-                                    <input type="number" class="form-control" id="setup_business_return_edits_dayb">
-                                    <span class="input-group-addon">天</span>
-                                </div>
-                            </div>
-                        </div>                        
-                        <div class="form-group require">
-                            <label class="col-sm-3">C</label>
-                            <div class="col-sm-8">
-                                <div class="input-group input-short">
-                                    <input type="number" class="form-control" id="setup_business_return_edits_dayc">
-                                    <span class="input-group-addon">天</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group require">
-                            <label class="col-sm-3">D</label>
-                            <div class="col-sm-8">
-                                <div class="input-group input-short">
-                                    <input type="number" class="form-control" id="setup_business_return_edits_dayd">
-                                    <span class="input-group-addon">天</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group require">
-                            <label class="col-sm-3">E</label>
-                            <div class="col-sm-8">
-                                <div class="input-group input-short">
-                                    <input type="number" class="form-control" id="setup_business_return_edits_daye">
-                                    <span class="input-group-addon">天</span>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="setup_business_return_edits_submit">提交</button>
+
+                <!-- 业务在谈 -->
+                <div class="form-group">
+                    <label class="col-sm-4">业务在谈</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <select class="form-control">
+                                <option value="1">A</option>
+                                <option value="2">B</option>
+                                <option value="3">C</option>
+                                <option value="4">D</option>
+                                <option value="5">E</option>
+                            </select>
+                            <span class="input-group-addon fix-border fix-padding"></span>
+                            <ul>
+                                <li><input type="number" class="form-control" name="businessA"></li>
+                                <li class="hide"><input type="number" class="form-control" name="businessB"></li>
+                                <li class="hide"><input type="number" class="form-control" name="businessC"></li>
+                                <li class="hide"><input type="number" class="form-control" name="businessD"></li>
+                                <li class="hide"><input type="number" class="form-control" name="businessE"></li>
+                            </ul>
+                            <span class="input-group-addon">天</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <!-- 设计在谈 -->
+                <div class="form-group">
+                    <label class="col-sm-4">设计在谈</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <select class="form-control">
+                                <option value="1">A</option>
+                                <option value="2">B</option>
+                                <option value="3">C</option>
+                                <option value="4">D</option>
+                                <option value="5">E</option>
+                            </select>
+                            <span class="input-group-addon fix-border fix-padding"></span>
+                            <ul>
+                                <li><input type="number" class="form-control" name="designerA"></li>
+                                <li class="hide"><input type="number" class="form-control" name="designerB"></li>
+                                <li class="hide"><input type="number" class="form-control" name="designerC"></li>
+                                <li class="hide"><input type="number" class="form-control" name="designerD"></li>
+                                <li class="hide"><input type="number" class="form-control" name="designerE"></li>
+                            </ul>
+                            <span class="input-group-addon">天</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 提交按钮 -->
+                <div class="form-group">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8 text-right"><button type="button" class="btn btn-primary">提交</button></div>
+                </div>
+
+            </form>
+
         </div>
     </div>
-    <!-- setup_business_return_edits_box -->    
 
 </div>
 <!-- page-wrapper -->
 
 <script>
 $(function(){
-   
-    //变量声明-----------------------------------------------------------------------------------------------
-    var
-    setup_business_return               = $("#setup_business_return"),              //页面ID
-    //修改盒子(业务正跟踪)
-    setup_business_return_edit1_box     = $("#setup_business_return_edit1_box"),    //修改盒子
-    setup_business_return_edit1_submit  = $("#setup_business_return_edit1_submit"), //修改提交
-    setup_business_return_edit1_day     = $("#setup_business_return_edit1_day"),    //修改天数
-    //修改盒子(通用)
-    setup_business_return_edits_box     = $("#setup_business_return_edits_box"),    //修改盒子
-    setup_business_return_edits_submit  = $("#setup_business_return_edits_submit"), //修改提交
-    setup_business_return_edits_daya    = $("#setup_business_return_edits_daya"),   //等级A天数
-    setup_business_return_edits_dayb    = $("#setup_business_return_edits_dayb"),   //等级B天数
-    setup_business_return_edits_dayc    = $("#setup_business_return_edits_dayc"),   //等级C天数
-    setup_business_return_edits_dayd    = $("#setup_business_return_edits_dayd"),   //等级D天数
-    setup_business_return_edits_daye    = $("#setup_business_return_edits_daye");   //等级E天数
-
-    //接口对象-----------------------------------------------------------------------------------------------
-    if( window.STATE == "local" ){
-
-        //本地接口
-        var setup_business_return_api = {
-            modal_edit : LOCAL + "Test/Setup/Business/return_edit.json",           //修改盒子
-        }
-
-    } else if ( window.STATE == "route" ){
-
-        //远程接口
-        var setup_business_return_api = {
-            modal_edit : LOCAL + "Test/Setup/Business/return_edit.json",           //修改盒子
-        }
-
+    
+    // 变量声明
+    var setup_business_return_form = $('#setup_business_return form');
+    var setup_business_return_api = {
+        show : LOCAL + "Test/Setup/Business/return_show.json",
+        save : API.test_response,
     }
 
-    //数据表格调用-------------------------------------------------------------------------------------------
-    setup_business_return_dataTable();
+    // 表单赋值(调用)
+    setup_business_return_show();
 
-    //变量声明
-    var
-    setup_business_return_edit1_btn = ".setup_business_return_edit1_btn",    //业务正跟踪
-    setup_business_return_edits_btn = ".setup_business_return_edits_btn";    //通用
-
-    //修改按钮(业务正跟踪)-----------------------------------------------------------------------------------
-    $(document).on("click",setup_business_return_edit1_btn,function(){
-
-        //数据获取
-        var data_type = $(this).attr("type");
-        setup_business_return_edit1_submit.attr("type",data_type);
-
-        //远程请求
+    // 表单提交
+    setup_business_return_form.find('button').click(function(){
+        var data = um_data_get( setup_business_return_form ); // 可在此调整数据格式
         $.ajax({
-            url     : setup_business_return_api.modal_edit,
-            type    : "post",
-            dataType: "json",
-            data    : { type : data_type },
+            url : setup_business_return_api.save,
+            type : 'post',
+            data : data,
             success : function(data){
-                if( data.status>0 ){
-                    var data = data.data;
-                    setup_business_return_edit1_day.val( data.provider[0] );
-                    setup_business_return_edit1_box.modal("show");
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-
-    });
-    //修改提交
-    setup_business_return_edit1_submit.click(function(){
-
-        //数据获取
-        var data_type = $(this).attr("type");
-
-        //远程提交
-        $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : {
-                type : data_type,
-                day  : setup_business_return_edit1_day.val(),
-             },
-            success : function(data){
-                if( data.status>0 ){
+                if( data.status==1 ){
                     um_tip(data.message);
                     setTimeout(function(){
-                        setup_business_return_dataTable(); //数据表格刷新
-                        setup_business_return_edit1_box.modal("hide"); 
-                    },1500); 
+                        setup_business_return_form[0].reset(); // 表单重置
+                        setup_business_return_show(); // 表单赋值(调用)
+                    }, 1500);
                 } else {
                     um_tip(data.message,"1500","text-danger");
                 }
             }
         });
-
     });
 
-    //修改按钮(通用)-----------------------------------------------------------------------------------------
-    $(document).on("click",setup_business_return_edits_btn,function(){
-
-        //数据获取
-        var data_type = $(this).attr("type");
-        setup_business_return_edits_submit.attr("type",data_type);
-
-        //远程请求
-        $.ajax({
-            url     : setup_business_return_api.modal_edit,
-            type    : "post",
-            dataType: "json",
-            data    : { type : data_type },
-            success : function(data){
-                if( data.status>0 ){
-                    var data = data.data;
-                    setup_business_return_edits_daya.val( data.provider[0] );
-                    setup_business_return_edits_dayb.val( data.provider[1] );
-                    setup_business_return_edits_dayc.val( data.provider[2] );
-                    setup_business_return_edits_dayd.val( data.provider[3] );
-                    setup_business_return_edits_daye.val( data.provider[4] );
-                    setup_business_return_edits_box.modal("show");
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-
+    // select影响右侧input显示与隐藏
+    setup_business_return_form.find('select').change(function(e){
+        var allLi = $(this).siblings('ul').find('li');
+        var theLi = allLi.eq( $(this).val() -1 );
+        allLi.addClass('hide');
+        theLi.removeClass('hide');
     });
-    //修改提交
-    setup_business_return_edits_submit.click(function(){
 
-        //数据获取
-        var data_type = $(this).attr("type");
-
-        //远程提交
+    // 表单赋值(封装)
+    function setup_business_return_show(){
         $.ajax({
-            url     : API.test_response,
-            type    : "post",
-            dataType: "json",
-            data    : {
-                type : data_type,
-                a : setup_business_return_edits_daya.val(),
-                b : setup_business_return_edits_dayb.val(),
-                c : setup_business_return_edits_dayc.val(),
-                d : setup_business_return_edits_dayd.val(),
-                e : setup_business_return_edits_daye.val(),
-             },
+            url : setup_business_return_api.show,
+            type : 'post',
+            data : {},
             success : function(data){
-                if( data.status>0 ){
-                    um_tip(data.message);
-                    setTimeout(function(){
-                        setup_business_return_dataTable(); //数据表格刷新
-                        setup_business_return_edits_box.modal("hide"); 
-                    },1500); 
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
-            }
-        });
-
-    });
- 
-    //数据表格声明-------------------------------------------------------------------------------------------
-    function setup_business_return_dataTable() {
-        $.ajax({
-            url     : setup_business_return_api.modal_edit,
-            type    : "post",
-            dataType: "json",
-            data    : { },
-            success : function(data){
-                if( data.status>0 ){
-
-                    //数据赋值
-                    var data = data.data;
-                    var temp = `
-                    <tr>
-                        <td rowspan="5"><b>信息员</b></td><td>A</td>
-                        <td>${data.provider[0]}</td><td rowspan="5"><a type="provider" class="setup_business_return_edits_btn">修改</a></td>
-                    </tr>
-                    <tr><td>B</td><td>${data.provider[1]}</td></tr>
-                    <tr><td>C</td><td>${data.provider[2]}</td></tr>
-                    <tr><td>D</td><td>${data.provider[3]}</td></tr>
-                    <tr><td>E</td><td>${data.provider[4]}</td></tr>
-                    <tr>
-                        <td><b>业务正跟踪</b></td><td></td>
-                        <td>${data.tracked[0]}</td><td><a type="tracked" class="setup_business_return_edit1_btn">修改</a></td>
-                    </tr>
-                    <tr>
-                        <td rowspan="5"><b>业务在谈</b></td><td>A</td>
-                        <td>${data.business[0]}</td><td rowspan="5"><a type="business" class="setup_business_return_edits_btn">修改</a></td>
-                    </tr>
-                    <tr><td>B</td><td>${data.business[1]}</td></tr>
-                    <tr><td>C</td><td>${data.business[2]}</td></tr>
-                    <tr><td>D</td><td>${data.business[3]}</td></tr>
-                    <tr><td>E</td><td>${data.business[4]}</td></tr>
-                    <tr>
-                        <td rowspan="5"><b>设计在谈</b></td><td>A</td>
-                        <td>${data.designer[0]}</td><td rowspan="5"><a type="designer" class="setup_business_return_edits_btn">修改</a></td>
-                    </tr>
-                    <tr><td>B</td><td>${data.designer[1]}</td></tr>
-                    <tr><td>C</td><td>${data.designer[2]}</td></tr>
-                    <tr><td>D</td><td>${data.designer[3]}</td></tr>
-                    <tr><td>E</td><td>${data.designer[4]}</td></tr>
-                    `;
-                    setup_business_return.find("tbody").html(temp);
-
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
+                var data = data.data;
+                um_data_set( setup_business_return_form, data ); //表单赋值
             }
         });
     }
