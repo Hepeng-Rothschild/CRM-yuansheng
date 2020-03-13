@@ -293,3 +293,226 @@ function zui_datagrid_filter(object){
     return object.data;
 
 }
+
+// 节点树创建
+function common_tree_create(object){
+
+    // 变量声明
+    var object = {
+        dom : object.dom, // DOM选择器
+        is_open : object.is_open || false, // 是否展开
+        is_check : object.is_check || false, // 是否可选
+        url : object.url || API.common_staff, // 请求地址(默认员工)
+        data : object.data || {}, // 请求参数
+        field_id : object.field_id || 'userid', // 响应字段 id
+        field_text : object.field_text || 'text', // 响应字段 text
+    }
+
+    // 节点树生成
+    $.ajax({
+        url     : object.url,
+        type    : "post",
+        dataType: "json",
+        data    : object.data,
+        success : function(data){
+            var data = um_json(data);
+            if( data.status>0 ){
+                object.dom.tree({
+                    //参数配置
+                    animate     : false,
+                    initialState: "normal",
+                    data        : data,
+                    itemWrapper : true,
+                    itemCreator : function($li,item){
+                        if( object.is_open==true ){ $li.addClass("open"); } //是否展开
+                        //是否可选
+                        if( object.is_check==true ){
+                            $li.append('<label class="thin"><input type="checkbox"><span dataId="'+ item[object.field_id] +'">'+ item[object.field_text] +'</span></label>');
+                        } else {
+                            $li.append('<span>'+ item.text +'</span>');
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+    // 节点树可选
+    if( object.is_check==true ){
+        object.dom.on("change", '[type="checkbox"]',function(){
+            // 向下影响
+            var sonCheckbox = $(this).parent().siblings('ul').find('[type="checkbox"]'); // 下级的checkbox
+            if( $(this).is(':checked') ){
+                sonCheckbox.prop("checked","checked");
+            } else {
+                sonCheckbox.removeAttr("checked");
+            }
+            // 向上影响
+            var allTreeUl = object.dom.parent().find("ul"); // 所有的UL
+            allTreeUl.each(function(i){
+                var checkedCheckboxUl = allTreeUl.eq(i).children("li").children("label").children('[type="checkbox"]:checked').parents("ul");
+                var unCheckedCheckbox = allTreeUl.eq(i).find('[type="checkbox"]:not(:checked)');
+                if( unCheckedCheckbox.length==0 ){
+                    checkedCheckboxUl.siblings("label").children('[type="checkbox"]').prop("checked","checked");
+                    checkedCheckboxUl.find('[type="checkbox"]:not(:checked)').parent("label").parents("ul").siblings("label").children('[type="checkbox"]').removeAttr("checked");
+                } else {
+                    checkedCheckboxUl.siblings("label").children('[type="checkbox"]').removeAttr("checked");
+                }
+            }); 
+            // 结果导出
+            var checkedCheckbox = object.dom.find('[type="checkbox"]:checked');
+            var result_id = [];
+            var result_text = [];
+            for( var i=0;i<checkedCheckbox.length;i++ ){
+                var id = $(checkedCheckbox[i]).siblings('span').attr("dataId");
+                var text = $(checkedCheckbox[i]).siblings('span').text();
+                if( id!='undefined' ){
+                    result_id.push( id );
+                    result_text.push( text );
+                }
+            }
+            object.dom.siblings('.tree_result_id').val( JSON.stringify( result_id ) );
+            object.dom.siblings('.tree_result_text').val( JSON.stringify( result_text ) );
+        });
+
+    }
+
+}
+
+// 节点树重置
+function common_tree_reset(object){
+    object.dom.find('[type="checkbox"]').removeAttr("checked");
+    object.dom.siblings('.tree_result_id').val('');
+    object.dom.siblings('.tree_result_text').val('');
+}
+
+// 节点树赋值
+function common_tree_setData(object){
+
+    // 变量声明
+    var object = {
+        dom : object.dom, // DOM节点
+        data : object.data, // 节点数据
+        field_id : object.field_id || 'userid', // 响应字段id
+        field_cheKey : object.field_cheKey || 'checkd', // 选中key
+        field_cheVal : object.field_cheVal || '1', // 选中value
+    }
+
+    // 节点重置
+    object.dom.data("zui.tree").reload(object.data);
+    object.dom.find('[type="checkbox"]').removeAttr("checked");
+
+    // 节点选中
+    var data = object.data;
+    forEachChildren(data);
+    function forEachChildren(data){ //遍历树  获取id数组
+      for(var i in data){
+        if( data[i][object.field_id] !=undefined && data[i][object.field_cheKey] == object.field_cheVal ){
+            $('span[dataId="'+ data[i][object.field_id] +'"]').siblings('[type="checkbox"]').prop("checked","checked");
+        }
+        if(data[i].children){
+          forEachChildren(data[i].children);
+        }
+      }
+    };
+    // 向上影响
+    var allTreeUl = object.dom.parent().find("ul"); // 所有的UL
+    allTreeUl.each(function(i){
+        var checkedCheckboxUl = allTreeUl.eq(i).children("li").children("label").children('[type="checkbox"]:checked').parents("ul");
+        var unCheckedCheckbox = allTreeUl.eq(i).find('[type="checkbox"]:not(:checked)');
+        if( unCheckedCheckbox.length==0 ){
+            checkedCheckboxUl.siblings("label").children('[type="checkbox"]').prop("checked","checked");
+            checkedCheckboxUl.find('[type="checkbox"]:not(:checked)').parent("label").parents("ul").siblings("label").children('[type="checkbox"]').removeAttr("checked");
+        } else {
+            checkedCheckboxUl.siblings("label").children('[type="checkbox"]').removeAttr("checked");
+        }
+    }); 
+    // 结果导出
+    var checkedCheckbox = object.dom.find('[type="checkbox"]:checked');
+    var result_id = [];
+    var result_text = [];
+    for( var i=0;i<checkedCheckbox.length;i++ ){
+        var id = $(checkedCheckbox[i]).siblings('span').attr("dataId");
+        var text = $(checkedCheckbox[i]).siblings('span').text();
+        if( id!='undefined' ){
+            result_id.push( id );
+            result_text.push( text );
+        }
+    }
+    object.dom.siblings('.tree_result_id').val( JSON.stringify( result_id ) );
+    object.dom.siblings('.tree_result_text').val( JSON.stringify( result_text ) );
+}
+
+// 审批创建
+function common_approval_create(object){
+    var object = {
+        dom : object.dom, // 节点DOM
+        url : object.url, // 请求地址
+        data : object.data || {}, // 请求参数
+        field_staff : object.staff || 'staff', // 姓名字段
+        field_statename : object.state || 'statename', // 状态文字
+        field_statenumb : object.state || 'statenumb', // 状态数值
+    }
+    $.ajax({
+        type:'post',
+        url : object.url,
+        dataType:'json',
+        data : object.data,
+        success:function(data){
+            var data = data.data;
+            var temp = `<dl class="finish"><dt>第0步</dt><dd><b>【流程开始】</b><p>流程开始</p></dd></dl>`;
+            for(var i=0;i<data.length;i++){
+                temp+= data[i][object.field_statenumb] ? `<dl class="finish">` : `<dl>`;
+                temp+=`<dt>第${i+1}步</dt><dd><b>【${ data[i][object.field_staff]}】</b><p>${ data[i][object.field_statename]}</p></dd></dl>`;
+            }
+            object.dom.html(temp);
+        }
+    });
+}
+
+// 审批读取
+function common_approval_setData(object){
+    var object = {
+        dom : object.dom, // 节点DOM
+        data : object.data, // 节点数据
+        field_staff : object.staff || 'staff', // 员工姓名
+        field_statename : object.state || 'statename', // 状态文字
+        field_statenumb : object.state || 'statenumb', // 状态数值
+    }
+    var data = object.data;
+    var temp = `<dl class="finish"><dt>第0步</dt><dd><b>【流程开始】</b><p>流程开始</p></dd></dl>`;
+    for(var i=0;i<data.length;i++){
+        temp+= data[i][object.field_statenumb] ? `<dl class="finish">` : `<dl>`;
+        temp+=`<dt>第${i+1}步</dt><dd><b>【${ data[i][object.field_staff]}】</b><p>${ data[i][object.field_statename]}</p></dd></dl>`;
+    }
+    object.dom.html(temp);
+}
+
+// 时间差获取
+function um_date_duration(object){
+    var object = {
+        starttime : object.starttime, // 开始时间DOM
+        endtime : object.endtime, // 结束时间DOM
+        duration : object.duration || null, // 时间差DOM
+        mode : object.mode || 'string' // 返回模式
+    }
+    if( object.starttime.val() !="" && object.endtime.val() !="" ){
+        var dur = new Date( object.endtime.val() ).getTime() - new Date( object.starttime.val() ).getTime();
+        //if ( dur > 0 ){} else { um_tip("时间不合法","1500","text-danger"); }
+        var day = Math.floor(dur / 1000 / 60 / 60 / 24);
+        dur = dur % (1000 * 60 * 60 * 24);
+        var hour = Math.floor(dur / 1000 / 60 / 60);
+        var result = '';
+        if( object.mode =='string'){
+            result = day + "天";
+            if( hour!==0 ){ result += hour + "小时" }
+        } else if( object.mode == 'object'){
+            result = {day, hour};
+        }
+        if( object.duration != null ){
+            object.duration.val( result );
+        } else {
+            return result;
+        }
+    }
+}

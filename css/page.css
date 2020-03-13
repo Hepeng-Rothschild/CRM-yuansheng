@@ -390,12 +390,14 @@
 .detail-wrapper table tbody tr:nth-child(1) td:nth-child(2){
     width: 280px;
 }
+.detail-table *,
 .detail-wrapper table *{
     font-size: small;
     font-weight: normal;
     color:#666;
     line-height:22px;
 }
+.detail-table td>b,
 .detail-wrapper table b{
     color: #333!important;
     font-weight: normal!important;
@@ -404,6 +406,7 @@
     text-align: justify;
     text-align-last: justify;
 }
+.detail-table td>b:after,
 .detail-wrapper table b:after{
     content: '：';
 }
@@ -478,4 +481,9 @@
 .detail-wrapper table.mode-show-force td select,
 .detail-wrapper table.mode-show-force td textarea{
     display: flex!important;
+}
+
+
+.maxWidth500 {
+    max-width: 520px;
 }

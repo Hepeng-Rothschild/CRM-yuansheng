@@ -328,28 +328,6 @@ function um_date(fmt,date){
     return fmt;
 }
 
-/* um_date_duration() 时间差获取
- * @param startTime string 开始时间
- * @param endTime   string 结束时间
- * @return string 时间结果
- */
-function um_date_duration(startTime, endTime, mode='string'){
-    if( startTime!="" && endTime!="" ){
-        var duration = new Date(endTime).getTime() - new Date(startTime).getTime();
-        //if ( duration > 0 ){} else { um_tip("时间不合法","1500","text-danger"); }
-        var day = Math.floor(duration / 1000 / 60 / 60 / 24);
-        duration = duration % (1000 * 60 * 60 * 24);
-        var hour = Math.floor(duration / 1000 / 60 / 60);
-        var result = '';
-        if( mode =='string'){
-            result = day + "天" + hour + "小时";
-        } else if( mode == 'object'){
-            result = {day, hour};
-        }
-        return result;
-    }
-}
-
 /* um_date_next_time() 下次时间获取
  * @param startTime object 开始时间
  * @param duration  number 指定天数
@@ -552,6 +530,7 @@ function zui_upload_group(object){
         }
         staticFiles_result = staticFiles_result.substr(0,staticFiles_result.length-1);
         updom.attr("path",staticFiles_result);
+        updom.find('.uploader_path').val(staticFiles_result);
         for(var i=0;i<staticFiles.length;i++){
             staticFiles[i].url = FILE_PATH + staticFiles[i].url
         }
@@ -882,47 +861,4 @@ function common_form_reset(){
     for( var i=0;i<form.length;i++ ){
         form[i].reset();
     }
-}
-
-//跟踪日志---------------------------------------------------------------------------
-$(function(){
-    //图片查看
-    $(document).on("click",".common_topic_imgs_btn",function(){
-        $(this).next().is(":visible") ? $(this).next().hide() : $(this).next().show();
-    });
-    //回复点击
-    $(document).on("click",".common_topic_answer_btn",function(){
-        common_topic_answer_reset();
-        $(this).next(".common_topic_answer_text_wrap").show();
-    });
-});
-//回复重置
-function common_topic_answer_reset(){
-    $(".common_topic_imgs_box").hide();
-    $(".common_topic_answer_text_wrap").hide();
-    $(".common_topic_answer_text").val("");
-    $(".common_topic_answer_submit").attr("tid","");
-}
-
-/* common_approval_tree() 公共审批节点
- * @param dom     object 节点对象
- * @param url     string 接口路径
- * @param data_id number 数据ID
- */
-function common_approval_tree( dom,url,data_id ){
-    $.ajax({
-        type:'post',
-        url : url,
-        dataType:'json',
-        data:{ id : data_id },
-        success:function(data){
-            var data = data.data;
-            var temp = `<dl class="finish"><dt>第0步</dt><dd><b>【流程开始】</b><p>流程开始</p></dd></dl>`;
-            for(var i=0;i<data.length;i++){
-                temp+= data[i].statenumber ? `<dl class="finish">` : `<dl>`;
-                temp+=`<dt>第${i+1}步</dt><dd><b>【${ data[i].user}】</b><p>${ data[i].statename}</p></dd></dl>`;
-            }
-            dom.html(temp);
-        }
-    });
 }

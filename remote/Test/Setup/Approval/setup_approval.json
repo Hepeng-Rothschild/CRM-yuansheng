@@ -5,15 +5,15 @@
         "approvalPageName" : "请假",
         "approvalPageUrl" : "blank",
         "text" : "审批说明",
-        "promoter" : "张学友,刘德华",
+        "promoter" : "商务专员,设计专员",
         "promoterId" : "1,2",
-        "copyer" : "李连杰,郑中基",
+        "copyer" : "人事专员,行政专员",
         "copyerId" : "3,4",
         "unique" : 2,
         "notice" : 2,
         "approver" : [
             { 
-                "value" : "指定成员：李连杰,郑中基",
+                "value" : "指定成员：网络经理,设计经理",
                 "other" : "{ \"tabBtn\": 1}"
             },
             { 

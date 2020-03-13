@@ -1,0 +1,15 @@
+{
+    "result" : true,
+    "message": "获取成功",
+    "status" : 1,
+    "data"   : {
+        "name" : "A4纸",
+        "type" : 2,
+        "typename" : "卫生用品",
+        "numb" : 2,
+        "unit" : 2,
+        "unitname" : "盒",
+        "return" : 0,
+        "returnname" : "否"
+    } 
+}   

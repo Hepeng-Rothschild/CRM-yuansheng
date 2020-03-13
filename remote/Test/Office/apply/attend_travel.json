@@ -1,0 +1,108 @@
+{
+  "result" : true,
+  "message": "获取成功",
+  "status" : 1,
+  "data"   : {
+    "serialnumber" : "10015",
+    "statename" : "审批中",
+    "travelGroup" : [
+      {
+        "tool" : 1,
+        "toolname" : "飞机",
+        "type" : 1,
+        "typename" : "单程",
+        "from" : "北京",
+        "to" : "上海"
+      },
+      {
+        "tool" : 2,
+        "toolname" : "火车",
+        "type" : 2,
+        "typename" : "往返",
+        "from" : "哈尔滨",
+        "to" : "大连"
+      },
+      {
+        "tool" : 3,
+        "toolname" : "汽车",
+        "type" : 2,
+        "typename" : "往返",
+        "to" : "广东",
+        "from" : "成都"
+      }
+    ],
+    "text" : "留言",
+    "treeAll" : [{
+      "text": "总经办",
+      "children":  [
+        {
+          "text": "网络部",
+          "children": [
+            { "text":"刘德华","userid":"10010","checkd":"1"},
+            { "text":"张学友","userid":"10011","checkd":"0"},
+            { "text":"郑中基","userid":"10012","checkd":"0"},
+            { "text":"李连杰","userid":"10013","checkd":"0"},
+            { "text":"甄子丹","userid":"10014","checkd":"0"}
+          ]     
+        },{
+          "text": "主案部",
+          "children": [{
+            "text": "主案1部",
+            "children": [
+              { "text":"吴青峰","userid":"10015","checkd":"1"},
+              { "text":"陈嘉桦","userid":"10016","checkd":"1"},
+              { "text":"林宥嘉","userid":"10017","checkd":"1"}
+            ]
+          }]
+        },{
+          "text": "工程部",
+          "children": [{
+            "text": "工程1部",
+            "children": [
+              { "text":"孟美岐","userid":"10018","checkd":"0" },
+              { "text":"吴宣仪","userid":"10019","checkd":"0" },
+              { "text":"杨超越","userid":"10020","checkd":"0" }
+            ]
+          },{
+            "text"  : "工程2部",
+            "children": [
+              { "text":"言承旭","userid":"10021","checkd":"0" },
+              { "text":"周渝民","userid":"10022","checkd":"0" },
+              { "text":"吴建豪","userid":"10023","checkd":"0" },
+              { "text":"朱孝天","userid":"10024","checkd":"0" }
+            ]
+          }]
+        }
+      ]
+    }],
+    "treeChecked" : [{
+      "text": "总经办",
+      "children":  [
+        {
+          "text": "网络部",
+          "children": [
+            { "text":"刘德华","userid":"10010","checkd":"1"}
+          ]     
+        },{
+          "text": "主案部",
+          "children": [{
+            "text": "主案1部",
+            "children": [
+              { "text":"吴青峰","userid":"10015","checkd":"1"},
+              { "text":"陈嘉桦","userid":"10016","checkd":"1"},
+              { "text":"林宥嘉","userid":"10017","checkd":"1"}
+            ]
+          }]
+        }
+      ]
+    }],
+    "approval" : [
+      {"staff":"刘德华","statename":"已审批","statenumb":1},
+      {"staff":"张学友","statename":"已审批","statenumb":1},
+      {"staff":"郑中基","statename":"审批中","statenumb":0},
+      {"staff":"李连杰","statename":"审批中","statenumb":0},
+      {"staff":"方中信","statename":"审批中","statenumb":0},
+      {"staff":"甄子丹","statename":"审批中","statenumb":0}
+    ]
+  }
+}

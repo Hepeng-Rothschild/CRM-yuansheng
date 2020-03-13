@@ -49,8 +49,8 @@
         "children"  : [
             {   
                 "title"     :"物品管理",
-                "icon"      :"admin_goods",
-                "url"       :"blank"
+                "icon"      :"",
+                "url"       :"admin_goods"
             },
             {   
                 "title"     :"信息发布",
