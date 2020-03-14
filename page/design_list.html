@@ -406,7 +406,7 @@
                             <tr>
                                 <td><div class="flex-box"><b>计划开工</b><input class="form-control flex-son plan_starttime" name="starttime" type="date"></div></td>
                                 <td><div class="flex-box"><b>计划完工</b><input class="form-control flex-son plan_endtime"   name="endtime"   type="date"></div></td>
-                                <td><div class="flex-box"><b>计划工期</b><input class="form-control flex-son plan_duration"  name="duration"  type="number" readonly>天</div></td>
+                                <td><div class="flex-box"><b>计划工期</b><input class="form-control flex-son plan_duration"  name="duration"  type="text" readonly></div></td>
                             </tr>
                             <tr>
                                 <td><div class="flex-box"><b>工程面积</b><input class="form-control flex-son" name="area" type="number"></div></td>
@@ -911,21 +911,19 @@ $(function() {
 
     //计划工期-自动计算
     design_list_detail.on('keyup', '.plan_starttime, .plan_endtime', function(){
-        design_list_sign_engine_plan_duration();
+        um_date_duration({
+            starttime : design_list_detail.find('.plan_starttime'),
+            endtime : design_list_detail.find('.plan_endtime'),
+            duration : design_list_detail.find('.plan_duration')
+        });
     });
     design_list_detail.on('change', '.plan_starttime, .plan_endtime', function(){
-        design_list_sign_engine_plan_duration();
+        um_date_duration({
+            starttime : design_list_detail.find('.plan_starttime'),
+            endtime : design_list_detail.find('.plan_endtime'),
+            duration : design_list_detail.find('.plan_duration')
+        });
     });
-    function design_list_sign_engine_plan_duration(){
-        var plan_starttime= design_list_detail.find('.plan_starttime').val();
-        var plan_endtime  = design_list_detail.find('.plan_endtime').val();
-        var plan_duration = design_list_detail.find('.plan_duration');
-        var duration = 0;
-        if( plan_starttime!=='' && plan_endtime!==''){
-            duration = um_date_duration(plan_starttime, plan_endtime, 'object').day;
-        }
-        plan_duration.val( duration );
-    }
 
     //签单-设计合同
     design_list_detail.find('.design_box .design_submit_btn').click(function(){

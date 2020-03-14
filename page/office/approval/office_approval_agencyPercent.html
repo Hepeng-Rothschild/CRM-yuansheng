@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="im-label">
-                    <span>时间：</span>
+                    <span>申请时间</span>
                     <div class="input-group">
                         <input type="text" class="form-control" name="starttime" readonly> 
                         <span class="input-group-addon fix-border fix-padding"></span>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <label>
-                    <span>审批状态：</span>
+                    <span>审批状态</span>
                     <select class="form-control" name="state">
                         <option value="0">全部</option>
                         <option value="1">审批中</option>
@@ -60,23 +60,19 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <div class="container">
-                        
-                        <table class="table table-bordered">
+                        <table class="table detail-table">
                             <tbody><!-- JS推进 --></tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan='3'>
-                                        <b>抄送人</b>
-                                        <div class="office-border"><ul class="tree tree-lines tree-chevrons line_show_box_csr"></ul></div>
-                                    </td>
-                                    <td colspan='3'>
-                                        <b>审批人</b>
-                                        <div class="office-border"><div class="office-approval tool_add_box_spr"><!-- JS推进 --></div></div>
-                                    </td>
-                                </tr>
-                            </tfoot>
+                            <tfoot><tr><td colspan="3">
+                                <div class="col-sm-6">
+                                    <b>抄送人</b>
+                                    <div class="office-border"><ul class="tree tree-lines tree-chevrons box_copyer"></ul></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <b>审批人</b>
+                                    <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+                                </div>
+                            </td></tr></tfoot>
                         </table>
-
                     </div>
                 </div>
             </div>
@@ -92,13 +88,13 @@
                     <h4 class="modal-title">同意</h4>
                 </div>
                 <div class="modal-body">
-                    <p class="text-primary">是否同意？</p>
+                    <p>是否同意？</p>
+                    <form><input type="hidden" name="id"></form>
                 </div>
-                <form class="modal-footer">
-                    <input type="hidden" name="dataId">
+                <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-primary line_agree_submit">提交</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -111,12 +107,14 @@
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                     <h4 class="modal-title">拒绝</h4>
                 </div>
-                <div class="modal-body"><p>是否拒绝？</p></div>
-                <form class="modal-footer">
-                    <input type="hidden" name="dataId">
+                <div class="modal-body">
+                    <p>是否拒绝？</p>
+                    <form><input type="hidden" name="id"></form>
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-danger line_reject_submit">提交</button>
-                </form>
+                    <button type="button" class="btn btn-primary line_reject_submit">提交</button>
+                </div>
             </div>
         </div>
     </div>
@@ -129,15 +127,13 @@ $(function() {
     //变量声明-----------------------------------------------------------------------------------------------
     var office_approval_agencyPercent = $("#office_approval_agencyPercent"); //页面ID
     var office_approval_agencyPercent_api = {
-        datagrid    : API.test_datagrid,    //数据表格
-        show        : API.test_response,    //详情查看
-        approval    : LOCAL + "Test/Office/apply/attend_approval.json", //审批人进度
+        datagrid : API.test_datagrid, // 数据表格
+        tree: API.common_staff, // 员工树状图
+        approval : LOCAL + "Test/Office/apply/attend_approval.json", // 审批人进度
+        show : LOCAL + "Test/Office/apply/attend_overtime.json", // 查看
+        agree : API.test_response, // 同意
+        reject : API.test_response, // 拒绝
     }
-
-    //组件实例化---------------------------------------------------------------------------------------------
-    office_approval_agencyPercent.find('[name="starttime"]').datetimepicker(option_date);
-    office_approval_agencyPercent.find('[name="endtime"]').datetimepicker(option_date);
-    common_tree_staff(office_approval_agencyPercent.find('.line_show_box .line_show_box_csr'), true, false);
 
     //数据表格-----------------------------------------------------------------------------------------------
     //数据源
@@ -201,7 +197,8 @@ $(function() {
         }); 
     });
 
-    //查看-----------------------------------------------------------------------------------------------
+    // 操作按钮-----------------------------------------------------------------------------------------------
+    //查看
     office_approval_agencyPercent.on("click", '.line_show_btn', function() {
         $.ajax({
             url     : office_approval_agencyPercent_api.show,
@@ -209,93 +206,101 @@ $(function() {
             type    : "post",
             dataType: "json",
             success : function(data){
-                if(data.status == 1){
+                var data = data.data;
                 var temp = `
-                    <tr>
-                        <td colspan='2'>项目编号 ${data.message}</td>
-                        <td colspan='2'>项目名称 ${data.message}</td>
-                        <td colspan='2'></td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>信息员   ${data.message}</td>
-                        <td colspan='2'>联系电话 ${data.message}</td>
-                        <td colspan='2'>签单日期 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>持卡人   ${data.message}</td>
-                        <td colspan='2'>银行名称 ${data.message}</td>
-                        <td colspan='2'>银行卡号 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>装修合同 ${data.message}</td>
-                        <td colspan='2'>空调合同 ${data.message}</td>
-                        <td colspan='2'>消防合同 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>家具合同 ${data.message}</td>
-                        <td colspan='2'>弱电合同 ${data.message}</td>
-                        <td colspan='2'>管理费   ${data.message}</td>
-                    </tr>
+                <tr>
+                    <td><b>项目编号</b>${data.text}</td>
+                    <td><b>项目名称</b>${data.text}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>信息员  </b>${data.text}</td>
+                    <td><b>联系电话</b>${data.text}</td>
+                    <td><b>签单日期</b>${data.text}</td>
+                </tr>
+                <tr>
+                    <td><b>持卡人  </b>${data.text}</td>
+                    <td><b>银行名称</b>${data.text}</td>
+                    <td><b>银行卡号</b>${data.text}</td>
+                </tr>
+                <tr>
+                    <td><b>装修合同</b>${data.text}</td>
+                    <td><b>空调合同</b>${data.text}</td>
+                    <td><b>消防合同</b>${data.text}</td>
+                </tr>
+                <tr>
+                    <td><b>家具合同</b>${data.text}</td>
+                    <td><b>弱电合同</b>${data.text}</td>
+                    <td><b>管理费  </b>${data.text}</td>
+                </tr>
 
-                    <tr>
-                        <td colspan='2'>****费用 ${data.message}</td>
-                        <td colspan='2'>总税金   ${data.message}</td>
-                        <td colspan='2'>合同总金额 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>应付金额 ${data.message}</td>
-                        <td colspan='2'>已付金额 ${data.message}</td>
-                        <td colspan='2'>申请金额 ${data.message}</td>
-                    </tr>
-                    <tr><td colspan='6'>申请理由 </td></tr>
-                    <tr><td colspan='6'>申请附件 </td></tr>
-                    <tr><td colspan='6'>发起人   </td></tr>
-                    `;
-                    office_approval_agencyPercent.find('.line_show_box tbody').html(temp);
-                    office_approval_agencyPercent.find('.line_show_box').modal('show');
-
-                    //抄送人 审批人
-                    common_tree_staff_reset(office_approval_agencyPercent.find('.line_show_box .line_show_box_csr'));
-                    common_approval_tree(
-                        office_approval_agencyPercent.find('.line_show_box .tool_add_box_spr'),
-                        office_approval_agencyPercent_api.approval
-                    ); 
-
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
+                <tr>
+                    <td><b>****费用</b>${data.text}</td>
+                    <td><b>总税金  </b>${data.text}</td>
+                    <td><b>合同总金额</b>${data.text}</td>
+                </tr>
+                <tr>
+                    <td><b>应付金额</b>${data.text}</td>
+                    <td><b>已付金额</b>${data.text}</td>
+                    <td><b>申请金额</b>${data.text}</td>
+                </tr>
+                <tr><td colspan='3'>申请理由 </td></tr>
+                <tr><td colspan='3'>申请附件 </td></tr>
+                <tr><td colspan='3'>发起人   </td></tr>
+                `;
+                office_approval_agencyPercent.find('.line_show_box tbody').html(temp);
+                office_approval_agencyPercent.find('.line_show_box').modal('show');
+                // 抄送人
+                common_tree_setData({
+                    dom : office_approval_agencyPercent.find('.line_show_box .box_copyer'),
+                    data : data.treeChecked
+                });
+                // 审批人
+                common_approval_setData({
+                    dom: office_approval_agencyPercent.find('.line_show_box .box_approver'),
+                    data : data.approval
+                });
             }
         });
     });
 
-    //同意-----------------------------------------------------------------------------------------------
+    //同意
     office_approval_agencyPercent.on("click", '.line_agree_btn', function() {
-        office_approval_agencyPercent.find('.line_agree_box [name="dataId"]').val( $(this).attr('dataId') );
+        office_approval_agencyPercent.find('.line_agree_box [name="id"]').val( $(this).attr('dataId') );
         office_approval_agencyPercent.find('.line_agree_box').modal('show');
     });
     office_approval_agencyPercent.on("click", '.line_agree_submit', function() {
         um_data_submit({
-            url: API.test_response,
-            form: $(this).parents('form'),
+            url: office_approval_agencyPercent_api.agree,
+            form: office_approval_agencyPercent.find('.line_agree_box form'),
             dataSource: office_approval_agencyPercent_dataSource,
         });
     });
 
-    //拒绝-----------------------------------------------------------------------------------------------
+    //拒绝
     office_approval_agencyPercent.on("click", '.line_reject_btn', function() {
-        office_approval_agencyPercent.find('.line_reject_box [name="dataId"]').val( $(this).attr('dataId') );
+        office_approval_agencyPercent.find('.line_reject_box [name="id"]').val( $(this).attr('dataId') );
         office_approval_agencyPercent.find('.line_reject_box').modal('show');
     });
     office_approval_agencyPercent.on("click", '.line_reject_submit', function() {
         um_data_submit({
-            url: API.test_response,
-            form: $(this).parents('form'),
+            url: office_approval_agencyPercent_api.reject,
+            form: office_approval_agencyPercent.find('.line_reject_box form'),
             dataSource: office_approval_agencyPercent_dataSource,
         });
     });
 
-    //…
+    //组件实例化---------------------------------------------------------------------------------------------
+    // 日期相关
+    office_approval_agencyPercent.find('[name="starttime"]').datetimepicker(option_date);
+    office_approval_agencyPercent.find('[name="endtime"]').datetimepicker(option_date);
 
-}); //预加载结尾
+    // 抄送人/审批人相关
+    common_tree_create({
+        dom : office_approval_agencyPercent.find('.line_show_box .box_copyer'),
+        url : office_approval_agencyPercent_api.tree,
+        is_open : true,
+    });
 
+}); // 预加载结尾
 </script>

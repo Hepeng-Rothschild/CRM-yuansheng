@@ -1,5 +1,5 @@
 <style>
-.approver-setup ul li {
+.approver-setup .container ul.tab_btn li {
     display: inline-block;
     margin-right: 10px;
 }
@@ -12,10 +12,6 @@
 .approver-setup select {
     padding:0 5px;
 }
-.thin {
-    font-weight: normal!important;
-}
-
 .tree-wrap {
     position: relative;
 }
@@ -283,7 +279,7 @@
                     </form>
                     <hr>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary tool_add_submit">提交</button>
+                    <button type="button" class="btn btn-primary line_edit_submit">提交</button>
                 </div>          
             </div>
         </div>
@@ -299,18 +295,18 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form>
-                            <ul>
-                                <li><label><input type="radio" name="tabBtn" value="1" checked>指定成员</label></li>
-                                <li><label><input type="radio" name="tabBtn" value="2">上级</label></li>
-                                <li><label><input type="radio" name="tabBtn" value="3">连续多级上级</label></li>
-                                <li><label><input type="radio" name="tabBtn" value="4">职位</label></li>
-                                <li><label><input type="radio" name="tabBtn" value="5">表单中的交接人作为审批</label></li>
-                            </ul>
-                            <hr>
-                            <ol>
-                                <!-- 指定成员 -->
-                                <li>
+                        <ul class="tab_btn">
+                            <li><label><input type="radio" name="tabBtn" value="1" checked>指定成员</label></li>
+                            <li><label><input type="radio" name="tabBtn" value="2">上级</label></li>
+                            <li><label><input type="radio" name="tabBtn" value="3">连续多级上级</label></li>
+                            <li><label><input type="radio" name="tabBtn" value="4">职位</label></li>
+                            <li><label><input type="radio" name="tabBtn" value="5">表单中的交接人作为审批</label></li>
+                        </ul>
+                        <hr>
+                        <ol>
+                            <!-- 指定成员 -->
+                            <li>
+                                <form>
                                     <dl>
                                         <dt>多人审批时采用的审批方式</dt>
                                         <dd><label class="thin"><input type="radio" name="tab1_crowd" value="1" checked>依次审批</label></dd>
@@ -319,11 +315,16 @@
                                     </dl>
                                     <dl>
                                         <dt>人员选择 <span class="thin text-gray small">最多可选择10人</span></dt>
-                                        <dd><span class="text-danger">待定-树结构组件</span></dd>
+                                        <dd>
+                                            <ul class="tree tree-lines tree-chevrons tab1_tree"></ul>
+                                            <input class="tree_result" type="text" name="tab1_staff">
+                                        </dd>
                                     </dl>
-                                </li>
-                                <!-- 上级 -->
-                                <li class="hide">
+                                </form>
+                            </li>
+                            <!-- 上级 -->
+                            <li class="hide">
+                                <form>
                                     <dl>
                                         <dt>多人审批时采用的审批方式</dt>
                                         <dd><label class="thin"><input type="radio" name="tab2_crowd" value="1" checked>依次审批</label></dd>
@@ -348,9 +349,11 @@
                                             </select>
                                         </dd>
                                     </dl>
-                                </li>
-                                <!-- 连续多级上级 -->
-                                <li class="hide">
+                                </form>
+                            </li>
+                            <!-- 连续多级上级 -->
+                            <li class="hide">
+                                <form>
                                     <dl>
                                         <dt>审批终点</dt>
                                         <dd><label class="thin"><input type="radio" name="tab3_target" value="1" checked>指定职位（同时为上级线上的上级）</label></dd>
@@ -373,11 +376,16 @@
                                     </dl>
                                     <dl>
                                         <dt>职位选择</dt>
-                                        <dd><span class="text-danger">待定-树结构组件</span></dd>
+                                        <dd>
+                                            <ul class="tree tree-lines tree-chevrons tab3_tree"></ul>
+                                            <input class="tree_result" type="text" name="tab3_staff">
+                                        </dd>
                                     </dl>
-                                </li>
-                                <!-- 职位 -->
-                                <li class="hide">
+                                </form>
+                            </li>
+                            <!-- 职位 -->
+                            <li class="hide">
+                                <form>
                                     <dl>
                                         <dt>多人审批时采用的审批方式</dt>
                                         <dd><label class="thin"><input type="radio" name="tab4_crowd" value="2">会签（须所有审批人同意）</label></dd>
@@ -393,11 +401,16 @@
                                         <dd><label class="thin"><input type="checkbox" name="tab4_join" value="1">是否参与申请项目</label>
                                             <span class="text-gray small">如果审批过程中涉及到项目，勾选参与申请项目，才可以进行审批</span>
                                         </dd>
-                                        <dd><span class="text-danger">待定-树结构组件</span></dd>
+                                        <dd>
+                                            <ul class="tree tree-lines tree-chevrons tab4_tree"></ul>
+                                            <input class="tree_result" type="text" name="tab4_staff">
+                                        </dd>
                                     </dl>
-                                </li>
-                                <!-- 表单中的交接人作为审批 -->
-                                <li class="hide">
+                                </form>
+                            </li>
+                            <!-- 表单中的交接人作为审批 -->
+                            <li class="hide">
+                                <form>
                                     <dl>
                                         <dt>多人审批时采用的审批方式</dt>
                                         <dd><label class="thin"><input type="radio" name="tab5_crowd" value="1" checked>依次审批</label></dd>
@@ -405,14 +418,14 @@
                                         <dd><label class="thin"><input type="radio" name="tab5_crowd" value="3">或签（一名审批人同意或拒绝即可）</label></dd>
                                     </dl>
                                     <div class="text-gray small">* 一般工作交接单中</div>
-                                </li>
-                            </ol>
-                        </form>
+                                </form>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary tool_add_box_approver_submit">提交</button>
+                    <button type="button" class="btn btn-primary setup_approval_approverSetup_submit">提交</button>
                 </div>                
             </div>
         </div>
@@ -442,7 +455,9 @@
                             <form class="tool-search" style="border:none;">
                                 <input type="hidden" name='page'>
                                 <input type="hidden" name='recPerPage'>
-                                <label><span>姓名：</span><input type="text" class="form-control" name="search"></label>
+                                <input type="hidden" name='sid'>
+                                <input type="hidden" name='search'>
+                                <!-- <label><span>姓名：</span><input type="text" class="form-control" name="search"></label> -->
                                 <label><span>部门：</span><select class="form-control" name="department"><!-- JS推进 --></select></label>
                                 <label><button type="button" class="btn btn-primary tool_search_btn">搜索</button></label>
                                 <div class="clearfix"></div>
@@ -606,33 +621,42 @@ $(function(){
     var setup_approval_approverSetup_btn = ''; // 添加1-9个 修改1-9个
     setup_approval.on('click', '.arrpover_group_box input[readonly]', function(){
         // 修改赋值
+        var tabBtn = setup_approval_approverSetup_box.find('[name="tabBtn"]');
         var other = $(this).siblings('[type="hidden"]').val();
         if( other!='' ){
             other = um_json(other);
-            setup_approval_approverSetup_box.find('[name="tabBtn"]').eq( other.tabBtn-1 ).trigger('click');
+            tabBtn.eq( other.tabBtn-1 ).trigger('click');
+        }  else {
+            tabBtn.eq( 0 ).trigger('click');
         }
         // 按钮绑定 & 盒子显示
         setup_approval_approverSetup_btn = $(this);
         setup_approval_approverSetup_box.modal('show');
     });
     // 点击submit传值
-    setup_approval.on("click", '.tool_add_box_approver_submit', function() {
+    setup_approval.on("click", '.setup_approval_approverSetup_submit', function() {
+        // 变量声明-节点
         var tabBtn = setup_approval_approverSetup_box.find('[name="tabBtn"]:checked').val();
-        var result = '';
+        var tabBox = setup_approval_approverSetup_box.find('ol li').eq( tabBtn-1 ).find('form');
+        // 主要信息传值
+        var resultApprove = '';
         switch( tabBtn ){
-            case '1' : result = '指定成员：郝月 王兆伟';break;
-            case '2' : result = '上级：第2级上级';break;
-            case '3' : result = '连续多级上级：从直接上级到第x级上级';break;
-            case '4' : result = '职位：商务总监';break;
-            case '5' : result = '表单中的交接人';break;
+            case '1' : resultApprove = '指定成员：郝月 王兆伟';break;
+            case '2' : resultApprove = '上级：第2级上级';break;
+            case '3' : resultApprove = '连续多级上级：从直接上级到第x级上级';break;
+            case '4' : resultApprove = '职位：商务总监';break;
+            case '5' : resultApprove = '表单中的交接人';break;
         }
-        setup_approval_approverSetup_btn.val( result );
-        setup_approval_approverSetup_btn.siblings('[type="hidden"]').val( result );
+        setup_approval_approverSetup_btn.val( resultApprove );
+        // 其他信息传值
+        var resultOther = JSON.stringify( um_data_get( tabBox ) );
+        setup_approval_approverSetup_btn.siblings('[type="hidden"]').val( resultOther );
+        // 面板隐藏
         setup_approval_approverSetup_box.modal('hide');
     });
     // 点击radio切换
-    setup_approval_approverSetup_box.find('ul li input[type="radio"]').change(function(){
-        var olLi = $(this).parent().parent().parent().siblings('ol').find('li');
+    setup_approval_approverSetup_box.find('ul.tab_btn>li input[type="radio"]').change(function(){
+        var olLi = setup_approval_approverSetup_box.find('ol>li');
         olLi.hide();
         olLi.eq( $(this).val() -1 ).show();
     });
@@ -679,6 +703,10 @@ $(function(){
         if( showLi.length == allLi.length ){ $(this).hide(); }
     });
 
+    // 树状图组件
+    common_tree_staff($(".tab1_tree"),true,true);
+    common_tree_staff($(".tab3_tree"),true,true);
+    common_tree_staff($(".tab4_tree"),true,true);
 
 }); // 预加载结尾
 </script>
@@ -695,7 +723,7 @@ $(function(){
     }
     var setup_approval_salesman_dataSource = {
         cols   : [
-            {name:"name",        label:"姓名",width:80 },
+            // {name:"name",        label:"姓名",width:80 },
             {name:"departname",  label:"部门",width:100},
             {name:"positionname",label:"职务"}
         ],
@@ -751,7 +779,7 @@ $(function(){
             }
             var data_user = [];
             for (var i = 0; i < data_arr.length; i++) {
-                data_user.push(data_arr[i].name);
+                data_user.push(data_arr[i].positionname);
             }
             setup_approval_salesman_btn.val( data_user );
             setup_approval_salesman_btn.siblings('[type="hidden"]').val( data_id );

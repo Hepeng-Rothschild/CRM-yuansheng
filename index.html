@@ -244,7 +244,7 @@ $(function () {
         if (href) {
             common_tabs.data("zui.tabs").open({
                 type: "ajax",
-                id: href,
+                id: href.replace(/(.+?)\//g,''),
                 title: title,
                 url: url,
                 icon: icon,

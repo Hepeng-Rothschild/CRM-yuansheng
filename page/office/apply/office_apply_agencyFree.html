@@ -1,5 +1,5 @@
 <!-- 页面外套 -->
-<div class="page-wrapper" id="office_apply_agencyPercent">
+<div class="page-wrapper" id="office_apply_agencyFree">
 
     <!-- 数据网格 -->
     <div class="datagrid datagrid-striped">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="im-label">
-                    <span>时间：</span>
+                    <span>申请时间</span>
                     <div class="input-group">
                         <input type="text" class="form-control" name="starttime" readonly> 
                         <span class="input-group-addon fix-border fix-padding"></span>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <label>
-                    <span>审批状态：</span>
+                    <span>审批状态</span>
                     <select class="form-control" name="state">
                         <option value="0">全部</option>
                         <option value="1">审批中</option>
@@ -64,50 +64,25 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <form class="container form-horizontal">
-
-                        <!-- 项目选择 -->
+                        <button type="button" class="btn btn-primary tool_add_box_select_btn">选择项目</button>
+                        <input type="text" name="itemId" placeholder="项目ID">
+                        <br><br>
                         <div class="form-group">
-                            <div class="col-sm-4">
-                                <button type="button" class="btn btn-primary tool_add_box_select_btn">选择项目</button>
-                                <input type="text" name="itemId" placeholder="项目ID">
-                            </div>
-                            <label class="col-sm-1">项目编号</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            <label class="col-sm-1">项目名称</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            
+                            <label class="col-sm-1">项目编号</label><div class="col-sm-3"><input type="text" class="form-control" field="text1" readonly></div>
+                            <label class="col-sm-1">项目名称</label><div class="col-sm-3"><input type="text" class="form-control" field="text2" readonly></div>
+                            <label class="col-sm-1">项目状态</label><div class="col-sm-3"><input type="text" class="form-control" field="text3" readonly></div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-1">信息员  </label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            <label class="col-sm-1">联系电话</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            <label class="col-sm-1">签单日期</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
+                            <label class="col-sm-1">联系电话</label><div class="col-sm-3"><input type="text" class="form-control" field="text5" readonly></div>
+                            <label class="col-sm-1">身份证号</label><div class="col-sm-3"><input type="text" class="form-control" field="text6" readonly></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-1">持卡人  </label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            <label class="col-sm-1">银行名称</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            <label class="col-sm-1">银行卡号</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1">装修合同</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            <label class="col-sm-1">空调合同</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            <label class="col-sm-1">消防合同</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1">家具合同</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            <label class="col-sm-1">弱电合同</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            <label class="col-sm-1">管理费  </label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1">****费用</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            <label class="col-sm-1">总税金  </label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
-                            <label class="col-sm-1">合同总金额</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
+                            <label class="col-sm-1">持卡人  </label><div class="col-sm-3"><input type="text" class="form-control" field="text7" readonly></div>
+                            <label class="col-sm-1">银行名称</label><div class="col-sm-3"><input type="text" class="form-control" field="text8" readonly></div>
+                            <label class="col-sm-1">银行卡号</label><div class="col-sm-3"><input type="text" class="form-control" field="text9" readonly></div>
                         </div>
                         <hr>
-
-                        <!-- 申请金额 -->
-                        <div class="form-group">
-                            <label class="col-sm-1">申请提点</label>
-                            <div class="col-sm-3"><input type="text" class="form-control"></div>
-                            <div class="col-sm-3"><span class="text-small text-danger">注：申请提点=施工金额-税金-管理费-其他费用</span></div>
-                        </div>
                         <div class="form-group">
                             <label class="col-sm-1">应付金额</label><div class="col-sm-3"><input type="text" class="form-control"></div>
                             <label class="col-sm-1">已付金额</label><div class="col-sm-3"><input type="text" class="form-control"></div>
@@ -119,19 +94,15 @@
                         <div class="form-group">
                             <label class="col-sm-1">上传附件</label>
                             <div class="col-sm-3">
-                                <!-- 组队上传 -->
                                 <div class="uploader tool_add_box_uploader" path="">
                                     <input type="hidden" class='uploader_path' name='files'>
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list"></div>
                                     <button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
                                 </div>
-                                <!-- uploader -->
                             </div>
                         </div>
                         <hr>
-
-                        <!-- 发起人 -->
                         <div class="form-group">
                             <label class="col-sm-1">发起人</label><div class="col-sm-3"><input type="text" class="form-control" readonly></div>
                         </div>
@@ -139,21 +110,18 @@
                             <label class="col-sm-1">抄送人</label>
                             <div class="col-sm-5">
                                 <div class="office-border">
-                                    <ul class="tree tree-lines tree-chevrons tool_add_box_csr"></ul>
-                                    <input type="hidden" class="tree_result" name="csr">
+                                    <ul class="tree tree-lines tree-chevrons box_copyer"></ul>
+                                    <input type="hidden" class="tree_result_id" name="copyer">
                                 </div>
                             </div>
                             <label class="col-sm-1">审批人</label>
                             <div class="col-sm-5">
-                                <div class="office-border"><div class="office-approval tool_add_box_spr"><!-- JS推进 --></div></div>
+                                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
                             </div>
                         </div>
                         <hr>
-
-                        <!-- 提交 -->
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         <button type="button" class="btn btn-primary tool_add_submit">提交</button>
-
                     </form>
                 </div>
             </div>
@@ -170,23 +138,19 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <div class="container">
-                        
-                        <table class="table table-bordered">
+                        <table class="table detail-table">
                             <tbody><!-- JS推进 --></tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan='3'>
-                                        <b>抄送人</b>
-                                        <div class="office-border"><ul class="tree tree-lines tree-chevrons tool_add_box_csr"></ul></div>
-                                    </td>
-                                    <td colspan='3'>
-                                        <b>审批人</b>
-                                        <div class="office-border"><div class="office-approval tool_add_box_spr"><!-- JS推进 --></div></div>
-                                    </td>
-                                </tr>
-                            </tfoot>
+                            <tfoot><tr><td colspan="3">
+                                <div class="col-sm-6">
+                                    <b>抄送人</b>
+                                    <div class="office-border"><ul class="tree tree-lines tree-chevrons box_copyer"></ul></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <b>审批人</b>
+                                    <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+                                </div>
+                            </td></tr></tfoot>
                         </table>
-
                     </div>
                 </div>
             </div>
@@ -202,13 +166,13 @@
                     <h4 class="modal-title">撤销</h4>
                 </div>
                 <div class="modal-body">
-                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否撤销？</p>
+                    <p>是否撤销？</p>
+                    <form><input type="hidden" name="id"></form>
                 </div>
-                <form class="modal-footer">
-                    <input type="hidden" name="dataId">
+                <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-danger line_back_submit">提交</button>
-                </form>
+                    <button type="button" class="btn btn-primary line_back_submit">提交</button>
+                </div>
             </div>
         </div>
     </div>
@@ -221,12 +185,14 @@
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                     <h4 class="modal-title">催办</h4>
                 </div>
-                <div class="modal-body"><p>是否提交催办？</p></div>
-                <form class="modal-footer">
-                    <input type="hidden" name="dataId">
+                <div class="modal-body">
+                    <p>是否提交催办？</p>
+                    <form><input type="hidden" name="id"></form>
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-danger line_urge_submit">提交</button>
-                </form>
+                    <button type="button" class="btn btn-primary line_urge_submit">提交</button>
+                </div>
             </div>
         </div>
     </div>
@@ -235,7 +201,7 @@
 <!-- page-wrapper -->
 
 <!-- 页面外套 -->
-<div class="page-wrapper" id="office_apply_agencyPercent2">
+<div class="page-wrapper" id="office_apply_agencyFree2">
 
     <!-- 项目选择 -->
     <div class="modal modal-for-page fade tool_add_box_select_box" aria-hidden="false">
@@ -273,23 +239,20 @@
 <script>
 $(function() {
     //变量声明-----------------------------------------------------------------------------------------------
-    var office_apply_agencyPercent = $("#office_apply_agencyPercent"); //页面ID
-    var office_apply_agencyPercent_api = {
-        datagrid    : API.test_datagrid,    //数据表格
-        show        : API.test_response,    //详情查看
-        approval    : LOCAL + "Test/Office/apply/attend_approval.json", //审批人进度
+    var office_apply_agencyFree = $("#office_apply_agencyFree"); // 页面ID
+    var office_apply_agencyFree_api = {
+        datagrid : API.test_datagrid, // 数据表格
+        tree: API.common_staff, // 员工树状图
+        approval : LOCAL + "Test/Office/apply/attend_approval.json", // 审批人进度
+        show : LOCAL + "Test/Office/apply/attend_overtime.json", // 查看
+        add  : API.test_response, // 添加
+        back : API.test_response, // 撤销
+        urge : API.test_response, // 催办
     }
-
-    //组件实例化---------------------------------------------------------------------------------------------
-    office_apply_agencyPercent.find('[name="starttime"]').datetimepicker(option_date);
-    office_apply_agencyPercent.find('[name="endtime"]').datetimepicker(option_date);
-    common_tree_staff(office_apply_agencyPercent.find('.tool_add_box .tool_add_box_csr'), true, true);
-    common_tree_staff(office_apply_agencyPercent.find('.line_show_box .tool_add_box_csr'), true, false);
-    zui_upload_group({updom: office_apply_agencyPercent.find('.tool_add_box_uploader'), type:"img"});
 
     //数据表格-----------------------------------------------------------------------------------------------
     //数据源
-    var office_apply_agencyPercent_dataSource = {
+    var office_apply_agencyFree_dataSource = {
         cols   : [
             {name: "text4",label: "申请时间",width: 90},
             {name: "username",label: "流水号",width: 100,html: true,
@@ -301,8 +264,6 @@ $(function() {
             },
             {name: "text4",label: "项目编号",width: 90},
             {name: "name", label: "项目名称",width: 90},
-            {name: "text4",label: "合同编号",width: 90},
-            {name: "name", label: "合同名称",width: 90},
             {name: "text4",label: "信息员",  width: 90},
             {name: "name", label: "应付金额",width: 90},
             {name: "text4",label: "已付金额",width: 90},
@@ -320,149 +281,131 @@ $(function() {
         ],
         remote : function(){
             return zui_datagrid_remote({
-                page_dom : office_apply_agencyPercent, 
-                url      : office_apply_agencyPercent_api.datagrid
+                page_dom : office_apply_agencyFree, 
+                url      : office_apply_agencyFree_api.datagrid
             });
         },
         remoteConverter : function(data){ 
             return zui_datagrid_filter({
-                page_dom : office_apply_agencyPercent,
+                page_dom : office_apply_agencyFree,
                 data     : data
             });
         }
     };
     //实例化
-    office_apply_agencyPercent.find('.datagrid').datagrid(
+    office_apply_agencyFree.find('.datagrid').datagrid(
         zui_datagrid_option({
-            datagrid   : office_apply_agencyPercent.find('.datagrid'),
-            dataSource : office_apply_agencyPercent_dataSource
+            datagrid   : office_apply_agencyFree.find('.datagrid'),
+            dataSource : office_apply_agencyFree_dataSource
         })
     );
     //搜索
-    office_apply_agencyPercent.find('.tool_search_btn').click(function(){ 
+    office_apply_agencyFree.find('.tool_search_btn').click(function(){ 
         zui_datagrid_render({
-            datagrid_obj : office_apply_agencyPercent.find('.datagrid').data("zui.datagrid"),
-            dataSource   : office_apply_agencyPercent_dataSource
+            datagrid_obj : office_apply_agencyFree.find('.datagrid').data("zui.datagrid"),
+            dataSource   : office_apply_agencyFree_dataSource
         }); 
     });
 
-    //添加-----------------------------------------------------------------------------------------------
-    //添加打开
-    office_apply_agencyPercent.find('.tool_add_btn').click(function() {
+    // 操作按钮-----------------------------------------------------------------------------------------------
+    // 添加
+    office_apply_agencyFree.find('.tool_add_btn').click(function() {
         common_form_reset();
-        common_tree_staff_reset(office_apply_agencyPercent.find('.tool_add_box .tool_add_box_csr'));
-        common_approval_tree(
-            office_apply_agencyPercent.find('.tool_add_box .tool_add_box_spr'),
-            office_apply_agencyPercent_api.approval
-        ); 
-        office_apply_agencyPercent.find('.tool_add_box').modal('show');
+        common_approval_create({
+            dom : office_apply_agencyFree.find('.tool_add_box .box_approver'),
+            url : office_apply_agencyFree_api.approval,
+            data : { 'id' : '自定义传参' }
+        }); 
+        office_apply_agencyFree.find('.tool_add_box').modal('show');
     });
-    //添加提交
-    office_apply_agencyPercent.find('.tool_add_submit').click(function() {
+    office_apply_agencyFree.find('.tool_add_submit').click(function() {
         um_data_submit({
-            url: API.test_response,
-            form: $(this).parents('form'),
-            dataSource: office_apply_agencyPercent_dataSource,
+            url: office_apply_agencyFree_api.add,
+            form: office_apply_agencyFree.find('.tool_add_box form'),
+            dataSource: office_apply_agencyFree_dataSource,
         });
     });
 
-    //查看-----------------------------------------------------------------------------------------------
-    office_apply_agencyPercent.on("click", '.line_show_btn', function() {
+    //查看
+    office_apply_agencyFree.on("click", '.line_show_btn', function() {
         $.ajax({
-            url     : office_apply_agencyPercent_api.show,
+            url     : office_apply_agencyFree_api.show,
             data    : { id: $(this).attr('dataId') },
             type    : "post",
             dataType: "json",
             success : function(data){
-                if(data.status == 1){
+                var data = data.data;
                 var temp = `
-                    <tr>
-                        <td colspan='2'>项目编号 ${data.message}</td>
-                        <td colspan='2'>项目名称 ${data.message}</td>
-                        <td colspan='2'></td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>信息员   ${data.message}</td>
-                        <td colspan='2'>联系电话 ${data.message}</td>
-                        <td colspan='2'>签单日期 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>持卡人   ${data.message}</td>
-                        <td colspan='2'>银行名称 ${data.message}</td>
-                        <td colspan='2'>银行卡号 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>装修合同 ${data.message}</td>
-                        <td colspan='2'>空调合同 ${data.message}</td>
-                        <td colspan='2'>消防合同 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>家具合同 ${data.message}</td>
-                        <td colspan='2'>弱电合同 ${data.message}</td>
-                        <td colspan='2'>管理费   ${data.message}</td>
-                    </tr>
-
-                    <tr>
-                        <td colspan='2'>****费用 ${data.message}</td>
-                        <td colspan='2'>总税金   ${data.message}</td>
-                        <td colspan='2'>合同总金额 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>应付金额 ${data.message}</td>
-                        <td colspan='2'>已付金额 ${data.message}</td>
-                        <td colspan='2'>申请金额 ${data.message}</td>
-                    </tr>
-                    <tr><td colspan='6'>申请理由 </td></tr>
-                    <tr><td colspan='6'>申请附件 </td></tr>
-                    <tr><td colspan='6'>发起人   </td></tr>
-                    `;
-                    office_apply_agencyPercent.find('.line_show_box tbody').html(temp);
-                    office_apply_agencyPercent.find('.line_show_box').modal('show');
-
-                    //抄送人 审批人
-                    common_tree_staff_reset(office_apply_agencyPercent.find('.line_show_box .tool_add_box_csr'));
-                    common_approval_tree(
-                        office_apply_agencyPercent.find('.line_show_box .tool_add_box_spr'),
-                        office_apply_agencyPercent_api.approval
-                    ); 
-
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
+                <tr>
+                    <td><b>项目编号</b>${data.text}</td>
+                    <td><b>项目名称</b>${data.text}</td>
+                    <td><b>项目状态</b>${data.text}</td>
+                </tr>
+                <tr>
+                    <td><b>信息员  </b>${data.text}</td>
+                    <td><b>联系电话</b>${data.text}</td>
+                    <td><b>身份证号</b>${data.text}</td>
+                </tr>
+                <tr>
+                    <td><b>持卡人  </b>${data.text}</td>
+                    <td><b>银行名称</b>${data.text}</td>
+                    <td><b>银行卡号</b>${data.text}</td>
+                </tr>
+                <tr>
+                    <td><b>应付金额</b>${data.text}</td>
+                    <td><b>已付金额</b>${data.text}</td>
+                    <td><b>申请金额</b>${data.text}</td>
+                </tr>
+                <tr><td colspan='3'><b>申请理由</b></td></tr>
+                <tr><td colspan='3'><b>申请附件</b></td></tr>
+                <tr><td colspan='3'><b>发起人  </b></td></tr>
+                `;
+                office_apply_agencyFree.find('.line_show_box tbody').html(temp);
+                office_apply_agencyFree.find('.line_show_box').modal('show');
+                // 抄送人
+                common_tree_setData({
+                    dom : office_apply_agencyFree.find('.line_show_box .box_copyer'),
+                    data : data.treeChecked
+                });
+                // 审批人
+                common_approval_setData({
+                    dom: office_apply_agencyFree.find('.line_show_box .box_approver'),
+                    data : data.approval
+                });
             }
         });
     });
 
-    //撤销-----------------------------------------------------------------------------------------------
-    office_apply_agencyPercent.on("click", '.line_back_btn', function() {
-        office_apply_agencyPercent.find('.line_back_box [name="dataId"]').val( $(this).attr('dataId') );
-        office_apply_agencyPercent.find('.line_back_box').modal('show');
+    //撤销
+    office_apply_agencyFree.on("click", '.line_back_btn', function() {
+        office_apply_agencyFree.find('.line_back_box [name="id"]').val( $(this).attr('dataId') );
+        office_apply_agencyFree.find('.line_back_box').modal('show');
     });
-    office_apply_agencyPercent.on("click", '.line_back_submit', function() {
+    office_apply_agencyFree.on("click", '.line_back_submit', function() {
         um_data_submit({
-            url: API.test_response,
-            form: $(this).parents('form'),
-            dataSource: office_apply_agencyPercent_dataSource,
+            url: office_apply_agencyFree_api.back,
+            form: office_apply_agencyFree.find('.line_back_box form'),
+            dataSource: office_apply_agencyFree_dataSource,
         });
     });
 
-    //催办-----------------------------------------------------------------------------------------------
-    office_apply_agencyPercent.on("click", '.line_urge_btn', function() {
-        office_apply_agencyPercent.find('.line_urge_box [name="dataId"]').val( $(this).attr('dataId') );
-        office_apply_agencyPercent.find('.line_urge_box').modal('show');
+    //催办
+    office_apply_agencyFree.on("click", '.line_urge_btn', function() {
+        office_apply_agencyFree.find('.line_urge_box [name="id"]').val( $(this).attr('dataId') );
+        office_apply_agencyFree.find('.line_urge_box').modal('show');
     });
-    office_apply_agencyPercent.on("click", '.line_urge_submit', function() {
+    office_apply_agencyFree.on("click", '.line_urge_submit', function() {
         um_data_submit({
-            url: API.test_response,
-            form: $(this).parents('form'),
-            dataSource: office_apply_agencyPercent_dataSource,
+            url: office_apply_agencyFree_api.urge,
+            form: office_apply_agencyFree.find('.line_urge_box form'),
+            dataSource: office_apply_agencyFree_dataSource,
         });
     });
 
     //项目选择------------------------------------------------------------------------------------------
-    var office_apply_agencyPercent2 = $("#office_apply_agencyPercent2"); //页面ID
+    var office_apply_agencyFree2 = $("#office_apply_agencyFree2"); //页面ID
     //实例化
-    var office_apply_agencyPercent2_dataSource = {
+    var office_apply_agencyFree2_dataSource = {
         cols   : [
             {name: "text4",label: "项目编号",width: 90},
             {name: "name", label: "项目名称",width: 90},
@@ -473,37 +416,37 @@ $(function() {
         ],
         remote : function(){
             return zui_datagrid_remote({
-                page_dom : office_apply_agencyPercent2, 
-                url      : office_apply_agencyPercent_api.datagrid
+                page_dom : office_apply_agencyFree2, 
+                url      : office_apply_agencyFree_api.datagrid
             });
         },
         remoteConverter : function(data){ 
             return zui_datagrid_filter({
-                page_dom : office_apply_agencyPercent2,
+                page_dom : office_apply_agencyFree2,
                 data     : data
             });
         }
     };
     //实例化
-    office_apply_agencyPercent2.find('.datagrid').datagrid(
+    office_apply_agencyFree2.find('.datagrid').datagrid(
         zui_datagrid_option({
-            datagrid   : office_apply_agencyPercent2.find('.datagrid'),
-            dataSource : office_apply_agencyPercent2_dataSource,
+            datagrid   : office_apply_agencyFree2.find('.datagrid'),
+            dataSource : office_apply_agencyFree2_dataSource,
             height     : 350,
             checkable  : true
         })
     );
 
     //打开
-    office_apply_agencyPercent.on("click", '.tool_add_box_select_btn', function() {
-        office_apply_agencyPercent2.find('.tool_add_box_select_box').modal('show');
+    office_apply_agencyFree.on("click", '.tool_add_box_select_btn', function() {
+        office_apply_agencyFree2.find('.tool_add_box_select_box').modal('show');
     });
     //提交
-    office_apply_agencyPercent2.on("click", '.tool_add_box_select_submit', function() {
-        var data_arr = office_apply_agencyPercent2.find('.datagrid').data("zui.datagrid").getCheckItems().filter(function(e){return e});
+    office_apply_agencyFree2.on("click", '.tool_add_box_select_submit', function() {
+        var data_arr = office_apply_agencyFree2.find('.datagrid').data("zui.datagrid").getCheckItems().filter(function(e){return e});
         if( data_arr.length==1 ){
-            var box1 = office_apply_agencyPercent.find('.tool_add_box');
-            var box2 = office_apply_agencyPercent2.find('.tool_add_box_select_box');
+            var box1 = office_apply_agencyFree.find('.tool_add_box');
+            var box2 = office_apply_agencyFree2.find('.tool_add_box_select_box');
             box1.find('[name="itemId"]').val(data_arr[0].id);
             $.each(data_arr[0], function(key, value){
                 box1.find('[field="'+ key +'"]').val(value);
@@ -514,8 +457,29 @@ $(function() {
         }
     });
 
-    //…
+    //组件实例化---------------------------------------------------------------------------------------------
+    // 日期相关
+    office_apply_agencyFree.find('[name="starttime"]').datetimepicker(option_date);
+    office_apply_agencyFree.find('[name="endtime"]').datetimepicker(option_date);
 
-}); //预加载结尾
+    // 抄送人/审批人相关
+    common_tree_create({
+        dom : office_apply_agencyFree.find('.tool_add_box .box_copyer'),
+        url : office_apply_agencyFree_api.tree,
+        is_open : true,
+        is_check : true,
+    });
+    common_tree_create({
+        dom : office_apply_agencyFree.find('.line_show_box .box_copyer'),
+        url : office_apply_agencyFree_api.tree,
+        is_open : true,
+    });
 
+    // 上传相关
+    zui_upload_group({
+        updom: office_apply_agencyFree.find('.tool_add_box_uploader'), 
+        type:"img"
+    });
+
+}); // 预加载结尾
 </script>

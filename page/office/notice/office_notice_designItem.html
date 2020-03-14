@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="im-label">
-                    <span>时间：</span>
+                    <span>申请时间</span>
                     <div class="input-group">
                         <input type="text" class="form-control" name="starttime" readonly> 
                         <span class="input-group-addon fix-border fix-padding"></span>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <label>
-                    <span>项目类型：</span>
+                    <span>项目类型</span>
                     <select class="form-control" name="type">
                         <option value="0">全部</option>
                         <option value="1">设计</option>
@@ -38,7 +38,7 @@
                     </select>
                 </label>
                 <label>
-                    <span>审批状态：</span>
+                    <span>审批状态</span>
                     <select class="form-control" name="state">
                         <option value="0">全部</option>
                         <option value="1">审批中</option>
@@ -68,23 +68,19 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <div class="container">
-                        
-                        <table class="table table-bordered">
+                        <table class="table detail-table">
                             <tbody><!-- JS推进 --></tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan='3'>
-                                        <b>抄送人</b>
-                                        <div class="office-border"><ul class="tree tree-lines tree-chevrons line_show_box_csr"></ul></div>
-                                    </td>
-                                    <td colspan='3'>
-                                        <b>审批人</b>
-                                        <div class="office-border"><div class="office-approval line_show_box_spr"><!-- JS推进 --></div></div>
-                                    </td>
-                                </tr>
-                            </tfoot>
+                            <tfoot><tr><td colspan="3">
+                                <div class="col-sm-6">
+                                    <b>抄送人</b>
+                                    <div class="office-border"><ul class="tree tree-lines tree-chevrons box_copyer"></ul></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <b>审批人</b>
+                                    <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+                                </div>
+                            </td></tr></tfoot>
                         </table>
-
                     </div>
                 </div>
             </div>
@@ -99,15 +95,11 @@ $(function() {
     //变量声明-----------------------------------------------------------------------------------------------
     var office_notice_designItem = $("#office_notice_designItem"); //页面ID
     var office_notice_designItem_api = {
-        datagrid    : API.test_datagrid,    //数据表格
-        show        : API.test_response,    //详情查看
-        approval    : LOCAL + "Test/Office/apply/attend_approval.json", //审批人进度
+        datagrid : API.test_datagrid, // 数据表格
+        tree: API.common_staff, // 员工树状图
+        approval : LOCAL + "Test/Office/apply/attend_approval.json", // 审批人进度
+        show : LOCAL + "Test/Office/apply/attend_overtime.json", // 查看
     }
-
-    //组件实例化---------------------------------------------------------------------------------------------
-    office_notice_designItem.find('[name="starttime"]').datetimepicker(option_date);
-    office_notice_designItem.find('[name="endtime"]').datetimepicker(option_date);
-    common_tree_staff(office_notice_designItem.find('.line_show_box .line_show_box_csr'), true, false);
 
     //数据表格-----------------------------------------------------------------------------------------------
     //数据源
@@ -161,7 +153,8 @@ $(function() {
         }); 
     });
 
-    //查看-----------------------------------------------------------------------------------------------
+    // 操作按钮-----------------------------------------------------------------------------------------------
+    //查看
     office_notice_designItem.on("click", '.line_show_btn', function() {
         $.ajax({
             url     : office_notice_designItem_api.show,
@@ -169,42 +162,53 @@ $(function() {
             type    : "post",
             dataType: "json",
             success : function(data){
-                if(data.status == 1){
+                var data = data.data;
                 var temp = `
-                    <tr>
-                        <td colspan='2'>项目编号 ${data.message}</td>
-                        <td colspan='2'>合同编号 ${data.message}</td>
-                        <td colspan='2'>项目名称 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>合同名称 ${data.message}</td>
-                        <td colspan='2'>已收金额 ${data.message}</td>
-                        <td colspan='2'>未收金额 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='6'>合同总金额(含增减项) ${data.message}</td>
-                    </tr>
-                    <tr><td colspan='6'>申请金额 </td></tr>
-                    <tr><td colspan='6'>申请理由 </td></tr>
-                    <tr><td colspan='6'>申请附件 </td></tr>
-                    <tr><td colspan='6'>发起人   </td></tr>
-                    `;
-                    office_notice_designItem.find('.line_show_box tbody').html(temp);
-                    office_notice_designItem.find('.line_show_box').modal('show');
-
-                    //抄送人 审批人
-                    common_tree_staff_reset(office_notice_designItem.find('.line_show_box .line_show_box_csr'));
-                    common_approval_tree(
-                        office_notice_designItem.find('.line_show_box .line_show_box_spr'),
-                        office_notice_designItem_api.approval
-                    ); 
-
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
+                <tr>
+                    <td><b>项目编号</b>${data.text}</td>
+                    <td><b>合同编号</b>${data.text}</td>
+                    <td><b>项目名称</b>${data.text}</td>
+                </tr>
+                <tr>
+                    <td><b>合同名称</b>${data.text}</td>
+                    <td><b>已收金额</b>${data.text}</td>
+                    <td><b>未收金额</b>${data.text}</td>
+                </tr>
+                <tr>
+                    <td colspan='3'>合同总金额(含增减项)</b>${data.text}</td>
+                </tr>
+                <tr><td colspan='3'>申请金额 </td></tr>
+                <tr><td colspan='3'>申请理由 </td></tr>
+                <tr><td colspan='3'>申请附件 </td></tr>
+                <tr><td colspan='3'>发起人   </td></tr>
+                `;
+                office_notice_designItem.find('.line_show_box tbody').html(temp);
+                office_notice_designItem.find('.line_show_box').modal('show');
+                // 抄送人
+                common_tree_setData({
+                    dom : office_notice_designItem.find('.line_show_box .box_copyer'),
+                    data : data.treeChecked
+                });
+                // 审批人
+                common_approval_setData({
+                    dom: office_notice_designItem.find('.line_show_box .box_approver'),
+                    data : data.approval
+                });
             }
         });
     });
 
-}); //预加载结尾
+    //组件实例化---------------------------------------------------------------------------------------------
+    // 日期相关
+    office_notice_designItem.find('[name="starttime"]').datetimepicker(option_date);
+    office_notice_designItem.find('[name="endtime"]').datetimepicker(option_date);
+
+    // 抄送人/审批人相关
+    common_tree_create({
+        dom : office_notice_designItem.find('.line_show_box .box_copyer'),
+        url : office_notice_designItem_api.tree,
+        is_open : true,
+    });
+
+}); // 预加载结尾
 </script>

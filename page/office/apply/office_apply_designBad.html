@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="im-label">
-                    <span>时间：</span>
+                    <span>申请时间</span>
                     <div class="input-group">
                         <input type="text" class="form-control" name="starttime" readonly> 
                         <span class="input-group-addon fix-border fix-padding"></span>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <label>
-                    <span>审批状态：</span>
+                    <span>审批状态</span>
                     <select class="form-control" name="state">
                         <option value="0">全部</option>
                         <option value="1">审批中</option>
@@ -64,8 +64,6 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <form class="container form-horizontal">
-
-                        <!-- 项目选择 -->
                         <button type="button" class="btn btn-primary tool_add_box_select_btn">选择项目</button>
                         <input type="text" name="itemId" placeholder="项目ID">
                         <br><br>
@@ -87,8 +85,6 @@
                             </div>
                         </div>
                         <hr>
-
-                        <!-- 申请金额 -->
                         <div class="form-group">
                             <label class="col-sm-1">申请金额</label><div class="col-sm-3"><input type="text" class="form-control" name="sqje"></div>
                         </div>
@@ -98,19 +94,15 @@
                         <div class="form-group">
                             <label class="col-sm-1">上传附件</label>
                             <div class="col-sm-3">
-                                <!-- 组队上传 -->
                                 <div class="uploader tool_add_box_uploader" path="">
                                     <input type="hidden" class='uploader_path' name='files'>
                                     <div class="uploader-message text-center"><div class="content"></div></div>
                                     <div class="uploader-files file-list"></div>
                                     <button type="button" class="btn btn-default uploader-btn-browse">添加文件</button>
                                 </div>
-                                <!-- uploader -->
                             </div>
                         </div>
                         <hr>
-
-                        <!-- 发起人 -->
                         <div class="form-group">
                             <label class="col-sm-1">发起人</label><div class="col-sm-3"><input type="text" class="form-control" readonly></div>
                         </div>
@@ -118,21 +110,18 @@
                             <label class="col-sm-1">抄送人</label>
                             <div class="col-sm-5">
                                 <div class="office-border">
-                                    <ul class="tree tree-lines tree-chevrons tool_add_box_csr"></ul>
-                                    <input type="hidden" class="tree_result" name="csr">
+                                    <ul class="tree tree-lines tree-chevrons box_copyer"></ul>
+                                    <input type="hidden" class="tree_result_id" name="copyer">
                                 </div>
                             </div>
                             <label class="col-sm-1">审批人</label>
                             <div class="col-sm-5">
-                                <div class="office-border"><div class="office-approval tool_add_box_spr"><!-- JS推进 --></div></div>
+                                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
                             </div>
                         </div>
                         <hr>
-
-                        <!-- 提交 -->
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         <button type="button" class="btn btn-primary tool_add_submit">提交</button>
-
                     </form>
                 </div>
             </div>
@@ -149,23 +138,19 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <div class="container">
-                        
-                        <table class="table table-bordered">
+                        <table class="table detail-table">
                             <tbody><!-- JS推进 --></tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan='3'>
-                                        <b>抄送人</b>
-                                        <div class="office-border"><ul class="tree tree-lines tree-chevrons tool_add_box_csr"></ul></div>
-                                    </td>
-                                    <td colspan='3'>
-                                        <b>审批人</b>
-                                        <div class="office-border"><div class="office-approval tool_add_box_spr"><!-- JS推进 --></div></div>
-                                    </td>
-                                </tr>
-                            </tfoot>
+                            <tfoot><tr><td colspan="3">
+                                <div class="col-sm-6">
+                                    <b>抄送人</b>
+                                    <div class="office-border"><ul class="tree tree-lines tree-chevrons box_copyer"></ul></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <b>审批人</b>
+                                    <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+                                </div>
+                            </td></tr></tfoot>
                         </table>
-
                     </div>
                 </div>
             </div>
@@ -181,13 +166,13 @@
                     <h4 class="modal-title">撤销</h4>
                 </div>
                 <div class="modal-body">
-                    <p class="text-danger"><i class="icon icon-warning-sign"></i> 是否撤销？</p>
+                    <p>是否撤销？</p>
+                    <form><input type="hidden" name="id"></form>
                 </div>
-                <form class="modal-footer">
-                    <input type="hidden" name="dataId">
+                <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-danger line_back_submit">提交</button>
-                </form>
+                    <button type="button" class="btn btn-primary line_back_submit">提交</button>
+                </div>
             </div>
         </div>
     </div>
@@ -200,12 +185,14 @@
                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                     <h4 class="modal-title">催办</h4>
                 </div>
-                <div class="modal-body"><p>是否提交催办？</p></div>
-                <form class="modal-footer">
-                    <input type="hidden" name="dataId">
+                <div class="modal-body">
+                    <p>是否提交催办？</p>
+                    <form><input type="hidden" name="id"></form>
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-danger line_urge_submit">提交</button>
-                </form>
+                    <button type="button" class="btn btn-primary line_urge_submit">提交</button>
+                </div>
             </div>
         </div>
     </div>
@@ -254,18 +241,14 @@ $(function() {
     //变量声明-----------------------------------------------------------------------------------------------
     var office_apply_designBad = $("#office_apply_designBad"); //页面ID
     var office_apply_designBad_api = {
-        datagrid    : API.test_datagrid,    //数据表格
-        show        : API.test_response,    //详情查看
-        approval    : LOCAL + "Test/Office/apply/attend_approval.json", //审批人进度
+        datagrid : API.test_datagrid,    //数据表格
+        approval : LOCAL + "Test/Office/apply/attend_approval.json", //审批人进度
+        show : LOCAL + "Test/Office/apply/attend_overtime.json", // 查看
+        add  : API.test_response, // 添加
+        back : API.test_response, // 撤销
+        urge : API.test_response, // 催办
     }
 
-    //组件实例化---------------------------------------------------------------------------------------------
-    office_apply_designBad.find('[name="starttime"]').datetimepicker(option_date);
-    office_apply_designBad.find('[name="endtime"]').datetimepicker(option_date);
-    common_tree_staff(office_apply_designBad.find('.tool_add_box .tool_add_box_csr'), true, true);
-    common_tree_staff(office_apply_designBad.find('.line_show_box .tool_add_box_csr'), true, false);
-    zui_upload_group({updom: office_apply_designBad.find('.tool_add_box_uploader'), type:"img"});
-    
     //数据表格-----------------------------------------------------------------------------------------------
     //数据源
     var office_apply_designBad_dataSource = {
@@ -325,27 +308,26 @@ $(function() {
         }); 
     });
 
-    //添加-----------------------------------------------------------------------------------------------
-    //添加打开
+    // 操作按钮-----------------------------------------------------------------------------------------------
+    // 添加
     office_apply_designBad.find('.tool_add_btn').click(function() {
         common_form_reset();
-        common_tree_staff_reset(office_apply_designBad.find('.tool_add_box .tool_add_box_csr'));
-        common_approval_tree(
-            office_apply_designBad.find('.tool_add_box .tool_add_box_spr'),
-            office_apply_designBad_api.approval
-        ); 
+        common_approval_create({
+            dom : office_apply_designBad.find('.tool_add_box .box_approver'),
+            url : office_apply_designBad_api.approval,
+            data : { 'id' : '自定义传参' }
+        }); 
         office_apply_designBad.find('.tool_add_box').modal('show');
     });
-    //添加提交
     office_apply_designBad.find('.tool_add_submit').click(function() {
         um_data_submit({
-            url: API.test_response,
-            form: $(this).parents('form'),
+            url: office_apply_designBad_api.add,
+            form: office_apply_designBad.find('.tool_add_box form'),
             dataSource: office_apply_designBad_dataSource,
         });
     });
 
-    //查看-----------------------------------------------------------------------------------------------
+    //查看
     office_apply_designBad.on("click", '.line_show_btn', function() {
         $.ajax({
             url     : office_apply_designBad_api.show,
@@ -353,65 +335,64 @@ $(function() {
             type    : "post",
             dataType: "json",
             success : function(data){
-                if(data.status == 1){
+                var data = data.data;
                 var temp = `
-                    <tr>
-                        <td colspan='2'>项目编号 ${data.message}</td>
-                        <td colspan='2'>合同编号 ${data.message}</td>
-                        <td colspan='2'>项目名称 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>合同名称 ${data.message}</td>
-                        <td colspan='2'>已收金额 ${data.message}</td>
-                        <td colspan='2'>未收金额 ${data.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='6'>合同总金额(含增减项) ${data.message}</td>
-                    </tr>
-                    <tr><td colspan='6'>申请金额 </td></tr>
-                    <tr><td colspan='6'>申请理由 </td></tr>
-                    <tr><td colspan='6'>申请附件 </td></tr>
-                    <tr><td colspan='6'>发起人   </td></tr>
-                    `;
-                    office_apply_designBad.find('.line_show_box tbody').html(temp);
-                    office_apply_designBad.find('.line_show_box').modal('show');
-
-                    //抄送人 审批人
-                    common_tree_staff_reset(office_apply_designBad.find('.line_show_box .tool_add_box_csr'));
-                    common_approval_tree(
-                        office_apply_designBad.find('.line_show_box .tool_add_box_spr'),
-                        office_apply_designBad_api.approval
-                    ); 
-
-                } else {
-                    um_tip(data.message,"1500","text-danger");
-                }
+                <tr>
+                    <td><b>项目编号</b>${data.text}</td>
+                    <td><b>合同编号</b>${data.text}</td>
+                    <td><b>项目名称</b>${data.text}</td>
+                </tr>
+                <tr>
+                    <td><b>合同名称</b>${data.text}</td>
+                    <td><b>已收金额</b>${data.text}</td>
+                    <td><b>未收金额</b>${data.text}</td>
+                </tr>
+                <tr>
+                    <td colspan='3'>合同总金额(含增减项)</b>${data.text}</td>
+                </tr>
+                <tr><td colspan='3'>申请金额 </td></tr>
+                <tr><td colspan='3'>申请理由 </td></tr>
+                <tr><td colspan='3'>申请附件 </td></tr>
+                <tr><td colspan='3'>发起人   </td></tr>
+                `;
+                office_apply_designBad.find('.line_show_box tbody').html(temp);
+                office_apply_designBad.find('.line_show_box').modal('show');
+                // 抄送人
+                common_tree_setData({
+                    dom : office_apply_designBad.find('.line_show_box .box_copyer'),
+                    data : data.treeChecked
+                });
+                // 审批人
+                common_approval_setData({
+                    dom: office_apply_designBad.find('.line_show_box .box_approver'),
+                    data : data.approval
+                });
             }
         });
     });
 
-    //撤销-----------------------------------------------------------------------------------------------
+    //撤销
     office_apply_designBad.on("click", '.line_back_btn', function() {
-        office_apply_designBad.find('.line_back_box [name="dataId"]').val( $(this).attr('dataId') );
+        office_apply_designBad.find('.line_back_box [name="id"]').val( $(this).attr('dataId') );
         office_apply_designBad.find('.line_back_box').modal('show');
     });
     office_apply_designBad.on("click", '.line_back_submit', function() {
         um_data_submit({
-            url: API.test_response,
-            form: $(this).parents('form'),
+            url: office_apply_designBad_api.back,
+            form: office_apply_designBad.find('.line_back_box form'),
             dataSource: office_apply_designBad_dataSource,
         });
     });
 
-    //催办-----------------------------------------------------------------------------------------------
+    //催办
     office_apply_designBad.on("click", '.line_urge_btn', function() {
-        office_apply_designBad.find('.line_urge_box [name="dataId"]').val( $(this).attr('dataId') );
+        office_apply_designBad.find('.line_urge_box [name="id"]').val( $(this).attr('dataId') );
         office_apply_designBad.find('.line_urge_box').modal('show');
     });
     office_apply_designBad.on("click", '.line_urge_submit', function() {
         um_data_submit({
-            url: API.test_response,
-            form: $(this).parents('form'),
+            url: office_apply_designBad_api.urge,
+            form: office_apply_designBad.find('.line_urge_box form'),
             dataSource: office_apply_designBad_dataSource,
         });
     });
@@ -473,8 +454,29 @@ $(function() {
         }
     });
 
-    //…
+    //组件实例化---------------------------------------------------------------------------------------------
+    // 日期相关
+    office_apply_designBad.find('[name="starttime"]').datetimepicker(option_date);
+    office_apply_designBad.find('[name="endtime"]').datetimepicker(option_date);
 
-}); //预加载结尾
+    // 抄送人/审批人相关
+    common_tree_create({
+        dom : office_apply_designBad.find('.tool_add_box .box_copyer'),
+        url : office_apply_designBad_api.tree,
+        is_open : true,
+        is_check : true,
+    });
+    common_tree_create({
+        dom : office_apply_designBad.find('.line_show_box .box_copyer'),
+        url : office_apply_designBad_api.tree,
+        is_open : true,
+    });
 
+    // 上传相关
+    zui_upload_group({
+        updom: office_apply_designBad.find('.tool_add_box_uploader'), 
+        type:"img"
+    });
+
+}); // 预加载结尾
 </script>

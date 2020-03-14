@@ -1,0 +1,417 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="office_apply_attendPunch">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped">
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <form class="tool-search">
+                <input type="hidden" name='page'>
+                <input type="hidden" name='recPerPage'>
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" name="sid"><option value="1">流水号</option></select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="search">
+                    </div>
+                </div>
+                <div class="im-label">
+                    <span>申请时间</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="starttime" readonly> 
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="endtime"readonly>
+                    </div>
+                </div>
+                <label>
+                    <span>审批状态</span>
+                    <select class="form-control" name="state">
+                        <option value="0">全部</option>
+                        <option value="1">审批中</option>
+                        <option value="2">审批完成</option>
+                        <option value="3">撤销</option>
+                        <option value="4">已撤销</option>
+                    </select>
+                </label>
+                <label><button type="button" class="btn btn-primary tool_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </form>
+            <div class="tool-deal">
+                <label><button type="button" class="btn btn-primary tool_add_btn"><i class="icon icon-plus"></i>添加</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade tool_add_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="container form-horizontal">
+                        <div class="form-group maxWidth500">
+                            <label class="col-sm-2">补卡时间</label>
+                            <div class="col-sm-6"><input type="text" class="form-control" name="punchtime" readonly></div>
+                        </div>
+                        <div class="form-group maxWidth500">
+                            <label class="col-sm-2">补卡原因</label>
+                            <div class="col-sm-6"><textarea class="form-control" name="text"></textarea></div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="col-sm-1">抄送人</label>
+                            <div class="col-sm-5">
+                                <div class="office-border">
+                                    <ul class="tree tree-lines tree-chevrons box_copyer"></ul>
+                                    <input type="hidden" class="tree_result_id" name="copyer">
+                                </div>
+                            </div>
+                            <label class="col-sm-1">审批人</label>
+                            <div class="col-sm-5">
+                                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+                            </div>
+                        </div>
+                        <hr>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary tool_add_submit">提交</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade line_edit_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">再次申请</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <form class="container form-horizontal">
+                        <input type="hidden" name="id">
+                        <div class="form-group maxWidth500">
+                            <label class="col-sm-2">补卡时间</label>
+                            <div class="col-sm-6"><input type="text" class="form-control" name="punchtime" readonly></div>
+                        </div>
+                        <div class="form-group maxWidth500">
+                            <label class="col-sm-2">补卡原因</label>
+                            <div class="col-sm-6"><textarea class="form-control" name="text"></textarea></div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="col-sm-1">抄送人</label>
+                            <div class="col-sm-5">
+                                <div class="office-border">
+                                    <ul class="tree tree-lines tree-chevrons box_copyer"></ul>
+                                    <input type="hidden" class="tree_result_id" name="copyer">
+                                </div>
+                            </div>
+                            <label class="col-sm-1">审批人</label>
+                            <div class="col-sm-5">
+                                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+                            </div>
+                        </div>
+                        <hr>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary line_edit_submit">提交</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade line_show_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        <table class="table detail-table">
+                            <tbody><!-- JS推进 --></tbody>
+                            <tfoot><tr><td>
+                                <div class="col-sm-6">
+                                    <b>抄送人</b>
+                                    <div class="office-border"><ul class="tree tree-lines tree-chevrons box_copyer"></ul></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <b>审批人</b>
+                                    <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+                                </div>
+                            </td></tr></tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 撤销盒子 -->
+    <div class="modal modal-for-page fade line_back_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">撤销</h4>
+                </div>
+                <div class="modal-body">
+                    <p>是否撤销？</p>
+                    <form><input type="hidden" name="id"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary line_back_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 催办盒子 -->
+    <div class="modal modal-for-page fade line_urge_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">催办</h4>
+                </div>
+                <div class="modal-body">
+                    <p>是否提交催办？</p>
+                    <form><input type="hidden" name="id"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary line_urge_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function() {
+
+    // 变量声明-----------------------------------------------------------------------------------------------
+    var office_apply_attendPunch = $("#office_apply_attendPunch"); // 页面ID
+    var office_apply_attendPunch_api = {
+        datagrid : API.test_datagrid, // 数据表格
+        tree : API.common_staff, // 员工树状图
+        approval : LOCAL + "Test/Office/apply/attend_approval.json", // 审批人进度
+        show : LOCAL + "Test/Office/apply/attend_punch.json", // 查看
+        add  : API.test_response, // 添加
+        edit : API.test_response, // 修改
+        back : API.test_response, // 撤销
+        urge : API.test_response, // 催办
+    }
+
+    // 数据表格-----------------------------------------------------------------------------------------------
+    // 数据源
+    var office_apply_attendPunch_dataSource = {
+        cols   : [
+            {name: "datetime", label: "申请时间", width: 150},
+            {name: "username", label: "流水账号", width: 90, html: true,
+                valueOperator: {
+                    getter: function(dataValue, cell) {
+                        return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;
+                    }
+                }
+            },
+            {name: "datetime", label: "缺卡时间", width: 140},
+            {name: "datetime", label: "补卡时间", width: 140},
+            {name: "text4", label:"审批状态", width:90},
+            {name:"", label:"操作", width:90, html:true,
+                valueOperator : {
+                    getter : function(dataValue,cell){
+                        var temp='';
+                        var state = cell.config.data.state;
+                        if( state==1 ){ 
+                            temp = `
+                            <a class="line_back_btn" dataId="${cell.config.data.id}">撤销</a>
+                            <a class="line_urge_btn" dataId="${cell.config.data.id}">催办</a>`;
+                        } else if ( state==3 ){ 
+                            temp =`<a class="line_edit_btn" dataId="${cell.config.data.id}">再次申请</a>`;
+                        }
+                        return temp;
+                    }
+                }
+            }
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : office_apply_attendPunch, 
+                url      : office_apply_attendPunch_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : office_apply_attendPunch,
+                data     : data
+            });
+        }
+    };
+    // 实例化
+    office_apply_attendPunch.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : office_apply_attendPunch.find('.datagrid'),
+            dataSource : office_apply_attendPunch_dataSource
+        })
+    );
+    // 搜索
+    office_apply_attendPunch.find('.tool_search_btn').click(function(){ 
+        zui_datagrid_render({
+            datagrid_obj : office_apply_attendPunch.find('.datagrid').data("zui.datagrid"),
+            dataSource   : office_apply_attendPunch_dataSource
+        }); 
+    });
+
+    // 操作按钮-----------------------------------------------------------------------------------------------
+    // 添加
+    office_apply_attendPunch.find('.tool_add_btn').click(function() {
+        common_form_reset();
+        common_approval_create({
+            dom : office_apply_attendPunch.find('.tool_add_box .box_approver'),
+            url : office_apply_attendPunch_api.approval,
+            data : { 'id' : '自定义传参' }
+        }); 
+        office_apply_attendPunch.find('.tool_add_box').modal('show');
+    });
+    office_apply_attendPunch.find('.tool_add_submit').click(function() {
+        um_data_submit({
+            url: office_apply_attendPunch_api.add,
+            form: office_apply_attendPunch.find('.tool_add_box form'),
+            dataSource: office_apply_attendPunch_dataSource,
+        });
+    });
+
+    // 修改
+    office_apply_attendPunch.on("click", '.line_edit_btn', function() {
+        office_apply_attendPunch.find('.line_edit_box [name="id"]').val( $(this).attr('dataId') );
+        $.ajax({
+            url     : office_apply_attendPunch_api.show,
+            data    : { id: $(this).attr('dataId') },
+            type    : "post",
+            dataType: "json",
+            success : function(data){
+                var data = data.data;
+                um_data_set(office_apply_attendPunch.find('.line_edit_box form'), data);
+                office_apply_attendPunch.find('.line_edit_box').modal('show');
+                // 抄送人
+                common_tree_setData({
+                    dom : office_apply_attendPunch.find('.line_edit_box .box_copyer'),
+                    data : data.treeAll
+                });
+                // 审批人
+                common_approval_setData({
+                    dom: office_apply_attendPunch.find('.line_edit_box .box_approver'),
+                    data : data.approval
+                });
+            }
+        });
+    });
+    office_apply_attendPunch.find('.line_edit_submit').click(function() {
+        um_data_submit({
+            url: office_apply_attendPunch_api.edit,
+            form: office_apply_attendPunch.find('.line_edit_box form'),
+            dataSource: office_apply_attendPunch_dataSource,
+        });
+    });
+
+    // 查看
+    office_apply_attendPunch.on("click", '.line_show_btn', function() {
+        $.ajax({
+            url     : office_apply_attendPunch_api.show,
+            data    : { id: $(this).attr('dataId') },
+            type    : "post",
+            dataType: "json",
+            success : function(data){
+                var data = data.data;
+                var temp = `
+                <tr><td><b>流水号</b>   ${data.serialnumber}</td></tr>
+                <tr><td><b>审批状态</b> ${data.statename}</td></tr>
+                <tr><td><b>补卡时间</b> ${data.punchtime}</td></tr>
+                <tr><td><b>补卡原因</b> ${data.text}</td></tr>
+                `;
+                office_apply_attendPunch.find('.line_show_box tbody').html(temp);
+                office_apply_attendPunch.find('.line_show_box').modal('show');
+                // 抄送人
+                common_tree_setData({
+                    dom : office_apply_attendPunch.find('.line_show_box .box_copyer'),
+                    data : data.treeChecked
+                });
+                // 审批人
+                common_approval_setData({
+                    dom: office_apply_attendPunch.find('.line_show_box .box_approver'),
+                    data : data.approval
+                }); 
+            }
+        });
+    });
+
+    // 撤销
+    office_apply_attendPunch.on("click", '.line_back_btn', function() {
+        office_apply_attendPunch.find('.line_back_box [name="id"]').val( $(this).attr('dataId') );
+        office_apply_attendPunch.find('.line_back_box').modal('show');
+    });
+    office_apply_attendPunch.on("click", '.line_back_submit', function() {
+        um_data_submit({
+            url: office_apply_attendPunch_api.back,
+            form: office_apply_attendPunch.find('.line_back_box form'),
+            dataSource: office_apply_attendPunch_dataSource,
+        });
+    });
+
+    // 催办
+    office_apply_attendPunch.on("click", '.line_urge_btn', function() {
+        office_apply_attendPunch.find('.line_urge_box [name="id"]').val( $(this).attr('dataId') );
+        office_apply_attendPunch.find('.line_urge_box').modal('show');
+    });
+    office_apply_attendPunch.on("click", '.line_urge_submit', function() {
+        um_data_submit({
+            url: office_apply_attendPunch_api.urge,
+            form: office_apply_attendPunch.find('.line_urge_box form'),
+            dataSource: office_apply_attendPunch_dataSource,
+        });
+    });
+
+    // 日期相关---------------------------------------------------------------------------------------------
+    office_apply_attendPunch.find('.tool-search [name="starttime"]').datetimepicker(option_date);
+    office_apply_attendPunch.find('.tool-search [name="endtime"]').datetimepicker(option_date);
+    office_apply_attendPunch.find('.tool_add_box [name="punchtime"]').datetimepicker(option_hour);
+    office_apply_attendPunch.find('.line_edit_box [name="punchtime"]').datetimepicker(option_hour);
+
+    // 抄送人/审批人相关-----------------------------------------------------------------------------------
+    common_tree_create({
+        dom : office_apply_attendPunch.find('.tool_add_box .box_copyer'),
+        url : office_apply_attendPunch_api.tree,
+        is_open : true,
+        is_check : true,
+    });
+    common_tree_create({
+        dom : office_apply_attendPunch.find('.line_edit_box .box_copyer'),
+        url : office_apply_attendPunch_api.tree,
+        is_open : true,
+        is_check : true,
+    });
+    common_tree_create({
+        dom : office_apply_attendPunch.find('.line_show_box .box_copyer'),
+        url : office_apply_attendPunch_api.tree,
+        is_open : true,
+    });
+
+}); //预加载结尾
+</script>

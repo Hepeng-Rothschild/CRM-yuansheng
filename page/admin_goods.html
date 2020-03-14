@@ -1,0 +1,568 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="admin_goods">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped">
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <form class="tool-search">
+                <input type="hidden" name='page'>
+                <input type="hidden" name='recPerPage'>
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" name="sid"><option value="0">物品名称</option></select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="search">
+                    </div>
+                </div>
+                <label>
+                    <span>物品类型：</span>
+                    <select class="form-control" name="type"><!-- JS推进 --></select>
+                </label>
+                <label><button type="button" class="btn btn-primary tool_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </form>
+            <div class="tool-deal">
+                <label><button type="button" class="btn btn-primary tool_add_btn"><i class="icon icon-plus"></i>添加</button></label>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 添加盒子 -->
+    <div class="modal modal-for-page fade tool_add_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2">物品名称</label>
+                            <div class="col-sm-4"><input type="text" class="form-control" name="name"></div>
+                            <label class="col-sm-2">物品类型</label>
+                            <div class="col-sm-4"><select class="form-control" name="type"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">物品数量</label>
+                            <div class="col-sm-4"><input type="number" class="form-control" name="numb"></div>
+                            <label class="col-sm-2">物品单位</label>
+                            <div class="col-sm-4"><select class="form-control" name="unit"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 small">是否需要归还</label>
+                            <div class="col-sm-4">
+                                <label class="thin"><input type="radio" name='return' value='1' checked>是 </label>
+                                <label class="thin"><input type="radio" name='return' value='0'>否 </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary tool_add_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改盒子 -->
+    <div class="modal modal-for-page fade line_edit_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label class="col-sm-2">物品名称</label>
+                            <div class="col-sm-4"><input type="text" class="form-control" name="name"></div>
+                            <label class="col-sm-2">物品类型</label>
+                            <div class="col-sm-4"><select class="form-control" name="type"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">物品数量</label>
+                            <div class="col-sm-4"><input type="number" class="form-control" name="numb"></div>
+                            <label class="col-sm-2">物品单位</label>
+                            <div class="col-sm-4"><select class="form-control" name="unit"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 small">是否需要归还</label>
+                            <div class="col-sm-4">
+                                <label class="thin"><input type="radio" name='return' value='1'>是 </label>
+                                <label class="thin"><input type="radio" name='return' value='0'>否 </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary line_edit_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 删除盒子 -->
+    <div class="modal modal-for-page fade line_del_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p>是否删除？</p>
+                    <form><input type="hidden" name="id"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger line_del_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- 采购盒子 -->
+    <div class="modal modal-for-page fade line_buy_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">采购</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label class="col-sm-2">采购时间</label>
+                            <div class="col-sm-4"><input type="date" class="form-control" name="date"></div>
+                            <label class="col-sm-2">采购人</label>
+                            <div class="col-sm-4"><input type="text" class="form-control" name="staff"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">物品数量</label>
+                            <div class="col-sm-4"><input type="number" class="form-control" name="numb"></div>
+                            <label class="col-sm-2">物品单位</label>
+                            <div class="col-sm-4"><select class="form-control" name="unit"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">物品单价</label>
+                            <div class="col-sm-4"><input type="number" class="form-control" name="price1"></div>
+                            <label class="col-sm-2">物品总价</label>
+                            <div class="col-sm-4"><input type="number" class="form-control" name="prices"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 small">备注信息</label>
+                            <div class="col-sm-10"><textarea class="form-control" name="text"></textarea></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary line_buy_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 出库盒子 -->
+    <div class="modal modal-for-page fade line_out_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">出库</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label class="col-sm-2">出库时间</label>
+                            <div class="col-sm-4"><input type="date" class="form-control" name="date"></div>
+                            <label class="col-sm-2">使用人</label>
+                            <div class="col-sm-4"><input type="text" class="form-control" name="staff"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">物品数量</label>
+                            <div class="col-sm-4"><input type="number" class="form-control" name="numb"></div>
+                            <label class="col-sm-2">物品单位</label>
+                            <div class="col-sm-4"><select class="form-control" name="unit"><!-- JS推进 --></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 small">备注信息</label>
+                            <div class="col-sm-10"><textarea class="form-control" name="text"></textarea></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary line_out_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- page-wrapper -->
+
+
+<!-- 详情外套 -->
+<div class="detail-wrapper mode-show" id="admin_goods_detail">
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade detail_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+
+                    <!-- 数据表单 -->
+                    <form class="detail_box_form">
+                        <table class="table"><!--JS推进--></table>
+                    </form>
+
+                   <!-- 切换表格 -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-tab="" href=".detail_tab1">采购记录</a></li>
+                        <li><a data-tab="" href=".detail_tab2">出库记录</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active detail_tab1">
+                            <form class="tool-search">
+                                <input type="hidden" name='page'>
+                                <input type="hidden" name='recPerPage'>
+                                <input type="hidden" name="cid" value="null">
+                            </form>
+                            <div class="datagrid datagrid-striped">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane detail_tab2">
+                            <form class="tool-search">
+                                <input type="hidden" name='page'>
+                                <input type="hidden" name='recPerPage'>
+                                <input type="hidden" name="cid" value="null">
+                            </form>
+                            <div class="datagrid datagrid-striped">
+                                <div class="datagrid-container"></div>
+                                <ul class="pager btn-mini" data-elements="first_icon,prev_icon,next_icon,last_icon,size_menu,goto,page_of_total_text" data-menu-direction="dropup"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+$(function() {
+
+    // 变量声明-----------------------------------------------------------------------------------------------
+    var admin_goods = $("#admin_goods"); //页面ID
+    var admin_goods_api = {
+        datagrid : API.test_datagrid, // 数据表格
+        type : LOCAL + 'Test/Admin/goods_type_select.json', // 物品类型下拉
+        unit : LOCAL + 'Test/Admin/goods_unit_select.json', // 物品单位下拉
+        show : LOCAL + 'Test/Admin/goods_show.json', // 查看
+        add  : API.test_response, // 添加
+        edit : API.test_response, // 修改
+        del  : API.test_response, // 删除
+        buy  : API.test_response, // 采购
+        out  : API.test_response, // 出库
+        tab1 : API.test_datagrid, // 数据表格
+        tab2 : API.test_datagrid, // 数据表格
+    }
+
+    //物品类型下拉(搜索/添加/修改)
+    um_select_option({
+        dom : admin_goods.find('.tool-search [name="type"]'),
+        url : admin_goods_api.type,
+        use : 'search'
+    });
+    um_select_option({
+        dom : admin_goods.find('.tool_add_box [name="type"], .line_edit_box [name="type"]'),
+        url : admin_goods_api.type,
+        use : 'select'
+    });
+
+    //物品单位下拉(添加/修改/采购/出库)
+    um_select_option({
+        dom : admin_goods.find('[name="unit"]'),
+        url : admin_goods_api.unit,
+        use : 'select'
+    });
+
+    // 数据表格-----------------------------------------------------------------------------------------------
+    // 数据源
+    var admin_goods_dataSource = {
+        cols   : [
+            {name: "name",label: "物品名称",width: 100,html: true,
+                valueOperator: {
+                    getter: function(dataValue, cell) {
+                        return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;
+                    }
+                }
+            },
+            {name: "text4",label: "物品类型",width: 90},
+            {name: "state",label: "库存数量",width: 90},
+            {name: "text1",label: "单位",  width: 90},
+            {name:"",  label:"操作",width:150,html:true,
+                valueOperator : {
+                    getter : function(dataValue,cell){
+                        return `
+                        <a class="line_buy_btn"  dataId="${cell.config.data.id}">采购</a>
+                        <a class="line_out_btn"  dataId="${cell.config.data.id}">出库</a>
+                        <a class="line_edit_btn" dataId="${cell.config.data.id}">修改</a>
+                        <a class="line_del_btn"  dataId="${cell.config.data.id}">删除</a>
+                        `;
+                    }
+                }
+            }
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : admin_goods, 
+                url      : admin_goods_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : admin_goods,
+                data     : data
+            });
+        }
+    };
+    // 实例化
+    admin_goods.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : admin_goods.find('.datagrid'),
+            dataSource : admin_goods_dataSource
+        })
+    );
+    // 搜索
+    admin_goods.find('.tool_search_btn').click(function(){ 
+        zui_datagrid_render({
+            datagrid_obj : admin_goods.find('.datagrid').data("zui.datagrid"),
+            dataSource   : admin_goods_dataSource
+        }); 
+    });
+
+    // 操作按钮-----------------------------------------------------------------------------------------------
+    //添加
+    admin_goods.on("click", '.tool_add_btn', function() {
+        common_form_reset();
+        admin_goods.find('.tool_add_box').modal('show');
+    });
+    admin_goods.on("click", '.tool_add_submit', function() {
+        um_data_submit({
+            url: admin_goods_api.add,
+            form: admin_goods.find('.tool_add_box form'),
+            dataSource: admin_goods_dataSource,
+        });
+    });
+
+    // 修改
+    admin_goods.on("click", '.line_edit_btn', function() {
+        $.ajax({
+            url     : admin_goods_api.show,
+            data    : { id: $(this).attr('dataId') },
+            type    : "post",
+            dataType: "json",
+            success : function(data){
+                if(data.status == 1){
+                    var data = data.data;
+                    um_data_set(admin_goods.find('.line_edit_box form'), data);
+                    admin_goods.find('.line_edit_box').modal('show');
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+    });
+    admin_goods.on("click", '.line_edit_submit', function() {
+        um_data_submit({
+            url: admin_goods_api.edit,
+            form: admin_goods.find('.line_edit_box form'),
+            dataSource: admin_goods_dataSource,
+        });
+    });
+
+    // 删除
+    admin_goods.on("click", '.line_del_btn', function() {
+        admin_goods.find('.line_del_box [name="id"]').val( $(this).attr('dataId') );
+        admin_goods.find('.line_del_box').modal('show');
+    });
+    admin_goods.on("click", '.line_del_submit', function() {
+        um_data_submit({
+            url: admin_goods_api.del,
+            form: admin_goods.find('.line_del_box form'),
+            dataSource: admin_goods_dataSource,
+        });
+    });
+
+    // 采购
+    admin_goods.on("click", '.line_buy_btn', function() {
+        common_form_reset();
+        admin_goods.find('.line_buy_box [name="id"]').val( $(this).attr('dataId') );
+        admin_goods.find('.line_buy_box').modal('show');
+    });
+    admin_goods.on("click", '.line_buy_submit', function() {
+        um_data_submit({
+            url: admin_goods_api.buy,
+            form: admin_goods.find('.line_buy_box form'),
+            dataSource: admin_goods_dataSource,
+        });
+    });
+
+    // 出库
+    admin_goods.on("click", '.line_out_btn', function() {
+        common_form_reset();
+        admin_goods.find('.line_out_box [name="id"]').val( $(this).attr('dataId') );
+        admin_goods.find('.line_out_box').modal('show');
+    });
+    admin_goods.on("click", '.line_out_submit', function() {
+        um_data_submit({
+            url: admin_goods_api.out,
+            form: admin_goods.find('.line_out_box form'),
+            dataSource: admin_goods_dataSource,
+        });
+    });
+
+    // 详情部分---------------------------------------------------------------------------
+    // 变量声明
+    var admin_goods_detail = $("#admin_goods_detail");
+    var admin_goods_detail_dataSource_tab1 = {
+        cols   : [
+            {name:"datetime", label:"采购时间", width:140},
+            {name:"name", label:"采购人", width:80},
+            {name:"text2", label:"数量", width:80},
+            {name:"text2", label:"单位", width:80},
+            {name:"text2", label:"单价", width:80},
+            {name:"text2", label:"总价", width:80},
+            {name:"text2", label:"现有库存", width:80},
+            {name:"tex10", label:"备注", width:180},
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : admin_goods_detail.find('.detail_tab1'), 
+                url      : admin_goods_api.tab1
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : admin_goods_detail.find('.detail_tab1'),
+                data     : data
+            });
+        }
+    }
+    var admin_goods_detail_dataSource_tab2 = {
+        cols   : [
+            {name:"datetime", label:"出库时间", width:140},
+            {name:"name", label:"使用人", width:80},
+            {name:"text2", label:"数量",  width:80},
+            {name:"text2", label:"单位", width:80},
+            {name:"text2", label:"现在库存", width:80},
+            {name:"text2", label:"是否归还", width:80 },
+            {name:"tex10", label:"备注", width:180}
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : admin_goods_detail.find('.detail_tab2'), 
+                url      : admin_goods_api.tab2
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : admin_goods_detail.find('.detail_tab2'),
+                data     : data
+            });
+        }
+    }
+
+    // 详情查看
+    admin_goods.on("click", '.line_show_btn', function() {
+        //远程请求
+        $.ajax({
+            url     : admin_goods_api.show,
+            type    : "post",
+            dataType: "json",
+            data    : { id: $(this).attr('dataId') },
+            success : function(data){
+                if( data.status>0 ){
+                    var data = data.data;
+                    //基础表格
+                    var temp = `
+                    <tbody>
+                        <tr>
+                            <td><div class="flex-box"><b>物品名称</b>${data.name}</span></div></td>
+                            <td><div class="flex-box"><b>物品类型</b>${data.typename}</span></div></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>物品数量</b>${data.numb}</div></td>
+                            <td><div class="flex-box"><b>物品单位</b>${data.unitname}</div></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><div class="flex-box"><b>是否需要归还</b>${data.returnname}</div></td>
+                            <td></td><td></td>
+                        </tr>
+                    </tbody>
+                    `;
+                    admin_goods_detail.find('.detail_box table').html(temp); // DOM填充
+                    //切换表格刷新
+                    zui_datagrid_render({
+                        datagrid_obj : admin_goods_detail.find('.detail_tab1 .datagrid').data("zui.datagrid"),
+                        dataSource   : admin_goods_detail_dataSource_tab1
+                    });
+                    zui_datagrid_render({
+                        datagrid_obj : admin_goods_detail.find('.detail_tab2 .datagrid').data("zui.datagrid"),
+                        dataSource   : admin_goods_detail_dataSource_tab2
+                    });
+                    admin_goods_detail.find('.detail_box').modal('show'); // 弹框显示
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+ 
+    });
+
+    //切换表格-业务回访
+    admin_goods_detail.find('.detail_tab1 .datagrid').datagrid(
+        zui_datagrid_option({
+            height     : 400,
+            datagrid   : admin_goods_detail.find('.detail_tab1 .datagrid'),
+            dataSource : admin_goods_detail_dataSource_tab1
+        })
+    );
+
+    //切换表格-设计回访
+    admin_goods_detail.find('.detail_tab2 .datagrid').datagrid(
+        zui_datagrid_option({
+            height     : 400,
+            datagrid   : admin_goods_detail.find('.detail_tab2 .datagrid'),
+            dataSource : admin_goods_detail_dataSource_tab2
+        })
+    );
+
+}); //预加载结尾
+</script>

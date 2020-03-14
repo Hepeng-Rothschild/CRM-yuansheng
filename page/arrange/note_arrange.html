@@ -25,7 +25,27 @@ function template_page_open(template_page,_this){
             DETAIL_SOURCE = { data_id, page_id }
         }
     });
-} 
+}
+
+//跟踪日志
+$(function(){
+    //图片查看
+    $(document).on("click",".common_topic_imgs_btn",function(){
+        $(this).next().is(":visible") ? $(this).next().hide() : $(this).next().show();
+    });
+    //回复点击
+    $(document).on("click",".common_topic_answer_btn",function(){
+        common_topic_answer_reset();
+        $(this).next(".common_topic_answer_text_wrap").show();
+    });
+});
+//回复重置
+function common_topic_answer_reset(){
+    $(".common_topic_imgs_box").hide();
+    $(".common_topic_answer_text_wrap").hide();
+    $(".common_topic_answer_text").val("");
+    $(".common_topic_answer_submit").attr("tid","");
+}
 </pre>
 
 <h2>年前遗留问题</h2>
@@ -62,3 +82,39 @@ function template_page_open(template_page,_this){
     1-common_tabs.onClose 重复调用问题
     2-日历面板和上传冲突问题
 </pre>
+
+<h2>节点树组件</h2>
+<button id="reset">重置</button>
+<button id="setData">赋值</button>
+<input class="tree_result_id" type="text">
+<input class="tree_result_text" type="text">
+<ul class="tree tree-lines tree-chevrons tab1_tree"></ul>
+
+<script>
+common_tree_create({
+    dom : $('.tab1_tree'),
+    is_open: true,
+    is_check: true,
+});
+
+$('#reset').click(function(){
+    common_tree_reset({
+        dom : $('.tab1_tree')
+    });
+});
+
+$('#setData').click(function(){
+    $.ajax({
+        url : "",
+        data : {},
+        type : 'post',
+        success : function(data){
+            var data = data.data;
+            common_tree_setData({
+                dom : $('.tab1_tree'),
+                data : data.tree
+            });
+        }
+    });
+});
+</script>
