@@ -4,11 +4,11 @@
         {
             "title"      :"出勤休息",
             "children":[
-                { "title":"请假","url":"blank","tips":0},
-                { "title":"出差","url":"blank","tips":0},
-                { "title":"加班","url":"blank","tips":0},
-                { "title":"补卡","url":"blank","tips":0},
-                { "title":"外出","url":"blank","tips":0}
+                { "title":"请假","url":"office_notice_attendLeave","tips":1},
+                { "title":"出差","url":"office_notice_attendTravel","tips":1},
+                { "title":"加班","url":"office_notice_attendOvertime","tips":1},
+                { "title":"补卡","url":"office_notice_attendPunch","tips":1},
+                { "title":"外出","url":"office_notice_attendGoout","tips":1}
             ]
         },
         {

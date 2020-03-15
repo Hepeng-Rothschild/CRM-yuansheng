@@ -387,7 +387,7 @@
                     <h4 class="modal-title">催办</h4>
                 </div>
                 <div class="modal-body">
-                    <p>是否提交催办？</p>
+                    <p>是否催办？</p>
                     <form><input type="hidden" name="id"></form>
                 </div>
                 <div class="modal-footer">
@@ -423,7 +423,7 @@ $(function() {
     var office_apply_attendTravel_dataSource = {
         cols   : [
             {name: "datetime", label: "申请时间", width: 150},
-            {name: "username", label: "流水账号", width: 90, html: true,
+            {name: "username", label: "流水号", width: 90, html: true,
                 valueOperator: {
                     getter: function(dataValue, cell) {
                         return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;

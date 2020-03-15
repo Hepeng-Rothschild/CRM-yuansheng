@@ -1,0 +1,259 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="office_approval_attendGoout">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped">
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <form class="tool-search">
+                <input type="hidden" name='page'>
+                <input type="hidden" name='recPerPage'>
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" name="sid">
+                            <option value="1">流水号</option>
+                            <option value="1">用户名</option>
+                            <option value="1">申请人姓名</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="search">
+                    </div>
+                </div>
+                <div class="im-label">
+                    <span>申请时间</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="starttime" readonly> 
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="endtime"readonly>
+                    </div>
+                </div>
+                <label>
+                    <span>部门</span>
+                    <select class="form-control" name="departname"><!-- JS推进 --></select>
+                </label>
+                <label>
+                    <span>审批状态</span>
+                    <select class="form-control" name="state">
+                        <option value="0">全部</option>
+                        <option value="1">审批中</option>
+                        <option value="2">审批完成</option>
+                        <option value="3">撤销</option>
+                        <option value="4">已撤销</option>
+                    </select>
+                </label>
+                <label><button type="button" class="btn btn-primary tool_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade line_show_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        <table class="table detail-table"><tbody><!-- JS推进 --></tbody></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 同意盒子 -->
+    <div class="modal modal-for-page fade line_agree_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">同意</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label class="col-sm-2">同意意见</label>
+                            <div class="col-sm-8"><textarea class="form-control" name="text"></textarea></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary line_agree_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 拒绝盒子 -->
+    <div class="modal modal-for-page fade line_reject_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">拒绝</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="container form-horizontal">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label class="col-sm-2">拒绝意见</label>
+                            <div class="col-sm-8"><textarea class="form-control" name="text"></textarea></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary line_reject_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<!-- page-wrapper -->
+
+<script>
+$(function() {
+
+    // 变量声明-----------------------------------------------------------------------------------------------
+    var office_approval_attendGoout = $("#office_approval_attendGoout"); // 页面ID
+    var office_approval_attendGoout_api = {
+        department : LOCAL + "Test/test_select.json", // 部门下拉
+        datagrid : API.test_datagrid, // 数据表格
+        show : LOCAL + "Test/Office/apply/attend_goout.json", // 查看
+        back : API.test_response, // 同意
+        urge : API.test_response, // 拒绝
+    }
+
+    // 数据表格-----------------------------------------------------------------------------------------------
+    // 数据源
+    var office_approval_attendGoout_dataSource = {
+        cols   : [
+            {name: "datetime", label: "申请时间", width: 150},
+            {name: "username", label: "流水号", width: 90, html: true,
+                valueOperator: {
+                    getter: function(dataValue, cell) {
+                        return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;
+                    }
+                }
+            },
+            {name: "departname", label: "部门", width: 90},
+            {name: "name", label: "申请人", width: 90},
+            {name: "name", label: "用户名", width: 90},
+            {name: "datetime", label: "开始时间", width: 140},
+            {name: "datetime", label: "结束时间", width: 140},
+            {name: "text4", label: "时长", width: 90},
+            {name: "text4", label:"审批状态", width:90},
+            {name:"", label:"操作", width:90, html:true,
+                valueOperator : {
+                    getter : function(dataValue,cell){
+                        return `
+                        <a class="line_agree_btn" dataId="${cell.config.data.id}">同意</a>
+                        <a class="line_reject_btn" dataId="${cell.config.data.id}">拒绝</a>`;
+                    }
+                }
+            }
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : office_approval_attendGoout, 
+                url      : office_approval_attendGoout_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : office_approval_attendGoout,
+                data     : data
+            });
+        }
+    };
+    // 实例化
+    office_approval_attendGoout.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : office_approval_attendGoout.find('.datagrid'),
+            dataSource : office_approval_attendGoout_dataSource
+        })
+    );
+    // 搜索
+    office_approval_attendGoout.find('.tool_search_btn').click(function(){ 
+        zui_datagrid_render({
+            datagrid_obj : office_approval_attendGoout.find('.datagrid').data("zui.datagrid"),
+            dataSource   : office_approval_attendGoout_dataSource
+        }); 
+    });
+
+    // 操作按钮-----------------------------------------------------------------------------------------------
+    // 查看
+    office_approval_attendGoout.on("click", '.line_show_btn', function() {
+        $.ajax({
+            url     : office_approval_attendGoout_api.show,
+            data    : { id: $(this).attr('dataId') },
+            type    : "post",
+            dataType: "json",
+            success : function(data){
+                var data = data.data;
+                var temp = `
+                <tr><td><b>流水号</b>   ${data.serialnumber}</td></tr>
+                <tr><td><b>审批状态</b> ${data.statename}</td></tr>
+                <tr><td><b>申请人  </b> ${data.text}</td></tr>
+                <tr><td><b>用户名  </b> ${data.text}</td></tr>
+                <tr><td><b>部门    </b> ${data.text}</td></tr>
+                <tr><td><b>起始时间</b> ${data.starttime} 至 ${data.endtime}</td></tr>
+                <tr><td><b>外出时长</b> ${data.duration}</td></tr>
+                <tr><td><b>外出原因</b> ${data.text}</td></tr>
+                `;
+                office_approval_attendGoout.find('.line_show_box tbody').html(temp);
+                office_approval_attendGoout.find('.line_show_box').modal('show');
+            }
+        });
+    });
+
+    // 同意
+    office_approval_attendGoout.on("click", '.line_agree_btn', function() {
+        office_approval_attendGoout.find('.line_agree_box [name="id"]').val( $(this).attr('dataId') );
+        office_approval_attendGoout.find('.line_agree_box').modal('show');
+    });
+    office_approval_attendGoout.on("click", '.line_agree_submit', function() {
+        um_data_submit({
+            url: office_approval_attendGoout_api.back,
+            form: office_approval_attendGoout.find('.line_agree_box form'),
+            dataSource: office_approval_attendGoout_dataSource,
+        });
+    });
+
+    // 拒绝
+    office_approval_attendGoout.on("click", '.line_reject_btn', function() {
+        office_approval_attendGoout.find('.line_reject_box [name="id"]').val( $(this).attr('dataId') );
+        office_approval_attendGoout.find('.line_reject_box').modal('show');
+    });
+    office_approval_attendGoout.on("click", '.line_reject_submit', function() {
+        um_data_submit({
+            url: office_approval_attendGoout_api.urge,
+            form: office_approval_attendGoout.find('.line_reject_box form'),
+            dataSource: office_approval_attendGoout_dataSource,
+        });
+    });
+    
+    // 日期相关---------------------------------------------------------------------------------------------
+    office_approval_attendGoout.find('.tool-search [name="starttime"]').datetimepicker(option_date);
+    office_approval_attendGoout.find('.tool-search [name="endtime"]').datetimepicker(option_date);
+
+    // 部门下拉---------------------------------------------------------------------------------------------
+    um_select_option({
+        dom : office_approval_attendGoout.find('[name="departname"]'),
+        url : office_approval_attendGoout_api.department,
+        use : 'search'
+    });
+
+}); //预加载结尾
+</script>
