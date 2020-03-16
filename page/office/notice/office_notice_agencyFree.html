@@ -63,14 +63,8 @@
                         <table class="table detail-table">
                             <tbody><!-- JS推进 --></tbody>
                             <tfoot><tr><td colspan="3">
-                                <div class="col-sm-6">
-                                    <b>抄送人</b>
-                                    <div class="office-border"><ul class="tree tree-lines tree-chevrons box_copyer"></ul></div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <b>审批人</b>
-                                    <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
-                                </div>
+                                <b>审批人</b>
+                                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
                             </td></tr></tfoot>
                         </table>
                     </div>
@@ -175,17 +169,13 @@ $(function() {
                     <td><b>已付金额</b>${data.text}</td>
                     <td><b>申请金额</b>${data.text}</td>
                 </tr>
-                <tr><td colspan='3'>申请理由 </td></tr>
-                <tr><td colspan='3'>申请附件 </td></tr>
-                <tr><td colspan='3'>发起人   </td></tr>
+                <tr><td colspan='3'><b>申请理由</b>${data.text}</td></tr>
+                <tr><td colspan='3'><b>申请附件</b>${data.text}</td></tr>
+                <tr><td colspan='3'><b>发起人  </b>${data.text}</td></tr>
+                <tr><td colspan='3'><b>抄送人  </b>${data.treeChecked}</td></tr>
                 `;
                 office_notice_agencyFree.find('.line_show_box tbody').html(temp);
                 office_notice_agencyFree.find('.line_show_box').modal('show');
-                // 抄送人
-                common_tree_setData({
-                    dom : office_notice_agencyFree.find('.line_show_box .box_copyer'),
-                    data : data.treeChecked
-                });
                 // 审批人
                 common_approval_setData({
                     dom: office_notice_agencyFree.find('.line_show_box .box_approver'),
@@ -199,13 +189,6 @@ $(function() {
     // 日期相关
     office_notice_agencyFree.find('[name="starttime"]').datetimepicker(option_date);
     office_notice_agencyFree.find('[name="endtime"]').datetimepicker(option_date);
-
-    // 抄送人/审批人相关
-    common_tree_create({
-        dom : office_notice_agencyFree.find('.line_show_box .box_copyer'),
-        url : office_notice_agencyFree_api.tree,
-        is_open : true,
-    });
 
 }); // 预加载结尾
 </script>

@@ -62,7 +62,13 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <div class="container">
-                        <table class="table detail-table"><tbody><!-- JS推进 --></tbody></table>
+                        <table class="table detail-table">
+                            <tbody><!-- JS推进 --></tbody>
+                            <tfoot><tr><td colspan="5">
+                                <b>审批人</b>
+                                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+                            </td></tr></tfoot>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -204,13 +210,14 @@ $(function() {
                 var data = data.data;
                 var temp = `
                 <tr>
-                    <td><b>流水号  </b> ${data.serialnumber}</td>
-                    <td><b>审批状态</b> ${data.statename}</td>
-                    <td><b>申请人  </b> ${data.text}</td>
-                    <td><b>用户名  </b> ${data.text}</td>
-                    <td><b>部门    </b> ${data.text}</td>
+                    <td><b>流水号  </b>${data.serialnumber}</td>
+                    <td><b>审批状态</b>${data.statename}</td>
+                    <td><b>申请人  </b>${data.text}</td>
+                    <td><b>用户名  </b>${data.text}</td>
+                    <td><b>部门    </b>${data.text}</td>
                 </tr>
-                <tr><td colspan="5"><b>出差原因</b> ${data.text}</td></tr>
+                <tr><td colspan="5"><b>出差原因</b>${data.text}</td></tr>
+                <tr><td colspan='5'><b>抄送人  </b>${data.treeChecked}</td></tr>
                 <tr style="background:#f5f5f5;">
                     <td style="color:#000;">#</td>
                     <td style="color:#000;">交通工具</td>
@@ -230,6 +237,11 @@ $(function() {
                 }
                 office_approval_attendTravel.find('.line_show_box tbody').html(temp);
                 office_approval_attendTravel.find('.line_show_box').modal('show');
+                // 审批人
+                common_approval_setData({
+                    dom: office_approval_attendTravel.find('.line_show_box .box_approver'),
+                    data : data.approval
+                });
             }
         });
     });

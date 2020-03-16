@@ -62,7 +62,13 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <div class="container">
-                        <table class="table detail-table"><tbody><!-- JS推进 --></tbody></table>
+                        <table class="table detail-table">
+                            <tbody><!-- JS推进 --></tbody>
+                            <tfoot><tr><td>
+                                <b>审批人</b>
+                                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+                            </td></tr></tfoot>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -202,16 +208,22 @@ $(function() {
             success : function(data){
                 var data = data.data;
                 var temp = `
-                <tr><td><b>流水号</b>   ${data.serialnumber}</td></tr>
-                <tr><td><b>审批状态</b> ${data.statename}</td></tr>
-                <tr><td><b>申请人  </b> ${data.text}</td></tr>
-                <tr><td><b>用户名  </b> ${data.text}</td></tr>
-                <tr><td><b>部门    </b> ${data.text}</td></tr>
-                <tr><td><b>补卡时间</b> ${data.punchtime}</td></tr>
-                <tr><td><b>补卡原因</b> ${data.text}</td></tr>
+                <tr><td><b>流水号  </b>${data.serialnumber}</td></tr>
+                <tr><td><b>审批状态</b>${data.statename}</td></tr>
+                <tr><td><b>申请人  </b>${data.text}</td></tr>
+                <tr><td><b>用户名  </b>${data.text}</td></tr>
+                <tr><td><b>部门    </b>${data.text}</td></tr>
+                <tr><td><b>补卡时间</b>${data.punchtime}</td></tr>
+                <tr><td><b>补卡原因</b>${data.text}</td></tr>
+                <tr><td><b>抄送人  </b>${data.treeChecked}</td></tr>
                 `;
                 office_approval_attendPunch.find('.line_show_box tbody').html(temp);
                 office_approval_attendPunch.find('.line_show_box').modal('show');
+                // 审批人
+                common_approval_setData({
+                    dom: office_approval_attendPunch.find('.line_show_box .box_approver'),
+                    data : data.approval
+                });
             }
         });
     });

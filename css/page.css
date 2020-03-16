@@ -332,7 +332,7 @@
 }
 /*智能办公-边框*/
 .office-border{
-    width:100%;
+    max-width: 300px;
     height: auto;
     padding:20px;
     border:1px solid #ddd;
@@ -385,6 +385,25 @@
 .office-approval .finish dt{
     border-right: 1px solid #3280fc;
 }
+/*智能办公-我的考试*/
+.office-exam-list{
+    padding-left: 0;
+}
+.office-exam-list>li{
+    margin: 10px 0;
+}
+.office-exam-list>li>p{
+    margin: 0;
+}
+.office-exam-list>li>p>b{
+    color: #333!important;
+    display: inline-block;
+    min-width: 70px;
+    text-align: right;
+}
+.office-exam-list>li>p>b:after{
+    content: '：';
+}
 /*详情样式*/
 .detail-wrapper table tbody tr:nth-child(1) td:nth-child(1),
 .detail-wrapper table tbody tr:nth-child(1) td:nth-child(2){
@@ -409,6 +428,12 @@
 .detail-table td>b:after,
 .detail-wrapper table b:after{
     content: '：';
+}
+.detail-table .text-danger{
+    color: #ea644a!important;
+}
+.detail-table .text-success{
+    color: #38b03f!important;
 }
 /*模式样式*/
 .detail-wrapper table td input,

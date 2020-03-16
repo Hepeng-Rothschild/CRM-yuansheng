@@ -11,8 +11,8 @@
         "children"  : [
             { "title":"我的申请","icon":"","url":"office_apply"},
             { "title":"我的审批","icon":"","url":"office_approval"},
-            { "title":"我的考试","icon":"","url":"office_exam"},
-            { "title":"抄送通知","icon":"","url":"office_notice"}
+            { "title":"抄送通知","icon":"","url":"office_notice"},
+            { "title":"我的考试","icon":"","url":"office_exam"}
         ]
     },
     {

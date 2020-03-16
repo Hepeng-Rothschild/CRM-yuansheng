@@ -56,27 +56,7 @@
         }
       ]
     }],
-    "treeChecked" : [{
-      "text": "总经办",
-      "children":  [
-        {
-          "text": "网络部",
-          "children": [
-            { "text":"刘德华","userid":"10010","checkd":"1"}
-          ]     
-        },{
-          "text": "主案部",
-          "children": [{
-            "text": "主案1部",
-            "children": [
-              { "text":"吴青峰","userid":"10015","checkd":"1"},
-              { "text":"陈嘉桦","userid":"10016","checkd":"1"},
-              { "text":"林宥嘉","userid":"10017","checkd":"1"}
-            ]
-          }]
-        }
-      ]
-    }],
+    "treeChecked" : "刘德华, 张学友, 郑中基, 李连杰",
     "approval" : [
       {"staff":"刘德华","statename":"已审批","statenumb":1},
       {"staff":"张学友","statename":"已审批","statenumb":1},

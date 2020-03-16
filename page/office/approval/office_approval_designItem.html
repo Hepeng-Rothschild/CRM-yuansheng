@@ -71,14 +71,8 @@
                         <table class="table detail-table">
                             <tbody><!-- JS推进 --></tbody>
                             <tfoot><tr><td colspan="3">
-                                <div class="col-sm-6">
-                                    <b>抄送人</b>
-                                    <div class="office-border"><ul class="tree tree-lines tree-chevrons box_copyer"></ul></div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <b>审批人</b>
-                                    <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
-                                </div>
+                                <b>审批人</b>
+                                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
                             </td></tr></tfoot>
                         </table>
                     </div>
@@ -96,8 +90,13 @@
                     <h4 class="modal-title">同意</h4>
                 </div>
                 <div class="modal-body">
-                    <p>是否同意？</p>
-                    <form><input type="hidden" name="id"></form>
+                    <form class="container form-horizontal">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label class="col-sm-2">同意意见</label>
+                            <div class="col-sm-8"><textarea class="form-control" name="text"></textarea></div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -116,8 +115,13 @@
                     <h4 class="modal-title">拒绝</h4>
                 </div>
                 <div class="modal-body">
-                    <p>是否拒绝？</p>
-                    <form><input type="hidden" name="id"></form>
+                    <form class="container form-horizontal">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label class="col-sm-2">拒绝意见</label>
+                            <div class="col-sm-8"><textarea class="form-control" name="text"></textarea></div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -225,21 +229,15 @@ $(function() {
                     <td><b>已收金额</b>${data.text}</td>
                     <td><b>未收金额</b>${data.text}</td>
                 </tr>
-                <tr>
-                    <td colspan='6'>合同总金额(含增减项)</b>${data.text}</td>
-                </tr>
-                <tr><td colspan='3'>申请金额 </td></tr>
-                <tr><td colspan='3'>申请理由 </td></tr>
-                <tr><td colspan='3'>申请附件 </td></tr>
-                <tr><td colspan='3'>发起人   </td></tr>
+                <tr><td colspan='3'><b>合同总金额(含增减项)</b>${data.text}</td></tr>
+                <tr><td colspan='3'><b>申请金额</b>${data.text}</td></tr>
+                <tr><td colspan='3'><b>申请理由</b>${data.text}</td></tr>
+                <tr><td colspan='3'><b>申请附件</b>${data.text}</td></tr>
+                <tr><td colspan='3'><b>发起人  </b>${data.text}</td></tr>
+                <tr><td colspan='3'><b>抄送人  </b>${data.treeChecked}</td></tr>
                 `;
                 office_approval_designItem.find('.line_show_box tbody').html(temp);
                 office_approval_designItem.find('.line_show_box').modal('show');
-                // 抄送人
-                common_tree_setData({
-                    dom : office_approval_designItem.find('.line_show_box .box_copyer'),
-                    data : data.treeChecked
-                });
                 // 审批人
                 common_approval_setData({
                     dom: office_approval_designItem.find('.line_show_box .box_approver'),
@@ -279,13 +277,6 @@ $(function() {
     // 日期相关
     office_approval_designItem.find('[name="starttime"]').datetimepicker(option_date);
     office_approval_designItem.find('[name="endtime"]').datetimepicker(option_date);
-
-    // 抄送人/审批人相关
-    common_tree_create({
-        dom : office_approval_designItem.find('.line_show_box .box_copyer'),
-        url : office_approval_designItem_api.tree,
-        is_open : true,
-    });
 
 }); // 预加载结尾
 </script>

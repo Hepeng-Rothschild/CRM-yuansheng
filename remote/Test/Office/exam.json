@@ -1,0 +1,57 @@
+{
+  "result" : true,
+  "message": "获取成功",
+  "status" : 1,
+  "data"   : {
+    "examname" : "考试标题",
+    "department" : "商务部",
+    "postname" : "商务专员",
+    "username" : "刘德华",
+    "datetime" : "2019-10-10 00:00:00",
+    "duration" : "40分钟",
+    "examscore" : "100",
+    "examlist" : [
+      {
+        "title" : "下列有关空气成分的说法不正确的是1",
+        "optionA" : "稀有气体可以制作霓虹灯",
+        "optionB" : "氮气充入食品包装中可以防腐",
+        "optionC" : "二氧化碳是一种空气污染物",
+        "optionD" : "氧气主要来源于植物的光合作用",
+        "answer" : "A",
+        "yourAnswer" : "A"
+      },{
+        "title" : "下列有关空气成分的说法不正确的是2",
+        "optionA" : "稀有气体可以制作霓虹灯",
+        "optionB" : "氮气充入食品包装中可以防腐",
+        "optionC" : "二氧化碳是一种空气污染物",
+        "optionD" : "氧气主要来源于植物的光合作用",
+        "answer" : "B",
+        "yourAnswer" : "A"
+      },{
+        "title" : "下列有关空气成分的说法不正确的是3",
+        "optionA" : "稀有气体可以制作霓虹灯",
+        "optionB" : "氮气充入食品包装中可以防腐",
+        "optionC" : "二氧化碳是一种空气污染物",
+        "optionD" : "氧气主要来源于植物的光合作用",
+        "answer" : "C",
+        "yourAnswer" : "A"
+      },{
+        "title" : "下列有关空气成分的说法不正确的是4",
+        "optionA" : "稀有气体可以制作霓虹灯",
+        "optionB" : "氮气充入食品包装中可以防腐",
+        "optionC" : "二氧化碳是一种空气污染物",
+        "optionD" : "氧气主要来源于植物的光合作用",
+        "answer" : "D",
+        "yourAnswer" : "A"
+      },{
+        "title" : "下列有关空气成分的说法不正确的是5",
+        "optionA" : "稀有气体可以制作霓虹灯",
+        "optionB" : "氮气充入食品包装中可以防腐",
+        "optionC" : "二氧化碳是一种空气污染物",
+        "optionD" : "氧气主要来源于植物的光合作用",
+        "answer" : "A",
+        "yourAnswer" : "A"
+      }
+    ]
+  }
+}

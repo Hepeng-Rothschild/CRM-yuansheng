@@ -1,8 +1,168 @@
 ﻿<!-- 页面外套 -->
-<div class="page-wrapper">
-	<br>
-	<div class="alert alert-info alert-block">
-		<h2>我的考试</h2><hr>office_exam.html
-	</div>
+<div class="page-wrapper" id="office_exam">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped">
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <form class="tool-search">
+                <input type="hidden" name='page'>
+                <input type="hidden" name='recPerPage'>
+                <!-- 默认条件 -->
+                <input type="hidden" name="sid" value="0">
+                <input type="hidden" name="search" value="">
+                <div class="im-label">
+                    <span>考试时间</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="starttime" readonly> 
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="endtime"readonly>
+                    </div>
+                </div>
+                <label>
+                    <span>考试状态</span>
+                    <select class="form-control" name="state">
+                        <option value="0">全部</option>
+                        <option value="1">合格</option>
+                        <option value="2">不合格</option>
+                    </select>
+                </label>
+                <label><button type="button" class="btn btn-primary tool_search_btn"><i class="icon icon-search"></i> 搜索</button></label>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade line_show_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        <table class="table detail-table"><tbody><!-- JS推进 --></tbody></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <!-- page-wrapper -->
+
+<script>
+$(function() {
+
+    // 变量声明-----------------------------------------------------------------------------------------------
+    var office_exam = $("#office_exam"); // 页面ID
+    var office_exam_api = {
+        datagrid : API.test_datagrid, // 数据表格
+        show : LOCAL + "Test/Office/exam.json", // 查看
+    }
+
+    // 数据表格-----------------------------------------------------------------------------------------------
+    // 数据源
+    var office_exam_dataSource = {
+        cols   : [
+            {name: "tex10", label: "考试名称", width: 180, html: true,
+                valueOperator: {
+                    getter: function(dataValue, cell) {
+                        return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;
+                    }
+                }
+            },
+            {name: "datetime", label: "发布时间", width: 150},
+            {name: "text4", label: "时长", width: 90},
+            {name: "text4", label: "考试成绩", width: 90},
+            {name: "text4", label: "考试状态", width: 90}
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : office_exam, 
+                url      : office_exam_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : office_exam,
+                data     : data
+            });
+        }
+    };
+    // 实例化
+    office_exam.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : office_exam.find('.datagrid'),
+            dataSource : office_exam_dataSource
+        })
+    );
+    // 搜索
+    office_exam.find('.tool_search_btn').click(function(){ 
+        zui_datagrid_render({
+            datagrid_obj : office_exam.find('.datagrid').data("zui.datagrid"),
+            dataSource   : office_exam_dataSource
+        }); 
+    });
+
+    // 操作按钮-----------------------------------------------------------------------------------------------
+    // 查看
+    office_exam.on("click", '.line_show_btn', function() {
+        $.ajax({
+            url     : office_exam_api.show,
+            data    : { id: $(this).attr('dataId') },
+            type    : "post",
+            dataType: "json",
+            success : function(data){
+                var data = data.data;
+                var temp = `
+                <tr><td colspan='3'><b>考试名称</b>${data.examname}</td></tr>
+                <tr>
+                	<td><b>部门</b>${data.department}</td>
+                	<td><b>职位</b>${data.postname}</td>
+                	<td><b>姓名</b>${data.username}</td>
+                </tr>
+                <tr>
+                	<td><b>时间</b>${data.datetime}</td>
+                	<td><b>时长</b>${data.duration}</td>
+                	<td><b>成绩</b>${data.examscore}</td>
+                </tr>
+                <tr><td colspan='3'><ol class='office-exam-list'>`;
+
+                // 考试内容
+                for (var i=0; i<data.examlist.length; i++) {
+                	var result = '<span class="text-success">【 正确 】</span>';
+					if (data.examlist[i].answer === data.examlist[i].yourAnswer) {
+						var result = '<span class="text-danger">【 错误 您的答案为 : ' + data.examlist[i].yourAnswer + ' 】</span>';
+					}
+                	temp += `
+                		<li>
+                			<p><b>题目${i+1}</b>${data.examlist[i].title}</p>
+                			<p><b>A   </b>${data.examlist[i].optionA}</p>
+                			<p><b>B   </b>${data.examlist[i].optionB}</p>
+                			<p><b>C   </b>${data.examlist[i].optionC}</p>
+                			<p><b>D   </b>${data.examlist[i].optionD}</p>
+                			<p><b>答案</b>${data.examlist[i].answer} ${result}</p>
+                		</li>
+                	`;
+                }
+                temp += `</ol></td></tr>`;
+                office_exam.find('.line_show_box tbody').html(temp);
+                office_exam.find('.line_show_box').modal('show');
+            }
+        });
+    });
+    
+    // 日期相关---------------------------------------------------------------------------------------------
+    office_exam.find('.tool-search [name="starttime"]').datetimepicker(option_date);
+    office_exam.find('.tool-search [name="endtime"]').datetimepicker(option_date);
+
+}); //预加载结尾
+</script>

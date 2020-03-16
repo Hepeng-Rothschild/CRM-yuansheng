@@ -64,15 +64,9 @@
                     <div class="container">
                         <table class="table detail-table">
                             <tbody><!-- JS推进 --></tbody>
-                            <tfoot><tr><td>
-                                <div class="col-sm-6">
-                                    <b>抄送人</b>
-                                    <div class="office-border"><ul class="tree tree-lines tree-chevrons box_copyer"></ul></div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <b>审批人</b>
-                                    <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
-                                </div>
+                            <tfoot><tr><td colspan="5">
+                                <b>审批人</b>
+                                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
                             </td></tr></tfoot>
                         </table>
                     </div>
@@ -155,13 +149,14 @@ $(function() {
                 var data = data.data;
                 var temp = `
                 <tr>
-                    <td><b>流水号  </b> ${data.serialnumber}</td>
-                    <td><b>审批状态</b> ${data.statename}</td>
-                    <td><b>申请人  </b> ${data.text}</td>
-                    <td><b>用户名  </b> ${data.text}</td>
-                    <td><b>部门    </b> ${data.text}</td>
+                    <td><b>流水号  </b>${data.serialnumber}</td>
+                    <td><b>审批状态</b>${data.statename}</td>
+                    <td><b>申请人  </b>${data.text}</td>
+                    <td><b>用户名  </b>${data.text}</td>
+                    <td><b>部门    </b>${data.text}</td>
                 </tr>
-                <tr><td colspan="5"><b>出差原因</b> ${data.text}</td></tr>
+                <tr><td colspan="5"><b>出差原因</b>${data.text}</td></tr>
+                <tr><td colspan='5'><b>抄送人  </b>${data.treeChecked}</td></tr>
                 <tr style="background:#f5f5f5;">
                     <td style="color:#000;">#</td>
                     <td style="color:#000;">交通工具</td>
@@ -181,13 +176,8 @@ $(function() {
                 }
                 office_notice_attendTravel.find('.line_show_box tbody').html(temp);
                 office_notice_attendTravel.find('.line_show_box').modal('show');
-                // 抄送人
-                common_tree_setData({
-                    dom : office_notice_attendTravel.find('.line_show_box .box_copyer'),
-                    data : data.treeChecked
-                });
                 // 审批人
-                common_notice_setData({
+                common_approval_setData({
                     dom: office_notice_attendTravel.find('.line_show_box .box_approver'),
                     data : data.approval
                 }); 
@@ -198,13 +188,6 @@ $(function() {
     // 日期相关---------------------------------------------------------------------------------------------
     office_notice_attendTravel.find('.tool-search [name="starttime"]').datetimepicker(option_date);
     office_notice_attendTravel.find('.tool-search [name="endtime"]').datetimepicker(option_date);
-
-    // 抄送人/审批人相关-----------------------------------------------------------------------------------
-    common_tree_create({
-        dom : office_notice_attendTravel.find('.line_show_box .box_copyer'),
-        url : office_notice_attendTravel_api.tree,
-        is_open : true,
-    });
 
     // 部门下拉---------------------------------------------------------------------------------------------
     um_select_option({
