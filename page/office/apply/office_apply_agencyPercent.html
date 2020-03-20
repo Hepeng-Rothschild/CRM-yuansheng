@@ -66,7 +66,7 @@
                     <form class="container form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <button type="button" class="btn btn-primary tool_add_box_select_btn">选择项目</button>
+                                <button type="button" class="btn btn-primary item_select_btn">选择项目</button>
                                 <input type="text" name="itemId" placeholder="项目ID">
                             </div>
                             <label class="col-sm-1">项目编号</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
@@ -161,7 +161,7 @@
                         <input type="hidden" name="id">
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <button type="button" class="btn btn-primary tool_add_box_select_btn">选择项目</button>
+                                <button type="button" class="btn btn-primary item_select_btn">选择项目</button>
                                 <input type="text" name="itemId" placeholder="项目ID">
                             </div>
                             <label class="col-sm-1">项目编号</label><div class="col-sm-3"><input type="text" class="form-control" field="text4" readonly></div>
@@ -313,7 +313,7 @@
 <div class="page-wrapper" id="office_apply_agencyPercent2">
 
     <!-- 项目选择 -->
-    <div class="modal modal-for-page fade tool_add_box_select_box" aria-hidden="false">
+    <div class="modal modal-for-page fade item_select_box" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -336,7 +336,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary tool_add_box_select_submit">提交</button>
+                    <button type="button" class="btn btn-primary item_select_submit">提交</button>
                 </div>
             </div>
         </div>
@@ -511,7 +511,7 @@ $(function() {
                 <tr>
                     <td><b>装修合同</b>${data.text}</td>
                     <td><b>空调合同</b>${data.text}</td>
-                    <td><b>消防合同/b>${data.text}</td>
+                    <td><b>消防合同</b>${data.text}</td>
                 </tr>
                 <tr>
                     <td><b>家具合同</b>${data.text}</td>
@@ -613,15 +613,17 @@ $(function() {
     );
 
     //打开
-    office_apply_agencyPercent.on("click", '.tool_add_box_select_btn', function() {
-        office_apply_agencyPercent2.find('.tool_add_box_select_box').modal('show');
+    var office_apply_agencyPercent_item_select_btn = '';
+    office_apply_agencyPercent.on("click", '.item_select_btn', function() {
+        office_apply_agencyPercent_item_select_btn = $(this);
+        office_apply_agencyPercent2.find('.item_select_box').modal('show');
     });
     //提交
-    office_apply_agencyPercent2.on("click", '.tool_add_box_select_submit', function() {
+    office_apply_agencyPercent2.on("click", '.item_select_submit', function() {
         var data_arr = office_apply_agencyPercent2.find('.datagrid').data("zui.datagrid").getCheckItems().filter(function(e){return e});
         if( data_arr.length==1 ){
-            var box1 = office_apply_agencyPercent.find('.tool_add_box');
-            var box2 = office_apply_agencyPercent2.find('.tool_add_box_select_box');
+            var box1 = office_apply_agencyPercent_item_select_btn.parents('.modal');
+            var box2 = office_apply_agencyPercent2.find('.item_select_box');
             box1.find('[name="itemId"]').val(data_arr[0].id);
             $.each(data_arr[0], function(key, value){
                 box1.find('[field="'+ key +'"]').val(value);

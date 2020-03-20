@@ -1,0 +1,382 @@
+<div id="office_apply_personnelEntry">
+    <br><br>
+    <form class="container">
+        <!-- 基本信息 -->
+        <blockquote>基本信息 <span class="small text-red">(以下均为必填项)</span></blockquote>
+        <ul class="form-checker-board">
+            <li class="col-sm-3"><label><span>姓名</span><input class="form-control" type="text" name="username"></label></li>
+            <li class="col-sm-3">
+                <label>
+                    <span>性别</span>
+                    <select class="form-control">
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                    </select>
+                </label>
+            </li>
+            <li class="col-sm-3"><label><span>手机</span><input class="form-control" type="text" name="tel"></label></li>
+            <li class="col-sm-3"><label><span>民族</span><input class="form-control" type="text" name="minzu"></label></li>
+            <li class="col-sm-3"><label><span>出生日期</span><input class="form-control" type="date" name="birthday"></label></li>
+            <li class="col-sm-3">
+                <label>
+                    <span>婚姻状况</span>
+                    <select class="form-control" name="marry">
+                        <option value="1">未婚</option>
+                        <option value="2">已婚</option>
+                        <option value="3">已育</option>
+                    </select>
+                </label>
+            </li>
+            <li class="col-sm-3"><label><span>紧急联系人</span><input class="form-control" type="text" name="user"></label></li>
+            <li class="col-sm-3"><label><span>联系人电话</span><input class="form-control" type="text" name="tels"></label></li>
+            <li class="col-sm-12">
+                <label>
+                    <span>现居地址</span>
+                    <div>
+                        <div class="input-group address-linkage">
+                            <select class="form-control" name="addr1"></select><span class="input-group-addon fix-border fix-padding"></span>
+                            <select class="form-control" name="addr2"></select><span class="input-group-addon fix-border fix-padding"></span>
+                            <select class="form-control" name="addr3"></select><span class="input-group-addon fix-border fix-padding"></span>
+                            <input type="text" class="form-control" name="addr4">
+                        </div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+        <div class="clearfix"></div><hr>
+        <!-- 入职情况 -->
+        <blockquote>入职情况 <span class="small text-red">(以下均为必填项)</span></blockquote>
+        <ul class="form-checker-board">
+            <li class="flex-box col-sm-3"><label><span>部门      </span><select class="form-control" name="department"><!-- JS推进 --></select></label></li>
+            <li class="flex-box col-sm-3"><label><span>职位      </span><select class="form-control" name="postname"><!-- JS推进 --></select></label></li>
+            <li class="flex-box col-sm-3"><label><span>入职日期  </span><input class="form-control" type="date" name="joindate"></label></li>
+            <li class="flex-box col-sm-3"><label><span>试用期工资</span><input class="form-control" type="text" name="money1"></label></li>
+            <li class="flex-box col-sm-3"><label><span>转正工资  </span><input class="form-control" type="text" name="money2"></label></li>
+        </ul>
+        <div class="clearfix"></div><hr>
+        <!-- 资料上传 -->
+        <blockquote>资料上传 <span class="small text-red">(证件照/身份证正面/身份证反面 为必填项; 图片大小不超过1M)</span></blockquote>
+        <ul>
+            <li class="col-sm-2">
+                <!-- 单图上传 -->
+                <div class="card zui_upload_img add_upload1" path="">
+                    <span class="media-wrapper"><img src=""></span>
+                    <div class="uploader-message text-center"><div class="content"></div></div>
+                    <div class="uploader-files file-list hidden"></div>
+                    <span class="card-heading">证件照</span>
+                    <span class="card-actions">
+                        <a class="btn btn-danger  btn-mini uploader-btn-delete">清空</a>
+                        <a class="btn btn-primary btn-mini uploader-btn-browse">上传</a>
+                    </span>
+                    <input type="hidden" class="uploader_path" name="upload1">
+                </div>
+                <!-- zui_upload_img -->
+            </li>
+            <li class="col-sm-2">
+                <!-- 单图上传 -->
+                <div class="card zui_upload_img add_upload2" path="">
+                    <span class="media-wrapper"><img src=""></span>
+                    <div class="uploader-message text-center"><div class="content"></div></div>
+                    <div class="uploader-files file-list hidden"></div>
+                    <span class="card-heading">身份证正面</span>
+                    <span class="card-actions">
+                        <a class="btn btn-danger  btn-mini uploader-btn-delete">清空</a>
+                        <a class="btn btn-primary btn-mini uploader-btn-browse">上传</a>
+                    </span>
+                    <input type="hidden" class="uploader_path" name="upload2">
+                </div>
+                <!-- zui_upload_img -->
+            </li>
+            <li class="col-sm-2">
+                <!-- 单图上传 -->
+                <div class="card zui_upload_img add_upload3" path="">
+                    <span class="media-wrapper"><img src=""></span>
+                    <div class="uploader-message text-center"><div class="content"></div></div>
+                    <div class="uploader-files file-list hidden"></div>
+                    <span class="card-heading">身份证反面</span>
+                    <span class="card-actions">
+                        <a class="btn btn-danger  btn-mini uploader-btn-delete">清空</a>
+                        <a class="btn btn-primary btn-mini uploader-btn-browse">上传</a>
+                    </span>
+                    <input type="hidden" class="uploader_path" name="upload3">
+                </div>
+                <!-- zui_upload_img -->
+            </li>
+            <li class="col-sm-2">
+                <!-- 单图上传 -->
+                <div class="card zui_upload_img add_upload4" path="">
+                    <span class="media-wrapper"><img src=""></span>
+                    <div class="uploader-message text-center"><div class="content"></div></div>
+                    <div class="uploader-files file-list hidden"></div>
+                    <span class="card-heading">毕业证件</span>
+                    <span class="card-actions">
+                        <a class="btn btn-danger  btn-mini uploader-btn-delete">清空</a>
+                        <a class="btn btn-primary btn-mini uploader-btn-browse">上传</a>
+                    </span>
+                    <input type="hidden" class="uploader_path" name="upload4">
+                </div>
+                <!-- zui_upload_img -->
+            </li>
+            <li class="col-sm-2">
+                <!-- 单图上传 -->
+                <div class="card zui_upload_img add_upload5" path="">
+                    <span class="media-wrapper"><img src=""></span>
+                    <div class="uploader-message text-center"><div class="content"></div></div>
+                    <div class="uploader-files file-list hidden"></div>
+                    <span class="card-heading">荣誉证书</span>
+                    <span class="card-actions">
+                        <a class="btn btn-danger  btn-mini uploader-btn-delete">清空</a>
+                        <a class="btn btn-primary btn-mini uploader-btn-browse">上传</a>
+                    </span>
+                    <input type="hidden" class="uploader_path" name="upload5">
+                </div>
+                <!-- zui_upload_img -->
+            </li>
+            <li class="col-sm-2">
+                <!-- 单图上传 -->
+                <div class="card zui_upload_img add_upload6" path="">
+                    <span class="media-wrapper"><img src=""></span>
+                    <div class="uploader-message text-center"><div class="content"></div></div>
+                    <div class="uploader-files file-list hidden"></div>
+                    <span class="card-heading">离职证明</span>
+                    <span class="card-actions">
+                        <a class="btn btn-danger  btn-mini uploader-btn-delete">清空</a>
+                        <a class="btn btn-primary btn-mini uploader-btn-browse">上传</a>
+                    </span>
+                    <input type="hidden" class="uploader_path" name="upload6">
+                </div>
+                <!-- zui_upload_img -->
+            </li>
+        </ul>
+        <div class="clearfix"></div><hr>
+        <!-- 最高学历 -->
+        <blockquote>最高学历 <span class="small text-red">(以下均为必填项)</span></blockquote>
+        <table class="table table-condensed table-fixed">
+            <thead>
+                <tr>
+                    <th>学校名称</th>
+                    <th>起止时间</th>
+                    <th>专业</th>
+                    <th>学历/学年制</th>
+                </tr>
+            </thead>
+            <tr>
+                <td><input class="form-control" type="text" name="schoolname"></td>
+                <td>
+                    <div class="input-group">
+                        <input class="form-control" type="date"><span class="input-group-addon fix-border fix-padding"></span>
+                        <input class="form-control" type="date">
+                    </div>
+                </td>
+                <td><input class="form-control" type="text"></td>
+                <td>
+                    <div class="input-group">
+                        <select class="form-control" name="learntype">
+                            <option value="1">初中</option>
+                            <option value="2">高中</option>
+                            <option value="3">中专</option>
+                            <option value="4">大专</option>
+                            <option value="5">本科</option>
+                            <option value="6">研究生</option>
+                            <option value="7">博士生</option>
+                        </select>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <select class="form-control" name="schooltype">
+                            <option value="1">全日制</option>
+                            <option value="2">非全日制</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <!-- 工作经历 -->
+        <blockquote>工作经历</blockquote>
+        <table class="table table-condensed table-fixed">
+            <thead>
+                <tr>
+                    <th>公司名称</th>
+                    <th>起止时间</th>
+                    <th>职位</th>
+                    <th>离职原因</th>
+                </tr>
+            </thead>
+            <tr>
+                <td><input class="form-control" type="text" name="jobname1"></td>
+                <td>
+                    <div class="input-group">
+                        <input class="form-control" type="date" name="jobstarttime1"><span class="input-group-addon fix-border fix-padding"></span>
+                        <input class="form-control" type="date" name="jobendtime1">
+                    </div>
+                </td>
+                <td><input class="form-control" type="text" name="jobpostname1"></td>
+                <td><input class="form-control" type="text" name="jobleavereason1"></td>
+            </tr>
+            <tr>
+                <td><input class="form-control" type="text" name="jobname2"></td>
+                <td>
+                    <div class="input-group">
+                        <input class="form-control" type="date" name="jobstarttime2"><span class="input-group-addon fix-border fix-padding"></span>
+                        <input class="form-control" type="date" name="jobendtime2">
+                    </div>
+                </td>
+                <td><input class="form-control" type="text" name="jobpostname2"></td>
+                <td><input class="form-control" type="text" name="jobleavereason2"></td>
+            </tr>
+            <tr>
+                <td><input class="form-control" type="text" name="jobname3"></td>
+                <td>
+                    <div class="input-group">
+                        <input class="form-control" type="date" name="jobstarttime3"><span class="input-group-addon fix-border fix-padding"></span>
+                        <input class="form-control" type="date" name="jobendtime3">
+                    </div>
+                </td>
+                <td><input class="form-control" type="text" name="jobpostname3"></td>
+                <td><input class="form-control" type="text" name="jobleavereason3"></td>
+            </tr>
+        </table>
+        <!-- 家庭状况 -->
+        <blockquote>家庭状况</blockquote>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>关系</th>
+                    <th>工作</th>
+                    <th>手机</th>
+                </tr>
+            </thead>
+            <tr>
+                <td><input class="form-control" type="text" name="familyusername1"></td>
+                <td><input class="form-control" type="text" name="familyrelation1"></td>
+                <td><input class="form-control" type="text" name="familywork1"></td>
+                <td><input class="form-control" type="text" name="familytel1"></td>
+            </tr>
+            <tr>
+                <td><input class="form-control" type="text" name="familyusername2"></td>
+                <td><input class="form-control" type="text" name="familyrelation2"></td>
+                <td><input class="form-control" type="text" name="familywork2"></td>
+                <td><input class="form-control" type="text" name="familytel2"></td>
+            </tr>
+        </table>
+        
+        <!-- 发起人/抄送人/审批人 -->
+        <div class="col-sm-3"><label>发起人</label><input type="text" class="form-control" readonly name="promoter"></div>
+        <div class="col-sm-9"></div><div class="clearfix"></div>
+        
+        <div class="col-sm-6"><label>抄送人</label>
+            <div class="office-border">
+                <ul class="tree tree-lines tree-chevrons box_copyer"></ul>
+                <input type="hidden" class="tree_result_id" name="copyer">
+            </div>
+        </div>
+        <div class="col-sm-6"><label>审批人</label>
+            <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+        </div>
+        <div class="clearfix"></div><hr>
+
+        <!-- 提交 -->
+        <div>
+            <button type="button" class="btn btn-default add_esc_btn">返回</button>
+            <button type="button" class="btn btn-primary add_submit_btn">提交</button>
+        </div>
+    </form>
+    <br><br>
+
+</div>
+
+<script>
+$(function(){
+
+    var office_apply_personnelEntry = $('#office_apply_personnelEntry');
+    var office_apply_personnelEntry_api = {
+        department : LOCAL + 'Test/test_select.json', // 部门
+        postname : LOCAL + 'Test/test_select.json', // 职位
+        tree: API.common_staff, // 员工树状图
+        approval : LOCAL + "Test/Office/apply/attend_approval.json", // 审批人进度
+        add : API.test_response // 添加提交
+    }
+    // 省市区联动实例化
+    office_apply_personnelEntry.find('.address-linkage').distpicker();
+
+    // 返回
+    office_apply_personnelEntry.find('.add_esc_btn').click(function(){
+        $("#common_tabs").data("zui.tabs").close();
+    });
+
+    // 提交
+    office_apply_personnelEntry.find('.add_submit_btn').click(function(){
+
+        // 数据处理
+        var form = office_apply_personnelEntry.find('form');
+        var data = um_data_get(form);
+        var stringifyData = {};
+        data.forEach(function(i){
+            stringifyData[i.name] = i.value;
+        });
+        data = { requestJson: JSON.stringify(stringifyData) }
+
+        // 远程提交
+        $.ajax({
+            url     : office_apply_personnelEntry_api.add,
+            data    : data,
+            type    : "post",
+            dataType: "json",
+            success : function(data){
+                if( data.status==1 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        $("#common_tabs").data("zui.tabs").close();
+                        // for( var i=0;i<form.length;i++ ){ form[i].reset(); }
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    // 抄送人
+    common_tree_create({
+        dom : office_apply_personnelEntry.find('.box_copyer'),
+        url : office_apply_personnelEntry_api.tree,
+        is_open : true,
+        is_check : true,
+    });
+    // 审批人
+    common_approval_create({
+        dom : office_apply_personnelEntry.find('.box_approver'),
+        url : office_apply_personnelEntry_api.approval,
+        data : { 'id' : '自定义传参' }
+    });
+
+    // 下拉菜单
+    // 部门
+    um_select_option({
+        dom : office_apply_personnelEntry.find('[name="department"]'),
+        url : office_apply_personnelEntry_api.department,
+        use : 'select'
+    });
+    // 职位
+    um_select_option({
+        dom : office_apply_personnelEntry.find('[name="postname"]'),
+        url : office_apply_personnelEntry_api.postname,
+        use : 'select'
+    });
+
+    // 上传相关
+    zui_upload_img({updom: office_apply_personnelEntry.find('.add_upload1'), type:"img"});
+    zui_upload_img({updom: office_apply_personnelEntry.find('.add_upload2'), type:"img"});
+    zui_upload_img({updom: office_apply_personnelEntry.find('.add_upload3'), type:"img"});
+    zui_upload_img({updom: office_apply_personnelEntry.find('.add_upload4'), type:"img"});
+    zui_upload_img({updom: office_apply_personnelEntry.find('.add_upload5'), type:"img"});
+    zui_upload_img({updom: office_apply_personnelEntry.find('.add_upload6'), type:"img"});
+
+}); // 预加载结尾
+</script>
+
+<style>
+#office_apply_personnelEntry .input-group input{
+    max-width: 130px;
+}
+</style>

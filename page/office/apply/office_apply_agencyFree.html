@@ -64,7 +64,7 @@
                 </div>
                 <div class="modal-body modal-scroll">
                     <form class="container form-horizontal">
-                        <button type="button" class="btn btn-primary tool_add_box_select_btn">选择项目</button>
+                        <button type="button" class="btn btn-primary item_select_btn">选择项目</button>
                         <input type="text" name="itemId" placeholder="项目ID">
                         <br><br>
                         <div class="form-group">
@@ -139,7 +139,7 @@
                 <div class="modal-body modal-scroll">
                     <form class="container form-horizontal">
                         <input type="hidden" name="id">
-                        <button type="button" class="btn btn-primary tool_add_box_select_btn">选择项目</button>
+                        <button type="button" class="btn btn-primary item_select_btn">选择项目</button>
                         <input type="text" name="itemId" placeholder="项目ID">
                         <br><br>
                         <div class="form-group">
@@ -273,7 +273,7 @@
 <div class="page-wrapper" id="office_apply_agencyFree2">
 
     <!-- 项目选择 -->
-    <div class="modal modal-for-page fade tool_add_box_select_box" aria-hidden="false">
+    <div class="modal modal-for-page fade item_select_box" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -296,7 +296,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary tool_add_box_select_submit">提交</button>
+                    <button type="button" class="btn btn-primary item_select_submit">提交</button>
                 </div>
             </div>
         </div>
@@ -550,15 +550,17 @@ $(function() {
     );
 
     //打开
-    office_apply_agencyFree.on("click", '.tool_add_box_select_btn', function() {
-        office_apply_agencyFree2.find('.tool_add_box_select_box').modal('show');
+    var office_apply_agencyFree_item_select_btn = '';
+    office_apply_agencyFree.on("click", '.item_select_btn', function() {
+        office_apply_agencyFree_item_select_btn = $(this);
+        office_apply_agencyFree2.find('.item_select_box').modal('show');
     });
     //提交
-    office_apply_agencyFree2.on("click", '.tool_add_box_select_submit', function() {
+    office_apply_agencyFree2.on("click", '.item_select_submit', function() {
         var data_arr = office_apply_agencyFree2.find('.datagrid').data("zui.datagrid").getCheckItems().filter(function(e){return e});
         if( data_arr.length==1 ){
-            var box1 = office_apply_agencyFree.find('.tool_add_box');
-            var box2 = office_apply_agencyFree2.find('.tool_add_box_select_box');
+            var box1 = office_apply_agencyFree_item_select_btn.parents('.modal');
+            var box2 = office_apply_agencyFree2.find('.item_select_box');
             box1.find('[name="itemId"]').val(data_arr[0].id);
             $.each(data_arr[0], function(key, value){
                 box1.find('[field="'+ key +'"]').val(value);

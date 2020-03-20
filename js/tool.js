@@ -216,10 +216,11 @@ function zui_datagrid_render(object){
  * return object   请求参数
  */
 function zui_datagrid_remote(object){
+    var defaultValue = (STATE == 'local') ? false : true;
     var object = {
         page_dom : object.page_dom,
         url      : object.url,
-        mode     : object.mode || false // false对接JSON true对接后台[###]
+        mode     : object.mode || defaultValue // false对接JSON true对接后台[###]
     }
     var pager_state = object.page_dom.find('.pager').data('zui.pager').state;
     object.page_dom.find("[name='page']").val( pager_state.page );

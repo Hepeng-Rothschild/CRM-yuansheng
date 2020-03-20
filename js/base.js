@@ -477,7 +477,7 @@ function zui_upload_img(object){
     var maxSize = object.maxSize || "1mb";                              //大小限制
     var staticFiles = object.list || [];                                //数据读取
     //上传DOM
-    var updom = $("#"+upid);
+    var updom = object.updom || $("#"+upid);                            //上传DOM(tool)
     //数据赋值
     if( staticFiles && staticFiles!="" ){
         updom.attr("path",staticFiles[0].url);
@@ -498,12 +498,14 @@ function zui_upload_img(object){
             var data = um_json(res.response);
             updom.attr("path",data.file);
             updom.find("img").attr("src", FILE_PATH + data.file);
+            updom.find('.uploader_path').val(FILE_PATH + data.file);    //结果赋值(tool)
         },
         staticFiles         : staticFiles,                              //静态文件
         deleteActionOnDone  : function(file,doRemoveFile){              //远程删除
             doRemoveFile();                                             //本地删除
             updom.attr("path","");
             updom.find("img").attr("src","");
+            updom.find('.uploader_path').val("");
         }
     });
     return upobj;                                                       //实例对象
@@ -856,6 +858,7 @@ function common_for_label_toggle_reset(selector){
 /* common_form_reset() 表单重置
  */
 function common_form_reset(){
+    console.log('表单重置');
     //表单重置
     var form = $("form");
     for( var i=0;i<form.length;i++ ){

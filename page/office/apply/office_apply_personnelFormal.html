@@ -1,0 +1,126 @@
+<div id="office_apply_personnelFormal">
+    <br><br>
+    <form class="container form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-1">入职日期</label><div class="col-sm-2"><input type="date" class="form-control" name="date1"></div>
+            <label class="col-sm-1">转正日期</label><div class="col-sm-2"><input type="date" class="form-control" name="date2"></div>
+            <label class="col-sm-1">试用期</label><div class="col-sm-2">  <input type="text" class="form-control" name="duration" readonly></div>
+            <label class="col-sm-1">申请时间</label><div class="col-sm-2"><input type="date" class="form-control" name="datenow" readonly></div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1">部门</label><div class="col-sm-2"><select class="form-control" name="department"><!-- JS推进 --></select></div>
+            <label class="col-sm-1">职位</label><div class="col-sm-2"><select class="form-control" name="postname"><!-- JS推进 --></select></div>
+            <label class="col-sm-6"></label>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-1">试用期对工作的总结</label><div class="col-sm-11"><textarea class="form-control" name="result"></textarea></div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1">对公司的意见和建议</label><div class="col-sm-11"><textarea class="form-control" name="suggest"></textarea></div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label class="col-sm-1">发起人</label><div class="col-sm-3"><input type="text" class="form-control" readonly name="promoter"></div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1">抄送人</label>
+            <div class="col-sm-5">
+                <div class="office-border">
+                    <ul class="tree tree-lines tree-chevrons box_copyer"></ul>
+                    <input type="hidden" class="tree_result_id" name="copyer">
+                </div>
+            </div>
+            <label class="col-sm-1">审批人</label>
+            <div class="col-sm-5">
+                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+            </div>
+        </div>
+        <hr>
+        <button type="button" class="btn btn-default add_esc_btn">关闭</button>
+        <button type="button" class="btn btn-primary add_submit_btn">提交</button>
+    </form>
+    <br><br>
+
+</div>
+
+<script>
+$(function(){
+
+    var office_apply_personnelFormal = $('#office_apply_personnelFormal');
+    var office_apply_personnelFormal_api = {
+        department : LOCAL + 'Test/test_select.json', // 部门
+        postname : LOCAL + 'Test/test_select.json', // 职位
+        tree: API.common_staff, // 员工树状图
+        approval : LOCAL + "Test/Office/apply/attend_approval.json", // 审批人进度
+        add : API.test_response // 添加提交
+    }
+
+    // 返回
+    office_apply_personnelFormal.find('.add_esc_btn').click(function(){
+        $("#common_tabs").data("zui.tabs").close();
+    });
+
+    // 提交
+    office_apply_personnelFormal.find('.add_submit_btn').click(function(){
+
+        // 数据处理
+        var form = office_apply_personnelFormal.find('form');
+        var data = um_data_get(form);
+        var stringifyData = {};
+        data.forEach(function(i){
+            stringifyData[i.name] = i.value;
+        });
+        data = { requestJson: JSON.stringify(stringifyData) }
+
+        // 远程提交
+        $.ajax({
+            url     : office_apply_personnelFormal_api.add,
+            data    : data,
+            type    : "post",
+            dataType: "json",
+            success : function(data){
+                if( data.status==1 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        $("#common_tabs").data("zui.tabs").close();
+                        // for( var i=0;i<form.length;i++ ){ form[i].reset(); }
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    // 抄送人
+    common_tree_create({
+        dom : office_apply_personnelFormal.find('.box_copyer'),
+        url : office_apply_personnelFormal_api.tree,
+        is_open : true,
+        is_check : true,
+    });
+    // 审批人
+    common_approval_create({
+        dom : office_apply_personnelFormal.find('.box_approver'),
+        url : office_apply_personnelFormal_api.approval,
+        data : { 'id' : '自定义传参' }
+    });
+
+    // 下拉菜单
+    // 部门
+    um_select_option({
+        dom : office_apply_personnelFormal.find('[name="department"]'),
+        url : office_apply_personnelFormal_api.department,
+        use : 'select'
+    });
+    // 职位
+    um_select_option({
+        dom : office_apply_personnelFormal.find('[name="postname"]'),
+        url : office_apply_personnelFormal_api.postname,
+        use : 'select'
+    });
+
+}); // 预加载结尾
+</script>
