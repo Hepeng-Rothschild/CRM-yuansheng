@@ -25,12 +25,13 @@
         { 
             "title"     :"行政",
             "children"  :[
-                { "title":"采购申请","url":"blank","tips":0},
-                { "title":"物品领用","url":"blank","tips":0},
-                { "title":"用车申请","url":"blank","tips":0},
-                { "title":"名片印制","url":"blank","tips":0},
-                { "title":"盖章申请","url":"blank","tips":0},
-                { "title":"通用审批","url":"blank","tips":0}
+                { "title":"采购申请","url":"office_approval_adminBuy","tips":0},
+                { "title":"物品领用","url":"office_approval_adminGooods","tips":0},
+                { "title":"用车申请","url":"office_approval_adminCar","tips":0},
+                { "title":"名片印制","url":"office_approval_adminCard","tips":0},
+                { "title":"盖章申请","url":"office_approval_adminSeal","tips":0},
+                { "title":"证件申请","url":"office_approval_adminCred","tips":0},
+                { "title":"通用审批","url":"office_approval_adminNormal","tips":0}
             ]
         },
         { 
