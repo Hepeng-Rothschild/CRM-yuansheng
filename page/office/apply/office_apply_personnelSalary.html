@@ -1,4 +1,4 @@
-<div id="office_apply_personnelPost">
+<div id="office_apply_personnelSalary">
     <br><br>
     <form class="container form-horizontal">
         <div class="form-group">
@@ -8,13 +8,14 @@
             <label class="col-sm-1">转入部门</label><div class="col-sm-2"><select class="form-control" name="postname"><!-- JS推进 --></select></div>
         </div>
         <div class="form-group">
-            <label class="col-sm-1">原部门</label><div class="col-sm-2"><select class="form-control" name="department"><!-- JS推进 --></select></div>
-            <label class="col-sm-1">原岗位</label><div class="col-sm-2"><select class="form-control" name="postname"><!-- JS推进 --></select></div>
-            <label class="col-sm-6"></label>
+            <label class="col-sm-1">职位</label><div class="col-sm-2"><select class="form-control" name="postname"><!-- JS推进 --></select></div>
+            <label class="col-sm-1">原薪资</label><div class="col-sm-2"><input type="text" class="form-control" name="money1"></div>
+            <label class="col-sm-1">新调薪资</label><div class="col-sm-2"><input type="text" class="form-control" name="money2"></div>
+            <label class="col-sm-3"></label>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-1">调岗原因</label><div class="col-sm-11"><textarea class="form-control" name="result"></textarea></div>
+            <label class="col-sm-1">调薪原因</label><div class="col-sm-11"><textarea class="form-control" name="result"></textarea></div>
         </div>
         <hr>
         <div class="form-group">
@@ -44,9 +45,8 @@
 <script>
 $(function(){
 
-    var office_apply_personnelPost = $('#office_apply_personnelPost');
-    var office_apply_personnelPost_api = {
-        department : LOCAL + 'Test/test_select.json', // 部门
+    var office_apply_personnelSalary = $('#office_apply_personnelSalary');
+    var office_apply_personnelSalary_api = {
         postname : LOCAL + 'Test/test_select.json', // 职位
         tree: API.common_staff, // 员工树状图
         approval : LOCAL + "Test/Office/apply/attend_approval.json", // 审批人进度
@@ -54,15 +54,15 @@ $(function(){
     }
 
     // 返回
-    office_apply_personnelPost.find('.add_esc_btn').click(function(){
+    office_apply_personnelSalary.find('.add_esc_btn').click(function(){
         $("#common_tabs").data("zui.tabs").close();
     });
 
     // 提交
-    office_apply_personnelPost.find('.add_submit_btn').click(function(){
+    office_apply_personnelSalary.find('.add_submit_btn').click(function(){
 
         // 数据处理
-        var form = office_apply_personnelPost.find('form');
+        var form = office_apply_personnelSalary.find('form');
         var data = um_data_get(form);
         var stringifyData = {};
         data.forEach(function(i){
@@ -72,7 +72,7 @@ $(function(){
 
         // 远程提交
         $.ajax({
-            url     : office_apply_personnelPost_api.add,
+            url     : office_apply_personnelSalary_api.add,
             data    : data,
             type    : "post",
             dataType: "json",
@@ -93,33 +93,27 @@ $(function(){
 
     // 抄送人
     common_tree_create({
-        dom : office_apply_personnelPost.find('.box_copyer'),
-        url : office_apply_personnelPost_api.tree,
+        dom : office_apply_personnelSalary.find('.box_copyer'),
+        url : office_apply_personnelSalary_api.tree,
         is_open : true,
         is_check : true,
     });
     // 审批人
     common_approval_create({
-        dom : office_apply_personnelPost.find('.box_approver'),
-        url : office_apply_personnelPost_api.approval,
+        dom : office_apply_personnelSalary.find('.box_approver'),
+        url : office_apply_personnelSalary_api.approval,
         data : { 'id' : '自定义传参' }
     });
 
     // 下拉菜单
-    // 部门
-    um_select_option({
-        dom : office_apply_personnelPost.find('[name="department"]'),
-        url : office_apply_personnelPost_api.department,
-        use : 'select'
-    });
     // 职位
     um_select_option({
-        dom : office_apply_personnelPost.find('[name="postname"]'),
-        url : office_apply_personnelPost_api.postname,
+        dom : office_apply_personnelSalary.find('[name="postname"]'),
+        url : office_apply_personnelSalary_api.postname,
         use : 'select'
     });
     // 申请时间-当前时间
-    office_apply_personnelPost.find('[name="nowtime"]').val( um_date('yyyy-MM-dd HH:mm:ss') );
+    office_apply_personnelSalary.find('[name="nowtime"]').val( um_date('yyyy-MM-dd HH:mm:ss') );
 
 }); // 预加载结尾
 </script>

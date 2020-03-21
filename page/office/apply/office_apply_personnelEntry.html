@@ -1,6 +1,6 @@
 <div id="office_apply_personnelEntry">
     <br><br>
-    <form class="container">
+    <form class="container form-horizontal">
         <!-- 基本信息 -->
         <blockquote>基本信息 <span class="small text-red">(以下均为必填项)</span></blockquote>
         <ul class="form-checker-board">
@@ -260,19 +260,22 @@
         </table>
         
         <!-- 发起人/抄送人/审批人 -->
-        <div class="col-sm-3"><label>发起人</label><input type="text" class="form-control" readonly name="promoter"></div>
-        <div class="col-sm-9"></div><div class="clearfix"></div>
-        
-        <div class="col-sm-6"><label>抄送人</label>
-            <div class="office-border">
-                <ul class="tree tree-lines tree-chevrons box_copyer"></ul>
-                <input type="hidden" class="tree_result_id" name="copyer">
+        <div class="form-group">
+            <label class="col-sm-1">发起人</label><div class="col-sm-3"><input type="text" class="form-control" readonly name="promoter"></div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1">抄送人</label>
+            <div class="col-sm-5">
+                <div class="office-border">
+                    <ul class="tree tree-lines tree-chevrons box_copyer"></ul>
+                    <input type="hidden" class="tree_result_id" name="copyer">
+                </div>
+            </div>
+            <label class="col-sm-1">审批人</label>
+            <div class="col-sm-5">
+                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
             </div>
         </div>
-        <div class="col-sm-6"><label>审批人</label>
-            <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
-        </div>
-        <div class="clearfix"></div><hr>
 
         <!-- 提交 -->
         <div>

@@ -1,0 +1,252 @@
+<div id="office_apply_personnelQuit">
+    <br><br>
+    <form class="container form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-1">入职日期</label><div class="col-sm-2"><input type="date" class="form-control" name="date1"></div>
+            <label class="col-sm-1">离职日期</label><div class="col-sm-2"><input type="date" class="form-control" name="date2"></div>
+            <label class="col-sm-1">离职原因</label><div class="col-sm-2">
+                <select class="form-control" name="reason">
+                    <option value="">-- 请选择 --</option>
+                    <option value="1">家庭原因</option>
+                    <option value="1">个人原因</option>
+                    <option value="1">发展原因</option>
+                    <option value="1">合同到期不续签</option>
+                    <option value="1">协议解除</option>
+                    <option value="1">无法胜任工作</option>
+                    <option value="1">违法违纪</option>
+                    <option value="1">其他</option>
+                </select>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1">工作交接人</label><div class="col-sm-2">
+                <input type="text" class="form-control" name="staffname" readonly>
+                <input type="hidden" class="form-control" name="staffid">
+            </div>
+            <label class="col-sm-1">交接内容</label><div class="col-sm-2"><input type="text" class="form-control" name="targettext"></div>
+            <label class="col-sm-6"></label>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-1">离职原因</label><div class="col-sm-8"><textarea class="form-control" name="result"></textarea></div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label class="col-sm-1">发起人</label><div class="col-sm-3"><input type="text" class="form-control" readonly name="promoter"></div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1">抄送人</label>
+            <div class="col-sm-5">
+                <div class="office-border">
+                    <ul class="tree tree-lines tree-chevrons box_copyer"></ul>
+                    <input type="hidden" class="tree_result_id" name="copyer">
+                </div>
+            </div>
+            <label class="col-sm-1">审批人</label>
+            <div class="col-sm-5">
+                <div class="office-border"><div class="office-approval box_approver"><!-- JS推进 --></div></div>
+            </div>
+        </div>
+        <hr>
+        <button type="button" class="btn btn-default add_esc_btn">关闭</button>
+        <button type="button" class="btn btn-primary add_submit_btn">提交</button>
+    </form>
+    <br><br>
+
+</div>
+
+<!-- 人员选择外套 -->
+<div class="page-wrapper" id="office_apply_personnelQuit_staff">
+
+    <!-- 人员选择盒子 -->
+    <div class="modal modal-for-page fade staff_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">人员选择</h4>
+                </div>
+                <div class="modal-body no-padding">
+
+                    <!-- 数据网格 -->
+                    <div class="datagrid datagrid-striped">
+
+                        <!-- 工具条组 -->
+                        <div class="tool-group no-padding">
+                            <form class="tool-search" style="border:none;">
+                                <input type="hidden" name='page'>
+                                <input type="hidden" name='recPerPage'>
+                                <label><span>姓名：</span><input type="text" class="form-control" name="search"></label>
+                                <label><span>部门：</span><select class="form-control" name="department"><!-- JS推进 --></select></label>
+                                <label><button type="button" class="btn btn-primary tool_search_btn">搜索</button></label>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                        <!-- tool-group -->
+                        <div class="datagrid-container"></div>
+                        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+                    </div>
+                    <!-- datagrid -->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary staff_submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+$(function(){
+
+    var office_apply_personnelQuit = $('#office_apply_personnelQuit');
+    var office_apply_personnelQuit_api = {
+        postname : LOCAL + 'Test/test_select.json', // 职位
+        tree: API.common_staff, // 员工树状图
+        approval : LOCAL + "Test/Office/apply/attend_approval.json", // 审批人进度
+        add : API.test_response // 添加提交
+    }
+
+    // 返回
+    office_apply_personnelQuit.find('.add_esc_btn').click(function(){
+        $("#common_tabs").data("zui.tabs").close();
+    });
+
+    // 提交
+    office_apply_personnelQuit.find('.add_submit_btn').click(function(){
+
+        // 数据处理
+        var form = office_apply_personnelQuit.find('form');
+        var data = um_data_get(form);
+        var stringifyData = {};
+        data.forEach(function(i){
+            stringifyData[i.name] = i.value;
+        });
+        data = { requestJson: JSON.stringify(stringifyData) }
+
+        // 远程提交
+        $.ajax({
+            url     : office_apply_personnelQuit_api.add,
+            data    : data,
+            type    : "post",
+            dataType: "json",
+            success : function(data){
+                if( data.status==1 ){
+                    um_tip(data.message);
+                    setTimeout(function(){
+                        $("#common_tabs").data("zui.tabs").close();
+                        // for( var i=0;i<form.length;i++ ){ form[i].reset(); }
+                    },1500);
+                } else {
+                    um_tip(data.message,"1500","text-danger");
+                }
+            }
+        });
+
+    });
+
+    // 抄送人
+    common_tree_create({
+        dom : office_apply_personnelQuit.find('.box_copyer'),
+        url : office_apply_personnelQuit_api.tree,
+        is_open : true,
+        is_check : true,
+    });
+    // 审批人
+    common_approval_create({
+        dom : office_apply_personnelQuit.find('.box_approver'),
+        url : office_apply_personnelQuit_api.approval,
+        data : { 'id' : '自定义传参' }
+    });
+
+    // 下拉菜单
+    // 职位
+    um_select_option({
+        dom : office_apply_personnelQuit.find('[name="postname"]'),
+        url : office_apply_personnelQuit_api.postname,
+        use : 'select'
+    });
+    // 申请时间-当前时间
+    office_apply_personnelQuit.find('[name="nowtime"]').val( um_date('yyyy-MM-dd HH:mm:ss') );
+
+    //工作交接人 - 点击
+    office_apply_personnelQuit.find('[name="staffname"]').click(function(){
+        $("#office_apply_personnelQuit_staff .staff_box").modal('show');
+    });
+
+}); // 预加载结尾
+</script>
+<script>
+$(function(){
+
+    //变量声明
+    var office_apply_personnelQuit_staff_btn = $('#office_apply_personnelQuit [name="staffname"]');
+    var office_apply_personnelQuit_staff_box = $('#office_apply_personnelQuit_staff .staff_box');
+    var office_apply_personnelQuit_staff_api = { 
+        datagrid : API.test_datagrid,
+        department : LOCAL + "Test/test_select.json",
+    }
+    var office_apply_personnelQuit_staff_dataSource = {
+        cols   : [
+            {name:"name", label:"姓名",width:80 },
+            {name:"tel",  label:"电话",width:100},
+            {name:"tex10",label:"公司"}
+        ],
+        remote : function(){
+            return zui_datagrid_remote({
+                page_dom : office_apply_personnelQuit_staff_box, 
+                url      : office_apply_personnelQuit_staff_api.datagrid
+            });
+        },
+        remoteConverter : function(data){ 
+            return zui_datagrid_filter({
+                page_dom : office_apply_personnelQuit_staff_box,
+                data     : data
+            });
+        }
+    };
+    //实例化
+    office_apply_personnelQuit_staff_box.find('.datagrid').datagrid(
+        zui_datagrid_option({
+            datagrid   : office_apply_personnelQuit_staff_box.find('.datagrid'),
+            dataSource : office_apply_personnelQuit_staff_dataSource,
+            checkable  : true,
+            height     : 300
+        })
+    );
+    var office_apply_personnelQuit_staff_datagrid_obj = office_apply_personnelQuit_staff_box.find('.datagrid').data("zui.datagrid");
+    //搜索
+    office_apply_personnelQuit_staff_box.find('.tool_search_btn').click(function(){ 
+        zui_datagrid_render({
+            datagrid_obj : office_apply_personnelQuit_staff_datagrid_obj,
+            dataSource   : office_apply_personnelQuit_staff_dataSource
+        }); 
+    });
+    //部门下拉
+    um_select_option({
+        dom : office_apply_personnelQuit_staff_box.find('[name="department"]'),
+        url : office_apply_personnelQuit_staff_api.department,
+        use : 'search'
+    });
+    //点击显示
+    office_apply_personnelQuit_staff_btn.click(function(){
+        office_apply_personnelQuit_staff_box.modal('show');
+    });
+    //选中提交
+    office_apply_personnelQuit_staff_box.find('.staff_submit').click(function(){
+        var data_arr = office_apply_personnelQuit_staff_datagrid_obj.getCheckItems().filter(function(e){return e});
+        if( data_arr.length==1 ){
+            office_apply_personnelQuit_staff_btn.val( data_arr[0].name );
+            office_apply_personnelQuit_staff_btn.siblings('[type="hidden"]').val( data_arr[0].id );
+            office_apply_personnelQuit_staff_box.modal("hide");
+        } else {
+            um_tip("请选择一条数据","1000","text-danger");
+        }
+    });
+
+});
+</script>
