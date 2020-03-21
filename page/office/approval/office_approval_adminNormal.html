@@ -1,0 +1,455 @@
+<!-- 页面外套 -->
+<div class="page-wrapper" id="office_approval_adminNormal">
+
+    <!-- 数据网格 -->
+    <div class="datagrid datagrid-striped">
+        <!-- 工具条组 -->
+        <div class="tool-group">
+            <form class="tool-search">
+                <input type="hidden" name='page'>
+                <input type="hidden" name='recPerPage'>
+                <div class="im-label">
+                    <div class="input-group">
+                        <select class="form-control" name="sid">
+                            <option value="1">搜索：</option>
+                        </select>
+
+                        <!-- <span class="form-control">搜索：</span> -->
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" placeholder="请输入流水号/申请人姓名/用户名" name="search">
+                    </div>
+                </div>
+                <div class="im-label">
+                    <span>申请时间</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="starttime" readonly>
+                        <span class="input-group-addon fix-border fix-padding"></span>
+                        <input type="text" class="form-control" name="endtime" readonly>
+                    </div>
+                </div>
+                <label>
+                    <span>审批状态</span>
+                    <select class="form-control" name="state">
+                        <option value="0">全部</option>
+                        <option value="1">审批中</option>
+                        <option value="2">审批完成</option>
+                        <option value="3">撤销</option>
+                        <option value="4">已撤销</option>
+                    </select>
+                </label>
+                <label><button type="button" class="btn btn-primary tool_search_btn"><i class="icon icon-search"></i>
+                        搜索</button></label>
+                <div class="clearfix"></div>
+            </form>
+
+        </div>
+        <!-- tool-group -->
+
+        <div class="datagrid-container"></div>
+        <ul class="pager btn-mini" data-elements="prev,pages,next"></ul>
+    </div>
+    <!-- datagrid -->
+
+
+
+
+
+    <!-- 查看盒子 -->
+    <div class="modal modal-for-page fade line_show_box" aria-hidden="false">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">查看</h4>
+                </div>
+                <div class="modal-body modal-scroll">
+                    <div class="container">
+                        <table class="table detail-table">
+                            <tbody>
+                                <!-- JS推进 -->
+                            </tbody>
+                            <tfoot>
+
+                                <!-- <b>审批人</b> -->
+                                <!-- <div class="office-border">
+                                            <div class="office-approval box_approver">
+                                                JS推进
+                                            </div>
+                                        </div> -->
+                            </tfoot>
+                        </table>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary line_back_submit">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 撤销盒子 -->
+    <div class="modal modal-for-page fade line_back_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-11"><textarea class="form-control" placeholder="请输入同意意见（200字以内）"
+                            name="tongyi"></textarea></div>
+                    <form><input type="hidden" name="id"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary line_back_submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 催办盒子 -->
+    <div class="modal modal-for-page fade line_urge_box" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">关闭</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-11"><textarea class="form-control" placeholder="请输入拒绝意见（200字以内）"
+                            name="jujue"></textarea></div>
+                    <form><input type="hidden" name="id"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary line_urge_submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- page-wrapper -->
+
+<script>
+    $(function () {
+
+        // 变量声明-----------------------------------------------------------------------------------------------
+        var office_approval_adminNormal = $("#office_approval_adminNormal"); // 页面ID
+        var office_approval_adminNormal_api = {
+            datagrid: API.test_datagrid, // 数据表格
+            tree: API.common_staff, // 员工树状图
+            approval: LOCAL + "Test/Office/apply/attend_approval.json", // 审批人进度
+            show: LOCAL + "Test/Office/apply/attend_leave.json", // 查看
+            add: API.test_response, // 添加
+            edit: API.test_response, // 修改
+            back: API.test_response, // 撤销
+            urge: API.test_response, // 催办
+        }
+
+        // 数据表格-----------------------------------------------------------------------------------------------
+        // 数据源
+        var office_approval_adminNormal_dataSource = {
+            cols: [{
+                    name: "datetime",
+                    label: "申请时间",
+                    width: 150
+                },
+                {
+                    name: "username",
+                    label: "流水号",
+                    width: 90,
+                    html: true,
+                    valueOperator: {
+                        getter: function (dataValue, cell) {
+                            return `<a class="line_show_btn" dataId="${cell.config.data.id}">${dataValue}</a>`;
+                        }
+                    }
+                },
+                {
+                    name: "approvalname",
+                    label: "申请人",
+                    width: 90
+                },
+                {
+                    name: "username",
+                    label: "用户名",
+                    width: 90
+                },
+                {
+                    name: "department",
+                    label: "部门",
+                    width: 90
+                },
+                {
+                    name: "shenqing",
+                    label: "申请内容",
+                    width: 90
+                },
+                {
+                    name: "text4",
+                    label: "审批状态",
+                    width: 90
+                },
+                {
+                    name: "",
+                    label: "操作",
+                    width: 90,
+                    html: true,
+                    valueOperator: {
+                        getter: function (dataValue, cell) {
+                            var temp = '';
+                            var state = cell.config.data.state;
+                            if (state == 1) {
+                                temp = `
+                            <a class="line_back_btn" dataId="${cell.config.data.id}">同意</a>
+                            <a class="line_urge_btn" dataId="${cell.config.data.id}">拒绝</a>`;
+                            }
+                            return temp;
+                        }
+                    }
+                }
+            ],
+            remote: function () {
+                return zui_datagrid_remote({
+                    page_dom: office_approval_adminNormal,
+                    url: office_approval_adminNormal_api.datagrid
+                });
+            },
+            remoteConverter: function (data) {
+                return zui_datagrid_filter({
+                    page_dom: office_approval_adminNormal,
+                    data: data
+                });
+            }
+        };
+        // 实例化
+        office_approval_adminNormal.find('.datagrid').datagrid(
+            zui_datagrid_option({
+                datagrid: office_approval_adminNormal.find('.datagrid'),
+                dataSource: office_approval_adminNormal_dataSource
+            })
+        );
+        // 搜索
+        office_approval_adminNormal.find('.tool_search_btn').click(function () {
+            zui_datagrid_render({
+                datagrid_obj: office_approval_adminNormal.find('.datagrid').data("zui.datagrid"),
+                dataSource: office_approval_adminNormal_dataSource
+            });
+        });
+
+        // 操作按钮-----------------------------------------------------------------------------------------------
+        // 添加
+        office_approval_adminNormal.find('.tool_add_btn').click(function () {
+            common_form_reset();
+            common_approval_create({
+                dom: office_approval_adminNormal.find('.tool_add_box .box_approver'),
+                url: office_approval_adminNormal_api.approval,
+                data: {
+                    'id': '自定义传参'
+                },
+                field_staff: 'staff', // 员工姓名(默认staff)
+                field_statename: 'statename', // 状态文字(默认statename)
+                field_statenumb: 'statenumb', // 状态数值(默认statenumb)
+            });
+            office_approval_adminNormal.find('.tool_add_box').modal('show');
+        });
+        office_approval_adminNormal.find('.tool_add_submit').click(function () {
+            um_data_submit({
+                url: office_approval_adminNormal_api.add,
+                form: office_approval_adminNormal.find('.tool_add_box form'),
+                dataSource: office_approval_adminNormal_dataSource,
+            });
+        });
+
+        // 修改
+        office_approval_adminNormal.on("click", '.line_edit_btn', function () {
+            office_approval_adminNormal.find('.line_edit_box [name="id"]').val($(this).attr('dataId'));
+            $.ajax({
+                url: office_approval_adminNormal_api.show,
+                data: {
+                    id: $(this).attr('dataId')
+                },
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    var data = data.data;
+                    um_data_set(office_approval_adminNormal.find('.line_edit_box form'), data);
+                    office_approval_adminNormal.find('.line_edit_box').modal('show');
+                    // 抄送人
+                    common_tree_setData({
+                        dom: office_approval_adminNormal.find(
+                            '.line_edit_box .box_copyer'),
+                        data: data.treeAll,
+                        field_cheKey: 'checkd', // 选中key(默认checkd)
+                        field_cheVal: '1', // 选中value(默认1)
+                    });
+                    // 审批人
+                    common_approval_setData({
+                        dom: office_approval_adminNormal.find(
+                            '.line_edit_box .box_approver'),
+                        data: data.approval,
+                        field_staff: 'staff', // 员工姓名(默认staff)
+                        field_statename: 'statename', // 状态文字(默认statename)
+                        field_statenumb: 'statenumb', // 状态数值(默认statenumb)
+                    });
+                    // 上传
+                    window.office_approval_adminNormal_edit_upload = zui_upload_group({
+                        updom: office_approval_adminNormal.find(
+                            '.line_edit_box .box_uploader'),
+                        type: "img",
+                        list: data.pics
+                    });
+                }
+            });
+        });
+        office_approval_adminNormal.find('.line_edit_submit').click(function () {
+            um_data_submit({
+                url: office_approval_adminNormal_api.edit,
+                form: office_approval_adminNormal.find('.line_edit_box form'),
+                dataSource: office_approval_adminNormal_dataSource,
+            });
+        });
+
+        // 查看
+        office_approval_adminNormal.on("click", '.line_show_btn', function () {
+            $.ajax({
+                url: office_approval_adminNormal_api.show,
+                data: {
+                    id: $(this).attr('dataId')
+                },
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    var data = data.data;
+                    var temp = `
+                <tr><td><b>流水号  </b>${data.serialnumber}</td></tr>
+                <tr><td><b>申请人</b>${data.name}</td></tr>
+                <tr><td><b>用户名</b>${data.username}</td></tr>
+                <tr><td><b>部门</b>${data.department}</td></tr>
+                <tr><td><b>申请内容</b>${data.text}</td></tr>
+                <tr><td><b>申请详情</b>${data.datails}</td></tr>
+                <tr><td><b>图片</b>${data.img}</td></tr>
+                <tr><td><b>附件</b>${data.fujian}</td></tr>
+                `;
+                    office_approval_adminNormal.find('.line_show_box tbody').html(temp);
+                    office_approval_adminNormal.find('.line_show_box').modal('show');
+                    // 审批人
+                    // common_approval_setData({
+                    //     dom: office_approval_adminNormal.find(
+                    //         '.line_show_box .box_approver'),
+                    //     data: data.approval,
+                    //     field_staff: 'staff', // 员工姓名(默认staff)
+                    //     field_statename: 'statename', // 状态文字(默认statename)
+                    //     field_statenumb: 'statenumb', // 状态数值(默认statenumb)
+                    // });
+                }
+            });
+        });
+
+        // 撤销
+        office_approval_adminNormal.on("click", '.line_back_btn', function () {
+            office_approval_adminNormal.find('.line_back_box [name="id"]').val($(this).attr('dataId'));
+            office_approval_adminNormal.find('.line_back_box').modal('show');
+        });
+        office_approval_adminNormal.on("click", '.line_back_submit', function () {
+            um_data_submit({
+                url: office_approval_adminNormal_api.back,
+                form: office_approval_adminNormal.find('.line_back_box form'),
+                dataSource: office_approval_adminNormal_dataSource,
+            });
+        });
+
+        // 催办
+        office_approval_adminNormal.on("click", '.line_urge_btn', function () {
+            office_approval_adminNormal.find('.line_urge_box [name="id"]').val($(this).attr('dataId'));
+            office_approval_adminNormal.find('.line_urge_box').modal('show');
+        });
+        office_approval_adminNormal.on("click", '.line_urge_submit', function () {
+            um_data_submit({
+                url: office_approval_adminNormal_api.urge,
+                form: office_approval_adminNormal.find('.line_urge_box form'),
+                dataSource: office_approval_adminNormal_dataSource,
+            });
+        });
+
+        // 日期相关---------------------------------------------------------------------------------------------
+        // 实例化
+        office_approval_adminNormal.find('.tool-search [name="starttime"]').datetimepicker(option_date);
+        office_approval_adminNormal.find('.tool-search [name="endtime"]').datetimepicker(option_date);
+        office_approval_adminNormal.find('.tool_add_box [name="starttime"]').datetimepicker(option_hour);
+        office_approval_adminNormal.find('.tool_add_box [name="endtime"]').datetimepicker(option_hour);
+        office_approval_adminNormal.find('.tool_add_box [name="paydate"]').datetimepicker(option_hour);
+        office_approval_adminNormal.find('.line_edit_box [name="starttime"]').datetimepicker(option_hour);
+        office_approval_adminNormal.find('.line_edit_box [name="endtime"]').datetimepicker(option_hour);
+        office_approval_adminNormal.find('.line_edit_box [name="paydate"]').datetimepicker(option_hour);
+
+        // 时间差获取(添加 修改)
+        office_approval_adminNormal.on('change',
+            '.tool_add_box [name="starttime"], .tool_add_box [name="endtime"], .line_edit_box [name="starttime"], .line_edit_box [name="endtime"]',
+            function () {
+                um_date_duration({
+                    starttime: $(this).parents('form').find('[name="starttime"]'),
+                    endtime: $(this).parents('form').find('[name="endtime"]'),
+                    duration: $(this).parents('form').find('[name="duration"]'),
+                });
+            });
+
+        // 抄送人/审批人相关-----------------------------------------------------------------------------------
+        common_tree_create({
+            dom: office_approval_adminNormal.find('.tool_add_box .box_copyer'),
+            url: office_approval_adminNormal_api.tree,
+            is_open: true,
+            is_check: true,
+        });
+        common_tree_create({
+            dom: office_approval_adminNormal.find('.line_edit_box .box_copyer'),
+            url: office_approval_adminNormal_api.tree,
+            is_open: true,
+            is_check: true,
+        });
+
+        // 上传相关-------------------------------------------------------------------------------------------
+        zui_upload_group({
+            updom: office_approval_adminNormal.find('.tool_add_box .box_uploader'),
+            type: "img"
+        }); // 实例化
+        office_approval_adminNormal.find('.tool_add_box').on("hide.zui.modal", function () { // 添加关闭
+            zui_upload_reset([office_approval_adminNormal.find('.tool_add_box .box_uploader')]); // 重置
+        });
+        office_approval_adminNormal.find('.line_edit_box').on("hide.zui.modal", function () { // 修改关闭
+            zui_upload_destroy([office_approval_adminNormal_edit_upload]); // 销毁
+        });
+
+        // 添加行程--------------------------------------------------------------------------------------------
+        office_approval_adminNormal.on('click', '.box_travelAdd_btn', function () {
+            var trAll = $(this).parents('.box_travelAdd_table').find('tbody tr');
+            var trShow = $(this).parents('.box_travelAdd_table').find('tbody tr:visible');
+            trAll.eq(trShow.length).show();
+            if (trShow.length != 0 && trShow.length == trAll.length - 1) {
+                $(this).hide();
+            }
+        });
+
+
+
+
+
+
+
+    }); //预加载结尾
+</script>
+
+<style>
+    #office_approval_adminNormal .box_travelAdd_table * {
+        font-size: small !important;
+        font-weight: normal;
+    }
+
+    #office_approval_adminNormal .box_travelAdd_table tbody tr {
+        display: none;
+    }
+</style>
