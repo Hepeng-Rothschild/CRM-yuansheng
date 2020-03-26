@@ -54,6 +54,39 @@ function um_select_option(object){
     });
 }
 
+// 下拉菜单-二级联动
+function um_distpicker(object){
+    var object = {
+        url : object.url, // 请求地址
+        data : object.data || {}, // 请求参数
+        select1 : object.select1, // 下拉选择1
+        select2 : object.select2, // 下拉选择2
+        field_id : object.field_id || 'id', // 字段id
+        field_name : object.field_id || 'name', // 字段name
+        field_children : object.field_children || 'children', // 字段chidren
+    }
+    $.ajax({
+        url : object.url,
+        data : object.data,
+        success : function(res){
+            var json = res.data;
+            for (var k1 in json){
+                object.select1.append("<option index='" + k1 + "' value='" + json[k1][object.field_id] + "'>" + json[k1][object.field_name] + "</option>");
+            }
+            object.select1.change(function(){
+                object.select2.html('<option value="">-- 请选择 --</option>');
+                var index = $(this).find("option:selected").attr("index");
+                if(index !== undefined){
+                    var children = json[index][object.field_children];
+                    for(var k2 in children){
+                        object.select2.append('<option value="' + children[k2][object.field_id] + '">' + children[k2][object.field_name] + '</option>');
+                    }
+                }
+            });
+        }
+    });
+}
+
 /* 表单赋值
  * param form_dom 表单DOM
  * param json JSON数据

@@ -1,0 +1,32 @@
+<div id="content">接口测试</div>
+<script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+<script>
+var route = 'http://192.168.1.15:8080/';
+var url = route+ "/Company/getCompanybyid";
+var data = JSON.stringify({
+    requestjson:{
+        sid : 0,
+        number :'',
+        lmid : 1,
+        omid : 1,
+        starttime : '',
+        endtime : '',
+        departmentid : 0,
+        positionid : 0,
+        isstate : 0
+    }
+});
+$.ajax({
+    url     : url,
+    type    : "post",
+    dataType: "json",
+    data    : data,
+    success : function(data){
+        $("#content").html('接口成功');
+        console.log(data);
+    },
+    error: function(){
+        $("#content").html('接口出错');
+    }
+});
+</script>
