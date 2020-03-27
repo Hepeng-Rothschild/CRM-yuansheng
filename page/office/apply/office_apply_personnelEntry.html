@@ -47,8 +47,8 @@
         <!-- 入职情况 -->
         <blockquote>入职情况 <span class="small text-red">(以下均为必填项)</span></blockquote>
         <ul class="form-checker-board">
-            <li class="flex-box col-sm-3"><label><span>部门      </span><select class="form-control" name="department"><!-- JS推进 --></select></label></li>
-            <li class="flex-box col-sm-3"><label><span>职位      </span><select class="form-control" name="postname"><!-- JS推进 --></select></label></li>
+            <li class="flex-box col-sm-3"><label><span>部门      </span><select class="form-control" name="department"><option value="">-- 请选择 --</option><!-- JS推进 --></select></label></li>
+            <li class="flex-box col-sm-3"><label><span>职位      </span><select class="form-control" name="postname"><option value="">-- 请选择 --</option><!-- JS推进 --></select></label></li>
             <li class="flex-box col-sm-3"><label><span>入职日期  </span><input class="form-control" type="date" name="joindate"></label></li>
             <li class="flex-box col-sm-3"><label><span>试用期工资</span><input class="form-control" type="text" name="money1"></label></li>
             <li class="flex-box col-sm-3"><label><span>转正工资  </span><input class="form-control" type="text" name="money2"></label></li>
@@ -292,14 +292,20 @@ $(function(){
 
     var office_apply_personnelEntry = $('#office_apply_personnelEntry');
     var office_apply_personnelEntry_api = {
-        department : LOCAL + 'Test/test_select.json', // 部门
-        postname : LOCAL + 'Test/test_select.json', // 职位
+        distpicker : LOCAL + 'Test/test_distpicker.json', // 部门职位-二级联动
         tree: API.common_staff, // 员工树状图
         approval : LOCAL + "Test/Office/apply/attend_approval.json", // 审批人进度
         add : API.test_response // 添加提交
     }
     // 省市区联动实例化
     office_apply_personnelEntry.find('.address-linkage').distpicker();
+
+    // 部门职位-二级联动
+    um_distpicker({
+        url : office_apply_personnelEntry_api.distpicker,
+        select1 : office_apply_personnelEntry.find('[name="department"]'),
+        select2 : office_apply_personnelEntry.find('[name="postname"]'),
+    });
 
     // 返回
     office_apply_personnelEntry.find('.add_esc_btn').click(function(){
@@ -351,20 +357,6 @@ $(function(){
         dom : office_apply_personnelEntry.find('.box_approver'),
         url : office_apply_personnelEntry_api.approval,
         data : { 'id' : '自定义传参' }
-    });
-
-    // 下拉菜单
-    // 部门
-    um_select_option({
-        dom : office_apply_personnelEntry.find('[name="department"]'),
-        url : office_apply_personnelEntry_api.department,
-        use : 'select'
-    });
-    // 职位
-    um_select_option({
-        dom : office_apply_personnelEntry.find('[name="postname"]'),
-        url : office_apply_personnelEntry_api.postname,
-        use : 'select'
     });
 
     // 上传相关

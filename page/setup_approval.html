@@ -97,7 +97,7 @@
                                         <label class="col-sm-2 required">审批名称</label>
                                         <div class="col-sm-6 tree-wrap">
                                             <input class="form-control" name="approvalPageName" readonly>
-                                            <input type="hidden" name="approvalPageUrl">
+                                            <input type="hidden" name="fid" title="功能表id 页面数字id">
                                             <ul class="tree tree-static tree-lines document_click_hide"></ul>
                                         </div>
                                     </div>
@@ -116,28 +116,18 @@
                                 <div style="max-width:600px">
                                     <div class="form-group">
                                         <label class="col-sm-2 required">发起人</label>
-                                        <div class="col-sm-6"><input class="form-control" name="promoter" readonly><input type="hidden" name="promoterId"></div>
+                                        <div class="col-sm-6"><input class="form-control" name="promoter" readonly><input type="hidden" name="fqstaffids"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 required">抄送人</label>
+                                        <div class="col-sm-6"><input class="form-control" name="copyer" readonly><input type="hidden" name="csstaffids"></div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 required">审批人</label>
                                         <div class="col-sm-6">
-                                            <ul class="arrpover_group_box">
-                                                <li><input class="form-control" name="approver1" readonly><input type="hidden" name="other1"></li>
-                                                <li class="hide"><input class="form-control" name="approver2" readonly><input type="hidden" name="other2"></li>
-                                                <li class="hide"><input class="form-control" name="approver3" readonly><input type="hidden" name="other3"></li>
-                                                <li class="hide"><input class="form-control" name="approver4" readonly><input type="hidden" name="other4"></li>
-                                                <li class="hide"><input class="form-control" name="approver5" readonly><input type="hidden" name="other5"></li>
-                                                <li class="hide"><input class="form-control" name="approver6" readonly><input type="hidden" name="other6"></li>
-                                                <li class="hide"><input class="form-control" name="approver7" readonly><input type="hidden" name="other7"></li>
-                                                <li class="hide"><input class="form-control" name="approver8" readonly><input type="hidden" name="other8"></li>
-                                                <li class="hide"><input class="form-control" name="approver9" readonly><input type="hidden" name="other9"></li>
-                                            </ul>
+                                            <ul class="arrpover_group_box"><!-- JS推进 --></ul>
                                             <button type="button" class="btn arrpover_group_addBtn">+</button>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 required">抄送人</label>
-                                        <div class="col-sm-6"><input class="form-control" name="copyer" readonly><input type="hidden" name="copyerId"></div>
                                     </div>
                                 </div>
                            </div>
@@ -202,7 +192,7 @@
                                         <label class="col-sm-2 required">审批名称</label>
                                         <div class="col-sm-6 tree-wrap">
                                             <input class="form-control" name="approvalPageName" readonly>
-                                            <input type="hidden" name="approvalPageUrl">
+                                            <input type="hidden" name="fid" title="功能表id 页面数字id">
                                             <ul class="tree tree-static tree-lines document_click_hide"></ul>
                                         </div>
                                     </div>
@@ -221,28 +211,18 @@
                                 <div style="max-width:600px">
                                     <div class="form-group">
                                         <label class="col-sm-2 required">发起人</label>
-                                        <div class="col-sm-6"><input class="form-control" name="promoter" readonly><input type="hidden" name="promoterId"></div>
+                                        <div class="col-sm-6"><input class="form-control" name="promoter" readonly><input type="hidden" name="fqstaffids"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 required">抄送人</label>
+                                        <div class="col-sm-6"><input class="form-control" name="copyer" readonly><input type="hidden" name="csstaffids"></div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 required">审批人</label>
                                         <div class="col-sm-6">
-                                            <ul class="arrpover_group_box">
-                                                <li><input class="form-control" name="approver1" readonly><input type="hidden" name="other1"></li>
-                                                <li class="hide"><input class="form-control" name="approver2" readonly><input type="hidden" name="other2"></li>
-                                                <li class="hide"><input class="form-control" name="approver3" readonly><input type="hidden" name="other3"></li>
-                                                <li class="hide"><input class="form-control" name="approver4" readonly><input type="hidden" name="other4"></li>
-                                                <li class="hide"><input class="form-control" name="approver5" readonly><input type="hidden" name="other5"></li>
-                                                <li class="hide"><input class="form-control" name="approver6" readonly><input type="hidden" name="other6"></li>
-                                                <li class="hide"><input class="form-control" name="approver7" readonly><input type="hidden" name="other7"></li>
-                                                <li class="hide"><input class="form-control" name="approver8" readonly><input type="hidden" name="other8"></li>
-                                                <li class="hide"><input class="form-control" name="approver9" readonly><input type="hidden" name="other9"></li>
-                                            </ul>
+                                            <ul class="arrpover_group_box"><!-- JS推进 --></ul>
                                             <button type="button" class="btn arrpover_group_addBtn">+</button>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 required">抄送人</label>
-                                        <div class="col-sm-6"><input class="form-control" name="copyer" readonly><input type="hidden" name="copyerId"></div>
                                     </div>
                                 </div>
                            </div>
@@ -458,7 +438,7 @@
                                 <input type="hidden" name='sid'>
                                 <input type="hidden" name='search'>
                                 <!-- <label><span>姓名：</span><input type="text" class="form-control" name="search"></label> -->
-                                <label><span>部门：</span><select class="form-control" name="department"><!-- JS推进 --></select></label>
+                                <label><span>部门：</span><select class="form-control" name="department" value="0"><!-- JS推进 --></select></label>
                                 <label><button type="button" class="btn btn-primary tool_search_btn">搜索</button></label>
                                 <div class="clearfix"></div>
                             </form>
@@ -487,12 +467,11 @@ $(function(){
     var setup_approval = $("#setup_approval"); //页面ID
     var setup_approval_api = {
         datagrid : API.test_datagrid, // 数据表格
-        add : API.test_response, // 添加
+        add : API.test_response, // ROUTE + "/MyAsk/AddApprovalBase", // 添加
         show : LOCAL + "Test/Setup/Approval/setup_approval.json", // 详情查看
         edit : API.test_response, // 修改
         del : API.test_response, // 删除
-
-        office_approval : LOCAL + "Test/Office/approval.json",
+        office_approval : LOCAL + "Test/Office/approval.json", // 审批名称-树状图组件
     }
 
     //数据表格-----------------------------------------------------------------------------------------------
@@ -580,6 +559,7 @@ $(function(){
             url: setup_approval_api.add,
             form: setup_approval_add_box.find('form'),
             dataSource: setup_approval_dataSource,
+            stringify: true
         });
     });
 
@@ -594,13 +574,15 @@ $(function(){
             success : function(data){
                 var data = data.data;
                 // 审批人动态处理
-                setup_approval_edit_box.find('.arrpover_group_box li').hide()
+                var temp = '';
                 for(var i=0;i<data.approver.length;i++){
-                    var showLi = setup_approval_edit_box.find('.arrpover_group_box li').eq(i);
-                    showLi.find('[readonly]').val(data.approver[i].value);
-                    showLi.find('[type="hidden"]').val(data.approver[i].other);
-                    showLi.show();
+                    temp += `
+                    <li>
+                        <input class="form-control" name="approver[]" readonly value="${data.approver[i].value}">
+                        <input type="hidden" name="other[]" value="${data.approver[i].other}">
+                    </li>`;
                 }
+                setup_approval_edit_box.find('.arrpover_group_box').html(temp)
                 // 表单赋值
                 um_data_set( setup_approval_edit_box.find('form'), data );
                 setup_approval_edit_box.modal('show');
@@ -623,6 +605,7 @@ $(function(){
         // 修改赋值
         var tabBtn = setup_approval_approverSetup_box.find('[name="tabBtn"]');
         var other = $(this).siblings('[type="hidden"]').val();
+        console.log(other); // 此处有错
         if( other!='' ){
             other = um_json(other);
             tabBtn.eq( other.tabBtn-1 ).trigger('click');
@@ -696,17 +679,25 @@ $(function(){
     });
     // 审批人-input添加
     setup_approval.on('click', '.arrpover_group_addBtn', function(){
-        var arrpover_group_box = $(this).siblings('.arrpover_group_box');
-        var allLi = arrpover_group_box.find('li');
-        var showLi = arrpover_group_box.find('li:visible');
-        allLi.eq( showLi.length ).show();
-        if( showLi.length == allLi.length ){ $(this).hide(); }
+        $(this).siblings('.arrpover_group_box').append(`<li><input class="form-control" name="approver[]" readonly><input type="hidden" name="other[]"></li>`);
     });
 
     // 树状图组件
-    common_tree_staff($(".tab1_tree"),true,true);
-    common_tree_staff($(".tab3_tree"),true,true);
-    common_tree_staff($(".tab4_tree"),true,true);
+    common_tree_create({
+        dom : setup_approval.find(".tab1_tree"),
+        is_open: true,
+        is_check: true
+    });
+    common_tree_create({
+        dom : setup_approval.find(".tab3_tree"),
+        is_open: true,
+        is_check: true
+    });
+    common_tree_create({
+        dom : setup_approval.find(".tab4_tree"),
+        is_open: true,
+        is_check: true
+    });
 
 }); // 预加载结尾
 </script>
@@ -718,14 +709,14 @@ $(function(){
     //变量声明
     var setup_approval_salesman_box = $('#setup_approval_salesman_wrapper .salesman_box');
     var setup_approval_salesman_api = { 
-        datagrid : API.test_datagrid,
+        datagrid : API.test_datagrid, // ROUTE + "/User/staffDetail"
         department : LOCAL + "Test/test_select.json",
     }
     var setup_approval_salesman_dataSource = {
         cols   : [
-            // {name:"name",        label:"姓名",width:80 },
-            {name:"departname",  label:"部门",width:100},
-            {name:"positionname",label:"职务"}
+            {name:"name", label:"姓名",width:80 },
+            {name:"departname", label:"部门",width:100},
+            {name:"positionname", label:"职务"}
         ],
         remote : function(){
             return zui_datagrid_remote({
@@ -764,7 +755,7 @@ $(function(){
         use : 'search'
     });
     //点击显示
-    var setup_approval_salesman_btn = ''; //2个dom触发
+    var setup_approval_salesman_btn = ''; // 2个dom触发
     $('#setup_approval').on('click', '[name="promoter"], [name="copyer"]',function(){
         setup_approval_salesman_btn = $(this);
         setup_approval_salesman_box.modal('show');
@@ -788,6 +779,6 @@ $(function(){
             um_tip("至少选择一条数据","1000","text-danger");
         }
     });
-
+    
 });
 </script>
