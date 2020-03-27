@@ -14,12 +14,12 @@
         {
             "title"     :"人事",
             "children"  :[
-                { "title":"招聘","url":"blank","tips":0},
-                { "title":"入职","url":"blank","tips":0},
-                { "title":"转正","url":"blank","tips":0},
-                { "title":"调岗","url":"blank","tips":0},
-                { "title":"调薪","url":"blank","tips":0},
-                { "title":"离职申请","url":"blank","tips":0}
+                { "title":"招聘","url":"office_notice_personnelRecruit","tips":0},
+                { "title":"入职","url":"office_notice_personnelEntry","tips":0},
+                { "title":"转正","url":"office_notice_personnelFormal","tips":0},
+                { "title":"调岗","url":"office_notice_personnelPost","tips":0},
+                { "title":"调薪","url":"office_notice_personnelSalary","tips":0},
+                { "title":"离职申请","url":"office_notice_personnelQuit","tips":0}
             ]
         },
         {
